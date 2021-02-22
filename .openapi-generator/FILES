@@ -45,5 +45,4 @@ model/transactionCreateRequest.ts
 model/transactionPaymentMethodRequest.ts
 model/transactions.ts
 model/transactionsBatchCaptureRequest.ts
-package.json
 tsconfig.json
