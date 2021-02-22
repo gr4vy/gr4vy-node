@@ -6,4 +6,4 @@ docker run --rm \
   --git-repo-id gr4vy-node-sdk \
   --enable-post-process-file \
   -o /local \
-  -c /local/config.json
+  -c /local/.openapi-generator-config.json
