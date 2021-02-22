@@ -1,5 +1,4 @@
 .gitignore
-.openapi-generator-ignore
 api.ts
 api/apis.ts
 api/buyersApi.ts
@@ -7,7 +6,6 @@ api/paymentMethodsApi.ts
 api/paymentOptionsApi.ts
 api/paymentServicesApi.ts
 api/transactionsApi.ts
-git_push.sh
 model/buyer.ts
 model/buyerCreateRequest.ts
 model/buyerUpdateRequest.ts
