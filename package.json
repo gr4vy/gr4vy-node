@@ -3,10 +3,14 @@
     "version": "0.1.0",
     "description": "NodeJS client for @gr4vy/node",
     "repository": "gr4vy/gr4vy-node-sdk",
-    "main": "dist/api.js",
-    "types": "dist/api.d.ts",
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
+    "exports": {
+        "require": "./dist/index.js",
+        "import": "./esm/index.js"
+    },
     "scripts": {
-        "clean": "rm -Rf node_modules/ *.js",
+        "clean": "rm -rf dist/*",
         "build": "tsc",
         "test": "npm run build && node dist/client.js"
     },

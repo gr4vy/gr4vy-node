@@ -1,8 +1,8 @@
 {
-  "moduleName": "Gr4vy",
-  "npmName": "@gr4vy/node",
-  "npmVersion": "0.1.0",
-  "useES6": true,
-  "usePromises": true,
-  "modelPropertyNaming": "original"
+    "moduleName": "Gr4vy",
+    "npmName": "@gr4vy/node",
+    "npmVersion": "0.1.0",
+    "supportsES6": true,
+    "usePromises": true,
+    "modelPropertyNaming": "original"
 }
