@@ -1,0 +1,3000 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Gr4vy API (Beta)",
+    "version": "1.0",
+    "contact": {
+      "name": "Gr4vy Support",
+      "email": "support@gr4vy.com",
+      "url": "https://gr4vy.com"
+    },
+    "termsOfService": "https://gr4vy.com",
+    "license": {
+      "name": "MIT",
+      "url": "https://raw.githubusercontent.com/gr4vy/gr4vy-openapi/main/LICENSE"
+    },
+    "description": "Welcome to the Gr4vy API reference documentation.\nOur API is still very much a work in product and subject to change."
+  },
+  "servers": [
+    {
+      "url": "https://api.{merchant}.gr4vy.app",
+      "variables": {
+        "merchant": {
+          "default": "demo",
+          "description": "The subdomain for your cluster as specified by the\ncluster's main merchant `short_name`."
+        }
+      }
+    }
+  ],
+  "tags": [
+    {
+      "name": "Buyers",
+      "description": "In Gr4vy, a buyer represents your customer, the shopper who's performing\na checkout and making a purchase.\n\nA buyer can be used by you to:\n\n* Display a human readable name (`display_name`) for a buyer in the Gr4vy\nadmin panel\n* Associate multiple tokenized payment methods with a single user\n* Initialize **Gr4vy Embed** with the buyer ID, automatically displaying the\n  buyer's previously stored payment methods, allowing for faster checkout."
+    },
+    {
+      "name": "Payment Methods",
+      "description": "In Gr4vy, a payment method represents a way in which a payment can be\nprocessed, for example a card payment, a PayPal payment, or a Bitcoin\npayment.\n\nThe payment method API can be used to:\n\n* Determine the available payment methods in a cluster.\n* Determine the available payment method for a buyer in a specific currency\nand country.\n* Store (also known as tokenize) a payment method for a buyer.\n* Fetch all previously tokenized payment methods for a buyer."
+    },
+    {
+      "name": "Payment Options",
+      "description": "In Gr4vy, a payment option represents a list of methods (card, PayPal,\netc) that are available for a given locale.\n\nThe payment options API can be used to:\n\n* Determine what types of payments can be processed in a specific locale.\n* Display a list options to a buyer to choose from."
+    },
+    {
+      "name": "Payment Services",
+      "description": "In Gr4vy, a payment service represents a configured payment provider\n(Stripe, PayPal, Adyen, etc) for a specific payment type (card, bitcoin,\netc)\n\nThe payment services API can be used to:\n\n* Provide Gr4vy with the payment credentials for a payment provider.\n* Set a display name for a payment provider."
+    },
+    {
+      "name": "Transactions",
+      "description": "In Gr4vy, a transaction represents a payment in any state, either before it\nis authorized, once it is captured, or after it has been refunded.\n\nThe transactions API can be used to:\n\n- Authorize, capture, and store cards.\n- Authorize, capture, and store alternative payment methods like PayPal.\n- Refund, void, and otherwise cancel existing transactions."
+    }
+  ],
+  "paths": {
+    "/buyers": {
+      "get": {
+        "operationId": "list-buyers",
+        "summary": "List buyers",
+        "description": "Returns a list of buyers.",
+        "tags": ["Buyers"],
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "example": "user-12345"
+            },
+            "in": "query",
+            "name": "external_identifier",
+            "description": "Filters the results to only the items for which the `external_identifier`\nmatches this value."
+          },
+          {
+            "schema": {
+              "type": "integer",
+              "default": 20,
+              "example": 1,
+              "minimum": 1,
+              "maximum": 100,
+              "format": "int32"
+            },
+            "in": "query",
+            "name": "limit",
+            "description": "Defines the maximum number of items to return for this request."
+          },
+          {
+            "schema": {
+              "type": "string",
+              "format": "",
+              "example": "ZXhhbXBsZTE"
+            },
+            "in": "query",
+            "name": "cursor",
+            "description": "A cursor that identifies the page of results to return. This is used to\npaginate the results of this API.\n\nFor the first page of results, this parameter can be left out.\nFor additional pages, use the value returned by the API in\nthe `next_cursor` field. Similarly the `previous_cursor` can be used to\nreverse backwards in the list."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns a list of buyers.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Buyers"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Returns an error if no valid authentication was provided.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error401Unauthorized"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "add-buyer",
+        "summary": "New buyer",
+        "description": "Adds a buyer, allowing for payment methods and transactions to be associated\nto this buyer.\n",
+        "tags": ["Buyers"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BuyerCreateRequest"
+              },
+              "examples": {
+                "Create a buyer": {
+                  "value": {
+                    "external_identifier": "412231123",
+                    "display_name": "John L."
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Returns the buyer that was added.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Buyer"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Returns an error if the request was badly formatted or missing required fields.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorGeneric"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Returns an error if no valid authentication was provided.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error401Unauthorized"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Returns an error if duplicate resource has been found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error409DuplicateRecord"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/buyers/{buyer_id}": {
+      "parameters": [
+        {
+          "schema": {
+            "type": "string",
+            "format": "uuid",
+            "example": "8724fd24-5489-4a5d-90fd-0604df7d3b83"
+          },
+          "name": "buyer_id",
+          "in": "path",
+          "required": true,
+          "description": "The unique ID for a buyer."
+        }
+      ],
+      "get": {
+        "operationId": "get-buyer",
+        "summary": "Get buyer",
+        "description": "Gets the information about a buyer.",
+        "tags": ["Buyers"],
+        "responses": {
+          "200": {
+            "description": "Returns the information about a buyer.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Buyer"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Returns an error if no valid authentication was provided.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error401Unauthorized"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Returns an error if the resource can not be found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error404NotFound"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Returns a generic error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorGeneric"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "operationId": "update-buyer",
+        "summary": "Update buyer",
+        "description": "Updates a buyer's details.\n",
+        "tags": ["Buyers"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BuyerUpdateRequest"
+              },
+              "examples": {
+                "Update a buyer": {
+                  "value": {
+                    "external_identifier": "42623266",
+                    "display_name": "John D."
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Returns the updated buyer record.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Buyer"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Returns an error if the request was badly formatted or missing required fields.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorGeneric"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Returns an error if no valid authentication was provided.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error401Unauthorized"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Returns an error if the resource can not be found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error404NotFound"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "operationId": "delete-buyer",
+        "summary": "Delete buyer",
+        "description": "Deletes a buyer record. Any associated tokenized payment methods will remain\nin the system but no longer associated to the buyer.",
+        "tags": ["Buyers"],
+        "responses": {
+          "204": {
+            "description": "Returns an empty response."
+          },
+          "401": {
+            "description": "Returns an error if no valid authentication was provided.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error401Unauthorized"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Returns an error if the resource can not be found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error404NotFound"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/payment-methods": {
+      "get": {
+        "operationId": "list-payment-methods",
+        "summary": "List payment methods",
+        "description": "Returns a list of stored (tokenized) payment methods.",
+        "tags": ["Payment Methods"],
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "example": "full",
+              "default": "full",
+              "enum": ["full", "token"]
+            },
+            "in": "query",
+            "name": "format",
+            "description": "Determines the format of the payment method returned. Currently we have 2\navailable formats:\n\n* `full` - Returns the default full format of a resource.\n* `token` - Returns only the payment method's token and details. This is used\n   by Gr4vy Embed to render available payment options."
+          },
+          {
+            "schema": {
+              "type": "string",
+              "example": "8724fd24-5489-4a5d-90fd-0604df7d3b83"
+            },
+            "in": "query",
+            "name": "buyer_id",
+            "description": "Filters the results to only the items for which the `buyer` has an\n`id` that matches this value."
+          },
+          {
+            "schema": {
+              "type": "string",
+              "example": "user-12345"
+            },
+            "in": "query",
+            "name": "buyer_external_identifier",
+            "description": "Filters the results to only the items for which the `buyer` has an\n`external_identifier` that matches this value."
+          },
+          {
+            "schema": {
+              "type": "integer",
+              "default": 20,
+              "example": 1,
+              "minimum": 1,
+              "maximum": 100,
+              "format": "int32"
+            },
+            "in": "query",
+            "name": "limit",
+            "description": "Defines the maximum number of items to return for this request."
+          },
+          {
+            "schema": {
+              "type": "string",
+              "format": "",
+              "example": "ZXhhbXBsZTE"
+            },
+            "in": "query",
+            "name": "cursor",
+            "description": "A cursor that identifies the page of results to return. This is used to\npaginate the results of this API.\n\nFor the first page of results, this parameter can be left out.\nFor additional pages, use the value returned by the API in\nthe `next_cursor` field. Similarly the `previous_cursor` can be used to\nreverse backwards in the list."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns a list of payment methods.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaymentMethods"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Returns an error if no valid authentication was provided.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error401Unauthorized"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "store-payment-method",
+        "summary": "New payment method",
+        "description": "Stores and tokenizes a new payment method.",
+        "tags": ["Payment Methods"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CardRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Returns the created payment method.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Card"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Returns an error if the request was badly formatted or missing required fields.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorGeneric"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Returns an error if no valid authentication was provided.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error401Unauthorized"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/payment-methods/{payment_method_id}": {
+      "parameters": [
+        {
+          "schema": {
+            "type": "string",
+            "example": "46973e9d-88a7-44a6-abfe-be4ff0134ff4",
+            "format": "uuid"
+          },
+          "name": "payment_method_id",
+          "in": "path",
+          "required": true,
+          "description": "The ID of the payment method."
+        }
+      ],
+      "get": {
+        "operationId": "get-payment-method",
+        "summary": "Get stored payment method",
+        "description": "Gets the details for a stored payment method.",
+        "tags": ["Payment Methods"],
+        "responses": {
+          "200": {
+            "description": "Returns a payment method.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaymentMethod"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Returns an error if no valid authentication was provided.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error401Unauthorized"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Returns an error if the resource can not be found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error404NotFound"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "operationId": "delete-payment-method",
+        "summary": "Delete payment method",
+        "description": "Removes a stored payment method.",
+        "tags": ["Payment Methods"],
+        "responses": {
+          "204": {
+            "description": "Returns an empty response."
+          },
+          "401": {
+            "description": "Returns an error if no valid authentication was provided.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error401Unauthorized"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Returns an error if the resource can not be found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error404NotFound"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/payment-options": {
+      "get": {
+        "operationId": "list-payment-options",
+        "summary": "List payment options",
+        "description": "Returns a list of available payment method options for a currency\nand country.",
+        "tags": ["Payment Options"],
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "example": "US"
+            },
+            "in": "query",
+            "name": "country",
+            "description": "Filters the results to only the items which support this country code. A\ncountry is formatted as 2-letter ISO country code."
+          },
+          {
+            "schema": {
+              "type": "string",
+              "example": "USD"
+            },
+            "in": "query",
+            "name": "currency",
+            "description": "Filters the results to only the items which support this currency code. A\ncurrency is formatted as 3-letter ISO currency code."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns a list of available payment options for the given currency and\ncountry code.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaymentOptions"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Returns an error if  any of the query parameters are not recognised.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error400BadRequest"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Returns an error if no valid authentication was provided.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error401Unauthorized"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/payment-services": {
+      "get": {
+        "operationId": "list-payment-services",
+        "summary": "List payment services",
+        "description": "Lists the currently configured and activated payment services for a for a cluster.",
+        "tags": ["Payment Services"],
+        "parameters": [
+          {
+            "schema": {
+              "type": "integer",
+              "default": 20,
+              "example": 1,
+              "minimum": 1,
+              "maximum": 100,
+              "format": "int32"
+            },
+            "in": "query",
+            "name": "limit",
+            "description": "Defines the maximum number of items to return for this request."
+          },
+          {
+            "schema": {
+              "type": "string",
+              "format": "",
+              "example": "ZXhhbXBsZTE"
+            },
+            "in": "query",
+            "name": "cursor",
+            "description": "A cursor that identifies the page of results to return. This is used to\npaginate the results of this API.\n\nFor the first page of results, this parameter can be left out.\nFor additional pages, use the value returned by the API in\nthe `next_cursor` field. Similarly the `previous_cursor` can be used to\nreverse backwards in the list."
+          },
+          {
+            "schema": {
+              "type": "string",
+              "example": "card",
+              "enum": ["card", "paypal"]
+            },
+            "in": "query",
+            "name": "method",
+            "description": "Filters the results to only the items for which the `method` has been set to\nthis value."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns a list of payment services.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaymentServices"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Returns an error if no valid authentication was provided.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error401Unauthorized"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "New payment service",
+        "operationId": "add-payment-service",
+        "description": "Adds a new payment service by providing a custom name and a value for each of the required fields.",
+        "tags": ["Payment Services"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PaymentServiceCreateRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Returns the created payment service.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaymentService"
+                },
+                "examples": {
+                  "Stripe": {
+                    "value": {
+                      "id": "stripe-card-faaad066-30b4-4997-a438-242b0752d7e1",
+                      "type": "payment-service",
+                      "payment_service_definition_id": "stripe",
+                      "method": "card",
+                      "display_name": "Stripe",
+                      "status": "pending",
+                      "accepted_currencies": ["EUR"],
+                      "accepted_countries": ["DE"],
+                      "use_test_environment": true
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Returns an error if the request was badly formatted or missing required fields.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorGeneric"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Returns an error if no valid authentication was provided.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error401Unauthorized"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/payment-services/{payment_service_id}": {
+      "parameters": [
+        {
+          "schema": {
+            "type": "string",
+            "example": "stripe-card-46973e9d-88a7-44a6-abfe-be4ff0134ff4"
+          },
+          "name": "payment_service_id",
+          "in": "path",
+          "required": true,
+          "description": "The ID of the payment service."
+        }
+      ],
+      "get": {
+        "operationId": "get-payment-service",
+        "summary": "Get payment service",
+        "description": "Retrieves the details of a single configured payment service.",
+        "tags": ["Payment Services"],
+        "responses": {
+          "200": {
+            "description": "Returns a payment service.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaymentService"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Returns an error if no valid authentication was provided.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error401Unauthorized"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Returns an error if the resource can not be found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error404NotFound"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "operationId": "update-payment-service",
+        "summary": "Update payment service",
+        "description": "Updates an existing payment service. Allows all fields to be changed except for the service ID.",
+        "tags": ["Payment Services"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PaymentServiceUpdateRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Returns the updated payment service.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaymentService"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Returns an error if the request was badly formatted or missing required fields.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorGeneric"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Returns an error if no valid authentication was provided.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error401Unauthorized"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Returns an error if the resource can not be found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error404NotFound"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "operationId": "delete-payment-service",
+        "summary": "Delete payment service",
+        "description": "Deletes a specific active payment service.",
+        "tags": ["Payment Services"],
+        "responses": {
+          "204": {
+            "description": "Returns an empty response."
+          },
+          "401": {
+            "description": "Returns an error if no valid authentication was provided.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error401Unauthorized"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Returns an error if the resource can not be found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error404NotFound"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/transactions": {
+      "get": {
+        "operationId": "list-transactions",
+        "summary": "List transactions",
+        "description": "Lists all transactions for an account. Sorted by last `updated_at` status.",
+        "tags": ["Transactions"],
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "example": "be828248-56de-481e-a580-44b6e1d4df81"
+            },
+            "in": "query",
+            "name": "search",
+            "description": "Filters the results to only the items for which the `id` or\n`external_identifier` matches this value."
+          },
+          {
+            "schema": {
+              "type": "string",
+              "example": "captured",
+              "enum": [
+                "processing",
+                "processing_failed",
+                "captured",
+                "capture_pending",
+                "capture_declined",
+                "authorized",
+                "authorization_pending",
+                "authorization_declined",
+                "authorization_expired",
+                "authorization_voided",
+                "refunded",
+                "buyer_approval_pending",
+                "buyer_approval_declined",
+                "buyer_approval_timedout"
+              ]
+            },
+            "in": "query",
+            "name": "transaction_status",
+            "description": "Filters the results to only the transactions for which the `status`\nmatches this value."
+          },
+          {
+            "schema": {
+              "type": "string",
+              "example": "2012-12-12T10:53:43+00:00"
+            },
+            "in": "query",
+            "name": "before_created_at",
+            "description": "Filters the results to only transactions created before this ISO date-time string."
+          },
+          {
+            "schema": {
+              "type": "string",
+              "example": "2012-12-12T10:53:43+00:00"
+            },
+            "in": "query",
+            "name": "after_created_at",
+            "description": "Filters the results to only transactions created after this ISO date-time string."
+          },
+          {
+            "schema": {
+              "type": "string",
+              "example": "2012-12-12T10:53:43+00:00"
+            },
+            "in": "query",
+            "name": "before_updated_at",
+            "description": "Filters the results to only transactions last updated before this ISO\ndate-time string."
+          },
+          {
+            "schema": {
+              "type": "string",
+              "example": "2012-12-12T10:53:43+00:00"
+            },
+            "in": "query",
+            "name": "after_updated_at",
+            "description": "Filters the results to only transactions last updated after this ISO\ndate-time string."
+          },
+          {
+            "schema": {
+              "type": "integer",
+              "default": 20,
+              "example": 1,
+              "minimum": 1,
+              "maximum": 500,
+              "format": "int32"
+            },
+            "in": "query",
+            "name": "limit",
+            "description": "Defines the maximum number of items to return for this request."
+          },
+          {
+            "schema": {
+              "type": "string",
+              "format": "",
+              "example": "ZXhhbXBsZTE"
+            },
+            "in": "query",
+            "name": "cursor",
+            "description": "A cursor that identifies the page of results to return. This is used to\npaginate the results of this API.\n\nFor the first page of results, this parameter can be left out.\nFor additional pages, use the value returned by the API in\nthe `next_cursor` field. Similarly the `previous_cursor` can be used to\nreverse backwards in the list."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns a paginated list of transactions for an account.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Transactions"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Returns an error if no valid authentication was provided.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error401Unauthorized"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "New transaction",
+        "tags": ["Transactions"],
+        "operationId": "authorize-new-transaction",
+        "description": "Attempts to create an authorization for a payment method. In some cases it is\nnot possible to create the authorization without redirecting the user for\ntheir authorization. In these cases the status is set to\n`buyer_approval_pending` and an `approval_url` is returned.\n\nAdditionally, this endpoint accepts a few additional fields that allow for\nsimultaneous capturing and storage of the payment method.\n\n* `store` - Use this field to store the payment method for\nfuture use. Not all payment methods support this feature.\n* `capture` - Use this method to also perform a capture of the transaction\nafter it has been authorized.\n",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TransactionCreateRequest"
+              },
+              "examples": {
+                "Authorize a new card": {
+                  "value": {
+                    "amount": 1299,
+                    "currency": "USD",
+                    "payment_method": {
+                      "method": "card",
+                      "number": "4111111111111111",
+                      "expiration_date": "11/25",
+                      "security_code": "123"
+                    }
+                  }
+                },
+                "Authorized and tokenize a card": {
+                  "value": {
+                    "amount": 1299,
+                    "currency": "USD",
+                    "store": true,
+                    "payment_method": {
+                      "method": "card",
+                      "number": "4111111111111111",
+                      "expiration_date": "11/25",
+                      "security_code": "123"
+                    }
+                  }
+                },
+                "Authorize, capture, and tokenize a card": {
+                  "value": {
+                    "amount": 1299,
+                    "currency": "USD",
+                    "intent": "capture",
+                    "store": true,
+                    "payment_method": {
+                      "method": "card",
+                      "number": "4111111111111111",
+                      "expiration_date": "11/25",
+                      "security_code": "123"
+                    }
+                  }
+                },
+                "Authorize and capture a PayPal transaction": {
+                  "value": {
+                    "amount": 1299,
+                    "currency": "USD",
+                    "intent": "capture",
+                    "payment_method": {
+                      "method": "paypal",
+                      "redirect_url": "https://example.com/callback"
+                    }
+                  }
+                },
+                "Authorize and capture using a previously tokenized card": {
+                  "value": {
+                    "amount": 1299,
+                    "currency": "USD",
+                    "intent": "capture",
+                    "payment_method": {
+                      "method": "token",
+                      "token": "0123456789123458"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Returns the created transaction.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Transaction"
+                },
+                "examples": {
+                  "Card transaction": {
+                    "value": {
+                      "type": "transaction",
+                      "id": "fe26475d-ec3e-4884-9553-f7356683f7f9",
+                      "status": "authorized",
+                      "amount": 1299,
+                      "currency": "USD",
+                      "payment_method": {
+                        "type": "payment-method",
+                        "id": "77a76f7e-d2de-4bbc-ada9-d6a0015e6bd5",
+                        "method": "card",
+                        "status": "stored",
+                        "token": "0123456789123458",
+                        "details": {
+                          "number": "XXXX XXXX XXXX 1111",
+                          "expiration_date": "11 / 21",
+                          "scheme": "visa"
+                        },
+                        "created_at": "2013-07-16T19:23:00.000+00:00",
+                        "updated_at": "2013-07-16T19:23:00.000+00:00",
+                        "external_identifier": "user-789123",
+                        "buyer": {
+                          "type": "buyer",
+                          "id": "fe26475d-ec3e-4884-9553-f7356683f7f9",
+                          "external_identifier": "user-789123",
+                          "display_name": "John L.",
+                          "created_at": "2013-07-16T19:23:00.000+00:00",
+                          "updated_at": "2013-07-16T19:23:00.000+00:00"
+                        }
+                      },
+                      "created_at": "2013-07-16T19:23:00.000+00:00",
+                      "external_identifier": "user-789123",
+                      "updated_at": "2019-08-24T14:15:22+00:00",
+                      "payment_service": {
+                        "id": "stripe-card-169f5226-4644-4d1e-ac36-14999e73601f",
+                        "type": "payment-service",
+                        "payment_service_definition_id": "stripe-card",
+                        "method": "card",
+                        "display_name": "Stripe (Main)",
+                        "status": "pending",
+                        "accepted_currencies": ["EUR"],
+                        "accepted_countries": ["DE"],
+                        "use_test_environment": true
+                      }
+                    }
+                  },
+                  "PayPal transaction": {
+                    "value": {
+                      "type": "transaction",
+                      "id": "fe26475d-ec3e-4884-9553-f7356683f7f9",
+                      "status": "buyer_approval_pending",
+                      "amount": 1299,
+                      "currency": "USD",
+                      "payment_method": {
+                        "type": "payment-method",
+                        "id": "77a76f7e-d2de-4bbc-ada9-d6a0015e6bd5",
+                        "method": "paypal",
+                        "status": "buyer_approval_pending",
+                        "token": null,
+                        "details": {
+                          "email_address": null,
+                          "approval_url": "https://api.{merchant}.app.gr4vy.com/payment-methods/ffc88ec9-e1ee-45ba-993d-b5902c3b2a8c/approve"
+                        },
+                        "created_at": "2013-07-16T19:23:00.000+00:00",
+                        "updated_at": "2013-07-16T19:23:00.000+00:00",
+                        "external_identifier": "user-789123",
+                        "buyer": {
+                          "type": "buyer",
+                          "id": "fe26475d-ec3e-4884-9553-f7356683f7f9",
+                          "external_identifier": "user-789123",
+                          "display_name": "John L.",
+                          "created_at": "2013-07-16T19:23:00.000+00:00",
+                          "updated_at": "2013-07-16T19:23:00.000+00:00"
+                        }
+                      },
+                      "created_at": "2013-07-16T19:23:00.000+00:00",
+                      "external_identifier": "user-789123",
+                      "updated_at": "2019-08-24T14:15:22+00:00",
+                      "payment_service": {
+                        "id": "stripe-card-169f5226-4644-4d1e-ac36-14999e73601f",
+                        "type": "payment-service",
+                        "payment_service_definition_id": "stripe-card",
+                        "method": "card",
+                        "display_name": "Stripe (Main)",
+                        "status": "pending",
+                        "accepted_currencies": ["EUR"],
+                        "accepted_countries": ["DE"],
+                        "use_test_environment": true
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Returns an error if the request was badly formatted or missing required fields.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorGeneric"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Returns an error if no valid authentication was provided.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error401Unauthorized"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/transactions/{transaction_id}": {
+      "parameters": [
+        {
+          "schema": {
+            "type": "string",
+            "example": "fe26475d-ec3e-4884-9553-f7356683f7f9"
+          },
+          "name": "transaction_id",
+          "in": "path",
+          "required": true,
+          "description": "The ID for the transaction to get the information for."
+        }
+      ],
+      "get": {
+        "operationId": "get-transaction",
+        "summary": "Get transaction",
+        "description": "Get information about a transaction.",
+        "tags": ["Transactions"],
+        "responses": {
+          "200": {
+            "description": "Returns a transaction resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Transaction"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Returns an error if no valid authentication was provided.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error401Unauthorized"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Returns an error if the resource can not be found or has not yet been created.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorGeneric"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/transactions/{transaction_id}/capture": {
+      "parameters": [
+        {
+          "schema": {
+            "type": "string",
+            "example": "fe26475d-ec3e-4884-9553-f7356683f7f9"
+          },
+          "name": "transaction_id",
+          "in": "path",
+          "required": true,
+          "description": "The ID for the transaction to get the information for."
+        }
+      ],
+      "post": {
+        "operationId": "capture-transaction",
+        "summary": "Capture transaction",
+        "description": "Captures a previously authorized transaction.",
+        "tags": ["Transactions"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TransactionCaptureRequest"
+              },
+              "examples": {
+                "Capture an authorization": {
+                  "value": {
+                    "amount": 1299,
+                    "currency": "USD"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Returns the captured transaction.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Transaction"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Returns an error if the request was badly formatted or missing required fields.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorGeneric"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Returns an error if no valid authentication was provided.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error401Unauthorized"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Returns an error if the resource can not be found or has not yet been created.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorGeneric"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/transactions/{transaction_id}/authorize": {
+      "parameters": [
+        {
+          "schema": {
+            "type": "string",
+            "example": "fe26475d-ec3e-4884-9553-f7356683f7f9"
+          },
+          "name": "transaction_id",
+          "in": "path",
+          "required": true,
+          "description": "The ID for the transaction to get the information for."
+        }
+      ],
+      "post": {
+        "operationId": "authorize-transaction",
+        "summary": "Authorize approved transaction",
+        "description": "Authorize a previously approved transaction.",
+        "tags": ["Transactions"],
+        "responses": {
+          "200": {
+            "description": "Returns the authorized transaction.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Transaction"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Returns an error if the request was badly formatted or missing required fields.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorGeneric"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Returns an error if no valid authentication was provided.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error401Unauthorized"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Returns an error if the resource can not be found or has not yet been created.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorGeneric"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/transactions/{transaction_id}/refund": {
+      "parameters": [
+        {
+          "schema": {
+            "type": "string",
+            "example": "fe26475d-ec3e-4884-9553-f7356683f7f9"
+          },
+          "name": "transaction_id",
+          "in": "path",
+          "required": true,
+          "description": "The ID for the transaction to get the information for."
+        }
+      ],
+      "post": {
+        "operationId": "refund-transaction",
+        "summary": "Refund or void transaction",
+        "description": "Refunds or voids transaction. If this transaction was already captured, it\nwill issue a refund. If the transaction was not yet captured the authorization\nwill instead be voided.",
+        "tags": ["Transactions"],
+        "responses": {
+          "200": {
+            "description": "Returns cancelled transaction.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Transaction"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Returns an error if no valid authentication was provided.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error401Unauthorized"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Returns an error if the resource can not be found or has not yet been created.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorGeneric"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Buyer": {
+        "title": "Buyer",
+        "type": "object",
+        "x-tags": ["Buyers"],
+        "properties": {
+          "type": {
+            "type": "string",
+            "description": "The type of this resource. Is always `buyer`.",
+            "example": "buyer",
+            "enum": ["buyer"]
+          },
+          "id": {
+            "type": "string",
+            "example": "fe26475d-ec3e-4884-9553-f7356683f7f9",
+            "description": "The unique Gr4vy ID for this buyer.",
+            "format": "uuid"
+          },
+          "external_identifier": {
+            "type": "string",
+            "description": "An external identifier that can be used to match the buyer against your own records.",
+            "example": "user-789123",
+            "nullable": true,
+            "minLength": 1,
+            "maxLength": 200
+          },
+          "display_name": {
+            "type": "string",
+            "description": "A unique name for this buyer which is used in the Gr4vy admin panel to give a buyer a human readable name.",
+            "example": "John L.",
+            "nullable": true,
+            "minLength": 1,
+            "maxLength": 200
+          },
+          "created_at": {
+            "type": "string",
+            "description": "The date and time\nwhen this buyer was created in our system.",
+            "format": "date-time",
+            "example": "2013-07-16T19:23:00.000+00:00"
+          },
+          "updated_at": {
+            "type": "string",
+            "description": "The date and time\nwhen this buyer was last updated in our system.",
+            "format": "date-time",
+            "example": "2013-07-16T19:23:00.000+00:00"
+          }
+        }
+      },
+      "Buyers": {
+        "title": "Buyers",
+        "type": "object",
+        "description": "A list of buyers.",
+        "x-tags": ["Buyers"],
+        "properties": {
+          "items": {
+            "type": "array",
+            "description": "A list of buyers.",
+            "items": {
+              "$ref": "#/components/schemas/Buyer"
+            }
+          },
+          "limit": {
+            "type": "integer",
+            "description": "The limit applied to request. This represents the number of items that are at\nmaximum returned by this request.",
+            "format": "int32",
+            "minimum": 1,
+            "maximum": 100,
+            "example": 1,
+            "default": 20
+          },
+          "next_cursor": {
+            "type": "string",
+            "description": "The cursor that represents the next page of results. Use the `cursor` query\nparameter to fetch this page of items.",
+            "example": "ZXhhbXBsZTE",
+            "nullable": true,
+            "minLength": 1,
+            "maxLength": 1000
+          },
+          "previous_cursor": {
+            "type": "string",
+            "description": "The cursor that represents the next page of results. Use the `cursor` query\nparameter to fetch this page of items.",
+            "example": null,
+            "nullable": true,
+            "minLength": 1,
+            "maxLength": 1000
+          }
+        }
+      },
+      "BuyerCreateRequest": {
+        "title": "Buyer (Create)",
+        "type": "object",
+        "description": "A request to create a buyer.",
+        "x-tags": ["Buyers"],
+        "properties": {
+          "external_identifier": {
+            "type": "string",
+            "description": "An external identifier that can be used to match the buyer against your own records. This value needs to be unique for all buyers.",
+            "example": "user-789123",
+            "nullable": true,
+            "minLength": 1,
+            "maxLength": 200
+          },
+          "display_name": {
+            "type": "string",
+            "description": "A unique name for this buyer which is used in the Gr4vy admin panel to give a buyer a human readable name.",
+            "example": "John L.",
+            "nullable": true,
+            "minLength": 1,
+            "maxLength": 200
+          }
+        }
+      },
+      "BuyerUpdateRequest": {
+        "title": "Buyer (Update)",
+        "type": "object",
+        "description": "A request to update a buyer.",
+        "x-tags": ["Buyers"],
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/BuyerCreateRequest"
+          }
+        ]
+      },
+      "Card": {
+        "title": "Card",
+        "description": "A stored card.",
+        "type": "object",
+        "x-tags": ["Payment Methods"],
+        "properties": {
+          "type": {
+            "type": "string",
+            "description": "`payment-method`.",
+            "example": "payment-method",
+            "enum": ["payment-method"]
+          },
+          "id": {
+            "type": "string",
+            "description": "The unique ID of the payment method.",
+            "format": "uuid",
+            "example": "77a76f7e-d2de-4bbc-ada9-d6a0015e6bd5"
+          },
+          "status": {
+            "type": "string",
+            "description": "The state of the card tokenization.",
+            "example": "stored",
+            "enum": ["processing", "processing_failed", "stored", "used"]
+          },
+          "token": {
+            "type": "string",
+            "description": "A Gr4vy token that represents this payment method, in the format of a\ncredit-card number starting with the digit 0. You can store this token\nin your own system and use it to process a payment with this payment\nmethod at a later date.",
+            "example": "0123456789123458",
+            "nullable": true
+          },
+          "method": {
+            "type": "string",
+            "description": "`card`.",
+            "example": "card",
+            "enum": ["card"]
+          },
+          "created_at": {
+            "type": "string",
+            "description": "The date and time when this payment method was first created in our\nsystem.",
+            "format": "date-time",
+            "example": "2013-07-16T19:23:00.000+00:00"
+          },
+          "updated_at": {
+            "type": "string",
+            "description": "The date and time when this payment method was last updated in our system.",
+            "format": "date-time",
+            "example": "2013-07-16T19:23:00.000+00:00"
+          },
+          "external_identifier": {
+            "type": "string",
+            "description": "An external identifier that can be used to match the payment method\nagainst your own records.",
+            "example": "user-789123",
+            "nullable": true
+          },
+          "buyer": {
+            "description": "The optional buyer for which this payment method has been stored.",
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Buyer"
+              }
+            ]
+          },
+          "details": {
+            "$ref": "#/components/schemas/CardDetails"
+          }
+        }
+      },
+      "Card--Token": {
+        "title": "Card (Token)",
+        "description": "A mini format version of the card.",
+        "type": "object",
+        "x-tags": ["Payment Methods"],
+        "properties": {
+          "type": {
+            "type": "string",
+            "description": "`payment-method`.",
+            "example": "payment-method",
+            "enum": ["payment-method"]
+          },
+          "token": {
+            "type": "string",
+            "description": "A Gr4vy token that represents this payment method, in the format of a\ncredit-card number starting with the digit 0. You can store this token\nin your own system and use it to process a payment with this payment\nmethod at a later date.",
+            "example": "0123456789123458",
+            "nullable": true
+          },
+          "method": {
+            "type": "string",
+            "description": "`card`.",
+            "example": "card",
+            "enum": ["card"]
+          },
+          "details": {
+            "$ref": "#/components/schemas/CardDetails"
+          }
+        }
+      },
+      "CardDetails": {
+        "title": "Card details",
+        "description": "Additional details about a stored card.",
+        "type": "object",
+        "x-tags": ["Payment Methods"],
+        "properties": {
+          "number": {
+            "type": "string",
+            "description": "Partial number details for a stored card, hiding all but the last few\nnumbers.",
+            "example": "XXXX XXXX XXXX 1111"
+          },
+          "scheme": {
+            "type": "string",
+            "example": "visa",
+            "enum": [
+              "visa",
+              "mastercard",
+              "american-express",
+              "diners-club",
+              "discover",
+              "jcb",
+              "unionpay",
+              "maestro",
+              "elo",
+              "mir",
+              "hiper",
+              "hipercard"
+            ],
+            "description": "The type of the card."
+          },
+          "expiration_date": {
+            "type": "string",
+            "description": "The expiration date for a card.",
+            "example": "11 / 21"
+          }
+        }
+      },
+      "CardRequest": {
+        "title": "Card",
+        "type": "object",
+        "description": "Card details to use in a transaction or to register a new payment method.",
+        "x-tags": ["Request Bodies"],
+        "required": ["method", "number", "expiration_date", "security_code"],
+        "properties": {
+          "method": {
+            "type": "string",
+            "description": "`card`.",
+            "example": "card",
+            "enum": ["card"]
+          },
+          "number": {
+            "type": "string",
+            "minLength": 14,
+            "maxLength": 16,
+            "example": "4111111111111111",
+            "pattern": "^[0-9]{14,16}$",
+            "description": "The 15-16 digit number for this credit card as it can be found on the\nfront of the card.\n\nIf a card has been stored with us previously, this number will represent\nthe unique tokenized card ID provided via our API."
+          },
+          "expiration_date": {
+            "type": "string",
+            "description": "The expiration date of the card, formatted `MM/YY`. If a card has been\npreviously stored with us this value is optional.\n\nIf the `number` of this card represents a tokenized card, then this value\nis ignored.",
+            "example": "11/15",
+            "pattern": "^\\d\\d/\\d\\d$",
+            "minLength": 5,
+            "maxLength": 5
+          },
+          "security_code": {
+            "type": "string",
+            "description": "The 3 or 4 digit security code often found on the card. This often\nreferred to as the CVV or CVD.\n\nIf the `number` of this card represents a tokenized card, then this value\nis ignored.",
+            "pattern": "^\\d{3,4}$",
+            "minLength": 3,
+            "maxLength": 4,
+            "example": "123"
+          },
+          "external_identifier": {
+            "type": "string",
+            "description": "An external identifier that can be used to match the card against your own records.",
+            "example": "user-789123",
+            "nullable": true
+          },
+          "buyer_id": {
+            "type": "string",
+            "format": "uuid",
+            "example": "fe26475d-ec3e-4884-9553-f7356683f7f9",
+            "description": "The ID of the buyer to associate this payment method to. If this field is\nprovided then the `buyer_external_identifier` field needs to be unset."
+          },
+          "buyer_external_identifier": {
+            "type": "string",
+            "description": "The `external_identifier` of the buyer to associate this payment method\nto. If this field is provided then the `buyer_id` field\nneeds to be unset.",
+            "example": "user-789123"
+          }
+        }
+      },
+      "ErrorGeneric": {
+        "title": "Generic Error",
+        "type": "object",
+        "description": "A generic client error.",
+        "x-tags": ["Errors"],
+        "properties": {
+          "type": {
+            "type": "string",
+            "description": "The type of this object. This is always `error`.",
+            "enum": ["error"],
+            "example": "error",
+            "default": "error"
+          },
+          "code": {
+            "type": "string",
+            "description": "A custom code to further describe the type of error being returned. This code provides further specification within the HTTP `status` code and can be used by a program to define logic based on the error.",
+            "example": "incorrect_json"
+          },
+          "status": {
+            "type": "integer",
+            "description": "The HTTP status code of this error.",
+            "format": "int32",
+            "default": 0,
+            "minimum": 200,
+            "exclusiveMaximum": true,
+            "maximum": 600,
+            "example": 499
+          },
+          "message": {
+            "type": "string",
+            "description": "A human readable message that describes the error. The content of this field should not be used to determine any business logic. ",
+            "example": "The request body was not valid JSON."
+          },
+          "details": {
+            "type": "array",
+            "description": "A list of detail objects that further clarify the reason for the error.\nNot every error supports more detail.",
+            "items": {
+              "$ref": "#/components/schemas/ErrorDetail"
+            }
+          }
+        }
+      },
+      "Error400BadRequest": {
+        "title": "Bad Request",
+        "type": "object",
+        "description": "Bad Request (HTTP 400).",
+        "x-tags": ["Errors"],
+        "properties": {
+          "type": {
+            "type": "string",
+            "description": "`error`.",
+            "enum": ["error"],
+            "example": "error"
+          },
+          "code": {
+            "type": "string",
+            "description": "`bad_request`.",
+            "example": "bad_request",
+            "enum": ["bad_request"]
+          },
+          "status": {
+            "type": "integer",
+            "description": "`400`.",
+            "example": 400,
+            "enum": [400]
+          },
+          "message": {
+            "type": "string",
+            "description": "Describes the fields that are missing or incorrectly formatted in the API\nrequest.",
+            "example": "Missing '****' field"
+          },
+          "details": {
+            "type": "array",
+            "description": "A list of detail objects that further clarify the reason for the error.",
+            "items": {
+              "$ref": "#/components/schemas/ErrorDetail"
+            }
+          }
+        }
+      },
+      "Error400IncorrectJson": {
+        "title": "Incorrect JSON",
+        "type": "object",
+        "description": "Incorrect JSON (HTTP 400).",
+        "x-tags": ["Errors"],
+        "properties": {
+          "type": {
+            "type": "string",
+            "description": "`error`.",
+            "enum": ["error"],
+            "example": "error"
+          },
+          "code": {
+            "type": "string",
+            "description": "`incorrect_json`.",
+            "example": "incorrect_json",
+            "enum": ["incorrect_json"]
+          },
+          "status": {
+            "type": "integer",
+            "description": "`400`.",
+            "example": 400,
+            "enum": [400]
+          },
+          "message": {
+            "type": "string",
+            "description": "Incorrect JSON. The request body could not be parsed as valid JSON.",
+            "example": "Incorrect JSON. The request body could not be parsed as valid JSON."
+          },
+          "details": {
+            "type": "array",
+            "description": "A list of detail objects that further clarify the reason for the error.\nNot every error supports more detail.",
+            "example": [],
+            "items": {
+              "$ref": "#/components/schemas/ErrorDetail"
+            }
+          }
+        }
+      },
+      "Error401Unauthorized": {
+        "title": "Unauthorized Error",
+        "type": "object",
+        "description": "Unauthorized Error (HTTP 401).",
+        "x-tags": ["Errors"],
+        "properties": {
+          "type": {
+            "type": "string",
+            "description": "`error`.",
+            "enum": ["error"],
+            "example": "error"
+          },
+          "code": {
+            "type": "string",
+            "description": "`unauthorized`.",
+            "example": "unauthorized",
+            "enum": ["unauthorized"]
+          },
+          "status": {
+            "type": "integer",
+            "description": "`401`.",
+            "example": 401,
+            "enum": [401]
+          },
+          "message": {
+            "type": "string",
+            "description": "No valid API authentication found.",
+            "example": "No valid API authentication found",
+            "enum": ["No valid API authentication found"]
+          },
+          "details": {
+            "type": "array",
+            "description": "A list of detail objects that further clarify the reason for the error.\nNot every error supports more detail.",
+            "example": [],
+            "items": {
+              "$ref": "#/components/schemas/ErrorDetail"
+            }
+          }
+        }
+      },
+      "Error404PendingCreation": {
+        "title": "Pending Creation Error",
+        "type": "object",
+        "description": "Pending Creation Error (HTTP 404).",
+        "x-tags": ["Errors"],
+        "properties": {
+          "type": {
+            "type": "string",
+            "description": "`error`.",
+            "enum": ["error"],
+            "example": "error"
+          },
+          "code": {
+            "type": "string",
+            "description": "`pending_creation`.",
+            "example": "pending_creation",
+            "enum": ["pending_creation"]
+          },
+          "status": {
+            "type": "integer",
+            "description": "`404`.",
+            "example": 404,
+            "enum": [404]
+          },
+          "message": {
+            "type": "string",
+            "description": "The resource is still pending.",
+            "example": "The resource is still pending",
+            "enum": ["The resource is still pending"]
+          },
+          "details": {
+            "type": "array",
+            "description": "A list of detail objects that further clarify the reason for the error.\nNot every error supports more detail.",
+            "example": [],
+            "items": {
+              "$ref": "#/components/schemas/ErrorDetail"
+            }
+          }
+        }
+      },
+      "Error404NotFound": {
+        "title": "Not Found Error",
+        "type": "object",
+        "description": "Not Found Error (HTTP 404).",
+        "x-tags": ["Errors"],
+        "properties": {
+          "type": {
+            "type": "string",
+            "description": "`error`.",
+            "enum": ["error"],
+            "example": "error"
+          },
+          "code": {
+            "type": "string",
+            "description": "`not_found`.",
+            "example": "not_found",
+            "enum": ["not_found"]
+          },
+          "status": {
+            "type": "integer",
+            "description": "`404`.",
+            "example": 404,
+            "enum": [404]
+          },
+          "message": {
+            "type": "string",
+            "description": "The resource could not be found.",
+            "example": "The resource could not be found",
+            "enum": ["The resource could not be found"]
+          },
+          "details": {
+            "type": "array",
+            "description": "A list of detail objects that further clarify the reason for the error.\nNot every error supports more detail.",
+            "example": [],
+            "items": {
+              "$ref": "#/components/schemas/ErrorDetail"
+            }
+          }
+        }
+      },
+      "Error409DuplicateRecord": {
+        "title": "Duplicate Record Error",
+        "type": "object",
+        "description": "Duplicate Record Error (HTTP 409).",
+        "x-tags": ["Errors"],
+        "properties": {
+          "type": {
+            "type": "string",
+            "description": "`error`.",
+            "enum": ["error"],
+            "example": "error"
+          },
+          "code": {
+            "type": "string",
+            "description": "`duplicate_record`.",
+            "example": "duplicate_record",
+            "enum": ["duplicate_record"]
+          },
+          "status": {
+            "type": "integer",
+            "description": "`409`.",
+            "example": 409,
+            "enum": [409]
+          },
+          "message": {
+            "type": "string",
+            "description": "Further details on the field that triggered the error.",
+            "example": "A duplicate ecord exists with this external_identifier value"
+          },
+          "details": {
+            "type": "array",
+            "description": "A list of detail objects that further clarify the reason for the error.\nNot every error supports more detail.",
+            "example": [],
+            "items": {
+              "$ref": "#/components/schemas/ErrorDetail"
+            }
+          }
+        }
+      },
+      "ErrorDetail": {
+        "title": "Error details",
+        "description": "Additional detail about the part of a request body that caused an issue.",
+        "type": "object",
+        "x-tags": ["Errors"],
+        "properties": {
+          "location": {
+            "type": "string",
+            "example": "body",
+            "description": "The location where the error caused an issue.",
+            "enum": ["query", "body", "path", "header"]
+          },
+          "type": {
+            "type": "string",
+            "example": "value_error.missing",
+            "description": "A unique identifier for the type of error that occurred."
+          },
+          "pointer": {
+            "type": "string",
+            "example": "/payment_method/number",
+            "description": "The exact item for which the validation did not succeed. This is a JSON\npointer for request bodies, while for query, path, and header parameters\nit is the name of the parameter."
+          },
+          "message": {
+            "type": "string",
+            "example": "field required",
+            "description": "A human readable message for this error detail."
+          }
+        }
+      },
+      "PaymentMethod": {
+        "title": "Payment method",
+        "description": "A generic payment method.",
+        "type": "object",
+        "x-tags": ["Payment Methods"],
+        "properties": {
+          "type": {
+            "type": "string",
+            "description": "`payment-method`.",
+            "example": "payment-method",
+            "enum": ["payment-method"]
+          },
+          "id": {
+            "type": "string",
+            "description": "The unique ID of the payment method.",
+            "format": "uuid",
+            "example": "77a76f7e-d2de-4bbc-ada9-d6a0015e6bd5"
+          },
+          "status": {
+            "type": "string",
+            "description": "The state of the payment method.",
+            "example": "stored",
+            "enum": [
+              "processing",
+              "processing_failed",
+              "buyer_approval_pending",
+              "buyer_approval_declined",
+              "buyer_approval_timedout",
+              "buyer_approved",
+              "stored",
+              "used"
+            ]
+          },
+          "method": {
+            "type": "string",
+            "description": "The type of this payment method.",
+            "example": "card",
+            "enum": ["card", "paypal"]
+          },
+          "created_at": {
+            "type": "string",
+            "description": "The date and time when this payment method was first created in our\nsystem.",
+            "format": "date-time",
+            "example": "2013-07-16T19:23:00.000+00:00"
+          },
+          "updated_at": {
+            "type": "string",
+            "description": "The date and time when this payment method was last updated in our system.",
+            "format": "date-time",
+            "example": "2013-07-16T19:23:00.000+00:00"
+          },
+          "external_identifier": {
+            "type": "string",
+            "description": "An external identifier that can be used to match the payment method\nagainst your own records.",
+            "example": "user-789123",
+            "nullable": true
+          },
+          "buyer": {
+            "description": "The optional buyer for which this payment method has been stored.",
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Buyer"
+              }
+            ]
+          },
+          "details": {
+            "description": "Additional details about a payment method.",
+            "type": "object",
+            "properties": {
+              "number": {
+                "type": "string",
+                "description": "Partial number details for a stored card, hiding all but the last few\nnumbers.",
+                "example": "XXXX XXXX XXXX 1111"
+              },
+              "scheme": {
+                "type": "string",
+                "example": "visa",
+                "enum": [
+                  "visa",
+                  "mastercard",
+                  "american-express",
+                  "diners-club",
+                  "discover",
+                  "jcb",
+                  "unionpay",
+                  "maestro",
+                  "elo",
+                  "mir",
+                  "hiper",
+                  "hipercard"
+                ],
+                "description": "The type of the card."
+              },
+              "expiration_date": {
+                "type": "string",
+                "description": "The expiration date for a card.",
+                "example": "11 / 21"
+              },
+              "email_address": {
+                "type": "string",
+                "example": "john@example.com",
+                "description": "The email address associated to the payment method.",
+                "nullable": true
+              },
+              "approval_url": {
+                "type": "string",
+                "example": "https://api.{merchant}.app.gr4vy.com/payment-methods/ffc88ec9-e1ee-45ba-993d-b5902c3b2a8c/approve",
+                "description": "The optional URL that the buyer needs to be redirected to to further authorize the payment method.",
+                "nullable": true
+              }
+            }
+          }
+        }
+      },
+      "PaymentMethods": {
+        "title": "Payment Methods",
+        "type": "object",
+        "description": "A list of stored payment methods.",
+        "x-tags": ["PaymentMethods"],
+        "properties": {
+          "items": {
+            "type": "array",
+            "description": "A list of stored payment methods.",
+            "items": {
+              "$ref": "#/components/schemas/Card--Token"
+            }
+          },
+          "limit": {
+            "type": "integer",
+            "description": "The limit applied to request. This represents the number of items that are at\nmaximum returned by this request.",
+            "format": "int32",
+            "minimum": 1,
+            "maximum": 100,
+            "example": 1,
+            "default": 20
+          },
+          "next_cursor": {
+            "type": "string",
+            "description": "The cursor that represents the next page of results. Use the `cursor` query\nparameter to fetch this page of items.",
+            "example": "ZXhhbXBsZTE",
+            "nullable": true,
+            "minLength": 1,
+            "maxLength": 1000
+          },
+          "previous_cursor": {
+            "type": "string",
+            "description": "The cursor that represents the next page of results. Use the `cursor` query\nparameter to fetch this page of items.",
+            "example": null,
+            "nullable": true,
+            "minLength": 1,
+            "maxLength": 1000
+          }
+        }
+      },
+      "PaymentService": {
+        "title": "A payment service",
+        "type": "object",
+        "description": "An active, configured payment service.",
+        "x-tags": ["Payment Services"],
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The ID of this payment service instance.",
+            "example": "stripe-card-faaad066-30b4-4997-a438-242b0752d7e1",
+            "minLength": 1,
+            "maxLength": 200
+          },
+          "type": {
+            "type": "string",
+            "description": "The type of this resource.",
+            "example": "payment-service",
+            "enum": ["payment-service"]
+          },
+          "payment_service_definition_id": {
+            "type": "string",
+            "description": "The ID of the payment service definition used to create this service.\n",
+            "example": "stripe-card",
+            "minLength": 1,
+            "maxLength": 50
+          },
+          "method": {
+            "type": "string",
+            "description": "Defines the ID of the payment method that this service handles.",
+            "example": "card",
+            "enum": ["card", "paypal"]
+          },
+          "display_name": {
+            "type": "string",
+            "description": "The custom name set for this service.",
+            "example": "Stripe (Main)",
+            "minLength": 1,
+            "maxLength": 50
+          },
+          "status": {
+            "type": "string",
+            "enum": ["pending", "created", "failed"],
+            "description": "The current status of this service. This will start off as pending, move\nto created, and might eventually move to an error status if and when the\ncredentials are no longer valid.\n"
+          },
+          "accepted_currencies": {
+            "type": "array",
+            "description": "A list of currencies for which this service is enabled, in ISO 4217\nthree-letter code format.",
+            "minItems": 1,
+            "items": {
+              "type": "string",
+              "minLength": 3,
+              "maxLength": 3
+            },
+            "example": ["EUR"]
+          },
+          "accepted_countries": {
+            "type": "array",
+            "description": "A list of countries for which this service is enabled, in ISO two-letter\ncode format.",
+            "minItems": 1,
+            "items": {
+              "type": "string",
+              "minLength": 2,
+              "maxLength": 2
+            },
+            "example": ["DE"]
+          },
+          "use_test_environment": {
+            "type": "boolean",
+            "description": "Defines if this service should use the test credentials and/or endpoint."
+          },
+          "position": {
+            "type": "number",
+            "example": 1,
+            "description": "The numeric rank of a payment service. Payment services with a lower\nposition value are processed first."
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2012-12-12T10:53:43+00:00",
+            "description": "The date and time when this service was created."
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2012-12-12T10:53:43+00:00",
+            "description": "The date and time when this service was last updated."
+          }
+        }
+      },
+      "PaymentServices": {
+        "title": "A list of active payment services",
+        "type": "object",
+        "description": "A list of active, configured payment services.",
+        "x-tags": ["Payment Services"],
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PaymentService"
+            }
+          },
+          "limit": {
+            "type": "integer",
+            "description": "The limit applied to request. This represents the number of items that are at\nmaximum returned by this request.",
+            "format": "int32",
+            "minimum": 1,
+            "maximum": 100,
+            "example": 1,
+            "default": 20
+          },
+          "next_cursor": {
+            "type": "string",
+            "description": "The cursor that represents the next page of results. Use the `cursor` query\nparameter to fetch this page of items.",
+            "example": "ZXhhbXBsZTE",
+            "nullable": true,
+            "minLength": 1,
+            "maxLength": 1000
+          },
+          "previous_cursor": {
+            "type": "string",
+            "description": "The cursor that represents the next page of results. Use the `cursor` query\nparameter to fetch this page of items.",
+            "example": null,
+            "nullable": true,
+            "minLength": 1,
+            "maxLength": 1000
+          }
+        }
+      },
+      "PaymentServiceCreateRequest": {
+        "title": "Payment Service (Create)",
+        "type": "object",
+        "description": "Request body for activating a payment service.",
+        "x-tags": ["Request Bodies"],
+        "required": [
+          "display_name",
+          "payment_service_definition_id",
+          "fields",
+          "accepted_currencies",
+          "use_test_environment",
+          "accepted_countries"
+        ],
+        "properties": {
+          "payment_service_definition_id": {
+            "type": "string",
+            "description": "The ID of the payment service to use.",
+            "example": "stripe-card",
+            "minLength": 1,
+            "maxLength": 50
+          }
+        },
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/PaymentServiceUpdateRequest"
+          }
+        ]
+      },
+      "PaymentServiceUpdateRequest": {
+        "title": "Payment Service (Update)",
+        "type": "object",
+        "description": "Request body for updating an active payment service.",
+        "x-tags": ["Request Bodies"],
+        "properties": {
+          "display_name": {
+            "type": "string",
+            "description": "A custom name for the payment service. This will be shown in the Admin UI.",
+            "example": "Stripe (Main)",
+            "minLength": 1,
+            "maxLength": 50
+          },
+          "fields": {
+            "type": "array",
+            "description": "A list of fields, each containing a key-value pair for each field defined by the definition for this payment service.",
+            "items": {
+              "type": "object",
+              "description": "A field containing a key-value pair for a required field defined by the service for this payment service.",
+              "required": ["key", "value"],
+              "properties": {
+                "key": {
+                  "type": "string",
+                  "description": "The key of the field to set a value for.",
+                  "example": "private_key",
+                  "minLength": 1,
+                  "maxLength": 50
+                },
+                "value": {
+                  "type": "string",
+                  "description": "The value of a field to set.",
+                  "example": "sk_test_4eC39HqLyjWDarjtT1zdp7dc",
+                  "minLength": 1,
+                  "maxLength": 1500
+                }
+              }
+            }
+          },
+          "accepted_countries": {
+            "type": "array",
+            "description": "A list of countries that this payment service needs to support in ISO two-letter code format.",
+            "minItems": 1,
+            "items": {
+              "type": "string",
+              "minLength": 2,
+              "maxLength": 2
+            },
+            "example": ["US", "GB", "DE"]
+          },
+          "accepted_currencies": {
+            "type": "array",
+            "description": "A list of currencies that this payment service needs to support in ISO 4217 three-letter code format.",
+            "minItems": 1,
+            "items": {
+              "type": "string",
+              "minLength": 3,
+              "maxLength": 3
+            },
+            "example": ["EUR", "USD", "GBP"]
+          },
+          "use_test_environment": {
+            "type": "boolean",
+            "description": "Defines if this payment service uses the service's test/sandbox environment.",
+            "example": false
+          },
+          "position": {
+            "type": "number",
+            "example": 1,
+            "description": "The numeric rank of a payment service. Payment services with a lower\nposition value are processed first. When a payment services is inserted at\na position, any payment services with the the same value or higher are\nshifted down a position accordingly. When left out, the payment service is\ninserted at the end of the list."
+          }
+        }
+      },
+      "PaymentOption": {
+        "title": "Payment option",
+        "type": "object",
+        "description": "An available payment option for a locale.",
+        "x-tags": ["Payment Option"],
+        "properties": {
+          "type": {
+            "type": "string",
+            "description": "`payment-option`.",
+            "example": "payment-option",
+            "enum": ["payment-option"]
+          },
+          "method": {
+            "type": "string",
+            "description": "The type of payment method that is available.",
+            "example": "card",
+            "enum": ["card", "paypal"]
+          }
+        }
+      },
+      "PaymentOptions": {
+        "title": "A list of payment options",
+        "type": "object",
+        "description": "A list of payment options.",
+        "x-tags": ["Payment Options"],
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PaymentOption"
+            }
+          }
+        }
+      },
+      "PayPal": {
+        "title": "PayPal Account",
+        "description": "A stored PayPal account.",
+        "type": "object",
+        "x-tags": ["Payment Methods"],
+        "properties": {
+          "type": {
+            "type": "string",
+            "description": "`payment-method`.",
+            "example": "payment-method",
+            "enum": ["payment-method"]
+          },
+          "id": {
+            "type": "string",
+            "description": "The unique ID of the payment method.",
+            "format": "uuid",
+            "example": "77a76f7e-d2de-4bbc-ada9-d6a0015e6bd5"
+          },
+          "status": {
+            "type": "string",
+            "description": "The state of the account tokenization. After the first call this will\nbe set to `buyer_approval_pending` and the response will include\nan `approval_url`. The buyer needs to be redirected to this URL\nto authorize the future payments.",
+            "example": "buyer_approval_pending",
+            "enum": [
+              "processing",
+              "processing_failed",
+              "buyer_approval_pending",
+              "buyer_approval_declined",
+              "buyer_approval_timedout",
+              "buyer_approved",
+              "stored",
+              "used"
+            ]
+          },
+          "token": {
+            "type": "string",
+            "description": "A Gr4vy token that represents this payment method, in the format of a\ncredit-card number starting with the digit 0. You can store this token\nin your own system and use it to process a payment with this payment\nmethod at a later date.",
+            "example": "0123456789123458",
+            "nullable": true
+          },
+          "method": {
+            "type": "string",
+            "description": "`paypal`.",
+            "example": "paypal",
+            "enum": ["paypal"]
+          },
+          "created_at": {
+            "type": "string",
+            "description": "The date and time when this payment method was first created in our\nsystem.",
+            "format": "date-time",
+            "example": "2013-07-16T19:23:00.000+00:00"
+          },
+          "updated_at": {
+            "type": "string",
+            "description": "The date and time when this payment method was last updated in our system.",
+            "format": "date-time",
+            "example": "2013-07-16T19:23:00.000+00:00"
+          },
+          "external_identifier": {
+            "type": "string",
+            "description": "An external identifier that can be used to match the payment method\nagainst your own records.",
+            "example": "user-789123",
+            "nullable": true
+          },
+          "buyer": {
+            "description": "The optional buyer for which this payment method has been stored.",
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Buyer"
+              }
+            ]
+          },
+          "details": {
+            "$ref": "#/components/schemas/PayPalDetails"
+          }
+        }
+      },
+      "PayPalDetails": {
+        "title": "PayPal account details",
+        "description": "Additional details about a stored PayPal account.",
+        "type": "object",
+        "x-tags": ["Payment Methods"],
+        "properties": {
+          "email_address": {
+            "type": "string",
+            "example": "john@example.com",
+            "description": "The email address associated to the PayPal account.",
+            "nullable": true
+          },
+          "approval_url": {
+            "type": "string",
+            "example": "https://api.{merchant}.app.gr4vy.com/payment-methods/ffc88ec9-e1ee-45ba-993d-b5902c3b2a8c/approve",
+            "description": "The optional URL that the buyer needs to be redirected to to further authorize their PayPal payments.",
+            "nullable": true
+          }
+        }
+      },
+      "PayPalRequest": {
+        "title": "PayPal Account",
+        "type": "object",
+        "description": "PayPal request to use in a transaction or to register a new payment method.",
+        "x-tags": ["Request Bodies"],
+        "required": ["method", "redirect_url"],
+        "properties": {
+          "method": {
+            "type": "string",
+            "description": "`paypal`.",
+            "example": "paypal",
+            "enum": ["paypal"]
+          },
+          "redirect_url": {
+            "type": "string",
+            "description": "The redirect URL to redirect a buyer to after they have authorized their\nPayPal transaction.",
+            "example": "https://example.com/callback"
+          },
+          "external_identifier": {
+            "type": "string",
+            "description": "An external identifier that can be used to match the account against your own records.",
+            "example": "user-789123",
+            "nullable": true
+          },
+          "buyer_id": {
+            "type": "string",
+            "format": "uuid",
+            "example": "fe26475d-ec3e-4884-9553-f7356683f7f9",
+            "description": "The ID of the buyer to associate this payment method to. If this field is\nprovided then the `buyer_external_identifier` field needs to be unset."
+          },
+          "buyer_external_identifier": {
+            "type": "string",
+            "description": "The `external_identifier` of the buyer to associate this payment method\nto. If this field is provided then the `buyer_id` field\nneeds to be unset.",
+            "example": "user-789123"
+          }
+        }
+      },
+      "Status": {
+        "title": "Status",
+        "type": "object",
+        "description": "In many cases the Gr4vy API returns asynchronously, kicking off a job to\ncreate an authorization or a transaction, and returning a `Status` object with\nthe ID of the pending object. The ID of this resource can be used to query an\nobjects status, or additionally the client can use Pub/Sub to subscribe to the\ncreation of the pending object.",
+        "x-tags": ["Statuses"],
+        "properties": {
+          "type": {
+            "type": "string",
+            "description": "The type of this object. This is always `status`.",
+            "enum": ["status"],
+            "example": "status"
+          },
+          "status": {
+            "type": "string",
+            "enum": ["pending"],
+            "example": "pending",
+            "description": "The status of this resource being created. This is always `pending`."
+          },
+          "resource_type": {
+            "type": "string",
+            "description": "The type of the object that is pending.\n",
+            "example": "transaction",
+            "enum": ["transaction", "payment-method"]
+          },
+          "resource_id": {
+            "type": "string",
+            "format": "uuid",
+            "example": "8724fd24-5489-4a5d-90fd-0604df7d3b83",
+            "description": "The ID of the object for which this status has been created."
+          },
+          "external_identifier": {
+            "type": "string",
+            "description": "An external identifier that can be used to match the record against your own records.",
+            "example": "user-789123",
+            "nullable": true
+          }
+        }
+      },
+      "Statuses": {
+        "title": "Statuses",
+        "description": "A list of status resources.",
+        "type": "object",
+        "x-tags": ["Statuses"],
+        "properties": {
+          "items": {
+            "type": "array",
+            "description": "A list of authorizations.",
+            "items": {
+              "$ref": "#/components/schemas/Status"
+            }
+          }
+        }
+      },
+      "TokenRequest": {
+        "title": "Token",
+        "type": "object",
+        "description": "Details for a previously tokenized payment method.",
+        "x-tags": ["Request Bodies"],
+        "required": ["method", "token"],
+        "properties": {
+          "method": {
+            "type": "string",
+            "description": "`token`.",
+            "example": "token",
+            "enum": ["token"]
+          },
+          "token": {
+            "type": "string",
+            "description": "A Gr4vy token that represents a previously tokenized payment method, in\nthe format of a card number starting with the digit 0. This token can\nrepresent any type of payment method.",
+            "example": "0123456789123458"
+          }
+        }
+      },
+      "Transaction": {
+        "title": "Transaction",
+        "type": "object",
+        "description": "Captures a transaction.",
+        "x-tags": ["Transactions"],
+        "properties": {
+          "type": {
+            "type": "string",
+            "description": "The type of this resource. Is always `transaction`.",
+            "example": "transaction",
+            "enum": ["transaction"]
+          },
+          "id": {
+            "type": "string",
+            "example": "fe26475d-ec3e-4884-9553-f7356683f7f9",
+            "description": "The unique identifier for this transaction.",
+            "format": "uuid"
+          },
+          "status": {
+            "type": "string",
+            "description": "The status of the transaction being processed. This is different from the\n`status` field in that it represents the status of the transaction at the\npayment processor, not the status of the transaction created in Gr4vy.",
+            "example": "processing",
+            "enum": [
+              "processing",
+              "processing_failed",
+              "captured",
+              "capture_pending",
+              "capture_declined",
+              "authorized",
+              "authorization_pending",
+              "authorization_declined",
+              "authorization_expired",
+              "authorization_voided",
+              "refunded",
+              "buyer_approval_pending",
+              "buyer_approval_declined",
+              "buyer_approval_timedout",
+              "buyer_approved"
+            ]
+          },
+          "amount": {
+            "type": "number",
+            "description": "The currency amount captured by this transaction.",
+            "example": 1299,
+            "minimum": 0.000001,
+            "maximum": 99999999
+          },
+          "currency": {
+            "type": "string",
+            "example": "USD",
+            "description": "The currency code for this transaction."
+          },
+          "payment_method": {
+            "$ref": "#/components/schemas/PaymentMethod"
+          },
+          "created_at": {
+            "type": "string",
+            "description": "The date and time when this transaction was created in our system.",
+            "format": "date-time",
+            "example": "2013-07-16T19:23:00.000+00:00"
+          },
+          "external_identifier": {
+            "type": "string",
+            "description": "An external identifier that can be used to match the transaction against your own records.",
+            "example": "user-789123",
+            "nullable": true
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Defines when the transaction was last updated."
+          },
+          "payment_service": {
+            "$ref": "#/components/schemas/PaymentService"
+          }
+        }
+      },
+      "Transactions": {
+        "title": "Transactions",
+        "description": "A list of transactions.",
+        "type": "object",
+        "x-tags": ["Transactions"],
+        "properties": {
+          "items": {
+            "type": "array",
+            "description": "A list of transactions.",
+            "items": {
+              "$ref": "#/components/schemas/Transaction"
+            }
+          },
+          "limit": {
+            "type": "integer",
+            "description": "The limit applied to request. This represents the number of items that are at\nmaximum returned by this request.",
+            "format": "int32",
+            "minimum": 1,
+            "maximum": 500,
+            "example": 1,
+            "default": 20
+          },
+          "next_cursor": {
+            "type": "string",
+            "description": "The cursor that represents the next page of results. Use the `cursor` query\nparameter to fetch this page of items.",
+            "example": "ZXhhbXBsZTE",
+            "nullable": true,
+            "minLength": 1,
+            "maxLength": 1000
+          },
+          "previous_cursor": {
+            "type": "string",
+            "description": "The cursor that represents the next page of results. Use the `cursor` query\nparameter to fetch this page of items.",
+            "example": null,
+            "nullable": true,
+            "minLength": 1,
+            "maxLength": 1000
+          }
+        }
+      },
+      "TransactionsBatchCaptureRequest": {
+        "title": "Batch Capture (Create)",
+        "type": "object",
+        "description": "A request to capture multiple previously authorized transactions.",
+        "x-tags": ["Request Bodies"],
+        "required": ["amount", "currency", "transaction_id"],
+        "properties": {
+          "amount": {
+            "type": "number",
+            "description": "The (partial) amount to capture.\n\nWhen left blank, this will capture the entire amount.",
+            "minimum": 0.000001,
+            "maximum": 99999999,
+            "example": 1299
+          },
+          "currency": {
+            "type": "string",
+            "description": "A supported ISO-4217 currency code.\n",
+            "example": "USD"
+          },
+          "external_identifier": {
+            "type": "string",
+            "example": "user-789123",
+            "description": "An external identifier that can be used to match the transaction against your own records."
+          },
+          "transaction_id": {
+            "type": "string",
+            "description": "The ID of the transaction to capture."
+          }
+        }
+      },
+      "TransactionCreateRequest": {
+        "title": "Transaction (Create)",
+        "type": "object",
+        "description": "A request to create a transaction.",
+        "x-tags": ["Request Bodies"],
+        "required": ["amount", "currency", "payment_method"],
+        "properties": {
+          "amount": {
+            "description": "The monetary amount to create an authorization for, in the smallest\ncurrency unit for the given currency, for example `1299` cents to create\nan authorization for `$12.99`.\n\nFor BitCoin, this value will be a decimal point number, for example\n`0.0039`.",
+            "type": "number",
+            "example": 1299
+          },
+          "currency": {
+            "type": "string",
+            "example": "USD",
+            "description": "A supported ISO-4217 currency code."
+          },
+          "payment_method": {
+            "$ref": "#/components/schemas/TransactionPaymentMethodRequest"
+          },
+          "store": {
+            "type": "boolean",
+            "description": "Whether or not to also try and store the payment method with us so that\nit can be used again for future use. This is only supported for payment\nmethods that support this feature.",
+            "example": true,
+            "default": false
+          },
+          "intent": {
+            "type": "string",
+            "description": "Defines the intent of this API call. This determines the desired initial\nstate of the transaction.\n\n* `approve` - Captures approval for the transaction from the user but does\nnot authorize it. This is only available to payment methods that require\nexplicit approval, like PayPal.\n* `authorize` - (Default) Optionally approves and then authorizes a\ntransaction but does not capture the funds.\n* `capture` - Optionally approves and then authorizes and captures the\nfunds of the transaction.",
+            "default": "authorize",
+            "example": "capture",
+            "enum": ["approve", "authorize", "capture"]
+          },
+          "external_identifier": {
+            "type": "string",
+            "example": "user-789123",
+            "description": "An external identifier that can be used to match the transaction against your own records.",
+            "nullable": true
+          },
+          "use_test_environment": {
+            "type": "boolean",
+            "description": "Defines if this transaction should run in the payment provider's test environment. Defaults to false.",
+            "example": false
+          }
+        }
+      },
+      "TransactionCaptureRequest": {
+        "title": "Capture a transaction",
+        "type": "object",
+        "description": "A request to capture a transaction.",
+        "x-tags": ["Request Bodies"],
+        "required": ["amount", "currency"],
+        "properties": {
+          "amount": {
+            "type": "number",
+            "description": "The (partial) amount to capture.\n\nWhen left blank, this will capture the entire amount.",
+            "minimum": 0.000001,
+            "maximum": 99999999,
+            "example": 1299
+          },
+          "currency": {
+            "type": "string",
+            "description": "A supported ISO-4217 currency code.\n",
+            "example": "USD"
+          },
+          "external_identifier": {
+            "type": "string",
+            "example": "user-789123",
+            "description": "An external identifier that can be used to match the transaction against your own records."
+          }
+        }
+      },
+      "TransactionPaymentMethodRequest": {
+        "title": "Transaction payment method request",
+        "type": "object",
+        "description": "Payment method details to use in a transaction or to register\na new payment method.",
+        "x-tags": ["Request Bodies"],
+        "required": ["method"],
+        "properties": {
+          "method": {
+            "type": "string",
+            "description": "The method to use for this request.",
+            "example": "card",
+            "enum": ["card", "paypal", "token"]
+          },
+          "number": {
+            "type": "string",
+            "minLength": 14,
+            "maxLength": 16,
+            "example": "4111111111111111",
+            "pattern": "^[0-9]{14,16}$",
+            "description": "The 15-16 digit number for this credit card as it can be found on the\nfront of the card.\n\nIf a card has been stored with us previously, this number will represent\nthe unique tokenized card ID provided via our API."
+          },
+          "expiration_date": {
+            "type": "string",
+            "description": "The expiration date of the card, formatted `MM/YY`. If a card has been\npreviously stored with us this value is optional.\n\nIf the `number` of this card represents a tokenized card, then this value\nis ignored.",
+            "example": "11/15",
+            "pattern": "^\\d\\d/\\d\\d$",
+            "minLength": 5,
+            "maxLength": 5
+          },
+          "security_code": {
+            "type": "string",
+            "description": "The 3 or 4 digit security code often found on the card. This often\nreferred to as the CVV or CVD.\n\nIf the `number` of this card represents a tokenized card, then this value\nis ignored.",
+            "pattern": "^\\d{3,4}$",
+            "minLength": 3,
+            "maxLength": 4,
+            "example": "123"
+          },
+          "external_identifier": {
+            "type": "string",
+            "description": "An external identifier that can be used to match the card against your own records.",
+            "example": "user-789123",
+            "nullable": true
+          },
+          "buyer_id": {
+            "type": "string",
+            "format": "uuid",
+            "example": "fe26475d-ec3e-4884-9553-f7356683f7f9",
+            "description": "The ID of the buyer to associate this payment method to. If this field is\nprovided then the `buyer_external_identifier` field needs to be unset."
+          },
+          "buyer_external_identifier": {
+            "type": "string",
+            "description": "The `external_identifier` of the buyer to associate this payment method\nto. If this field is provided then the `buyer_id` field\nneeds to be unset.",
+            "example": "user-789123"
+          },
+          "redirect_url": {
+            "type": "string",
+            "description": "The redirect URL to redirect a buyer to after they have authorized their\ntransaction or payment method. This only applies to payment methods that\nrequire buyer approval.",
+            "example": "https://example.com/callback"
+          },
+          "token": {
+            "type": "string",
+            "description": "A Gr4vy token that represents a previously tokenized payment method.\nThis token can represent any type of payment method.",
+            "example": "77a76f7e-d2de-4bbc-ada9-d6a0015e6bd5"
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "BearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  },
+  "security": [
+    {
+      "BearerAuth": []
+    }
+  ]
+}
