@@ -16,7 +16,6 @@ class Authentication {
     constructor(key: string) {
         this.key = crypto.createPrivateKey(key);
         this.keyId = null;
-        this.getKeyId(this.key).then((keyId) => (this.keyId = keyId));
     }
 
     public async getSignedJWT(
@@ -24,6 +23,8 @@ class Authentication {
         data: any = {},
         expiresIn: string = '30s'
     ): Promise<string> {
+        this.keyId ||= await this.getKeyId(this.key);
+
         const header = {
             typ: 'JWT',
             alg: 'ES512',
