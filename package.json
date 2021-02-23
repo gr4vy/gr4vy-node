@@ -11,7 +11,8 @@
     },
     "scripts": {
         "clean": "rm -rf dist/*",
-        "build": "tsc"
+        "build": "tsc",
+        "prepack": "yarn build"
     },
     "author": "Gr4vy <code@gr4vy.com>",
     "license": "MIT",

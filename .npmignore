@@ -1,0 +1,13 @@
+.openapi-generator
+api
+model
+node_modules
+.gitignore
+.npmignore
+.openapi-generator-config.json
+.openapi-generator-ignore
+.prettierrc
+*.tgz
+openapi-generator-generate.sh
+tsconfig.json
+yarn.lock
