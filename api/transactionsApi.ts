@@ -19,7 +19,7 @@ import { Error401Unauthorized } from '../model/error401Unauthorized';
 import { ErrorGeneric } from '../model/errorGeneric';
 import { Transaction } from '../model/transaction';
 import { TransactionCaptureRequest } from '../model/transactionCaptureRequest';
-import { TransactionCreateRequest } from '../model/transactionCreateRequest';
+import { TransactionRequest } from '../model/transactionRequest';
 import { Transactions } from '../model/transactions';
 
 import { ObjectSerializer, Authentication, VoidAuth, Interceptor } from '../model/models';
@@ -100,9 +100,9 @@ export class TransactionsApi {
     /**
      * Attempts to create an authorization for a payment method. In some cases it is not possible to create the authorization without redirecting the user for their authorization. In these cases the status is set to `buyer_approval_pending` and an `approval_url` is returned.  Additionally, this endpoint accepts a few additional fields that allow for simultaneous capturing and storage of the payment method.  * `store` - Use this field to store the payment method for future use. Not all payment methods support this feature. * `capture` - Use this method to also perform a capture of the transaction after it has been authorized. 
      * @summary New transaction
-     * @param transactionCreateRequest 
+     * @param transactionRequest 
      */
-    public async authorizeNewTransaction (transactionCreateRequest?: TransactionCreateRequest, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Transaction;  }> {
+    public async authorizeNewTransaction (transactionRequest?: TransactionRequest, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Transaction;  }> {
         const localVarPath = this.basePath + '/transactions';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
@@ -126,7 +126,7 @@ export class TransactionsApi {
             uri: localVarPath,
             useQuerystring: this._useQuerystring,
             json: true,
-            body: ObjectSerializer.serialize(transactionCreateRequest, "TransactionCreateRequest")
+            body: ObjectSerializer.serialize(transactionRequest, "TransactionRequest")
         };
 
         let authenticationPromise = Promise.resolve();

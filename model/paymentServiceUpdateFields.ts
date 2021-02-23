@@ -15,7 +15,7 @@ import { RequestFile } from './models';
 /**
 * A field containing a key-value pair for a required field defined by the service for this payment service.
 */
-export class PaymentServiceUpdateRequestFields {
+export class PaymentServiceUpdateFields {
     /**
     * The key of the field to set a value for.
     */
@@ -40,7 +40,7 @@ export class PaymentServiceUpdateRequestFields {
         }    ];
 
     static getAttributeTypeMap() {
-        return PaymentServiceUpdateRequestFields.attributeTypeMap;
+        return PaymentServiceUpdateFields.attributeTypeMap;
     }
 }
 

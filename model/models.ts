@@ -1,8 +1,8 @@
 import localVarRequest from 'request';
 
 export * from './buyer';
-export * from './buyerCreateRequest';
-export * from './buyerUpdateRequest';
+export * from './buyerRequest';
+export * from './buyerUpdate';
 export * from './buyers';
 export * from './card';
 export * from './cardDetails';
@@ -25,17 +25,17 @@ export * from './paymentMethods';
 export * from './paymentOption';
 export * from './paymentOptions';
 export * from './paymentService';
-export * from './paymentServiceCreateRequest';
-export * from './paymentServiceUpdateRequest';
-export * from './paymentServiceUpdateRequestFields';
+export * from './paymentServiceRequest';
+export * from './paymentServiceUpdate';
+export * from './paymentServiceUpdateFields';
 export * from './paymentServices';
 export * from './status';
 export * from './statuses';
 export * from './tokenRequest';
 export * from './transaction';
 export * from './transactionCaptureRequest';
-export * from './transactionCreateRequest';
 export * from './transactionPaymentMethodRequest';
+export * from './transactionRequest';
 export * from './transactions';
 export * from './transactionsBatchCaptureRequest';
 
@@ -53,8 +53,8 @@ export type RequestFile = string | Buffer | fs.ReadStream | RequestDetailedFile;
 
 
 import { Buyer } from './buyer';
-import { BuyerCreateRequest } from './buyerCreateRequest';
-import { BuyerUpdateRequest } from './buyerUpdateRequest';
+import { BuyerRequest } from './buyerRequest';
+import { BuyerUpdate } from './buyerUpdate';
 import { Buyers } from './buyers';
 import { Card } from './card';
 import { CardDetails } from './cardDetails';
@@ -77,17 +77,17 @@ import { PaymentMethods } from './paymentMethods';
 import { PaymentOption } from './paymentOption';
 import { PaymentOptions } from './paymentOptions';
 import { PaymentService } from './paymentService';
-import { PaymentServiceCreateRequest } from './paymentServiceCreateRequest';
-import { PaymentServiceUpdateRequest } from './paymentServiceUpdateRequest';
-import { PaymentServiceUpdateRequestFields } from './paymentServiceUpdateRequestFields';
+import { PaymentServiceRequest } from './paymentServiceRequest';
+import { PaymentServiceUpdate } from './paymentServiceUpdate';
+import { PaymentServiceUpdateFields } from './paymentServiceUpdateFields';
 import { PaymentServices } from './paymentServices';
 import { Status } from './status';
 import { Statuses } from './statuses';
 import { TokenRequest } from './tokenRequest';
 import { Transaction } from './transaction';
 import { TransactionCaptureRequest } from './transactionCaptureRequest';
-import { TransactionCreateRequest } from './transactionCreateRequest';
 import { TransactionPaymentMethodRequest } from './transactionPaymentMethodRequest';
+import { TransactionRequest } from './transactionRequest';
 import { Transactions } from './transactions';
 import { TransactionsBatchCaptureRequest } from './transactionsBatchCaptureRequest';
 
@@ -154,14 +154,14 @@ let enumsMap: {[index: string]: any} = {
         "TokenRequest.MethodEnum": TokenRequest.MethodEnum,
         "Transaction.TypeEnum": Transaction.TypeEnum,
         "Transaction.StatusEnum": Transaction.StatusEnum,
-        "TransactionCreateRequest.IntentEnum": TransactionCreateRequest.IntentEnum,
         "TransactionPaymentMethodRequest.MethodEnum": TransactionPaymentMethodRequest.MethodEnum,
+        "TransactionRequest.IntentEnum": TransactionRequest.IntentEnum,
 }
 
 let typeMap: {[index: string]: any} = {
     "Buyer": Buyer,
-    "BuyerCreateRequest": BuyerCreateRequest,
-    "BuyerUpdateRequest": BuyerUpdateRequest,
+    "BuyerRequest": BuyerRequest,
+    "BuyerUpdate": BuyerUpdate,
     "Buyers": Buyers,
     "Card": Card,
     "CardDetails": CardDetails,
@@ -184,17 +184,17 @@ let typeMap: {[index: string]: any} = {
     "PaymentOption": PaymentOption,
     "PaymentOptions": PaymentOptions,
     "PaymentService": PaymentService,
-    "PaymentServiceCreateRequest": PaymentServiceCreateRequest,
-    "PaymentServiceUpdateRequest": PaymentServiceUpdateRequest,
-    "PaymentServiceUpdateRequestFields": PaymentServiceUpdateRequestFields,
+    "PaymentServiceRequest": PaymentServiceRequest,
+    "PaymentServiceUpdate": PaymentServiceUpdate,
+    "PaymentServiceUpdateFields": PaymentServiceUpdateFields,
     "PaymentServices": PaymentServices,
     "Status": Status,
     "Statuses": Statuses,
     "TokenRequest": TokenRequest,
     "Transaction": Transaction,
     "TransactionCaptureRequest": TransactionCaptureRequest,
-    "TransactionCreateRequest": TransactionCreateRequest,
     "TransactionPaymentMethodRequest": TransactionPaymentMethodRequest,
+    "TransactionRequest": TransactionRequest,
     "Transactions": Transactions,
     "TransactionsBatchCaptureRequest": TransactionsBatchCaptureRequest,
 }

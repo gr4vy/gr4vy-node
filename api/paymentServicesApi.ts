@@ -19,8 +19,8 @@ import { Error401Unauthorized } from '../model/error401Unauthorized';
 import { Error404NotFound } from '../model/error404NotFound';
 import { ErrorGeneric } from '../model/errorGeneric';
 import { PaymentService } from '../model/paymentService';
-import { PaymentServiceCreateRequest } from '../model/paymentServiceCreateRequest';
-import { PaymentServiceUpdateRequest } from '../model/paymentServiceUpdateRequest';
+import { PaymentServiceRequest } from '../model/paymentServiceRequest';
+import { PaymentServiceUpdate } from '../model/paymentServiceUpdate';
 import { PaymentServices } from '../model/paymentServices';
 
 import { ObjectSerializer, Authentication, VoidAuth, Interceptor } from '../model/models';
@@ -101,9 +101,9 @@ export class PaymentServicesApi {
     /**
      * Adds a new payment service by providing a custom name and a value for each of the required fields.
      * @summary New payment service
-     * @param paymentServiceCreateRequest 
+     * @param paymentServiceRequest 
      */
-    public async addPaymentService (paymentServiceCreateRequest?: PaymentServiceCreateRequest, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: PaymentService;  }> {
+    public async addPaymentService (paymentServiceRequest?: PaymentServiceRequest, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: PaymentService;  }> {
         const localVarPath = this.basePath + '/payment-services';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
@@ -127,7 +127,7 @@ export class PaymentServicesApi {
             uri: localVarPath,
             useQuerystring: this._useQuerystring,
             json: true,
-            body: ObjectSerializer.serialize(paymentServiceCreateRequest, "PaymentServiceCreateRequest")
+            body: ObjectSerializer.serialize(paymentServiceRequest, "PaymentServiceRequest")
         };
 
         let authenticationPromise = Promise.resolve();
@@ -392,9 +392,9 @@ export class PaymentServicesApi {
      * Updates an existing payment service. Allows all fields to be changed except for the service ID.
      * @summary Update payment service
      * @param paymentServiceId The ID of the payment service.
-     * @param paymentServiceUpdateRequest 
+     * @param paymentServiceUpdate 
      */
-    public async updatePaymentService (paymentServiceId: string, paymentServiceUpdateRequest?: PaymentServiceUpdateRequest, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: PaymentService;  }> {
+    public async updatePaymentService (paymentServiceId: string, paymentServiceUpdate?: PaymentServiceUpdate, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: PaymentService;  }> {
         const localVarPath = this.basePath + '/payment-services/{payment_service_id}'
             .replace('{' + 'payment_service_id' + '}', encodeURIComponent(String(paymentServiceId)));
         let localVarQueryParameters: any = {};
@@ -424,7 +424,7 @@ export class PaymentServicesApi {
             uri: localVarPath,
             useQuerystring: this._useQuerystring,
             json: true,
-            body: ObjectSerializer.serialize(paymentServiceUpdateRequest, "PaymentServiceUpdateRequest")
+            body: ObjectSerializer.serialize(paymentServiceUpdate, "PaymentServiceUpdate")
         };
 
         let authenticationPromise = Promise.resolve();

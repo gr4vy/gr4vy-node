@@ -16,8 +16,8 @@ import http from 'http';
 
 /* tslint:disable:no-unused-locals */
 import { Buyer } from '../model/buyer';
-import { BuyerCreateRequest } from '../model/buyerCreateRequest';
-import { BuyerUpdateRequest } from '../model/buyerUpdateRequest';
+import { BuyerRequest } from '../model/buyerRequest';
+import { BuyerUpdate } from '../model/buyerUpdate';
 import { Buyers } from '../model/buyers';
 import { Error401Unauthorized } from '../model/error401Unauthorized';
 import { Error404NotFound } from '../model/error404NotFound';
@@ -102,9 +102,9 @@ export class BuyersApi {
     /**
      * Adds a buyer, allowing for payment methods and transactions to be associated to this buyer. 
      * @summary New buyer
-     * @param buyerCreateRequest 
+     * @param buyerRequest 
      */
-    public async addBuyer (buyerCreateRequest?: BuyerCreateRequest, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Buyer;  }> {
+    public async addBuyer (buyerRequest?: BuyerRequest, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Buyer;  }> {
         const localVarPath = this.basePath + '/buyers';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
@@ -128,7 +128,7 @@ export class BuyersApi {
             uri: localVarPath,
             useQuerystring: this._useQuerystring,
             json: true,
-            body: ObjectSerializer.serialize(buyerCreateRequest, "BuyerCreateRequest")
+            body: ObjectSerializer.serialize(buyerRequest, "BuyerRequest")
         };
 
         let authenticationPromise = Promise.resolve();
@@ -393,9 +393,9 @@ export class BuyersApi {
      * Updates a buyer\'s details. 
      * @summary Update buyer
      * @param buyerId The unique ID for a buyer.
-     * @param buyerUpdateRequest 
+     * @param buyerUpdate 
      */
-    public async updateBuyer (buyerId: string, buyerUpdateRequest?: BuyerUpdateRequest, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Buyer;  }> {
+    public async updateBuyer (buyerId: string, buyerUpdate?: BuyerUpdate, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Buyer;  }> {
         const localVarPath = this.basePath + '/buyers/{buyer_id}'
             .replace('{' + 'buyer_id' + '}', encodeURIComponent(String(buyerId)));
         let localVarQueryParameters: any = {};
@@ -425,7 +425,7 @@ export class BuyersApi {
             uri: localVarPath,
             useQuerystring: this._useQuerystring,
             json: true,
-            body: ObjectSerializer.serialize(buyerUpdateRequest, "BuyerUpdateRequest")
+            body: ObjectSerializer.serialize(buyerUpdate, "BuyerUpdate")
         };
 
         let authenticationPromise = Promise.resolve();

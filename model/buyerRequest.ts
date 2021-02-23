@@ -11,12 +11,11 @@
  */
 
 import { RequestFile } from './models';
-import { BuyerCreateRequest } from './buyerCreateRequest';
 
 /**
-* A request to update a buyer.
+* A request to create a buyer.
 */
-export class BuyerUpdateRequest {
+export class BuyerRequest {
     /**
     * An external identifier that can be used to match the buyer against your own records. This value needs to be unique for all buyers.
     */
@@ -41,7 +40,7 @@ export class BuyerUpdateRequest {
         }    ];
 
     static getAttributeTypeMap() {
-        return BuyerUpdateRequest.attributeTypeMap;
+        return BuyerRequest.attributeTypeMap;
     }
 }
 

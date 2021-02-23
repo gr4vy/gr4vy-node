@@ -11,13 +11,13 @@
  */
 
 import { RequestFile } from './models';
-import { PaymentServiceUpdateRequest } from './paymentServiceUpdateRequest';
-import { PaymentServiceUpdateRequestFields } from './paymentServiceUpdateRequestFields';
+import { PaymentServiceUpdate } from './paymentServiceUpdate';
+import { PaymentServiceUpdateFields } from './paymentServiceUpdateFields';
 
 /**
 * Request body for activating a payment service.
 */
-export class PaymentServiceCreateRequest {
+export class PaymentServiceRequest {
     /**
     * The ID of the payment service to use.
     */
@@ -29,7 +29,7 @@ export class PaymentServiceCreateRequest {
     /**
     * A list of fields, each containing a key-value pair for each field defined by the definition for this payment service.
     */
-    'fields': Array<PaymentServiceUpdateRequestFields>;
+    'fields': Array<PaymentServiceUpdateFields>;
     /**
     * A list of countries that this payment service needs to support in ISO two-letter code format.
     */
@@ -63,7 +63,7 @@ export class PaymentServiceCreateRequest {
         {
             "name": "fields",
             "baseName": "fields",
-            "type": "Array<PaymentServiceUpdateRequestFields>"
+            "type": "Array<PaymentServiceUpdateFields>"
         },
         {
             "name": "accepted_countries",
@@ -87,7 +87,7 @@ export class PaymentServiceCreateRequest {
         }    ];
 
     static getAttributeTypeMap() {
-        return PaymentServiceCreateRequest.attributeTypeMap;
+        return PaymentServiceRequest.attributeTypeMap;
     }
 }
 
