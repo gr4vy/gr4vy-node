@@ -158,6 +158,32 @@ Gr4vy - Response - .getBuyer - 200): Buyer {
 }
 ```
 
+## Development
+
+### Adding new APIs
+
+To add new APIs, run the following command to update the models and APIs based
+on the API spec.
+
+```
+./openapi-generator-generate.sh
+```
+
+Next, update `sdk/client.ts` to bind any new APIs or remove any APIs that are no
+longer available.
+
+```js
+const poa = new PaymentOptionsApi(this.baseUrl);
+this.listPaymentOptions = this.wrap(poa.listPaymentOptions.bind(poa));
+this.apis.push(poa);
+```
+
+### Publishing
+
+Publishing of this project is done automatically using the `yarn release`
+command which creates a new version, publishes it to a tag, and then triggers a
+GitHub Action to release the new package to NPM.
+
 ## License
 
 This library is released under the [MIT License](LICENSE).

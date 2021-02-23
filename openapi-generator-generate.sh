@@ -1,3 +1,4 @@
+rm -rf api model
 docker run --rm \
   -v ${PWD}:/local openapitools/openapi-generator-cli generate \
   -i https://raw.githubusercontent.com/gr4vy/gr4vy-openapi/sdks/openapi.v1.json \
