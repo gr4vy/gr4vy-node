@@ -1,4 +1,4 @@
-import Authentication from './authentication';
+import Authentication, { JWTScope, JWTScopes } from './authentication';
 
 import {
     BuyersApi,
@@ -55,11 +55,11 @@ class Client {
         this.validate(options);
 
         this.apis = [];
-        this.authentication = new Authentication(options.key);
+        this.authentication = new Authentication(options.privateKey);
         this.debug = options.debug || false;
         this.baseUrl = options.baseUrl
             ? options.baseUrl
-            : `https://api.${options.merchantId}.gr4vy.app`;
+            : `https://api.${options.gId}.gr4vy.app`;
 
         // Buyers
         const ba = new BuyersApi(this.baseUrl);
@@ -114,16 +114,39 @@ class Client {
      * @param options
      */
     private validate(options: Options) {
-        if (!options.keyId) {
-            throw new Error('Missing argument `keyId`');
-        }
-        if (!options.key) {
-            throw new Error('Missing argument `key`');
+        if (!options.privateKey) {
+            throw new Error('Missing argument `privateKey`');
         }
     }
 
-    public getBearerToken(): Promise<string> {
-        return this.authentication.getSignedJWT();
+    /**
+     * Returns a new bearer token. A bearer token is a limited validity JWT token.
+     *
+     * @param scopes The optional scopes to add to the claims
+     * @param data The optional pinned fields to add to the claims
+     */
+    public getBearerToken(
+        scopes: JWTScopes = [],
+        data: any = {},
+        expiresIn: string = '30s'
+    ): Promise<string> {
+        return this.authentication.getSignedJWT(scopes, data, expiresIn);
+    }
+
+    public getEmbedToken(params: EmbedParams): Promise<string> {
+        const scopes = [JWTScope.Embed];
+        const data = {
+            'POST /transactions': {
+                amount: params.amount,
+                currency: params.currency,
+            },
+            'GET /buyers/payment-methods': {
+                buyer_id: params.buyerId,
+                buyer_external_identifier: params.buyerExternalIdentifier,
+            },
+        };
+
+        return this.authentication.getSignedJWT(scopes, data, '1h');
     }
 
     /**
@@ -141,14 +164,28 @@ class Client {
         });
     }
 
+    /**
+     * A function that is called before a request is processed.
+     *
+     * It logs a the request that is made and creates a new bearer token.
+     *
+     * @param fn The function that was called
+     * @param args The arguments that were passed to the function
+     */
     private async preprocess(fn, args) {
-        this.updateBearerToken();
         this.log(
             `Gr4vy - Request - ${fn.name.replace('bound ', '.')}:`,
             ...args
         );
+        await this.updateBearerToken();
     }
 
+    /**
+     * A function that is called after a request is processed.
+     *
+     * @param fn The function that was called
+     * @param data The data that was returned by the API
+     */
     private async postprocess(fn, data) {
         this.log(
             `Gr4vy - Response - ${fn.name.replace('bound ', '.')} - ${
@@ -163,7 +200,7 @@ class Client {
      */
     private async updateBearerToken(): Promise<void> {
         const token: string = await this.authentication.getSignedJWT();
-        this.apis.forEach((api) => (api.accessToken = token));
+        this.apis.map((api) => (api.accessToken = token));
     }
 
     /**
@@ -177,11 +214,17 @@ class Client {
 }
 
 type Options = {
-    merchantId: string;
-    key: string;
-    keyId: string;
+    gId: string;
+    privateKey: string;
     baseUrl?: string;
     debug?: boolean;
+};
+
+type EmbedParams = {
+    amount: number;
+    currency: string;
+    buyerId?: string;
+    buyerExternalIdentifier?: string;
 };
 
 export default Client;

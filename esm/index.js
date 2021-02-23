@@ -1,4 +1,4 @@
-import Gr4vy from '../dist/index.js'
+import Gr4vy from '../dist/sdk/index.js'
 
 export const Buyer = Gr4vy.Buyer
 export const Buyers = Gr4vy.Buyers
