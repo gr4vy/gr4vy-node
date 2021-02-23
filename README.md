@@ -1,6 +1,6 @@
 # Gr4vy SDK for Node
 
-[![Module Version](https://badge.fury.io/js/%40gr4vy%node.svg)](npmjs)
+[![Module Version](https://badge.fury.io/js/%40gr4vy%2Fnode.svg)][npm]
 
 Gr4vy provides any of your payment integrations through one unified API. For more details, visit [gr4vy.com](https://gr4vy.com).
 
@@ -187,3 +187,5 @@ GitHub Action to release the new package to NPM.
 ## License
 
 This library is released under the [MIT License](LICENSE).
+
+[npm]: https://www.npmjs.com/package/@gr4vy/node
