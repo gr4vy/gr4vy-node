@@ -5,9 +5,9 @@ const { default: fromKeyLike } = require('jose/jwk/from_key_like');
 
 import crypto from 'crypto';
 import { v4 as uuid } from 'uuid';
+import { version } from './package';
 
-const pkg = require('../../package.json');
-const ISSUER = `Gr4vy SDK ${pkg.version} - Node ${process.version}`;
+const issuer = `Gr4vy SDK ${version} - Node ${process.version}`;
 
 class Authentication {
     key: crypto.KeyObject;
@@ -35,7 +35,7 @@ class Authentication {
             data,
         })
             .setProtectedHeader(header)
-            .setIssuer(ISSUER)
+            .setIssuer(issuer)
             .setNotBefore('0s')
             .setExpirationTime(expiresIn)
             .setJti(uuid())
