@@ -3,28 +3,29 @@
     "version": "0.1.0",
     "description": "NodeJS client for @gr4vy/node",
     "repository": "gr4vy/gr4vy-node-sdk",
-    "main": "dist/index.js",
-    "types": "dist/index.d.ts",
+    "main": "dist/lib/index.js",
+    "types": "dist/lib/index.d.ts",
     "exports": {
-        "require": "./dist/index.js",
+        "require": "./dist/lib/index.js",
         "import": "./esm/index.js"
     },
     "scripts": {
         "clean": "rm -rf dist/*",
-        "build": "tsc",
-        "test": "npm run build && node dist/client.js"
+        "build": "tsc"
     },
-    "author": "OpenAPI-Generator Contributors",
-    "license": "Unlicense",
+    "author": "Gr4vy <code@gr4vy.com>",
+    "license": "MIT",
     "dependencies": {
+        "@types/bluebird": "^3.5.33",
         "bluebird": "^3.5.0",
+        "jose": "^3.6.2",
         "request": "^2.81.0",
-        "@types/bluebird": "*",
-        "@types/request": "*",
-        "rewire": "^3.0.2"
+        "rewire": "^3.0.2",
+        "uuid": "^8.3.2"
     },
     "devDependencies": {
-        "typescript": "^2.4.2",
-        "@types/node": "8.10.34"
+        "@types/node": "^14.14.31",
+        "@types/request": "^2.48.5",
+        "typescript": "^2.4.2"
     }
 }
