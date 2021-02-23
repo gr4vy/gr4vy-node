@@ -6,7 +6,7 @@ import {
     PaymentOptionsApi,
     PaymentServicesApi,
     TransactionsApi,
-} from './api/apis';
+} from '../api/apis';
 
 class Client {
     baseUrl: string;
@@ -183,3 +183,5 @@ type Options = {
     baseUrl?: string;
     debug?: boolean;
 };
+
+export default Client;
