@@ -15,7 +15,8 @@
     "scripts": {
         "clean": "rm -rf dist/*",
         "build": "tsc",
-        "prepack": "yarn build"
+        "prepack": "yarn build",
+        "release": "yarn version; git push --tags; git push"
     },
     "author": "Gr4vy <code@gr4vy.com>",
     "license": "MIT",
