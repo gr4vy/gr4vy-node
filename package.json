@@ -2,7 +2,10 @@
     "name": "@gr4vy/node",
     "version": "0.1.0",
     "description": "NodeJS client for @gr4vy/node",
-    "repository": "gr4vy/gr4vy-node-sdk",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/gr4vy/gr4vy-node.git"
+    },
     "main": "dist/sdk/index.js",
     "types": "dist/sdk/index.d.ts",
     "exports": {
@@ -28,5 +31,9 @@
         "@types/node": "^14.14.31",
         "@types/request": "^2.48.5",
         "typescript": "^4.1.5"
-    }
+    },
+    "bugs": {
+        "url": "https://github.com/gr4vy/gr4vy-node/issues"
+    },
+    "homepage": "https://github.com/gr4vy/gr4vy-node#readme"
 }

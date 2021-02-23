@@ -63,7 +63,7 @@ The client can be initialized with the Gr4vy ID (`gId`) and the private key.
 
 ```js
 const client = new Client({
-  gid: 'acme',
+  gId: 'acme',
   privateKey: key
 });
 ```
