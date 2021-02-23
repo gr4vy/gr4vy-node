@@ -1,6 +1,10 @@
 .openapi-generator
 api
 model
+sdk
+!dist/api
+!dist/model
+!dist/sdk
 node_modules
 .gitignore
 .npmignore
@@ -11,3 +15,4 @@ node_modules
 openapi-generator-generate.sh
 tsconfig.json
 yarn.lock
+.github
