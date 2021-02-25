@@ -27,7 +27,7 @@ const { Client, BuyerRequest } = require("@gr4vy/node");
 const key = String(fs.readFileSync("./private.key"));
 
 const client = new Client({
-  gId: "YOUR_GR4VY_ID",
+  gr4vyId: "YOUR_GR4VY_ID",
   privateKey: key
 });
 
@@ -59,16 +59,16 @@ authenticate Gr4vy Embed.
 
 ## Initialization
 
-The client can be initialized with the Gr4vy ID (`gId`) and the private key.
+The client can be initialized with the Gr4vy ID (`gr4vyId`) and the private key.
 
 ```js
 const client = new Client({
-  gId: 'acme',
+  gr4vyId: 'acme',
   privateKey: key
 });
 ```
 
-Alternatively, instead of the `gId` it can be initialized with the `baseUrl` of the server to use directly.
+Alternatively, instead of the `gr4vyId` it can be initialized with the `baseUrl` of the server to use directly.
 
 ```js
 const client = new Client({
@@ -138,7 +138,7 @@ The SDK makes it easy possible to the requests and responses to the console.
 
 ```js
 const client = new Client({
-  gId: 'demo',
+  gr4vyId: 'demo',
   privateKey: key,
   debug: true
 });

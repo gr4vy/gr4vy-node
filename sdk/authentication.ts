@@ -20,7 +20,7 @@ class Authentication {
 
     public async getSignedJWT(
         scopes: JWTScopes = [],
-        data: any = {},
+        embed: any = null,
         expiresIn: string = '30s'
     ): Promise<string> {
         this.keyId ||= await this.getKeyId(this.key);
@@ -33,7 +33,7 @@ class Authentication {
 
         return new SignJWT({
             scopes,
-            data,
+            embed,
         })
             .setProtectedHeader(header)
             .setIssuer(issuer)

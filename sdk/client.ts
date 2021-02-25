@@ -59,7 +59,7 @@ class Client {
         this.debug = options.debug || false;
         this.baseUrl = options.baseUrl
             ? options.baseUrl
-            : `https://api.${options.gId}.gr4vy.app`;
+            : `https://api.${options.gr4vyId}.gr4vy.app`;
 
         // Buyers
         const ba = new BuyersApi(this.baseUrl);
@@ -133,20 +133,9 @@ class Client {
         return this.authentication.getSignedJWT(scopes, data, expiresIn);
     }
 
-    public getEmbedToken(params: EmbedParams): Promise<string> {
+    public getEmbedToken(embed: EmbedParams): Promise<string> {
         const scopes = [JWTScope.Embed];
-        const data = {
-            'POST /transactions': {
-                amount: params.amount,
-                currency: params.currency,
-            },
-            'GET /buyers/payment-methods': {
-                buyer_id: params.buyerId,
-                buyer_external_identifier: params.buyerExternalIdentifier,
-            },
-        };
-
-        return this.authentication.getSignedJWT(scopes, data, '1h');
+        return this.authentication.getSignedJWT(scopes, embed, '1h');
     }
 
     /**
@@ -214,7 +203,7 @@ class Client {
 }
 
 type Options = {
-    gId: string;
+    gr4vyId: string;
     privateKey: string;
     baseUrl?: string;
     debug?: boolean;
