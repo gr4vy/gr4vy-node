@@ -24,19 +24,19 @@ export class Buyer {
     /**
     * An external identifier that can be used to match the buyer against your own records.
     */
-    'external_identifier'?: string | null;
+    'externalIdentifier'?: string | null;
     /**
     * A unique name for this buyer which is used in the Gr4vy admin panel to give a buyer a human readable name.
     */
-    'display_name'?: string | null;
+    'displayName'?: string | null;
     /**
     * The date and time when this buyer was created in our system.
     */
-    'created_at'?: Date;
+    'createdAt'?: Date;
     /**
     * The date and time when this buyer was last updated in our system.
     */
-    'updated_at'?: Date;
+    'updatedAt'?: Date;
 
     static discriminator: string | undefined = undefined;
 
@@ -52,22 +52,22 @@ export class Buyer {
             "type": "string"
         },
         {
-            "name": "external_identifier",
+            "name": "externalIdentifier",
             "baseName": "external_identifier",
             "type": "string"
         },
         {
-            "name": "display_name",
+            "name": "displayName",
             "baseName": "display_name",
             "type": "string"
         },
         {
-            "name": "created_at",
+            "name": "createdAt",
             "baseName": "created_at",
             "type": "Date"
         },
         {
-            "name": "updated_at",
+            "name": "updatedAt",
             "baseName": "updated_at",
             "type": "Date"
         }    ];

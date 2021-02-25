@@ -23,19 +23,19 @@ export class PayPalRequest {
     /**
     * The redirect URL to redirect a buyer to after they have authorized their PayPal transaction.
     */
-    'redirect_url': string;
+    'redirectUrl': string;
     /**
     * An external identifier that can be used to match the account against your own records.
     */
-    'external_identifier'?: string | null;
+    'externalIdentifier'?: string | null;
     /**
     * The ID of the buyer to associate this payment method to. If this field is provided then the `buyer_external_identifier` field needs to be unset.
     */
-    'buyer_id'?: string;
+    'buyerId'?: string;
     /**
     * The `external_identifier` of the buyer to associate this payment method to. If this field is provided then the `buyer_id` field needs to be unset.
     */
-    'buyer_external_identifier'?: string;
+    'buyerExternalIdentifier'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -46,22 +46,22 @@ export class PayPalRequest {
             "type": "PayPalRequest.MethodEnum"
         },
         {
-            "name": "redirect_url",
+            "name": "redirectUrl",
             "baseName": "redirect_url",
             "type": "string"
         },
         {
-            "name": "external_identifier",
+            "name": "externalIdentifier",
             "baseName": "external_identifier",
             "type": "string"
         },
         {
-            "name": "buyer_id",
+            "name": "buyerId",
             "baseName": "buyer_id",
             "type": "string"
         },
         {
-            "name": "buyer_external_identifier",
+            "name": "buyerExternalIdentifier",
             "baseName": "buyer_external_identifier",
             "type": "string"
         }    ];

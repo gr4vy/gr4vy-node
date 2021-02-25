@@ -28,11 +28,11 @@ export class Buyers {
     /**
     * The cursor that represents the next page of results. Use the `cursor` query parameter to fetch this page of items.
     */
-    'next_cursor'?: string | null;
+    'nextCursor'?: string | null;
     /**
     * The cursor that represents the next page of results. Use the `cursor` query parameter to fetch this page of items.
     */
-    'previous_cursor'?: string | null;
+    'previousCursor'?: string | null;
 
     static discriminator: string | undefined = undefined;
 
@@ -48,12 +48,12 @@ export class Buyers {
             "type": "number"
         },
         {
-            "name": "next_cursor",
+            "name": "nextCursor",
             "baseName": "next_cursor",
             "type": "string"
         },
         {
-            "name": "previous_cursor",
+            "name": "previousCursor",
             "baseName": "previous_cursor",
             "type": "string"
         }    ];

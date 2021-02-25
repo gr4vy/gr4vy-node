@@ -41,15 +41,15 @@ export class PayPal {
     /**
     * The date and time when this payment method was first created in our system.
     */
-    'created_at'?: Date;
+    'createdAt'?: Date;
     /**
     * The date and time when this payment method was last updated in our system.
     */
-    'updated_at'?: Date;
+    'updatedAt'?: Date;
     /**
     * An external identifier that can be used to match the payment method against your own records.
     */
-    'external_identifier'?: string | null;
+    'externalIdentifier'?: string | null;
     /**
     * The optional buyer for which this payment method has been stored.
     */
@@ -85,17 +85,17 @@ export class PayPal {
             "type": "PayPal.MethodEnum"
         },
         {
-            "name": "created_at",
+            "name": "createdAt",
             "baseName": "created_at",
             "type": "Date"
         },
         {
-            "name": "updated_at",
+            "name": "updatedAt",
             "baseName": "updated_at",
             "type": "Date"
         },
         {
-            "name": "external_identifier",
+            "name": "externalIdentifier",
             "baseName": "external_identifier",
             "type": "string"
         },

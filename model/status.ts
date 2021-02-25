@@ -27,15 +27,15 @@ export class Status {
     /**
     * The type of the object that is pending. 
     */
-    'resource_type'?: Status.ResourceTypeEnum;
+    'resourceType'?: Status.ResourceTypeEnum;
     /**
     * The ID of the object for which this status has been created.
     */
-    'resource_id'?: string;
+    'resourceId'?: string;
     /**
     * An external identifier that can be used to match the record against your own records.
     */
-    'external_identifier'?: string | null;
+    'externalIdentifier'?: string | null;
 
     static discriminator: string | undefined = undefined;
 
@@ -51,17 +51,17 @@ export class Status {
             "type": "Status.StatusEnum"
         },
         {
-            "name": "resource_type",
+            "name": "resourceType",
             "baseName": "resource_type",
             "type": "Status.ResourceTypeEnum"
         },
         {
-            "name": "resource_id",
+            "name": "resourceId",
             "baseName": "resource_id",
             "type": "string"
         },
         {
-            "name": "external_identifier",
+            "name": "externalIdentifier",
             "baseName": "external_identifier",
             "type": "string"
         }    ];

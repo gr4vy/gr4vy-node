@@ -32,7 +32,7 @@ const client = new Client({
 });
 
 const buyerRequest = new BuyerRequest()
-buyerRequest.display_name = 'John L.'
+buyerRequest.displayName = 'John L.'
 const buyer = await client.addBuyer(buyerRequest)
 console.log(buyer)
 // {
@@ -51,11 +51,29 @@ const token = await client.getEmbedToken({
   amount: 1299,
   currency: 'USD',
   buyerExternalIdentifier: 'user-1234'
+  // or: buyerId: ...
 })
 ```
 
 You can now pass this token to your frontend where it can be used to
 authenticate Gr4vy Embed.
+
+The `buyerId` and `buyerExternalIdentifier` fields can be used to allow the
+token to pull in previously stored payment methods for a user. A buyer needs to
+be created before it can be used in this way.
+
+```js
+const buyerRequest = new BuyerRequest()
+buyerRequest.displayName = 'John L.'
+buyerRequest.externalIdentifier = 'user-1234'
+const buyer = await client.addBuyer(buyerRequest)
+
+const token = await client.getEmbedToken({
+  amount: 1299,
+  currency: 'USD',
+  buyerId: buyer.body.id
+})
+```
 
 ## Initialization
 

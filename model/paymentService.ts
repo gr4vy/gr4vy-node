@@ -27,7 +27,7 @@ export class PaymentService {
     /**
     * The ID of the payment service definition used to create this service. 
     */
-    'payment_service_definition_id'?: string;
+    'paymentServiceDefinitionId'?: string;
     /**
     * Defines the ID of the payment method that this service handles.
     */
@@ -35,7 +35,7 @@ export class PaymentService {
     /**
     * The custom name set for this service.
     */
-    'display_name'?: string;
+    'displayName'?: string;
     /**
     * The current status of this service. This will start off as pending, move to created, and might eventually move to an error status if and when the credentials are no longer valid. 
     */
@@ -43,15 +43,15 @@ export class PaymentService {
     /**
     * A list of currencies for which this service is enabled, in ISO 4217 three-letter code format.
     */
-    'accepted_currencies'?: Array<string>;
+    'acceptedCurrencies'?: Array<string>;
     /**
     * A list of countries for which this service is enabled, in ISO two-letter code format.
     */
-    'accepted_countries'?: Array<string>;
+    'acceptedCountries'?: Array<string>;
     /**
     * Defines if this service should use the test credentials and/or endpoint.
     */
-    'use_test_environment'?: boolean;
+    'useTestEnvironment'?: boolean;
     /**
     * The numeric rank of a payment service. Payment services with a lower position value are processed first.
     */
@@ -59,11 +59,11 @@ export class PaymentService {
     /**
     * The date and time when this service was created.
     */
-    'created_at'?: Date;
+    'createdAt'?: Date;
     /**
     * The date and time when this service was last updated.
     */
-    'updated_at'?: Date;
+    'updatedAt'?: Date;
 
     static discriminator: string | undefined = undefined;
 
@@ -79,7 +79,7 @@ export class PaymentService {
             "type": "PaymentService.TypeEnum"
         },
         {
-            "name": "payment_service_definition_id",
+            "name": "paymentServiceDefinitionId",
             "baseName": "payment_service_definition_id",
             "type": "string"
         },
@@ -89,7 +89,7 @@ export class PaymentService {
             "type": "PaymentService.MethodEnum"
         },
         {
-            "name": "display_name",
+            "name": "displayName",
             "baseName": "display_name",
             "type": "string"
         },
@@ -99,17 +99,17 @@ export class PaymentService {
             "type": "PaymentService.StatusEnum"
         },
         {
-            "name": "accepted_currencies",
+            "name": "acceptedCurrencies",
             "baseName": "accepted_currencies",
             "type": "Array<string>"
         },
         {
-            "name": "accepted_countries",
+            "name": "acceptedCountries",
             "baseName": "accepted_countries",
             "type": "Array<string>"
         },
         {
-            "name": "use_test_environment",
+            "name": "useTestEnvironment",
             "baseName": "use_test_environment",
             "type": "boolean"
         },
@@ -119,12 +119,12 @@ export class PaymentService {
             "type": "number"
         },
         {
-            "name": "created_at",
+            "name": "createdAt",
             "baseName": "created_at",
             "type": "Date"
         },
         {
-            "name": "updated_at",
+            "name": "updatedAt",
             "baseName": "updated_at",
             "type": "Date"
         }    ];

@@ -27,23 +27,23 @@ export class CardRequest {
     /**
     * The expiration date of the card, formatted `MM/YY`. If a card has been previously stored with us this value is optional.  If the `number` of this card represents a tokenized card, then this value is ignored.
     */
-    'expiration_date': string;
+    'expirationDate': string;
     /**
     * The 3 or 4 digit security code often found on the card. This often referred to as the CVV or CVD.  If the `number` of this card represents a tokenized card, then this value is ignored.
     */
-    'security_code': string;
+    'securityCode': string;
     /**
     * An external identifier that can be used to match the card against your own records.
     */
-    'external_identifier'?: string | null;
+    'externalIdentifier'?: string | null;
     /**
     * The ID of the buyer to associate this payment method to. If this field is provided then the `buyer_external_identifier` field needs to be unset.
     */
-    'buyer_id'?: string;
+    'buyerId'?: string;
     /**
     * The `external_identifier` of the buyer to associate this payment method to. If this field is provided then the `buyer_id` field needs to be unset.
     */
-    'buyer_external_identifier'?: string;
+    'buyerExternalIdentifier'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -59,27 +59,27 @@ export class CardRequest {
             "type": "string"
         },
         {
-            "name": "expiration_date",
+            "name": "expirationDate",
             "baseName": "expiration_date",
             "type": "string"
         },
         {
-            "name": "security_code",
+            "name": "securityCode",
             "baseName": "security_code",
             "type": "string"
         },
         {
-            "name": "external_identifier",
+            "name": "externalIdentifier",
             "baseName": "external_identifier",
             "type": "string"
         },
         {
-            "name": "buyer_id",
+            "name": "buyerId",
             "baseName": "buyer_id",
             "type": "string"
         },
         {
-            "name": "buyer_external_identifier",
+            "name": "buyerExternalIdentifier",
             "baseName": "buyer_external_identifier",
             "type": "string"
         }    ];

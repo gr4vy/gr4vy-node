@@ -19,22 +19,22 @@ export class PayPalDetails {
     /**
     * The email address associated to the PayPal account.
     */
-    'email_address'?: string | null;
+    'emailAddress'?: string | null;
     /**
     * The optional URL that the buyer needs to be redirected to to further authorize their PayPal payments.
     */
-    'approval_url'?: string | null;
+    'approvalUrl'?: string | null;
 
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "email_address",
+            "name": "emailAddress",
             "baseName": "email_address",
             "type": "string"
         },
         {
-            "name": "approval_url",
+            "name": "approvalUrl",
             "baseName": "approval_url",
             "type": "string"
         }    ];

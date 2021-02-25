@@ -38,20 +38,20 @@ export class Transaction {
     * The currency code for this transaction.
     */
     'currency'?: string;
-    'payment_method'?: PaymentMethod;
+    'paymentMethod'?: PaymentMethod;
     /**
     * The date and time when this transaction was created in our system.
     */
-    'created_at'?: Date;
+    'createdAt'?: Date;
     /**
     * An external identifier that can be used to match the transaction against your own records.
     */
-    'external_identifier'?: string | null;
+    'externalIdentifier'?: string | null;
     /**
     * Defines when the transaction was last updated.
     */
-    'updated_at'?: Date;
-    'payment_service'?: PaymentService;
+    'updatedAt'?: Date;
+    'paymentService'?: PaymentService;
 
     static discriminator: string | undefined = undefined;
 
@@ -82,27 +82,27 @@ export class Transaction {
             "type": "string"
         },
         {
-            "name": "payment_method",
+            "name": "paymentMethod",
             "baseName": "payment_method",
             "type": "PaymentMethod"
         },
         {
-            "name": "created_at",
+            "name": "createdAt",
             "baseName": "created_at",
             "type": "Date"
         },
         {
-            "name": "external_identifier",
+            "name": "externalIdentifier",
             "baseName": "external_identifier",
             "type": "string"
         },
         {
-            "name": "updated_at",
+            "name": "updatedAt",
             "baseName": "updated_at",
             "type": "Date"
         },
         {
-            "name": "payment_service",
+            "name": "paymentService",
             "baseName": "payment_service",
             "type": "PaymentService"
         }    ];

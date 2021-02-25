@@ -27,7 +27,7 @@ export class TransactionCaptureRequest {
     /**
     * An external identifier that can be used to match the transaction against your own records.
     */
-    'external_identifier'?: string;
+    'externalIdentifier'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -43,7 +43,7 @@ export class TransactionCaptureRequest {
             "type": "string"
         },
         {
-            "name": "external_identifier",
+            "name": "externalIdentifier",
             "baseName": "external_identifier",
             "type": "string"
         }    ];

@@ -19,22 +19,22 @@ export class BuyerRequest {
     /**
     * An external identifier that can be used to match the buyer against your own records. This value needs to be unique for all buyers.
     */
-    'external_identifier'?: string | null;
+    'externalIdentifier'?: string | null;
     /**
     * A unique name for this buyer which is used in the Gr4vy admin panel to give a buyer a human readable name.
     */
-    'display_name'?: string | null;
+    'displayName'?: string | null;
 
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "external_identifier",
+            "name": "externalIdentifier",
             "baseName": "external_identifier",
             "type": "string"
         },
         {
-            "name": "display_name",
+            "name": "displayName",
             "baseName": "display_name",
             "type": "string"
         }    ];

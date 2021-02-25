@@ -27,7 +27,7 @@ export class CardDetails {
     /**
     * The expiration date for a card.
     */
-    'expiration_date'?: string;
+    'expirationDate'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -43,7 +43,7 @@ export class CardDetails {
             "type": "CardDetails.SchemeEnum"
         },
         {
-            "name": "expiration_date",
+            "name": "expirationDate",
             "baseName": "expiration_date",
             "type": "string"
         }    ];

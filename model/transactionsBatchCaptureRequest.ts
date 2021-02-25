@@ -27,11 +27,11 @@ export class TransactionsBatchCaptureRequest {
     /**
     * An external identifier that can be used to match the transaction against your own records.
     */
-    'external_identifier'?: string;
+    'externalIdentifier'?: string;
     /**
     * The ID of the transaction to capture.
     */
-    'transaction_id': string;
+    'transactionId': string;
 
     static discriminator: string | undefined = undefined;
 
@@ -47,12 +47,12 @@ export class TransactionsBatchCaptureRequest {
             "type": "string"
         },
         {
-            "name": "external_identifier",
+            "name": "externalIdentifier",
             "baseName": "external_identifier",
             "type": "string"
         },
         {
-            "name": "transaction_id",
+            "name": "transactionId",
             "baseName": "transaction_id",
             "type": "string"
         }    ];

@@ -20,7 +20,7 @@ export class PaymentServiceUpdate {
     /**
     * A custom name for the payment service. This will be shown in the Admin UI.
     */
-    'display_name'?: string;
+    'displayName'?: string;
     /**
     * A list of fields, each containing a key-value pair for each field defined by the definition for this payment service.
     */
@@ -28,15 +28,15 @@ export class PaymentServiceUpdate {
     /**
     * A list of countries that this payment service needs to support in ISO two-letter code format.
     */
-    'accepted_countries'?: Array<string>;
+    'acceptedCountries'?: Array<string>;
     /**
     * A list of currencies that this payment service needs to support in ISO 4217 three-letter code format.
     */
-    'accepted_currencies'?: Array<string>;
+    'acceptedCurrencies'?: Array<string>;
     /**
     * Defines if this payment service uses the service\'s test/sandbox environment.
     */
-    'use_test_environment'?: boolean;
+    'useTestEnvironment'?: boolean;
     /**
     * The numeric rank of a payment service. Payment services with a lower position value are processed first. When a payment services is inserted at a position, any payment services with the the same value or higher are shifted down a position accordingly. When left out, the payment service is inserted at the end of the list.
     */
@@ -46,7 +46,7 @@ export class PaymentServiceUpdate {
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "display_name",
+            "name": "displayName",
             "baseName": "display_name",
             "type": "string"
         },
@@ -56,17 +56,17 @@ export class PaymentServiceUpdate {
             "type": "Array<PaymentServiceUpdateFields>"
         },
         {
-            "name": "accepted_countries",
+            "name": "acceptedCountries",
             "baseName": "accepted_countries",
             "type": "Array<string>"
         },
         {
-            "name": "accepted_currencies",
+            "name": "acceptedCurrencies",
             "baseName": "accepted_currencies",
             "type": "Array<string>"
         },
         {
-            "name": "use_test_environment",
+            "name": "useTestEnvironment",
             "baseName": "use_test_environment",
             "type": "boolean"
         },

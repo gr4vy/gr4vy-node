@@ -27,15 +27,15 @@ export class PaymentMethodDetails {
     /**
     * The expiration date for a card.
     */
-    'expiration_date'?: string;
+    'expirationDate'?: string;
     /**
     * The email address associated to the payment method.
     */
-    'email_address'?: string | null;
+    'emailAddress'?: string | null;
     /**
     * The optional URL that the buyer needs to be redirected to to further authorize the payment method.
     */
-    'approval_url'?: string | null;
+    'approvalUrl'?: string | null;
 
     static discriminator: string | undefined = undefined;
 
@@ -51,17 +51,17 @@ export class PaymentMethodDetails {
             "type": "PaymentMethodDetails.SchemeEnum"
         },
         {
-            "name": "expiration_date",
+            "name": "expirationDate",
             "baseName": "expiration_date",
             "type": "string"
         },
         {
-            "name": "email_address",
+            "name": "emailAddress",
             "baseName": "email_address",
             "type": "string"
         },
         {
-            "name": "approval_url",
+            "name": "approvalUrl",
             "baseName": "approval_url",
             "type": "string"
         }    ];

@@ -25,7 +25,7 @@ export class TransactionRequest {
     * A supported ISO-4217 currency code.
     */
     'currency': string;
-    'payment_method': TransactionPaymentMethodRequest;
+    'paymentMethod': TransactionPaymentMethodRequest;
     /**
     * Whether or not to also try and store the payment method with us so that it can be used again for future use. This is only supported for payment methods that support this feature.
     */
@@ -37,11 +37,11 @@ export class TransactionRequest {
     /**
     * An external identifier that can be used to match the transaction against your own records.
     */
-    'external_identifier'?: string | null;
+    'externalIdentifier'?: string | null;
     /**
     * Defines if this transaction should run in the payment provider\'s test environment. Defaults to false.
     */
-    'use_test_environment'?: boolean;
+    'useTestEnvironment'?: boolean;
 
     static discriminator: string | undefined = undefined;
 
@@ -57,7 +57,7 @@ export class TransactionRequest {
             "type": "string"
         },
         {
-            "name": "payment_method",
+            "name": "paymentMethod",
             "baseName": "payment_method",
             "type": "TransactionPaymentMethodRequest"
         },
@@ -72,12 +72,12 @@ export class TransactionRequest {
             "type": "TransactionRequest.IntentEnum"
         },
         {
-            "name": "external_identifier",
+            "name": "externalIdentifier",
             "baseName": "external_identifier",
             "type": "string"
         },
         {
-            "name": "use_test_environment",
+            "name": "useTestEnvironment",
             "baseName": "use_test_environment",
             "type": "boolean"
         }    ];
