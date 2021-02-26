@@ -15,7 +15,7 @@ import { PaymentMethod } from './paymentMethod';
 import { PaymentService } from './paymentService';
 
 /**
-* Captures a transaction.
+* A transaction record.
 */
 export class Transaction {
     /**

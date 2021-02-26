@@ -22,6 +22,7 @@ import { Error404NotFound } from '../model/error404NotFound';
 import { ErrorGeneric } from '../model/errorGeneric';
 import { PaymentMethod } from '../model/paymentMethod';
 import { PaymentMethods } from '../model/paymentMethods';
+import { PaymentMethodsTokenized } from '../model/paymentMethodsTokenized';
 
 import { ObjectSerializer, Authentication, VoidAuth, Interceptor } from '../model/models';
 import { HttpBasicAuth, HttpBearerAuth, ApiKeyAuth, OAuth } from '../model/models';
@@ -242,16 +243,15 @@ export class PaymentMethodsApi {
         });
     }
     /**
-     * Returns a list of stored (tokenized) payment methods.
-     * @summary List payment methods
-     * @param format Determines the format of the payment method returned. Currently we have 2 available formats:  * &#x60;full&#x60; - Returns the default full format of a resource. * &#x60;token&#x60; - Returns only the payment method\&#39;s token and details. This is used    by Gr4vy Embed to render available payment options.
+     * Returns a list of stored (tokenized) payment methods for a buyer in a short tokenized format.
+     * @summary List stored payment methods for a buyer
      * @param buyerId Filters the results to only the items for which the &#x60;buyer&#x60; has an &#x60;id&#x60; that matches this value.
      * @param buyerExternalIdentifier Filters the results to only the items for which the &#x60;buyer&#x60; has an &#x60;external_identifier&#x60; that matches this value.
-     * @param limit Defines the maximum number of items to return for this request.
-     * @param cursor A cursor that identifies the page of results to return. This is used to paginate the results of this API.  For the first page of results, this parameter can be left out. For additional pages, use the value returned by the API in the &#x60;next_cursor&#x60; field. Similarly the &#x60;previous_cursor&#x60; can be used to reverse backwards in the list.
+     * @param country Filters the results to only the items which support this country code. A country is formatted as 2-letter ISO country code.
+     * @param currency Filters the results to only the items which support this currency code. A currency is formatted as 3-letter ISO currency code.
      */
-    public async listPaymentMethods (format?: 'full' | 'token', buyerId?: string, buyerExternalIdentifier?: string, limit?: number, cursor?: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: PaymentMethods;  }> {
-        const localVarPath = this.basePath + '/payment-methods';
+    public async listBuyerPaymentMethods (buyerId?: string, buyerExternalIdentifier?: string, country?: string, currency?: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: PaymentMethodsTokenized;  }> {
+        const localVarPath = this.basePath + '/buyers/payment-methods';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         const produces = ['application/json'];
@@ -263,9 +263,90 @@ export class PaymentMethodsApi {
         }
         let localVarFormParams: any = {};
 
-        if (format !== undefined) {
-            localVarQueryParameters['format'] = ObjectSerializer.serialize(format, "'full' | 'token'");
+        if (buyerId !== undefined) {
+            localVarQueryParameters['buyer_id'] = ObjectSerializer.serialize(buyerId, "string");
         }
+
+        if (buyerExternalIdentifier !== undefined) {
+            localVarQueryParameters['buyer_external_identifier'] = ObjectSerializer.serialize(buyerExternalIdentifier, "string");
+        }
+
+        if (country !== undefined) {
+            localVarQueryParameters['country'] = ObjectSerializer.serialize(country, "string");
+        }
+
+        if (currency !== undefined) {
+            localVarQueryParameters['currency'] = ObjectSerializer.serialize(currency, "string");
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        let authenticationPromise = Promise.resolve();
+        if (this.authentications.BearerAuth.accessToken) {
+            authenticationPromise = authenticationPromise.then(() => this.authentications.BearerAuth.applyToRequest(localVarRequestOptions));
+        }
+        authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
+
+        let interceptorPromise = authenticationPromise;
+        for (const interceptor of this.interceptors) {
+            interceptorPromise = interceptorPromise.then(() => interceptor(localVarRequestOptions));
+        }
+
+        return interceptorPromise.then(() => {
+            if (Object.keys(localVarFormParams).length) {
+                if (localVarUseFormData) {
+                    (<any>localVarRequestOptions).formData = localVarFormParams;
+                } else {
+                    localVarRequestOptions.form = localVarFormParams;
+                }
+            }
+            return new Promise<{ response: http.IncomingMessage; body: PaymentMethodsTokenized;  }>((resolve, reject) => {
+                localVarRequest(localVarRequestOptions, (error, response, body) => {
+                    if (error) {
+                        reject(error);
+                    } else {
+                        body = ObjectSerializer.deserialize(body, "PaymentMethodsTokenized");
+                        if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                            resolve({ response: response, body: body });
+                        } else {
+                            reject(new HttpError(response, body, response.statusCode));
+                        }
+                    }
+                });
+            });
+        });
+    }
+    /**
+     * Returns a list of stored (tokenized) payment methods.
+     * @summary List payment methods
+     * @param buyerId Filters the results to only the items for which the &#x60;buyer&#x60; has an &#x60;id&#x60; that matches this value.
+     * @param buyerExternalIdentifier Filters the results to only the items for which the &#x60;buyer&#x60; has an &#x60;external_identifier&#x60; that matches this value.
+     * @param limit Defines the maximum number of items to return for this request.
+     * @param cursor A cursor that identifies the page of results to return. This is used to paginate the results of this API.  For the first page of results, this parameter can be left out. For additional pages, use the value returned by the API in the &#x60;next_cursor&#x60; field. Similarly the &#x60;previous_cursor&#x60; can be used to reverse backwards in the list.
+     */
+    public async listPaymentMethods (buyerId?: string, buyerExternalIdentifier?: string, limit?: number, cursor?: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: PaymentMethods;  }> {
+        const localVarPath = this.basePath + '/payment-methods';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+        let localVarFormParams: any = {};
 
         if (buyerId !== undefined) {
             localVarQueryParameters['buyer_id'] = ObjectSerializer.serialize(buyerId, "string");

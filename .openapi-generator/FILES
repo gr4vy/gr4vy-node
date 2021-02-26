@@ -12,7 +12,7 @@ model/buyers.ts
 model/card.ts
 model/cardDetails.ts
 model/cardRequest.ts
-model/cardToken.ts
+model/cardTokenized.ts
 model/error400BadRequest.ts
 model/error400IncorrectJson.ts
 model/error401Unauthorized.ts
@@ -28,6 +28,7 @@ model/payPalRequest.ts
 model/paymentMethod.ts
 model/paymentMethodDetails.ts
 model/paymentMethods.ts
+model/paymentMethodsTokenized.ts
 model/paymentOption.ts
 model/paymentOptions.ts
 model/paymentService.ts
@@ -37,7 +38,7 @@ model/paymentServiceUpdateFields.ts
 model/paymentServices.ts
 model/status.ts
 model/statuses.ts
-model/tokenRequest.ts
+model/tokenizedRequest.ts
 model/transaction.ts
 model/transactionCaptureRequest.ts
 model/transactionPaymentMethodRequest.ts

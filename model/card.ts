@@ -31,10 +31,6 @@ export class Card {
     */
     'status'?: Card.StatusEnum;
     /**
-    * A Gr4vy token that represents this payment method, in the format of a credit-card number starting with the digit 0. You can store this token in your own system and use it to process a payment with this payment method at a later date.
-    */
-    'token'?: string | null;
-    /**
     * `card`.
     */
     'method'?: Card.MethodEnum;
@@ -73,11 +69,6 @@ export class Card {
             "name": "status",
             "baseName": "status",
             "type": "Card.StatusEnum"
-        },
-        {
-            "name": "token",
-            "baseName": "token",
-            "type": "string"
         },
         {
             "name": "method",

@@ -11,16 +11,16 @@
  */
 
 import { RequestFile } from './models';
-import { Card } from './card';
+import { CardTokenized } from './cardTokenized';
 
 /**
-* A list of stored payment methods.
+* A list of stored payment methods in token format.
 */
-export class PaymentMethods {
+export class PaymentMethodsTokenized {
     /**
-    * A list of stored payment methods.
+    * A list of stored payment methods in token format.
     */
-    'items'?: Array<Card>;
+    'items'?: Array<CardTokenized>;
     /**
     * The limit applied to request. This represents the number of items that are at maximum returned by this request.
     */
@@ -40,7 +40,7 @@ export class PaymentMethods {
         {
             "name": "items",
             "baseName": "items",
-            "type": "Array<Card>"
+            "type": "Array<CardTokenized>"
         },
         {
             "name": "limit",
@@ -59,7 +59,7 @@ export class PaymentMethods {
         }    ];
 
     static getAttributeTypeMap() {
-        return PaymentMethods.attributeTypeMap;
+        return PaymentMethodsTokenized.attributeTypeMap;
     }
 }
 

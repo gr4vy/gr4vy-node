@@ -385,7 +385,7 @@ export class TransactionsApi {
     /**
      * Lists all transactions for an account. Sorted by last `updated_at` status.
      * @summary List transactions
-     * @param search Filters the results to only the items for which the &#x60;id&#x60; or &#x60;external_identifier&#x60; matches this value.
+     * @param search Filters the transactions to only the items for which the &#x60;id&#x60; or &#x60;external_identifier&#x60; matches this value. This field allows for a partial match, matching any transaction for which either of the fields partially or completely matches.
      * @param transactionStatus Filters the results to only the transactions for which the &#x60;status&#x60; matches this value.
      * @param beforeCreatedAt Filters the results to only transactions created before this ISO date-time string.
      * @param afterCreatedAt Filters the results to only transactions created after this ISO date-time string.

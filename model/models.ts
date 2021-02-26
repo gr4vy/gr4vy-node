@@ -7,7 +7,7 @@ export * from './buyers';
 export * from './card';
 export * from './cardDetails';
 export * from './cardRequest';
-export * from './cardToken';
+export * from './cardTokenized';
 export * from './error400BadRequest';
 export * from './error400IncorrectJson';
 export * from './error401Unauthorized';
@@ -22,6 +22,7 @@ export * from './payPalRequest';
 export * from './paymentMethod';
 export * from './paymentMethodDetails';
 export * from './paymentMethods';
+export * from './paymentMethodsTokenized';
 export * from './paymentOption';
 export * from './paymentOptions';
 export * from './paymentService';
@@ -31,7 +32,7 @@ export * from './paymentServiceUpdateFields';
 export * from './paymentServices';
 export * from './status';
 export * from './statuses';
-export * from './tokenRequest';
+export * from './tokenizedRequest';
 export * from './transaction';
 export * from './transactionCaptureRequest';
 export * from './transactionPaymentMethodRequest';
@@ -59,7 +60,7 @@ import { Buyers } from './buyers';
 import { Card } from './card';
 import { CardDetails } from './cardDetails';
 import { CardRequest } from './cardRequest';
-import { CardToken } from './cardToken';
+import { CardTokenized } from './cardTokenized';
 import { Error400BadRequest } from './error400BadRequest';
 import { Error400IncorrectJson } from './error400IncorrectJson';
 import { Error401Unauthorized } from './error401Unauthorized';
@@ -74,6 +75,7 @@ import { PayPalRequest } from './payPalRequest';
 import { PaymentMethod } from './paymentMethod';
 import { PaymentMethodDetails } from './paymentMethodDetails';
 import { PaymentMethods } from './paymentMethods';
+import { PaymentMethodsTokenized } from './paymentMethodsTokenized';
 import { PaymentOption } from './paymentOption';
 import { PaymentOptions } from './paymentOptions';
 import { PaymentService } from './paymentService';
@@ -83,7 +85,7 @@ import { PaymentServiceUpdateFields } from './paymentServiceUpdateFields';
 import { PaymentServices } from './paymentServices';
 import { Status } from './status';
 import { Statuses } from './statuses';
-import { TokenRequest } from './tokenRequest';
+import { TokenizedRequest } from './tokenizedRequest';
 import { Transaction } from './transaction';
 import { TransactionCaptureRequest } from './transactionCaptureRequest';
 import { TransactionPaymentMethodRequest } from './transactionPaymentMethodRequest';
@@ -110,8 +112,8 @@ let enumsMap: {[index: string]: any} = {
         "Card.MethodEnum": Card.MethodEnum,
         "CardDetails.SchemeEnum": CardDetails.SchemeEnum,
         "CardRequest.MethodEnum": CardRequest.MethodEnum,
-        "CardToken.TypeEnum": CardToken.TypeEnum,
-        "CardToken.MethodEnum": CardToken.MethodEnum,
+        "CardTokenized.TypeEnum": CardTokenized.TypeEnum,
+        "CardTokenized.MethodEnum": CardTokenized.MethodEnum,
         "Error400BadRequest.TypeEnum": Error400BadRequest.TypeEnum,
         "Error400BadRequest.CodeEnum": Error400BadRequest.CodeEnum,
         "Error400BadRequest.StatusEnum": Error400BadRequest.StatusEnum,
@@ -151,7 +153,7 @@ let enumsMap: {[index: string]: any} = {
         "Status.TypeEnum": Status.TypeEnum,
         "Status.StatusEnum": Status.StatusEnum,
         "Status.ResourceTypeEnum": Status.ResourceTypeEnum,
-        "TokenRequest.MethodEnum": TokenRequest.MethodEnum,
+        "TokenizedRequest.MethodEnum": TokenizedRequest.MethodEnum,
         "Transaction.TypeEnum": Transaction.TypeEnum,
         "Transaction.StatusEnum": Transaction.StatusEnum,
         "TransactionPaymentMethodRequest.MethodEnum": TransactionPaymentMethodRequest.MethodEnum,
@@ -166,7 +168,7 @@ let typeMap: {[index: string]: any} = {
     "Card": Card,
     "CardDetails": CardDetails,
     "CardRequest": CardRequest,
-    "CardToken": CardToken,
+    "CardTokenized": CardTokenized,
     "Error400BadRequest": Error400BadRequest,
     "Error400IncorrectJson": Error400IncorrectJson,
     "Error401Unauthorized": Error401Unauthorized,
@@ -181,6 +183,7 @@ let typeMap: {[index: string]: any} = {
     "PaymentMethod": PaymentMethod,
     "PaymentMethodDetails": PaymentMethodDetails,
     "PaymentMethods": PaymentMethods,
+    "PaymentMethodsTokenized": PaymentMethodsTokenized,
     "PaymentOption": PaymentOption,
     "PaymentOptions": PaymentOptions,
     "PaymentService": PaymentService,
@@ -190,7 +193,7 @@ let typeMap: {[index: string]: any} = {
     "PaymentServices": PaymentServices,
     "Status": Status,
     "Statuses": Statuses,
-    "TokenRequest": TokenRequest,
+    "TokenizedRequest": TokenizedRequest,
     "Transaction": Transaction,
     "TransactionCaptureRequest": TransactionCaptureRequest,
     "TransactionPaymentMethodRequest": TransactionPaymentMethodRequest,

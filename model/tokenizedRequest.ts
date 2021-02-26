@@ -15,15 +15,15 @@ import { RequestFile } from './models';
 /**
 * Details for a previously tokenized payment method.
 */
-export class TokenRequest {
+export class TokenizedRequest {
     /**
-    * `token`.
+    * `id`.
     */
-    'method': TokenRequest.MethodEnum;
+    'method': TokenizedRequest.MethodEnum;
     /**
-    * A Gr4vy token that represents a previously tokenized payment method, in the format of a card number starting with the digit 0. This token can represent any type of payment method.
+    * A ID that represents a previously tokenized payment method. This token can represent any type of payment method.
     */
-    'token': string;
+    'id': string;
 
     static discriminator: string | undefined = undefined;
 
@@ -31,21 +31,21 @@ export class TokenRequest {
         {
             "name": "method",
             "baseName": "method",
-            "type": "TokenRequest.MethodEnum"
+            "type": "TokenizedRequest.MethodEnum"
         },
         {
-            "name": "token",
-            "baseName": "token",
+            "name": "id",
+            "baseName": "id",
             "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
-        return TokenRequest.attributeTypeMap;
+        return TokenizedRequest.attributeTypeMap;
     }
 }
 
-export namespace TokenRequest {
+export namespace TokenizedRequest {
     export enum MethodEnum {
-        Token = <any> 'token'
+        Id = <any> 'id'
     }
 }

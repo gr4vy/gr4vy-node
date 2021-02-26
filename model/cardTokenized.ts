@@ -16,19 +16,19 @@ import { CardDetails } from './cardDetails';
 /**
 * A mini format version of the card.
 */
-export class CardToken {
+export class CardTokenized {
     /**
     * `payment-method`.
     */
-    'type'?: CardToken.TypeEnum;
+    'type'?: CardTokenized.TypeEnum;
     /**
-    * A Gr4vy token that represents this payment method, in the format of a credit-card number starting with the digit 0. You can store this token in your own system and use it to process a payment with this payment method at a later date.
+    * The unique ID of the payment method.
     */
-    'token'?: string | null;
+    'id'?: string;
     /**
     * `card`.
     */
-    'method'?: CardToken.MethodEnum;
+    'method'?: CardTokenized.MethodEnum;
     'details'?: CardDetails;
 
     static discriminator: string | undefined = undefined;
@@ -37,17 +37,17 @@ export class CardToken {
         {
             "name": "type",
             "baseName": "type",
-            "type": "CardToken.TypeEnum"
+            "type": "CardTokenized.TypeEnum"
         },
         {
-            "name": "token",
-            "baseName": "token",
+            "name": "id",
+            "baseName": "id",
             "type": "string"
         },
         {
             "name": "method",
             "baseName": "method",
-            "type": "CardToken.MethodEnum"
+            "type": "CardTokenized.MethodEnum"
         },
         {
             "name": "details",
@@ -56,11 +56,11 @@ export class CardToken {
         }    ];
 
     static getAttributeTypeMap() {
-        return CardToken.attributeTypeMap;
+        return CardTokenized.attributeTypeMap;
     }
 }
 
-export namespace CardToken {
+export namespace CardTokenized {
     export enum TypeEnum {
         PaymentMethod = <any> 'payment-method'
     }

@@ -17,9 +17,9 @@ import { RequestFile } from './models';
 */
 export class CardDetails {
     /**
-    * Partial number details for a stored card, hiding all but the last few numbers.
+    * The last 4 digits of the card number.
     */
-    'number'?: string;
+    'suffix'?: string;
     /**
     * The type of the card.
     */
@@ -33,8 +33,8 @@ export class CardDetails {
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "number",
-            "baseName": "number",
+            "name": "suffix",
+            "baseName": "suffix",
             "type": "string"
         },
         {
