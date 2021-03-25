@@ -103,7 +103,7 @@ Your API key can be created in your admin panel on the **Integrations** tab.
 This library conveniently maps every API path to a seperate function. For example, `GET /buyers?limit=100` would be:
 
 ```js
-amadeus.listBuyers(100)
+client.listBuyers(null, 100)
 ```
 
 To create or update a resource, the API requires a request object for that
@@ -115,7 +115,7 @@ the `addBuyer` method.
 
 ```js
 const buyerRequest = new BuyerRequest()
-buyerRequest.display_name = 'John L.'
+buyerRequest.displayName = 'John L.'
 const buyer = await client.addBuyer(buyerRequest)
 ```
 
@@ -123,7 +123,7 @@ Similarly, to update a buyer you will need to pass in the `BuyerUpdateRequest`.
 
 ```js
 const buyerUpdateRequest = new BuyerUpdateRequest()
-buyerUpdateRequest.display_name = 'John D.'
+buyerUpdateRequest.displayName = 'John D.'
 const buyer = await client.updateBuyer(buyer.id, buyerUpdateRequest)
 ```
 
