@@ -19,7 +19,7 @@ class Authentication {
     }
 
     public async getSignedJWT(
-        scopes: JWTScopes = [],
+        scopes: JWTScopes = [JWTScope.ReadAll, JWTScope.WriteAll],
         embed: any = null,
         expiresIn: string = '30s'
     ): Promise<string> {
@@ -52,6 +52,8 @@ class Authentication {
 type JWTScopes = JWTScope[];
 
 enum JWTScope {
+    ReadAll = '*.read',
+    WriteAll = '*.write',
     Embed = 'embed',
     BuyersRead = 'buyers.read',
     BuyersWrite = 'buyers.write',
