@@ -44,6 +44,10 @@ export class CardRequest {
     * The `external_identifier` of the buyer to associate this payment method to. If this field is provided then the `buyer_id` field needs to be unset.
     */
     'buyerExternalIdentifier'?: string;
+    /**
+    * Defines the environment to store this card for. Setting this to anything other than `production` will force Gr4vy to use the payment services configured for that environment.
+    */
+    'environment'?: CardRequest.EnvironmentEnum;
 
     static discriminator: string | undefined = undefined;
 
@@ -82,6 +86,11 @@ export class CardRequest {
             "name": "buyerExternalIdentifier",
             "baseName": "buyer_external_identifier",
             "type": "string"
+        },
+        {
+            "name": "environment",
+            "baseName": "environment",
+            "type": "CardRequest.EnvironmentEnum"
         }    ];
 
     static getAttributeTypeMap() {
@@ -92,5 +101,10 @@ export class CardRequest {
 export namespace CardRequest {
     export enum MethodEnum {
         Card = <any> 'card'
+    }
+    export enum EnvironmentEnum {
+        Development = <any> 'development',
+        Staging = <any> 'staging',
+        Production = <any> 'production'
     }
 }

@@ -39,9 +39,9 @@ export class TransactionRequest {
     */
     'externalIdentifier'?: string | null;
     /**
-    * Defines if this transaction should run in the payment provider\'s test environment. Defaults to false.
+    * Defines the environment to create this transaction in. Setting this to anything other than `production` will force Gr4vy to use the payment a service configured for that environment.
     */
-    'useTestEnvironment'?: boolean;
+    'environment'?: TransactionRequest.EnvironmentEnum;
 
     static discriminator: string | undefined = undefined;
 
@@ -77,9 +77,9 @@ export class TransactionRequest {
             "type": "string"
         },
         {
-            "name": "useTestEnvironment",
-            "baseName": "use_test_environment",
-            "type": "boolean"
+            "name": "environment",
+            "baseName": "environment",
+            "type": "TransactionRequest.EnvironmentEnum"
         }    ];
 
     static getAttributeTypeMap() {
@@ -92,5 +92,10 @@ export namespace TransactionRequest {
         Approve = <any> 'approve',
         Authorize = <any> 'authorize',
         Capture = <any> 'capture'
+    }
+    export enum EnvironmentEnum {
+        Development = <any> 'development',
+        Staging = <any> 'staging',
+        Production = <any> 'production'
     }
 }

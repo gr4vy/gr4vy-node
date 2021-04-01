@@ -51,6 +51,10 @@ export class Card {
     */
     'buyer'?: Buyer | null;
     'details'?: CardDetails;
+    /**
+    * The environment this payment method has been stored for. This will be null of the payment method was not stored.
+    */
+    'environment'?: Card.EnvironmentEnum;
 
     static discriminator: string | undefined = undefined;
 
@@ -99,6 +103,11 @@ export class Card {
             "name": "details",
             "baseName": "details",
             "type": "CardDetails"
+        },
+        {
+            "name": "environment",
+            "baseName": "environment",
+            "type": "Card.EnvironmentEnum"
         }    ];
 
     static getAttributeTypeMap() {
@@ -118,5 +127,10 @@ export namespace Card {
     }
     export enum MethodEnum {
         Card = <any> 'card'
+    }
+    export enum EnvironmentEnum {
+        Development = <any> 'development',
+        Staging = <any> 'staging',
+        Production = <any> 'production'
     }
 }

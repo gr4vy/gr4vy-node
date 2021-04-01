@@ -51,6 +51,10 @@ export class PayPal {
     */
     'buyer'?: Buyer | null;
     'details'?: PayPalDetails;
+    /**
+    * The environment this payment method has been stored for. This will be null of the payment method was not stored.
+    */
+    'environment'?: PayPal.EnvironmentEnum;
 
     static discriminator: string | undefined = undefined;
 
@@ -99,6 +103,11 @@ export class PayPal {
             "name": "details",
             "baseName": "details",
             "type": "PayPalDetails"
+        },
+        {
+            "name": "environment",
+            "baseName": "environment",
+            "type": "PayPal.EnvironmentEnum"
         }    ];
 
     static getAttributeTypeMap() {
@@ -122,5 +131,10 @@ export namespace PayPal {
     }
     export enum MethodEnum {
         Paypal = <any> 'paypal'
+    }
+    export enum EnvironmentEnum {
+        Development = <any> 'development',
+        Staging = <any> 'staging',
+        Production = <any> 'production'
     }
 }

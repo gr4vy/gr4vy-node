@@ -52,6 +52,10 @@ export class Transaction {
     */
     'updatedAt'?: Date;
     'paymentService'?: PaymentService;
+    /**
+    * The environment this transaction has been created in.
+    */
+    'environment'?: Transaction.EnvironmentEnum;
 
     static discriminator: string | undefined = undefined;
 
@@ -105,6 +109,11 @@ export class Transaction {
             "name": "paymentService",
             "baseName": "payment_service",
             "type": "PaymentService"
+        },
+        {
+            "name": "environment",
+            "baseName": "environment",
+            "type": "Transaction.EnvironmentEnum"
         }    ];
 
     static getAttributeTypeMap() {
@@ -132,5 +141,10 @@ export namespace Transaction {
         BuyerApprovalDeclined = <any> 'buyer_approval_declined',
         BuyerApprovalTimedout = <any> 'buyer_approval_timedout',
         BuyerApproved = <any> 'buyer_approved'
+    }
+    export enum EnvironmentEnum {
+        Development = <any> 'development',
+        Staging = <any> 'staging',
+        Production = <any> 'production'
     }
 }
