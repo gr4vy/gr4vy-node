@@ -126,7 +126,7 @@ class Client {
      * @param data The optional pinned fields to add to the claims
      */
     public getBearerToken(
-        scopes: JWTScopes = [],
+        scopes: JWTScopes = [JWTScope.ReadAll, JWTScope.WriteAll],
         data: any = {},
         expiresIn: string = '30s'
     ): Promise<string> {
