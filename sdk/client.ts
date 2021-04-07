@@ -123,14 +123,14 @@ class Client {
      * Returns a new bearer token. A bearer token is a limited validity JWT token.
      *
      * @param scopes The optional scopes to add to the claims
-     * @param data The optional pinned fields to add to the claims
+     * @param embed The optional pinned fields to add to the claims. Used by the Embed scope only.
      */
     public getBearerToken(
         scopes: JWTScopes = [JWTScope.ReadAll, JWTScope.WriteAll],
-        data: any = {},
+        embed: any = {},
         expiresIn: string = '30s'
     ): Promise<string> {
-        return this.authentication.getSignedJWT(scopes, data, expiresIn);
+        return this.authentication.getSignedJWT(scopes, embed, expiresIn);
     }
 
     public getEmbedToken(embed: EmbedParams): Promise<string> {
@@ -188,7 +188,7 @@ class Client {
      * Generates a new authorization token and attaches it to every API.
      */
     private async updateBearerToken(): Promise<void> {
-        const token: string = await this.authentication.getSignedJWT();
+        const token: string = await this.getBearerToken();
         this.apis.map((api) => (api.accessToken = token));
     }
 
