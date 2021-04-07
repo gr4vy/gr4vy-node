@@ -1,4 +1,8 @@
-import Authentication, { JWTScope, JWTScopes } from './authentication';
+import Authentication, {
+    JWTScope,
+    JWTScopes,
+    EmbedParams,
+} from './authentication';
 
 import {
     BuyersApi,
@@ -127,15 +131,14 @@ class Client {
      */
     public getBearerToken(
         scopes: JWTScopes = [JWTScope.ReadAll, JWTScope.WriteAll],
-        embed: any = {},
         expiresIn: string = '30s'
     ): Promise<string> {
-        return this.authentication.getSignedJWT(scopes, embed, expiresIn);
+        return this.authentication.getSignedJWT(scopes, expiresIn);
     }
 
     public getEmbedToken(embed: EmbedParams): Promise<string> {
         const scopes = [JWTScope.Embed];
-        return this.authentication.getSignedJWT(scopes, embed, '1h');
+        return this.authentication.getSignedJWT(scopes, '1h', embed);
     }
 
     /**
@@ -207,13 +210,6 @@ type Options = {
     privateKey: string;
     baseUrl?: string;
     debug?: boolean;
-};
-
-type EmbedParams = {
-    amount: number;
-    currency: string;
-    buyerId?: string;
-    buyerExternalIdentifier?: string;
 };
 
 export default Client;

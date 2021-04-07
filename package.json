@@ -26,6 +26,7 @@
         "jose": "^3.6.2",
         "request": "^2.81.0",
         "rewire": "^5.0.0",
+        "snakecase-keys": "^3.2.1",
         "uuid": "^8.3.2"
     },
     "devDependencies": {

@@ -3,6 +3,7 @@ const { default: SignJWT } = require('jose/jwt/sign');
 const { default: calculateThumbprint } = require('jose/jwk/thumbprint');
 const { default: fromKeyLike } = require('jose/jwk/from_key_like');
 
+import snakeCaseKeys from 'snakecase-keys';
 import crypto from 'crypto';
 import { v4 as uuid } from 'uuid';
 import { version } from './package';
@@ -20,8 +21,8 @@ class Authentication {
 
     public async getSignedJWT(
         scopes: JWTScopes = [JWTScope.ReadAll, JWTScope.WriteAll],
-        embed: any = null,
-        expiresIn: string = '30s'
+        expiresIn: string = '30s',
+        embed?: EmbedParams
     ): Promise<string> {
         this.keyId ||= await this.getKeyId(this.key);
 
@@ -31,10 +32,12 @@ class Authentication {
             kid: this.keyId,
         };
 
-        return new SignJWT({
-            scopes,
-            embed,
-        })
+        const claims = { scopes };
+        if (embed) {
+            claims['embed'] = snakeCaseKeys(embed);
+        }
+
+        return new SignJWT(claims)
             .setProtectedHeader(header)
             .setIssuer(issuer)
             .setNotBefore('0s')
@@ -67,5 +70,12 @@ enum JWTScope {
     TransactionsWrite = 'transactions.write',
 }
 
+type EmbedParams = {
+    amount: number;
+    currency: string;
+    buyerId?: string;
+    buyerExternalIdentifier?: string;
+};
+
 export default Authentication;
-export { JWTScope, JWTScopes };
+export { JWTScope, JWTScopes, EmbedParams };
