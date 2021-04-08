@@ -3,7 +3,7 @@ import jwt from 'jsonwebtoken'
 import { jwkThumbprintByEncoding } from 'jwk-thumbprint'
 import snakeCaseKeys from 'snakecase-keys'
 import { v4 as uuid } from 'uuid'
-import { version } from './package'
+import { version } from '../package.json'
 
 const issuer = `Gr4vy SDK ${version} - Node ${process.version}`
 

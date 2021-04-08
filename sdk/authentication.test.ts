@@ -1,5 +1,6 @@
 import jwt from 'jsonwebtoken'
 import snakecaseKeys from 'snakecase-keys'
+import { version } from '../package.json'
 import Authentication, { JWTScope } from './authentication'
 
 const privateKey = `-----BEGIN PRIVATE KEY-----
@@ -37,6 +38,8 @@ describe('.getJWS', () => {
     expect(typeof decoded.payload.nbf).toBe('number')
     expect(typeof decoded.payload.exp).toBe('number')
     expect(decoded.payload.iss.startsWith('Gr4vy SDK')).toBeTruthy()
+    expect(decoded.payload.iss).toMatch('Gr4vy SDK')
+    expect(decoded.payload.iss).toMatch(version)
   })
 
   test('it should optionally insert embed data', async () => {
