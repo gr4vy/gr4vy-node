@@ -1,54 +1,44 @@
-// using CJS import because ESM for Jose is broken
-const { default: SignJWT } = require('jose/jwt/sign');
-const { default: calculateThumbprint } = require('jose/jwk/thumbprint');
-const { default: fromKeyLike } = require('jose/jwk/from_key_like');
-
 import snakeCaseKeys from 'snakecase-keys';
-import crypto from 'crypto';
 import { v4 as uuid } from 'uuid';
 import { version } from './package';
+import jwt from 'jsonwebtoken';
+import { jwkThumbprintByEncoding } from 'jwk-thumbprint';
+import keyto from '@trust/keyto';
 
 const issuer = `Gr4vy SDK ${version} - Node ${process.version}`;
 
 class Authentication {
-    key: crypto.KeyObject;
-    keyId: string | null;
+    privateKey: string;
 
-    constructor(key: string) {
-        this.key = crypto.createPrivateKey(key);
-        this.keyId = null;
+    constructor(privateKey: string) {
+        this.privateKey = privateKey;
     }
 
-    public async getSignedJWT(
+    public async getJWS(
         scopes: JWTScopes = [JWTScope.ReadAll, JWTScope.WriteAll],
         expiresIn: string = '30s',
         embed?: EmbedParams
     ): Promise<string> {
-        this.keyId ||= await this.getKeyId(this.key);
-
-        const header = {
-            typ: 'JWT',
-            alg: 'ES512',
-            kid: this.keyId,
-        };
-
+        const keyid: string = await this.getKeyId();
         const claims = { scopes };
-        if (embed) {
+
+        if (scopes.includes(JWTScope.Embed) && embed) {
             claims['embed'] = snakeCaseKeys(embed);
         }
 
-        return new SignJWT(claims)
-            .setProtectedHeader(header)
-            .setIssuer(issuer)
-            .setNotBefore('0s')
-            .setExpirationTime(expiresIn)
-            .setJti(uuid())
-            .sign(this.key);
+        return jwt.sign(claims, this.privateKey, {
+            algorithm: 'ES512',
+            keyid,
+            jwtid: uuid(),
+            expiresIn,
+            notBefore: '0s',
+            issuer,
+        });
     }
 
-    private async getKeyId(key: crypto.KeyObject): Promise<string> {
-        const jwk = await fromKeyLike(key);
-        return calculateThumbprint(jwk);
+    public async getKeyId(): Promise<string> {
+        const jwk = keyto.from(this.privateKey, 'pem').toJwk('private');
+        return jwkThumbprintByEncoding(jwk, 'SHA-256', 'base64url');
     }
 }
 

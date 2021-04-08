@@ -133,12 +133,12 @@ class Client {
         scopes: JWTScopes = [JWTScope.ReadAll, JWTScope.WriteAll],
         expiresIn: string = '30s'
     ): Promise<string> {
-        return this.authentication.getSignedJWT(scopes, expiresIn);
+        return this.authentication.getJWS(scopes, expiresIn);
     }
 
     public getEmbedToken(embed: EmbedParams): Promise<string> {
         const scopes = [JWTScope.Embed];
-        return this.authentication.getSignedJWT(scopes, '1h', embed);
+        return this.authentication.getJWS(scopes, '1h', embed);
     }
 
     /**
