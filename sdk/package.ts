@@ -1,9 +1,10 @@
-let version = null;
+/* eslint-disable */
+let version = null
 
 try {
-    version = require('../../package.json').version;
+  version = require('../../package.json').version
 } catch {
-    version = require('../package.json').version;
+  version = require('../package.json').version
 }
 
-export { version };
+export { version }

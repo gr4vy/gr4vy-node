@@ -17,7 +17,8 @@
         "build": "tsc",
         "prepack": "yarn build",
         "release": "yarn version; git push --tags; git push",
-        "test": "jest"
+        "test": "jest",
+        "lint": "eslint sdk --ext ts,tsx"
     },
     "author": "Gr4vy <code@gr4vy.com>",
     "license": "MIT",
@@ -39,8 +40,16 @@
         "@types/jest": "^26.0.22",
         "@types/node": "^14.14.37",
         "@types/request": "^2.48.5",
+        "@typescript-eslint/eslint-plugin": "^4.21.0",
+        "@typescript-eslint/parser": "^4.21.0",
         "babel-jest": "^26.6.3",
+        "eslint": "^7.23.0",
+        "eslint-config-prettier": "^8.1.0",
+        "eslint-plugin-import": "^2.22.1",
+        "eslint-plugin-jest": "^24.3.4",
+        "eslint-plugin-prettier": "^3.3.1",
         "jest": "^26.6.3",
+        "prettier": "^2.2.1",
         "typescript": "^4.2.3"
     },
     "bugs": {
