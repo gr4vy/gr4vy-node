@@ -1,4 +1,4 @@
-import Authentication, { JWTScope } from './Authentication';
+import Authentication, { JWTScope } from './authentication';
 import jwt from 'jsonwebtoken';
 import snakecaseKeys from 'snakecase-keys';
 
