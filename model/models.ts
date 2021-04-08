@@ -7,6 +7,12 @@ export * from './buyers';
 export * from './card';
 export * from './cardDetails';
 export * from './cardRequest';
+export * from './cardRule';
+export * from './cardRuleNumberCondition';
+export * from './cardRuleRequest';
+export * from './cardRuleTextCondition';
+export * from './cardRuleUpdate';
+export * from './cardRules';
 export * from './cardTokenized';
 export * from './error400BadRequest';
 export * from './error400IncorrectJson';
@@ -26,6 +32,9 @@ export * from './paymentMethodsTokenized';
 export * from './paymentOption';
 export * from './paymentOptions';
 export * from './paymentService';
+export * from './paymentServiceDefinition';
+export * from './paymentServiceDefinitionFields';
+export * from './paymentServiceDefinitions';
 export * from './paymentServiceRequest';
 export * from './paymentServiceUpdate';
 export * from './paymentServiceUpdateFields';
@@ -60,6 +69,12 @@ import { Buyers } from './buyers';
 import { Card } from './card';
 import { CardDetails } from './cardDetails';
 import { CardRequest } from './cardRequest';
+import { CardRule } from './cardRule';
+import { CardRuleNumberCondition } from './cardRuleNumberCondition';
+import { CardRuleRequest } from './cardRuleRequest';
+import { CardRuleTextCondition } from './cardRuleTextCondition';
+import { CardRuleUpdate } from './cardRuleUpdate';
+import { CardRules } from './cardRules';
 import { CardTokenized } from './cardTokenized';
 import { Error400BadRequest } from './error400BadRequest';
 import { Error400IncorrectJson } from './error400IncorrectJson';
@@ -79,6 +94,9 @@ import { PaymentMethodsTokenized } from './paymentMethodsTokenized';
 import { PaymentOption } from './paymentOption';
 import { PaymentOptions } from './paymentOptions';
 import { PaymentService } from './paymentService';
+import { PaymentServiceDefinition } from './paymentServiceDefinition';
+import { PaymentServiceDefinitionFields } from './paymentServiceDefinitionFields';
+import { PaymentServiceDefinitions } from './paymentServiceDefinitions';
 import { PaymentServiceRequest } from './paymentServiceRequest';
 import { PaymentServiceUpdate } from './paymentServiceUpdate';
 import { PaymentServiceUpdateFields } from './paymentServiceUpdateFields';
@@ -114,6 +132,22 @@ let enumsMap: {[index: string]: any} = {
         "CardDetails.SchemeEnum": CardDetails.SchemeEnum,
         "CardRequest.MethodEnum": CardRequest.MethodEnum,
         "CardRequest.EnvironmentEnum": CardRequest.EnvironmentEnum,
+        "CardRule.TypeEnum": CardRule.TypeEnum,
+        "CardRule.EnvironmentEnum": CardRule.EnvironmentEnum,
+        "CardRule.UnprocessableFallbackStrategyEnum": CardRule.UnprocessableFallbackStrategyEnum,
+        "CardRule.InvalidRuleFallbackStrategyEnum": CardRule.InvalidRuleFallbackStrategyEnum,
+        "CardRuleNumberCondition.MatchEnum": CardRuleNumberCondition.MatchEnum,
+        "CardRuleNumberCondition.KeyEnum": CardRuleNumberCondition.KeyEnum,
+        "CardRuleNumberCondition.OperatorEnum": CardRuleNumberCondition.OperatorEnum,
+        "CardRuleRequest.EnvironmentEnum": CardRuleRequest.EnvironmentEnum,
+        "CardRuleRequest.UnprocessableFallbackStrategyEnum": CardRuleRequest.UnprocessableFallbackStrategyEnum,
+        "CardRuleRequest.InvalidRuleFallbackStrategyEnum": CardRuleRequest.InvalidRuleFallbackStrategyEnum,
+        "CardRuleTextCondition.MatchEnum": CardRuleTextCondition.MatchEnum,
+        "CardRuleTextCondition.KeyEnum": CardRuleTextCondition.KeyEnum,
+        "CardRuleTextCondition.OperatorEnum": CardRuleTextCondition.OperatorEnum,
+        "CardRuleUpdate.EnvironmentEnum": CardRuleUpdate.EnvironmentEnum,
+        "CardRuleUpdate.UnprocessableFallbackStrategyEnum": CardRuleUpdate.UnprocessableFallbackStrategyEnum,
+        "CardRuleUpdate.InvalidRuleFallbackStrategyEnum": CardRuleUpdate.InvalidRuleFallbackStrategyEnum,
         "CardTokenized.TypeEnum": CardTokenized.TypeEnum,
         "CardTokenized.MethodEnum": CardTokenized.MethodEnum,
         "Error400BadRequest.TypeEnum": Error400BadRequest.TypeEnum,
@@ -155,6 +189,8 @@ let enumsMap: {[index: string]: any} = {
         "PaymentService.StatusEnum": PaymentService.StatusEnum,
         "PaymentService.CredentialsModeEnum": PaymentService.CredentialsModeEnum,
         "PaymentService.EnvironmentsEnum": PaymentService.EnvironmentsEnum,
+        "PaymentServiceDefinition.MethodEnum": PaymentServiceDefinition.MethodEnum,
+        "PaymentServiceDefinitionFields.FormatEnum": PaymentServiceDefinitionFields.FormatEnum,
         "PaymentServiceRequest.CredentialsModeEnum": PaymentServiceRequest.CredentialsModeEnum,
         "PaymentServiceRequest.EnvironmentsEnum": PaymentServiceRequest.EnvironmentsEnum,
         "PaymentServiceUpdate.CredentialsModeEnum": PaymentServiceUpdate.CredentialsModeEnum,
@@ -179,6 +215,12 @@ let typeMap: {[index: string]: any} = {
     "Card": Card,
     "CardDetails": CardDetails,
     "CardRequest": CardRequest,
+    "CardRule": CardRule,
+    "CardRuleNumberCondition": CardRuleNumberCondition,
+    "CardRuleRequest": CardRuleRequest,
+    "CardRuleTextCondition": CardRuleTextCondition,
+    "CardRuleUpdate": CardRuleUpdate,
+    "CardRules": CardRules,
     "CardTokenized": CardTokenized,
     "Error400BadRequest": Error400BadRequest,
     "Error400IncorrectJson": Error400IncorrectJson,
@@ -198,6 +240,9 @@ let typeMap: {[index: string]: any} = {
     "PaymentOption": PaymentOption,
     "PaymentOptions": PaymentOptions,
     "PaymentService": PaymentService,
+    "PaymentServiceDefinition": PaymentServiceDefinition,
+    "PaymentServiceDefinitionFields": PaymentServiceDefinitionFields,
+    "PaymentServiceDefinitions": PaymentServiceDefinitions,
     "PaymentServiceRequest": PaymentServiceRequest,
     "PaymentServiceUpdate": PaymentServiceUpdate,
     "PaymentServiceUpdateFields": PaymentServiceUpdateFields,

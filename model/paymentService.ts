@@ -17,7 +17,7 @@ import { RequestFile } from './models';
 */
 export class PaymentService {
     /**
-    * The ID of this payment service instance.
+    * The ID of this payment service.
     */
     'id'?: string;
     /**

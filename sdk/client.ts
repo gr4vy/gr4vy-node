@@ -5,6 +5,8 @@ import {
   PaymentServicesApi,
   TransactionsApi,
 } from '../api/apis'
+import { CardRulesApi } from '../api/cardRulesApi'
+import { PaymentServiceDefinitionsApi } from '../api/paymentServiceDefinitionsApi'
 import Authentication, {
   JWTScope,
   JWTScopes,
@@ -17,8 +19,10 @@ class Client {
   authentication: Authentication
   apis: (
     | BuyersApi
+    | CardRulesApi
     | PaymentMethodsApi
     | PaymentOptionsApi
+    | PaymentServiceDefinitionsApi
     | PaymentServicesApi
     | TransactionsApi
   )[]
@@ -30,6 +34,13 @@ class Client {
   updateBuyer: typeof BuyersApi.prototype.updateBuyer
   deleteBuyer: typeof BuyersApi.prototype.deleteBuyer
 
+  // Card Rules
+  listCardsRules: typeof CardRulesApi.prototype.listCardsRules
+  getCardRule: typeof CardRulesApi.prototype.getCardRule
+  addCardRule: typeof CardRulesApi.prototype.addCardRule
+  updateCardRule: typeof CardRulesApi.prototype.updateCardRule
+  deleteCardRule: typeof CardRulesApi.prototype.deleteCardRule
+
   // Payment Methods
   listPaymentMethods: typeof PaymentMethodsApi.prototype.listPaymentMethods
   getPaymentMethod: typeof PaymentMethodsApi.prototype.getPaymentMethod
@@ -38,6 +49,10 @@ class Client {
 
   // Payment Options
   listPaymentOptions: typeof PaymentOptionsApi.prototype.listPaymentOptions
+
+  // Payment Service Definitions
+  listPaymentServiceDefinitions: typeof PaymentServiceDefinitionsApi.prototype.listPaymentServiceDefinitions
+  getPaymentServiceDefinition: typeof PaymentServiceDefinitionsApi.prototype.getPaymentServiceDefinition
 
   // Payment Services
   listPaymentServices: typeof PaymentServicesApi.prototype.listPaymentServices
@@ -73,6 +88,15 @@ class Client {
     this.deleteBuyer = this.wrap(ba.deleteBuyer.bind(ba))
     this.apis.push(ba)
 
+    // Buyers
+    const cra = new CardRulesApi(this.baseUrl)
+    this.listCardsRules = this.wrap(cra.listCardsRules.bind(cra))
+    this.getCardRule = this.wrap(cra.getCardRule.bind(cra))
+    this.addCardRule = this.wrap(cra.addCardRule.bind(cra))
+    this.updateCardRule = this.wrap(cra.updateCardRule.bind(cra))
+    this.deleteCardRule = this.wrap(cra.deleteCardRule.bind(cra))
+    this.apis.push(cra)
+
     // Payment Methods
     const pma = new PaymentMethodsApi(this.baseUrl)
     this.listPaymentMethods = this.wrap(pma.listPaymentMethods.bind(pma))
@@ -86,6 +110,16 @@ class Client {
     this.listPaymentOptions = this.wrap(poa.listPaymentOptions.bind(poa))
     this.apis.push(poa)
 
+    // Payment Service Definitions
+    const psda = new PaymentServiceDefinitionsApi(this.baseUrl)
+    this.listPaymentServiceDefinitions = this.wrap(
+      psda.listPaymentServiceDefinitions.bind(psda)
+    )
+    this.getPaymentServiceDefinition = this.wrap(
+      psda.getPaymentServiceDefinition.bind(psda)
+    )
+    this.apis.push(psda)
+
     // Payment Services
     const psa = new PaymentServicesApi(this.baseUrl)
     this.listPaymentServices = this.wrap(psa.listPaymentServices.bind(psa))
@@ -95,6 +129,7 @@ class Client {
     this.deletePaymentService = this.wrap(psa.deletePaymentService.bind(psa))
     this.apis.push(psa)
 
+    // Transactions
     const ta = new TransactionsApi(this.baseUrl)
     this.authorizeNewTransaction = this.wrap(
       ta.authorizeNewTransaction.bind(ta)

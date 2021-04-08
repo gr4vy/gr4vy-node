@@ -1,8 +1,10 @@
 .gitignore
 api/apis.ts
 api/buyersApi.ts
+api/cardRulesApi.ts
 api/paymentMethodsApi.ts
 api/paymentOptionsApi.ts
+api/paymentServiceDefinitionsApi.ts
 api/paymentServicesApi.ts
 api/transactionsApi.ts
 model/buyer.ts
@@ -12,6 +14,12 @@ model/buyers.ts
 model/card.ts
 model/cardDetails.ts
 model/cardRequest.ts
+model/cardRule.ts
+model/cardRuleNumberCondition.ts
+model/cardRuleRequest.ts
+model/cardRuleTextCondition.ts
+model/cardRuleUpdate.ts
+model/cardRules.ts
 model/cardTokenized.ts
 model/error400BadRequest.ts
 model/error400IncorrectJson.ts
@@ -32,6 +40,9 @@ model/paymentMethodsTokenized.ts
 model/paymentOption.ts
 model/paymentOptions.ts
 model/paymentService.ts
+model/paymentServiceDefinition.ts
+model/paymentServiceDefinitionFields.ts
+model/paymentServiceDefinitions.ts
 model/paymentServiceRequest.ts
 model/paymentServiceUpdate.ts
 model/paymentServiceUpdateFields.ts

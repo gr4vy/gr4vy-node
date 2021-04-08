@@ -1,9 +1,13 @@
 export * from './buyersApi';
 import { BuyersApi } from './buyersApi';
+export * from './cardRulesApi';
+import { CardRulesApi } from './cardRulesApi';
 export * from './paymentMethodsApi';
 import { PaymentMethodsApi } from './paymentMethodsApi';
 export * from './paymentOptionsApi';
 import { PaymentOptionsApi } from './paymentOptionsApi';
+export * from './paymentServiceDefinitionsApi';
+import { PaymentServiceDefinitionsApi } from './paymentServiceDefinitionsApi';
 export * from './paymentServicesApi';
 import { PaymentServicesApi } from './paymentServicesApi';
 export * from './transactionsApi';
@@ -19,4 +23,4 @@ export class HttpError extends Error {
 
 export { RequestFile } from '../model/models';
 
-export const APIS = [BuyersApi, PaymentMethodsApi, PaymentOptionsApi, PaymentServicesApi, TransactionsApi];
+export const APIS = [BuyersApi, CardRulesApi, PaymentMethodsApi, PaymentOptionsApi, PaymentServiceDefinitionsApi, PaymentServicesApi, TransactionsApi];
