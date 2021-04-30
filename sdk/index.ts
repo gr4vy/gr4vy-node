@@ -1,2 +1,2 @@
-export { default as Client } from './client'
+export { default as Client, JWTScope } from './client'
 export * from '../model/models'

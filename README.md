@@ -127,6 +127,31 @@ buyerUpdateRequest.displayName = 'John D.'
 const buyer = await client.updateBuyer(buyer.id, buyerUpdateRequest)
 ```
 
+## Generate API bearer token
+
+The SDK can be used to create API access tokens for use with other request
+libraries.
+
+```js
+import { JWTScope } from "@gr4vy/node"
+
+const bearerToken = client.getBearerToken(
+  [JWTScope.BuyersRead, JWTScope.BuyersWrite],
+  "1h"
+)
+```
+
+The first parameter is a list of recognised scopes for the Gr4vy API. The second
+parameter is the expiration time for the token as defined by the
+[`vercel/ms`](https://github.com/vercel/ms) library.
+
+The resulting token can be used as a bearer token in the header of the HTTP
+request made to the API.
+
+```ini
+Authorization: Bearer <bearerToken>
+```
+
 ## Response & Promises
 
 Every API call returns a `Promise` that either resolves or rejects.

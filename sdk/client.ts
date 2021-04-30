@@ -157,7 +157,8 @@ class Client {
    * Returns a new bearer token. A bearer token is a limited validity JWT token.
    *
    * @param scopes The optional scopes to add to the claims
-   * @param embed The optional pinned fields to add to the claims. Used by the Embed scope only.
+   * @param expiresIn The length of time that the bearer token is valid for,
+   * defined as a time span in a zeit/ms format. https://github.com/vercel/ms
    */
   public getBearerToken(
     scopes: JWTScopes = [JWTScope.ReadAll, JWTScope.WriteAll],
@@ -240,3 +241,4 @@ type Options = {
 }
 
 export default Client
+export { JWTScope }
