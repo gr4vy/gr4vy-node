@@ -157,7 +157,15 @@ class Client {
     }
 
     if (!options.gr4vyId && !options.baseUrl) {
-      throw new Error('Missing argument `privateKey`')
+      throw new Error(
+        'Missing argument `gr4vyId` or `baseUrl`. Please provide at least one.'
+      )
+    }
+
+    if (options.gr4vyId && options.baseUrl) {
+      throw new Error(
+        'Both `gr4vyId` and `baseUrl` provided. Please provide at only one.'
+      )
     }
   }
 
@@ -241,12 +249,19 @@ class Client {
   }
 }
 
-type Options = {
-  gr4vyId?: string
-  privateKey: string
-  baseUrl?: string
-  debug?: boolean
-}
+type Options =
+  | {
+      gr4vyId: string
+      privateKey: string
+      baseUrl?: string
+      debug?: boolean
+    }
+  | {
+      gr4vyId?: string
+      privateKey: string
+      baseUrl: string
+      debug?: boolean
+    }
 
 export default Client
 export { JWTScope }
