@@ -11,7 +11,6 @@
  */
 
 import { RequestFile } from './models'
-import { Undefined } from './undefined'
 
 /**
  * Generic card rule condition.
@@ -29,7 +28,7 @@ export class CardRuleCondition {
    * The comparison to make to `value` property.
    */
   'operator': CardRuleCondition.OperatorEnum
-  'value': Undefined
+  'value': string
 
   static discriminator: string | undefined = undefined
 
@@ -56,7 +55,7 @@ export class CardRuleCondition {
     {
       name: 'value',
       baseName: 'value',
-      type: 'Undefined',
+      type: 'string',
     },
   ]
 
