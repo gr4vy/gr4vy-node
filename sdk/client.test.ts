@@ -20,8 +20,26 @@ const embedParams = {
 }
 
 describe('#constructor', () => {
-  const client = new Client({ privateKey, gr4vyId: 'demo' })
-  expect(client.apis).toHaveLength(7)
+  test('it should work with a gr4vy ID', () => {
+    const client = new Client({ privateKey, gr4vyId: 'demo' })
+    expect(client.baseUrl).toBeDefined()
+  })
+
+  test('it should work with a base URL', () => {
+    const client = new Client({
+      privateKey,
+      baseUrl: 'https://api.demo.gr4vy.app',
+    })
+    expect(client.baseUrl).toBeDefined()
+  })
+
+  test('it should fail if neither the baseUrl or Gr4vy ID is present', () => {
+    expect(() => {
+      new Client({
+        privateKey,
+      })
+    }).toThrowError()
+  })
 })
 
 describe('.getBearerToken()', () => {

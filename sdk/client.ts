@@ -151,6 +151,10 @@ class Client {
     if (!options.privateKey) {
       throw new Error('Missing argument `privateKey`')
     }
+
+    if (!options.gr4vyId && !options.baseUrl) {
+      throw new Error('Missing argument `privateKey`')
+    }
   }
 
   /**
@@ -234,7 +238,7 @@ class Client {
 }
 
 type Options = {
-  gr4vyId: string
+  gr4vyId?: string
   privateKey: string
   baseUrl?: string
   debug?: boolean
