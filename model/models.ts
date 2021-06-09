@@ -2,31 +2,30 @@ import localVarRequest from 'request';
 
 export * from './buyer';
 export * from './buyerRequest';
+export * from './buyerSnapshot';
 export * from './buyerUpdate';
 export * from './buyers';
-export * from './card';
-export * from './cardDetails';
 export * from './cardRequest';
 export * from './cardRule';
+export * from './cardRuleCondition';
 export * from './cardRuleNumberCondition';
 export * from './cardRuleRequest';
 export * from './cardRuleTextCondition';
 export * from './cardRuleUpdate';
 export * from './cardRules';
-export * from './cardTokenized';
 export * from './error400BadRequest';
 export * from './error400IncorrectJson';
 export * from './error401Unauthorized';
+export * from './error403Forbidden';
 export * from './error404NotFound';
 export * from './error404PendingCreation';
 export * from './error409DuplicateRecord';
 export * from './errorDetail';
 export * from './errorGeneric';
-export * from './payPal';
-export * from './payPalDetails';
 export * from './payPalRequest';
 export * from './paymentMethod';
-export * from './paymentMethodDetails';
+export * from './paymentMethodSnapshot';
+export * from './paymentMethodTokenized';
 export * from './paymentMethods';
 export * from './paymentMethodsTokenized';
 export * from './paymentOption';
@@ -36,6 +35,8 @@ export * from './paymentServiceDefinition';
 export * from './paymentServiceDefinitionFields';
 export * from './paymentServiceDefinitions';
 export * from './paymentServiceRequest';
+export * from './paymentServiceRequestAllOf';
+export * from './paymentServiceSnapshot';
 export * from './paymentServiceUpdate';
 export * from './paymentServiceUpdateFields';
 export * from './paymentServices';
@@ -45,6 +46,7 @@ export * from './tokenizedRequest';
 export * from './transaction';
 export * from './transactionCaptureRequest';
 export * from './transactionPaymentMethodRequest';
+export * from './transactionRefundRequest';
 export * from './transactionRequest';
 export * from './transactions';
 export * from './transactionsBatchCaptureRequest';
@@ -64,31 +66,30 @@ export type RequestFile = string | Buffer | fs.ReadStream | RequestDetailedFile;
 
 import { Buyer } from './buyer';
 import { BuyerRequest } from './buyerRequest';
+import { BuyerSnapshot } from './buyerSnapshot';
 import { BuyerUpdate } from './buyerUpdate';
 import { Buyers } from './buyers';
-import { Card } from './card';
-import { CardDetails } from './cardDetails';
 import { CardRequest } from './cardRequest';
 import { CardRule } from './cardRule';
+import { CardRuleCondition } from './cardRuleCondition';
 import { CardRuleNumberCondition } from './cardRuleNumberCondition';
 import { CardRuleRequest } from './cardRuleRequest';
 import { CardRuleTextCondition } from './cardRuleTextCondition';
 import { CardRuleUpdate } from './cardRuleUpdate';
 import { CardRules } from './cardRules';
-import { CardTokenized } from './cardTokenized';
 import { Error400BadRequest } from './error400BadRequest';
 import { Error400IncorrectJson } from './error400IncorrectJson';
 import { Error401Unauthorized } from './error401Unauthorized';
+import { Error403Forbidden } from './error403Forbidden';
 import { Error404NotFound } from './error404NotFound';
 import { Error404PendingCreation } from './error404PendingCreation';
 import { Error409DuplicateRecord } from './error409DuplicateRecord';
 import { ErrorDetail } from './errorDetail';
 import { ErrorGeneric } from './errorGeneric';
-import { PayPal } from './payPal';
-import { PayPalDetails } from './payPalDetails';
 import { PayPalRequest } from './payPalRequest';
 import { PaymentMethod } from './paymentMethod';
-import { PaymentMethodDetails } from './paymentMethodDetails';
+import { PaymentMethodSnapshot } from './paymentMethodSnapshot';
+import { PaymentMethodTokenized } from './paymentMethodTokenized';
 import { PaymentMethods } from './paymentMethods';
 import { PaymentMethodsTokenized } from './paymentMethodsTokenized';
 import { PaymentOption } from './paymentOption';
@@ -98,6 +99,8 @@ import { PaymentServiceDefinition } from './paymentServiceDefinition';
 import { PaymentServiceDefinitionFields } from './paymentServiceDefinitionFields';
 import { PaymentServiceDefinitions } from './paymentServiceDefinitions';
 import { PaymentServiceRequest } from './paymentServiceRequest';
+import { PaymentServiceRequestAllOf } from './paymentServiceRequestAllOf';
+import { PaymentServiceSnapshot } from './paymentServiceSnapshot';
 import { PaymentServiceUpdate } from './paymentServiceUpdate';
 import { PaymentServiceUpdateFields } from './paymentServiceUpdateFields';
 import { PaymentServices } from './paymentServices';
@@ -107,6 +110,7 @@ import { TokenizedRequest } from './tokenizedRequest';
 import { Transaction } from './transaction';
 import { TransactionCaptureRequest } from './transactionCaptureRequest';
 import { TransactionPaymentMethodRequest } from './transactionPaymentMethodRequest';
+import { TransactionRefundRequest } from './transactionRefundRequest';
 import { TransactionRequest } from './transactionRequest';
 import { Transactions } from './transactions';
 import { TransactionsBatchCaptureRequest } from './transactionsBatchCaptureRequest';
@@ -125,17 +129,16 @@ let primitives = [
 
 let enumsMap: {[index: string]: any} = {
         "Buyer.TypeEnum": Buyer.TypeEnum,
-        "Card.TypeEnum": Card.TypeEnum,
-        "Card.StatusEnum": Card.StatusEnum,
-        "Card.MethodEnum": Card.MethodEnum,
-        "Card.EnvironmentEnum": Card.EnvironmentEnum,
-        "CardDetails.SchemeEnum": CardDetails.SchemeEnum,
+        "BuyerSnapshot.TypeEnum": BuyerSnapshot.TypeEnum,
         "CardRequest.MethodEnum": CardRequest.MethodEnum,
         "CardRequest.EnvironmentEnum": CardRequest.EnvironmentEnum,
         "CardRule.TypeEnum": CardRule.TypeEnum,
         "CardRule.EnvironmentEnum": CardRule.EnvironmentEnum,
         "CardRule.UnprocessableFallbackStrategyEnum": CardRule.UnprocessableFallbackStrategyEnum,
         "CardRule.InvalidRuleFallbackStrategyEnum": CardRule.InvalidRuleFallbackStrategyEnum,
+        "CardRuleCondition.MatchEnum": CardRuleCondition.MatchEnum,
+        "CardRuleCondition.KeyEnum": CardRuleCondition.KeyEnum,
+        "CardRuleCondition.OperatorEnum": CardRuleCondition.OperatorEnum,
         "CardRuleNumberCondition.MatchEnum": CardRuleNumberCondition.MatchEnum,
         "CardRuleNumberCondition.KeyEnum": CardRuleNumberCondition.KeyEnum,
         "CardRuleNumberCondition.OperatorEnum": CardRuleNumberCondition.OperatorEnum,
@@ -148,8 +151,6 @@ let enumsMap: {[index: string]: any} = {
         "CardRuleUpdate.EnvironmentEnum": CardRuleUpdate.EnvironmentEnum,
         "CardRuleUpdate.UnprocessableFallbackStrategyEnum": CardRuleUpdate.UnprocessableFallbackStrategyEnum,
         "CardRuleUpdate.InvalidRuleFallbackStrategyEnum": CardRuleUpdate.InvalidRuleFallbackStrategyEnum,
-        "CardTokenized.TypeEnum": CardTokenized.TypeEnum,
-        "CardTokenized.MethodEnum": CardTokenized.MethodEnum,
         "Error400BadRequest.TypeEnum": Error400BadRequest.TypeEnum,
         "Error400BadRequest.CodeEnum": Error400BadRequest.CodeEnum,
         "Error400BadRequest.StatusEnum": Error400BadRequest.StatusEnum,
@@ -160,6 +161,10 @@ let enumsMap: {[index: string]: any} = {
         "Error401Unauthorized.CodeEnum": Error401Unauthorized.CodeEnum,
         "Error401Unauthorized.StatusEnum": Error401Unauthorized.StatusEnum,
         "Error401Unauthorized.MessageEnum": Error401Unauthorized.MessageEnum,
+        "Error403Forbidden.TypeEnum": Error403Forbidden.TypeEnum,
+        "Error403Forbidden.CodeEnum": Error403Forbidden.CodeEnum,
+        "Error403Forbidden.StatusEnum": Error403Forbidden.StatusEnum,
+        "Error403Forbidden.MessageEnum": Error403Forbidden.MessageEnum,
         "Error404NotFound.TypeEnum": Error404NotFound.TypeEnum,
         "Error404NotFound.CodeEnum": Error404NotFound.CodeEnum,
         "Error404NotFound.StatusEnum": Error404NotFound.StatusEnum,
@@ -173,17 +178,19 @@ let enumsMap: {[index: string]: any} = {
         "Error409DuplicateRecord.StatusEnum": Error409DuplicateRecord.StatusEnum,
         "ErrorDetail.LocationEnum": ErrorDetail.LocationEnum,
         "ErrorGeneric.TypeEnum": ErrorGeneric.TypeEnum,
-        "PayPal.TypeEnum": PayPal.TypeEnum,
-        "PayPal.StatusEnum": PayPal.StatusEnum,
-        "PayPal.MethodEnum": PayPal.MethodEnum,
-        "PayPal.EnvironmentEnum": PayPal.EnvironmentEnum,
         "PayPalRequest.MethodEnum": PayPalRequest.MethodEnum,
         "PaymentMethod.TypeEnum": PaymentMethod.TypeEnum,
         "PaymentMethod.StatusEnum": PaymentMethod.StatusEnum,
         "PaymentMethod.MethodEnum": PaymentMethod.MethodEnum,
-        "PaymentMethodDetails.SchemeEnum": PaymentMethodDetails.SchemeEnum,
+        "PaymentMethod.EnvironmentEnum": PaymentMethod.EnvironmentEnum,
+        "PaymentMethodSnapshot.TypeEnum": PaymentMethodSnapshot.TypeEnum,
+        "PaymentMethodSnapshot.MethodEnum": PaymentMethodSnapshot.MethodEnum,
+        "PaymentMethodTokenized.TypeEnum": PaymentMethodTokenized.TypeEnum,
+        "PaymentMethodTokenized.MethodEnum": PaymentMethodTokenized.MethodEnum,
+        "PaymentMethodTokenized.SchemeEnum": PaymentMethodTokenized.SchemeEnum,
         "PaymentOption.TypeEnum": PaymentOption.TypeEnum,
         "PaymentOption.MethodEnum": PaymentOption.MethodEnum,
+        "PaymentOption.ModeEnum": PaymentOption.ModeEnum,
         "PaymentService.TypeEnum": PaymentService.TypeEnum,
         "PaymentService.MethodEnum": PaymentService.MethodEnum,
         "PaymentService.StatusEnum": PaymentService.StatusEnum,
@@ -193,6 +200,8 @@ let enumsMap: {[index: string]: any} = {
         "PaymentServiceDefinitionFields.FormatEnum": PaymentServiceDefinitionFields.FormatEnum,
         "PaymentServiceRequest.CredentialsModeEnum": PaymentServiceRequest.CredentialsModeEnum,
         "PaymentServiceRequest.EnvironmentsEnum": PaymentServiceRequest.EnvironmentsEnum,
+        "PaymentServiceSnapshot.TypeEnum": PaymentServiceSnapshot.TypeEnum,
+        "PaymentServiceSnapshot.MethodEnum": PaymentServiceSnapshot.MethodEnum,
         "PaymentServiceUpdate.CredentialsModeEnum": PaymentServiceUpdate.CredentialsModeEnum,
         "PaymentServiceUpdate.EnvironmentsEnum": PaymentServiceUpdate.EnvironmentsEnum,
         "Status.TypeEnum": Status.TypeEnum,
@@ -210,31 +219,30 @@ let enumsMap: {[index: string]: any} = {
 let typeMap: {[index: string]: any} = {
     "Buyer": Buyer,
     "BuyerRequest": BuyerRequest,
+    "BuyerSnapshot": BuyerSnapshot,
     "BuyerUpdate": BuyerUpdate,
     "Buyers": Buyers,
-    "Card": Card,
-    "CardDetails": CardDetails,
     "CardRequest": CardRequest,
     "CardRule": CardRule,
+    "CardRuleCondition": CardRuleCondition,
     "CardRuleNumberCondition": CardRuleNumberCondition,
     "CardRuleRequest": CardRuleRequest,
     "CardRuleTextCondition": CardRuleTextCondition,
     "CardRuleUpdate": CardRuleUpdate,
     "CardRules": CardRules,
-    "CardTokenized": CardTokenized,
     "Error400BadRequest": Error400BadRequest,
     "Error400IncorrectJson": Error400IncorrectJson,
     "Error401Unauthorized": Error401Unauthorized,
+    "Error403Forbidden": Error403Forbidden,
     "Error404NotFound": Error404NotFound,
     "Error404PendingCreation": Error404PendingCreation,
     "Error409DuplicateRecord": Error409DuplicateRecord,
     "ErrorDetail": ErrorDetail,
     "ErrorGeneric": ErrorGeneric,
-    "PayPal": PayPal,
-    "PayPalDetails": PayPalDetails,
     "PayPalRequest": PayPalRequest,
     "PaymentMethod": PaymentMethod,
-    "PaymentMethodDetails": PaymentMethodDetails,
+    "PaymentMethodSnapshot": PaymentMethodSnapshot,
+    "PaymentMethodTokenized": PaymentMethodTokenized,
     "PaymentMethods": PaymentMethods,
     "PaymentMethodsTokenized": PaymentMethodsTokenized,
     "PaymentOption": PaymentOption,
@@ -244,6 +252,8 @@ let typeMap: {[index: string]: any} = {
     "PaymentServiceDefinitionFields": PaymentServiceDefinitionFields,
     "PaymentServiceDefinitions": PaymentServiceDefinitions,
     "PaymentServiceRequest": PaymentServiceRequest,
+    "PaymentServiceRequestAllOf": PaymentServiceRequestAllOf,
+    "PaymentServiceSnapshot": PaymentServiceSnapshot,
     "PaymentServiceUpdate": PaymentServiceUpdate,
     "PaymentServiceUpdateFields": PaymentServiceUpdateFields,
     "PaymentServices": PaymentServices,
@@ -253,6 +263,7 @@ let typeMap: {[index: string]: any} = {
     "Transaction": Transaction,
     "TransactionCaptureRequest": TransactionCaptureRequest,
     "TransactionPaymentMethodRequest": TransactionPaymentMethodRequest,
+    "TransactionRefundRequest": TransactionRefundRequest,
     "TransactionRequest": TransactionRequest,
     "Transactions": Transactions,
     "TransactionsBatchCaptureRequest": TransactionsBatchCaptureRequest,

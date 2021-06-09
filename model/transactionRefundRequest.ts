@@ -13,39 +13,25 @@
 import { RequestFile } from './models';
 
 /**
-* Details for a previously tokenized payment method.
+* A request to refund a transaction.
 */
-export class TokenizedRequest {
+export class TransactionRefundRequest {
     /**
-    * `id`.
+    * The (partial) amount to refund.  When omitted blank, this will refund the entire amount.
     */
-    'method': TokenizedRequest.MethodEnum;
-    /**
-    * A ID that represents a previously tokenized payment method. This token can represent any type of payment method.
-    */
-    'id': string;
+    'amount'?: number;
 
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "method",
-            "baseName": "method",
-            "type": "TokenizedRequest.MethodEnum"
-        },
-        {
-            "name": "id",
-            "baseName": "id",
-            "type": "string"
+            "name": "amount",
+            "baseName": "amount",
+            "type": "number"
         }    ];
 
     static getAttributeTypeMap() {
-        return TokenizedRequest.attributeTypeMap;
+        return TransactionRefundRequest.attributeTypeMap;
     }
 }
 
-export namespace TokenizedRequest {
-    export enum MethodEnum {
-        Id = <any> 'id'
-    }
-}

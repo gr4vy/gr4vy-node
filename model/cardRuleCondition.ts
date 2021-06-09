@@ -11,27 +11,25 @@
  */
 
 import { RequestFile } from './models'
+import { Undefined } from './undefined'
 
 /**
- * Part of a rule that matches numeric fields. It defines the condition under which this rule applies.
+ * Generic card rule condition.
  */
-export class CardRuleNumberCondition {
+export class CardRuleCondition {
   /**
-   * `number`.
+   * The type of match made for this rule.
    */
-  'match': CardRuleNumberCondition.MatchEnum
+  'match': CardRuleCondition.MatchEnum
   /**
    * The transaction field to filter by.
    */
-  'key': CardRuleNumberCondition.KeyEnum
+  'key': CardRuleCondition.KeyEnum
   /**
    * The comparison to make to `value` property.
    */
-  'operator': CardRuleNumberCondition.OperatorEnum
-  /**
-   * The values to compare the `key` to.
-   */
-  'value': number
+  'operator': CardRuleCondition.OperatorEnum
+  'value': Undefined
 
   static discriminator: string | undefined = undefined
 
@@ -43,36 +41,39 @@ export class CardRuleNumberCondition {
     {
       name: 'match',
       baseName: 'match',
-      type: 'CardRuleNumberCondition.MatchEnum',
+      type: 'CardRuleCondition.MatchEnum',
     },
     {
       name: 'key',
       baseName: 'key',
-      type: 'CardRuleNumberCondition.KeyEnum',
+      type: 'CardRuleCondition.KeyEnum',
     },
     {
       name: 'operator',
       baseName: 'operator',
-      type: 'CardRuleNumberCondition.OperatorEnum',
+      type: 'CardRuleCondition.OperatorEnum',
     },
     {
       name: 'value',
       baseName: 'value',
-      type: 'number',
+      type: 'Undefined',
     },
   ]
 
   static getAttributeTypeMap() {
-    return CardRuleNumberCondition.attributeTypeMap
+    return CardRuleCondition.attributeTypeMap
   }
 }
 
-export namespace CardRuleNumberCondition {
+export namespace CardRuleCondition {
   export enum MatchEnum {
     Number = <any>'number',
+    Text = <any>'text',
   }
   export enum KeyEnum {
     Amount = <any>'amount',
+    Currency = <any>'currency',
+    Scheme = <any>'scheme',
   }
   export enum OperatorEnum {
     Equal = <any>'==',
@@ -81,5 +82,7 @@ export namespace CardRuleNumberCondition {
     GreaterThanOrEqualTo = <any>'>=',
     GreaterThan = <any>'>',
     LessThan = <any>'<',
+    In = <any>'IN',
+    NotIn = <any>'NOT IN',
   }
 }

@@ -14,25 +14,25 @@ import { RequestFile } from './models';
 import { ErrorDetail } from './errorDetail';
 
 /**
-* Not Found Error (HTTP 404).
+* Forbidden Error (HTTP 403).
 */
-export class Error404NotFound {
+export class Error403Forbidden {
     /**
     * `error`.
     */
-    'type'?: Error404NotFound.TypeEnum;
+    'type'?: Error403Forbidden.TypeEnum;
     /**
-    * `not_found`.
+    * `forbidden`.
     */
-    'code'?: Error404NotFound.CodeEnum;
+    'code'?: Error403Forbidden.CodeEnum;
     /**
-    * `404`.
+    * `403`.
     */
-    'status'?: Error404NotFound.StatusEnum;
+    'status'?: Error403Forbidden.StatusEnum;
     /**
-    * The resource could not be found.
+    * Invalid credentials.
     */
-    'message'?: Error404NotFound.MessageEnum;
+    'message'?: Error403Forbidden.MessageEnum;
     /**
     * A list of detail objects that further clarify the reason for the error. Not every error supports more detail.
     */
@@ -44,22 +44,22 @@ export class Error404NotFound {
         {
             "name": "type",
             "baseName": "type",
-            "type": "Error404NotFound.TypeEnum"
+            "type": "Error403Forbidden.TypeEnum"
         },
         {
             "name": "code",
             "baseName": "code",
-            "type": "Error404NotFound.CodeEnum"
+            "type": "Error403Forbidden.CodeEnum"
         },
         {
             "name": "status",
             "baseName": "status",
-            "type": "Error404NotFound.StatusEnum"
+            "type": "Error403Forbidden.StatusEnum"
         },
         {
             "name": "message",
             "baseName": "message",
-            "type": "Error404NotFound.MessageEnum"
+            "type": "Error403Forbidden.MessageEnum"
         },
         {
             "name": "details",
@@ -68,21 +68,21 @@ export class Error404NotFound {
         }    ];
 
     static getAttributeTypeMap() {
-        return Error404NotFound.attributeTypeMap;
+        return Error403Forbidden.attributeTypeMap;
     }
 }
 
-export namespace Error404NotFound {
+export namespace Error403Forbidden {
     export enum TypeEnum {
         Error = <any> 'error'
     }
     export enum CodeEnum {
-        NotFound = <any> 'not_found'
+        Forbidden = <any> 'forbidden'
     }
     export enum StatusEnum {
-        NUMBER_404 = <any> 404
+        NUMBER_403 = <any> 403
     }
     export enum MessageEnum {
-        TheResourceCouldNotBeFound = <any> 'The resource could not be found'
+        InvalidCredentials = <any> 'Invalid credentials'
     }
 }
