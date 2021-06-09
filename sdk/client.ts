@@ -46,6 +46,7 @@ class Client {
   getPaymentMethod: typeof PaymentMethodsApi.prototype.getPaymentMethod
   storePaymentMethod: typeof PaymentMethodsApi.prototype.storePaymentMethod
   deletePaymentMethod: typeof PaymentMethodsApi.prototype.deletePaymentMethod
+  listBuyerPaymentMethods: typeof PaymentMethodsApi.prototype.listBuyerPaymentMethods
 
   // Payment Options
   listPaymentOptions: typeof PaymentOptionsApi.prototype.listPaymentOptions
@@ -103,6 +104,9 @@ class Client {
     this.getPaymentMethod = this.wrap(pma.getPaymentMethod.bind(pma))
     this.storePaymentMethod = this.wrap(pma.storePaymentMethod.bind(pma))
     this.deletePaymentMethod = this.wrap(pma.deletePaymentMethod.bind(pma))
+    this.listBuyerPaymentMethods = this.wrap(
+      pma.listBuyerPaymentMethods.bind(pma)
+    )
     this.apis.push(pma)
 
     // Payment Options
