@@ -1,59 +1,59 @@
 {
-    "name": "@gr4vy/node",
-    "version": "0.14.0",
-    "description": "NodeJS client for @gr4vy/node",
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/gr4vy/gr4vy-node.git"
-    },
-    "main": "dist/sdk/index.js",
-    "types": "dist/sdk/index.d.ts",
-    "exports": {
-        "require": "./dist/sdk/index.js",
-        "import": "./esm/index.js"
-    },
-    "scripts": {
-        "clean": "rm -rf dist/*",
-        "build": "tsc",
-        "prepack": "yarn build",
-        "release": "yarn version; git push --tags; git push",
-        "test": "jest",
-        "lint": "eslint sdk --ext ts,tsx"
-    },
-    "author": "Gr4vy <code@gr4vy.com>",
-    "license": "MIT",
-    "dependencies": {
-        "@trust/keyto": "^1.0.1",
-        "@types/bluebird": "^3.5.33",
-        "bluebird": "^3.5.0",
-        "jsonwebtoken": "^8.5.1",
-        "jwk-thumbprint": "^0.1.4",
-        "request": "^2.81.0",
-        "rewire": "^5.0.0",
-        "snakecase-keys": "^3.2.1",
-        "uuid": "^8.3.2"
-    },
-    "devDependencies": {
-        "@babel/core": "^7.13.14",
-        "@babel/preset-env": "^7.13.12",
-        "@babel/preset-typescript": "^7.13.0",
-        "@types/jest": "^26.0.22",
-        "@types/node": "^14.14.37",
-        "@types/request": "^2.48.5",
-        "@typescript-eslint/eslint-plugin": "^4.21.0",
-        "@typescript-eslint/parser": "^4.21.0",
-        "babel-jest": "^26.6.3",
-        "eslint": "^7.23.0",
-        "eslint-config-prettier": "^8.1.0",
-        "eslint-plugin-import": "^2.22.1",
-        "eslint-plugin-jest": "^24.3.4",
-        "eslint-plugin-prettier": "^3.3.1",
-        "jest": "^26.6.3",
-        "prettier": "^2.2.1",
-        "typescript": "^4.2.3"
-    },
-    "bugs": {
-        "url": "https://github.com/gr4vy/gr4vy-node/issues"
-    },
-    "homepage": "https://github.com/gr4vy/gr4vy-node#readme"
+  "name": "@gr4vy/node",
+  "version": "0.15.0",
+  "description": "NodeJS client for @gr4vy/node",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gr4vy/gr4vy-node.git"
+  },
+  "main": "dist/sdk/index.js",
+  "types": "dist/sdk/index.d.ts",
+  "exports": {
+    "require": "./dist/sdk/index.js",
+    "import": "./esm/index.js"
+  },
+  "scripts": {
+    "clean": "rm -rf dist/*",
+    "build": "tsc",
+    "prepack": "yarn build",
+    "release": "yarn version; git push --tags; git push",
+    "test": "jest",
+    "lint": "eslint sdk --ext ts,tsx"
+  },
+  "author": "Gr4vy <code@gr4vy.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@trust/keyto": "^1.0.1",
+    "@types/bluebird": "^3.5.35",
+    "bluebird": "^3.5.0",
+    "jsonwebtoken": "^8.5.1",
+    "jwk-thumbprint": "^0.1.4",
+    "request": "^2.81.0",
+    "rewire": "^5.0.0",
+    "snakecase-keys": "^4.0.2",
+    "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.13.14",
+    "@babel/preset-env": "^7.13.12",
+    "@babel/preset-typescript": "^7.13.0",
+    "@types/jest": "^26.0.22",
+    "@types/node": "^14.14.37",
+    "@types/request": "^2.48.5",
+    "@typescript-eslint/eslint-plugin": "^4.21.0",
+    "@typescript-eslint/parser": "^4.21.0",
+    "babel-jest": "^26.6.3",
+    "eslint": "^7.23.0",
+    "eslint-config-prettier": "^8.1.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jest": "^24.3.4",
+    "eslint-plugin-prettier": "^3.3.1",
+    "jest": "^26.6.3",
+    "prettier": "^2.2.1",
+    "typescript": "^4.2.3"
+  },
+  "bugs": {
+    "url": "https://github.com/gr4vy/gr4vy-node/issues"
+  },
+  "homepage": "https://github.com/gr4vy/gr4vy-node#readme"
 }

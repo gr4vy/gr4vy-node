@@ -32,6 +32,10 @@ export class PaymentOption {
     * The mode of how the payment option should be displayed.
     */
     'mode'?: PaymentOption.ModeEnum;
+    /**
+    * A label that describes this payment option. This label is returned in the language defined by the `locale` query parameter. The label can be used to display a list of payment options to the buyer in their language.
+    */
+    'label'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -55,6 +59,11 @@ export class PaymentOption {
             "name": "mode",
             "baseName": "mode",
             "type": "PaymentOption.ModeEnum"
+        },
+        {
+            "name": "label",
+            "baseName": "label",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
@@ -68,7 +77,8 @@ export namespace PaymentOption {
     }
     export enum MethodEnum {
         Card = <any> 'card',
-        Paypal = <any> 'paypal'
+        Paypal = <any> 'paypal',
+        Banked = <any> 'banked'
     }
     export enum ModeEnum {
         Card = <any> 'card',

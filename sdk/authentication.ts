@@ -50,8 +50,6 @@ enum JWTScope {
   Embed = 'embed',
   BuyersRead = 'buyers.read',
   BuyersWrite = 'buyers.write',
-  CardRulesRead = 'card-rules.read',
-  CardRulesWrite = 'card-rules.write',
   PaymentMethodRead = 'payment-methods.read',
   PaymentMethodWrite = 'payment-methods.write',
   PaymentOptionsRead = 'payment-options.read',

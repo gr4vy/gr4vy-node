@@ -5,7 +5,6 @@ import {
   PaymentServicesApi,
   TransactionsApi,
 } from '../api/apis'
-import { CardRulesApi } from '../api/cardRulesApi'
 import { PaymentServiceDefinitionsApi } from '../api/paymentServiceDefinitionsApi'
 import Authentication, {
   JWTScope,
@@ -19,7 +18,6 @@ class Client {
   authentication: Authentication
   apis: (
     | BuyersApi
-    | CardRulesApi
     | PaymentMethodsApi
     | PaymentOptionsApi
     | PaymentServiceDefinitionsApi
@@ -33,13 +31,6 @@ class Client {
   addBuyer: typeof BuyersApi.prototype.addBuyer
   updateBuyer: typeof BuyersApi.prototype.updateBuyer
   deleteBuyer: typeof BuyersApi.prototype.deleteBuyer
-
-  // Card Rules
-  listCardsRules: typeof CardRulesApi.prototype.listCardsRules
-  getCardRule: typeof CardRulesApi.prototype.getCardRule
-  addCardRule: typeof CardRulesApi.prototype.addCardRule
-  updateCardRule: typeof CardRulesApi.prototype.updateCardRule
-  deleteCardRule: typeof CardRulesApi.prototype.deleteCardRule
 
   // Payment Methods
   listPaymentMethods: typeof PaymentMethodsApi.prototype.listPaymentMethods
@@ -64,7 +55,6 @@ class Client {
 
   // Transactions
   authorizeNewTransaction: typeof TransactionsApi.prototype.authorizeNewTransaction
-  authorizeTransaction: typeof TransactionsApi.prototype.authorizeTransaction
   captureTransaction: typeof TransactionsApi.prototype.captureTransaction
   getTransaction: typeof TransactionsApi.prototype.getTransaction
   listTransactions: typeof TransactionsApi.prototype.listTransactions
@@ -88,15 +78,6 @@ class Client {
     this.updateBuyer = this.wrap(ba.updateBuyer.bind(ba))
     this.deleteBuyer = this.wrap(ba.deleteBuyer.bind(ba))
     this.apis.push(ba)
-
-    // Buyers
-    const cra = new CardRulesApi(this.baseUrl)
-    this.listCardsRules = this.wrap(cra.listCardsRules.bind(cra))
-    this.getCardRule = this.wrap(cra.getCardRule.bind(cra))
-    this.addCardRule = this.wrap(cra.addCardRule.bind(cra))
-    this.updateCardRule = this.wrap(cra.updateCardRule.bind(cra))
-    this.deleteCardRule = this.wrap(cra.deleteCardRule.bind(cra))
-    this.apis.push(cra)
 
     // Payment Methods
     const pma = new PaymentMethodsApi(this.baseUrl)
@@ -138,7 +119,6 @@ class Client {
     this.authorizeNewTransaction = this.wrap(
       ta.authorizeNewTransaction.bind(ta)
     )
-    this.authorizeTransaction = this.wrap(ta.authorizeTransaction.bind(ta))
     this.captureTransaction = this.wrap(ta.captureTransaction.bind(ta))
     this.getTransaction = this.wrap(ta.getTransaction.bind(ta))
     this.listTransactions = this.wrap(ta.listTransactions.bind(ta))

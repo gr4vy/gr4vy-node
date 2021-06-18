@@ -111,6 +111,7 @@ export namespace TransactionPaymentMethodRequest {
     export enum MethodEnum {
         Card = <any> 'card',
         Paypal = <any> 'paypal',
+        Banked = <any> 'banked',
         Token = <any> 'token'
     }
 }

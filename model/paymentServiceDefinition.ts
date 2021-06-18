@@ -93,6 +93,7 @@ export class PaymentServiceDefinition {
 export namespace PaymentServiceDefinition {
     export enum MethodEnum {
         Card = <any> 'card',
-        Paypal = <any> 'paypal'
+        Paypal = <any> 'paypal',
+        Banked = <any> 'banked'
     }
 }

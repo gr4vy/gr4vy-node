@@ -13,15 +13,15 @@
 import { RequestFile } from './models';
 
 /**
-* PayPal request to use in a transaction or to register a new payment method.
+* Request to use a redirect flow in a transaction or to register a new payment method.
 */
-export class PayPalRequest {
+export class RedirectRequest {
     /**
-    * `paypal`.
+    * The method to use, this can be any of the methods that support redirect requests.
     */
-    'method': PayPalRequest.MethodEnum;
+    'method': RedirectRequest.MethodEnum;
     /**
-    * The redirect URL to redirect a buyer to after they have authorized their PayPal transaction.
+    * The redirect URL to redirect a buyer to after they have authorized their transaction.
     */
     'redirectUrl': string;
     /**
@@ -43,7 +43,7 @@ export class PayPalRequest {
         {
             "name": "method",
             "baseName": "method",
-            "type": "PayPalRequest.MethodEnum"
+            "type": "RedirectRequest.MethodEnum"
         },
         {
             "name": "redirectUrl",
@@ -67,12 +67,13 @@ export class PayPalRequest {
         }    ];
 
     static getAttributeTypeMap() {
-        return PayPalRequest.attributeTypeMap;
+        return RedirectRequest.attributeTypeMap;
     }
 }
 
-export namespace PayPalRequest {
+export namespace RedirectRequest {
     export enum MethodEnum {
-        Paypal = <any> 'paypal'
+        Paypal = <any> 'paypal',
+        Banked = <any> 'banked'
     }
 }
