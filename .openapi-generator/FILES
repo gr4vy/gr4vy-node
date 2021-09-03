@@ -7,12 +7,18 @@ api/paymentServiceDefinitionsApi.ts
 api/paymentServicesApi.ts
 api/transactionsApi.ts
 api/usersApi.ts
+model/address.ts
+model/addressUpdate.ts
+model/billingDetails.ts
+model/billingDetailsUpdateRequest.ts
 model/buyer.ts
 model/buyerRequest.ts
 model/buyerSnapshot.ts
 model/buyerUpdate.ts
 model/buyers.ts
 model/cardRequest.ts
+model/cardRuleRequest.ts
+model/cardRuleUpdate.ts
 model/error400BadRequest.ts
 model/error400IncorrectJson.ts
 model/error401Unauthorized.ts
@@ -24,6 +30,7 @@ model/errorDetail.ts
 model/errorGeneric.ts
 model/models.ts
 model/paymentMethod.ts
+model/paymentMethodRequest.ts
 model/paymentMethodSnapshot.ts
 model/paymentMethodTokenized.ts
 model/paymentMethods.ts
@@ -33,6 +40,7 @@ model/paymentOptions.ts
 model/paymentService.ts
 model/paymentServiceDefinition.ts
 model/paymentServiceDefinitionFields.ts
+model/paymentServiceDefinitionSupportedFeatures.ts
 model/paymentServiceDefinitions.ts
 model/paymentServiceRequest.ts
 model/paymentServiceRequestAllOf.ts
@@ -45,6 +53,7 @@ model/resetPasswordRequest.ts
 model/setPasswordRequest.ts
 model/status.ts
 model/statuses.ts
+model/taxId.ts
 model/tokenizedRequest.ts
 model/transaction.ts
 model/transactionCaptureRequest.ts
