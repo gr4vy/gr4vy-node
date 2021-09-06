@@ -13,25 +13,25 @@
 import { RequestFile } from './models';
 
 /**
-* Card details to use in a transaction or to register a new payment method.
+* Payment method details used to. register a new payment method.
 */
-export class CardRequest {
+export class PaymentMethodRequest {
     /**
-    * `card`.
+    * The method to use for this request.
     */
-    'method': CardRequest.MethodEnum;
+    'method': PaymentMethodRequest.MethodEnum;
     /**
-    * The 15-16 digit number for this card as it can be found on the front of the card.
+    * The 15-16 digit number for this credit card as it can be found on the front of the card.  If a card has been stored with us previously, this number will represent the unique tokenized card ID provided via our API.
     */
-    'number': string;
+    'number'?: string;
     /**
-    * The expiration date of the card, formatted `MM/YY`.
+    * The expiration date of the card, formatted `MM/YY`. If a card has been previously stored with us this value is optional.  If the `number` of this card represents a tokenized card, then this value is ignored.
     */
-    'expirationDate': string;
+    'expirationDate'?: string;
     /**
-    * The 3 or 4 digit security code often found on the card. This often referred to as the CVV or CVD.
+    * The 3 or 4 digit security code often found on the card. This often referred to as the CVV or CVD.  If the `number` of this card represents a tokenized card, then this value is ignored.
     */
-    'securityCode': string;
+    'securityCode'?: string;
     /**
     * An external identifier that can be used to match the card against your own records.
     */
@@ -45,9 +45,13 @@ export class CardRequest {
     */
     'buyerExternalIdentifier'?: string;
     /**
-    * Defines the environment to store this card for. Setting this to anything other than `production` will force Gr4vy to use the payment services configured for that environment.
+    * The redirect URL to redirect a buyer to after they have authorized their transaction or payment method. This only applies to payment methods that require buyer approval.
     */
-    'environment'?: CardRequest.EnvironmentEnum;
+    'redirectUrl'?: string;
+    /**
+    * Defines the environment to store this payment method in. Setting this to anything other than `production` will force Gr4vy to use a payment a service configured for that environment.
+    */
+    'environment'?: PaymentMethodRequest.EnvironmentEnum;
 
     static discriminator: string | undefined = undefined;
 
@@ -55,7 +59,7 @@ export class CardRequest {
         {
             "name": "method",
             "baseName": "method",
-            "type": "CardRequest.MethodEnum"
+            "type": "PaymentMethodRequest.MethodEnum"
         },
         {
             "name": "number",
@@ -88,19 +92,27 @@ export class CardRequest {
             "type": "string"
         },
         {
+            "name": "redirectUrl",
+            "baseName": "redirect_url",
+            "type": "string"
+        },
+        {
             "name": "environment",
             "baseName": "environment",
-            "type": "CardRequest.EnvironmentEnum"
+            "type": "PaymentMethodRequest.EnvironmentEnum"
         }    ];
 
     static getAttributeTypeMap() {
-        return CardRequest.attributeTypeMap;
+        return PaymentMethodRequest.attributeTypeMap;
     }
 }
 
-export namespace CardRequest {
+export namespace PaymentMethodRequest {
     export enum MethodEnum {
-        Card = <any> 'card'
+        Card = <any> 'card',
+        Paypal = <any> 'paypal',
+        Banked = <any> 'banked',
+        Token = <any> 'token'
     }
     export enum EnvironmentEnum {
         Development = <any> 'development',
