@@ -30,7 +30,7 @@
     "jwk-thumbprint": "^0.1.4",
     "request": "^2.81.0",
     "rewire": "^5.0.0",
-    "snakecase-keys": "^4.0.2",
+    "snakecase-keys": "^5.1.0",
     "uuid": "^8.3.2"
   },
   "devDependencies": {
