@@ -50,7 +50,7 @@ export class Transaction {
     /**
     * The payment method used for this transaction.
     */
-    'paymentMethod'?: PaymentMethodSnapshot;
+    'paymentMethod'?: PaymentMethodSnapshot | null;
     /**
     * The buyer used for this transaction.
     */
@@ -70,7 +70,7 @@ export class Transaction {
     /**
     * The payment service used for this transaction.
     */
-    'paymentService'?: PaymentServiceSnapshot;
+    'paymentService'?: PaymentServiceSnapshot | null;
     /**
     * The environment this transaction has been created in.
     */

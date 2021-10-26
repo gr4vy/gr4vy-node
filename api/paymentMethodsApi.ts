@@ -15,13 +15,15 @@ import localVarRequest from 'request';
 import http from 'http';
 
 /* tslint:disable:no-unused-locals */
+import { CardRequest } from '../model/cardRequest';
+import { Error400BadRequest } from '../model/error400BadRequest';
+import { Error400IncorrectJson } from '../model/error400IncorrectJson';
 import { Error401Unauthorized } from '../model/error401Unauthorized';
 import { Error404NotFound } from '../model/error404NotFound';
-import { ErrorGeneric } from '../model/errorGeneric';
 import { PaymentMethod } from '../model/paymentMethod';
-import { PaymentMethodRequest } from '../model/paymentMethodRequest';
 import { PaymentMethods } from '../model/paymentMethods';
 import { PaymentMethodsTokenized } from '../model/paymentMethodsTokenized';
+import { RedirectRequest } from '../model/redirectRequest';
 
 import { ObjectSerializer, Authentication, VoidAuth, Interceptor } from '../model/models';
 import { HttpBasicAuth, HttpBearerAuth, ApiKeyAuth, OAuth } from '../model/models';
@@ -424,9 +426,9 @@ export class PaymentMethodsApi {
     /**
      * Stores and tokenizes a new payment method.
      * @summary New payment method
-     * @param paymentMethodRequest 
+     * @param cardRequestRedirectRequest 
      */
-    public async storePaymentMethod (paymentMethodRequest?: PaymentMethodRequest, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: PaymentMethod;  }> {
+    public async storePaymentMethod (cardRequestRedirectRequest?: CardRequest | RedirectRequest, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: PaymentMethod;  }> {
         const localVarPath = this.basePath + '/payment-methods';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
@@ -450,7 +452,7 @@ export class PaymentMethodsApi {
             uri: localVarPath,
             useQuerystring: this._useQuerystring,
             json: true,
-            body: ObjectSerializer.serialize(paymentMethodRequest, "PaymentMethodRequest")
+            body: ObjectSerializer.serialize(cardRequestRedirectRequest, "CardRequest | RedirectRequest")
         };
 
         let authenticationPromise = Promise.resolve();

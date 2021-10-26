@@ -19,9 +19,10 @@ import { DigitalWallet } from '../model/digitalWallet';
 import { DigitalWalletRequest } from '../model/digitalWalletRequest';
 import { DigitalWalletUpdate } from '../model/digitalWalletUpdate';
 import { DigitalWallets } from '../model/digitalWallets';
+import { Error400BadRequest } from '../model/error400BadRequest';
+import { Error400IncorrectJson } from '../model/error400IncorrectJson';
 import { Error401Unauthorized } from '../model/error401Unauthorized';
 import { Error404NotFound } from '../model/error404NotFound';
-import { ErrorGeneric } from '../model/errorGeneric';
 
 import { ObjectSerializer, Authentication, VoidAuth, Interceptor } from '../model/models';
 import { HttpBasicAuth, HttpBearerAuth, ApiKeyAuth, OAuth } from '../model/models';

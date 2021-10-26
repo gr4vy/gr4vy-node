@@ -15,9 +15,10 @@ import localVarRequest from 'request';
 import http from 'http';
 
 /* tslint:disable:no-unused-locals */
+import { Error400BadRequest } from '../model/error400BadRequest';
+import { Error400IncorrectJson } from '../model/error400IncorrectJson';
 import { Error401Unauthorized } from '../model/error401Unauthorized';
 import { Error404NotFound } from '../model/error404NotFound';
-import { ErrorGeneric } from '../model/errorGeneric';
 import { PaymentService } from '../model/paymentService';
 import { PaymentServiceRequest } from '../model/paymentServiceRequest';
 import { PaymentServiceUpdate } from '../model/paymentServiceUpdate';

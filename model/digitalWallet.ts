@@ -35,7 +35,7 @@ export class DigitalWallet {
     /**
     * The main URL of the merchant.
     */
-    'merchantUrl'?: string;
+    'merchantUrl'?: string = 'null';
     /**
     * The list of fully qualified domain names that a digital wallet provider processes payments for.
     */

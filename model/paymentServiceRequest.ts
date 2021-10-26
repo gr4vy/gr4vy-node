@@ -38,7 +38,7 @@ export class PaymentServiceRequest {
     /**
     * Defines if 3-D Secure is enabled for the service (can only be enabled if the payment service definition supports the `three_d_secure_hosted` feature). This does not affect pass through 3-D Secure data.
     */
-    'threeDSecureEnabled'?: boolean;
+    'threeDSecureEnabled'?: boolean = false;
     /**
     * Acquiring institution identification code for VISA.
     */
@@ -82,7 +82,7 @@ export class PaymentServiceRequest {
     /**
     * Defines if this service is currently active or not.
     */
-    'active'?: boolean;
+    'active'?: boolean = true;
     /**
     * Determines the Gr4vy environments in which this service should be available. This can be used in combination with the `environment` parameters in the payment method and transaction APIs to route transactions through this service.
     */

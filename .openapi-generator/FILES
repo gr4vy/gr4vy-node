@@ -33,7 +33,6 @@ model/errorDetail.ts
 model/errorGeneric.ts
 model/models.ts
 model/paymentMethod.ts
-model/paymentMethodRequest.ts
 model/paymentMethodSnapshot.ts
 model/paymentMethodToken.ts
 model/paymentMethodTokenized.ts
@@ -56,19 +55,14 @@ model/paymentServices.ts
 model/redirectRequest.ts
 model/resetPasswordRequest.ts
 model/setPasswordRequest.ts
-model/status.ts
-model/statuses.ts
 model/taxId.ts
 model/threeDSecureData.ts
 model/threeDSecureDataV1.ts
-model/threeDSecureDataV1V2.ts
 model/threeDSecureDataV2.ts
 model/tokenizedRequest.ts
 model/transaction.ts
 model/transactionCaptureRequest.ts
-model/transactionPaymentMethodRequest.ts
 model/transactionRefundRequest.ts
 model/transactionRequest.ts
 model/transactions.ts
-model/transactionsBatchCaptureRequest.ts
 model/userRequest.ts

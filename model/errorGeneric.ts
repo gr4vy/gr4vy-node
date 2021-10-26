@@ -28,7 +28,7 @@ export class ErrorGeneric {
     /**
     * The HTTP status code of this error.
     */
-    'status'?: number;
+    'status'?: number = 0;
     /**
     * A human readable message that describes the error. The content of this field should not be used to determine any business logic. 
     */

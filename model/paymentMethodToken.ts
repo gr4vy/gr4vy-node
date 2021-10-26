@@ -32,7 +32,7 @@ export class PaymentMethodToken {
     /**
     * The payment service used for this transaction.
     */
-    'paymentService'?: PaymentServiceSnapshot;
+    'paymentService'?: PaymentServiceSnapshot | null;
 
     static discriminator: string | undefined = undefined;
 

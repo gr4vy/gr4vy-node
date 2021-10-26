@@ -27,7 +27,7 @@ export class DigitalWalletRequest {
     /**
     * The main URL of the merchant. This is used to register the merchant with a digital wallet provider and this URL is not displayed to the buyer.
     */
-    'merchantUrl'?: string;
+    'merchantUrl'?: string = 'null';
     /**
     * The list of fully qualified domain names that a digital wallet provider should process payments for.
     */

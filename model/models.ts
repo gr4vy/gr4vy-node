@@ -24,7 +24,6 @@ export * from './error409DuplicateRecord';
 export * from './errorDetail';
 export * from './errorGeneric';
 export * from './paymentMethod';
-export * from './paymentMethodRequest';
 export * from './paymentMethodSnapshot';
 export * from './paymentMethodToken';
 export * from './paymentMethodTokenized';
@@ -47,21 +46,16 @@ export * from './paymentServices';
 export * from './redirectRequest';
 export * from './resetPasswordRequest';
 export * from './setPasswordRequest';
-export * from './status';
-export * from './statuses';
 export * from './taxId';
 export * from './threeDSecureData';
 export * from './threeDSecureDataV1';
-export * from './threeDSecureDataV1V2';
 export * from './threeDSecureDataV2';
 export * from './tokenizedRequest';
 export * from './transaction';
 export * from './transactionCaptureRequest';
-export * from './transactionPaymentMethodRequest';
 export * from './transactionRefundRequest';
 export * from './transactionRequest';
 export * from './transactions';
-export * from './transactionsBatchCaptureRequest';
 export * from './userRequest';
 
 import * as fs from 'fs';
@@ -101,7 +95,6 @@ import { Error409DuplicateRecord } from './error409DuplicateRecord';
 import { ErrorDetail } from './errorDetail';
 import { ErrorGeneric } from './errorGeneric';
 import { PaymentMethod } from './paymentMethod';
-import { PaymentMethodRequest } from './paymentMethodRequest';
 import { PaymentMethodSnapshot } from './paymentMethodSnapshot';
 import { PaymentMethodToken } from './paymentMethodToken';
 import { PaymentMethodTokenized } from './paymentMethodTokenized';
@@ -124,21 +117,16 @@ import { PaymentServices } from './paymentServices';
 import { RedirectRequest } from './redirectRequest';
 import { ResetPasswordRequest } from './resetPasswordRequest';
 import { SetPasswordRequest } from './setPasswordRequest';
-import { Status } from './status';
-import { Statuses } from './statuses';
 import { TaxId } from './taxId';
 import { ThreeDSecureData } from './threeDSecureData';
 import { ThreeDSecureDataV1 } from './threeDSecureDataV1';
-import { ThreeDSecureDataV1V2 } from './threeDSecureDataV1V2';
 import { ThreeDSecureDataV2 } from './threeDSecureDataV2';
 import { TokenizedRequest } from './tokenizedRequest';
 import { Transaction } from './transaction';
 import { TransactionCaptureRequest } from './transactionCaptureRequest';
-import { TransactionPaymentMethodRequest } from './transactionPaymentMethodRequest';
 import { TransactionRefundRequest } from './transactionRefundRequest';
 import { TransactionRequest } from './transactionRequest';
 import { Transactions } from './transactions';
-import { TransactionsBatchCaptureRequest } from './transactionsBatchCaptureRequest';
 import { UserRequest } from './userRequest';
 
 /* tslint:disable:no-unused-variable */
@@ -196,8 +184,6 @@ let enumsMap: {[index: string]: any} = {
         "PaymentMethod.MethodEnum": PaymentMethod.MethodEnum,
         "PaymentMethod.ModeEnum": PaymentMethod.ModeEnum,
         "PaymentMethod.EnvironmentEnum": PaymentMethod.EnvironmentEnum,
-        "PaymentMethodRequest.MethodEnum": PaymentMethodRequest.MethodEnum,
-        "PaymentMethodRequest.EnvironmentEnum": PaymentMethodRequest.EnvironmentEnum,
         "PaymentMethodSnapshot.TypeEnum": PaymentMethodSnapshot.TypeEnum,
         "PaymentMethodSnapshot.MethodEnum": PaymentMethodSnapshot.MethodEnum,
         "PaymentMethodToken.TypeEnum": PaymentMethodToken.TypeEnum,
@@ -222,15 +208,11 @@ let enumsMap: {[index: string]: any} = {
         "PaymentServiceUpdate.EnvironmentsEnum": PaymentServiceUpdate.EnvironmentsEnum,
         "RedirectRequest.MethodEnum": RedirectRequest.MethodEnum,
         "RedirectRequest.EnvironmentEnum": RedirectRequest.EnvironmentEnum,
-        "Status.TypeEnum": Status.TypeEnum,
-        "Status.StatusEnum": Status.StatusEnum,
-        "Status.ResourceTypeEnum": Status.ResourceTypeEnum,
         "TaxId.KindEnum": TaxId.KindEnum,
         "TokenizedRequest.MethodEnum": TokenizedRequest.MethodEnum,
         "Transaction.TypeEnum": Transaction.TypeEnum,
         "Transaction.StatusEnum": Transaction.StatusEnum,
         "Transaction.EnvironmentEnum": Transaction.EnvironmentEnum,
-        "TransactionPaymentMethodRequest.MethodEnum": TransactionPaymentMethodRequest.MethodEnum,
         "TransactionRequest.IntentEnum": TransactionRequest.IntentEnum,
         "TransactionRequest.EnvironmentEnum": TransactionRequest.EnvironmentEnum,
 }
@@ -260,7 +242,6 @@ let typeMap: {[index: string]: any} = {
     "ErrorDetail": ErrorDetail,
     "ErrorGeneric": ErrorGeneric,
     "PaymentMethod": PaymentMethod,
-    "PaymentMethodRequest": PaymentMethodRequest,
     "PaymentMethodSnapshot": PaymentMethodSnapshot,
     "PaymentMethodToken": PaymentMethodToken,
     "PaymentMethodTokenized": PaymentMethodTokenized,
@@ -283,21 +264,16 @@ let typeMap: {[index: string]: any} = {
     "RedirectRequest": RedirectRequest,
     "ResetPasswordRequest": ResetPasswordRequest,
     "SetPasswordRequest": SetPasswordRequest,
-    "Status": Status,
-    "Statuses": Statuses,
     "TaxId": TaxId,
     "ThreeDSecureData": ThreeDSecureData,
     "ThreeDSecureDataV1": ThreeDSecureDataV1,
-    "ThreeDSecureDataV1V2": ThreeDSecureDataV1V2,
     "ThreeDSecureDataV2": ThreeDSecureDataV2,
     "TokenizedRequest": TokenizedRequest,
     "Transaction": Transaction,
     "TransactionCaptureRequest": TransactionCaptureRequest,
-    "TransactionPaymentMethodRequest": TransactionPaymentMethodRequest,
     "TransactionRefundRequest": TransactionRefundRequest,
     "TransactionRequest": TransactionRequest,
     "Transactions": Transactions,
-    "TransactionsBatchCaptureRequest": TransactionsBatchCaptureRequest,
     "UserRequest": UserRequest,
 }
 

@@ -11,8 +11,11 @@
  */
 
 import { RequestFile } from './models';
-import { ThreeDSecureDataV1V2 } from './threeDSecureDataV1V2';
-import { TransactionPaymentMethodRequest } from './transactionPaymentMethodRequest';
+import { CardRequest } from './cardRequest';
+import { RedirectRequest } from './redirectRequest';
+import { ThreeDSecureDataV1 } from './threeDSecureDataV1';
+import { ThreeDSecureDataV2 } from './threeDSecureDataV2';
+import { TokenizedRequest } from './tokenizedRequest';
 
 /**
 * A request to create a transaction.
@@ -26,11 +29,14 @@ export class TransactionRequest {
     * A supported ISO-4217 currency code.
     */
     'currency': string;
-    'paymentMethod': TransactionPaymentMethodRequest;
+    /**
+    * The optional payment method details to create an authorization for. This field is required for processing a card.
+    */
+    'paymentMethod': CardRequest | RedirectRequest | TokenizedRequest | null;
     /**
     * Whether or not to also try and store the payment method with us so that it can be used again for future use. This is only supported for payment methods that support this feature.
     */
-    'store'?: boolean;
+    'store'?: boolean = false;
     /**
     * Defines the intent of this API call. This determines the desired initial state of the transaction.  * `authorize` - (Default) Optionally approves and then authorizes a transaction but does not capture the funds. * `capture` - Optionally approves and then authorizes and captures the funds of the transaction.
     */
@@ -43,7 +49,10 @@ export class TransactionRequest {
     * Defines the environment to create this transaction in. Setting this to anything other than `production` will force Gr4vy to use the payment a service configured for that environment.
     */
     'environment'?: TransactionRequest.EnvironmentEnum;
-    'threeDSecureData'?: ThreeDSecureDataV1V2;
+    /**
+    * Pass through 3-D Secure data to support external 3-D Secure authorisation. If using an external 3-D Secure provider, you should not pass a `redirect_url` in the `payment_method` object for a transaction.
+    */
+    'threeDSecureData'?: ThreeDSecureDataV1 | ThreeDSecureDataV2 | null;
 
     static discriminator: string | undefined = undefined;
 
@@ -61,7 +70,7 @@ export class TransactionRequest {
         {
             "name": "paymentMethod",
             "baseName": "payment_method",
-            "type": "TransactionPaymentMethodRequest"
+            "type": "CardRequest | RedirectRequest | TokenizedRequest"
         },
         {
             "name": "store",
@@ -86,7 +95,7 @@ export class TransactionRequest {
         {
             "name": "threeDSecureData",
             "baseName": "three_d_secure_data",
-            "type": "ThreeDSecureDataV1V2"
+            "type": "ThreeDSecureDataV1 | ThreeDSecureDataV2"
         }    ];
 
     static getAttributeTypeMap() {

@@ -25,7 +25,7 @@ export class PaymentServiceDefinition {
     /**
     * `payment-service-definition`.
     */
-    'type'?: string;
+    'type'?: string = 'payment-service-definition';
     /**
     * The display name of this service.
     */
