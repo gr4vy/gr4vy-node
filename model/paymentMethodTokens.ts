@@ -11,16 +11,16 @@
  */
 
 import { RequestFile } from './models';
-import { PaymentMethodTokenized } from './paymentMethodTokenized';
+import { PaymentMethodToken } from './paymentMethodToken';
 
 /**
-* A list of stored payment methods in token format.
+* A list of tokens for a payment method.
 */
-export class PaymentMethodsTokenized {
+export class PaymentMethodTokens {
     /**
-    * A list of stored payment methods in token format.
+    * A list of stored tokens for payment methods.
     */
-    'items'?: Array<PaymentMethodTokenized>;
+    'items'?: Array<PaymentMethodToken>;
 
     static discriminator: string | undefined = undefined;
 
@@ -28,11 +28,11 @@ export class PaymentMethodsTokenized {
         {
             "name": "items",
             "baseName": "items",
-            "type": "Array<PaymentMethodTokenized>"
+            "type": "Array<PaymentMethodToken>"
         }    ];
 
     static getAttributeTypeMap() {
-        return PaymentMethodsTokenized.attributeTypeMap;
+        return PaymentMethodTokens.attributeTypeMap;
     }
 }
 

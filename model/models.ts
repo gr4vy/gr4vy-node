@@ -10,8 +10,10 @@ export * from './buyerSnapshot';
 export * from './buyerUpdate';
 export * from './buyers';
 export * from './cardRequest';
-export * from './cardRuleRequest';
-export * from './cardRuleUpdate';
+export * from './digitalWallet';
+export * from './digitalWalletRequest';
+export * from './digitalWalletUpdate';
+export * from './digitalWallets';
 export * from './error400BadRequest';
 export * from './error400IncorrectJson';
 export * from './error401Unauthorized';
@@ -24,7 +26,9 @@ export * from './errorGeneric';
 export * from './paymentMethod';
 export * from './paymentMethodRequest';
 export * from './paymentMethodSnapshot';
+export * from './paymentMethodToken';
 export * from './paymentMethodTokenized';
+export * from './paymentMethodTokens';
 export * from './paymentMethods';
 export * from './paymentMethodsTokenized';
 export * from './paymentOption';
@@ -46,6 +50,10 @@ export * from './setPasswordRequest';
 export * from './status';
 export * from './statuses';
 export * from './taxId';
+export * from './threeDSecureData';
+export * from './threeDSecureDataV1';
+export * from './threeDSecureDataV1V2';
+export * from './threeDSecureDataV2';
 export * from './tokenizedRequest';
 export * from './transaction';
 export * from './transactionCaptureRequest';
@@ -79,8 +87,10 @@ import { BuyerSnapshot } from './buyerSnapshot';
 import { BuyerUpdate } from './buyerUpdate';
 import { Buyers } from './buyers';
 import { CardRequest } from './cardRequest';
-import { CardRuleRequest } from './cardRuleRequest';
-import { CardRuleUpdate } from './cardRuleUpdate';
+import { DigitalWallet } from './digitalWallet';
+import { DigitalWalletRequest } from './digitalWalletRequest';
+import { DigitalWalletUpdate } from './digitalWalletUpdate';
+import { DigitalWallets } from './digitalWallets';
 import { Error400BadRequest } from './error400BadRequest';
 import { Error400IncorrectJson } from './error400IncorrectJson';
 import { Error401Unauthorized } from './error401Unauthorized';
@@ -93,7 +103,9 @@ import { ErrorGeneric } from './errorGeneric';
 import { PaymentMethod } from './paymentMethod';
 import { PaymentMethodRequest } from './paymentMethodRequest';
 import { PaymentMethodSnapshot } from './paymentMethodSnapshot';
+import { PaymentMethodToken } from './paymentMethodToken';
 import { PaymentMethodTokenized } from './paymentMethodTokenized';
+import { PaymentMethodTokens } from './paymentMethodTokens';
 import { PaymentMethods } from './paymentMethods';
 import { PaymentMethodsTokenized } from './paymentMethodsTokenized';
 import { PaymentOption } from './paymentOption';
@@ -115,6 +127,10 @@ import { SetPasswordRequest } from './setPasswordRequest';
 import { Status } from './status';
 import { Statuses } from './statuses';
 import { TaxId } from './taxId';
+import { ThreeDSecureData } from './threeDSecureData';
+import { ThreeDSecureDataV1 } from './threeDSecureDataV1';
+import { ThreeDSecureDataV1V2 } from './threeDSecureDataV1V2';
+import { ThreeDSecureDataV2 } from './threeDSecureDataV2';
 import { TokenizedRequest } from './tokenizedRequest';
 import { Transaction } from './transaction';
 import { TransactionCaptureRequest } from './transactionCaptureRequest';
@@ -142,12 +158,12 @@ let enumsMap: {[index: string]: any} = {
         "BuyerSnapshot.TypeEnum": BuyerSnapshot.TypeEnum,
         "CardRequest.MethodEnum": CardRequest.MethodEnum,
         "CardRequest.EnvironmentEnum": CardRequest.EnvironmentEnum,
-        "CardRuleRequest.EnvironmentEnum": CardRuleRequest.EnvironmentEnum,
-        "CardRuleRequest.UnprocessableFallbackStrategyEnum": CardRuleRequest.UnprocessableFallbackStrategyEnum,
-        "CardRuleRequest.InvalidRuleFallbackStrategyEnum": CardRuleRequest.InvalidRuleFallbackStrategyEnum,
-        "CardRuleUpdate.EnvironmentEnum": CardRuleUpdate.EnvironmentEnum,
-        "CardRuleUpdate.UnprocessableFallbackStrategyEnum": CardRuleUpdate.UnprocessableFallbackStrategyEnum,
-        "CardRuleUpdate.InvalidRuleFallbackStrategyEnum": CardRuleUpdate.InvalidRuleFallbackStrategyEnum,
+        "DigitalWallet.TypeEnum": DigitalWallet.TypeEnum,
+        "DigitalWallet.ProviderEnum": DigitalWallet.ProviderEnum,
+        "DigitalWallet.EnvironmentsEnum": DigitalWallet.EnvironmentsEnum,
+        "DigitalWalletRequest.ProviderEnum": DigitalWalletRequest.ProviderEnum,
+        "DigitalWalletRequest.EnvironmentsEnum": DigitalWalletRequest.EnvironmentsEnum,
+        "DigitalWalletUpdate.EnvironmentsEnum": DigitalWalletUpdate.EnvironmentsEnum,
         "Error400BadRequest.TypeEnum": Error400BadRequest.TypeEnum,
         "Error400BadRequest.CodeEnum": Error400BadRequest.CodeEnum,
         "Error400BadRequest.StatusEnum": Error400BadRequest.StatusEnum,
@@ -178,11 +194,13 @@ let enumsMap: {[index: string]: any} = {
         "PaymentMethod.TypeEnum": PaymentMethod.TypeEnum,
         "PaymentMethod.StatusEnum": PaymentMethod.StatusEnum,
         "PaymentMethod.MethodEnum": PaymentMethod.MethodEnum,
+        "PaymentMethod.ModeEnum": PaymentMethod.ModeEnum,
         "PaymentMethod.EnvironmentEnum": PaymentMethod.EnvironmentEnum,
         "PaymentMethodRequest.MethodEnum": PaymentMethodRequest.MethodEnum,
         "PaymentMethodRequest.EnvironmentEnum": PaymentMethodRequest.EnvironmentEnum,
         "PaymentMethodSnapshot.TypeEnum": PaymentMethodSnapshot.TypeEnum,
         "PaymentMethodSnapshot.MethodEnum": PaymentMethodSnapshot.MethodEnum,
+        "PaymentMethodToken.TypeEnum": PaymentMethodToken.TypeEnum,
         "PaymentMethodTokenized.TypeEnum": PaymentMethodTokenized.TypeEnum,
         "PaymentMethodTokenized.MethodEnum": PaymentMethodTokenized.MethodEnum,
         "PaymentMethodTokenized.SchemeEnum": PaymentMethodTokenized.SchemeEnum,
@@ -228,8 +246,10 @@ let typeMap: {[index: string]: any} = {
     "BuyerUpdate": BuyerUpdate,
     "Buyers": Buyers,
     "CardRequest": CardRequest,
-    "CardRuleRequest": CardRuleRequest,
-    "CardRuleUpdate": CardRuleUpdate,
+    "DigitalWallet": DigitalWallet,
+    "DigitalWalletRequest": DigitalWalletRequest,
+    "DigitalWalletUpdate": DigitalWalletUpdate,
+    "DigitalWallets": DigitalWallets,
     "Error400BadRequest": Error400BadRequest,
     "Error400IncorrectJson": Error400IncorrectJson,
     "Error401Unauthorized": Error401Unauthorized,
@@ -242,7 +262,9 @@ let typeMap: {[index: string]: any} = {
     "PaymentMethod": PaymentMethod,
     "PaymentMethodRequest": PaymentMethodRequest,
     "PaymentMethodSnapshot": PaymentMethodSnapshot,
+    "PaymentMethodToken": PaymentMethodToken,
     "PaymentMethodTokenized": PaymentMethodTokenized,
+    "PaymentMethodTokens": PaymentMethodTokens,
     "PaymentMethods": PaymentMethods,
     "PaymentMethodsTokenized": PaymentMethodsTokenized,
     "PaymentOption": PaymentOption,
@@ -264,6 +286,10 @@ let typeMap: {[index: string]: any} = {
     "Status": Status,
     "Statuses": Statuses,
     "TaxId": TaxId,
+    "ThreeDSecureData": ThreeDSecureData,
+    "ThreeDSecureDataV1": ThreeDSecureDataV1,
+    "ThreeDSecureDataV1V2": ThreeDSecureDataV1V2,
+    "ThreeDSecureDataV2": ThreeDSecureDataV2,
     "TokenizedRequest": TokenizedRequest,
     "Transaction": Transaction,
     "TransactionCaptureRequest": TransactionCaptureRequest,

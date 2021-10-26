@@ -28,7 +28,7 @@ export class Transaction {
     */
     'id'?: string;
     /**
-    * The status of the transaction being processed. This is different from the `status` field in that it represents the status of the transaction at the payment processor, not the status of the transaction created in Gr4vy.
+    * The status of the transaction. The status may change over time as asynchronous  processing events occur.
     */
     'status'?: Transaction.StatusEnum;
     /**

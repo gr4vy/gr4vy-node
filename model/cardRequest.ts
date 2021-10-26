@@ -48,6 +48,10 @@ export class CardRequest {
     * Defines the environment to store this card for. Setting this to anything other than `production` will force Gr4vy to use the payment services configured for that environment.
     */
     'environment'?: CardRequest.EnvironmentEnum;
+    /**
+    * The redirect URL to redirect a buyer after a 3D Secure flow has been completed. This will be appended with both a transaction ID and status (e.g. `https://example.com/callback? gr4vy_transaction_id=123&gr4vy_transaction_status=capture_succeeded`). This is required if the transaction request body does not include `three_d_secure_data`.
+    */
+    'redirectUrl'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -91,6 +95,11 @@ export class CardRequest {
             "name": "environment",
             "baseName": "environment",
             "type": "CardRequest.EnvironmentEnum"
+        },
+        {
+            "name": "redirectUrl",
+            "baseName": "redirect_url",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {

@@ -69,6 +69,7 @@ export namespace PaymentServiceSnapshot {
     export enum MethodEnum {
         Card = <any> 'card',
         Paypal = <any> 'paypal',
-        Banked = <any> 'banked'
+        Banked = <any> 'banked',
+        Gocardless = <any> 'gocardless'
     }
 }

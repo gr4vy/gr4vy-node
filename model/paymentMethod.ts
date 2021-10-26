@@ -26,13 +26,17 @@ export class PaymentMethod {
     */
     'id'?: string;
     /**
-    * The state of the payment method.  - `processing` - The payment method is still being stored. - `processing_failed` - Storing the payment method did not succeed. - `buyer_approval_pending` - Storing the payment method requires   the buyer to provide approval. Follow the `approval_url` for next steps. - `buyer_approval_declined` - The buyer declined to approve the payment   method. This can happen after the buyer has been redirect to the   `approval_url`. - `buyer_approval_timedout` - The buyer did  not approve the payment   method in time. This can happen after the buyer has been redirect to the   `approval_url`. - `stored` - The payment method is approved and stored with all relevant   payment services. - `partially_stored` - The payment method is approved and stored with only   some of the relevant payment services. - `used` - The payment method was used for a transaction once and   not stored.
+    * The state of the payment method.  - `processing` - The payment method is still being stored. - `buyer_approval_required` - Storing the payment method requires   the buyer to provide approval. Follow the `approval_url` for next steps. - `succeeded` - The payment method is approved and stored with all   relevant payment services. - `failed` - Storing the payment method did not succeed.
     */
     'status'?: PaymentMethod.StatusEnum;
     /**
     * The type of this payment method.
     */
     'method'?: PaymentMethod.MethodEnum;
+    /**
+    * The mode to use with this payment method.
+    */
+    'mode'?: PaymentMethod.ModeEnum;
     /**
     * The date and time when this payment method was first created in our system.
     */
@@ -94,6 +98,11 @@ export class PaymentMethod {
             "type": "PaymentMethod.MethodEnum"
         },
         {
+            "name": "mode",
+            "baseName": "mode",
+            "type": "PaymentMethod.ModeEnum"
+        },
+        {
             "name": "createdAt",
             "baseName": "created_at",
             "type": "Date"
@@ -150,18 +159,19 @@ export namespace PaymentMethod {
     }
     export enum StatusEnum {
         Processing = <any> 'processing',
-        ProcessingFailed = <any> 'processing_failed',
-        BuyerApprovalPending = <any> 'buyer_approval_pending',
-        BuyerApprovalDeclined = <any> 'buyer_approval_declined',
-        BuyerApprovalTimedout = <any> 'buyer_approval_timedout',
-        Stored = <any> 'stored',
-        PartiallyStored = <any> 'partially_stored',
-        Used = <any> 'used'
+        BuyerApprovalRequired = <any> 'buyer_approval_required',
+        Succeeded = <any> 'succeeded',
+        Failed = <any> 'failed'
     }
     export enum MethodEnum {
         Card = <any> 'card',
+        Gocardless = <any> 'gocardless',
         Paypal = <any> 'paypal',
         Banked = <any> 'banked'
+    }
+    export enum ModeEnum {
+        Card = <any> 'card',
+        Redirect = <any> 'redirect'
     }
     export enum EnvironmentEnum {
         Development = <any> 'development',

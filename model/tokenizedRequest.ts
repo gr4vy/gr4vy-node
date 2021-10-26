@@ -24,6 +24,10 @@ export class TokenizedRequest {
     * A ID that represents a previously tokenized payment method. This token can represent any type of payment method.
     */
     'id': string;
+    /**
+    * We strongly recommended providing a `redirect_url` for stored cards when 3-D Secure is enabled and `three_d_secure_data` is not provided. This will be appended with both a transaction ID and status (e.g. `https://example.com/callback? gr4vy_transaction_id=123&gr4vy_transaction_status=capture_succeeded`) after 3-D Secure has completed.
+    */
+    'redirectUrl'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -36,6 +40,11 @@ export class TokenizedRequest {
         {
             "name": "id",
             "baseName": "id",
+            "type": "string"
+        },
+        {
+            "name": "redirectUrl",
+            "baseName": "redirect_url",
             "type": "string"
         }    ];
 

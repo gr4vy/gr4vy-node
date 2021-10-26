@@ -34,6 +34,46 @@ export class PaymentServiceUpdate {
     */
     'acceptedCurrencies'?: Array<string>;
     /**
+    * Defines if 3-D Secure is enabled for the service (can only be enabled if the payment service definition supports the `three_d_secure_hosted` feature). This does not affect pass through 3-D Secure data.
+    */
+    'threeDSecureEnabled'?: boolean;
+    /**
+    * Acquiring institution identification code for VISA.
+    */
+    'acquirerBinVisa'?: string | null;
+    /**
+    * Acquiring institution identification code for Mastercard.
+    */
+    'acquirerBinMastercard'?: string | null;
+    /**
+    * Acquiring institution identification code for Amex.
+    */
+    'acquirerBinAmex'?: string | null;
+    /**
+    * Acquiring institution identification code for Discover.
+    */
+    'acquirerBinDiscover'?: string | null;
+    /**
+    * Merchant identifier used in authorisation requests (assigned by the acquirer).
+    */
+    'acquirerMerchantId'?: string | null;
+    /**
+    * Merchant name (assigned by the acquirer).
+    */
+    'merchantName'?: string | null;
+    /**
+    * ISO 3166-1 numeric three-digit country code.
+    */
+    'merchantCountryCode'?: string | null;
+    /**
+    * Merchant category code that describes the business.
+    */
+    'merchantCategoryCode'?: string | null;
+    /**
+    * Fully qualified URL of 3-D Secure requestor website or customer care site.
+    */
+    'merchantUrl'?: string | null;
+    /**
     * Defines if the credentials are intended for the service\'s live API or sandbox/test API.
     */
     'credentialsMode'?: PaymentServiceUpdate.CredentialsModeEnum;
@@ -72,6 +112,56 @@ export class PaymentServiceUpdate {
             "name": "acceptedCurrencies",
             "baseName": "accepted_currencies",
             "type": "Array<string>"
+        },
+        {
+            "name": "threeDSecureEnabled",
+            "baseName": "three_d_secure_enabled",
+            "type": "boolean"
+        },
+        {
+            "name": "acquirerBinVisa",
+            "baseName": "acquirer_bin_visa",
+            "type": "string"
+        },
+        {
+            "name": "acquirerBinMastercard",
+            "baseName": "acquirer_bin_mastercard",
+            "type": "string"
+        },
+        {
+            "name": "acquirerBinAmex",
+            "baseName": "acquirer_bin_amex",
+            "type": "string"
+        },
+        {
+            "name": "acquirerBinDiscover",
+            "baseName": "acquirer_bin_discover",
+            "type": "string"
+        },
+        {
+            "name": "acquirerMerchantId",
+            "baseName": "acquirer_merchant_id",
+            "type": "string"
+        },
+        {
+            "name": "merchantName",
+            "baseName": "merchant_name",
+            "type": "string"
+        },
+        {
+            "name": "merchantCountryCode",
+            "baseName": "merchant_country_code",
+            "type": "string"
+        },
+        {
+            "name": "merchantCategoryCode",
+            "baseName": "merchant_category_code",
+            "type": "string"
+        },
+        {
+            "name": "merchantUrl",
+            "baseName": "merchant_url",
+            "type": "string"
         },
         {
             "name": "credentialsMode",

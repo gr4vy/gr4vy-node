@@ -11,6 +11,7 @@
  */
 
 import { RequestFile } from './models';
+import { ThreeDSecureDataV1V2 } from './threeDSecureDataV1V2';
 import { TransactionPaymentMethodRequest } from './transactionPaymentMethodRequest';
 
 /**
@@ -18,7 +19,7 @@ import { TransactionPaymentMethodRequest } from './transactionPaymentMethodReque
 */
 export class TransactionRequest {
     /**
-    * The monetary amount to create an authorization for, in the smallest currency unit for the given currency, for example `1299` cents to create an authorization for `$12.99`.  For BitCoin, this value will be a decimal point number, for example `0.0039`.
+    * The monetary amount to create an authorization for, in the smallest currency unit for the given currency, for example `1299` cents to create an authorization for `$12.99`.
     */
     'amount': number;
     /**
@@ -42,6 +43,7 @@ export class TransactionRequest {
     * Defines the environment to create this transaction in. Setting this to anything other than `production` will force Gr4vy to use the payment a service configured for that environment.
     */
     'environment'?: TransactionRequest.EnvironmentEnum;
+    'threeDSecureData'?: ThreeDSecureDataV1V2;
 
     static discriminator: string | undefined = undefined;
 
@@ -80,6 +82,11 @@ export class TransactionRequest {
             "name": "environment",
             "baseName": "environment",
             "type": "TransactionRequest.EnvironmentEnum"
+        },
+        {
+            "name": "threeDSecureData",
+            "baseName": "three_d_secure_data",
+            "type": "ThreeDSecureDataV1V2"
         }    ];
 
     static getAttributeTypeMap() {

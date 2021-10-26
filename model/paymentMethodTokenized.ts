@@ -40,6 +40,10 @@ export class PaymentMethodTokenized {
     * The expiration date for the payment method.
     */
     'expirationDate'?: string | null;
+    /**
+    * The optional URL that the buyer needs to be redirected to to further authorize their payment.
+    */
+    'approvalUrl'?: string | null;
 
     static discriminator: string | undefined = undefined;
 
@@ -73,6 +77,11 @@ export class PaymentMethodTokenized {
             "name": "expirationDate",
             "baseName": "expiration_date",
             "type": "string"
+        },
+        {
+            "name": "approvalUrl",
+            "baseName": "approval_url",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
@@ -87,7 +96,8 @@ export namespace PaymentMethodTokenized {
     export enum MethodEnum {
         Card = <any> 'card',
         Paypal = <any> 'paypal',
-        Banked = <any> 'banked'
+        Banked = <any> 'banked',
+        Gocardless = <any> 'gocardless'
     }
     export enum SchemeEnum {
         Visa = <any> 'visa',

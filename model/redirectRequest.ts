@@ -13,17 +13,25 @@
 import { RequestFile } from './models';
 
 /**
-* Request to use a redirect flow in a transaction or to register a new payment method.
+* Request to use a redirect payment method in a transaction.
 */
 export class RedirectRequest {
     /**
-    * The method to use, this can be any of the methods that support redirect requests.
+    * The method to use, this can be any of the methods that support redirect requests.  When storing a new payment method, only `gocardless` is currently supported.
     */
     'method': RedirectRequest.MethodEnum;
     /**
     * The redirect URL to redirect a buyer to after they have authorized their transaction.
     */
     'redirectUrl': string;
+    /**
+    * The ISO-4217 currency code to use this payment method for. This is used to select the payment service to use.
+    */
+    'currency': string;
+    /**
+    * The 2-letter ISO code of the country to use this payment method for. This is used to select the payment service to use.
+    */
+    'country': string;
     /**
     * An external identifier that can be used to match the account against your own records.
     */
@@ -55,6 +63,16 @@ export class RedirectRequest {
             "type": "string"
         },
         {
+            "name": "currency",
+            "baseName": "currency",
+            "type": "string"
+        },
+        {
+            "name": "country",
+            "baseName": "country",
+            "type": "string"
+        },
+        {
             "name": "externalIdentifier",
             "baseName": "external_identifier",
             "type": "string"
@@ -82,9 +100,9 @@ export class RedirectRequest {
 
 export namespace RedirectRequest {
     export enum MethodEnum {
+        Gocardless = <any> 'gocardless',
         Paypal = <any> 'paypal',
-        Banked = <any> 'banked',
-        Gocardless = <any> 'gocardless'
+        Banked = <any> 'banked'
     }
     export enum EnvironmentEnum {
         Development = <any> 'development',

@@ -49,9 +49,9 @@ export class TransactionPaymentMethodRequest {
     */
     'redirectUrl'?: string;
     /**
-    * A Gr4vy token that represents a previously tokenized payment method. This token can represent any type of payment method.
+    * An identifier for a previously tokenized payment method. This id can represent any type of payment method.
     */
-    'token'?: string;
+    'id'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -97,8 +97,8 @@ export class TransactionPaymentMethodRequest {
             "type": "string"
         },
         {
-            "name": "token",
-            "baseName": "token",
+            "name": "id",
+            "baseName": "id",
             "type": "string"
         }    ];
 
@@ -112,6 +112,7 @@ export namespace TransactionPaymentMethodRequest {
         Card = <any> 'card',
         Paypal = <any> 'paypal',
         Banked = <any> 'banked',
-        Token = <any> 'token'
+        Gocardless = <any> 'gocardless',
+        Id = <any> 'id'
     }
 }
