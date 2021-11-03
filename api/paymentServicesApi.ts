@@ -316,7 +316,7 @@ export class PaymentServicesApi {
      * @param method Filters the results to only the items for which the &#x60;method&#x60; has been set to this value.
      * @param environment Filters the results to only the items available in this environment.
      */
-    public async listPaymentServices (limit?: number, cursor?: string, method?: 'card' | 'paypal' | 'banked' | 'gocardless', environment?: 'development' | 'staging' | 'production', options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: PaymentServices;  }> {
+    public async listPaymentServices (limit?: number, cursor?: string, method?: 'card' | 'paypal' | 'banked' | 'gocardless' | 'stripedd', environment?: 'development' | 'staging' | 'production', options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: PaymentServices;  }> {
         const localVarPath = this.basePath + '/payment-services';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
@@ -338,7 +338,7 @@ export class PaymentServicesApi {
         }
 
         if (method !== undefined) {
-            localVarQueryParameters['method'] = ObjectSerializer.serialize(method, "'card' | 'paypal' | 'banked' | 'gocardless'");
+            localVarQueryParameters['method'] = ObjectSerializer.serialize(method, "'card' | 'paypal' | 'banked' | 'gocardless' | 'stripedd'");
         }
 
         if (environment !== undefined) {

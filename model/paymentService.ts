@@ -250,7 +250,8 @@ export namespace PaymentService {
         Card = <any> 'card',
         Paypal = <any> 'paypal',
         Banked = <any> 'banked',
-        Gocardless = <any> 'gocardless'
+        Gocardless = <any> 'gocardless',
+        Stripedd = <any> 'stripedd'
     }
     export enum StatusEnum {
         Pending = <any> 'pending',

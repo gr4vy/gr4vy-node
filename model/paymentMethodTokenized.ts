@@ -97,7 +97,8 @@ export namespace PaymentMethodTokenized {
         Card = <any> 'card',
         Paypal = <any> 'paypal',
         Banked = <any> 'banked',
-        Gocardless = <any> 'gocardless'
+        Gocardless = <any> 'gocardless',
+        Stripedd = <any> 'stripedd'
     }
     export enum SchemeEnum {
         Visa = <any> 'visa',
