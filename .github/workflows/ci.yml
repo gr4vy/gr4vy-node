@@ -8,8 +8,6 @@ on:
       - main
 
 jobs:
-  env: 
-    PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
   test:
     runs-on: ubuntu-latest
     timeout-minutes: 3
@@ -37,5 +35,7 @@ jobs:
           yarn lint
 
       - name: Run tests
+        env: 
+          PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
         run: |
           yarn test
