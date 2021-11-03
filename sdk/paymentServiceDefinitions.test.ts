@@ -1,23 +1,22 @@
-import Client from './client'
-import { BuyerRequest } from '../model/buyerRequest';
-import { BuyerUpdate } from '../model/buyerUpdate';
 import fs from 'fs'
+import path from 'path'
+import Client from './client'
 
-const path = require('path').resolve(__dirname, './private_key.pem')
-const key = String(fs.readFileSync(path));
+const my_path = path.resolve(__dirname, './private_key.pem')
+const key = String(fs.readFileSync(my_path))
 
 const client = new Client({
-  gr4vyId: "spider",
-  privateKey: key
-});
+  gr4vyId: 'spider',
+  privateKey: key,
+})
 
-var paymentServiceDefinitionId;
+let paymentServiceDefinitionId
 
-jest.setTimeout(30000);
+jest.setTimeout(30000)
 
 describe('#listPaymentServiceDefinitions', () => {
   test('it should list payment service definitions', async () => {
-    const psd = await client.listPaymentServiceDefinitions().catch(error => {
+    const psd = await client.listPaymentServiceDefinitions().catch((error) => {
       console.dir(error.response.body) // the parsed JSON of the error
       console.dir(error.response.statusCode) // the status code of the error
       throw new Error('an error occurred while creating the buyer')
@@ -28,15 +27,15 @@ describe('#listPaymentServiceDefinitions', () => {
     paymentServiceDefinitionId = psd.body.items[0].id
     expect(paymentServiceDefinitionId.length).toBeGreaterThan(0)
   })
-
 })
 
 describe('#getPaymentServiceDefinition', () => {
   test('it should find a specific payment service definition', async () => {
-    const psd = await client.getPaymentServiceDefinition(paymentServiceDefinitionId);
+    const psd = await client.getPaymentServiceDefinition(
+      paymentServiceDefinitionId
+    )
     expect(psd).toBeDefined()
     expect(psd.body.id).toBeDefined()
     expect(psd.body.id).toBe(paymentServiceDefinitionId)
   })
 })
-

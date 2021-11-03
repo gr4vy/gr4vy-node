@@ -1,48 +1,57 @@
-import Client from './client'
-import { PaymentServiceRequest } from '../model/paymentServiceRequest';
-import { PaymentServiceUpdate } from '../model/paymentServiceUpdate';
 import fs from 'fs'
+import path from 'path'
+import { PaymentServiceRequest } from '../model/paymentServiceRequest'
+import { PaymentServiceUpdate } from '../model/paymentServiceUpdate'
+import Client from './client'
 
-const path = require('path').resolve(__dirname, './private_key.pem')
-const key = String(fs.readFileSync(path));
+const my_path = path.resolve(__dirname, './private_key.pem')
+const key = String(fs.readFileSync(my_path))
 
 const client = new Client({
-  gr4vyId: "spider",
-  privateKey: key
-});
+  gr4vyId: 'spider',
+  privateKey: key,
+})
 
-const DISPLAY_NAME = "My Payment Service"
-var paymentServiceId;
+const DISPLAY_NAME = 'My Payment Service'
+let paymentServiceId
 
-jest.setTimeout(30000);
+jest.setTimeout(30000)
 
 describe('#addPaymentService', () => {
   test('it should create a payment service', async () => {
     const paymentServiceRequest = new PaymentServiceRequest()
     paymentServiceRequest.displayName = DISPLAY_NAME
-    paymentServiceRequest.fields = [{"key":"secret_key", "value":"sk_test_51IkXd4C4K0WD5Kw9hkuQUkWq5PB4XGW7UcYdkVj5tuLh9dHiuOSbvdSlEVd3s8r3N3MJwTawwspGLmZGwHnHD0c800KA5x6rzk"}]
-    paymentServiceRequest.acceptedCountries = ["GB"]
-    paymentServiceRequest.acceptedCurrencies = ["GBP"]
-    paymentServiceRequest.paymentServiceDefinitionId = "stripe-card"
-    paymentServiceRequest.credentialsMode = "sandbox"
-    paymentServiceRequest.environments = ["staging"]
-    
-    const paymentService = await client.addPaymentService(paymentServiceRequest).catch(error => {
-      console.dir(error.response.body) // the parsed JSON of the error
-      console.dir(error.response.statusCode) // the status code of the error
-      throw new Error('an error occurred while creating the payment service')
-    })
+    paymentServiceRequest.fields = [
+      {
+        key: 'secret_key',
+        value:
+          'sk_test_51IkXd4C4K0WD5Kw9hkuQUkWq5PB4XGW7UcYdkVj5tuLh9dHiuOSbvdSlEVd3s8r3N3MJwTawwspGLmZGwHnHD0c800KA5x6rzk',
+      },
+    ]
+    paymentServiceRequest.acceptedCountries = ['GB']
+    paymentServiceRequest.acceptedCurrencies = ['GBP']
+    paymentServiceRequest.paymentServiceDefinitionId = 'stripe-card'
+    paymentServiceRequest.credentialsMode = 'sandbox'
+    paymentServiceRequest.environments = ['staging']
+
+    const paymentService = await client
+      .addPaymentService(paymentServiceRequest)
+      .catch((error) => {
+        console.dir(error.response.body) // the parsed JSON of the error
+        console.dir(error.response.statusCode) // the status code of the error
+        throw new Error('an error occurred while creating the payment service')
+      })
 
     expect(paymentService).toBeDefined()
     expect(paymentService.body).toBeDefined()
     paymentServiceId = paymentService.body.id
-    expect(paymentServiceId.length).toEqual(36)
+    expect(paymentServiceId).toHaveLength(36)
   })
 })
 
 describe('#listPaymentServices', () => {
   test('it should find some payment services', async () => {
-    const paymentServices = await client.listPaymentServices();
+    const paymentServices = await client.listPaymentServices()
     expect(paymentServices).toBeDefined()
     expect(paymentServices.body.items).toBeDefined()
     expect(paymentServices.body.items.length).toBeGreaterThan(0)
@@ -51,7 +60,7 @@ describe('#listPaymentServices', () => {
 
 describe('#getPaymentService', () => {
   test('it should find a specific payment service', async () => {
-    const paymentService = await client.getPaymentService(paymentServiceId);
+    const paymentService = await client.getPaymentService(paymentServiceId)
     expect(paymentService).toBeDefined()
     expect(paymentService.body).toBeDefined()
     expect(paymentService.body.displayName).toBe(DISPLAY_NAME)
@@ -60,22 +69,24 @@ describe('#getPaymentService', () => {
 
 describe('#updatePaymentService', () => {
   test('it should update a specific payment service', async () => {
-
     const paymentServiceUpdate = new PaymentServiceUpdate()
-    paymentServiceUpdate.displayName = "NewDisplayName"
+    paymentServiceUpdate.displayName = 'NewDisplayName'
 
-    const paymentService = await client.updatePaymentService(paymentServiceId, paymentServiceUpdate);
-    
+    const paymentService = await client.updatePaymentService(
+      paymentServiceId,
+      paymentServiceUpdate
+    )
+
     expect(paymentService).toBeDefined()
     expect(paymentService.body).toBeDefined()
-    expect(paymentService.body.displayName).toBe("NewDisplayName")
-    expect(paymentService.body.paymentServiceDefinitionId).toBe("stripe-card")
+    expect(paymentService.body.displayName).toBe('NewDisplayName')
+    expect(paymentService.body.paymentServiceDefinitionId).toBe('stripe-card')
   })
 })
 
 describe('#deletePaymentService', () => {
   test('it should delete a specific payment service§', async () => {
-    const paymentService = await client.deletePaymentService(paymentServiceId);
+    const paymentService = await client.deletePaymentService(paymentServiceId)
     expect(paymentService.response.statusCode).toEqual(204)
   })
 })
