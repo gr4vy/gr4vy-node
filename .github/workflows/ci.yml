@@ -1,5 +1,6 @@
 name: CI
-
+  env: 
+    PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
 on:
   push:
     branches:
