@@ -1,6 +1,4 @@
 name: CI
-  env: 
-    PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
 on:
   push:
     branches:
@@ -10,6 +8,8 @@ on:
       - main
 
 jobs:
+  env: 
+    PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
   test:
     runs-on: ubuntu-latest
     timeout-minutes: 3
