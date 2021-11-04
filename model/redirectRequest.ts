@@ -17,7 +17,7 @@ import { RequestFile } from './models';
 */
 export class RedirectRequest {
     /**
-    * The method to use, this can be any of the methods that support redirect requests.  When storing a new payment method, only `gocardless` is currently supported.
+    * The method to use, this can be any of the methods that support redirect requests.  When storing a new payment method, only `gocardless` and `stripedd` is currently supported.
     */
     'method': RedirectRequest.MethodEnum;
     /**
@@ -101,6 +101,7 @@ export class RedirectRequest {
 export namespace RedirectRequest {
     export enum MethodEnum {
         Gocardless = <any> 'gocardless',
+        Stripedd = <any> 'stripedd',
         Paypal = <any> 'paypal',
         Banked = <any> 'banked'
     }

@@ -3,3 +3,4 @@ git_push.sh
 api.ts
 package.json
 tsconfig.json
+.gitignore

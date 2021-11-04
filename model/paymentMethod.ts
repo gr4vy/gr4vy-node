@@ -166,6 +166,7 @@ export namespace PaymentMethod {
     export enum MethodEnum {
         Card = <any> 'card',
         Gocardless = <any> 'gocardless',
+        Stripedd = <any> 'stripedd',
         Paypal = <any> 'paypal',
         Banked = <any> 'banked'
     }

@@ -113,6 +113,7 @@ export namespace TransactionPaymentMethodRequest {
         Paypal = <any> 'paypal',
         Banked = <any> 'banked',
         Gocardless = <any> 'gocardless',
+        Stripedd = <any> 'stripedd',
         Id = <any> 'id'
     }
 }

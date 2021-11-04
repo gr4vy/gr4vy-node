@@ -21,8 +21,8 @@ const embedParams = {
 
 describe('#constructor', () => {
   test('it should work with a gr4vy ID', () => {
-    const client = new Client({ privateKey, gr4vyId: 'demo' })
-    expect(client.baseUrl).toBeDefined()
+    const client = new Client({ privateKey, gr4vyId: 'test' })
+    expect(client.baseUrl).toBe('https://api.test.gr4vy.app')
   })
 
   test('it should work with a base URL', () => {
@@ -30,7 +30,7 @@ describe('#constructor', () => {
       privateKey,
       baseUrl: 'https://api.demo.gr4vy.app',
     })
-    expect(client.baseUrl).toBeDefined()
+    expect(client.baseUrl).toBe('https://api.demo.gr4vy.app')
   })
 
   test('it should fail if neither the baseUrl or Gr4vy ID is present', () => {

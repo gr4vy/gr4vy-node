@@ -131,6 +131,7 @@ export namespace PaymentMethodRequest {
         Paypal = <any> 'paypal',
         Banked = <any> 'banked',
         Gocardless = <any> 'gocardless',
+        Stripedd = <any> 'stripedd',
         Token = <any> 'token'
     }
     export enum EnvironmentEnum {

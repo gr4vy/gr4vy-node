@@ -70,6 +70,7 @@ export namespace PaymentServiceSnapshot {
         Card = <any> 'card',
         Paypal = <any> 'paypal',
         Banked = <any> 'banked',
-        Gocardless = <any> 'gocardless'
+        Gocardless = <any> 'gocardless',
+        Stripedd = <any> 'stripedd'
     }
 }
