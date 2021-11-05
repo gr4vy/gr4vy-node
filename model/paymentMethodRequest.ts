@@ -11,15 +11,13 @@
  */
 
 import { RequestFile } from './models';
+import { Methods } from './methods';
 
 /**
 * Payment method details used to register a new payment method.
 */
 export class PaymentMethodRequest {
-    /**
-    * The method to use for this request.
-    */
-    'method': PaymentMethodRequest.MethodEnum;
+    'method': Methods;
     /**
     * The 15-16 digit number for this credit card as it can be found on the front of the card.  If a card has been stored with us previously, this number will represent the unique tokenized card ID provided via our API.
     */
@@ -67,7 +65,7 @@ export class PaymentMethodRequest {
         {
             "name": "method",
             "baseName": "method",
-            "type": "PaymentMethodRequest.MethodEnum"
+            "type": "Methods"
         },
         {
             "name": "number",
@@ -126,14 +124,6 @@ export class PaymentMethodRequest {
 }
 
 export namespace PaymentMethodRequest {
-    export enum MethodEnum {
-        Card = <any> 'card',
-        Paypal = <any> 'paypal',
-        Banked = <any> 'banked',
-        Gocardless = <any> 'gocardless',
-        Stripedd = <any> 'stripedd',
-        Token = <any> 'token'
-    }
     export enum EnvironmentEnum {
         Development = <any> 'development',
         Staging = <any> 'staging',

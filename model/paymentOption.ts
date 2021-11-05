@@ -11,6 +11,8 @@
  */
 
 import { RequestFile } from './models';
+import { Methods } from './methods';
+import { Modes } from './modes';
 import { PaymentOptionContext } from './paymentOptionContext';
 
 /**
@@ -21,18 +23,12 @@ export class PaymentOption {
     * `payment-option`.
     */
     'type'?: PaymentOption.TypeEnum;
-    /**
-    * The type of payment method that is available.
-    */
-    'method'?: PaymentOption.MethodEnum;
+    'method'?: Methods;
     /**
     * An icon to display for the payment option.
     */
     'iconUrl'?: string | null;
-    /**
-    * The mode of how the payment option should be displayed.
-    */
-    'mode'?: PaymentOption.ModeEnum;
+    'mode'?: Modes;
     /**
     * A label that describes this payment option. This label is returned in the language defined by the `locale` query parameter. The label can be used to display a list of payment options to the buyer in their language.
     */
@@ -54,7 +50,7 @@ export class PaymentOption {
         {
             "name": "method",
             "baseName": "method",
-            "type": "PaymentOption.MethodEnum"
+            "type": "Methods"
         },
         {
             "name": "iconUrl",
@@ -64,7 +60,7 @@ export class PaymentOption {
         {
             "name": "mode",
             "baseName": "mode",
-            "type": "PaymentOption.ModeEnum"
+            "type": "Modes"
         },
         {
             "name": "label",
@@ -90,17 +86,5 @@ export class PaymentOption {
 export namespace PaymentOption {
     export enum TypeEnum {
         PaymentOption = <any> 'payment-option'
-    }
-    export enum MethodEnum {
-        Applepay = <any> 'applepay',
-        Banked = <any> 'banked',
-        Card = <any> 'card',
-        Gocardless = <any> 'gocardless',
-        Paypal = <any> 'paypal'
-    }
-    export enum ModeEnum {
-        Applepay = <any> 'applepay',
-        Card = <any> 'card',
-        Redirect = <any> 'redirect'
     }
 }

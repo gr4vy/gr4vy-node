@@ -32,7 +32,9 @@ model/error404PendingCreation.ts
 model/error409DuplicateRecord.ts
 model/errorDetail.ts
 model/errorGeneric.ts
+model/methods.ts
 model/models.ts
+model/modes.ts
 model/paymentMethod.ts
 model/paymentMethodRequest.ts
 model/paymentMethodSnapshot.ts
@@ -55,6 +57,7 @@ model/paymentServiceSnapshot.ts
 model/paymentServiceUpdate.ts
 model/paymentServiceUpdateFields.ts
 model/paymentServices.ts
+model/redirectMethods.ts
 model/redirectRequest.ts
 model/resetPasswordRequest.ts
 model/setPasswordRequest.ts

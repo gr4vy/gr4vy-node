@@ -11,6 +11,7 @@
  */
 
 import { RequestFile } from './models';
+import { Methods } from './methods';
 
 /**
 * An active, configured payment service.
@@ -28,10 +29,7 @@ export class PaymentServiceSnapshot {
     * The ID of the payment service definition used to create this service. 
     */
     'paymentServiceDefinitionId'?: string;
-    /**
-    * Defines the ID of the payment method that this service handles.
-    */
-    'method'?: PaymentServiceSnapshot.MethodEnum;
+    'method'?: Methods;
 
     static discriminator: string | undefined = undefined;
 
@@ -54,7 +52,7 @@ export class PaymentServiceSnapshot {
         {
             "name": "method",
             "baseName": "method",
-            "type": "PaymentServiceSnapshot.MethodEnum"
+            "type": "Methods"
         }    ];
 
     static getAttributeTypeMap() {
@@ -65,12 +63,5 @@ export class PaymentServiceSnapshot {
 export namespace PaymentServiceSnapshot {
     export enum TypeEnum {
         PaymentService = <any> 'payment-service'
-    }
-    export enum MethodEnum {
-        Card = <any> 'card',
-        Paypal = <any> 'paypal',
-        Banked = <any> 'banked',
-        Gocardless = <any> 'gocardless',
-        Stripedd = <any> 'stripedd'
     }
 }

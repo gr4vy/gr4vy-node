@@ -18,6 +18,7 @@ import http from 'http';
 import { Error401Unauthorized } from '../model/error401Unauthorized';
 import { Error404NotFound } from '../model/error404NotFound';
 import { ErrorGeneric } from '../model/errorGeneric';
+import { Methods } from '../model/methods';
 import { PaymentService } from '../model/paymentService';
 import { PaymentServiceRequest } from '../model/paymentServiceRequest';
 import { PaymentServiceUpdate } from '../model/paymentServiceUpdate';
@@ -316,7 +317,7 @@ export class PaymentServicesApi {
      * @param method Filters the results to only the items for which the &#x60;method&#x60; has been set to this value.
      * @param environment Filters the results to only the items available in this environment.
      */
-    public async listPaymentServices (limit?: number, cursor?: string, method?: 'card' | 'paypal' | 'banked' | 'gocardless' | 'stripedd', environment?: 'development' | 'staging' | 'production', options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: PaymentServices;  }> {
+    public async listPaymentServices (limit?: number, cursor?: string, method?: Methods, environment?: 'development' | 'staging' | 'production', options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: PaymentServices;  }> {
         const localVarPath = this.basePath + '/payment-services';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
@@ -338,7 +339,7 @@ export class PaymentServicesApi {
         }
 
         if (method !== undefined) {
-            localVarQueryParameters['method'] = ObjectSerializer.serialize(method, "'card' | 'paypal' | 'banked' | 'gocardless' | 'stripedd'");
+            localVarQueryParameters['method'] = ObjectSerializer.serialize(method, "Methods");
         }
 
         if (environment !== undefined) {

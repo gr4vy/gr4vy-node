@@ -11,6 +11,8 @@
  */
 
 import { RequestFile } from './models';
+import { Methods } from './methods';
+import { Modes } from './modes';
 import { PaymentServiceDefinitionFields } from './paymentServiceDefinitionFields';
 import { PaymentServiceDefinitionSupportedFeatures } from './paymentServiceDefinitionSupportedFeatures';
 
@@ -30,10 +32,7 @@ export class PaymentServiceDefinition {
     * The display name of this service.
     */
     'displayName'?: string;
-    /**
-    * The ID of the payment method that this services handles.
-    */
-    'method'?: PaymentServiceDefinition.MethodEnum;
+    'method'?: Methods;
     /**
     * A list of fields that need to be submitted when activating the payment. service.
     */
@@ -46,10 +45,7 @@ export class PaymentServiceDefinition {
     * A list of two-letter ISO country codes that this service supports.
     */
     'supportedCountries'?: Array<string>;
-    /**
-    * The mode of the payment service definition.
-    */
-    'mode'?: PaymentServiceDefinition.ModeEnum;
+    'mode'?: Modes;
     'supportedFeatures'?: PaymentServiceDefinitionSupportedFeatures;
     /**
     * An icon to display for the payment service.
@@ -77,7 +73,7 @@ export class PaymentServiceDefinition {
         {
             "name": "method",
             "baseName": "method",
-            "type": "PaymentServiceDefinition.MethodEnum"
+            "type": "Methods"
         },
         {
             "name": "fields",
@@ -97,7 +93,7 @@ export class PaymentServiceDefinition {
         {
             "name": "mode",
             "baseName": "mode",
-            "type": "PaymentServiceDefinition.ModeEnum"
+            "type": "Modes"
         },
         {
             "name": "supportedFeatures",
@@ -115,17 +111,3 @@ export class PaymentServiceDefinition {
     }
 }
 
-export namespace PaymentServiceDefinition {
-    export enum MethodEnum {
-        Card = <any> 'card',
-        Paypal = <any> 'paypal',
-        Banked = <any> 'banked',
-        Gocardless = <any> 'gocardless',
-        Stripedd = <any> 'stripedd'
-    }
-    export enum ModeEnum {
-        Card = <any> 'card',
-        Redirect = <any> 'redirect',
-        Applepay = <any> 'applepay'
-    }
-}

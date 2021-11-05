@@ -11,6 +11,7 @@
  */
 
 import { RequestFile } from './models';
+import { Methods } from './methods';
 
 /**
 * An active, configured payment service.
@@ -28,10 +29,7 @@ export class PaymentService {
     * The ID of the payment service definition used to create this service. 
     */
     'paymentServiceDefinitionId'?: string;
-    /**
-    * Defines the ID of the payment method that this service handles.
-    */
-    'method'?: PaymentService.MethodEnum;
+    'method'?: Methods;
     /**
     * The custom name set for this service.
     */
@@ -134,7 +132,7 @@ export class PaymentService {
         {
             "name": "method",
             "baseName": "method",
-            "type": "PaymentService.MethodEnum"
+            "type": "Methods"
         },
         {
             "name": "displayName",
@@ -245,13 +243,6 @@ export class PaymentService {
 export namespace PaymentService {
     export enum TypeEnum {
         PaymentService = <any> 'payment-service'
-    }
-    export enum MethodEnum {
-        Card = <any> 'card',
-        Paypal = <any> 'paypal',
-        Banked = <any> 'banked',
-        Gocardless = <any> 'gocardless',
-        Stripedd = <any> 'stripedd'
     }
     export enum StatusEnum {
         Pending = <any> 'pending',

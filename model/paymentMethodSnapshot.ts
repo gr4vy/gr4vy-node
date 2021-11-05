@@ -11,6 +11,7 @@
  */
 
 import { RequestFile } from './models';
+import { Methods } from './methods';
 
 /**
 * Snapshot of a payment method, as used when embedded inside other resources.
@@ -24,10 +25,7 @@ export class PaymentMethodSnapshot {
     * The unique ID of the payment method.
     */
     'id'?: string | null;
-    /**
-    * The type of this payment method.
-    */
-    'method'?: PaymentMethodSnapshot.MethodEnum;
+    'method'?: Methods;
     /**
     * An external identifier that can be used to match the payment method against your own records.
     */
@@ -65,7 +63,7 @@ export class PaymentMethodSnapshot {
         {
             "name": "method",
             "baseName": "method",
-            "type": "PaymentMethodSnapshot.MethodEnum"
+            "type": "Methods"
         },
         {
             "name": "externalIdentifier",
@@ -101,12 +99,5 @@ export class PaymentMethodSnapshot {
 export namespace PaymentMethodSnapshot {
     export enum TypeEnum {
         PaymentMethod = <any> 'payment-method'
-    }
-    export enum MethodEnum {
-        Card = <any> 'card',
-        Paypal = <any> 'paypal',
-        Banked = <any> 'banked',
-        Gocardless = <any> 'gocardless',
-        Stripedd = <any> 'stripedd'
     }
 }

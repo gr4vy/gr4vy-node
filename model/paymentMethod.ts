@@ -12,6 +12,8 @@
 
 import { RequestFile } from './models';
 import { Buyer } from './buyer';
+import { Methods } from './methods';
+import { Modes } from './modes';
 
 /**
 * A generic payment method.
@@ -29,14 +31,8 @@ export class PaymentMethod {
     * The state of the payment method.  - `processing` - The payment method is still being stored. - `buyer_approval_required` - Storing the payment method requires   the buyer to provide approval. Follow the `approval_url` for next steps. - `succeeded` - The payment method is approved and stored with all   relevant payment services. - `failed` - Storing the payment method did not succeed.
     */
     'status'?: PaymentMethod.StatusEnum;
-    /**
-    * The type of this payment method.
-    */
-    'method'?: PaymentMethod.MethodEnum;
-    /**
-    * The mode to use with this payment method.
-    */
-    'mode'?: PaymentMethod.ModeEnum;
+    'method'?: Methods;
+    'mode'?: Modes;
     /**
     * The date and time when this payment method was first created in our system.
     */
@@ -92,12 +88,12 @@ export class PaymentMethod {
         {
             "name": "method",
             "baseName": "method",
-            "type": "PaymentMethod.MethodEnum"
+            "type": "Methods"
         },
         {
             "name": "mode",
             "baseName": "mode",
-            "type": "PaymentMethod.ModeEnum"
+            "type": "Modes"
         },
         {
             "name": "createdAt",
@@ -159,18 +155,6 @@ export namespace PaymentMethod {
         BuyerApprovalRequired = <any> 'buyer_approval_required',
         Succeeded = <any> 'succeeded',
         Failed = <any> 'failed'
-    }
-    export enum MethodEnum {
-        Applepay = <any> 'applepay',
-        Banked = <any> 'banked',
-        Card = <any> 'card',
-        Gocardless = <any> 'gocardless',
-        Stripedd = <any> 'stripedd',
-        Paypal = <any> 'paypal'
-    }
-    export enum ModeEnum {
-        Card = <any> 'card',
-        Redirect = <any> 'redirect'
     }
     export enum EnvironmentEnum {
         Development = <any> 'development',

@@ -25,6 +25,8 @@ export * from './error404PendingCreation';
 export * from './error409DuplicateRecord';
 export * from './errorDetail';
 export * from './errorGeneric';
+export * from './methods';
+export * from './modes';
 export * from './paymentMethod';
 export * from './paymentMethodRequest';
 export * from './paymentMethodSnapshot';
@@ -47,6 +49,7 @@ export * from './paymentServiceSnapshot';
 export * from './paymentServiceUpdate';
 export * from './paymentServiceUpdateFields';
 export * from './paymentServices';
+export * from './redirectMethods';
 export * from './redirectRequest';
 export * from './resetPasswordRequest';
 export * from './setPasswordRequest';
@@ -105,6 +108,8 @@ import { Error404PendingCreation } from './error404PendingCreation';
 import { Error409DuplicateRecord } from './error409DuplicateRecord';
 import { ErrorDetail } from './errorDetail';
 import { ErrorGeneric } from './errorGeneric';
+import { Methods } from './methods';
+import { Modes } from './modes';
 import { PaymentMethod } from './paymentMethod';
 import { PaymentMethodRequest } from './paymentMethodRequest';
 import { PaymentMethodSnapshot } from './paymentMethodSnapshot';
@@ -127,6 +132,7 @@ import { PaymentServiceSnapshot } from './paymentServiceSnapshot';
 import { PaymentServiceUpdate } from './paymentServiceUpdate';
 import { PaymentServiceUpdateFields } from './paymentServiceUpdateFields';
 import { PaymentServices } from './paymentServices';
+import { RedirectMethods } from './redirectMethods';
 import { RedirectRequest } from './redirectRequest';
 import { ResetPasswordRequest } from './resetPasswordRequest';
 import { SetPasswordRequest } from './setPasswordRequest';
@@ -198,45 +204,35 @@ let enumsMap: {[index: string]: any} = {
         "Error409DuplicateRecord.StatusEnum": Error409DuplicateRecord.StatusEnum,
         "ErrorDetail.LocationEnum": ErrorDetail.LocationEnum,
         "ErrorGeneric.TypeEnum": ErrorGeneric.TypeEnum,
+        "Methods": Methods,
+        "Modes": Modes,
         "PaymentMethod.TypeEnum": PaymentMethod.TypeEnum,
         "PaymentMethod.StatusEnum": PaymentMethod.StatusEnum,
-        "PaymentMethod.MethodEnum": PaymentMethod.MethodEnum,
-        "PaymentMethod.ModeEnum": PaymentMethod.ModeEnum,
         "PaymentMethod.EnvironmentEnum": PaymentMethod.EnvironmentEnum,
-        "PaymentMethodRequest.MethodEnum": PaymentMethodRequest.MethodEnum,
         "PaymentMethodRequest.EnvironmentEnum": PaymentMethodRequest.EnvironmentEnum,
         "PaymentMethodSnapshot.TypeEnum": PaymentMethodSnapshot.TypeEnum,
-        "PaymentMethodSnapshot.MethodEnum": PaymentMethodSnapshot.MethodEnum,
         "PaymentMethodToken.TypeEnum": PaymentMethodToken.TypeEnum,
         "PaymentMethodTokenized.TypeEnum": PaymentMethodTokenized.TypeEnum,
-        "PaymentMethodTokenized.MethodEnum": PaymentMethodTokenized.MethodEnum,
         "PaymentMethodTokenized.SchemeEnum": PaymentMethodTokenized.SchemeEnum,
         "PaymentOption.TypeEnum": PaymentOption.TypeEnum,
-        "PaymentOption.MethodEnum": PaymentOption.MethodEnum,
-        "PaymentOption.ModeEnum": PaymentOption.ModeEnum,
         "PaymentOptionContext.SupportedSchemesEnum": PaymentOptionContext.SupportedSchemesEnum,
         "PaymentService.TypeEnum": PaymentService.TypeEnum,
-        "PaymentService.MethodEnum": PaymentService.MethodEnum,
         "PaymentService.StatusEnum": PaymentService.StatusEnum,
         "PaymentService.CredentialsModeEnum": PaymentService.CredentialsModeEnum,
         "PaymentService.EnvironmentsEnum": PaymentService.EnvironmentsEnum,
-        "PaymentServiceDefinition.MethodEnum": PaymentServiceDefinition.MethodEnum,
-        "PaymentServiceDefinition.ModeEnum": PaymentServiceDefinition.ModeEnum,
         "PaymentServiceDefinitionFields.FormatEnum": PaymentServiceDefinitionFields.FormatEnum,
         "PaymentServiceRequest.CredentialsModeEnum": PaymentServiceRequest.CredentialsModeEnum,
         "PaymentServiceRequest.EnvironmentsEnum": PaymentServiceRequest.EnvironmentsEnum,
         "PaymentServiceSnapshot.TypeEnum": PaymentServiceSnapshot.TypeEnum,
-        "PaymentServiceSnapshot.MethodEnum": PaymentServiceSnapshot.MethodEnum,
         "PaymentServiceUpdate.CredentialsModeEnum": PaymentServiceUpdate.CredentialsModeEnum,
         "PaymentServiceUpdate.EnvironmentsEnum": PaymentServiceUpdate.EnvironmentsEnum,
-        "RedirectRequest.MethodEnum": RedirectRequest.MethodEnum,
+        "RedirectMethods": RedirectMethods,
         "RedirectRequest.EnvironmentEnum": RedirectRequest.EnvironmentEnum,
         "TaxId.KindEnum": TaxId.KindEnum,
         "TokenizedRequest.MethodEnum": TokenizedRequest.MethodEnum,
         "Transaction.TypeEnum": Transaction.TypeEnum,
         "Transaction.StatusEnum": Transaction.StatusEnum,
         "Transaction.EnvironmentEnum": Transaction.EnvironmentEnum,
-        "TransactionPaymentMethodRequest.MethodEnum": TransactionPaymentMethodRequest.MethodEnum,
         "TransactionRequest.IntentEnum": TransactionRequest.IntentEnum,
         "TransactionRequest.EnvironmentEnum": TransactionRequest.EnvironmentEnum,
 }

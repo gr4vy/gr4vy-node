@@ -11,6 +11,7 @@
  */
 
 import { RequestFile } from './models';
+import { Methods } from './methods';
 
 /**
 * A mini format version of a payment method.
@@ -24,10 +25,7 @@ export class PaymentMethodTokenized {
     * The unique ID of the payment method.
     */
     'id'?: string;
-    /**
-    * The type of this payment method.
-    */
-    'method'?: PaymentMethodTokenized.MethodEnum;
+    'method'?: Methods;
     /**
     * A label for the payment method. For a `card` payment method this is the last 4 digits on the card. For others it would be the email address.
     */
@@ -61,7 +59,7 @@ export class PaymentMethodTokenized {
         {
             "name": "method",
             "baseName": "method",
-            "type": "PaymentMethodTokenized.MethodEnum"
+            "type": "Methods"
         },
         {
             "name": "label",
@@ -92,13 +90,6 @@ export class PaymentMethodTokenized {
 export namespace PaymentMethodTokenized {
     export enum TypeEnum {
         PaymentMethod = <any> 'payment-method'
-    }
-    export enum MethodEnum {
-        Card = <any> 'card',
-        Paypal = <any> 'paypal',
-        Banked = <any> 'banked',
-        Gocardless = <any> 'gocardless',
-        Stripedd = <any> 'stripedd'
     }
     export enum SchemeEnum {
         Visa = <any> 'visa',
