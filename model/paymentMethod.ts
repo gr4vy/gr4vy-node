@@ -49,10 +49,7 @@ export class PaymentMethod {
     * An external identifier that can be used to match the payment method against your own records.
     */
     'externalIdentifier'?: string | null;
-    /**
-    * The optional buyer for which this payment method has been stored.
-    */
-    'buyer'?: Buyer | null;
+    'buyer'?: Buyer;
     /**
     * A label for the card or the account. For a `paypal` payment method this is the user\'s email address. For a card it is the last 4 digits of the card.
     */
@@ -164,11 +161,12 @@ export namespace PaymentMethod {
         Failed = <any> 'failed'
     }
     export enum MethodEnum {
+        Applepay = <any> 'applepay',
+        Banked = <any> 'banked',
         Card = <any> 'card',
         Gocardless = <any> 'gocardless',
         Stripedd = <any> 'stripedd',
-        Paypal = <any> 'paypal',
-        Banked = <any> 'banked'
+        Paypal = <any> 'paypal'
     }
     export enum ModeEnum {
         Card = <any> 'card',

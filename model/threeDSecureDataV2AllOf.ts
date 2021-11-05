@@ -11,26 +11,8 @@
  */
 
 import { RequestFile } from './models';
-import { ThreeDSecureData } from './threeDSecureData';
-import { ThreeDSecureDataV2AllOf } from './threeDSecureDataV2AllOf';
 
-export class ThreeDSecureDataV2 {
-    /**
-    * The cardholder authentication value or AAV.
-    */
-    'cavv': string;
-    /**
-    * The electronic commerce indicator for the 3DS transaction.
-    */
-    'eci': string;
-    /**
-    * The version of 3-D Secure that was used.
-    */
-    'version': string;
-    /**
-    * For 3-D Secure version 1, the enrolment response. For 3-D Secure version , the transaction status from the `ARes`.
-    */
-    'directoryResponse': string;
+export class ThreeDSecureDataV2AllOf {
     /**
     * The transaction status from the challenge result (not required for frictionless).
     */
@@ -44,26 +26,6 @@ export class ThreeDSecureDataV2 {
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "cavv",
-            "baseName": "cavv",
-            "type": "string"
-        },
-        {
-            "name": "eci",
-            "baseName": "eci",
-            "type": "string"
-        },
-        {
-            "name": "version",
-            "baseName": "version",
-            "type": "string"
-        },
-        {
-            "name": "directoryResponse",
-            "baseName": "directory_response",
-            "type": "string"
-        },
-        {
             "name": "authenticationResponse",
             "baseName": "authentication_response",
             "type": "string"
@@ -75,7 +37,7 @@ export class ThreeDSecureDataV2 {
         }    ];
 
     static getAttributeTypeMap() {
-        return ThreeDSecureDataV2.attributeTypeMap;
+        return ThreeDSecureDataV2AllOf.attributeTypeMap;
     }
 }
 

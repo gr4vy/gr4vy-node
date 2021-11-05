@@ -1,4 +1,3 @@
-.gitignore
 api/apis.ts
 api/buyersApi.ts
 api/digitalWalletsApi.ts
@@ -10,6 +9,8 @@ api/paymentServicesApi.ts
 api/transactionsApi.ts
 model/address.ts
 model/addressUpdate.ts
+model/applePayRequest.ts
+model/applePaySessionRequest.ts
 model/billingDetails.ts
 model/billingDetailsUpdateRequest.ts
 model/buyer.ts
@@ -41,6 +42,7 @@ model/paymentMethodTokens.ts
 model/paymentMethods.ts
 model/paymentMethodsTokenized.ts
 model/paymentOption.ts
+model/paymentOptionContext.ts
 model/paymentOptions.ts
 model/paymentService.ts
 model/paymentServiceDefinition.ts
@@ -56,13 +58,13 @@ model/paymentServices.ts
 model/redirectRequest.ts
 model/resetPasswordRequest.ts
 model/setPasswordRequest.ts
-model/status.ts
-model/statuses.ts
 model/taxId.ts
 model/threeDSecureData.ts
 model/threeDSecureDataV1.ts
+model/threeDSecureDataV1AllOf.ts
 model/threeDSecureDataV1V2.ts
 model/threeDSecureDataV2.ts
+model/threeDSecureDataV2AllOf.ts
 model/tokenizedRequest.ts
 model/transaction.ts
 model/transactionCaptureRequest.ts

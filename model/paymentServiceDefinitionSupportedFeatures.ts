@@ -28,6 +28,10 @@ export class PaymentServiceDefinitionSupportedFeatures {
     * Supports passing 3-D Secure data to the underlying processor.
     */
     'threeDSecurePassThrough'?: boolean;
+    /**
+    * Supports passing decrypted apple pay token to the underlying processor.
+    */
+    'applePay'?: boolean;
 
     static discriminator: string | undefined = undefined;
 
@@ -45,6 +49,11 @@ export class PaymentServiceDefinitionSupportedFeatures {
         {
             "name": "threeDSecurePassThrough",
             "baseName": "three_d_secure_pass_through",
+            "type": "boolean"
+        },
+        {
+            "name": "applePay",
+            "baseName": "apple_pay",
             "type": "boolean"
         }    ];
 

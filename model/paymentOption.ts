@@ -11,6 +11,7 @@
  */
 
 import { RequestFile } from './models';
+import { PaymentOptionContext } from './paymentOptionContext';
 
 /**
 * An available payment option for a locale.
@@ -40,6 +41,7 @@ export class PaymentOption {
     * A flag to indicate if storing the payment method is supported.
     */
     'canStorePaymentMethod'?: boolean;
+    'context'?: PaymentOptionContext;
 
     static discriminator: string | undefined = undefined;
 
@@ -73,6 +75,11 @@ export class PaymentOption {
             "name": "canStorePaymentMethod",
             "baseName": "can_store_payment_method",
             "type": "boolean"
+        },
+        {
+            "name": "context",
+            "baseName": "context",
+            "type": "PaymentOptionContext"
         }    ];
 
     static getAttributeTypeMap() {
@@ -85,12 +92,14 @@ export namespace PaymentOption {
         PaymentOption = <any> 'payment-option'
     }
     export enum MethodEnum {
-        Card = <any> 'card',
-        Paypal = <any> 'paypal',
+        Applepay = <any> 'applepay',
         Banked = <any> 'banked',
-        Gocardless = <any> 'gocardless'
+        Card = <any> 'card',
+        Gocardless = <any> 'gocardless',
+        Paypal = <any> 'paypal'
     }
     export enum ModeEnum {
+        Applepay = <any> 'applepay',
         Card = <any> 'card',
         Redirect = <any> 'redirect'
     }

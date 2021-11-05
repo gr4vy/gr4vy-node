@@ -11,28 +11,41 @@
  */
 
 import { RequestFile } from './models';
-import { Status } from './status';
 
 /**
-* A list of status resources.
+* Details for a Apple Pay payment method.
 */
-export class Statuses {
+export class ApplePayRequest {
     /**
-    * A list of authorizations.
+    * `applepay`.
     */
-    'items'?: Array<Status>;
+    'method': ApplePayRequest.MethodEnum;
+    /**
+    * The encrypted (opaque) token that was passed to the `onpaymentauthorized` callback by the Apple Pay integration.
+    */
+    'token': object;
 
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "items",
-            "baseName": "items",
-            "type": "Array<Status>"
+            "name": "method",
+            "baseName": "method",
+            "type": "ApplePayRequest.MethodEnum"
+        },
+        {
+            "name": "token",
+            "baseName": "token",
+            "type": "object"
         }    ];
 
     static getAttributeTypeMap() {
-        return Statuses.attributeTypeMap;
+        return ApplePayRequest.attributeTypeMap;
     }
 }
 
+export namespace ApplePayRequest {
+    export enum MethodEnum {
+        Applepay = <any> 'applepay'
+    }
+}

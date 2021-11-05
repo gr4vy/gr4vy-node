@@ -2,6 +2,8 @@ import localVarRequest from 'request';
 
 export * from './address';
 export * from './addressUpdate';
+export * from './applePayRequest';
+export * from './applePaySessionRequest';
 export * from './billingDetails';
 export * from './billingDetailsUpdateRequest';
 export * from './buyer';
@@ -32,6 +34,7 @@ export * from './paymentMethodTokens';
 export * from './paymentMethods';
 export * from './paymentMethodsTokenized';
 export * from './paymentOption';
+export * from './paymentOptionContext';
 export * from './paymentOptions';
 export * from './paymentService';
 export * from './paymentServiceDefinition';
@@ -47,13 +50,13 @@ export * from './paymentServices';
 export * from './redirectRequest';
 export * from './resetPasswordRequest';
 export * from './setPasswordRequest';
-export * from './status';
-export * from './statuses';
 export * from './taxId';
 export * from './threeDSecureData';
 export * from './threeDSecureDataV1';
+export * from './threeDSecureDataV1AllOf';
 export * from './threeDSecureDataV1V2';
 export * from './threeDSecureDataV2';
+export * from './threeDSecureDataV2AllOf';
 export * from './tokenizedRequest';
 export * from './transaction';
 export * from './transactionCaptureRequest';
@@ -79,6 +82,8 @@ export type RequestFile = string | Buffer | fs.ReadStream | RequestDetailedFile;
 
 import { Address } from './address';
 import { AddressUpdate } from './addressUpdate';
+import { ApplePayRequest } from './applePayRequest';
+import { ApplePaySessionRequest } from './applePaySessionRequest';
 import { BillingDetails } from './billingDetails';
 import { BillingDetailsUpdateRequest } from './billingDetailsUpdateRequest';
 import { Buyer } from './buyer';
@@ -109,6 +114,7 @@ import { PaymentMethodTokens } from './paymentMethodTokens';
 import { PaymentMethods } from './paymentMethods';
 import { PaymentMethodsTokenized } from './paymentMethodsTokenized';
 import { PaymentOption } from './paymentOption';
+import { PaymentOptionContext } from './paymentOptionContext';
 import { PaymentOptions } from './paymentOptions';
 import { PaymentService } from './paymentService';
 import { PaymentServiceDefinition } from './paymentServiceDefinition';
@@ -124,13 +130,13 @@ import { PaymentServices } from './paymentServices';
 import { RedirectRequest } from './redirectRequest';
 import { ResetPasswordRequest } from './resetPasswordRequest';
 import { SetPasswordRequest } from './setPasswordRequest';
-import { Status } from './status';
-import { Statuses } from './statuses';
 import { TaxId } from './taxId';
 import { ThreeDSecureData } from './threeDSecureData';
 import { ThreeDSecureDataV1 } from './threeDSecureDataV1';
+import { ThreeDSecureDataV1AllOf } from './threeDSecureDataV1AllOf';
 import { ThreeDSecureDataV1V2 } from './threeDSecureDataV1V2';
 import { ThreeDSecureDataV2 } from './threeDSecureDataV2';
+import { ThreeDSecureDataV2AllOf } from './threeDSecureDataV2AllOf';
 import { TokenizedRequest } from './tokenizedRequest';
 import { Transaction } from './transaction';
 import { TransactionCaptureRequest } from './transactionCaptureRequest';
@@ -154,6 +160,7 @@ let primitives = [
                  ];
 
 let enumsMap: {[index: string]: any} = {
+        "ApplePayRequest.MethodEnum": ApplePayRequest.MethodEnum,
         "Buyer.TypeEnum": Buyer.TypeEnum,
         "BuyerSnapshot.TypeEnum": BuyerSnapshot.TypeEnum,
         "CardRequest.MethodEnum": CardRequest.MethodEnum,
@@ -207,12 +214,14 @@ let enumsMap: {[index: string]: any} = {
         "PaymentOption.TypeEnum": PaymentOption.TypeEnum,
         "PaymentOption.MethodEnum": PaymentOption.MethodEnum,
         "PaymentOption.ModeEnum": PaymentOption.ModeEnum,
+        "PaymentOptionContext.SupportedSchemesEnum": PaymentOptionContext.SupportedSchemesEnum,
         "PaymentService.TypeEnum": PaymentService.TypeEnum,
         "PaymentService.MethodEnum": PaymentService.MethodEnum,
         "PaymentService.StatusEnum": PaymentService.StatusEnum,
         "PaymentService.CredentialsModeEnum": PaymentService.CredentialsModeEnum,
         "PaymentService.EnvironmentsEnum": PaymentService.EnvironmentsEnum,
         "PaymentServiceDefinition.MethodEnum": PaymentServiceDefinition.MethodEnum,
+        "PaymentServiceDefinition.ModeEnum": PaymentServiceDefinition.ModeEnum,
         "PaymentServiceDefinitionFields.FormatEnum": PaymentServiceDefinitionFields.FormatEnum,
         "PaymentServiceRequest.CredentialsModeEnum": PaymentServiceRequest.CredentialsModeEnum,
         "PaymentServiceRequest.EnvironmentsEnum": PaymentServiceRequest.EnvironmentsEnum,
@@ -222,9 +231,6 @@ let enumsMap: {[index: string]: any} = {
         "PaymentServiceUpdate.EnvironmentsEnum": PaymentServiceUpdate.EnvironmentsEnum,
         "RedirectRequest.MethodEnum": RedirectRequest.MethodEnum,
         "RedirectRequest.EnvironmentEnum": RedirectRequest.EnvironmentEnum,
-        "Status.TypeEnum": Status.TypeEnum,
-        "Status.StatusEnum": Status.StatusEnum,
-        "Status.ResourceTypeEnum": Status.ResourceTypeEnum,
         "TaxId.KindEnum": TaxId.KindEnum,
         "TokenizedRequest.MethodEnum": TokenizedRequest.MethodEnum,
         "Transaction.TypeEnum": Transaction.TypeEnum,
@@ -238,6 +244,8 @@ let enumsMap: {[index: string]: any} = {
 let typeMap: {[index: string]: any} = {
     "Address": Address,
     "AddressUpdate": AddressUpdate,
+    "ApplePayRequest": ApplePayRequest,
+    "ApplePaySessionRequest": ApplePaySessionRequest,
     "BillingDetails": BillingDetails,
     "BillingDetailsUpdateRequest": BillingDetailsUpdateRequest,
     "Buyer": Buyer,
@@ -268,6 +276,7 @@ let typeMap: {[index: string]: any} = {
     "PaymentMethods": PaymentMethods,
     "PaymentMethodsTokenized": PaymentMethodsTokenized,
     "PaymentOption": PaymentOption,
+    "PaymentOptionContext": PaymentOptionContext,
     "PaymentOptions": PaymentOptions,
     "PaymentService": PaymentService,
     "PaymentServiceDefinition": PaymentServiceDefinition,
@@ -283,13 +292,13 @@ let typeMap: {[index: string]: any} = {
     "RedirectRequest": RedirectRequest,
     "ResetPasswordRequest": ResetPasswordRequest,
     "SetPasswordRequest": SetPasswordRequest,
-    "Status": Status,
-    "Statuses": Statuses,
     "TaxId": TaxId,
     "ThreeDSecureData": ThreeDSecureData,
     "ThreeDSecureDataV1": ThreeDSecureDataV1,
+    "ThreeDSecureDataV1AllOf": ThreeDSecureDataV1AllOf,
     "ThreeDSecureDataV1V2": ThreeDSecureDataV1V2,
     "ThreeDSecureDataV2": ThreeDSecureDataV2,
+    "ThreeDSecureDataV2AllOf": ThreeDSecureDataV2AllOf,
     "TokenizedRequest": TokenizedRequest,
     "Transaction": Transaction,
     "TransactionCaptureRequest": TransactionCaptureRequest,

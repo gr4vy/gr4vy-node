@@ -31,6 +31,22 @@ export class ThreeDSecureDataV1V2 {
     * For 3-D Secure version 1, the enrolment response. For 3-D Secure version , the transaction status from the `ARes`.
     */
     'directoryResponse': string;
+    /**
+    * The transaction status from the challenge result (not required for frictionless).
+    */
+    'authenticationResponse': string;
+    /**
+    * The CAVV Algorithm used.
+    */
+    'cavvAlgorithm': string;
+    /**
+    * The transaction identifier.
+    */
+    'xid': string;
+    /**
+    * The transaction identifier.
+    */
+    'directoryTransactionId': string;
 
     static discriminator: string | undefined = undefined;
 
@@ -53,6 +69,26 @@ export class ThreeDSecureDataV1V2 {
         {
             "name": "directoryResponse",
             "baseName": "directory_response",
+            "type": "string"
+        },
+        {
+            "name": "authenticationResponse",
+            "baseName": "authentication_response",
+            "type": "string"
+        },
+        {
+            "name": "cavvAlgorithm",
+            "baseName": "cavv_algorithm",
+            "type": "string"
+        },
+        {
+            "name": "xid",
+            "baseName": "xid",
+            "type": "string"
+        },
+        {
+            "name": "directoryTransactionId",
+            "baseName": "directory_transaction_id",
             "type": "string"
         }    ];
 

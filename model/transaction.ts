@@ -47,14 +47,8 @@ export class Transaction {
     * The currency code for this transaction.
     */
     'currency'?: string;
-    /**
-    * The payment method used for this transaction.
-    */
     'paymentMethod'?: PaymentMethodSnapshot;
-    /**
-    * The buyer used for this transaction.
-    */
-    'buyer'?: BuyerSnapshot | null;
+    'buyer'?: BuyerSnapshot;
     /**
     * The date and time when this transaction was created in our system.
     */
@@ -67,9 +61,6 @@ export class Transaction {
     * Defines when the transaction was last updated.
     */
     'updatedAt'?: Date;
-    /**
-    * The payment service used for this transaction.
-    */
     'paymentService'?: PaymentServiceSnapshot;
     /**
     * The environment this transaction has been created in.

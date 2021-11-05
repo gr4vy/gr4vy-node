@@ -46,6 +46,10 @@ export class PaymentServiceDefinition {
     * A list of two-letter ISO country codes that this service supports.
     */
     'supportedCountries'?: Array<string>;
+    /**
+    * The mode of the payment service definition.
+    */
+    'mode'?: PaymentServiceDefinition.ModeEnum;
     'supportedFeatures'?: PaymentServiceDefinitionSupportedFeatures;
     /**
     * An icon to display for the payment service.
@@ -91,6 +95,11 @@ export class PaymentServiceDefinition {
             "type": "Array<string>"
         },
         {
+            "name": "mode",
+            "baseName": "mode",
+            "type": "PaymentServiceDefinition.ModeEnum"
+        },
+        {
             "name": "supportedFeatures",
             "baseName": "supported_features",
             "type": "PaymentServiceDefinitionSupportedFeatures"
@@ -113,5 +122,10 @@ export namespace PaymentServiceDefinition {
         Banked = <any> 'banked',
         Gocardless = <any> 'gocardless',
         Stripedd = <any> 'stripedd'
+    }
+    export enum ModeEnum {
+        Card = <any> 'card',
+        Redirect = <any> 'redirect',
+        Applepay = <any> 'applepay'
     }
 }
