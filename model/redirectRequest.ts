@@ -11,13 +11,12 @@
  */
 
 import { RequestFile } from './models';
-import { RedirectMethods } from './redirectMethods';
 
 /**
 * Request to use a redirect payment method in a transaction.
 */
 export class RedirectRequest {
-    'method': RedirectMethods;
+    'method': string;
     /**
     * The redirect URL to redirect a buyer to after they have authorized their transaction.
     */
@@ -53,7 +52,7 @@ export class RedirectRequest {
         {
             "name": "method",
             "baseName": "method",
-            "type": "RedirectMethods"
+            "type": "string"
         },
         {
             "name": "redirectUrl",

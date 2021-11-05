@@ -11,7 +11,6 @@
  */
 
 import { RequestFile } from './models';
-import { Methods } from './methods';
 
 /**
 * Snapshot of a payment method, as used when embedded inside other resources.
@@ -25,7 +24,7 @@ export class PaymentMethodSnapshot {
     * The unique ID of the payment method.
     */
     'id'?: string | null;
-    'method'?: Methods;
+    'method'?: string;
     /**
     * An external identifier that can be used to match the payment method against your own records.
     */
@@ -63,7 +62,7 @@ export class PaymentMethodSnapshot {
         {
             "name": "method",
             "baseName": "method",
-            "type": "Methods"
+            "type": "string"
         },
         {
             "name": "externalIdentifier",

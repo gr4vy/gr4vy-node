@@ -11,7 +11,6 @@
  */
 
 import { RequestFile } from './models';
-import { Methods } from './methods';
 
 /**
 * A mini format version of a payment method.
@@ -25,7 +24,7 @@ export class PaymentMethodTokenized {
     * The unique ID of the payment method.
     */
     'id'?: string;
-    'method'?: Methods;
+    'method'?: string;
     /**
     * A label for the payment method. For a `card` payment method this is the last 4 digits on the card. For others it would be the email address.
     */
@@ -59,7 +58,7 @@ export class PaymentMethodTokenized {
         {
             "name": "method",
             "baseName": "method",
-            "type": "Methods"
+            "type": "string"
         },
         {
             "name": "label",

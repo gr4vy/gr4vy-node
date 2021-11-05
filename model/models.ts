@@ -25,8 +25,6 @@ export * from './error404PendingCreation';
 export * from './error409DuplicateRecord';
 export * from './errorDetail';
 export * from './errorGeneric';
-export * from './methods';
-export * from './modes';
 export * from './paymentMethod';
 export * from './paymentMethodRequest';
 export * from './paymentMethodSnapshot';
@@ -49,7 +47,6 @@ export * from './paymentServiceSnapshot';
 export * from './paymentServiceUpdate';
 export * from './paymentServiceUpdateFields';
 export * from './paymentServices';
-export * from './redirectMethods';
 export * from './redirectRequest';
 export * from './resetPasswordRequest';
 export * from './setPasswordRequest';
@@ -108,8 +105,6 @@ import { Error404PendingCreation } from './error404PendingCreation';
 import { Error409DuplicateRecord } from './error409DuplicateRecord';
 import { ErrorDetail } from './errorDetail';
 import { ErrorGeneric } from './errorGeneric';
-import { Methods } from './methods';
-import { Modes } from './modes';
 import { PaymentMethod } from './paymentMethod';
 import { PaymentMethodRequest } from './paymentMethodRequest';
 import { PaymentMethodSnapshot } from './paymentMethodSnapshot';
@@ -132,7 +127,6 @@ import { PaymentServiceSnapshot } from './paymentServiceSnapshot';
 import { PaymentServiceUpdate } from './paymentServiceUpdate';
 import { PaymentServiceUpdateFields } from './paymentServiceUpdateFields';
 import { PaymentServices } from './paymentServices';
-import { RedirectMethods } from './redirectMethods';
 import { RedirectRequest } from './redirectRequest';
 import { ResetPasswordRequest } from './resetPasswordRequest';
 import { SetPasswordRequest } from './setPasswordRequest';
@@ -204,8 +198,6 @@ let enumsMap: {[index: string]: any} = {
         "Error409DuplicateRecord.StatusEnum": Error409DuplicateRecord.StatusEnum,
         "ErrorDetail.LocationEnum": ErrorDetail.LocationEnum,
         "ErrorGeneric.TypeEnum": ErrorGeneric.TypeEnum,
-        "Methods": Methods,
-        "Modes": Modes,
         "PaymentMethod.TypeEnum": PaymentMethod.TypeEnum,
         "PaymentMethod.StatusEnum": PaymentMethod.StatusEnum,
         "PaymentMethod.EnvironmentEnum": PaymentMethod.EnvironmentEnum,
@@ -226,7 +218,6 @@ let enumsMap: {[index: string]: any} = {
         "PaymentServiceSnapshot.TypeEnum": PaymentServiceSnapshot.TypeEnum,
         "PaymentServiceUpdate.CredentialsModeEnum": PaymentServiceUpdate.CredentialsModeEnum,
         "PaymentServiceUpdate.EnvironmentsEnum": PaymentServiceUpdate.EnvironmentsEnum,
-        "RedirectMethods": RedirectMethods,
         "RedirectRequest.EnvironmentEnum": RedirectRequest.EnvironmentEnum,
         "TaxId.KindEnum": TaxId.KindEnum,
         "TokenizedRequest.MethodEnum": TokenizedRequest.MethodEnum,

@@ -11,7 +11,6 @@
  */
 
 import { RequestFile } from './models';
-import { Methods } from './methods';
 
 /**
 * An active, configured payment service.
@@ -29,7 +28,7 @@ export class PaymentService {
     * The ID of the payment service definition used to create this service. 
     */
     'paymentServiceDefinitionId'?: string;
-    'method'?: Methods;
+    'method'?: string;
     /**
     * The custom name set for this service.
     */
@@ -132,7 +131,7 @@ export class PaymentService {
         {
             "name": "method",
             "baseName": "method",
-            "type": "Methods"
+            "type": "string"
         },
         {
             "name": "displayName",

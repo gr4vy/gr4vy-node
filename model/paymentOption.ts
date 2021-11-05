@@ -11,8 +11,6 @@
  */
 
 import { RequestFile } from './models';
-import { Methods } from './methods';
-import { Modes } from './modes';
 import { PaymentOptionContext } from './paymentOptionContext';
 
 /**
@@ -23,12 +21,12 @@ export class PaymentOption {
     * `payment-option`.
     */
     'type'?: PaymentOption.TypeEnum;
-    'method'?: Methods;
+    'method'?: string;
     /**
     * An icon to display for the payment option.
     */
     'iconUrl'?: string | null;
-    'mode'?: Modes;
+    'mode'?: string;
     /**
     * A label that describes this payment option. This label is returned in the language defined by the `locale` query parameter. The label can be used to display a list of payment options to the buyer in their language.
     */
@@ -50,7 +48,7 @@ export class PaymentOption {
         {
             "name": "method",
             "baseName": "method",
-            "type": "Methods"
+            "type": "string"
         },
         {
             "name": "iconUrl",
@@ -60,7 +58,7 @@ export class PaymentOption {
         {
             "name": "mode",
             "baseName": "mode",
-            "type": "Modes"
+            "type": "string"
         },
         {
             "name": "label",

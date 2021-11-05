@@ -11,8 +11,6 @@
  */
 
 import { RequestFile } from './models';
-import { Methods } from './methods';
-import { Modes } from './modes';
 import { PaymentServiceDefinitionFields } from './paymentServiceDefinitionFields';
 import { PaymentServiceDefinitionSupportedFeatures } from './paymentServiceDefinitionSupportedFeatures';
 
@@ -32,7 +30,7 @@ export class PaymentServiceDefinition {
     * The display name of this service.
     */
     'displayName'?: string;
-    'method'?: Methods;
+    'method'?: string;
     /**
     * A list of fields that need to be submitted when activating the payment. service.
     */
@@ -45,7 +43,7 @@ export class PaymentServiceDefinition {
     * A list of two-letter ISO country codes that this service supports.
     */
     'supportedCountries'?: Array<string>;
-    'mode'?: Modes;
+    'mode'?: string;
     'supportedFeatures'?: PaymentServiceDefinitionSupportedFeatures;
     /**
     * An icon to display for the payment service.
@@ -73,7 +71,7 @@ export class PaymentServiceDefinition {
         {
             "name": "method",
             "baseName": "method",
-            "type": "Methods"
+            "type": "string"
         },
         {
             "name": "fields",
@@ -93,7 +91,7 @@ export class PaymentServiceDefinition {
         {
             "name": "mode",
             "baseName": "mode",
-            "type": "Modes"
+            "type": "string"
         },
         {
             "name": "supportedFeatures",

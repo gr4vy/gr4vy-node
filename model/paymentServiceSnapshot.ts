@@ -11,7 +11,6 @@
  */
 
 import { RequestFile } from './models';
-import { Methods } from './methods';
 
 /**
 * An active, configured payment service.
@@ -29,7 +28,7 @@ export class PaymentServiceSnapshot {
     * The ID of the payment service definition used to create this service. 
     */
     'paymentServiceDefinitionId'?: string;
-    'method'?: Methods;
+    'method'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -52,7 +51,7 @@ export class PaymentServiceSnapshot {
         {
             "name": "method",
             "baseName": "method",
-            "type": "Methods"
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {

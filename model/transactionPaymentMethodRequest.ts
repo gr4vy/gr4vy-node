@@ -11,13 +11,12 @@
  */
 
 import { RequestFile } from './models';
-import { Methods } from './methods';
 
 /**
 * Payment method details to use in a transaction or to register a new payment method.
 */
 export class TransactionPaymentMethodRequest {
-    'method': Methods;
+    'method': string;
     /**
     * The 15-16 digit number for this credit card as it can be found on the front of the card.  If a card has been stored with us previously, this number will represent the unique tokenized card ID provided via our API.
     */
@@ -57,7 +56,7 @@ export class TransactionPaymentMethodRequest {
         {
             "name": "method",
             "baseName": "method",
-            "type": "Methods"
+            "type": "string"
         },
         {
             "name": "number",
