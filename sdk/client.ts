@@ -66,9 +66,11 @@ class Client {
     this.apis = []
     this.authentication = new Authentication(options.privateKey)
     this.debug = options.debug || false
+
+    const apiPrefix = options.environment === 'sandbox' ? 'sandbox.' : ''
     this.baseUrl = options.baseUrl
       ? options.baseUrl
-      : `https://api.${options.gr4vyId}.gr4vy.app`
+      : `https://api.${apiPrefix}${options.gr4vyId}.gr4vy.app`
 
     // Buyers
     const ba = new BuyersApi(this.baseUrl)
@@ -235,12 +237,14 @@ type Options =
       privateKey: string
       baseUrl?: string
       debug?: boolean
+      environment?: 'production' | 'sandbox'
     }
   | {
       gr4vyId?: string
       privateKey: string
       baseUrl: string
       debug?: boolean
+      environment?: 'production' | 'sandbox'
     }
 
 export default Client
