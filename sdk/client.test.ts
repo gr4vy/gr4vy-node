@@ -25,6 +25,15 @@ describe('#constructor', () => {
     expect(client.baseUrl).toBe('https://api.test.gr4vy.app')
   })
 
+  test('it should work with a gr4vy ID and an environment', () => {
+    const client = new Client({
+      privateKey,
+      gr4vyId: 'test',
+      environment: 'sandbox',
+    })
+    expect(client.baseUrl).toBe('https://api.sandbox.test.gr4vy.app')
+  })
+
   test('it should work with a base URL', () => {
     const client = new Client({
       privateKey,
