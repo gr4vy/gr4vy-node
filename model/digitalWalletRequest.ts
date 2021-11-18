@@ -29,17 +29,13 @@ export class DigitalWalletRequest {
     */
     'merchantUrl'?: string | null;
     /**
-    * The list of fully qualified domain names that a digital wallet provider should process payments for.
+    * The list of domain names that a digital wallet can be used on. To use a digital wallet on a website, the domain of the site is required to be in this list.
     */
     'domainNames': Array<string>;
     /**
     * The explicit acceptance of the digital wallet provider\'s terms and conditions by the merchant. Needs to be `true` to register a new digital wallet.
     */
     'acceptTermsAndConditions': boolean;
-    /**
-    * Determines the Gr4vy environments in which this digital wallet should be available.
-    */
-    'environments'?: Array<DigitalWalletRequest.EnvironmentsEnum>;
 
     static discriminator: string | undefined = undefined;
 
@@ -68,11 +64,6 @@ export class DigitalWalletRequest {
             "name": "acceptTermsAndConditions",
             "baseName": "accept_terms_and_conditions",
             "type": "boolean"
-        },
-        {
-            "name": "environments",
-            "baseName": "environments",
-            "type": "Array<DigitalWalletRequest.EnvironmentsEnum>"
         }    ];
 
     static getAttributeTypeMap() {
@@ -82,11 +73,7 @@ export class DigitalWalletRequest {
 
 export namespace DigitalWalletRequest {
     export enum ProviderEnum {
-        Apple = <any> 'apple'
-    }
-    export enum EnvironmentsEnum {
-        Development = <any> 'development',
-        Staging = <any> 'staging',
-        Production = <any> 'production'
+        Apple = <any> 'apple',
+        Google = <any> 'google'
     }
 }

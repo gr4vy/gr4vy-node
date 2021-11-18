@@ -374,7 +374,7 @@ export class DigitalWalletsApi {
         });
     }
     /**
-     * Updates the values a digital wallet was registered with, and the Gr4vy environments in which a registered digital wallet should be available.
+     * Updates the values a digital wallet was registered with.
      * @summary Update digital wallet
      * @param digitalWalletId The ID of the registered digital wallet.
      * @param digitalWalletUpdate 

@@ -99,10 +99,9 @@ export class PaymentOptionsApi {
      * @summary List payment options
      * @param country Filters the results to only the items which support this country code. A country is formatted as 2-letter ISO country code.
      * @param currency Filters the results to only the items which support this currency code. A currency is formatted as 3-letter ISO currency code.
-     * @param environment Filters the results to only the items available in this environment.
      * @param locale An ISO 639-1 Language Code and optional ISO 3166 Country Code. This locale determines the language for the labels returned for every payment option.
      */
-    public async listPaymentOptions (country?: string, currency?: string, environment?: 'development' | 'staging' | 'production', locale?: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: PaymentOptions;  }> {
+    public async listPaymentOptions (country?: string, currency?: string, locale?: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: PaymentOptions;  }> {
         const localVarPath = this.basePath + '/payment-options';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
@@ -121,10 +120,6 @@ export class PaymentOptionsApi {
 
         if (currency !== undefined) {
             localVarQueryParameters['currency'] = ObjectSerializer.serialize(currency, "string");
-        }
-
-        if (environment !== undefined) {
-            localVarQueryParameters['environment'] = ObjectSerializer.serialize(environment, "'development' | 'staging' | 'production'");
         }
 
         if (locale !== undefined) {

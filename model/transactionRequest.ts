@@ -39,10 +39,6 @@ export class TransactionRequest {
     * An external identifier that can be used to match the transaction against your own records.
     */
     'externalIdentifier'?: string | null;
-    /**
-    * Defines the environment to create this transaction in. Setting this to anything other than `production` will force Gr4vy to use the payment a service configured for that environment.
-    */
-    'environment'?: TransactionRequest.EnvironmentEnum;
     'threeDSecureData'?: ThreeDSecureDataV1V2;
 
     static discriminator: string | undefined = undefined;
@@ -79,11 +75,6 @@ export class TransactionRequest {
             "type": "string"
         },
         {
-            "name": "environment",
-            "baseName": "environment",
-            "type": "TransactionRequest.EnvironmentEnum"
-        },
-        {
             "name": "threeDSecureData",
             "baseName": "three_d_secure_data",
             "type": "ThreeDSecureDataV1V2"
@@ -98,10 +89,5 @@ export namespace TransactionRequest {
     export enum IntentEnum {
         Authorize = <any> 'authorize',
         Capture = <any> 'capture'
-    }
-    export enum EnvironmentEnum {
-        Development = <any> 'development',
-        Staging = <any> 'staging',
-        Production = <any> 'production'
     }
 }

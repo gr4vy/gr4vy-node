@@ -37,7 +37,7 @@ export class DigitalWallet {
     */
     'merchantUrl'?: string | null;
     /**
-    * The list of fully qualified domain names that a digital wallet provider processes payments for.
+    * The list of domain names that a digital wallet can be used on. To use a digital wallet on a website, the domain of the site is required to be in this list.
     */
     'domainNames'?: Array<string>;
     /**
@@ -48,10 +48,6 @@ export class DigitalWallet {
     * The date and time when this digital wallet was last updated.
     */
     'updatedAt'?: Date;
-    /**
-    * The Gr4vy environments in which this digital wallet is available.
-    */
-    'environments'?: Array<DigitalWallet.EnvironmentsEnum>;
 
     static discriminator: string | undefined = undefined;
 
@@ -95,11 +91,6 @@ export class DigitalWallet {
             "name": "updatedAt",
             "baseName": "updated_at",
             "type": "Date"
-        },
-        {
-            "name": "environments",
-            "baseName": "environments",
-            "type": "Array<DigitalWallet.EnvironmentsEnum>"
         }    ];
 
     static getAttributeTypeMap() {
@@ -112,11 +103,7 @@ export namespace DigitalWallet {
         DigitalWallet = <any> 'digital-wallet'
     }
     export enum ProviderEnum {
-        Apple = <any> 'apple'
-    }
-    export enum EnvironmentsEnum {
-        Development = <any> 'development',
-        Staging = <any> 'staging',
-        Production = <any> 'production'
+        Apple = <any> 'apple',
+        Google = <any> 'google'
     }
 }

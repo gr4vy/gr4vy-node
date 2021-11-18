@@ -60,10 +60,6 @@ export class PaymentMethod {
     * The optional URL that the buyer needs to be redirected to to further authorize their payment.
     */
     'approvalUrl'?: string | null;
-    /**
-    * The environment this payment method has been stored for. This will be null of the payment method was not stored.
-    */
-    'environment'?: PaymentMethod.EnvironmentEnum;
 
     static discriminator: string | undefined = undefined;
 
@@ -132,11 +128,6 @@ export class PaymentMethod {
             "name": "approvalUrl",
             "baseName": "approval_url",
             "type": "string"
-        },
-        {
-            "name": "environment",
-            "baseName": "environment",
-            "type": "PaymentMethod.EnvironmentEnum"
         }    ];
 
     static getAttributeTypeMap() {
@@ -153,10 +144,5 @@ export namespace PaymentMethod {
         BuyerApprovalRequired = <any> 'buyer_approval_required',
         Succeeded = <any> 'succeeded',
         Failed = <any> 'failed'
-    }
-    export enum EnvironmentEnum {
-        Development = <any> 'development',
-        Staging = <any> 'staging',
-        Production = <any> 'production'
     }
 }

@@ -41,10 +41,6 @@ export class RedirectRequest {
     * The `external_identifier` of the buyer to associate this payment method to. If this field is provided then the `buyer_id` field needs to be unset.
     */
     'buyerExternalIdentifier'?: string;
-    /**
-    * Defines the environment to store this payment method in. Setting this to anything other than `production` will force Gr4vy to use a payment a service configured for that environment.
-    */
-    'environment'?: RedirectRequest.EnvironmentEnum;
 
     static discriminator: string | undefined = undefined;
 
@@ -83,11 +79,6 @@ export class RedirectRequest {
             "name": "buyerExternalIdentifier",
             "baseName": "buyer_external_identifier",
             "type": "string"
-        },
-        {
-            "name": "environment",
-            "baseName": "environment",
-            "type": "RedirectRequest.EnvironmentEnum"
         }    ];
 
     static getAttributeTypeMap() {
@@ -95,10 +86,3 @@ export class RedirectRequest {
     }
 }
 
-export namespace RedirectRequest {
-    export enum EnvironmentEnum {
-        Development = <any> 'development',
-        Staging = <any> 'staging',
-        Production = <any> 'production'
-    }
-}

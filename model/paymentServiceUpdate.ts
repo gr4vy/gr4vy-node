@@ -74,17 +74,9 @@ export class PaymentServiceUpdate {
     */
     'merchantUrl'?: string | null;
     /**
-    * Defines if the credentials are intended for the service\'s live API or sandbox/test API.
-    */
-    'credentialsMode'?: PaymentServiceUpdate.CredentialsModeEnum;
-    /**
     * Defines if this service is currently active or not.
     */
     'active'?: boolean;
-    /**
-    * Determines the Gr4vy environments in which this service should be available. This can be used in combination with the `environment` parameters in the payment method and transaction APIs to route transactions through this service.
-    */
-    'environments'?: Array<PaymentServiceUpdate.EnvironmentsEnum>;
     /**
     * The numeric rank of a payment service. Payment services with a lower position value are processed first. When a payment services is inserted at a position, any payment services with the the same value or higher are shifted down a position accordingly. When left out, the payment service is inserted at the end of the list.
     */
@@ -164,19 +156,9 @@ export class PaymentServiceUpdate {
             "type": "string"
         },
         {
-            "name": "credentialsMode",
-            "baseName": "credentials_mode",
-            "type": "PaymentServiceUpdate.CredentialsModeEnum"
-        },
-        {
             "name": "active",
             "baseName": "active",
             "type": "boolean"
-        },
-        {
-            "name": "environments",
-            "baseName": "environments",
-            "type": "Array<PaymentServiceUpdate.EnvironmentsEnum>"
         },
         {
             "name": "position",
@@ -189,14 +171,3 @@ export class PaymentServiceUpdate {
     }
 }
 
-export namespace PaymentServiceUpdate {
-    export enum CredentialsModeEnum {
-        Sandbox = <any> 'sandbox',
-        Live = <any> 'live'
-    }
-    export enum EnvironmentsEnum {
-        Development = <any> 'development',
-        Staging = <any> 'staging',
-        Production = <any> 'production'
-    }
-}

@@ -53,10 +53,6 @@ export class PaymentMethodRequest {
     * The 2-letter ISO code of the country to store this payment method for. This is used to select the payment service to use.  This only applies to `redirect` mode payment methods like `gocardless`.
     */
     'country'?: string;
-    /**
-    * Defines the environment to store this payment method in. Setting this to anything other than `production` will force Gr4vy to use a payment a service configured for that environment.
-    */
-    'environment'?: PaymentMethodRequest.EnvironmentEnum;
 
     static discriminator: string | undefined = undefined;
 
@@ -110,11 +106,6 @@ export class PaymentMethodRequest {
             "name": "country",
             "baseName": "country",
             "type": "string"
-        },
-        {
-            "name": "environment",
-            "baseName": "environment",
-            "type": "PaymentMethodRequest.EnvironmentEnum"
         }    ];
 
     static getAttributeTypeMap() {
@@ -122,10 +113,3 @@ export class PaymentMethodRequest {
     }
 }
 
-export namespace PaymentMethodRequest {
-    export enum EnvironmentEnum {
-        Development = <any> 'development',
-        Staging = <any> 'staging',
-        Production = <any> 'production'
-    }
-}

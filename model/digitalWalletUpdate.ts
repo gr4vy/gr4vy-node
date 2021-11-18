@@ -21,13 +21,9 @@ export class DigitalWalletUpdate {
     */
     'merchantName'?: string;
     /**
-    * The list of fully qualified domain names that a digital wallet provider should process payments for.
+    * The list of domain names that a digital wallet can be used on. To use a digital wallet on a website, the domain of the site is required to be in this list.
     */
     'domainNames'?: Array<string>;
-    /**
-    * Determines the Gr4vy environments in which this digital wallet should be available.
-    */
-    'environments'?: Array<DigitalWalletUpdate.EnvironmentsEnum>;
 
     static discriminator: string | undefined = undefined;
 
@@ -41,11 +37,6 @@ export class DigitalWalletUpdate {
             "name": "domainNames",
             "baseName": "domain_names",
             "type": "Array<string>"
-        },
-        {
-            "name": "environments",
-            "baseName": "environments",
-            "type": "Array<DigitalWalletUpdate.EnvironmentsEnum>"
         }    ];
 
     static getAttributeTypeMap() {
@@ -53,10 +44,3 @@ export class DigitalWalletUpdate {
     }
 }
 
-export namespace DigitalWalletUpdate {
-    export enum EnvironmentsEnum {
-        Development = <any> 'development',
-        Staging = <any> 'staging',
-        Production = <any> 'production'
-    }
-}
