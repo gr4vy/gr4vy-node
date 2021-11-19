@@ -36,8 +36,6 @@ describe('#addPaymentService', () => {
     paymentServiceRequest.acceptedCountries = ['GB']
     paymentServiceRequest.acceptedCurrencies = ['GBP']
     paymentServiceRequest.paymentServiceDefinitionId = 'stripe-card'
-    paymentServiceRequest.credentialsMode = 'sandbox'
-    paymentServiceRequest.environments = ['staging']
 
     const paymentService = await client
       .addPaymentService(paymentServiceRequest)
