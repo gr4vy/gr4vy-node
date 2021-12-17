@@ -14,28 +14,15 @@ import { RequestFile } from './models';
 import { BuyerSnapshot } from './buyerSnapshot';
 import { PaymentMethodSnapshot } from './paymentMethodSnapshot';
 import { PaymentServiceSnapshot } from './paymentServiceSnapshot';
-import { TransactionSummary } from './transactionSummary';
 
 /**
 * A transaction record.
 */
-export class Transaction {
-    /**
-    * Indicates whether the transaction was initiated by the merchant (true) or customer (false).
-    */
-    'merchantInitiated'?: boolean;
-    /**
-    * The source of the transaction. Defaults to \'ecommerce\'.
-    */
-    'paymentSource'?: Transaction.PaymentSourceEnum;
-    /**
-    * Indicates whether the transaction represents a subsequent payment coming from a setup recurring payment. Please note this flag is only compatible with payment_source set to [recurring, installment, card_on_file] and will be ignored for other values or if payment_source is not present.
-    */
-    'isSubsequentPayment'?: boolean;
+export class TransactionSummary {
     /**
     * The type of this resource. Is always `transaction`.
     */
-    'type'?: Transaction.TypeEnum;
+    'type'?: TransactionSummary.TypeEnum;
     /**
     * The unique identifier for this transaction.
     */
@@ -43,7 +30,7 @@ export class Transaction {
     /**
     * The status of the transaction. The status may change over time as asynchronous  processing events occur.
     */
-    'status'?: Transaction.StatusEnum;
+    'status'?: TransactionSummary.StatusEnum;
     /**
     * The authorized amount for this transaction. This can be different than the actual captured amount and part of this amount may be refunded.
     */
@@ -80,24 +67,9 @@ export class Transaction {
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "merchantInitiated",
-            "baseName": "merchant_initiated",
-            "type": "boolean"
-        },
-        {
-            "name": "paymentSource",
-            "baseName": "payment_source",
-            "type": "Transaction.PaymentSourceEnum"
-        },
-        {
-            "name": "isSubsequentPayment",
-            "baseName": "is_subsequent_payment",
-            "type": "boolean"
-        },
-        {
             "name": "type",
             "baseName": "type",
-            "type": "Transaction.TypeEnum"
+            "type": "TransactionSummary.TypeEnum"
         },
         {
             "name": "id",
@@ -107,7 +79,7 @@ export class Transaction {
         {
             "name": "status",
             "baseName": "status",
-            "type": "Transaction.StatusEnum"
+            "type": "TransactionSummary.StatusEnum"
         },
         {
             "name": "amount",
@@ -161,18 +133,11 @@ export class Transaction {
         }    ];
 
     static getAttributeTypeMap() {
-        return Transaction.attributeTypeMap;
+        return TransactionSummary.attributeTypeMap;
     }
 }
 
-export namespace Transaction {
-    export enum PaymentSourceEnum {
-        Ecommerce = <any> 'ecommerce',
-        Moto = <any> 'moto',
-        Recurring = <any> 'recurring',
-        Installment = <any> 'installment',
-        CardOnFile = <any> 'card_on_file'
-    }
+export namespace TransactionSummary {
     export enum TypeEnum {
         Transaction = <any> 'transaction'
     }

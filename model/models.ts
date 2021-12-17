@@ -63,6 +63,7 @@ export * from './transactionCaptureRequest';
 export * from './transactionPaymentMethodRequest';
 export * from './transactionRefundRequest';
 export * from './transactionRequest';
+export * from './transactionSummary';
 export * from './transactions';
 export * from './transactionsBatchCaptureRequest';
 export * from './userRequest';
@@ -143,6 +144,7 @@ import { TransactionCaptureRequest } from './transactionCaptureRequest';
 import { TransactionPaymentMethodRequest } from './transactionPaymentMethodRequest';
 import { TransactionRefundRequest } from './transactionRefundRequest';
 import { TransactionRequest } from './transactionRequest';
+import { TransactionSummary } from './transactionSummary';
 import { Transactions } from './transactions';
 import { TransactionsBatchCaptureRequest } from './transactionsBatchCaptureRequest';
 import { UserRequest } from './userRequest';
@@ -198,6 +200,7 @@ let enumsMap: {[index: string]: any} = {
         "PaymentMethod.StatusEnum": PaymentMethod.StatusEnum,
         "PaymentMethodSnapshot.TypeEnum": PaymentMethodSnapshot.TypeEnum,
         "PaymentMethodToken.TypeEnum": PaymentMethodToken.TypeEnum,
+        "PaymentMethodToken.StatusEnum": PaymentMethodToken.StatusEnum,
         "PaymentMethodTokenized.TypeEnum": PaymentMethodTokenized.TypeEnum,
         "PaymentMethodTokenized.SchemeEnum": PaymentMethodTokenized.SchemeEnum,
         "PaymentOption.TypeEnum": PaymentOption.TypeEnum,
@@ -208,9 +211,13 @@ let enumsMap: {[index: string]: any} = {
         "PaymentServiceSnapshot.TypeEnum": PaymentServiceSnapshot.TypeEnum,
         "TaxId.KindEnum": TaxId.KindEnum,
         "TokenizedRequest.MethodEnum": TokenizedRequest.MethodEnum,
+        "Transaction.PaymentSourceEnum": Transaction.PaymentSourceEnum,
         "Transaction.TypeEnum": Transaction.TypeEnum,
         "Transaction.StatusEnum": Transaction.StatusEnum,
         "TransactionRequest.IntentEnum": TransactionRequest.IntentEnum,
+        "TransactionRequest.PaymentSourceEnum": TransactionRequest.PaymentSourceEnum,
+        "TransactionSummary.TypeEnum": TransactionSummary.TypeEnum,
+        "TransactionSummary.StatusEnum": TransactionSummary.StatusEnum,
 }
 
 let typeMap: {[index: string]: any} = {
@@ -277,6 +284,7 @@ let typeMap: {[index: string]: any} = {
     "TransactionPaymentMethodRequest": TransactionPaymentMethodRequest,
     "TransactionRefundRequest": TransactionRefundRequest,
     "TransactionRequest": TransactionRequest,
+    "TransactionSummary": TransactionSummary,
     "Transactions": Transactions,
     "TransactionsBatchCaptureRequest": TransactionsBatchCaptureRequest,
     "UserRequest": UserRequest,

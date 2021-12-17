@@ -71,6 +71,7 @@ model/transactionCaptureRequest.ts
 model/transactionPaymentMethodRequest.ts
 model/transactionRefundRequest.ts
 model/transactionRequest.ts
+model/transactionSummary.ts
 model/transactions.ts
 model/transactionsBatchCaptureRequest.ts
 model/userRequest.ts

@@ -11,7 +11,7 @@
  */
 
 import { RequestFile } from './models';
-import { Transaction } from './transaction';
+import { TransactionSummary } from './transactionSummary';
 
 /**
 * A list of transactions.
@@ -20,7 +20,7 @@ export class Transactions {
     /**
     * A list of transactions.
     */
-    'items'?: Array<Transaction>;
+    'items'?: Array<TransactionSummary>;
     /**
     * The limit applied to request. This represents the number of items that are at maximum returned by this request.
     */
@@ -40,7 +40,7 @@ export class Transactions {
         {
             "name": "items",
             "baseName": "items",
-            "type": "Array<Transaction>"
+            "type": "Array<TransactionSummary>"
         },
         {
             "name": "limit",

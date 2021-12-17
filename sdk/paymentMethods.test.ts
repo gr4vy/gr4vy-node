@@ -13,6 +13,7 @@ if (process.env.PRIVATE_KEY) {
 
 const client = new Client({
   gr4vyId: 'spider',
+  environment: 'sandbox',
   privateKey: key,
 })
 

@@ -40,6 +40,22 @@ export class TransactionRequest {
     */
     'externalIdentifier'?: string | null;
     'threeDSecureData'?: ThreeDSecureDataV1V2;
+    /**
+    * Indicates whether the transaction was initiated by the merchant (true) or customer (false).
+    */
+    'merchantInitiated'?: boolean;
+    /**
+    * The source of the transaction. Defaults to \'ecommerce\'.
+    */
+    'paymentSource'?: TransactionRequest.PaymentSourceEnum;
+    /**
+    * Indicates whether the transaction represents a subsequent payment coming from a setup recurring payment. Please note this flag is only compatible with payment_source set to [recurring, installment, card_on_file] and will be ignored for other values or if payment_source is not present.
+    */
+    'isSubsequentPayment'?: boolean;
+    /**
+    * Any additional information about the transaction that you would like to store as key-value pairs. This data is passed to payment service providers that support it. Please visit https://gr4vy.com/docs/ under `Connections` for more information on how specific providers support metadata.
+    */
+    'metadata'?: { [key: string]: string; };
 
     static discriminator: string | undefined = undefined;
 
@@ -78,6 +94,26 @@ export class TransactionRequest {
             "name": "threeDSecureData",
             "baseName": "three_d_secure_data",
             "type": "ThreeDSecureDataV1V2"
+        },
+        {
+            "name": "merchantInitiated",
+            "baseName": "merchant_initiated",
+            "type": "boolean"
+        },
+        {
+            "name": "paymentSource",
+            "baseName": "payment_source",
+            "type": "TransactionRequest.PaymentSourceEnum"
+        },
+        {
+            "name": "isSubsequentPayment",
+            "baseName": "is_subsequent_payment",
+            "type": "boolean"
+        },
+        {
+            "name": "metadata",
+            "baseName": "metadata",
+            "type": "{ [key: string]: string; }"
         }    ];
 
     static getAttributeTypeMap() {
@@ -89,5 +125,12 @@ export namespace TransactionRequest {
     export enum IntentEnum {
         Authorize = <any> 'authorize',
         Capture = <any> 'capture'
+    }
+    export enum PaymentSourceEnum {
+        Ecommerce = <any> 'ecommerce',
+        Moto = <any> 'moto',
+        Recurring = <any> 'recurring',
+        Installment = <any> 'installment',
+        CardOnFile = <any> 'card_on_file'
     }
 }
