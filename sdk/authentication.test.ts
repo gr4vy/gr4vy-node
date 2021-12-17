@@ -18,6 +18,9 @@ const embedParams = {
   amount: 9000,
   currency: 'USD',
   buyerExternalIdentifier: 'user-123',
+  metadata: {
+    key: 'value',
+  },
 }
 
 describe('.getJWS', () => {
