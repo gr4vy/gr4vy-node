@@ -65,6 +65,7 @@ type EmbedParams = {
   currency: string
   buyerId?: string
   buyerExternalIdentifier?: string
+  metadata?: Record<string, string>
 }
 
 export default Authentication
