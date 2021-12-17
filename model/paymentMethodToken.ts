@@ -29,6 +29,10 @@ export class PaymentMethodToken {
     * The token of this payment method as it has been registered with the payment service, which can be used directly in combination with the `id` without the need to go through Gr4vy for a transaction.  In some cases this is a different value to the `id` while in others this value is identical. Please see the documentation for the payment service for more details.
     */
     'token'?: string;
+    /**
+    * The state of the payment method.  - `processing` - The payment method is still being stored. - `buyer_approval_required` - The buyer still needs to provide   approval before the payment method can be stored. - `succeeded` - The payment method is approved and stored with all   relevant payment services. - `failed` - Storing the payment method did not succeed.
+    */
+    'status'?: PaymentMethodToken.StatusEnum;
     'paymentService'?: PaymentServiceSnapshot;
 
     static discriminator: string | undefined = undefined;
@@ -50,6 +54,11 @@ export class PaymentMethodToken {
             "type": "string"
         },
         {
+            "name": "status",
+            "baseName": "status",
+            "type": "PaymentMethodToken.StatusEnum"
+        },
+        {
             "name": "paymentService",
             "baseName": "payment_service",
             "type": "PaymentServiceSnapshot"
@@ -63,5 +72,11 @@ export class PaymentMethodToken {
 export namespace PaymentMethodToken {
     export enum TypeEnum {
         PaymentMethodToken = <any> 'payment-method-token'
+    }
+    export enum StatusEnum {
+        Processing = <any> 'processing',
+        BuyerApprovalRequired = <any> 'buyer_approval_required',
+        Succeeded = <any> 'succeeded',
+        Failed = <any> 'failed'
     }
 }
