@@ -12,26 +12,14 @@
 
 import { RequestFile } from './models';
 import { BuyerSnapshot } from './buyerSnapshot';
+import { CartItem } from './cartItem';
 import { PaymentMethodSnapshot } from './paymentMethodSnapshot';
 import { PaymentServiceSnapshot } from './paymentServiceSnapshot';
-import { TransactionSummary } from './transactionSummary';
 
 /**
 * A transaction record.
 */
 export class Transaction {
-    /**
-    * Indicates whether the transaction was initiated by the merchant (true) or customer (false).
-    */
-    'merchantInitiated'?: boolean;
-    /**
-    * The source of the transaction. Defaults to \'ecommerce\'.
-    */
-    'paymentSource'?: Transaction.PaymentSourceEnum;
-    /**
-    * Indicates whether the transaction represents a subsequent payment coming from a setup recurring payment. Please note this flag is only compatible with payment_source set to [recurring, installment, card_on_file] and will be ignored for other values or if payment_source is not present.
-    */
-    'isSubsequentPayment'?: boolean;
     /**
     * The type of this resource. Is always `transaction`.
     */
@@ -75,25 +63,26 @@ export class Transaction {
     */
     'updatedAt'?: Date;
     'paymentService'?: PaymentServiceSnapshot;
+    /**
+    * Indicates whether the transaction was initiated by the merchant (true) or customer (false).
+    */
+    'merchantInitiated'?: boolean;
+    /**
+    * The source of the transaction. Defaults to `ecommerce`.
+    */
+    'paymentSource'?: Transaction.PaymentSourceEnum;
+    /**
+    * Indicates whether the transaction represents a subsequent payment coming from a setup recurring payment. Please note this flag is only compatible with `payment_source` set to `recurring`, `installment`, or `card_on_file` and will be ignored for other values or if `payment_source` is not present.
+    */
+    'isSubsequentPayment'?: boolean;
+    /**
+    * An array of cart items that represents the line items of a transaction.
+    */
+    'cartItems'?: Array<CartItem>;
 
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "merchantInitiated",
-            "baseName": "merchant_initiated",
-            "type": "boolean"
-        },
-        {
-            "name": "paymentSource",
-            "baseName": "payment_source",
-            "type": "Transaction.PaymentSourceEnum"
-        },
-        {
-            "name": "isSubsequentPayment",
-            "baseName": "is_subsequent_payment",
-            "type": "boolean"
-        },
         {
             "name": "type",
             "baseName": "type",
@@ -158,6 +147,26 @@ export class Transaction {
             "name": "paymentService",
             "baseName": "payment_service",
             "type": "PaymentServiceSnapshot"
+        },
+        {
+            "name": "merchantInitiated",
+            "baseName": "merchant_initiated",
+            "type": "boolean"
+        },
+        {
+            "name": "paymentSource",
+            "baseName": "payment_source",
+            "type": "Transaction.PaymentSourceEnum"
+        },
+        {
+            "name": "isSubsequentPayment",
+            "baseName": "is_subsequent_payment",
+            "type": "boolean"
+        },
+        {
+            "name": "cartItems",
+            "baseName": "cart_items",
+            "type": "Array<CartItem>"
         }    ];
 
     static getAttributeTypeMap() {
@@ -166,13 +175,6 @@ export class Transaction {
 }
 
 export namespace Transaction {
-    export enum PaymentSourceEnum {
-        Ecommerce = <any> 'ecommerce',
-        Moto = <any> 'moto',
-        Recurring = <any> 'recurring',
-        Installment = <any> 'installment',
-        CardOnFile = <any> 'card_on_file'
-    }
     export enum TypeEnum {
         Transaction = <any> 'transaction'
     }
@@ -198,5 +200,12 @@ export namespace Transaction {
         BuyerApprovalDeclined = <any> 'buyer_approval_declined',
         BuyerApprovalFailed = <any> 'buyer_approval_failed',
         BuyerApprovalTimedout = <any> 'buyer_approval_timedout'
+    }
+    export enum PaymentSourceEnum {
+        Ecommerce = <any> 'ecommerce',
+        Moto = <any> 'moto',
+        Recurring = <any> 'recurring',
+        Installment = <any> 'installment',
+        CardOnFile = <any> 'card_on_file'
     }
 }

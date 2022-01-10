@@ -11,6 +11,7 @@
  */
 
 import { RequestFile } from './models';
+import { CartItem } from './cartItem';
 import { ThreeDSecureDataV1V2 } from './threeDSecureDataV1V2';
 import { TransactionPaymentMethodRequest } from './transactionPaymentMethodRequest';
 
@@ -45,17 +46,21 @@ export class TransactionRequest {
     */
     'merchantInitiated'?: boolean;
     /**
-    * The source of the transaction. Defaults to \'ecommerce\'.
+    * The source of the transaction. Defaults to `ecommerce`.
     */
     'paymentSource'?: TransactionRequest.PaymentSourceEnum;
     /**
-    * Indicates whether the transaction represents a subsequent payment coming from a setup recurring payment. Please note this flag is only compatible with payment_source set to [recurring, installment, card_on_file] and will be ignored for other values or if payment_source is not present.
+    * Indicates whether the transaction represents a subsequent payment coming from a setup recurring payment. Please note this flag is only compatible with `payment_source` set to `recurring`, `installment`, or `card_on_file` and will be ignored for other values or if `payment_source` is not present.
     */
     'isSubsequentPayment'?: boolean;
     /**
     * Any additional information about the transaction that you would like to store as key-value pairs. This data is passed to payment service providers that support it. Please visit https://gr4vy.com/docs/ under `Connections` for more information on how specific providers support metadata.
     */
     'metadata'?: { [key: string]: string; };
+    /**
+    * An array of cart items that represents the line items of a transaction.
+    */
+    'cartItems'?: Array<CartItem>;
 
     static discriminator: string | undefined = undefined;
 
@@ -114,6 +119,11 @@ export class TransactionRequest {
             "name": "metadata",
             "baseName": "metadata",
             "type": "{ [key: string]: string; }"
+        },
+        {
+            "name": "cartItems",
+            "baseName": "cart_items",
+            "type": "Array<CartItem>"
         }    ];
 
     static getAttributeTypeMap() {

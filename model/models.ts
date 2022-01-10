@@ -12,6 +12,7 @@ export * from './buyerSnapshot';
 export * from './buyerUpdate';
 export * from './buyers';
 export * from './cardRequest';
+export * from './cartItem';
 export * from './digitalWallet';
 export * from './digitalWalletRequest';
 export * from './digitalWalletUpdate';
@@ -93,6 +94,7 @@ import { BuyerSnapshot } from './buyerSnapshot';
 import { BuyerUpdate } from './buyerUpdate';
 import { Buyers } from './buyers';
 import { CardRequest } from './cardRequest';
+import { CartItem } from './cartItem';
 import { DigitalWallet } from './digitalWallet';
 import { DigitalWalletRequest } from './digitalWalletRequest';
 import { DigitalWalletUpdate } from './digitalWalletUpdate';
@@ -166,6 +168,7 @@ let enumsMap: {[index: string]: any} = {
         "Buyer.TypeEnum": Buyer.TypeEnum,
         "BuyerSnapshot.TypeEnum": BuyerSnapshot.TypeEnum,
         "CardRequest.MethodEnum": CardRequest.MethodEnum,
+        "CartItem.ProductTypeEnum": CartItem.ProductTypeEnum,
         "DigitalWallet.TypeEnum": DigitalWallet.TypeEnum,
         "DigitalWallet.ProviderEnum": DigitalWallet.ProviderEnum,
         "DigitalWalletRequest.ProviderEnum": DigitalWalletRequest.ProviderEnum,
@@ -211,9 +214,9 @@ let enumsMap: {[index: string]: any} = {
         "PaymentServiceSnapshot.TypeEnum": PaymentServiceSnapshot.TypeEnum,
         "TaxId.KindEnum": TaxId.KindEnum,
         "TokenizedRequest.MethodEnum": TokenizedRequest.MethodEnum,
-        "Transaction.PaymentSourceEnum": Transaction.PaymentSourceEnum,
         "Transaction.TypeEnum": Transaction.TypeEnum,
         "Transaction.StatusEnum": Transaction.StatusEnum,
+        "Transaction.PaymentSourceEnum": Transaction.PaymentSourceEnum,
         "TransactionRequest.IntentEnum": TransactionRequest.IntentEnum,
         "TransactionRequest.PaymentSourceEnum": TransactionRequest.PaymentSourceEnum,
         "TransactionSummary.TypeEnum": TransactionSummary.TypeEnum,
@@ -233,6 +236,7 @@ let typeMap: {[index: string]: any} = {
     "BuyerUpdate": BuyerUpdate,
     "Buyers": Buyers,
     "CardRequest": CardRequest,
+    "CartItem": CartItem,
     "DigitalWallet": DigitalWallet,
     "DigitalWalletRequest": DigitalWalletRequest,
     "DigitalWalletUpdate": DigitalWalletUpdate,
