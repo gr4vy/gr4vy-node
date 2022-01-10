@@ -19,6 +19,7 @@ model/buyerSnapshot.ts
 model/buyerUpdate.ts
 model/buyers.ts
 model/cardRequest.ts
+model/cartItem.ts
 model/digitalWallet.ts
 model/digitalWalletRequest.ts
 model/digitalWalletUpdate.ts
