@@ -51,6 +51,7 @@ export * from './paymentServices';
 export * from './redirectRequest';
 export * from './resetPasswordRequest';
 export * from './setPasswordRequest';
+export * from './statementDescriptor';
 export * from './taxId';
 export * from './threeDSecureData';
 export * from './threeDSecureDataV1';
@@ -133,6 +134,7 @@ import { PaymentServices } from './paymentServices';
 import { RedirectRequest } from './redirectRequest';
 import { ResetPasswordRequest } from './resetPasswordRequest';
 import { SetPasswordRequest } from './setPasswordRequest';
+import { StatementDescriptor } from './statementDescriptor';
 import { TaxId } from './taxId';
 import { ThreeDSecureData } from './threeDSecureData';
 import { ThreeDSecureDataV1 } from './threeDSecureDataV1';
@@ -275,6 +277,7 @@ let typeMap: {[index: string]: any} = {
     "RedirectRequest": RedirectRequest,
     "ResetPasswordRequest": ResetPasswordRequest,
     "SetPasswordRequest": SetPasswordRequest,
+    "StatementDescriptor": StatementDescriptor,
     "TaxId": TaxId,
     "ThreeDSecureData": ThreeDSecureData,
     "ThreeDSecureDataV1": ThreeDSecureDataV1,
