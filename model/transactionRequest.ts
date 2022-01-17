@@ -12,6 +12,7 @@
 
 import { RequestFile } from './models';
 import { CartItem } from './cartItem';
+import { StatementDescriptor } from './statementDescriptor';
 import { ThreeDSecureDataV1V2 } from './threeDSecureDataV1V2';
 import { TransactionPaymentMethodRequest } from './transactionPaymentMethodRequest';
 
@@ -57,6 +58,7 @@ export class TransactionRequest {
     * Any additional information about the transaction that you would like to store as key-value pairs. This data is passed to payment service providers that support it. Please visit https://gr4vy.com/docs/ under `Connections` for more information on how specific providers support metadata.
     */
     'metadata'?: { [key: string]: string; };
+    'statementDescriptor'?: StatementDescriptor;
     /**
     * An array of cart items that represents the line items of a transaction.
     */
@@ -119,6 +121,11 @@ export class TransactionRequest {
             "name": "metadata",
             "baseName": "metadata",
             "type": "{ [key: string]: string; }"
+        },
+        {
+            "name": "statementDescriptor",
+            "baseName": "statement_descriptor",
+            "type": "StatementDescriptor"
         },
         {
             "name": "cartItems",

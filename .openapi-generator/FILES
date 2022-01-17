@@ -59,6 +59,7 @@ model/paymentServices.ts
 model/redirectRequest.ts
 model/resetPasswordRequest.ts
 model/setPasswordRequest.ts
+model/statementDescriptor.ts
 model/taxId.ts
 model/threeDSecureData.ts
 model/threeDSecureDataV1.ts

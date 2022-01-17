@@ -15,6 +15,7 @@ import { BuyerSnapshot } from './buyerSnapshot';
 import { CartItem } from './cartItem';
 import { PaymentMethodSnapshot } from './paymentMethodSnapshot';
 import { PaymentServiceSnapshot } from './paymentServiceSnapshot';
+import { StatementDescriptor } from './statementDescriptor';
 
 /**
 * A transaction record.
@@ -75,6 +76,7 @@ export class Transaction {
     * Indicates whether the transaction represents a subsequent payment coming from a setup recurring payment. Please note this flag is only compatible with `payment_source` set to `recurring`, `installment`, or `card_on_file` and will be ignored for other values or if `payment_source` is not present.
     */
     'isSubsequentPayment'?: boolean;
+    'statementDescriptor'?: StatementDescriptor;
     /**
     * An array of cart items that represents the line items of a transaction.
     */
@@ -162,6 +164,11 @@ export class Transaction {
             "name": "isSubsequentPayment",
             "baseName": "is_subsequent_payment",
             "type": "boolean"
+        },
+        {
+            "name": "statementDescriptor",
+            "baseName": "statement_descriptor",
+            "type": "StatementDescriptor"
         },
         {
             "name": "cartItems",
