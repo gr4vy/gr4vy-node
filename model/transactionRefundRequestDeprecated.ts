@@ -15,9 +15,9 @@ import { RequestFile } from './models';
 /**
 * A request to refund a transaction.
 */
-export class TransactionRefundRequest {
+export class TransactionRefundRequestDeprecated {
     /**
-    * The amount requested to refund.  If omitted, a full refund will be requested. Otherwise, the amount must be lower than or equal to the remaining balance in the associated transaction. Negative refunds are not supported.
+    * The (partial) amount to refund.  When omitted blank, this will refund the entire amount.
     */
     'amount'?: number;
 
@@ -31,7 +31,7 @@ export class TransactionRefundRequest {
         }    ];
 
     static getAttributeTypeMap() {
-        return TransactionRefundRequest.attributeTypeMap;
+        return TransactionRefundRequestDeprecated.attributeTypeMap;
     }
 }
 

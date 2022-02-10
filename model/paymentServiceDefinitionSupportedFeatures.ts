@@ -29,9 +29,9 @@ export class PaymentServiceDefinitionSupportedFeatures {
     */
     'threeDSecurePassThrough'?: boolean;
     /**
-    * Supports passing decrypted apple pay token to the underlying processor.
+    * Supports passing decrypted digital wallet (e.g. Apple Pay) tokens to the underlying processor.
     */
-    'applePay'?: boolean;
+    'networkTokens'?: boolean;
 
     static discriminator: string | undefined = undefined;
 
@@ -52,8 +52,8 @@ export class PaymentServiceDefinitionSupportedFeatures {
             "type": "boolean"
         },
         {
-            "name": "applePay",
-            "baseName": "apple_pay",
+            "name": "networkTokens",
+            "baseName": "network_tokens",
             "type": "boolean"
         }    ];
 

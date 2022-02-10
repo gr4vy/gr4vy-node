@@ -13,25 +13,39 @@
 import { RequestFile } from './models';
 
 /**
-* A request to refund a transaction.
+* Details for a Google Pay payment method.
 */
-export class TransactionRefundRequest {
+export class GooglePayRequest {
     /**
-    * The amount requested to refund.  If omitted, a full refund will be requested. Otherwise, the amount must be lower than or equal to the remaining balance in the associated transaction. Negative refunds are not supported.
+    * `googlepay`.
     */
-    'amount'?: number;
+    'method': GooglePayRequest.MethodEnum;
+    /**
+    * The encrypted (opaque) token returned by the Google Pay API that represents a payment method.
+    */
+    'token': object;
 
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "amount",
-            "baseName": "amount",
-            "type": "number"
+            "name": "method",
+            "baseName": "method",
+            "type": "GooglePayRequest.MethodEnum"
+        },
+        {
+            "name": "token",
+            "baseName": "token",
+            "type": "object"
         }    ];
 
     static getAttributeTypeMap() {
-        return TransactionRefundRequest.attributeTypeMap;
+        return GooglePayRequest.attributeTypeMap;
     }
 }
 
+export namespace GooglePayRequest {
+    export enum MethodEnum {
+        Googlepay = <any> 'googlepay'
+    }
+}

@@ -26,6 +26,8 @@ export * from './error404PendingCreation';
 export * from './error409DuplicateRecord';
 export * from './errorDetail';
 export * from './errorGeneric';
+export * from './googlePayRequest';
+export * from './googlePaySessionRequest';
 export * from './paymentMethod';
 export * from './paymentMethodRequest';
 export * from './paymentMethodSnapshot';
@@ -49,6 +51,8 @@ export * from './paymentServiceUpdate';
 export * from './paymentServiceUpdateFields';
 export * from './paymentServices';
 export * from './redirectRequest';
+export * from './refund';
+export * from './refunds';
 export * from './resetPasswordRequest';
 export * from './setPasswordRequest';
 export * from './statementDescriptor';
@@ -64,6 +68,7 @@ export * from './transaction';
 export * from './transactionCaptureRequest';
 export * from './transactionPaymentMethodRequest';
 export * from './transactionRefundRequest';
+export * from './transactionRefundRequestDeprecated';
 export * from './transactionRequest';
 export * from './transactionSummary';
 export * from './transactions';
@@ -109,6 +114,8 @@ import { Error404PendingCreation } from './error404PendingCreation';
 import { Error409DuplicateRecord } from './error409DuplicateRecord';
 import { ErrorDetail } from './errorDetail';
 import { ErrorGeneric } from './errorGeneric';
+import { GooglePayRequest } from './googlePayRequest';
+import { GooglePaySessionRequest } from './googlePaySessionRequest';
 import { PaymentMethod } from './paymentMethod';
 import { PaymentMethodRequest } from './paymentMethodRequest';
 import { PaymentMethodSnapshot } from './paymentMethodSnapshot';
@@ -132,6 +139,8 @@ import { PaymentServiceUpdate } from './paymentServiceUpdate';
 import { PaymentServiceUpdateFields } from './paymentServiceUpdateFields';
 import { PaymentServices } from './paymentServices';
 import { RedirectRequest } from './redirectRequest';
+import { Refund } from './refund';
+import { Refunds } from './refunds';
 import { ResetPasswordRequest } from './resetPasswordRequest';
 import { SetPasswordRequest } from './setPasswordRequest';
 import { StatementDescriptor } from './statementDescriptor';
@@ -147,6 +156,7 @@ import { Transaction } from './transaction';
 import { TransactionCaptureRequest } from './transactionCaptureRequest';
 import { TransactionPaymentMethodRequest } from './transactionPaymentMethodRequest';
 import { TransactionRefundRequest } from './transactionRefundRequest';
+import { TransactionRefundRequestDeprecated } from './transactionRefundRequestDeprecated';
 import { TransactionRequest } from './transactionRequest';
 import { TransactionSummary } from './transactionSummary';
 import { Transactions } from './transactions';
@@ -201,6 +211,7 @@ let enumsMap: {[index: string]: any} = {
         "Error409DuplicateRecord.StatusEnum": Error409DuplicateRecord.StatusEnum,
         "ErrorDetail.LocationEnum": ErrorDetail.LocationEnum,
         "ErrorGeneric.TypeEnum": ErrorGeneric.TypeEnum,
+        "GooglePayRequest.MethodEnum": GooglePayRequest.MethodEnum,
         "PaymentMethod.TypeEnum": PaymentMethod.TypeEnum,
         "PaymentMethod.StatusEnum": PaymentMethod.StatusEnum,
         "PaymentMethodSnapshot.TypeEnum": PaymentMethodSnapshot.TypeEnum,
@@ -209,11 +220,12 @@ let enumsMap: {[index: string]: any} = {
         "PaymentMethodTokenized.TypeEnum": PaymentMethodTokenized.TypeEnum,
         "PaymentMethodTokenized.SchemeEnum": PaymentMethodTokenized.SchemeEnum,
         "PaymentOption.TypeEnum": PaymentOption.TypeEnum,
-        "PaymentOptionContext.SupportedSchemesEnum": PaymentOptionContext.SupportedSchemesEnum,
         "PaymentService.TypeEnum": PaymentService.TypeEnum,
         "PaymentService.StatusEnum": PaymentService.StatusEnum,
         "PaymentServiceDefinitionFields.FormatEnum": PaymentServiceDefinitionFields.FormatEnum,
         "PaymentServiceSnapshot.TypeEnum": PaymentServiceSnapshot.TypeEnum,
+        "Refund.TypeEnum": Refund.TypeEnum,
+        "Refund.StatusEnum": Refund.StatusEnum,
         "TaxId.KindEnum": TaxId.KindEnum,
         "TokenizedRequest.MethodEnum": TokenizedRequest.MethodEnum,
         "Transaction.TypeEnum": Transaction.TypeEnum,
@@ -252,6 +264,8 @@ let typeMap: {[index: string]: any} = {
     "Error409DuplicateRecord": Error409DuplicateRecord,
     "ErrorDetail": ErrorDetail,
     "ErrorGeneric": ErrorGeneric,
+    "GooglePayRequest": GooglePayRequest,
+    "GooglePaySessionRequest": GooglePaySessionRequest,
     "PaymentMethod": PaymentMethod,
     "PaymentMethodRequest": PaymentMethodRequest,
     "PaymentMethodSnapshot": PaymentMethodSnapshot,
@@ -275,6 +289,8 @@ let typeMap: {[index: string]: any} = {
     "PaymentServiceUpdateFields": PaymentServiceUpdateFields,
     "PaymentServices": PaymentServices,
     "RedirectRequest": RedirectRequest,
+    "Refund": Refund,
+    "Refunds": Refunds,
     "ResetPasswordRequest": ResetPasswordRequest,
     "SetPasswordRequest": SetPasswordRequest,
     "StatementDescriptor": StatementDescriptor,
@@ -290,6 +306,7 @@ let typeMap: {[index: string]: any} = {
     "TransactionCaptureRequest": TransactionCaptureRequest,
     "TransactionPaymentMethodRequest": TransactionPaymentMethodRequest,
     "TransactionRefundRequest": TransactionRefundRequest,
+    "TransactionRefundRequestDeprecated": TransactionRefundRequestDeprecated,
     "TransactionRequest": TransactionRequest,
     "TransactionSummary": TransactionSummary,
     "Transactions": Transactions,

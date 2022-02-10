@@ -11,19 +11,20 @@
  */
 
 import { RequestFile } from './models';
+import { Undefined } from './undefined';
 
 /**
-* Additional context specific to the payment option. This is currently only returned for Apple Pay.
+* Additional context specific to the payment option. This is currently only returned for Apple Pay and Google Pay.
 */
 export class PaymentOptionContext {
     /**
-    * Display name of the merchant for Apple Pay.
+    * Display name of the merchant as registered with the digital wallet provider.
     */
     'merchantName'?: string;
     /**
-    * Supported schemes for Apple Pay.
+    * Card schemes supported by the digital wallet provider.
     */
-    'supportedSchemes'?: Array<PaymentOptionContext.SupportedSchemesEnum>;
+    'supportedSchemes'?: Array<Undefined>;
 
     static discriminator: string | undefined = undefined;
 
@@ -36,7 +37,7 @@ export class PaymentOptionContext {
         {
             "name": "supportedSchemes",
             "baseName": "supported_schemes",
-            "type": "Array<PaymentOptionContext.SupportedSchemesEnum>"
+            "type": "Array<Undefined>"
         }    ];
 
     static getAttributeTypeMap() {
@@ -44,21 +45,3 @@ export class PaymentOptionContext {
     }
 }
 
-export namespace PaymentOptionContext {
-    export enum SupportedSchemesEnum {
-        Amex = <any> 'amex',
-        CartesBancaires = <any> 'cartesBancaires',
-        Discover = <any> 'discover',
-        Eftpos = <any> 'eftpos',
-        Electron = <any> 'electron',
-        Elo = <any> 'elo',
-        Interac = <any> 'interac',
-        Jcb = <any> 'jcb',
-        Mada = <any> 'mada',
-        Maestro = <any> 'maestro',
-        MasterCard = <any> 'masterCard',
-        PrivateLabel = <any> 'privateLabel',
-        Visa = <any> 'visa',
-        VPay = <any> 'vPay'
-    }
-}
