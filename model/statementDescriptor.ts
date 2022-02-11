@@ -17,11 +17,11 @@ import { RequestFile } from './models';
 */
 export class StatementDescriptor {
     /**
-    * Reflects your doing business as (DBA) name.  Other validations: 1. Contains only Latin characters. 2. Contain at least one letter 3. Does not contain any of the special characters `< > \\ \' \" *` 4. Supports:   1. Lowercase: `a-z`   2. Uppercase: `A-Z`   3. Numbers: `0-9`   4. Spaces: ` `   5. Special characters: `. , _ - ? + /`
+    * Reflects your doing business as (DBA) name.  Other validations:  1. Contains only Latin characters. 2. Contain at least one letter 3. Does not contain any of the special characters `< > \\ \' \" *` 4. Supports:   1. Lower case: `a-z`   2. Upper case: `A-Z`   3. Numbers: `0-9`   4. Spaces: ` `   5. Special characters: `. , _ - ? + /`.
     */
     'name'?: string | null;
     /**
-    * A short description about the purchase.  Other validations: 1. Contains only Latin characters. 2. Contain at least one letter 3. Does not contain any of the special characters `< > \\ \' \" *` 4. Supports:   1. Lowercase: `a-z`   2. Uppercase: `A-Z`   3. Numbers: `0-9`   4. Spaces: ` `   5. Special characters: `. , _ - ? + /`
+    * A short description about the purchase.  Other validations: 1. Contains only Latin characters. 2. Contain at least one letter 3. Does not contain any of the special characters `< > \\ \' \" *` 4. Supports:   1. Lower case: `a-z`   2. Upper case: `A-Z`   3. Numbers: `0-9`   4. Spaces: ` `   5. Special characters: `. , _ - ? + /`.
     */
     'description'?: string | null;
     /**

@@ -13,25 +13,25 @@
 import { RequestFile } from './models';
 
 /**
-* A request to refund a transaction.
+* Initiates a new session with Google Pay.
 */
-export class TransactionRefundRequest {
+export class GooglePaySessionRequest {
     /**
-    * The amount requested to refund.  If omitted, a full refund will be requested. Otherwise, the amount must be lower than or equal to the remaining balance in the associated transaction. Negative refunds are not supported.
+    * Fully qualified domain name of the merchant.
     */
-    'amount'?: number;
+    'originDomain': string;
 
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "amount",
-            "baseName": "amount",
-            "type": "number"
+            "name": "originDomain",
+            "baseName": "origin_domain",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
-        return TransactionRefundRequest.attributeTypeMap;
+        return GooglePaySessionRequest.attributeTypeMap;
     }
 }
 

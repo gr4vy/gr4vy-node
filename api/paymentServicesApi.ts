@@ -315,7 +315,7 @@ export class PaymentServicesApi {
      * @param cursor A cursor that identifies the page of results to return. This is used to paginate the results of this API.  For the first page of results, this parameter can be left out. For additional pages, use the value returned by the API in the &#x60;next_cursor&#x60; field. Similarly the &#x60;previous_cursor&#x60; can be used to reverse backwards in the list.
      * @param method Filters the results to only the items for which the &#x60;method&#x60; has been set to this value.
      */
-    public async listPaymentServices (limit?: number, cursor?: string, method?: 'card' | 'paypal' | 'banked' | 'gocardless' | 'stripedd' | 'applepay', options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: PaymentServices;  }> {
+    public async listPaymentServices (limit?: number, cursor?: string, method?: 'card' | 'paypal' | 'banked' | 'gocardless' | 'stripedd' | 'applepay' | 'googlepay' | 'afterpay' | 'clearpay' | 'zippay', options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: PaymentServices;  }> {
         const localVarPath = this.basePath + '/payment-services';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
@@ -337,7 +337,7 @@ export class PaymentServicesApi {
         }
 
         if (method !== undefined) {
-            localVarQueryParameters['method'] = ObjectSerializer.serialize(method, "'card' | 'paypal' | 'banked' | 'gocardless' | 'stripedd' | 'applepay'");
+            localVarQueryParameters['method'] = ObjectSerializer.serialize(method, "'card' | 'paypal' | 'banked' | 'gocardless' | 'stripedd' | 'applepay' | 'googlepay' | 'afterpay' | 'clearpay' | 'zippay'");
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);

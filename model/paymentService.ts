@@ -101,6 +101,10 @@ export class PaymentService {
     * The date and time when this service was last updated.
     */
     'updatedAt'?: Date;
+    /**
+    * The URL that needs to be configured with this payment service as the receiving endpoint for webhooks from the service to Gr4vy. Currently, Gr4vy does not yet automatically register webhooks on setup, and therefore webhooks need to be registered manually by the merchant.
+    */
+    'webhookUrl'?: string | null;
 
     static discriminator: string | undefined = undefined;
 
@@ -214,6 +218,11 @@ export class PaymentService {
             "name": "updatedAt",
             "baseName": "updated_at",
             "type": "Date"
+        },
+        {
+            "name": "webhookUrl",
+            "baseName": "webhook_url",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
