@@ -99,9 +99,11 @@ export class PaymentOptionsApi {
      * @summary List payment options
      * @param country Filters the results to only the items which support this country code. A country is formatted as 2-letter ISO country code.
      * @param currency Filters the results to only the items which support this currency code. A currency is formatted as 3-letter ISO currency code.
+     * @param amount Used by the Flow engine to filter the results based on the transaction amount.
+     * @param metadata Used by the Flow engine to filter available options based on various client-defined parameters. If present, this must be a string representing a valid JSON dictionary.
      * @param locale An ISO 639-1 Language Code and optional ISO 3166 Country Code. This locale determines the language for the labels returned for every payment option.
      */
-    public async listPaymentOptions (country?: string, currency?: string, locale?: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: PaymentOptions;  }> {
+    public async listPaymentOptions (country?: string, currency?: string, amount?: number, metadata?: string, locale?: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: PaymentOptions;  }> {
         const localVarPath = this.basePath + '/payment-options';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
@@ -120,6 +122,14 @@ export class PaymentOptionsApi {
 
         if (currency !== undefined) {
             localVarQueryParameters['currency'] = ObjectSerializer.serialize(currency, "string");
+        }
+
+        if (amount !== undefined) {
+            localVarQueryParameters['amount'] = ObjectSerializer.serialize(amount, "number");
+        }
+
+        if (metadata !== undefined) {
+            localVarQueryParameters['metadata'] = ObjectSerializer.serialize(metadata, "string");
         }
 
         if (locale !== undefined) {

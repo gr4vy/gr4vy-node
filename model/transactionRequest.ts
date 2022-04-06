@@ -63,6 +63,10 @@ export class TransactionRequest {
     * An array of cart items that represents the line items of a transaction.
     */
     'cartItems'?: Array<CartItem>;
+    /**
+    * A scheme\'s transaction identifier to use in connecting a merchant initiated transaction to a previous customer initiated transaction.  If not provided, and a qualifying customer initiated transaction has been previously made, then Gr4vy will populate this value with the identifier returned for that transaction.  e.g. the Visa Transaction Identifier, or Mastercard Trace ID.
+    */
+    'previousSchemeTransactionId'?: string | null;
 
     static discriminator: string | undefined = undefined;
 
@@ -131,6 +135,11 @@ export class TransactionRequest {
             "name": "cartItems",
             "baseName": "cart_items",
             "type": "Array<CartItem>"
+        },
+        {
+            "name": "previousSchemeTransactionId",
+            "baseName": "previous_scheme_transaction_id",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {

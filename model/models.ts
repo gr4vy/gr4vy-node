@@ -5,12 +5,14 @@ export * from './addressUpdate';
 export * from './applePayRequest';
 export * from './applePaySessionRequest';
 export * from './billingDetails';
+export * from './billingDetailsRequest';
 export * from './billingDetailsUpdateRequest';
 export * from './buyer';
 export * from './buyerRequest';
 export * from './buyerSnapshot';
 export * from './buyerUpdate';
 export * from './buyers';
+export * from './cardDetails';
 export * from './cardRequest';
 export * from './cartItem';
 export * from './digitalWallet';
@@ -19,6 +21,7 @@ export * from './digitalWalletUpdate';
 export * from './digitalWallets';
 export * from './error400BadRequest';
 export * from './error400IncorrectJson';
+export * from './error400InvalidCredentials';
 export * from './error401Unauthorized';
 export * from './error403Forbidden';
 export * from './error404NotFound';
@@ -68,7 +71,6 @@ export * from './transaction';
 export * from './transactionCaptureRequest';
 export * from './transactionPaymentMethodRequest';
 export * from './transactionRefundRequest';
-export * from './transactionRefundRequestDeprecated';
 export * from './transactionRequest';
 export * from './transactionSummary';
 export * from './transactions';
@@ -93,12 +95,14 @@ import { AddressUpdate } from './addressUpdate';
 import { ApplePayRequest } from './applePayRequest';
 import { ApplePaySessionRequest } from './applePaySessionRequest';
 import { BillingDetails } from './billingDetails';
+import { BillingDetailsRequest } from './billingDetailsRequest';
 import { BillingDetailsUpdateRequest } from './billingDetailsUpdateRequest';
 import { Buyer } from './buyer';
 import { BuyerRequest } from './buyerRequest';
 import { BuyerSnapshot } from './buyerSnapshot';
 import { BuyerUpdate } from './buyerUpdate';
 import { Buyers } from './buyers';
+import { CardDetails } from './cardDetails';
 import { CardRequest } from './cardRequest';
 import { CartItem } from './cartItem';
 import { DigitalWallet } from './digitalWallet';
@@ -107,6 +111,7 @@ import { DigitalWalletUpdate } from './digitalWalletUpdate';
 import { DigitalWallets } from './digitalWallets';
 import { Error400BadRequest } from './error400BadRequest';
 import { Error400IncorrectJson } from './error400IncorrectJson';
+import { Error400InvalidCredentials } from './error400InvalidCredentials';
 import { Error401Unauthorized } from './error401Unauthorized';
 import { Error403Forbidden } from './error403Forbidden';
 import { Error404NotFound } from './error404NotFound';
@@ -156,7 +161,6 @@ import { Transaction } from './transaction';
 import { TransactionCaptureRequest } from './transactionCaptureRequest';
 import { TransactionPaymentMethodRequest } from './transactionPaymentMethodRequest';
 import { TransactionRefundRequest } from './transactionRefundRequest';
-import { TransactionRefundRequestDeprecated } from './transactionRefundRequestDeprecated';
 import { TransactionRequest } from './transactionRequest';
 import { TransactionSummary } from './transactionSummary';
 import { Transactions } from './transactions';
@@ -177,8 +181,11 @@ let primitives = [
 
 let enumsMap: {[index: string]: any} = {
         "ApplePayRequest.MethodEnum": ApplePayRequest.MethodEnum,
+        "BillingDetails.TypeEnum": BillingDetails.TypeEnum,
         "Buyer.TypeEnum": Buyer.TypeEnum,
         "BuyerSnapshot.TypeEnum": BuyerSnapshot.TypeEnum,
+        "CardDetails.TypeEnum": CardDetails.TypeEnum,
+        "CardDetails.CardTypeEnum": CardDetails.CardTypeEnum,
         "CardRequest.MethodEnum": CardRequest.MethodEnum,
         "CartItem.ProductTypeEnum": CartItem.ProductTypeEnum,
         "DigitalWallet.TypeEnum": DigitalWallet.TypeEnum,
@@ -190,6 +197,9 @@ let enumsMap: {[index: string]: any} = {
         "Error400IncorrectJson.TypeEnum": Error400IncorrectJson.TypeEnum,
         "Error400IncorrectJson.CodeEnum": Error400IncorrectJson.CodeEnum,
         "Error400IncorrectJson.StatusEnum": Error400IncorrectJson.StatusEnum,
+        "Error400InvalidCredentials.TypeEnum": Error400InvalidCredentials.TypeEnum,
+        "Error400InvalidCredentials.CodeEnum": Error400InvalidCredentials.CodeEnum,
+        "Error400InvalidCredentials.StatusEnum": Error400InvalidCredentials.StatusEnum,
         "Error401Unauthorized.TypeEnum": Error401Unauthorized.TypeEnum,
         "Error401Unauthorized.CodeEnum": Error401Unauthorized.CodeEnum,
         "Error401Unauthorized.StatusEnum": Error401Unauthorized.StatusEnum,
@@ -231,6 +241,8 @@ let enumsMap: {[index: string]: any} = {
         "Transaction.TypeEnum": Transaction.TypeEnum,
         "Transaction.StatusEnum": Transaction.StatusEnum,
         "Transaction.PaymentSourceEnum": Transaction.PaymentSourceEnum,
+        "Transaction.AvsResponseCodeEnum": Transaction.AvsResponseCodeEnum,
+        "Transaction.CvvResponseCodeEnum": Transaction.CvvResponseCodeEnum,
         "TransactionRequest.IntentEnum": TransactionRequest.IntentEnum,
         "TransactionRequest.PaymentSourceEnum": TransactionRequest.PaymentSourceEnum,
         "TransactionSummary.TypeEnum": TransactionSummary.TypeEnum,
@@ -243,12 +255,14 @@ let typeMap: {[index: string]: any} = {
     "ApplePayRequest": ApplePayRequest,
     "ApplePaySessionRequest": ApplePaySessionRequest,
     "BillingDetails": BillingDetails,
+    "BillingDetailsRequest": BillingDetailsRequest,
     "BillingDetailsUpdateRequest": BillingDetailsUpdateRequest,
     "Buyer": Buyer,
     "BuyerRequest": BuyerRequest,
     "BuyerSnapshot": BuyerSnapshot,
     "BuyerUpdate": BuyerUpdate,
     "Buyers": Buyers,
+    "CardDetails": CardDetails,
     "CardRequest": CardRequest,
     "CartItem": CartItem,
     "DigitalWallet": DigitalWallet,
@@ -257,6 +271,7 @@ let typeMap: {[index: string]: any} = {
     "DigitalWallets": DigitalWallets,
     "Error400BadRequest": Error400BadRequest,
     "Error400IncorrectJson": Error400IncorrectJson,
+    "Error400InvalidCredentials": Error400InvalidCredentials,
     "Error401Unauthorized": Error401Unauthorized,
     "Error403Forbidden": Error403Forbidden,
     "Error404NotFound": Error404NotFound,
@@ -306,7 +321,6 @@ let typeMap: {[index: string]: any} = {
     "TransactionCaptureRequest": TransactionCaptureRequest,
     "TransactionPaymentMethodRequest": TransactionPaymentMethodRequest,
     "TransactionRefundRequest": TransactionRefundRequest,
-    "TransactionRefundRequestDeprecated": TransactionRefundRequestDeprecated,
     "TransactionRequest": TransactionRequest,
     "TransactionSummary": TransactionSummary,
     "Transactions": Transactions,

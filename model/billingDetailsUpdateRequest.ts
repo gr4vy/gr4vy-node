@@ -13,7 +13,7 @@
 import { RequestFile } from './models';
 import { Address } from './address';
 import { AddressUpdate } from './addressUpdate';
-import { BillingDetails } from './billingDetails';
+import { BillingDetailsRequest } from './billingDetailsRequest';
 import { TaxId } from './taxId';
 
 export class BillingDetailsUpdateRequest {

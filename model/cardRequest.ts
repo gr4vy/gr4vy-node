@@ -44,10 +44,6 @@ export class CardRequest {
     * The `external_identifier` of the buyer to associate this payment method to. If this field is provided then the `buyer_id` field needs to be unset.
     */
     'buyerExternalIdentifier'?: string;
-    /**
-    * The redirect URL to redirect a buyer after a 3D Secure flow has been completed. This will be appended with both a transaction ID and status (e.g. `https://example.com/callback? gr4vy_transaction_id=123&gr4vy_transaction_status=capture_succeeded`). This is required if the transaction request body does not include `three_d_secure_data`.
-    */
-    'redirectUrl'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -85,11 +81,6 @@ export class CardRequest {
         {
             "name": "buyerExternalIdentifier",
             "baseName": "buyer_external_identifier",
-            "type": "string"
-        },
-        {
-            "name": "redirectUrl",
-            "baseName": "redirect_url",
             "type": "string"
         }    ];
 

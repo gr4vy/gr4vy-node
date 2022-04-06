@@ -11,7 +11,7 @@
  */
 
 import { RequestFile } from './models';
-import { BillingDetails } from './billingDetails';
+import { BillingDetailsRequest } from './billingDetailsRequest';
 
 /**
 * A request to create a buyer.
@@ -25,7 +25,7 @@ export class BuyerRequest {
     * A unique name for this buyer which is used in the Gr4vy admin panel to give a buyer a human readable name.
     */
     'displayName'?: string | null;
-    'billingDetails'?: BillingDetails;
+    'billingDetails'?: BillingDetailsRequest;
 
     static discriminator: string | undefined = undefined;
 
@@ -43,7 +43,7 @@ export class BuyerRequest {
         {
             "name": "billingDetails",
             "baseName": "billing_details",
-            "type": "BillingDetails"
+            "type": "BillingDetailsRequest"
         }    ];
 
     static getAttributeTypeMap() {
