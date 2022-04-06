@@ -22,7 +22,7 @@ export class PaymentServiceUpdate {
     */
     'displayName'?: string;
     /**
-    * A list of fields, each containing a key-value pair for each field defined by the definition for this payment service e.g. for stripe-card `secret_key` is required and so must be sent with in this field.
+    * A list of fields, each containing a key-value pair for each field defined by the definition for this payment service e.g. for stripe-card `secret_key` is required and so must be sent within this field.
     */
     'fields'?: Array<PaymentServiceUpdateFields>;
     /**

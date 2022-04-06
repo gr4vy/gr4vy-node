@@ -11,25 +11,24 @@
  */
 
 import { RequestFile } from './models';
-import { Address } from './address';
 
 export class AddressUpdate {
     /**
     * The city for the billing address.
     */
-    'city': string;
+    'city'?: string;
     /**
     * The country for the billing address.
     */
-    'country': string;
+    'country'?: string;
     /**
     * The postal code or zip code for the billing address.
     */
-    'postalCode': string;
+    'postalCode'?: string;
     /**
     * The state, county, or province for the billing address.
     */
-    'state': string;
+    'state'?: string;
     /**
     * The code of state, county, or province for the billing address in ISO 3166-2 format.
     */
@@ -37,19 +36,19 @@ export class AddressUpdate {
     /**
     * The house number or name for the billing address. Not all payment services use this field but some do.
     */
-    'houseNumberOrName': string | null;
+    'houseNumberOrName'?: string | null;
     /**
     * The first line of the billing address.
     */
-    'line1': string;
+    'line1'?: string;
     /**
     * The second line of the billing address.
     */
-    'line2': string | null;
+    'line2'?: string | null;
     /**
     * The optional name of the company or organisation to add to the billing address.
     */
-    'organization': string | null;
+    'organization'?: string | null;
 
     static discriminator: string | undefined = undefined;
 

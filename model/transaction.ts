@@ -81,6 +81,26 @@ export class Transaction {
     * An array of cart items that represents the line items of a transaction.
     */
     'cartItems'?: Array<CartItem>;
+    /**
+    * An identifier for the transaction used by the scheme itself, when available.  e.g. the Visa Transaction Identifier, or Mastercard Trace ID.
+    */
+    'schemeTransactionId'?: string | null;
+    /**
+    * This is the response code received from the payment service. This can be set to any value and is not standardized across different payment services.
+    */
+    'rawResponseCode'?: string | null;
+    /**
+    * This is the response description received from the payment service. This can be set to any value and is not standardized across different payment services.
+    */
+    'rawResponseDescription'?: string | null;
+    /**
+    * The response code received from the payment service for the Address Verification Check (AVS). This code is mapped to a standardized Gr4vy AVS response code.  - `no_match` - neither address or postal code match - `match` - both address and postal code match - `partial_match_address` - address matches but postal code does not - `partial_match_postcode` - postal code matches but address does not - `unavailable ` - AVS is unavailable for card/country  The value of this field can be `null` if the payment service did not provide a response.
+    */
+    'avsResponseCode'?: Transaction.AvsResponseCodeEnum;
+    /**
+    * The response code received from the payment service for the Card Verification Value (CVV). This code is mapped to a standardized Gr4vy CVV response code.  - `no_match` - the CVV does not match the expected value - `match` - the CVV matches the expected value - `unavailable ` - CVV check unavailable for card our country - `not_provided ` - CVV not provided  The value of this field can be `null` if the payment service did not provide a response.
+    */
+    'cvvResponseCode'?: Transaction.CvvResponseCodeEnum;
 
     static discriminator: string | undefined = undefined;
 
@@ -174,6 +194,31 @@ export class Transaction {
             "name": "cartItems",
             "baseName": "cart_items",
             "type": "Array<CartItem>"
+        },
+        {
+            "name": "schemeTransactionId",
+            "baseName": "scheme_transaction_id",
+            "type": "string"
+        },
+        {
+            "name": "rawResponseCode",
+            "baseName": "raw_response_code",
+            "type": "string"
+        },
+        {
+            "name": "rawResponseDescription",
+            "baseName": "raw_response_description",
+            "type": "string"
+        },
+        {
+            "name": "avsResponseCode",
+            "baseName": "avs_response_code",
+            "type": "Transaction.AvsResponseCodeEnum"
+        },
+        {
+            "name": "cvvResponseCode",
+            "baseName": "cvv_response_code",
+            "type": "Transaction.CvvResponseCodeEnum"
         }    ];
 
     static getAttributeTypeMap() {
@@ -217,5 +262,18 @@ export namespace Transaction {
         Recurring = <any> 'recurring',
         Installment = <any> 'installment',
         CardOnFile = <any> 'card_on_file'
+    }
+    export enum AvsResponseCodeEnum {
+        NoMatch = <any> 'no_match',
+        Match = <any> 'match',
+        PartialMatchAddress = <any> 'partial_match_address',
+        PartialMatchPostcode = <any> 'partial_match_postcode',
+        Unavailable = <any> 'unavailable'
+    }
+    export enum CvvResponseCodeEnum {
+        NoMatch = <any> 'no_match',
+        Match = <any> 'match',
+        Unavailable = <any> 'unavailable',
+        NotProvided = <any> 'not_provided'
     }
 }

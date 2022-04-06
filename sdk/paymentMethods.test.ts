@@ -52,7 +52,7 @@ describe('#storePaymentMethod', () => {
     expect(paymentMethod.body).toBeDefined()
     paymentMethodId = paymentMethod.body.id
     expect(paymentMethodId).toHaveLength(36)
-    expect(paymentMethod.body.status).toEqual('succeeded')
+    expect(paymentMethod.body.status).toEqual('processing')
   })
 })
 

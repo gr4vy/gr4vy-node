@@ -12,12 +12,14 @@ model/addressUpdate.ts
 model/applePayRequest.ts
 model/applePaySessionRequest.ts
 model/billingDetails.ts
+model/billingDetailsRequest.ts
 model/billingDetailsUpdateRequest.ts
 model/buyer.ts
 model/buyerRequest.ts
 model/buyerSnapshot.ts
 model/buyerUpdate.ts
 model/buyers.ts
+model/cardDetails.ts
 model/cardRequest.ts
 model/cartItem.ts
 model/digitalWallet.ts
@@ -26,6 +28,7 @@ model/digitalWalletUpdate.ts
 model/digitalWallets.ts
 model/error400BadRequest.ts
 model/error400IncorrectJson.ts
+model/error400InvalidCredentials.ts
 model/error401Unauthorized.ts
 model/error403Forbidden.ts
 model/error404NotFound.ts
@@ -76,7 +79,6 @@ model/transaction.ts
 model/transactionCaptureRequest.ts
 model/transactionPaymentMethodRequest.ts
 model/transactionRefundRequest.ts
-model/transactionRefundRequestDeprecated.ts
 model/transactionRequest.ts
 model/transactionSummary.ts
 model/transactions.ts

@@ -19,7 +19,7 @@ export class TaxId {
     /**
     * The tax ID for the buyer.
     */
-    'id'?: string;
+    'value': string;
     /**
     * The kind of tax ID.
     */
@@ -29,8 +29,8 @@ export class TaxId {
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "id",
-            "baseName": "id",
+            "name": "value",
+            "baseName": "value",
             "type": "string"
         },
         {
@@ -48,6 +48,7 @@ export namespace TaxId {
     export enum KindEnum {
         AeTrn = <any> 'ae.trn',
         AuAbn = <any> 'au.abn',
+        ArCuit = <any> 'ar.cuit',
         BrCnpj = <any> 'br.cnpj',
         BrCpf = <any> 'br.cpf',
         CaBn = <any> 'ca.bn',
@@ -62,6 +63,7 @@ export namespace TaxId {
         EuVat = <any> 'eu.vat',
         GbVat = <any> 'gb.vat',
         HkBr = <any> 'hk.br',
+        IdNik = <any> 'id.nik',
         IdNpwp = <any> 'id.npwp',
         InGst = <any> 'in.gst',
         JpCn = <any> 'jp.cn',
@@ -71,6 +73,7 @@ export namespace TaxId {
         MxRfc = <any> 'mx.rfc',
         MyFrp = <any> 'my.frp',
         MyItn = <any> 'my.itn',
+        MyNric = <any> 'my.nric',
         MySst = <any> 'my.sst',
         NoVat = <any> 'no.vat',
         NzGst = <any> 'nz.gst',
@@ -79,6 +82,7 @@ export namespace TaxId {
         SaVat = <any> 'sa.vat',
         SgGst = <any> 'sg.gst',
         SgUen = <any> 'sg.uen',
+        ThId = <any> 'th.id',
         ThVat = <any> 'th.vat',
         TwVat = <any> 'tw.vat',
         UsEin = <any> 'us.ein',

@@ -32,6 +32,22 @@ export class PaymentServiceDefinitionSupportedFeatures {
     * Supports passing decrypted digital wallet (e.g. Apple Pay) tokens to the underlying processor.
     */
     'networkTokens'?: boolean;
+    /**
+    * Supports verifying the credentials entered while setting up the underlying processor. This is for internal use only.
+    */
+    'verifyCredentials'?: boolean;
+    /**
+    * Supports [voiding](#operation/void-transaction) authorized transactions.
+    */
+    '_void'?: boolean;
+    /**
+    * Supports [refunding](#operation/refund-transaction) captured transactions.
+    */
+    'refunds'?: boolean;
+    /**
+    * Supports [partially refunding](#operation/refund-transaction) captured transactions.
+    */
+    'partialRefunds'?: boolean;
 
     static discriminator: string | undefined = undefined;
 
@@ -54,6 +70,26 @@ export class PaymentServiceDefinitionSupportedFeatures {
         {
             "name": "networkTokens",
             "baseName": "network_tokens",
+            "type": "boolean"
+        },
+        {
+            "name": "verifyCredentials",
+            "baseName": "verify_credentials",
+            "type": "boolean"
+        },
+        {
+            "name": "_void",
+            "baseName": "void",
+            "type": "boolean"
+        },
+        {
+            "name": "refunds",
+            "baseName": "refunds",
+            "type": "boolean"
+        },
+        {
+            "name": "partialRefunds",
+            "baseName": "partial_refunds",
             "type": "boolean"
         }    ];
 

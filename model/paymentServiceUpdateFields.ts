@@ -13,7 +13,7 @@
 import { RequestFile } from './models';
 
 /**
-* A field containing a key-value pair for a required field defined by the service for this payment service.
+* A key-value pair that represents a field defined in the definition for this payment service.
 */
 export class PaymentServiceUpdateFields {
     /**

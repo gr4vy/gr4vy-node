@@ -15,15 +15,11 @@ import { Address } from './address';
 import { TaxId } from './taxId';
 
 /**
-* Billing details associated to a buyer.
+* Billing details to use associated to a buyer.
 */
-export class BillingDetails {
+export class BillingDetailsRequest {
     /**
-    * The type of this resource. Is always `billing-details`.
-    */
-    'type'?: BillingDetails.TypeEnum;
-    /**
-    * The first name(s) or given name of the buyer.
+    * The first name(s) or given name for the buyer.
     */
     'firstName'?: string | null;
     /**
@@ -31,11 +27,11 @@ export class BillingDetails {
     */
     'lastName'?: string | null;
     /**
-    * The email address of the buyer.
+    * The email address for the buyer.
     */
     'emailAddress'?: string | null;
     /**
-    * The phone number of the buyer. This expect the number in the [E164 number standard](https://www.twilio.com/docs/glossary/what-e164).
+    * The phone number to use for this request. This expect the number in the [E164 number standard](https://www.twilio.com/docs/glossary/what-e164).
     */
     'phoneNumber'?: string | null;
     'address'?: Address;
@@ -44,11 +40,6 @@ export class BillingDetails {
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "type",
-            "baseName": "type",
-            "type": "BillingDetails.TypeEnum"
-        },
         {
             "name": "firstName",
             "baseName": "first_name",
@@ -81,12 +72,7 @@ export class BillingDetails {
         }    ];
 
     static getAttributeTypeMap() {
-        return BillingDetails.attributeTypeMap;
+        return BillingDetailsRequest.attributeTypeMap;
     }
 }
 
-export namespace BillingDetails {
-    export enum TypeEnum {
-        BillingDetails = <any> 'billing-details'
-    }
-}

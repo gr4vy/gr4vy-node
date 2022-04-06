@@ -29,6 +29,10 @@ export class PaymentServiceSnapshot {
     */
     'paymentServiceDefinitionId'?: string;
     'method'?: string;
+    /**
+    * The custom name set for this service.
+    */
+    'displayName'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -51,6 +55,11 @@ export class PaymentServiceSnapshot {
         {
             "name": "method",
             "baseName": "method",
+            "type": "string"
+        },
+        {
+            "name": "displayName",
+            "baseName": "display_name",
             "type": "string"
         }    ];
 

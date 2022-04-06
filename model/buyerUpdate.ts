@@ -11,7 +11,7 @@
  */
 
 import { RequestFile } from './models';
-import { BillingDetails } from './billingDetails';
+import { BillingDetailsRequest } from './billingDetailsRequest';
 import { BillingDetailsUpdateRequest } from './billingDetailsUpdateRequest';
 import { BuyerRequest } from './buyerRequest';
 
