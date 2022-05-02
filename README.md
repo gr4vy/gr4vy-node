@@ -41,6 +41,26 @@ console.log(buyer)
 // }
 ```
 
+## Environment
+
+The SDK defaults the environment to "sandbox", to send transactions to production, set the environment in `Client`:
+
+```js
+
+const client = new Client({
+    gr4vyId: "YOUR_GR4VY_ID",
+    privateKey: key,
+    environment:"sandbox"
+});
+
+const client = new Client({
+    gr4vyId: "YOUR_GR4VY_ID",
+    privateKey: key,
+    environment:"production"
+});
+
+```
+
 ## Gr4vy Embed
 
 To create a token for Gr4vy Embed, call the `client.getEmbedToken()` function
