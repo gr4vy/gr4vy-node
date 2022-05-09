@@ -81,6 +81,10 @@ export class PaymentServiceUpdate {
     * The numeric rank of a payment service. Payment services with a lower position value are processed first. When a payment services is inserted at a position, any payment services with the the same value or higher are shifted down a position accordingly. When left out, the payment service is inserted at the end of the list.
     */
     'position'?: number;
+    /**
+    * Defines if tokenization is enabled for the service (can only be enabled if the payment service definition supports it).
+    */
+    'paymentMethodTokenizationEnabled'?: boolean;
 
     static discriminator: string | undefined = undefined;
 
@@ -164,6 +168,11 @@ export class PaymentServiceUpdate {
             "name": "position",
             "baseName": "position",
             "type": "number"
+        },
+        {
+            "name": "paymentMethodTokenizationEnabled",
+            "baseName": "payment_method_tokenization_enabled",
+            "type": "boolean"
         }    ];
 
     static getAttributeTypeMap() {

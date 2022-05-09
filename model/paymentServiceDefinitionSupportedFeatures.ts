@@ -21,6 +21,10 @@ export class PaymentServiceDefinitionSupportedFeatures {
     */
     'paymentMethodTokenization'?: boolean;
     /**
+    * Supports toggling tokenization for a payment method on or off from the dashboard.
+    */
+    'paymentMethodTokenizationToggle'?: boolean;
+    /**
     * Supports hosted 3-D Secure with a redirect.
     */
     'threeDSecureHosted'?: boolean;
@@ -55,6 +59,11 @@ export class PaymentServiceDefinitionSupportedFeatures {
         {
             "name": "paymentMethodTokenization",
             "baseName": "payment_method_tokenization",
+            "type": "boolean"
+        },
+        {
+            "name": "paymentMethodTokenizationToggle",
+            "baseName": "payment_method_tokenization_toggle",
             "type": "boolean"
         },
         {

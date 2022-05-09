@@ -11,6 +11,7 @@
  */
 
 import { RequestFile } from './models';
+import { CardRequiredFields } from './cardRequiredFields';
 
 /**
 * Details about a card.
@@ -21,7 +22,7 @@ export class CardDetails {
     */
     'type'?: CardDetails.TypeEnum;
     /**
-    * The 6-8 digit BIN of the card.
+    * The 8 digit BIN of the card. When looking up card details using a `payment_method_id` this value will be `null`.
     */
     'id'?: string;
     /**
@@ -36,10 +37,7 @@ export class CardDetails {
     * The 2-letter ISO code of the issuing country of the card.
     */
     'country'?: string;
-    /**
-    * A list of fields that are required to process a transaction for this card.
-    */
-    'requiredFields'?: Array<string>;
+    'requiredFields'?: CardRequiredFields;
 
     static discriminator: string | undefined = undefined;
 
@@ -72,7 +70,7 @@ export class CardDetails {
         {
             "name": "requiredFields",
             "baseName": "required_fields",
-            "type": "Array<string>"
+            "type": "CardRequiredFields"
         }    ];
 
     static getAttributeTypeMap() {

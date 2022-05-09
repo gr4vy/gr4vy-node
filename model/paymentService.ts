@@ -11,6 +11,7 @@
  */
 
 import { RequestFile } from './models';
+import { PaymentServiceFields } from './paymentServiceFields';
 
 /**
 * An active, configured payment service.
@@ -94,6 +95,10 @@ export class PaymentService {
     */
     'position'?: number;
     /**
+    * Defines if tokenization is enabled for the service (can only be enabled if the payment service definition supports it).
+    */
+    'paymentMethodTokenizationEnabled'?: boolean;
+    /**
     * The date and time when this service was created.
     */
     'createdAt'?: Date;
@@ -105,6 +110,10 @@ export class PaymentService {
     * The URL that needs to be configured with this payment service as the receiving endpoint for webhooks from the service to Gr4vy. Currently, Gr4vy does not yet automatically register webhooks on setup, and therefore webhooks need to be registered manually by the merchant.
     */
     'webhookUrl'?: string | null;
+    /**
+    * A list of fields, each containing a key-value pair for each field configured for this payment service. Fields marked as `secret` (see Payment Service Definition) are not returned.
+    */
+    'fields'?: Array<PaymentServiceFields>;
 
     static discriminator: string | undefined = undefined;
 
@@ -210,6 +219,11 @@ export class PaymentService {
             "type": "number"
         },
         {
+            "name": "paymentMethodTokenizationEnabled",
+            "baseName": "payment_method_tokenization_enabled",
+            "type": "boolean"
+        },
+        {
             "name": "createdAt",
             "baseName": "created_at",
             "type": "Date"
@@ -223,6 +237,11 @@ export class PaymentService {
             "name": "webhookUrl",
             "baseName": "webhook_url",
             "type": "string"
+        },
+        {
+            "name": "fields",
+            "baseName": "fields",
+            "type": "Array<PaymentServiceFields>"
         }    ];
 
     static getAttributeTypeMap() {

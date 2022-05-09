@@ -12,43 +12,34 @@
 
 import { RequestFile } from './models';
 
-export class AddressUpdate {
+/**
+* The billing address of the buyer.
+*/
+export class CardRequiredFieldsAddress {
     /**
     * The city for the billing address.
     */
-    'city'?: string;
+    'city'?: boolean;
     /**
     * The country for the billing address.
     */
-    'country'?: string;
+    'country'?: boolean;
     /**
     * The postal code or zip code for the billing address.
     */
-    'postalCode'?: string;
+    'postalCode'?: boolean;
     /**
     * The state, county, or province for the billing address.
     */
-    'state'?: string;
-    /**
-    * The code of state, county, or province for the billing address in ISO 3166-2 format.
-    */
-    'stateCode'?: string | null;
+    'state'?: boolean;
     /**
     * The house number or name for the billing address. Not all payment services use this field but some do.
     */
-    'houseNumberOrName'?: string | null;
+    'houseNumberOrName'?: boolean;
     /**
     * The first line of the billing address.
     */
-    'line1'?: string;
-    /**
-    * The second line of the billing address.
-    */
-    'line2'?: string | null;
-    /**
-    * The optional name of the company or organisation to add to the billing address.
-    */
-    'organization'?: string | null;
+    'line1'?: boolean;
 
     static discriminator: string | undefined = undefined;
 
@@ -56,51 +47,36 @@ export class AddressUpdate {
         {
             "name": "city",
             "baseName": "city",
-            "type": "string"
+            "type": "boolean"
         },
         {
             "name": "country",
             "baseName": "country",
-            "type": "string"
+            "type": "boolean"
         },
         {
             "name": "postalCode",
             "baseName": "postal_code",
-            "type": "string"
+            "type": "boolean"
         },
         {
             "name": "state",
             "baseName": "state",
-            "type": "string"
-        },
-        {
-            "name": "stateCode",
-            "baseName": "state_code",
-            "type": "string"
+            "type": "boolean"
         },
         {
             "name": "houseNumberOrName",
             "baseName": "house_number_or_name",
-            "type": "string"
+            "type": "boolean"
         },
         {
             "name": "line1",
             "baseName": "line1",
-            "type": "string"
-        },
-        {
-            "name": "line2",
-            "baseName": "line2",
-            "type": "string"
-        },
-        {
-            "name": "organization",
-            "baseName": "organization",
-            "type": "string"
+            "type": "boolean"
         }    ];
 
     static getAttributeTypeMap() {
-        return AddressUpdate.attributeTypeMap;
+        return CardRequiredFieldsAddress.attributeTypeMap;
     }
 }
 

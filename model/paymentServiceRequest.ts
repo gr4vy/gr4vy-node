@@ -84,6 +84,10 @@ export class PaymentServiceRequest {
     */
     'position'?: number;
     /**
+    * Defines if tokenization is enabled for the service (can only be enabled if the payment service definition supports it).
+    */
+    'paymentMethodTokenizationEnabled'?: boolean;
+    /**
     * The ID of the payment service to use.
     */
     'paymentServiceDefinitionId': string;
@@ -170,6 +174,11 @@ export class PaymentServiceRequest {
             "name": "position",
             "baseName": "position",
             "type": "number"
+        },
+        {
+            "name": "paymentMethodTokenizationEnabled",
+            "baseName": "payment_method_tokenization_enabled",
+            "type": "boolean"
         },
         {
             "name": "paymentServiceDefinitionId",

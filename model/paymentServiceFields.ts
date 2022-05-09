@@ -12,26 +12,32 @@
 
 import { RequestFile } from './models';
 
-/**
-* A request to refund a transaction.
-*/
-export class TransactionRefundRequest {
+export class PaymentServiceFields {
     /**
-    * The amount requested to refund.  If omitted, a full refund will be requested.  Otherwise, the amount must be lower than or equal to the remaining balance in the associated transaction.  Negative and zero-amount refunds are not supported.
+    * The key of the field.
     */
-    'amount'?: number;
+    'key'?: string;
+    /**
+    * The value of the field.
+    */
+    'value'?: string;
 
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "amount",
-            "baseName": "amount",
-            "type": "number"
+            "name": "key",
+            "baseName": "key",
+            "type": "string"
+        },
+        {
+            "name": "value",
+            "baseName": "value",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
-        return TransactionRefundRequest.attributeTypeMap;
+        return PaymentServiceFields.attributeTypeMap;
     }
 }
 

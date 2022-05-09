@@ -489,7 +489,7 @@ export class TransactionsApi {
      * @param limit Defines the maximum number of items to return for this request.
      * @param cursor A cursor that identifies the page of results to return. This is used to paginate the results of this API.  For the first page of results, this parameter can be left out. For additional pages, use the value returned by the API in the &#x60;next_cursor&#x60; field. Similarly the &#x60;previous_cursor&#x60; can be used to reverse backwards in the list.
      */
-    public async listTransactions (search?: string, transactionStatus?: 'processing' | 'processing_failed' | 'capture_succeeded' | 'capture_pending' | 'capture_declined' | 'capture_failed' | 'authorization_succeeded' | 'authorization_pending' | 'authorization_declined' | 'authorization_failed' | 'authorization_expired' | 'authorization_voided' | 'authorization_void_pending' | 'authorization_void_declined' | 'authorization_void_failed' | 'refund_succeeded' | 'refund_pending' | 'refund_declined' | 'refund_failed' | 'buyer_approval_succeeded' | 'buyer_approval_pending' | 'buyer_approval_declined' | 'buyer_approval_failed' | 'buyer_approval_timedout', buyerId?: string, buyerExternalIdentifier?: string, beforeCreatedAt?: string, afterCreatedAt?: string, beforeUpdatedAt?: string, afterUpdatedAt?: string, limit?: number, cursor?: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Transactions;  }> {
+    public async listTransactions (search?: string, transactionStatus?: 'processing' | 'processing_failed' | 'capture_succeeded' | 'capture_pending' | 'capture_declined' | 'capture_failed' | 'authorization_succeeded' | 'authorization_pending' | 'authorization_declined' | 'authorization_failed' | 'authorization_expired' | 'authorization_voided' | 'authorization_void_pending' | 'authorization_void_declined' | 'authorization_void_failed' | 'buyer_approval_succeeded' | 'buyer_approval_pending' | 'buyer_approval_declined' | 'buyer_approval_failed' | 'buyer_approval_timedout', buyerId?: string, buyerExternalIdentifier?: string, beforeCreatedAt?: string, afterCreatedAt?: string, beforeUpdatedAt?: string, afterUpdatedAt?: string, limit?: number, cursor?: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Transactions;  }> {
         const localVarPath = this.basePath + '/transactions';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
@@ -507,7 +507,7 @@ export class TransactionsApi {
         }
 
         if (transactionStatus !== undefined) {
-            localVarQueryParameters['transaction_status'] = ObjectSerializer.serialize(transactionStatus, "'processing' | 'processing_failed' | 'capture_succeeded' | 'capture_pending' | 'capture_declined' | 'capture_failed' | 'authorization_succeeded' | 'authorization_pending' | 'authorization_declined' | 'authorization_failed' | 'authorization_expired' | 'authorization_voided' | 'authorization_void_pending' | 'authorization_void_declined' | 'authorization_void_failed' | 'refund_succeeded' | 'refund_pending' | 'refund_declined' | 'refund_failed' | 'buyer_approval_succeeded' | 'buyer_approval_pending' | 'buyer_approval_declined' | 'buyer_approval_failed' | 'buyer_approval_timedout'");
+            localVarQueryParameters['transaction_status'] = ObjectSerializer.serialize(transactionStatus, "'processing' | 'processing_failed' | 'capture_succeeded' | 'capture_pending' | 'capture_declined' | 'capture_failed' | 'authorization_succeeded' | 'authorization_pending' | 'authorization_declined' | 'authorization_failed' | 'authorization_expired' | 'authorization_voided' | 'authorization_void_pending' | 'authorization_void_declined' | 'authorization_void_failed' | 'buyer_approval_succeeded' | 'buyer_approval_pending' | 'buyer_approval_declined' | 'buyer_approval_failed' | 'buyer_approval_timedout'");
         }
 
         if (buyerId !== undefined) {
@@ -665,7 +665,7 @@ export class TransactionsApi {
         });
     }
     /**
-     * Voids a transaction.  If the transaction was not yet successfully authorized, or was already captured, the void will not be processed. Captured transactions can be [refunded](#operation/refund-transaction) instead.
+     * Voids a transaction.  If the transaction was not yet successfully authorized, or was already captured, the void will not be processed. Captured transactions can be [refunded](#operation/refund-transaction) instead.  Voiding zero-amount authorized transactions is not supported.
      * @summary Void transaction
      * @param transactionId The ID for the transaction to get the information for.
      */

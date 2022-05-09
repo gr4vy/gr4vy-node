@@ -32,6 +32,10 @@ export class PaymentServiceDefinitionFields {
     * Defines the type of input that needs to be rendered for this field.
     */
     'format'?: PaymentServiceDefinitionFields.FormatEnum;
+    /**
+    * Defines if this field is secret. When `true` the field is not returned when querying the payment service.
+    */
+    'secret'?: boolean;
 
     static discriminator: string | undefined = undefined;
 
@@ -55,6 +59,11 @@ export class PaymentServiceDefinitionFields {
             "name": "format",
             "baseName": "format",
             "type": "PaymentServiceDefinitionFields.FormatEnum"
+        },
+        {
+            "name": "secret",
+            "baseName": "secret",
+            "type": "boolean"
         }    ];
 
     static getAttributeTypeMap() {

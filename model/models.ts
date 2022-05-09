@@ -1,12 +1,12 @@
 import localVarRequest from 'request';
 
 export * from './address';
-export * from './addressUpdate';
 export * from './applePayRequest';
 export * from './applePaySessionRequest';
 export * from './billingDetails';
 export * from './billingDetailsRequest';
 export * from './billingDetailsUpdateRequest';
+export * from './browserInfo';
 export * from './buyer';
 export * from './buyerRequest';
 export * from './buyerSnapshot';
@@ -14,6 +14,8 @@ export * from './buyerUpdate';
 export * from './buyers';
 export * from './cardDetails';
 export * from './cardRequest';
+export * from './cardRequiredFields';
+export * from './cardRequiredFieldsAddress';
 export * from './cartItem';
 export * from './digitalWallet';
 export * from './digitalWalletRequest';
@@ -47,6 +49,7 @@ export * from './paymentServiceDefinition';
 export * from './paymentServiceDefinitionFields';
 export * from './paymentServiceDefinitionSupportedFeatures';
 export * from './paymentServiceDefinitions';
+export * from './paymentServiceFields';
 export * from './paymentServiceRequest';
 export * from './paymentServiceRequestAllOf';
 export * from './paymentServiceSnapshot';
@@ -91,12 +94,12 @@ export type RequestFile = string | Buffer | fs.ReadStream | RequestDetailedFile;
 
 
 import { Address } from './address';
-import { AddressUpdate } from './addressUpdate';
 import { ApplePayRequest } from './applePayRequest';
 import { ApplePaySessionRequest } from './applePaySessionRequest';
 import { BillingDetails } from './billingDetails';
 import { BillingDetailsRequest } from './billingDetailsRequest';
 import { BillingDetailsUpdateRequest } from './billingDetailsUpdateRequest';
+import { BrowserInfo } from './browserInfo';
 import { Buyer } from './buyer';
 import { BuyerRequest } from './buyerRequest';
 import { BuyerSnapshot } from './buyerSnapshot';
@@ -104,6 +107,8 @@ import { BuyerUpdate } from './buyerUpdate';
 import { Buyers } from './buyers';
 import { CardDetails } from './cardDetails';
 import { CardRequest } from './cardRequest';
+import { CardRequiredFields } from './cardRequiredFields';
+import { CardRequiredFieldsAddress } from './cardRequiredFieldsAddress';
 import { CartItem } from './cartItem';
 import { DigitalWallet } from './digitalWallet';
 import { DigitalWalletRequest } from './digitalWalletRequest';
@@ -137,6 +142,7 @@ import { PaymentServiceDefinition } from './paymentServiceDefinition';
 import { PaymentServiceDefinitionFields } from './paymentServiceDefinitionFields';
 import { PaymentServiceDefinitionSupportedFeatures } from './paymentServiceDefinitionSupportedFeatures';
 import { PaymentServiceDefinitions } from './paymentServiceDefinitions';
+import { PaymentServiceFields } from './paymentServiceFields';
 import { PaymentServiceRequest } from './paymentServiceRequest';
 import { PaymentServiceRequestAllOf } from './paymentServiceRequestAllOf';
 import { PaymentServiceSnapshot } from './paymentServiceSnapshot';
@@ -182,6 +188,7 @@ let primitives = [
 let enumsMap: {[index: string]: any} = {
         "ApplePayRequest.MethodEnum": ApplePayRequest.MethodEnum,
         "BillingDetails.TypeEnum": BillingDetails.TypeEnum,
+        "BrowserInfo.UserDeviceEnum": BrowserInfo.UserDeviceEnum,
         "Buyer.TypeEnum": Buyer.TypeEnum,
         "BuyerSnapshot.TypeEnum": BuyerSnapshot.TypeEnum,
         "CardDetails.TypeEnum": CardDetails.TypeEnum,
@@ -240,23 +247,27 @@ let enumsMap: {[index: string]: any} = {
         "TokenizedRequest.MethodEnum": TokenizedRequest.MethodEnum,
         "Transaction.TypeEnum": Transaction.TypeEnum,
         "Transaction.StatusEnum": Transaction.StatusEnum,
+        "Transaction.IntentEnum": Transaction.IntentEnum,
         "Transaction.PaymentSourceEnum": Transaction.PaymentSourceEnum,
         "Transaction.AvsResponseCodeEnum": Transaction.AvsResponseCodeEnum,
         "Transaction.CvvResponseCodeEnum": Transaction.CvvResponseCodeEnum,
+        "Transaction.MethodEnum": Transaction.MethodEnum,
         "TransactionRequest.IntentEnum": TransactionRequest.IntentEnum,
         "TransactionRequest.PaymentSourceEnum": TransactionRequest.PaymentSourceEnum,
         "TransactionSummary.TypeEnum": TransactionSummary.TypeEnum,
         "TransactionSummary.StatusEnum": TransactionSummary.StatusEnum,
+        "TransactionSummary.IntentEnum": TransactionSummary.IntentEnum,
+        "TransactionSummary.MethodEnum": TransactionSummary.MethodEnum,
 }
 
 let typeMap: {[index: string]: any} = {
     "Address": Address,
-    "AddressUpdate": AddressUpdate,
     "ApplePayRequest": ApplePayRequest,
     "ApplePaySessionRequest": ApplePaySessionRequest,
     "BillingDetails": BillingDetails,
     "BillingDetailsRequest": BillingDetailsRequest,
     "BillingDetailsUpdateRequest": BillingDetailsUpdateRequest,
+    "BrowserInfo": BrowserInfo,
     "Buyer": Buyer,
     "BuyerRequest": BuyerRequest,
     "BuyerSnapshot": BuyerSnapshot,
@@ -264,6 +275,8 @@ let typeMap: {[index: string]: any} = {
     "Buyers": Buyers,
     "CardDetails": CardDetails,
     "CardRequest": CardRequest,
+    "CardRequiredFields": CardRequiredFields,
+    "CardRequiredFieldsAddress": CardRequiredFieldsAddress,
     "CartItem": CartItem,
     "DigitalWallet": DigitalWallet,
     "DigitalWalletRequest": DigitalWalletRequest,
@@ -297,6 +310,7 @@ let typeMap: {[index: string]: any} = {
     "PaymentServiceDefinitionFields": PaymentServiceDefinitionFields,
     "PaymentServiceDefinitionSupportedFeatures": PaymentServiceDefinitionSupportedFeatures,
     "PaymentServiceDefinitions": PaymentServiceDefinitions,
+    "PaymentServiceFields": PaymentServiceFields,
     "PaymentServiceRequest": PaymentServiceRequest,
     "PaymentServiceRequestAllOf": PaymentServiceRequestAllOf,
     "PaymentServiceSnapshot": PaymentServiceSnapshot,
