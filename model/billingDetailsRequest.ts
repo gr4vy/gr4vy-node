@@ -31,10 +31,13 @@ export class BillingDetailsRequest {
     */
     'emailAddress'?: string | null;
     /**
-    * The phone number to use for this request. This expect the number in the [E164 number standard](https://www.twilio.com/docs/glossary/what-e164).
+    * The phone number for the buyer which should be formatted according to the [E164 number standard](https://www.twilio.com/docs/glossary/what-e164).
     */
     'phoneNumber'?: string | null;
-    'address'?: Address;
+    /**
+    * The billing address for the buyer.
+    */
+    'address'?: Address | null;
     'taxId'?: TaxId;
 
     static discriminator: string | undefined = undefined;

@@ -29,7 +29,7 @@ export class StatementDescriptor {
     */
     'city'?: string | null;
     /**
-    * The value in the phone number field of a customer\'s statement. The phone number to use for this request. This expect the number in the [E164 number standard](https://www.twilio.com/docs/glossary/what-e164).
+    * The value in the phone number field of a customer\'s statement which should be formatted according to the [E164 number standard](https://www.twilio.com/docs/glossary/what-e164).
     */
     'phoneNumber'?: string | null;
     /**

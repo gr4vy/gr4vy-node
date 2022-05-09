@@ -28,25 +28,33 @@ export class TransactionSummary {
     */
     'id'?: string;
     /**
-    * The status of the transaction. The status may change over time as asynchronous  processing events occur.
+    * The status of the transaction. The status may change over time as asynchronous processing events occur.
     */
     'status'?: TransactionSummary.StatusEnum;
     /**
-    * The authorized amount for this transaction. This can be different than the actual captured amount and part of this amount may be refunded.
+    * The original `intent` used when the transaction was [created](#operation/authorize-new-transaction).
+    */
+    'intent'?: TransactionSummary.IntentEnum;
+    /**
+    * The authorized amount for this transaction. This can be more than the actual captured amount and part of this amount may be refunded.
     */
     'amount'?: number;
     /**
-    * The captured amount for this transaction. This can be a part and in some cases even more than the authorized amount.
+    * The captured amount for this transaction. This can be the total or a portion of the authorized amount.
     */
     'capturedAmount'?: number;
     /**
-    * The refunded amount for this transaction. This can be a part or all of the captured amount.
+    * The refunded amount for this transaction. This can be the total or a portion of the captured amount.
     */
     'refundedAmount'?: number;
     /**
     * The currency code for this transaction.
     */
     'currency'?: string;
+    /**
+    * The 2-letter ISO code of the country of the transaction. This is used to filter the payment services that is used to process the transaction. 
+    */
+    'country'?: string | null;
     'paymentMethod'?: PaymentMethodSnapshot;
     'buyer'?: BuyerSnapshot;
     /**
@@ -62,6 +70,7 @@ export class TransactionSummary {
     */
     'updatedAt'?: Date;
     'paymentService'?: PaymentServiceSnapshot;
+    'method'?: TransactionSummary.MethodEnum;
 
     static discriminator: string | undefined = undefined;
 
@@ -82,6 +91,11 @@ export class TransactionSummary {
             "type": "TransactionSummary.StatusEnum"
         },
         {
+            "name": "intent",
+            "baseName": "intent",
+            "type": "TransactionSummary.IntentEnum"
+        },
+        {
             "name": "amount",
             "baseName": "amount",
             "type": "number"
@@ -99,6 +113,11 @@ export class TransactionSummary {
         {
             "name": "currency",
             "baseName": "currency",
+            "type": "string"
+        },
+        {
+            "name": "country",
+            "baseName": "country",
             "type": "string"
         },
         {
@@ -130,6 +149,11 @@ export class TransactionSummary {
             "name": "paymentService",
             "baseName": "payment_service",
             "type": "PaymentServiceSnapshot"
+        },
+        {
+            "name": "method",
+            "baseName": "method",
+            "type": "TransactionSummary.MethodEnum"
         }    ];
 
     static getAttributeTypeMap() {
@@ -157,14 +181,26 @@ export namespace TransactionSummary {
         AuthorizationVoidPending = <any> 'authorization_void_pending',
         AuthorizationVoidDeclined = <any> 'authorization_void_declined',
         AuthorizationVoidFailed = <any> 'authorization_void_failed',
-        RefundSucceeded = <any> 'refund_succeeded',
-        RefundPending = <any> 'refund_pending',
-        RefundDeclined = <any> 'refund_declined',
-        RefundFailed = <any> 'refund_failed',
         BuyerApprovalSucceeded = <any> 'buyer_approval_succeeded',
         BuyerApprovalPending = <any> 'buyer_approval_pending',
         BuyerApprovalDeclined = <any> 'buyer_approval_declined',
         BuyerApprovalFailed = <any> 'buyer_approval_failed',
         BuyerApprovalTimedout = <any> 'buyer_approval_timedout'
+    }
+    export enum IntentEnum {
+        Authorize = <any> 'authorize',
+        Capture = <any> 'capture'
+    }
+    export enum MethodEnum {
+        Card = <any> 'card',
+        Paypal = <any> 'paypal',
+        Banked = <any> 'banked',
+        Gocardless = <any> 'gocardless',
+        Stripedd = <any> 'stripedd',
+        Applepay = <any> 'applepay',
+        Googlepay = <any> 'googlepay',
+        Afterpay = <any> 'afterpay',
+        Clearpay = <any> 'clearpay',
+        Zippay = <any> 'zippay'
     }
 }

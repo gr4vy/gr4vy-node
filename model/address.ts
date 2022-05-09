@@ -13,25 +13,25 @@
 import { RequestFile } from './models';
 
 /**
-* Billing details associated to a buyer.
+* The billing address of the buyer.
 */
 export class Address {
     /**
     * The city for the billing address.
     */
-    'city': string;
+    'city'?: string;
     /**
     * The country for the billing address.
     */
-    'country': string;
+    'country'?: string;
     /**
     * The postal code or zip code for the billing address.
     */
-    'postalCode': string;
+    'postalCode'?: string;
     /**
     * The state, county, or province for the billing address.
     */
-    'state': string;
+    'state'?: string;
     /**
     * The code of state, county, or province for the billing address in ISO 3166-2 format.
     */
@@ -43,7 +43,7 @@ export class Address {
     /**
     * The first line of the billing address.
     */
-    'line1': string;
+    'line1'?: string;
     /**
     * The second line of the billing address.
     */

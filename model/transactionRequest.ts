@@ -11,6 +11,7 @@
  */
 
 import { RequestFile } from './models';
+import { BrowserInfo } from './browserInfo';
 import { CartItem } from './cartItem';
 import { StatementDescriptor } from './statementDescriptor';
 import { ThreeDSecureDataV1V2 } from './threeDSecureDataV1V2';
@@ -21,16 +22,20 @@ import { TransactionPaymentMethodRequest } from './transactionPaymentMethodReque
 */
 export class TransactionRequest {
     /**
-    * The monetary amount to create an authorization for, in the smallest currency unit for the given currency, for example `1299` cents to create an authorization for `$12.99`.
+    * The monetary amount to create an authorization for, in the smallest currency unit for the given currency, for example `1299` cents to create an authorization for `$12.99`.  If the `intent` is set to `capture`, an amount greater than zero must be supplied.
     */
     'amount': number;
     /**
     * A supported ISO-4217 currency code.
     */
     'currency': string;
+    /**
+    * The 2-letter ISO code of the country of the transaction. This is used to filter the payment services that is used to process the transaction. 
+    */
+    'country'?: string | null;
     'paymentMethod': TransactionPaymentMethodRequest;
     /**
-    * Whether or not to also try and store the payment method with us so that it can be used again for future use. This is only supported for payment methods that support this feature.
+    * Whether or not to also try and store the payment method with us so that it can be used again for future use. This is only supported for payment methods that support this feature. There are also a few restrictions on how the flag may be set:  * The flag has to be set to `true` when the `payment_source` is set to `recurring` or `installment`, and `merchant_initiated` is set to `false`.  * The flag has to be set to `false` (or not set) when using a previously tokenized payment method.
     */
     'store'?: boolean;
     /**
@@ -51,7 +56,7 @@ export class TransactionRequest {
     */
     'paymentSource'?: TransactionRequest.PaymentSourceEnum;
     /**
-    * Indicates whether the transaction represents a subsequent payment coming from a setup recurring payment. Please note this flag is only compatible with `payment_source` set to `recurring`, `installment`, or `card_on_file` and will be ignored for other values or if `payment_source` is not present.
+    * Indicates whether the transaction represents a subsequent payment coming from a setup recurring payment. Please note there are some restrictions on how this flag may be used.  The flag can only be `false` (or not set) when the transaction meets one of the following criteria:  * It is not `merchant_initiated`. * `payment_source` is set to `card_on_file`.  The flag can only be set to `true` when the transaction meets one of the following criteria:  * It is not `merchant_initiated`. * `payment_source` is set to `recurring` or `installment` and `merchant_initiated` is set to `true`. * `payment_source` is set to `card_on_file`.
     */
     'isSubsequentPayment'?: boolean;
     /**
@@ -67,6 +72,7 @@ export class TransactionRequest {
     * A scheme\'s transaction identifier to use in connecting a merchant initiated transaction to a previous customer initiated transaction.  If not provided, and a qualifying customer initiated transaction has been previously made, then Gr4vy will populate this value with the identifier returned for that transaction.  e.g. the Visa Transaction Identifier, or Mastercard Trace ID.
     */
     'previousSchemeTransactionId'?: string | null;
+    'browserInfo'?: BrowserInfo;
 
     static discriminator: string | undefined = undefined;
 
@@ -79,6 +85,11 @@ export class TransactionRequest {
         {
             "name": "currency",
             "baseName": "currency",
+            "type": "string"
+        },
+        {
+            "name": "country",
+            "baseName": "country",
             "type": "string"
         },
         {
@@ -140,6 +151,11 @@ export class TransactionRequest {
             "name": "previousSchemeTransactionId",
             "baseName": "previous_scheme_transaction_id",
             "type": "string"
+        },
+        {
+            "name": "browserInfo",
+            "baseName": "browser_info",
+            "type": "BrowserInfo"
         }    ];
 
     static getAttributeTypeMap() {

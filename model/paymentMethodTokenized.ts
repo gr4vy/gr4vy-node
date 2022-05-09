@@ -41,6 +41,14 @@ export class PaymentMethodTokenized {
     * The optional URL that the buyer needs to be redirected to to further authorize their payment.
     */
     'approvalUrl'?: string | null;
+    /**
+    * The ISO-4217 currency code that this payment method can be used for. If this value is `null` the payment method may be used for multiple currencies.
+    */
+    'currency'?: string | null;
+    /**
+    * The 2-letter ISO code of the country this payment method can be used for. If this value is `null` the payment method may be used in multiple countries.
+    */
+    'country'?: string | null;
 
     static discriminator: string | undefined = undefined;
 
@@ -78,6 +86,16 @@ export class PaymentMethodTokenized {
         {
             "name": "approvalUrl",
             "baseName": "approval_url",
+            "type": "string"
+        },
+        {
+            "name": "currency",
+            "baseName": "currency",
+            "type": "string"
+        },
+        {
+            "name": "country",
+            "baseName": "country",
             "type": "string"
         }    ];
 

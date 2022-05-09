@@ -30,25 +30,33 @@ export class Transaction {
     */
     'id'?: string;
     /**
-    * The status of the transaction. The status may change over time as asynchronous  processing events occur.
+    * The status of the transaction. The status may change over time as asynchronous processing events occur.
     */
     'status'?: Transaction.StatusEnum;
     /**
-    * The authorized amount for this transaction. This can be different than the actual captured amount and part of this amount may be refunded.
+    * The original `intent` used when the transaction was [created](#operation/authorize-new-transaction).
+    */
+    'intent'?: Transaction.IntentEnum;
+    /**
+    * The authorized amount for this transaction. This can be more than the actual captured amount and part of this amount may be refunded.
     */
     'amount'?: number;
     /**
-    * The captured amount for this transaction. This can be a part and in some cases even more than the authorized amount.
+    * The captured amount for this transaction. This can be the total or a portion of the authorized amount.
     */
     'capturedAmount'?: number;
     /**
-    * The refunded amount for this transaction. This can be a part or all of the captured amount.
+    * The refunded amount for this transaction. This can be the total or a portion of the captured amount.
     */
     'refundedAmount'?: number;
     /**
     * The currency code for this transaction.
     */
     'currency'?: string;
+    /**
+    * The 2-letter ISO code of the country of the transaction. This is used to filter the payment services that is used to process the transaction. 
+    */
+    'country'?: string | null;
     'paymentMethod'?: PaymentMethodSnapshot;
     'buyer'?: BuyerSnapshot;
     /**
@@ -73,7 +81,7 @@ export class Transaction {
     */
     'paymentSource'?: Transaction.PaymentSourceEnum;
     /**
-    * Indicates whether the transaction represents a subsequent payment coming from a setup recurring payment. Please note this flag is only compatible with `payment_source` set to `recurring`, `installment`, or `card_on_file` and will be ignored for other values or if `payment_source` is not present.
+    * Indicates whether the transaction represents a subsequent payment coming from a setup recurring payment. Please note there are some restrictions on how this flag may be used.  The flag can only be `false` (or not set) when the transaction meets one of the following criteria:  * It is not `merchant_initiated`. * `payment_source` is set to `card_on_file`.  The flag can only be set to `true` when the transaction meets one of the following criteria:  * It is not `merchant_initiated`. * `payment_source` is set to `recurring` or `installment` and `merchant_initiated` is set to `true`. * `payment_source` is set to `card_on_file`.
     */
     'isSubsequentPayment'?: boolean;
     'statementDescriptor'?: StatementDescriptor;
@@ -101,6 +109,15 @@ export class Transaction {
     * The response code received from the payment service for the Card Verification Value (CVV). This code is mapped to a standardized Gr4vy CVV response code.  - `no_match` - the CVV does not match the expected value - `match` - the CVV matches the expected value - `unavailable ` - CVV check unavailable for card our country - `not_provided ` - CVV not provided  The value of this field can be `null` if the payment service did not provide a response.
     */
     'cvvResponseCode'?: Transaction.CvvResponseCodeEnum;
+    'method'?: Transaction.MethodEnum;
+    /**
+    * The payment service\'s unique ID for the transaction.
+    */
+    'paymentServiceTransactionId'?: string;
+    /**
+    * Additional information about the transaction stored as key-value pairs.
+    */
+    'metadata'?: { [key: string]: string; };
 
     static discriminator: string | undefined = undefined;
 
@@ -121,6 +138,11 @@ export class Transaction {
             "type": "Transaction.StatusEnum"
         },
         {
+            "name": "intent",
+            "baseName": "intent",
+            "type": "Transaction.IntentEnum"
+        },
+        {
             "name": "amount",
             "baseName": "amount",
             "type": "number"
@@ -138,6 +160,11 @@ export class Transaction {
         {
             "name": "currency",
             "baseName": "currency",
+            "type": "string"
+        },
+        {
+            "name": "country",
+            "baseName": "country",
             "type": "string"
         },
         {
@@ -219,6 +246,21 @@ export class Transaction {
             "name": "cvvResponseCode",
             "baseName": "cvv_response_code",
             "type": "Transaction.CvvResponseCodeEnum"
+        },
+        {
+            "name": "method",
+            "baseName": "method",
+            "type": "Transaction.MethodEnum"
+        },
+        {
+            "name": "paymentServiceTransactionId",
+            "baseName": "payment_service_transaction_id",
+            "type": "string"
+        },
+        {
+            "name": "metadata",
+            "baseName": "metadata",
+            "type": "{ [key: string]: string; }"
         }    ];
 
     static getAttributeTypeMap() {
@@ -246,15 +288,15 @@ export namespace Transaction {
         AuthorizationVoidPending = <any> 'authorization_void_pending',
         AuthorizationVoidDeclined = <any> 'authorization_void_declined',
         AuthorizationVoidFailed = <any> 'authorization_void_failed',
-        RefundSucceeded = <any> 'refund_succeeded',
-        RefundPending = <any> 'refund_pending',
-        RefundDeclined = <any> 'refund_declined',
-        RefundFailed = <any> 'refund_failed',
         BuyerApprovalSucceeded = <any> 'buyer_approval_succeeded',
         BuyerApprovalPending = <any> 'buyer_approval_pending',
         BuyerApprovalDeclined = <any> 'buyer_approval_declined',
         BuyerApprovalFailed = <any> 'buyer_approval_failed',
         BuyerApprovalTimedout = <any> 'buyer_approval_timedout'
+    }
+    export enum IntentEnum {
+        Authorize = <any> 'authorize',
+        Capture = <any> 'capture'
     }
     export enum PaymentSourceEnum {
         Ecommerce = <any> 'ecommerce',
@@ -275,5 +317,17 @@ export namespace Transaction {
         Match = <any> 'match',
         Unavailable = <any> 'unavailable',
         NotProvided = <any> 'not_provided'
+    }
+    export enum MethodEnum {
+        Card = <any> 'card',
+        Paypal = <any> 'paypal',
+        Banked = <any> 'banked',
+        Gocardless = <any> 'gocardless',
+        Stripedd = <any> 'stripedd',
+        Applepay = <any> 'applepay',
+        Googlepay = <any> 'googlepay',
+        Afterpay = <any> 'afterpay',
+        Clearpay = <any> 'clearpay',
+        Zippay = <any> 'zippay'
     }
 }

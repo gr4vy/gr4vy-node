@@ -11,18 +11,12 @@
  */
 
 import { RequestFile } from './models';
-import { BillingDetailsRequest } from './billingDetailsRequest';
 import { BillingDetailsUpdateRequest } from './billingDetailsUpdateRequest';
-import { BuyerRequest } from './buyerRequest';
 
 /**
 * A request to update a buyer.
 */
 export class BuyerUpdate {
-    /**
-    * The optional billing details to update a buyer.
-    */
-    'billingDetails'?: BillingDetailsUpdateRequest | null;
     /**
     * An external identifier that can be used to match the buyer against your own records. This value needs to be unique for all buyers.
     */
@@ -31,15 +25,11 @@ export class BuyerUpdate {
     * A unique name for this buyer which is used in the Gr4vy admin panel to give a buyer a human readable name.
     */
     'displayName'?: string | null;
+    'billingDetails'?: BillingDetailsUpdateRequest;
 
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "billingDetails",
-            "baseName": "billing_details",
-            "type": "BillingDetailsUpdateRequest"
-        },
         {
             "name": "externalIdentifier",
             "baseName": "external_identifier",
@@ -49,6 +39,11 @@ export class BuyerUpdate {
             "name": "displayName",
             "baseName": "display_name",
             "type": "string"
+        },
+        {
+            "name": "billingDetails",
+            "baseName": "billing_details",
+            "type": "BillingDetailsUpdateRequest"
         }    ];
 
     static getAttributeTypeMap() {

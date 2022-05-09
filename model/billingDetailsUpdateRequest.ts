@@ -12,15 +12,9 @@
 
 import { RequestFile } from './models';
 import { Address } from './address';
-import { AddressUpdate } from './addressUpdate';
-import { BillingDetailsRequest } from './billingDetailsRequest';
 import { TaxId } from './taxId';
 
 export class BillingDetailsUpdateRequest {
-    /**
-    * Address associated with the billing details.
-    */
-    'address'?: AddressUpdate | null;
     /**
     * The first name(s) or given name for the buyer.
     */
@@ -34,19 +28,18 @@ export class BillingDetailsUpdateRequest {
     */
     'emailAddress'?: string | null;
     /**
-    * The phone number to use for this request. This expect the number in the [E164 number standard](https://www.twilio.com/docs/glossary/what-e164).
+    * The phone number for the buyer which should be formatted according to the [E164 number standard](https://www.twilio.com/docs/glossary/what-e164).
     */
     'phoneNumber'?: string | null;
+    /**
+    * The billing address for the buyer.
+    */
+    'address'?: Address | null;
     'taxId'?: TaxId;
 
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "address",
-            "baseName": "address",
-            "type": "AddressUpdate"
-        },
         {
             "name": "firstName",
             "baseName": "first_name",
@@ -66,6 +59,11 @@ export class BillingDetailsUpdateRequest {
             "name": "phoneNumber",
             "baseName": "phone_number",
             "type": "string"
+        },
+        {
+            "name": "address",
+            "baseName": "address",
+            "type": "Address"
         },
         {
             "name": "taxId",

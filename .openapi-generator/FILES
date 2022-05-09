@@ -8,12 +8,12 @@ api/paymentServiceDefinitionsApi.ts
 api/paymentServicesApi.ts
 api/transactionsApi.ts
 model/address.ts
-model/addressUpdate.ts
 model/applePayRequest.ts
 model/applePaySessionRequest.ts
 model/billingDetails.ts
 model/billingDetailsRequest.ts
 model/billingDetailsUpdateRequest.ts
+model/browserInfo.ts
 model/buyer.ts
 model/buyerRequest.ts
 model/buyerSnapshot.ts
@@ -21,6 +21,8 @@ model/buyerUpdate.ts
 model/buyers.ts
 model/cardDetails.ts
 model/cardRequest.ts
+model/cardRequiredFields.ts
+model/cardRequiredFieldsAddress.ts
 model/cartItem.ts
 model/digitalWallet.ts
 model/digitalWalletRequest.ts
@@ -55,6 +57,7 @@ model/paymentServiceDefinition.ts
 model/paymentServiceDefinitionFields.ts
 model/paymentServiceDefinitionSupportedFeatures.ts
 model/paymentServiceDefinitions.ts
+model/paymentServiceFields.ts
 model/paymentServiceRequest.ts
 model/paymentServiceRequestAllOf.ts
 model/paymentServiceSnapshot.ts

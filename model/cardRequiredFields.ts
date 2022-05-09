@@ -11,82 +11,70 @@
  */
 
 import { RequestFile } from './models';
-import { Address } from './address';
-import { TaxId } from './taxId';
+import { CardRequiredFieldsAddress } from './cardRequiredFieldsAddress';
 
 /**
-* Billing details associated to a buyer.
+* The fields that are required to process a transaction for this card.
 */
-export class BillingDetails {
+export class CardRequiredFields {
     /**
-    * The type of this resource. Is always `billing-details`.
+    * The first (given) name of the buyer.
     */
-    'type'?: BillingDetails.TypeEnum;
+    'firstName'?: boolean;
     /**
-    * The first name(s) or given name of the buyer.
+    * The last (family) name of the buyer.
     */
-    'firstName'?: string | null;
-    /**
-    * The last name, or family name, of the buyer.
-    */
-    'lastName'?: string | null;
+    'lastName'?: boolean;
     /**
     * The email address of the buyer.
     */
-    'emailAddress'?: string | null;
+    'emailAddress'?: boolean;
     /**
-    * The phone number of the buyer. This number is formatted according to the [E164 number standard](https://www.twilio.com/docs/glossary/what-e164).
+    * The phone number of the buyer.
     */
-    'phoneNumber'?: string | null;
-    'address'?: Address;
-    'taxId'?: TaxId;
+    'phoneNumber'?: boolean;
+    'address'?: CardRequiredFieldsAddress;
+    /**
+    * The tax id code associated with the billing details.
+    */
+    'taxId'?: boolean;
 
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "type",
-            "baseName": "type",
-            "type": "BillingDetails.TypeEnum"
-        },
-        {
             "name": "firstName",
             "baseName": "first_name",
-            "type": "string"
+            "type": "boolean"
         },
         {
             "name": "lastName",
             "baseName": "last_name",
-            "type": "string"
+            "type": "boolean"
         },
         {
             "name": "emailAddress",
             "baseName": "email_address",
-            "type": "string"
+            "type": "boolean"
         },
         {
             "name": "phoneNumber",
             "baseName": "phone_number",
-            "type": "string"
+            "type": "boolean"
         },
         {
             "name": "address",
             "baseName": "address",
-            "type": "Address"
+            "type": "CardRequiredFieldsAddress"
         },
         {
             "name": "taxId",
             "baseName": "tax_id",
-            "type": "TaxId"
+            "type": "boolean"
         }    ];
 
     static getAttributeTypeMap() {
-        return BillingDetails.attributeTypeMap;
+        return CardRequiredFields.attributeTypeMap;
     }
 }
 
-export namespace BillingDetails {
-    export enum TypeEnum {
-        BillingDetails = <any> 'billing-details'
-    }
-}

@@ -11,6 +11,7 @@
  */
 
 import { RequestFile } from './models';
+import { Undefined } from './undefined';
 
 /**
 * Additional context specific to the payment option. This is currently only returned for Apple Pay and Google Pay.
@@ -23,7 +24,7 @@ export class PaymentOptionContext {
     /**
     * Card schemes supported by the digital wallet provider.
     */
-    'supportedSchemes'?: Array<String>;
+    'supportedSchemes'?: Array<Undefined>;
 
     static discriminator: string | undefined = undefined;
 
