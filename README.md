@@ -28,7 +28,8 @@ const key = String(fs.readFileSync("./private.key"));
 
 const client = new Client({
   gr4vyId: "YOUR_GR4VY_ID",
-  privateKey: key
+  privateKey: key,
+  environment:"production"
 });
 
 const buyerRequest = new BuyerRequest()
