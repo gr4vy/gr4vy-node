@@ -69,6 +69,7 @@ export * from './threeDSecureDataV1AllOf';
 export * from './threeDSecureDataV1V2';
 export * from './threeDSecureDataV2';
 export * from './threeDSecureDataV2AllOf';
+export * from './threeDSecureSummary';
 export * from './tokenizedRequest';
 export * from './transaction';
 export * from './transactionCaptureRequest';
@@ -162,6 +163,7 @@ import { ThreeDSecureDataV1AllOf } from './threeDSecureDataV1AllOf';
 import { ThreeDSecureDataV1V2 } from './threeDSecureDataV1V2';
 import { ThreeDSecureDataV2 } from './threeDSecureDataV2';
 import { ThreeDSecureDataV2AllOf } from './threeDSecureDataV2AllOf';
+import { ThreeDSecureSummary } from './threeDSecureSummary';
 import { TokenizedRequest } from './tokenizedRequest';
 import { Transaction } from './transaction';
 import { TransactionCaptureRequest } from './transactionCaptureRequest';
@@ -244,6 +246,8 @@ let enumsMap: {[index: string]: any} = {
         "Refund.TypeEnum": Refund.TypeEnum,
         "Refund.StatusEnum": Refund.StatusEnum,
         "TaxId.KindEnum": TaxId.KindEnum,
+        "ThreeDSecureSummary.StatusEnum": ThreeDSecureSummary.StatusEnum,
+        "ThreeDSecureSummary.MethodEnum": ThreeDSecureSummary.MethodEnum,
         "TokenizedRequest.MethodEnum": TokenizedRequest.MethodEnum,
         "Transaction.TypeEnum": Transaction.TypeEnum,
         "Transaction.StatusEnum": Transaction.StatusEnum,
@@ -330,6 +334,7 @@ let typeMap: {[index: string]: any} = {
     "ThreeDSecureDataV1V2": ThreeDSecureDataV1V2,
     "ThreeDSecureDataV2": ThreeDSecureDataV2,
     "ThreeDSecureDataV2AllOf": ThreeDSecureDataV2AllOf,
+    "ThreeDSecureSummary": ThreeDSecureSummary,
     "TokenizedRequest": TokenizedRequest,
     "Transaction": Transaction,
     "TransactionCaptureRequest": TransactionCaptureRequest,

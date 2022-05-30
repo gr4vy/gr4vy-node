@@ -77,6 +77,7 @@ model/threeDSecureDataV1AllOf.ts
 model/threeDSecureDataV1V2.ts
 model/threeDSecureDataV2.ts
 model/threeDSecureDataV2AllOf.ts
+model/threeDSecureSummary.ts
 model/tokenizedRequest.ts
 model/transaction.ts
 model/transactionCaptureRequest.ts
