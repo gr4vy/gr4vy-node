@@ -11,7 +11,7 @@
  */
 
 import { RequestFile } from './models';
-import { Undefined } from './undefined';
+import { ThreeDSecureDataV1V2 } from './threeDSecureDataV1V2';
 
 /**
 * Details about the 3-D Secure challenge that was presented to the buyer for this transaction, where applicable.
@@ -29,7 +29,7 @@ export class ThreeDSecureSummary {
     * The method used for 3DS authentication for this transaction.
     */
     'method'?: ThreeDSecureSummary.MethodEnum;
-    'responseData'?: Undefined;
+    'responseData'?: ThreeDSecureDataV1V2;
 
     static discriminator: string | undefined = undefined;
 
@@ -52,7 +52,7 @@ export class ThreeDSecureSummary {
         {
             "name": "responseData",
             "baseName": "response_data",
-            "type": "Undefined"
+            "type": "ThreeDSecureDataV1V2"
         }    ];
 
     static getAttributeTypeMap() {
