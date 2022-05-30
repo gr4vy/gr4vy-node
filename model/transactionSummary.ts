@@ -167,40 +167,43 @@ export namespace TransactionSummary {
     }
     export enum StatusEnum {
         Processing = <any> 'processing',
-        ProcessingFailed = <any> 'processing_failed',
-        CaptureSucceeded = <any> 'capture_succeeded',
-        CapturePending = <any> 'capture_pending',
-        CaptureDeclined = <any> 'capture_declined',
-        CaptureFailed = <any> 'capture_failed',
-        AuthorizationSucceeded = <any> 'authorization_succeeded',
-        AuthorizationPending = <any> 'authorization_pending',
-        AuthorizationDeclined = <any> 'authorization_declined',
-        AuthorizationFailed = <any> 'authorization_failed',
-        AuthorizationExpired = <any> 'authorization_expired',
-        AuthorizationVoided = <any> 'authorization_voided',
-        AuthorizationVoidPending = <any> 'authorization_void_pending',
-        AuthorizationVoidDeclined = <any> 'authorization_void_declined',
-        AuthorizationVoidFailed = <any> 'authorization_void_failed',
-        BuyerApprovalSucceeded = <any> 'buyer_approval_succeeded',
         BuyerApprovalPending = <any> 'buyer_approval_pending',
-        BuyerApprovalDeclined = <any> 'buyer_approval_declined',
-        BuyerApprovalFailed = <any> 'buyer_approval_failed',
-        BuyerApprovalTimedout = <any> 'buyer_approval_timedout'
+        AuthorizationSucceeded = <any> 'authorization_succeeded',
+        AuthorizationFailed = <any> 'authorization_failed',
+        AuthorizationDeclined = <any> 'authorization_declined',
+        CapturePending = <any> 'capture_pending',
+        CaptureSucceeded = <any> 'capture_succeeded',
+        AuthorizationVoidPending = <any> 'authorization_void_pending',
+        AuthorizationVoided = <any> 'authorization_voided'
     }
     export enum IntentEnum {
         Authorize = <any> 'authorize',
         Capture = <any> 'capture'
     }
     export enum MethodEnum {
-        Card = <any> 'card',
-        Paypal = <any> 'paypal',
-        Banked = <any> 'banked',
-        Gocardless = <any> 'gocardless',
-        Stripedd = <any> 'stripedd',
-        Applepay = <any> 'applepay',
-        Googlepay = <any> 'googlepay',
         Afterpay = <any> 'afterpay',
+        Applepay = <any> 'applepay',
+        Banked = <any> 'banked',
+        Boleto = <any> 'boleto',
+        Card = <any> 'card',
         Clearpay = <any> 'clearpay',
+        Dana = <any> 'dana',
+        Fortumo = <any> 'fortumo',
+        Gcash = <any> 'gcash',
+        Gocardless = <any> 'gocardless',
+        Googlepay = <any> 'googlepay',
+        GooglepayPanOnly = <any> 'googlepay_pan_only',
+        Grabpay = <any> 'grabpay',
+        Klarna = <any> 'klarna',
+        Ovo = <any> 'ovo',
+        Paymaya = <any> 'paymaya',
+        Paypal = <any> 'paypal',
+        Pix = <any> 'pix',
+        Rabbitlinepay = <any> 'rabbitlinepay',
+        Shopeepay = <any> 'shopeepay',
+        Stripedd = <any> 'stripedd',
+        Truemoney = <any> 'truemoney',
+        Trustly = <any> 'trustly',
         Zippay = <any> 'zippay'
     }
 }
