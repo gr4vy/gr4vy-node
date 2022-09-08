@@ -11,6 +11,7 @@
  */
 
 import { RequestFile } from './models';
+import { Undefined } from './undefined';
 
 /**
 * Snapshot of a payment method, as used when embedded inside other resources.
@@ -42,6 +43,10 @@ export class PaymentMethodSnapshot {
     */
     'expirationDate'?: string | null;
     /**
+    * The browser target that an approval URL must be opened in. If `any` or `null`, then there is no specific requirement.
+    */
+    'approvalTarget'?: PaymentMethodSnapshot.ApprovalTargetEnum;
+    /**
     * The optional URL that the buyer needs to be redirected to to further authorize their payment.
     */
     'approvalUrl'?: string | null;
@@ -53,6 +58,7 @@ export class PaymentMethodSnapshot {
     * The 2-letter ISO code of the country this payment method can be used for. If this value is `null` the payment method may be used in multiple countries.
     */
     'country'?: string | null;
+    'details'?: Undefined;
 
     static discriminator: string | undefined = undefined;
 
@@ -93,6 +99,11 @@ export class PaymentMethodSnapshot {
             "type": "string"
         },
         {
+            "name": "approvalTarget",
+            "baseName": "approval_target",
+            "type": "PaymentMethodSnapshot.ApprovalTargetEnum"
+        },
+        {
             "name": "approvalUrl",
             "baseName": "approval_url",
             "type": "string"
@@ -106,6 +117,11 @@ export class PaymentMethodSnapshot {
             "name": "country",
             "baseName": "country",
             "type": "string"
+        },
+        {
+            "name": "details",
+            "baseName": "details",
+            "type": "Undefined"
         }    ];
 
     static getAttributeTypeMap() {
@@ -116,5 +132,9 @@ export class PaymentMethodSnapshot {
 export namespace PaymentMethodSnapshot {
     export enum TypeEnum {
         PaymentMethod = <any> 'payment-method'
+    }
+    export enum ApprovalTargetEnum {
+        Any = <any> 'any',
+        NewWindow = <any> 'new_window'
     }
 }

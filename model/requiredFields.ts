@@ -11,12 +11,12 @@
  */
 
 import { RequestFile } from './models';
-import { CardRequiredFieldsAddress } from './cardRequiredFieldsAddress';
+import { RequiredFieldsAddress } from './requiredFieldsAddress';
 
 /**
-* The fields that are required to process a transaction for this card.
+* The fields that are required to process a transaction for this payment option.
 */
-export class CardRequiredFields {
+export class RequiredFields {
     /**
     * The first (given) name of the buyer.
     */
@@ -33,7 +33,7 @@ export class CardRequiredFields {
     * The phone number of the buyer.
     */
     'phoneNumber'?: boolean;
-    'address'?: CardRequiredFieldsAddress;
+    'address'?: RequiredFieldsAddress;
     /**
     * The tax id code associated with the billing details.
     */
@@ -65,7 +65,7 @@ export class CardRequiredFields {
         {
             "name": "address",
             "baseName": "address",
-            "type": "CardRequiredFieldsAddress"
+            "type": "RequiredFieldsAddress"
         },
         {
             "name": "taxId",
@@ -74,7 +74,7 @@ export class CardRequiredFields {
         }    ];
 
     static getAttributeTypeMap() {
-        return CardRequiredFields.attributeTypeMap;
+        return RequiredFields.attributeTypeMap;
     }
 }
 

@@ -18,7 +18,7 @@ import { RequestFile } from './models';
 export class PaymentMethodRequest {
     'method': string;
     /**
-    * The 15-16 digit number for this credit card as it can be found on the front of the card.  If a card has been stored with us previously, this number will represent the unique tokenized card ID provided via our API.
+    * The 13-19 digit number for this credit card as it can be found on the front of the card.  If a card has been stored with us previously, this number will represent the unique tokenized card ID provided via our API.
     */
     'number'?: string;
     /**

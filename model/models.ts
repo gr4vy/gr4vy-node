@@ -1,8 +1,19 @@
 import localVarRequest from 'request';
 
+export * from './action';
+export * from './actions';
 export * from './address';
+export * from './antiFraudService';
+export * from './antiFraudServiceCreate';
+export * from './antiFraudServiceFields';
+export * from './antiFraudServiceUpdate';
+export * from './antiFraudServiceUpdateFields';
 export * from './applePayRequest';
 export * from './applePaySessionRequest';
+export * from './auditLog';
+export * from './auditLogResource';
+export * from './auditLogUser';
+export * from './auditLogs';
 export * from './billingDetails';
 export * from './billingDetailsRequest';
 export * from './billingDetailsUpdateRequest';
@@ -14,9 +25,16 @@ export * from './buyerUpdate';
 export * from './buyers';
 export * from './cardDetails';
 export * from './cardRequest';
-export * from './cardRequiredFields';
-export * from './cardRequiredFieldsAddress';
+export * from './cardSchemeDefinition';
+export * from './cardSchemeDefinitions';
 export * from './cartItem';
+export * from './checkoutSession';
+export * from './checkoutSessionRequest';
+export * from './checkoutSessionSecureFieldsUpdate';
+export * from './connection';
+export * from './connectionDefinition';
+export * from './connectionDefinitions';
+export * from './connections';
 export * from './digitalWallet';
 export * from './digitalWalletRequest';
 export * from './digitalWalletUpdate';
@@ -31,9 +49,16 @@ export * from './error404PendingCreation';
 export * from './error409DuplicateRecord';
 export * from './errorDetail';
 export * from './errorGeneric';
+export * from './flowPaymentOptionOutcome';
+export * from './flowRuleBooleanOutcome';
+export * from './flowRuleMethodOutcome';
+export * from './flowRuleServiceOutcome';
 export * from './googlePayRequest';
 export * from './googlePaySessionRequest';
 export * from './paymentMethod';
+export * from './paymentMethodDefinition';
+export * from './paymentMethodDefinitions';
+export * from './paymentMethodDetailsCard';
 export * from './paymentMethodRequest';
 export * from './paymentMethodSnapshot';
 export * from './paymentMethodToken';
@@ -42,10 +67,12 @@ export * from './paymentMethodTokens';
 export * from './paymentMethods';
 export * from './paymentMethodsTokenized';
 export * from './paymentOption';
+export * from './paymentOptionApprovalUI';
 export * from './paymentOptionContext';
 export * from './paymentOptions';
 export * from './paymentService';
 export * from './paymentServiceDefinition';
+export * from './paymentServiceDefinitionConfiguration';
 export * from './paymentServiceDefinitionFields';
 export * from './paymentServiceDefinitionSupportedFeatures';
 export * from './paymentServiceDefinitions';
@@ -59,6 +86,8 @@ export * from './paymentServices';
 export * from './redirectRequest';
 export * from './refund';
 export * from './refunds';
+export * from './requiredFields';
+export * from './requiredFieldsAddress';
 export * from './resetPasswordRequest';
 export * from './setPasswordRequest';
 export * from './statementDescriptor';
@@ -94,9 +123,20 @@ export interface RequestDetailedFile {
 export type RequestFile = string | Buffer | fs.ReadStream | RequestDetailedFile;
 
 
+import { Action } from './action';
+import { Actions } from './actions';
 import { Address } from './address';
+import { AntiFraudService } from './antiFraudService';
+import { AntiFraudServiceCreate } from './antiFraudServiceCreate';
+import { AntiFraudServiceFields } from './antiFraudServiceFields';
+import { AntiFraudServiceUpdate } from './antiFraudServiceUpdate';
+import { AntiFraudServiceUpdateFields } from './antiFraudServiceUpdateFields';
 import { ApplePayRequest } from './applePayRequest';
 import { ApplePaySessionRequest } from './applePaySessionRequest';
+import { AuditLog } from './auditLog';
+import { AuditLogResource } from './auditLogResource';
+import { AuditLogUser } from './auditLogUser';
+import { AuditLogs } from './auditLogs';
 import { BillingDetails } from './billingDetails';
 import { BillingDetailsRequest } from './billingDetailsRequest';
 import { BillingDetailsUpdateRequest } from './billingDetailsUpdateRequest';
@@ -108,9 +148,16 @@ import { BuyerUpdate } from './buyerUpdate';
 import { Buyers } from './buyers';
 import { CardDetails } from './cardDetails';
 import { CardRequest } from './cardRequest';
-import { CardRequiredFields } from './cardRequiredFields';
-import { CardRequiredFieldsAddress } from './cardRequiredFieldsAddress';
+import { CardSchemeDefinition } from './cardSchemeDefinition';
+import { CardSchemeDefinitions } from './cardSchemeDefinitions';
 import { CartItem } from './cartItem';
+import { CheckoutSession } from './checkoutSession';
+import { CheckoutSessionRequest } from './checkoutSessionRequest';
+import { CheckoutSessionSecureFieldsUpdate } from './checkoutSessionSecureFieldsUpdate';
+import { Connection } from './connection';
+import { ConnectionDefinition } from './connectionDefinition';
+import { ConnectionDefinitions } from './connectionDefinitions';
+import { Connections } from './connections';
 import { DigitalWallet } from './digitalWallet';
 import { DigitalWalletRequest } from './digitalWalletRequest';
 import { DigitalWalletUpdate } from './digitalWalletUpdate';
@@ -125,9 +172,16 @@ import { Error404PendingCreation } from './error404PendingCreation';
 import { Error409DuplicateRecord } from './error409DuplicateRecord';
 import { ErrorDetail } from './errorDetail';
 import { ErrorGeneric } from './errorGeneric';
+import { FlowPaymentOptionOutcome } from './flowPaymentOptionOutcome';
+import { FlowRuleBooleanOutcome } from './flowRuleBooleanOutcome';
+import { FlowRuleMethodOutcome } from './flowRuleMethodOutcome';
+import { FlowRuleServiceOutcome } from './flowRuleServiceOutcome';
 import { GooglePayRequest } from './googlePayRequest';
 import { GooglePaySessionRequest } from './googlePaySessionRequest';
 import { PaymentMethod } from './paymentMethod';
+import { PaymentMethodDefinition } from './paymentMethodDefinition';
+import { PaymentMethodDefinitions } from './paymentMethodDefinitions';
+import { PaymentMethodDetailsCard } from './paymentMethodDetailsCard';
 import { PaymentMethodRequest } from './paymentMethodRequest';
 import { PaymentMethodSnapshot } from './paymentMethodSnapshot';
 import { PaymentMethodToken } from './paymentMethodToken';
@@ -136,10 +190,12 @@ import { PaymentMethodTokens } from './paymentMethodTokens';
 import { PaymentMethods } from './paymentMethods';
 import { PaymentMethodsTokenized } from './paymentMethodsTokenized';
 import { PaymentOption } from './paymentOption';
+import { PaymentOptionApprovalUI } from './paymentOptionApprovalUI';
 import { PaymentOptionContext } from './paymentOptionContext';
 import { PaymentOptions } from './paymentOptions';
 import { PaymentService } from './paymentService';
 import { PaymentServiceDefinition } from './paymentServiceDefinition';
+import { PaymentServiceDefinitionConfiguration } from './paymentServiceDefinitionConfiguration';
 import { PaymentServiceDefinitionFields } from './paymentServiceDefinitionFields';
 import { PaymentServiceDefinitionSupportedFeatures } from './paymentServiceDefinitionSupportedFeatures';
 import { PaymentServiceDefinitions } from './paymentServiceDefinitions';
@@ -153,6 +209,8 @@ import { PaymentServices } from './paymentServices';
 import { RedirectRequest } from './redirectRequest';
 import { Refund } from './refund';
 import { Refunds } from './refunds';
+import { RequiredFields } from './requiredFields';
+import { RequiredFieldsAddress } from './requiredFieldsAddress';
 import { ResetPasswordRequest } from './resetPasswordRequest';
 import { SetPasswordRequest } from './setPasswordRequest';
 import { StatementDescriptor } from './statementDescriptor';
@@ -188,7 +246,16 @@ let primitives = [
                  ];
 
 let enumsMap: {[index: string]: any} = {
+        "Action.TypeEnum": Action.TypeEnum,
+        "Action.IdEnum": Action.IdEnum,
+        "Action.FlowEnum": Action.FlowEnum,
+        "AntiFraudService.TypeEnum": AntiFraudService.TypeEnum,
+        "AntiFraudService.AntiFraudServiceDefinitionIdEnum": AntiFraudService.AntiFraudServiceDefinitionIdEnum,
+        "AntiFraudServiceCreate.AntiFraudServiceDefinitionIdEnum": AntiFraudServiceCreate.AntiFraudServiceDefinitionIdEnum,
+        "AntiFraudServiceUpdate.AntiFraudServiceDefinitionIdEnum": AntiFraudServiceUpdate.AntiFraudServiceDefinitionIdEnum,
         "ApplePayRequest.MethodEnum": ApplePayRequest.MethodEnum,
+        "AuditLog.TypeEnum": AuditLog.TypeEnum,
+        "AuditLog.ActionEnum": AuditLog.ActionEnum,
         "BillingDetails.TypeEnum": BillingDetails.TypeEnum,
         "BrowserInfo.UserDeviceEnum": BrowserInfo.UserDeviceEnum,
         "Buyer.TypeEnum": Buyer.TypeEnum,
@@ -196,7 +263,12 @@ let enumsMap: {[index: string]: any} = {
         "CardDetails.TypeEnum": CardDetails.TypeEnum,
         "CardDetails.CardTypeEnum": CardDetails.CardTypeEnum,
         "CardRequest.MethodEnum": CardRequest.MethodEnum,
+        "CardSchemeDefinition.TypeEnum": CardSchemeDefinition.TypeEnum,
         "CartItem.ProductTypeEnum": CartItem.ProductTypeEnum,
+        "CheckoutSession.TypeEnum": CheckoutSession.TypeEnum,
+        "CheckoutSessionRequest.MethodEnum": CheckoutSessionRequest.MethodEnum,
+        "ConnectionDefinition.GroupEnum": ConnectionDefinition.GroupEnum,
+        "ConnectionDefinition.CategoryEnum": ConnectionDefinition.CategoryEnum,
         "DigitalWallet.TypeEnum": DigitalWallet.TypeEnum,
         "DigitalWallet.ProviderEnum": DigitalWallet.ProviderEnum,
         "DigitalWalletRequest.ProviderEnum": DigitalWalletRequest.ProviderEnum,
@@ -230,17 +302,28 @@ let enumsMap: {[index: string]: any} = {
         "Error409DuplicateRecord.StatusEnum": Error409DuplicateRecord.StatusEnum,
         "ErrorDetail.LocationEnum": ErrorDetail.LocationEnum,
         "ErrorGeneric.TypeEnum": ErrorGeneric.TypeEnum,
+        "FlowPaymentOptionOutcome.TypeEnum": FlowPaymentOptionOutcome.TypeEnum,
+        "FlowRuleBooleanOutcome.TypeEnum": FlowRuleBooleanOutcome.TypeEnum,
+        "FlowRuleBooleanOutcome.ResultEnum": FlowRuleBooleanOutcome.ResultEnum,
+        "FlowRuleMethodOutcome.TypeEnum": FlowRuleMethodOutcome.TypeEnum,
+        "FlowRuleMethodOutcome.ResultEnum": FlowRuleMethodOutcome.ResultEnum,
+        "FlowRuleServiceOutcome.TypeEnum": FlowRuleServiceOutcome.TypeEnum,
         "GooglePayRequest.MethodEnum": GooglePayRequest.MethodEnum,
         "PaymentMethod.TypeEnum": PaymentMethod.TypeEnum,
         "PaymentMethod.StatusEnum": PaymentMethod.StatusEnum,
+        "PaymentMethod.ApprovalTargetEnum": PaymentMethod.ApprovalTargetEnum,
+        "PaymentMethodDetailsCard.CardTypeEnum": PaymentMethodDetailsCard.CardTypeEnum,
         "PaymentMethodSnapshot.TypeEnum": PaymentMethodSnapshot.TypeEnum,
+        "PaymentMethodSnapshot.ApprovalTargetEnum": PaymentMethodSnapshot.ApprovalTargetEnum,
         "PaymentMethodToken.TypeEnum": PaymentMethodToken.TypeEnum,
         "PaymentMethodToken.StatusEnum": PaymentMethodToken.StatusEnum,
         "PaymentMethodTokenized.TypeEnum": PaymentMethodTokenized.TypeEnum,
         "PaymentMethodTokenized.SchemeEnum": PaymentMethodTokenized.SchemeEnum,
+        "PaymentMethodTokenized.ApprovalTargetEnum": PaymentMethodTokenized.ApprovalTargetEnum,
         "PaymentOption.TypeEnum": PaymentOption.TypeEnum,
         "PaymentService.TypeEnum": PaymentService.TypeEnum,
         "PaymentService.StatusEnum": PaymentService.StatusEnum,
+        "PaymentServiceDefinitionConfiguration.ApprovalUiTargetEnum": PaymentServiceDefinitionConfiguration.ApprovalUiTargetEnum,
         "PaymentServiceDefinitionFields.FormatEnum": PaymentServiceDefinitionFields.FormatEnum,
         "PaymentServiceSnapshot.TypeEnum": PaymentServiceSnapshot.TypeEnum,
         "Refund.TypeEnum": Refund.TypeEnum,
@@ -265,9 +348,20 @@ let enumsMap: {[index: string]: any} = {
 }
 
 let typeMap: {[index: string]: any} = {
+    "Action": Action,
+    "Actions": Actions,
     "Address": Address,
+    "AntiFraudService": AntiFraudService,
+    "AntiFraudServiceCreate": AntiFraudServiceCreate,
+    "AntiFraudServiceFields": AntiFraudServiceFields,
+    "AntiFraudServiceUpdate": AntiFraudServiceUpdate,
+    "AntiFraudServiceUpdateFields": AntiFraudServiceUpdateFields,
     "ApplePayRequest": ApplePayRequest,
     "ApplePaySessionRequest": ApplePaySessionRequest,
+    "AuditLog": AuditLog,
+    "AuditLogResource": AuditLogResource,
+    "AuditLogUser": AuditLogUser,
+    "AuditLogs": AuditLogs,
     "BillingDetails": BillingDetails,
     "BillingDetailsRequest": BillingDetailsRequest,
     "BillingDetailsUpdateRequest": BillingDetailsUpdateRequest,
@@ -279,9 +373,16 @@ let typeMap: {[index: string]: any} = {
     "Buyers": Buyers,
     "CardDetails": CardDetails,
     "CardRequest": CardRequest,
-    "CardRequiredFields": CardRequiredFields,
-    "CardRequiredFieldsAddress": CardRequiredFieldsAddress,
+    "CardSchemeDefinition": CardSchemeDefinition,
+    "CardSchemeDefinitions": CardSchemeDefinitions,
     "CartItem": CartItem,
+    "CheckoutSession": CheckoutSession,
+    "CheckoutSessionRequest": CheckoutSessionRequest,
+    "CheckoutSessionSecureFieldsUpdate": CheckoutSessionSecureFieldsUpdate,
+    "Connection": Connection,
+    "ConnectionDefinition": ConnectionDefinition,
+    "ConnectionDefinitions": ConnectionDefinitions,
+    "Connections": Connections,
     "DigitalWallet": DigitalWallet,
     "DigitalWalletRequest": DigitalWalletRequest,
     "DigitalWalletUpdate": DigitalWalletUpdate,
@@ -296,9 +397,16 @@ let typeMap: {[index: string]: any} = {
     "Error409DuplicateRecord": Error409DuplicateRecord,
     "ErrorDetail": ErrorDetail,
     "ErrorGeneric": ErrorGeneric,
+    "FlowPaymentOptionOutcome": FlowPaymentOptionOutcome,
+    "FlowRuleBooleanOutcome": FlowRuleBooleanOutcome,
+    "FlowRuleMethodOutcome": FlowRuleMethodOutcome,
+    "FlowRuleServiceOutcome": FlowRuleServiceOutcome,
     "GooglePayRequest": GooglePayRequest,
     "GooglePaySessionRequest": GooglePaySessionRequest,
     "PaymentMethod": PaymentMethod,
+    "PaymentMethodDefinition": PaymentMethodDefinition,
+    "PaymentMethodDefinitions": PaymentMethodDefinitions,
+    "PaymentMethodDetailsCard": PaymentMethodDetailsCard,
     "PaymentMethodRequest": PaymentMethodRequest,
     "PaymentMethodSnapshot": PaymentMethodSnapshot,
     "PaymentMethodToken": PaymentMethodToken,
@@ -307,10 +415,12 @@ let typeMap: {[index: string]: any} = {
     "PaymentMethods": PaymentMethods,
     "PaymentMethodsTokenized": PaymentMethodsTokenized,
     "PaymentOption": PaymentOption,
+    "PaymentOptionApprovalUI": PaymentOptionApprovalUI,
     "PaymentOptionContext": PaymentOptionContext,
     "PaymentOptions": PaymentOptions,
     "PaymentService": PaymentService,
     "PaymentServiceDefinition": PaymentServiceDefinition,
+    "PaymentServiceDefinitionConfiguration": PaymentServiceDefinitionConfiguration,
     "PaymentServiceDefinitionFields": PaymentServiceDefinitionFields,
     "PaymentServiceDefinitionSupportedFeatures": PaymentServiceDefinitionSupportedFeatures,
     "PaymentServiceDefinitions": PaymentServiceDefinitions,
@@ -324,6 +434,8 @@ let typeMap: {[index: string]: any} = {
     "RedirectRequest": RedirectRequest,
     "Refund": Refund,
     "Refunds": Refunds,
+    "RequiredFields": RequiredFields,
+    "RequiredFieldsAddress": RequiredFieldsAddress,
     "ResetPasswordRequest": ResetPasswordRequest,
     "SetPasswordRequest": SetPasswordRequest,
     "StatementDescriptor": StatementDescriptor,

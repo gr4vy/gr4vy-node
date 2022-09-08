@@ -11,6 +11,8 @@
  */
 
 import { RequestFile } from './models';
+import { PaymentOptionApprovalUI } from './paymentOptionApprovalUI';
+import { RequiredFields } from './requiredFields';
 import { Undefined } from './undefined';
 
 /**
@@ -25,6 +27,8 @@ export class PaymentOptionContext {
     * Card schemes supported by the digital wallet provider.
     */
     'supportedSchemes'?: Array<Undefined>;
+    'approvalUi'?: PaymentOptionApprovalUI;
+    'requiredFields'?: RequiredFields;
 
     static discriminator: string | undefined = undefined;
 
@@ -38,6 +42,16 @@ export class PaymentOptionContext {
             "name": "supportedSchemes",
             "baseName": "supported_schemes",
             "type": "Array<Undefined>"
+        },
+        {
+            "name": "approvalUi",
+            "baseName": "approval_ui",
+            "type": "PaymentOptionApprovalUI"
+        },
+        {
+            "name": "requiredFields",
+            "baseName": "required_fields",
+            "type": "RequiredFields"
         }    ];
 
     static getAttributeTypeMap() {

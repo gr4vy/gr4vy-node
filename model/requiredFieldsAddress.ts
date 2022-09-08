@@ -15,7 +15,7 @@ import { RequestFile } from './models';
 /**
 * The billing address of the buyer.
 */
-export class CardRequiredFieldsAddress {
+export class RequiredFieldsAddress {
     /**
     * The city for the billing address.
     */
@@ -76,7 +76,7 @@ export class CardRequiredFieldsAddress {
         }    ];
 
     static getAttributeTypeMap() {
-        return CardRequiredFieldsAddress.attributeTypeMap;
+        return RequiredFieldsAddress.attributeTypeMap;
     }
 }
 

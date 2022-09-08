@@ -77,6 +77,7 @@ export namespace TaxId {
         MySst = <any> 'my.sst',
         NoVat = <any> 'no.vat',
         NzGst = <any> 'nz.gst',
+        PhTin = <any> 'ph.tin',
         RuInn = <any> 'ru.inn',
         RuKpp = <any> 'ru.kpp',
         SaVat = <any> 'sa.vat',

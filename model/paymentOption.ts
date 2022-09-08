@@ -36,10 +36,6 @@ export class PaymentOption {
     */
     'canStorePaymentMethod'?: boolean;
     'context'?: PaymentOptionContext;
-    /**
-    * A flag to indicate if storing the payment method is enabled.
-    */
-    'paymentMethodTokenizationEnabled'?: boolean;
 
     static discriminator: string | undefined = undefined;
 
@@ -78,11 +74,6 @@ export class PaymentOption {
             "name": "context",
             "baseName": "context",
             "type": "PaymentOptionContext"
-        },
-        {
-            "name": "paymentMethodTokenizationEnabled",
-            "baseName": "payment_method_tokenization_enabled",
-            "type": "boolean"
         }    ];
 
     static getAttributeTypeMap() {
