@@ -11,7 +11,7 @@
  */
 
 import { RequestFile } from './models';
-import { CardRequiredFields } from './cardRequiredFields';
+import { RequiredFields } from './requiredFields';
 
 /**
 * Details about a card.
@@ -37,7 +37,7 @@ export class CardDetails {
     * The 2-letter ISO code of the issuing country of the card.
     */
     'country'?: string;
-    'requiredFields'?: CardRequiredFields;
+    'requiredFields'?: RequiredFields;
 
     static discriminator: string | undefined = undefined;
 
@@ -70,7 +70,7 @@ export class CardDetails {
         {
             "name": "requiredFields",
             "baseName": "required_fields",
-            "type": "CardRequiredFields"
+            "type": "RequiredFields"
         }    ];
 
     static getAttributeTypeMap() {

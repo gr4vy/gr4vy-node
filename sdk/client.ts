@@ -5,6 +5,7 @@ import {
   PaymentServicesApi,
   TransactionsApi,
 } from '../api/apis'
+import { CheckoutSessionsApi } from '../api/checkoutSessionsApi'
 import { PaymentServiceDefinitionsApi } from '../api/paymentServiceDefinitionsApi'
 import Authentication, {
   JWTScope,
@@ -18,6 +19,7 @@ class Client {
   authentication: Authentication
   apis: (
     | BuyersApi
+    | CheckoutSessionsApi
     | PaymentMethodsApi
     | PaymentOptionsApi
     | PaymentServiceDefinitionsApi
@@ -31,6 +33,12 @@ class Client {
   addBuyer: typeof BuyersApi.prototype.addBuyer
   updateBuyer: typeof BuyersApi.prototype.updateBuyer
   deleteBuyer: typeof BuyersApi.prototype.deleteBuyer
+
+  // Checkout Sessions
+  addCheckoutSession: typeof CheckoutSessionsApi.prototype.addCheckoutSession
+  deleteCheckoutSession: typeof CheckoutSessionsApi.prototype.deleteCheckoutSession
+  getCheckoutSession: typeof CheckoutSessionsApi.prototype.getCheckoutSession
+  updateCheckoutSessionFields: typeof CheckoutSessionsApi.prototype.updateCheckoutSessionFields
 
   // Payment Methods
   listPaymentMethods: typeof PaymentMethodsApi.prototype.listPaymentMethods
@@ -80,6 +88,16 @@ class Client {
     this.updateBuyer = this.wrap(ba.updateBuyer.bind(ba))
     this.deleteBuyer = this.wrap(ba.deleteBuyer.bind(ba))
     this.apis.push(ba)
+
+    // Checkout Sessions
+    const csa = new CheckoutSessionsApi(this.baseUrl)
+    this.addCheckoutSession = this.wrap(csa.addCheckoutSession.bind(csa))
+    this.deleteCheckoutSession = this.wrap(csa.deleteCheckoutSession.bind(csa))
+    this.getCheckoutSession = this.wrap(csa.getCheckoutSession.bind(csa))
+    this.updateCheckoutSessionFields = this.wrap(
+      csa.updateCheckoutSessionFields.bind(csa)
+    )
+    this.apis.push(csa)
 
     // Payment Methods
     const pma = new PaymentMethodsApi(this.baseUrl)

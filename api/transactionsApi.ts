@@ -15,6 +15,7 @@ import localVarRequest from 'request';
 import http from 'http';
 
 /* tslint:disable:no-unused-locals */
+import { Actions } from '../model/actions';
 import { Error401Unauthorized } from '../model/error401Unauthorized';
 import { Error404NotFound } from '../model/error404NotFound';
 import { ErrorGeneric } from '../model/errorGeneric';
@@ -315,6 +316,78 @@ export class TransactionsApi {
         });
     }
     /**
+     * Gets actions for a given transaction.
+     * @summary Get transaction actions
+     * @param transactionId The ID for the transaction to get the information for.
+     */
+    public async getTransactionActions (transactionId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Actions;  }> {
+        const localVarPath = this.basePath + '/transactions/{transaction_id}/actions'
+            .replace('{' + 'transaction_id' + '}', encodeURIComponent(String(transactionId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'transactionId' is not null or undefined
+        if (transactionId === null || transactionId === undefined) {
+            throw new Error('Required parameter transactionId was null or undefined when calling getTransactionActions.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        let authenticationPromise = Promise.resolve();
+        if (this.authentications.BearerAuth.accessToken) {
+            authenticationPromise = authenticationPromise.then(() => this.authentications.BearerAuth.applyToRequest(localVarRequestOptions));
+        }
+        authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
+
+        let interceptorPromise = authenticationPromise;
+        for (const interceptor of this.interceptors) {
+            interceptorPromise = interceptorPromise.then(() => interceptor(localVarRequestOptions));
+        }
+
+        return interceptorPromise.then(() => {
+            if (Object.keys(localVarFormParams).length) {
+                if (localVarUseFormData) {
+                    (<any>localVarRequestOptions).formData = localVarFormParams;
+                } else {
+                    localVarRequestOptions.form = localVarFormParams;
+                }
+            }
+            return new Promise<{ response: http.IncomingMessage; body: Actions;  }>((resolve, reject) => {
+                localVarRequest(localVarRequestOptions, (error, response, body) => {
+                    if (error) {
+                        reject(error);
+                    } else {
+                        body = ObjectSerializer.deserialize(body, "Actions");
+                        if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                            resolve({ response: response, body: body });
+                        } else {
+                            reject(new HttpError(response, body, response.statusCode));
+                        }
+                    }
+                });
+            });
+        });
+    }
+    /**
      * Gets information about a refund associated with a certain transaction.
      * @summary Get transaction refund
      * @param transactionId The ID for the transaction to get the information for.
@@ -478,18 +551,34 @@ export class TransactionsApi {
     /**
      * Lists all transactions for an account. Sorted by last `updated_at` status.
      * @summary List transactions
-     * @param search Filters the transactions to only the items for which the &#x60;id&#x60; or &#x60;external_identifier&#x60; matches this value. This field allows for a partial match, matching any transaction for which either of the fields partially or completely matches.
-     * @param transactionStatus Filters the results to only the transactions for which the &#x60;status&#x60; matches this value.
-     * @param buyerId Filters the results to only the items for which the &#x60;buyer&#x60; has an &#x60;id&#x60; that matches this value.
      * @param buyerExternalIdentifier Filters the results to only the items for which the &#x60;buyer&#x60; has an &#x60;external_identifier&#x60; that matches this value.
-     * @param beforeCreatedAt Filters the results to only transactions created before this ISO date-time string.
-     * @param afterCreatedAt Filters the results to only transactions created after this ISO date-time string.
-     * @param beforeUpdatedAt Filters the results to only transactions last updated before this ISO date-time string.
-     * @param afterUpdatedAt Filters the results to only transactions last updated after this ISO date-time string.
-     * @param limit Defines the maximum number of items to return for this request.
+     * @param buyerId Filters the results to only the items for which the &#x60;buyer&#x60; has an &#x60;id&#x60; that matches this value.
      * @param cursor A cursor that identifies the page of results to return. This is used to paginate the results of this API.  For the first page of results, this parameter can be left out. For additional pages, use the value returned by the API in the &#x60;next_cursor&#x60; field. Similarly the &#x60;previous_cursor&#x60; can be used to reverse backwards in the list.
+     * @param limit Defines the maximum number of items to return for this request.
+     * @param amountEq Filters for transactions that have an &#x60;amount&#x60; that is equal to the provided &#x60;amount_eq&#x60; value.
+     * @param amountGte Filters for transactions that have an &#x60;amount&#x60; that is greater than or equal to the &#x60;amount_gte&#x60; value.
+     * @param amountLte Filters for transactions that have an &#x60;amount&#x60; that is less than or equal to the &#x60;amount_lte&#x60; value.
+     * @param createdAtGte Filters the results to only transactions created after this ISO date-time string. The time zone must be included.  Ensure that the date-time string is URL encoded, e.g. &#x60;2022-01-01T12:00:00+08:00&#x60; must be encoded as &#x60;2022-01-01T12%3A00%3A00%2B08%3A00&#x60;.
+     * @param createdAtLte Filters the results to only transactions created before this ISO date-time string. The time zone must be included.  Ensure that the date-time string is URL encoded, e.g. &#x60;2022-01-01T12:00:00+08:00&#x60; must be encoded as &#x60;2022-01-01T12%3A00%3A00%2B08%3A00&#x60;.
+     * @param currency Filters for transactions that have matching &#x60;currency&#x60; values. The &#x60;currency&#x60; values provided must be formatted as 3-letter ISO currency code.
+     * @param externalIdentifier Filters the results to only the items for which the &#x60;external_identifier&#x60; matches this value.
+     * @param hasRefunds When set to &#x60;true&#x60;, filter for transactions that have at least one refund in any state associated with it. When set to &#x60;false&#x60;, filter for transactions that have no refunds.
+     * @param id Filters for the transaction that has a matching &#x60;id&#x60; value.
+     * @param metadata Filters for transactions where their &#x60;metadata&#x60; values contain all of the provided &#x60;metadata&#x60; keys. The value sent for &#x60;metadata&#x60; must be formatted as a JSON string, and all keys and values must be strings. This value should also be URL encoded.  Duplicate keys are not supported. If a key is duplicated, only the last appearing value will be used.
+     * @param method Filters the results to only the items for which the &#x60;method&#x60; has been set to this value.
+     * @param paymentServiceId Filters for transactions that were processed by the provided &#x60;payment_service_id&#x60; values.
+     * @param paymentServiceTransactionId Filters for transactions that have a matching &#x60;payment_service_transaction_id&#x60; value. The &#x60;payment_service_transaction_id&#x60; is the identifier of the transaction given by the payment service.
+     * @param search Filters for transactions that have one of the following fields match exactly with the provided &#x60;search&#x60; value: * &#x60;buyer_external_identifier&#x60; * &#x60;buyer_id&#x60; * &#x60;external_identifier&#x60; * &#x60;id&#x60; * &#x60;payment_service_transaction_id&#x60;
+     * @param status Filters the results to only the transactions that have a &#x60;status&#x60; that matches with any of the provided status values.
+     * @param updatedAtGte Filters the results to only transactions last updated after this ISO date-time string. The time zone must be included.  Ensure that the date-time string is URL encoded, e.g. &#x60;2022-01-01T12:00:00+08:00&#x60; must be encoded as &#x60;2022-01-01T12%3A00%3A00%2B08%3A00&#x60;.
+     * @param updatedAtLte Filters the results to only transactions last updated before this ISO date-time string. The time zone must be included.  Ensure that the date-time string is URL encoded, e.g. &#x60;2022-01-01T12:00:00+08:00&#x60; must be encoded as &#x60;2022-01-01T12%3A00%3A00%2B08%3A00&#x60;.
+     * @param beforeCreatedAt Filters the results to only transactions created before this ISO date-time string. The time zone must be included.  Ensure that the date-time string is URL encoded, e.g. &#x60;2022-01-01T12:00:00+08:00&#x60; must be encoded as &#x60;2022-01-01T12%3A00%3A00%2B08%3A00&#x60;.  **WARNING** This filter is deprecated and may be removed eventually, use &#x60;created_at_lte&#x60; instead.
+     * @param afterCreatedAt Filters the results to only transactions created after this ISO date-time string. The time zone must be included.  Ensure that the date-time string is URL encoded, e.g. &#x60;2022-01-01T12:00:00+08:00&#x60; must be encoded as &#x60;2022-01-01T12%3A00%3A00%2B08%3A00&#x60;.  **WARNING** This filter is deprecated and may be removed eventually, use &#x60;created_at_gte&#x60; instead.
+     * @param beforeUpdatedAt Filters the results to only transactions last updated before this ISO date-time string. The time zone must be included.  Ensure that the date-time string is URL encoded, e.g. &#x60;2022-01-01T12:00:00+08:00&#x60; must be encoded as &#x60;2022-01-01T12%3A00%3A00%2B08%3A00&#x60;.  **WARNING** This filter is deprecated and may be removed eventually, use &#x60;updated_at_lte&#x60; instead.
+     * @param afterUpdatedAt Filters the results to only transactions last updated after this ISO date-time string. The time zone must be included.  Ensure that the date-time string is URL encoded, e.g. &#x60;2022-01-01T12:00:00+08:00&#x60; must be encoded as &#x60;2022-01-01T12%3A00%3A00%2B08%3A00&#x60;.  **WARNING** This filter is deprecated and may be removed eventually, use &#x60;updated_at_gte&#x60; instead.
+     * @param transactionStatus Filters the results to only the transactions for which the &#x60;status&#x60; matches this value.  **WARNING** This filter is deprecated and may be removed eventually, use &#x60;status&#x60; instead.
      */
-    public async listTransactions (search?: string, transactionStatus?: 'processing' | 'buyer_approval_pending' | 'authorization_succeeded' | 'authorization_failed' | 'authorization_declined' | 'capture_pending' | 'capture_succeeded' | 'authorization_void_pending' | 'authorization_voided', buyerId?: string, buyerExternalIdentifier?: string, beforeCreatedAt?: string, afterCreatedAt?: string, beforeUpdatedAt?: string, afterUpdatedAt?: string, limit?: number, cursor?: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Transactions;  }> {
+    public async listTransactions (buyerExternalIdentifier?: string, buyerId?: string, cursor?: string, limit?: number, amountEq?: number, amountGte?: number, amountLte?: number, createdAtGte?: Date, createdAtLte?: Date, currency?: Array<string>, externalIdentifier?: string, hasRefunds?: boolean, id?: string, metadata?: Array<string>, method?: Array<'afterpay' | 'applepay' | 'banked' | 'bitpay' | 'boleto' | 'card' | 'clearpay' | 'dana' | 'fortumo' | 'gcash' | 'gocardless' | 'googlepay' | 'grabpay' | 'klarna' | 'ovo' | 'paymaya' | 'paypal' | 'pix' | 'rabbitlinepay' | 'shopeepay' | 'stripedd' | 'truemoney' | 'trustly' | 'zippay'>, paymentServiceId?: Array<string>, paymentServiceTransactionId?: string, search?: string, status?: Array<'processing' | 'buyer_approval_pending' | 'authorization_succeeded' | 'authorization_failed' | 'authorization_declined' | 'capture_pending' | 'capture_succeeded' | 'authorization_void_pending' | 'authorization_voided'>, updatedAtGte?: Date, updatedAtLte?: Date, beforeCreatedAt?: Date, afterCreatedAt?: Date, beforeUpdatedAt?: Date, afterUpdatedAt?: Date, transactionStatus?: 'processing' | 'buyer_approval_pending' | 'authorization_succeeded' | 'authorization_failed' | 'authorization_declined' | 'capture_pending' | 'capture_succeeded' | 'authorization_void_pending' | 'authorization_voided', options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Transactions;  }> {
         const localVarPath = this.basePath + '/transactions';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
@@ -502,44 +591,108 @@ export class TransactionsApi {
         }
         let localVarFormParams: any = {};
 
-        if (search !== undefined) {
-            localVarQueryParameters['search'] = ObjectSerializer.serialize(search, "string");
-        }
-
-        if (transactionStatus !== undefined) {
-            localVarQueryParameters['transaction_status'] = ObjectSerializer.serialize(transactionStatus, "'processing' | 'buyer_approval_pending' | 'authorization_succeeded' | 'authorization_failed' | 'authorization_declined' | 'capture_pending' | 'capture_succeeded' | 'authorization_void_pending' | 'authorization_voided'");
+        if (buyerExternalIdentifier !== undefined) {
+            localVarQueryParameters['buyer_external_identifier'] = ObjectSerializer.serialize(buyerExternalIdentifier, "string");
         }
 
         if (buyerId !== undefined) {
             localVarQueryParameters['buyer_id'] = ObjectSerializer.serialize(buyerId, "string");
         }
 
-        if (buyerExternalIdentifier !== undefined) {
-            localVarQueryParameters['buyer_external_identifier'] = ObjectSerializer.serialize(buyerExternalIdentifier, "string");
-        }
-
-        if (beforeCreatedAt !== undefined) {
-            localVarQueryParameters['before_created_at'] = ObjectSerializer.serialize(beforeCreatedAt, "string");
-        }
-
-        if (afterCreatedAt !== undefined) {
-            localVarQueryParameters['after_created_at'] = ObjectSerializer.serialize(afterCreatedAt, "string");
-        }
-
-        if (beforeUpdatedAt !== undefined) {
-            localVarQueryParameters['before_updated_at'] = ObjectSerializer.serialize(beforeUpdatedAt, "string");
-        }
-
-        if (afterUpdatedAt !== undefined) {
-            localVarQueryParameters['after_updated_at'] = ObjectSerializer.serialize(afterUpdatedAt, "string");
+        if (cursor !== undefined) {
+            localVarQueryParameters['cursor'] = ObjectSerializer.serialize(cursor, "string");
         }
 
         if (limit !== undefined) {
             localVarQueryParameters['limit'] = ObjectSerializer.serialize(limit, "number");
         }
 
-        if (cursor !== undefined) {
-            localVarQueryParameters['cursor'] = ObjectSerializer.serialize(cursor, "string");
+        if (amountEq !== undefined) {
+            localVarQueryParameters['amount_eq'] = ObjectSerializer.serialize(amountEq, "number");
+        }
+
+        if (amountGte !== undefined) {
+            localVarQueryParameters['amount_gte'] = ObjectSerializer.serialize(amountGte, "number");
+        }
+
+        if (amountLte !== undefined) {
+            localVarQueryParameters['amount_lte'] = ObjectSerializer.serialize(amountLte, "number");
+        }
+
+        if (createdAtGte !== undefined) {
+            localVarQueryParameters['created_at_gte'] = ObjectSerializer.serialize(createdAtGte, "Date");
+        }
+
+        if (createdAtLte !== undefined) {
+            localVarQueryParameters['created_at_lte'] = ObjectSerializer.serialize(createdAtLte, "Date");
+        }
+
+        if (currency !== undefined) {
+            localVarQueryParameters['currency'] = ObjectSerializer.serialize(currency, "Array<string>");
+        }
+
+        if (externalIdentifier !== undefined) {
+            localVarQueryParameters['external_identifier'] = ObjectSerializer.serialize(externalIdentifier, "string");
+        }
+
+        if (hasRefunds !== undefined) {
+            localVarQueryParameters['has_refunds'] = ObjectSerializer.serialize(hasRefunds, "boolean");
+        }
+
+        if (id !== undefined) {
+            localVarQueryParameters['id'] = ObjectSerializer.serialize(id, "string");
+        }
+
+        if (metadata !== undefined) {
+            localVarQueryParameters['metadata'] = ObjectSerializer.serialize(metadata, "Array<string>");
+        }
+
+        if (method !== undefined) {
+            localVarQueryParameters['method'] = ObjectSerializer.serialize(method, "Array<'afterpay' | 'applepay' | 'banked' | 'bitpay' | 'boleto' | 'card' | 'clearpay' | 'dana' | 'fortumo' | 'gcash' | 'gocardless' | 'googlepay' | 'grabpay' | 'klarna' | 'ovo' | 'paymaya' | 'paypal' | 'pix' | 'rabbitlinepay' | 'shopeepay' | 'stripedd' | 'truemoney' | 'trustly' | 'zippay'>");
+        }
+
+        if (paymentServiceId !== undefined) {
+            localVarQueryParameters['payment_service_id'] = ObjectSerializer.serialize(paymentServiceId, "Array<string>");
+        }
+
+        if (paymentServiceTransactionId !== undefined) {
+            localVarQueryParameters['payment_service_transaction_id'] = ObjectSerializer.serialize(paymentServiceTransactionId, "string");
+        }
+
+        if (search !== undefined) {
+            localVarQueryParameters['search'] = ObjectSerializer.serialize(search, "string");
+        }
+
+        if (status !== undefined) {
+            localVarQueryParameters['status'] = ObjectSerializer.serialize(status, "Array<'processing' | 'buyer_approval_pending' | 'authorization_succeeded' | 'authorization_failed' | 'authorization_declined' | 'capture_pending' | 'capture_succeeded' | 'authorization_void_pending' | 'authorization_voided'>");
+        }
+
+        if (updatedAtGte !== undefined) {
+            localVarQueryParameters['updated_at_gte'] = ObjectSerializer.serialize(updatedAtGte, "Date");
+        }
+
+        if (updatedAtLte !== undefined) {
+            localVarQueryParameters['updated_at_lte'] = ObjectSerializer.serialize(updatedAtLte, "Date");
+        }
+
+        if (beforeCreatedAt !== undefined) {
+            localVarQueryParameters['before_created_at'] = ObjectSerializer.serialize(beforeCreatedAt, "Date");
+        }
+
+        if (afterCreatedAt !== undefined) {
+            localVarQueryParameters['after_created_at'] = ObjectSerializer.serialize(afterCreatedAt, "Date");
+        }
+
+        if (beforeUpdatedAt !== undefined) {
+            localVarQueryParameters['before_updated_at'] = ObjectSerializer.serialize(beforeUpdatedAt, "Date");
+        }
+
+        if (afterUpdatedAt !== undefined) {
+            localVarQueryParameters['after_updated_at'] = ObjectSerializer.serialize(afterUpdatedAt, "Date");
+        }
+
+        if (transactionStatus !== undefined) {
+            localVarQueryParameters['transaction_status'] = ObjectSerializer.serialize(transactionStatus, "'processing' | 'buyer_approval_pending' | 'authorization_succeeded' | 'authorization_failed' | 'authorization_declined' | 'capture_pending' | 'capture_succeeded' | 'authorization_void_pending' | 'authorization_voided'");
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);

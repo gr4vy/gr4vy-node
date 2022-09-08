@@ -71,6 +71,14 @@ export class TransactionSummary {
     'updatedAt'?: Date;
     'paymentService'?: PaymentServiceSnapshot;
     'method'?: TransactionSummary.MethodEnum;
+    /**
+    * This is the response code received from the payment service. This can be set to any value and is not standardized across different payment services.
+    */
+    'rawResponseCode'?: string | null;
+    /**
+    * This is the response description received from the payment service. This can be set to any value and is not standardized across different payment services.
+    */
+    'rawResponseDescription'?: string | null;
 
     static discriminator: string | undefined = undefined;
 
@@ -154,6 +162,16 @@ export class TransactionSummary {
             "name": "method",
             "baseName": "method",
             "type": "TransactionSummary.MethodEnum"
+        },
+        {
+            "name": "rawResponseCode",
+            "baseName": "raw_response_code",
+            "type": "string"
+        },
+        {
+            "name": "rawResponseDescription",
+            "baseName": "raw_response_description",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
@@ -184,6 +202,7 @@ export namespace TransactionSummary {
         Afterpay = <any> 'afterpay',
         Applepay = <any> 'applepay',
         Banked = <any> 'banked',
+        Bitpay = <any> 'bitpay',
         Boleto = <any> 'boleto',
         Card = <any> 'card',
         Clearpay = <any> 'clearpay',
@@ -192,7 +211,6 @@ export namespace TransactionSummary {
         Gcash = <any> 'gcash',
         Gocardless = <any> 'gocardless',
         Googlepay = <any> 'googlepay',
-        GooglepayPanOnly = <any> 'googlepay_pan_only',
         Grabpay = <any> 'grabpay',
         Klarna = <any> 'klarna',
         Ovo = <any> 'ovo',

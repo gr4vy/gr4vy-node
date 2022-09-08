@@ -120,6 +120,18 @@ export class Transaction {
     */
     'metadata'?: { [key: string]: string; };
     'threeDSecure'?: ThreeDSecureSummary;
+    /**
+    * The date and time when this transaction was authorized in the payment service.  Don\'t use this field to determine whether the transaction was authorized. A `null` value doesn\'t necessarily imply that the transaction wasn\'t authorized, it can mean that the payment service doesn\'t provide this value, that it didn\'t provide it at the time the transaction was authorized or that the transaction was authorized before the introduction of this field.
+    */
+    'authorizedAt'?: Date | null;
+    /**
+    * The date and time when this transaction was captured in the payment service.  Don\'t use this field to determine whether the transaction was captured. A `null` value doesn\'t necessarily imply that the transaction wasn\'t captured, it can mean that the payment service doesn\'t provide this value, that it didn\'t provide it at the time the transaction was captured or that the transaction was captured before the introduction of this field.
+    */
+    'capturedAt'?: Date | null;
+    /**
+    * The date and time when this transaction was voided in the payment service.  Don\'t use this field to determine whether the transaction was voided. A `null` value doesn\'t necessarily imply that the transaction wasn\'t voided, it can mean that the payment service doesn\'t provide this value, that it didn\'t provide it at the time the transaction was voided or that the transaction was voided before the introduction of this field.
+    */
+    'voidedAt'?: Date | null;
 
     static discriminator: string | undefined = undefined;
 
@@ -268,6 +280,21 @@ export class Transaction {
             "name": "threeDSecure",
             "baseName": "three_d_secure",
             "type": "ThreeDSecureSummary"
+        },
+        {
+            "name": "authorizedAt",
+            "baseName": "authorized_at",
+            "type": "Date"
+        },
+        {
+            "name": "capturedAt",
+            "baseName": "captured_at",
+            "type": "Date"
+        },
+        {
+            "name": "voidedAt",
+            "baseName": "voided_at",
+            "type": "Date"
         }    ];
 
     static getAttributeTypeMap() {
@@ -318,6 +345,7 @@ export namespace Transaction {
         Afterpay = <any> 'afterpay',
         Applepay = <any> 'applepay',
         Banked = <any> 'banked',
+        Bitpay = <any> 'bitpay',
         Boleto = <any> 'boleto',
         Card = <any> 'card',
         Clearpay = <any> 'clearpay',
@@ -326,7 +354,6 @@ export namespace Transaction {
         Gcash = <any> 'gcash',
         Gocardless = <any> 'gocardless',
         Googlepay = <any> 'googlepay',
-        GooglepayPanOnly = <any> 'googlepay_pan_only',
         Grabpay = <any> 'grabpay',
         Klarna = <any> 'klarna',
         Ovo = <any> 'ovo',

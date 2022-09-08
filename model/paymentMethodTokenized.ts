@@ -38,6 +38,10 @@ export class PaymentMethodTokenized {
     */
     'expirationDate'?: string | null;
     /**
+    * The browser target that an approval URL must be opened in. If `any` or `null`, then there is no specific requirement.
+    */
+    'approvalTarget'?: PaymentMethodTokenized.ApprovalTargetEnum;
+    /**
     * The optional URL that the buyer needs to be redirected to to further authorize their payment.
     */
     'approvalUrl'?: string | null;
@@ -84,6 +88,11 @@ export class PaymentMethodTokenized {
             "type": "string"
         },
         {
+            "name": "approvalTarget",
+            "baseName": "approval_target",
+            "type": "PaymentMethodTokenized.ApprovalTargetEnum"
+        },
+        {
             "name": "approvalUrl",
             "baseName": "approval_url",
             "type": "string"
@@ -109,17 +118,22 @@ export namespace PaymentMethodTokenized {
         PaymentMethod = <any> 'payment-method'
     }
     export enum SchemeEnum {
-        Visa = <any> 'visa',
-        Mastercard = <any> 'mastercard',
-        AmericanExpress = <any> 'american-express',
+        Amex = <any> 'amex',
+        Dankort = <any> 'dankort',
         DinersClub = <any> 'diners-club',
         Discover = <any> 'discover',
-        Jcb = <any> 'jcb',
-        Unionpay = <any> 'unionpay',
-        Maestro = <any> 'maestro',
+        EftposAustralia = <any> 'eftpos-australia',
         Elo = <any> 'elo',
-        Mir = <any> 'mir',
-        Hiper = <any> 'hiper',
-        Hipercard = <any> 'hipercard'
+        Jcb = <any> 'jcb',
+        Maestro = <any> 'maestro',
+        Mastercard = <any> 'mastercard',
+        Other = <any> 'other',
+        Rupay = <any> 'rupay',
+        Unionpay = <any> 'unionpay',
+        Visa = <any> 'visa'
+    }
+    export enum ApprovalTargetEnum {
+        Any = <any> 'any',
+        NewWindow = <any> 'new_window'
     }
 }

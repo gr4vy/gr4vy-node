@@ -11,6 +11,7 @@
  */
 
 import { RequestFile } from './models';
+import { PaymentServiceDefinitionConfiguration } from './paymentServiceDefinitionConfiguration';
 import { PaymentServiceDefinitionFields } from './paymentServiceDefinitionFields';
 import { PaymentServiceDefinitionSupportedFeatures } from './paymentServiceDefinitionSupportedFeatures';
 
@@ -49,6 +50,7 @@ export class PaymentServiceDefinition {
     * An icon to display for the payment service.
     */
     'iconUrl'?: string | null;
+    'configuration'?: PaymentServiceDefinitionConfiguration;
 
     static discriminator: string | undefined = undefined;
 
@@ -102,6 +104,11 @@ export class PaymentServiceDefinition {
             "name": "iconUrl",
             "baseName": "icon_url",
             "type": "string"
+        },
+        {
+            "name": "configuration",
+            "baseName": "configuration",
+            "type": "PaymentServiceDefinitionConfiguration"
         }    ];
 
     static getAttributeTypeMap() {

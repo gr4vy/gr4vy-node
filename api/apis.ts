@@ -1,7 +1,17 @@
+export * from './antiFraudServicesApi';
+import { AntiFraudServicesApi } from './antiFraudServicesApi';
+export * from './auditLogsApi';
+import { AuditLogsApi } from './auditLogsApi';
 export * from './buyersApi';
 import { BuyersApi } from './buyersApi';
+export * from './cardSchemeDefinitionsApi';
+import { CardSchemeDefinitionsApi } from './cardSchemeDefinitionsApi';
+export * from './checkoutSessionsApi';
+import { CheckoutSessionsApi } from './checkoutSessionsApi';
 export * from './digitalWalletsApi';
 import { DigitalWalletsApi } from './digitalWalletsApi';
+export * from './paymentMethodDefinitionsApi';
+import { PaymentMethodDefinitionsApi } from './paymentMethodDefinitionsApi';
 export * from './paymentMethodTokensApi';
 import { PaymentMethodTokensApi } from './paymentMethodTokensApi';
 export * from './paymentMethodsApi';
@@ -25,4 +35,4 @@ export class HttpError extends Error {
 
 export { RequestFile } from '../model/models';
 
-export const APIS = [BuyersApi, DigitalWalletsApi, PaymentMethodTokensApi, PaymentMethodsApi, PaymentOptionsApi, PaymentServiceDefinitionsApi, PaymentServicesApi, TransactionsApi];
+export const APIS = [AntiFraudServicesApi, AuditLogsApi, BuyersApi, CardSchemeDefinitionsApi, CheckoutSessionsApi, DigitalWalletsApi, PaymentMethodDefinitionsApi, PaymentMethodTokensApi, PaymentMethodsApi, PaymentOptionsApi, PaymentServiceDefinitionsApi, PaymentServicesApi, TransactionsApi];

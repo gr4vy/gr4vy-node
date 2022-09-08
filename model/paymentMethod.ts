@@ -12,6 +12,7 @@
 
 import { RequestFile } from './models';
 import { Buyer } from './buyer';
+import { Undefined } from './undefined';
 
 /**
 * A generic payment method.
@@ -57,6 +58,10 @@ export class PaymentMethod {
     */
     'expirationDate'?: string | null;
     /**
+    * The browser target that an approval URL must be opened in. If `any` or `null`, then there is no specific requirement.
+    */
+    'approvalTarget'?: PaymentMethod.ApprovalTargetEnum;
+    /**
     * The optional URL that the buyer needs to be redirected to to further authorize their payment.
     */
     'approvalUrl'?: string | null;
@@ -68,6 +73,7 @@ export class PaymentMethod {
     * The 2-letter ISO code of the country this payment method can be used for. If this value is `null` the payment method may be used in multiple countries.
     */
     'country'?: string | null;
+    'details'?: Undefined;
 
     static discriminator: string | undefined = undefined;
 
@@ -133,6 +139,11 @@ export class PaymentMethod {
             "type": "string"
         },
         {
+            "name": "approvalTarget",
+            "baseName": "approval_target",
+            "type": "PaymentMethod.ApprovalTargetEnum"
+        },
+        {
             "name": "approvalUrl",
             "baseName": "approval_url",
             "type": "string"
@@ -146,6 +157,11 @@ export class PaymentMethod {
             "name": "country",
             "baseName": "country",
             "type": "string"
+        },
+        {
+            "name": "details",
+            "baseName": "details",
+            "type": "Undefined"
         }    ];
 
     static getAttributeTypeMap() {
@@ -162,5 +178,9 @@ export namespace PaymentMethod {
         BuyerApprovalRequired = <any> 'buyer_approval_required',
         Succeeded = <any> 'succeeded',
         Failed = <any> 'failed'
+    }
+    export enum ApprovalTargetEnum {
+        Any = <any> 'any',
+        NewWindow = <any> 'new_window'
     }
 }
