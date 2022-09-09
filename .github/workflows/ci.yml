@@ -14,7 +14,6 @@ jobs:
     strategy:
       matrix:
         node:
-          - 12.x
           - 14.x
 
     steps:
@@ -35,7 +34,7 @@ jobs:
           yarn lint
 
       - name: Run tests
-        env: 
+        env:
           PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
         run: |
           yarn test
