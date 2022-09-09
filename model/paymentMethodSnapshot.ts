@@ -11,7 +11,7 @@
  */
 
 import { RequestFile } from './models';
-import { Undefined } from './undefined';
+import { PaymentMethodDetailsCard } from './paymentMethodDetailsCard';
 
 /**
 * Snapshot of a payment method, as used when embedded inside other resources.
@@ -58,7 +58,7 @@ export class PaymentMethodSnapshot {
     * The 2-letter ISO code of the country this payment method can be used for. If this value is `null` the payment method may be used in multiple countries.
     */
     'country'?: string | null;
-    'details'?: Undefined;
+    'details'?: PaymentMethodDetailsCard;
 
     static discriminator: string | undefined = undefined;
 
@@ -121,7 +121,7 @@ export class PaymentMethodSnapshot {
         {
             "name": "details",
             "baseName": "details",
-            "type": "Undefined"
+            "type": "PaymentMethodDetailsCard"
         }    ];
 
     static getAttributeTypeMap() {

@@ -81,6 +81,8 @@ model/paymentMethods.ts
 model/paymentMethodsTokenized.ts
 model/paymentOption.ts
 model/paymentOptionApprovalUI.ts
+model/paymentOptionCardSchemeApplePay.ts
+model/paymentOptionCardSchemeGooglePay.ts
 model/paymentOptionContext.ts
 model/paymentOptions.ts
 model/paymentService.ts
