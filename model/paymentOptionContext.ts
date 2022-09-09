@@ -13,7 +13,6 @@
 import { RequestFile } from './models';
 import { PaymentOptionApprovalUI } from './paymentOptionApprovalUI';
 import { RequiredFields } from './requiredFields';
-import { Undefined } from './undefined';
 
 /**
 * Additional context specific to the payment option. This is currently only returned for Apple Pay and Google Pay.
@@ -26,7 +25,7 @@ export class PaymentOptionContext {
     /**
     * Card schemes supported by the digital wallet provider.
     */
-    'supportedSchemes'?: Array<Undefined>;
+    'supportedSchemes'?: Array<string>;
     'approvalUi'?: PaymentOptionApprovalUI;
     'requiredFields'?: RequiredFields;
 
@@ -41,7 +40,7 @@ export class PaymentOptionContext {
         {
             "name": "supportedSchemes",
             "baseName": "supported_schemes",
-            "type": "Array<Undefined>"
+            "type": "Array<string>"
         },
         {
             "name": "approvalUi",

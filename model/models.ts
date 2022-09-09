@@ -1,7 +1,5 @@
 import localVarRequest from 'request';
 
-export * from './action';
-export * from './actions';
 export * from './address';
 export * from './antiFraudService';
 export * from './antiFraudServiceCreate';
@@ -68,6 +66,8 @@ export * from './paymentMethods';
 export * from './paymentMethodsTokenized';
 export * from './paymentOption';
 export * from './paymentOptionApprovalUI';
+export * from './paymentOptionCardSchemeApplePay';
+export * from './paymentOptionCardSchemeGooglePay';
 export * from './paymentOptionContext';
 export * from './paymentOptions';
 export * from './paymentService';
@@ -123,8 +123,6 @@ export interface RequestDetailedFile {
 export type RequestFile = string | Buffer | fs.ReadStream | RequestDetailedFile;
 
 
-import { Action } from './action';
-import { Actions } from './actions';
 import { Address } from './address';
 import { AntiFraudService } from './antiFraudService';
 import { AntiFraudServiceCreate } from './antiFraudServiceCreate';
@@ -191,6 +189,8 @@ import { PaymentMethods } from './paymentMethods';
 import { PaymentMethodsTokenized } from './paymentMethodsTokenized';
 import { PaymentOption } from './paymentOption';
 import { PaymentOptionApprovalUI } from './paymentOptionApprovalUI';
+import { PaymentOptionCardSchemeApplePay } from './paymentOptionCardSchemeApplePay';
+import { PaymentOptionCardSchemeGooglePay } from './paymentOptionCardSchemeGooglePay';
 import { PaymentOptionContext } from './paymentOptionContext';
 import { PaymentOptions } from './paymentOptions';
 import { PaymentService } from './paymentService';
@@ -246,9 +246,6 @@ let primitives = [
                  ];
 
 let enumsMap: {[index: string]: any} = {
-        "Action.TypeEnum": Action.TypeEnum,
-        "Action.IdEnum": Action.IdEnum,
-        "Action.FlowEnum": Action.FlowEnum,
         "AntiFraudService.TypeEnum": AntiFraudService.TypeEnum,
         "AntiFraudService.AntiFraudServiceDefinitionIdEnum": AntiFraudService.AntiFraudServiceDefinitionIdEnum,
         "AntiFraudServiceCreate.AntiFraudServiceDefinitionIdEnum": AntiFraudServiceCreate.AntiFraudServiceDefinitionIdEnum,
@@ -321,6 +318,8 @@ let enumsMap: {[index: string]: any} = {
         "PaymentMethodTokenized.SchemeEnum": PaymentMethodTokenized.SchemeEnum,
         "PaymentMethodTokenized.ApprovalTargetEnum": PaymentMethodTokenized.ApprovalTargetEnum,
         "PaymentOption.TypeEnum": PaymentOption.TypeEnum,
+        "PaymentOptionCardSchemeApplePay": PaymentOptionCardSchemeApplePay,
+        "PaymentOptionCardSchemeGooglePay": PaymentOptionCardSchemeGooglePay,
         "PaymentService.TypeEnum": PaymentService.TypeEnum,
         "PaymentService.StatusEnum": PaymentService.StatusEnum,
         "PaymentServiceDefinitionConfiguration.ApprovalUiTargetEnum": PaymentServiceDefinitionConfiguration.ApprovalUiTargetEnum,
@@ -348,8 +347,6 @@ let enumsMap: {[index: string]: any} = {
 }
 
 let typeMap: {[index: string]: any} = {
-    "Action": Action,
-    "Actions": Actions,
     "Address": Address,
     "AntiFraudService": AntiFraudService,
     "AntiFraudServiceCreate": AntiFraudServiceCreate,

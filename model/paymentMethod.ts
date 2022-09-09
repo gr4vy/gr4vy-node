@@ -12,7 +12,7 @@
 
 import { RequestFile } from './models';
 import { Buyer } from './buyer';
-import { Undefined } from './undefined';
+import { PaymentMethodDetailsCard } from './paymentMethodDetailsCard';
 
 /**
 * A generic payment method.
@@ -73,7 +73,7 @@ export class PaymentMethod {
     * The 2-letter ISO code of the country this payment method can be used for. If this value is `null` the payment method may be used in multiple countries.
     */
     'country'?: string | null;
-    'details'?: Undefined;
+    'details'?: PaymentMethodDetailsCard;
 
     static discriminator: string | undefined = undefined;
 
@@ -161,7 +161,7 @@ export class PaymentMethod {
         {
             "name": "details",
             "baseName": "details",
-            "type": "Undefined"
+            "type": "PaymentMethodDetailsCard"
         }    ];
 
     static getAttributeTypeMap() {
