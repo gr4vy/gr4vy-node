@@ -10,43 +10,47 @@
  * Do not edit the class manually.
  */
 
-import { RequestFile } from './models';
-import { Undefined } from './undefined';
+import { RequestFile } from './models'
 
 /**
-* The specification of a report.
-*/
+ * The specification of a report.
+ */
 export class ReportSpec {
-    /**
-    * The model (dataset) that the data used for the report is retrieved from.
-    */
-    'model': ReportSpec.ModelEnum;
-    /**
-    * Parameters used to configure the report. Acceptable values for this property depend on the value specified for `model`.
-    */
-    'params': { [key: string]: Undefined; };
+  /**
+   * The model (dataset) that the data used for the report is retrieved from.
+   */
+  'model': ReportSpec.ModelEnum
+  /**
+   * Parameters used to configure the report. Acceptable values for this property depend on the value specified for `model`.
+   */
+  'params': { [key: string]: string }
 
-    static discriminator: string | undefined = undefined;
+  static discriminator: string | undefined = undefined
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "model",
-            "baseName": "model",
-            "type": "ReportSpec.ModelEnum"
-        },
-        {
-            "name": "params",
-            "baseName": "params",
-            "type": "{ [key: string]: Undefined; }"
-        }    ];
+  static attributeTypeMap: Array<{
+    name: string
+    baseName: string
+    type: string
+  }> = [
+    {
+      name: 'model',
+      baseName: 'model',
+      type: 'ReportSpec.ModelEnum',
+    },
+    {
+      name: 'params',
+      baseName: 'params',
+      type: '{ [key: string]: Undefined; }',
+    },
+  ]
 
-    static getAttributeTypeMap() {
-        return ReportSpec.attributeTypeMap;
-    }
+  static getAttributeTypeMap() {
+    return ReportSpec.attributeTypeMap
+  }
 }
 
 export namespace ReportSpec {
-    export enum ModelEnum {
-        Transactions = <any> 'transactions'
-    }
+  export enum ModelEnum {
+    Transactions = <any>'transactions',
+  }
 }
