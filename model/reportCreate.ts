@@ -11,41 +11,43 @@
  */
 
 import { RequestFile } from './models';
+import { ReportSpec } from './reportSpec';
 
 /**
-* Defines the outcome of a rule in a flow where the result is a list of UUIDs for a service.
+* A request to create a report.
 */
-export class FlowRuleServiceOutcome {
+export class ReportCreate {
     /**
-    * The type of action outcome for the given rule.
+    * The name of the report.
     */
-    'type': FlowRuleServiceOutcome.TypeEnum;
+    'name': string;
     /**
-    * Results for a given flow action.
+    * The description of the report.
     */
-    'result': Array<string>;
+    'description'?: string | null;
+    'spec': ReportSpec;
 
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "type",
-            "baseName": "type",
-            "type": "FlowRuleServiceOutcome.TypeEnum"
+            "name": "name",
+            "baseName": "name",
+            "type": "string"
         },
         {
-            "name": "result",
-            "baseName": "result",
-            "type": "Array<string>"
+            "name": "description",
+            "baseName": "description",
+            "type": "string"
+        },
+        {
+            "name": "spec",
+            "baseName": "spec",
+            "type": "ReportSpec"
         }    ];
 
     static getAttributeTypeMap() {
-        return FlowRuleServiceOutcome.attributeTypeMap;
+        return ReportCreate.attributeTypeMap;
     }
 }
 
-export namespace FlowRuleServiceOutcome {
-    export enum TypeEnum {
-        List = <any> 'list'
-    }
-}

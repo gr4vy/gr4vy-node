@@ -34,6 +34,10 @@ export class CardDetails {
     */
     'scheme'?: string;
     /**
+    * An icon to display for the card scheme.
+    */
+    'schemeIconUrl'?: string;
+    /**
     * The 2-letter ISO code of the issuing country of the card.
     */
     'country'?: string;
@@ -60,6 +64,11 @@ export class CardDetails {
         {
             "name": "scheme",
             "baseName": "scheme",
+            "type": "string"
+        },
+        {
+            "name": "schemeIconUrl",
+            "baseName": "scheme_icon_url",
             "type": "string"
         },
         {

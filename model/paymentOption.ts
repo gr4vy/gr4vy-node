@@ -35,6 +35,10 @@ export class PaymentOption {
     * A flag to indicate if storing the payment method is supported.
     */
     'canStorePaymentMethod'?: boolean;
+    /**
+    * A flag to indicate if delayed capture is supported.
+    */
+    'canDelayCapture'?: boolean;
     'context'?: PaymentOptionContext;
 
     static discriminator: string | undefined = undefined;
@@ -68,6 +72,11 @@ export class PaymentOption {
         {
             "name": "canStorePaymentMethod",
             "baseName": "can_store_payment_method",
+            "type": "boolean"
+        },
+        {
+            "name": "canDelayCapture",
+            "baseName": "can_delay_capture",
             "type": "boolean"
         },
         {

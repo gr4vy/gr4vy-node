@@ -47,10 +47,6 @@ export * from './error404PendingCreation';
 export * from './error409DuplicateRecord';
 export * from './errorDetail';
 export * from './errorGeneric';
-export * from './flowPaymentOptionOutcome';
-export * from './flowRuleBooleanOutcome';
-export * from './flowRuleMethodOutcome';
-export * from './flowRuleServiceOutcome';
 export * from './googlePayRequest';
 export * from './googlePaySessionRequest';
 export * from './paymentMethod';
@@ -66,8 +62,6 @@ export * from './paymentMethods';
 export * from './paymentMethodsTokenized';
 export * from './paymentOption';
 export * from './paymentOptionApprovalUI';
-export * from './paymentOptionCardSchemeApplePay';
-export * from './paymentOptionCardSchemeGooglePay';
 export * from './paymentOptionContext';
 export * from './paymentOptions';
 export * from './paymentService';
@@ -86,6 +80,14 @@ export * from './paymentServices';
 export * from './redirectRequest';
 export * from './refund';
 export * from './refunds';
+export * from './report';
+export * from './reportCreate';
+export * from './reportExecution';
+export * from './reportExecutionUrl';
+export * from './reportExecutions';
+export * from './reportSpec';
+export * from './reportUpdate';
+export * from './reports';
 export * from './requiredFields';
 export * from './requiredFieldsAddress';
 export * from './resetPasswordRequest';
@@ -170,10 +172,6 @@ import { Error404PendingCreation } from './error404PendingCreation';
 import { Error409DuplicateRecord } from './error409DuplicateRecord';
 import { ErrorDetail } from './errorDetail';
 import { ErrorGeneric } from './errorGeneric';
-import { FlowPaymentOptionOutcome } from './flowPaymentOptionOutcome';
-import { FlowRuleBooleanOutcome } from './flowRuleBooleanOutcome';
-import { FlowRuleMethodOutcome } from './flowRuleMethodOutcome';
-import { FlowRuleServiceOutcome } from './flowRuleServiceOutcome';
 import { GooglePayRequest } from './googlePayRequest';
 import { GooglePaySessionRequest } from './googlePaySessionRequest';
 import { PaymentMethod } from './paymentMethod';
@@ -189,8 +187,6 @@ import { PaymentMethods } from './paymentMethods';
 import { PaymentMethodsTokenized } from './paymentMethodsTokenized';
 import { PaymentOption } from './paymentOption';
 import { PaymentOptionApprovalUI } from './paymentOptionApprovalUI';
-import { PaymentOptionCardSchemeApplePay } from './paymentOptionCardSchemeApplePay';
-import { PaymentOptionCardSchemeGooglePay } from './paymentOptionCardSchemeGooglePay';
 import { PaymentOptionContext } from './paymentOptionContext';
 import { PaymentOptions } from './paymentOptions';
 import { PaymentService } from './paymentService';
@@ -209,6 +205,14 @@ import { PaymentServices } from './paymentServices';
 import { RedirectRequest } from './redirectRequest';
 import { Refund } from './refund';
 import { Refunds } from './refunds';
+import { Report } from './report';
+import { ReportCreate } from './reportCreate';
+import { ReportExecution } from './reportExecution';
+import { ReportExecutionUrl } from './reportExecutionUrl';
+import { ReportExecutions } from './reportExecutions';
+import { ReportSpec } from './reportSpec';
+import { ReportUpdate } from './reportUpdate';
+import { Reports } from './reports';
 import { RequiredFields } from './requiredFields';
 import { RequiredFieldsAddress } from './requiredFieldsAddress';
 import { ResetPasswordRequest } from './resetPasswordRequest';
@@ -299,12 +303,6 @@ let enumsMap: {[index: string]: any} = {
         "Error409DuplicateRecord.StatusEnum": Error409DuplicateRecord.StatusEnum,
         "ErrorDetail.LocationEnum": ErrorDetail.LocationEnum,
         "ErrorGeneric.TypeEnum": ErrorGeneric.TypeEnum,
-        "FlowPaymentOptionOutcome.TypeEnum": FlowPaymentOptionOutcome.TypeEnum,
-        "FlowRuleBooleanOutcome.TypeEnum": FlowRuleBooleanOutcome.TypeEnum,
-        "FlowRuleBooleanOutcome.ResultEnum": FlowRuleBooleanOutcome.ResultEnum,
-        "FlowRuleMethodOutcome.TypeEnum": FlowRuleMethodOutcome.TypeEnum,
-        "FlowRuleMethodOutcome.ResultEnum": FlowRuleMethodOutcome.ResultEnum,
-        "FlowRuleServiceOutcome.TypeEnum": FlowRuleServiceOutcome.TypeEnum,
         "GooglePayRequest.MethodEnum": GooglePayRequest.MethodEnum,
         "PaymentMethod.TypeEnum": PaymentMethod.TypeEnum,
         "PaymentMethod.StatusEnum": PaymentMethod.StatusEnum,
@@ -318,8 +316,6 @@ let enumsMap: {[index: string]: any} = {
         "PaymentMethodTokenized.SchemeEnum": PaymentMethodTokenized.SchemeEnum,
         "PaymentMethodTokenized.ApprovalTargetEnum": PaymentMethodTokenized.ApprovalTargetEnum,
         "PaymentOption.TypeEnum": PaymentOption.TypeEnum,
-        "PaymentOptionCardSchemeApplePay": PaymentOptionCardSchemeApplePay,
-        "PaymentOptionCardSchemeGooglePay": PaymentOptionCardSchemeGooglePay,
         "PaymentService.TypeEnum": PaymentService.TypeEnum,
         "PaymentService.StatusEnum": PaymentService.StatusEnum,
         "PaymentServiceDefinitionConfiguration.ApprovalUiTargetEnum": PaymentServiceDefinitionConfiguration.ApprovalUiTargetEnum,
@@ -327,6 +323,10 @@ let enumsMap: {[index: string]: any} = {
         "PaymentServiceSnapshot.TypeEnum": PaymentServiceSnapshot.TypeEnum,
         "Refund.TypeEnum": Refund.TypeEnum,
         "Refund.StatusEnum": Refund.StatusEnum,
+        "Report.TypeEnum": Report.TypeEnum,
+        "ReportExecution.TypeEnum": ReportExecution.TypeEnum,
+        "ReportExecution.StatusEnum": ReportExecution.StatusEnum,
+        "ReportSpec.ModelEnum": ReportSpec.ModelEnum,
         "TaxId.KindEnum": TaxId.KindEnum,
         "ThreeDSecureSummary.StatusEnum": ThreeDSecureSummary.StatusEnum,
         "ThreeDSecureSummary.MethodEnum": ThreeDSecureSummary.MethodEnum,
@@ -394,10 +394,6 @@ let typeMap: {[index: string]: any} = {
     "Error409DuplicateRecord": Error409DuplicateRecord,
     "ErrorDetail": ErrorDetail,
     "ErrorGeneric": ErrorGeneric,
-    "FlowPaymentOptionOutcome": FlowPaymentOptionOutcome,
-    "FlowRuleBooleanOutcome": FlowRuleBooleanOutcome,
-    "FlowRuleMethodOutcome": FlowRuleMethodOutcome,
-    "FlowRuleServiceOutcome": FlowRuleServiceOutcome,
     "GooglePayRequest": GooglePayRequest,
     "GooglePaySessionRequest": GooglePaySessionRequest,
     "PaymentMethod": PaymentMethod,
@@ -431,6 +427,14 @@ let typeMap: {[index: string]: any} = {
     "RedirectRequest": RedirectRequest,
     "Refund": Refund,
     "Refunds": Refunds,
+    "Report": Report,
+    "ReportCreate": ReportCreate,
+    "ReportExecution": ReportExecution,
+    "ReportExecutionUrl": ReportExecutionUrl,
+    "ReportExecutions": ReportExecutions,
+    "ReportSpec": ReportSpec,
+    "ReportUpdate": ReportUpdate,
+    "Reports": Reports,
     "RequiredFields": RequiredFields,
     "RequiredFieldsAddress": RequiredFieldsAddress,
     "ResetPasswordRequest": ResetPasswordRequest,

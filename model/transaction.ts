@@ -361,6 +361,7 @@ export namespace Transaction {
         Paypal = <any> 'paypal',
         Pix = <any> 'pix',
         Rabbitlinepay = <any> 'rabbitlinepay',
+        Scalapay = <any> 'scalapay',
         Shopeepay = <any> 'shopeepay',
         Stripedd = <any> 'stripedd',
         Truemoney = <any> 'truemoney',

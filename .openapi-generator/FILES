@@ -11,9 +11,8 @@ api/paymentMethodsApi.ts
 api/paymentOptionsApi.ts
 api/paymentServiceDefinitionsApi.ts
 api/paymentServicesApi.ts
+api/reportsApi.ts
 api/transactionsApi.ts
-model/action.ts
-model/actions.ts
 model/address.ts
 model/antiFraudService.ts
 model/antiFraudServiceCreate.ts
@@ -61,10 +60,6 @@ model/error404PendingCreation.ts
 model/error409DuplicateRecord.ts
 model/errorDetail.ts
 model/errorGeneric.ts
-model/flowPaymentOptionOutcome.ts
-model/flowRuleBooleanOutcome.ts
-model/flowRuleMethodOutcome.ts
-model/flowRuleServiceOutcome.ts
 model/googlePayRequest.ts
 model/googlePaySessionRequest.ts
 model/models.ts
@@ -81,8 +76,6 @@ model/paymentMethods.ts
 model/paymentMethodsTokenized.ts
 model/paymentOption.ts
 model/paymentOptionApprovalUI.ts
-model/paymentOptionCardSchemeApplePay.ts
-model/paymentOptionCardSchemeGooglePay.ts
 model/paymentOptionContext.ts
 model/paymentOptions.ts
 model/paymentService.ts
@@ -101,6 +94,14 @@ model/paymentServices.ts
 model/redirectRequest.ts
 model/refund.ts
 model/refunds.ts
+model/report.ts
+model/reportCreate.ts
+model/reportExecution.ts
+model/reportExecutionUrl.ts
+model/reportExecutions.ts
+model/reportSpec.ts
+model/reportUpdate.ts
+model/reports.ts
 model/requiredFields.ts
 model/requiredFieldsAddress.ts
 model/resetPasswordRequest.ts

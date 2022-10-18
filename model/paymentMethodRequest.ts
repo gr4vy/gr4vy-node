@@ -16,7 +16,14 @@ import { RequestFile } from './models';
 * Payment method details used to register a new payment method.
 */
 export class PaymentMethodRequest {
+    /**
+    * The type of the funding source, e.g. `card`, `paypal`, or `checkout-session`.
+    */
     'method': string;
+    /**
+    * The ID of a Checkout Session.
+    */
+    'id'?: string;
     /**
     * The 13-19 digit number for this credit card as it can be found on the front of the card.  If a card has been stored with us previously, this number will represent the unique tokenized card ID provided via our API.
     */
@@ -60,6 +67,11 @@ export class PaymentMethodRequest {
         {
             "name": "method",
             "baseName": "method",
+            "type": "string"
+        },
+        {
+            "name": "id",
+            "baseName": "id",
             "type": "string"
         },
         {

@@ -29,7 +29,7 @@ export class AuditLog {
     /**
     * The date and time that the action was performed.
     */
-    'timestamp'?: string;
+    'timestamp'?: Date;
     /**
     * The action that was performed.
     */
@@ -53,7 +53,7 @@ export class AuditLog {
         {
             "name": "timestamp",
             "baseName": "timestamp",
-            "type": "string"
+            "type": "Date"
         },
         {
             "name": "action",

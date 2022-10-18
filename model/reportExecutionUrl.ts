@@ -13,19 +13,15 @@
 import { RequestFile } from './models';
 
 /**
-* A short-lived checkout session.
+* The temporary signed URL to download the result of a report execution and its expiration date and time.
 */
-export class CheckoutSession {
+export class ReportExecutionUrl {
     /**
-    * `checkout-session`.
+    * The URL to download the report execution.
     */
-    'type'?: CheckoutSession.TypeEnum;
+    'url'?: string;
     /**
-    * The ID of the Checkout Session.
-    */
-    'id'?: string;
-    /**
-    * The date and time when the Checkout Session will expire. By default this will be set to 1 hour from the date of creation.
+    * The date and time when the download URL expires.
     */
     'expiresAt'?: Date;
 
@@ -33,13 +29,8 @@ export class CheckoutSession {
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "type",
-            "baseName": "type",
-            "type": "CheckoutSession.TypeEnum"
-        },
-        {
-            "name": "id",
-            "baseName": "id",
+            "name": "url",
+            "baseName": "url",
             "type": "string"
         },
         {
@@ -49,12 +40,7 @@ export class CheckoutSession {
         }    ];
 
     static getAttributeTypeMap() {
-        return CheckoutSession.attributeTypeMap;
+        return ReportExecutionUrl.attributeTypeMap;
     }
 }
 
-export namespace CheckoutSession {
-    export enum TypeEnum {
-        CheckoutSession = <any> 'checkout-session'
-    }
-}
