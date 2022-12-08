@@ -85,6 +85,10 @@ export class PaymentServiceUpdate {
     * Defines if tokenization is enabled for the service (can only be enabled if the payment service definition supports it).
     */
     'paymentMethodTokenizationEnabled'?: boolean;
+    /**
+    * Defines if network tokens are enabled for the service. This feature can only be enabled if the payment service definition supports the `open_loop` feature and the PSP is set up to accept network tokens.  If this value is not provided or is set to `null`, it will be set to the value of `network_tokens_default` in the payment service definition.  If `network_tokens_toggle` is `false`, `network_tokens_enabled` should either not be provided or set to `null`, or it will fail with a validation error. This will then be set to the value of `network_tokens_default`.
+    */
+    'networkTokensEnabled'?: boolean | null;
 
     static discriminator: string | undefined = undefined;
 
@@ -172,6 +176,11 @@ export class PaymentServiceUpdate {
         {
             "name": "paymentMethodTokenizationEnabled",
             "baseName": "payment_method_tokenization_enabled",
+            "type": "boolean"
+        },
+        {
+            "name": "networkTokensEnabled",
+            "baseName": "network_tokens_enabled",
             "type": "boolean"
         }    ];
 

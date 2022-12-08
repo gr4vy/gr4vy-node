@@ -1,11 +1,13 @@
 import localVarRequest from 'request';
 
 export * from './address';
-export * from './antiFraudService';
 export * from './antiFraudServiceCreate';
-export * from './antiFraudServiceFields';
 export * from './antiFraudServiceUpdate';
 export * from './antiFraudServiceUpdateFields';
+export * from './apiLog';
+export * from './apiLogResponseBody';
+export * from './apiLogResponseBodyDetails';
+export * from './apiLogs';
 export * from './applePayRequest';
 export * from './applePaySessionRequest';
 export * from './auditLog';
@@ -32,6 +34,8 @@ export * from './checkoutSessionSecureFieldsUpdate';
 export * from './connection';
 export * from './connectionDefinition';
 export * from './connectionDefinitions';
+export * from './connectionOptions';
+export * from './connectionOptionsCybersourceAntiFraud';
 export * from './connections';
 export * from './digitalWallet';
 export * from './digitalWalletRequest';
@@ -48,6 +52,7 @@ export * from './error409DuplicateRecord';
 export * from './errorDetail';
 export * from './errorGeneric';
 export * from './googlePayRequest';
+export * from './googlePayRequestAssuranceDetails';
 export * from './googlePaySessionRequest';
 export * from './paymentMethod';
 export * from './paymentMethodDefinition';
@@ -83,15 +88,31 @@ export * from './refunds';
 export * from './report';
 export * from './reportCreate';
 export * from './reportExecution';
+export * from './reportExecutionSummary';
+export * from './reportExecutionSummaryContext';
 export * from './reportExecutionUrl';
 export * from './reportExecutions';
 export * from './reportSpec';
+export * from './reportSummary';
 export * from './reportUpdate';
 export * from './reports';
 export * from './requiredFields';
 export * from './requiredFieldsAddress';
 export * from './resetPasswordRequest';
+export * from './role';
+export * from './roleAssignment';
+export * from './roleAssignmentAssignee';
+export * from './roleAssignmentRequest';
+export * from './roleAssignmentRequestAssignee';
+export * from './roleAssignmentRequestRole';
+export * from './roleAssignments';
+export * from './rolePermissions';
+export * from './roles';
 export * from './setPasswordRequest';
+export * from './shippingDetail';
+export * from './shippingDetailRequest';
+export * from './shippingDetailUpdateRequest';
+export * from './shippingDetails';
 export * from './statementDescriptor';
 export * from './taxId';
 export * from './threeDSecureData';
@@ -107,6 +128,7 @@ export * from './transactionCaptureRequest';
 export * from './transactionPaymentMethodRequest';
 export * from './transactionRefundRequest';
 export * from './transactionRequest';
+export * from './transactionStatusSummary';
 export * from './transactionSummary';
 export * from './transactions';
 export * from './transactionsBatchCaptureRequest';
@@ -126,11 +148,13 @@ export type RequestFile = string | Buffer | fs.ReadStream | RequestDetailedFile;
 
 
 import { Address } from './address';
-import { AntiFraudService } from './antiFraudService';
 import { AntiFraudServiceCreate } from './antiFraudServiceCreate';
-import { AntiFraudServiceFields } from './antiFraudServiceFields';
 import { AntiFraudServiceUpdate } from './antiFraudServiceUpdate';
 import { AntiFraudServiceUpdateFields } from './antiFraudServiceUpdateFields';
+import { ApiLog } from './apiLog';
+import { ApiLogResponseBody } from './apiLogResponseBody';
+import { ApiLogResponseBodyDetails } from './apiLogResponseBodyDetails';
+import { ApiLogs } from './apiLogs';
 import { ApplePayRequest } from './applePayRequest';
 import { ApplePaySessionRequest } from './applePaySessionRequest';
 import { AuditLog } from './auditLog';
@@ -157,6 +181,8 @@ import { CheckoutSessionSecureFieldsUpdate } from './checkoutSessionSecureFields
 import { Connection } from './connection';
 import { ConnectionDefinition } from './connectionDefinition';
 import { ConnectionDefinitions } from './connectionDefinitions';
+import { ConnectionOptions } from './connectionOptions';
+import { ConnectionOptionsCybersourceAntiFraud } from './connectionOptionsCybersourceAntiFraud';
 import { Connections } from './connections';
 import { DigitalWallet } from './digitalWallet';
 import { DigitalWalletRequest } from './digitalWalletRequest';
@@ -173,6 +199,7 @@ import { Error409DuplicateRecord } from './error409DuplicateRecord';
 import { ErrorDetail } from './errorDetail';
 import { ErrorGeneric } from './errorGeneric';
 import { GooglePayRequest } from './googlePayRequest';
+import { GooglePayRequestAssuranceDetails } from './googlePayRequestAssuranceDetails';
 import { GooglePaySessionRequest } from './googlePaySessionRequest';
 import { PaymentMethod } from './paymentMethod';
 import { PaymentMethodDefinition } from './paymentMethodDefinition';
@@ -208,15 +235,31 @@ import { Refunds } from './refunds';
 import { Report } from './report';
 import { ReportCreate } from './reportCreate';
 import { ReportExecution } from './reportExecution';
+import { ReportExecutionSummary } from './reportExecutionSummary';
+import { ReportExecutionSummaryContext } from './reportExecutionSummaryContext';
 import { ReportExecutionUrl } from './reportExecutionUrl';
 import { ReportExecutions } from './reportExecutions';
 import { ReportSpec } from './reportSpec';
+import { ReportSummary } from './reportSummary';
 import { ReportUpdate } from './reportUpdate';
 import { Reports } from './reports';
 import { RequiredFields } from './requiredFields';
 import { RequiredFieldsAddress } from './requiredFieldsAddress';
 import { ResetPasswordRequest } from './resetPasswordRequest';
+import { Role } from './role';
+import { RoleAssignment } from './roleAssignment';
+import { RoleAssignmentAssignee } from './roleAssignmentAssignee';
+import { RoleAssignmentRequest } from './roleAssignmentRequest';
+import { RoleAssignmentRequestAssignee } from './roleAssignmentRequestAssignee';
+import { RoleAssignmentRequestRole } from './roleAssignmentRequestRole';
+import { RoleAssignments } from './roleAssignments';
+import { RolePermissions } from './rolePermissions';
+import { Roles } from './roles';
 import { SetPasswordRequest } from './setPasswordRequest';
+import { ShippingDetail } from './shippingDetail';
+import { ShippingDetailRequest } from './shippingDetailRequest';
+import { ShippingDetailUpdateRequest } from './shippingDetailUpdateRequest';
+import { ShippingDetails } from './shippingDetails';
 import { StatementDescriptor } from './statementDescriptor';
 import { TaxId } from './taxId';
 import { ThreeDSecureData } from './threeDSecureData';
@@ -232,6 +275,7 @@ import { TransactionCaptureRequest } from './transactionCaptureRequest';
 import { TransactionPaymentMethodRequest } from './transactionPaymentMethodRequest';
 import { TransactionRefundRequest } from './transactionRefundRequest';
 import { TransactionRequest } from './transactionRequest';
+import { TransactionStatusSummary } from './transactionStatusSummary';
 import { TransactionSummary } from './transactionSummary';
 import { Transactions } from './transactions';
 import { TransactionsBatchCaptureRequest } from './transactionsBatchCaptureRequest';
@@ -250,10 +294,9 @@ let primitives = [
                  ];
 
 let enumsMap: {[index: string]: any} = {
-        "AntiFraudService.TypeEnum": AntiFraudService.TypeEnum,
-        "AntiFraudService.AntiFraudServiceDefinitionIdEnum": AntiFraudService.AntiFraudServiceDefinitionIdEnum,
         "AntiFraudServiceCreate.AntiFraudServiceDefinitionIdEnum": AntiFraudServiceCreate.AntiFraudServiceDefinitionIdEnum,
         "AntiFraudServiceUpdate.AntiFraudServiceDefinitionIdEnum": AntiFraudServiceUpdate.AntiFraudServiceDefinitionIdEnum,
+        "ApiLog.TypeEnum": ApiLog.TypeEnum,
         "ApplePayRequest.MethodEnum": ApplePayRequest.MethodEnum,
         "AuditLog.TypeEnum": AuditLog.TypeEnum,
         "AuditLog.ActionEnum": AuditLog.ActionEnum,
@@ -323,10 +366,20 @@ let enumsMap: {[index: string]: any} = {
         "PaymentServiceSnapshot.TypeEnum": PaymentServiceSnapshot.TypeEnum,
         "Refund.TypeEnum": Refund.TypeEnum,
         "Refund.StatusEnum": Refund.StatusEnum,
+        "Report.ScheduleEnum": Report.ScheduleEnum,
         "Report.TypeEnum": Report.TypeEnum,
+        "ReportCreate.ScheduleEnum": ReportCreate.ScheduleEnum,
         "ReportExecution.TypeEnum": ReportExecution.TypeEnum,
         "ReportExecution.StatusEnum": ReportExecution.StatusEnum,
+        "ReportExecutionSummary.TypeEnum": ReportExecutionSummary.TypeEnum,
+        "ReportExecutionSummary.StatusEnum": ReportExecutionSummary.StatusEnum,
         "ReportSpec.ModelEnum": ReportSpec.ModelEnum,
+        "ReportSummary.TypeEnum": ReportSummary.TypeEnum,
+        "Role.TypeEnum": Role.TypeEnum,
+        "RoleAssignment.TypeEnum": RoleAssignment.TypeEnum,
+        "RoleAssignmentAssignee.TypeEnum": RoleAssignmentAssignee.TypeEnum,
+        "RoleAssignmentRequestAssignee.TypeEnum": RoleAssignmentRequestAssignee.TypeEnum,
+        "ShippingDetail.TypeEnum": ShippingDetail.TypeEnum,
         "TaxId.KindEnum": TaxId.KindEnum,
         "ThreeDSecureSummary.StatusEnum": ThreeDSecureSummary.StatusEnum,
         "ThreeDSecureSummary.MethodEnum": ThreeDSecureSummary.MethodEnum,
@@ -340,6 +393,8 @@ let enumsMap: {[index: string]: any} = {
         "Transaction.MethodEnum": Transaction.MethodEnum,
         "TransactionRequest.IntentEnum": TransactionRequest.IntentEnum,
         "TransactionRequest.PaymentSourceEnum": TransactionRequest.PaymentSourceEnum,
+        "TransactionStatusSummary.TypeEnum": TransactionStatusSummary.TypeEnum,
+        "TransactionStatusSummary.StatusEnum": TransactionStatusSummary.StatusEnum,
         "TransactionSummary.TypeEnum": TransactionSummary.TypeEnum,
         "TransactionSummary.StatusEnum": TransactionSummary.StatusEnum,
         "TransactionSummary.IntentEnum": TransactionSummary.IntentEnum,
@@ -348,11 +403,13 @@ let enumsMap: {[index: string]: any} = {
 
 let typeMap: {[index: string]: any} = {
     "Address": Address,
-    "AntiFraudService": AntiFraudService,
     "AntiFraudServiceCreate": AntiFraudServiceCreate,
-    "AntiFraudServiceFields": AntiFraudServiceFields,
     "AntiFraudServiceUpdate": AntiFraudServiceUpdate,
     "AntiFraudServiceUpdateFields": AntiFraudServiceUpdateFields,
+    "ApiLog": ApiLog,
+    "ApiLogResponseBody": ApiLogResponseBody,
+    "ApiLogResponseBodyDetails": ApiLogResponseBodyDetails,
+    "ApiLogs": ApiLogs,
     "ApplePayRequest": ApplePayRequest,
     "ApplePaySessionRequest": ApplePaySessionRequest,
     "AuditLog": AuditLog,
@@ -379,6 +436,8 @@ let typeMap: {[index: string]: any} = {
     "Connection": Connection,
     "ConnectionDefinition": ConnectionDefinition,
     "ConnectionDefinitions": ConnectionDefinitions,
+    "ConnectionOptions": ConnectionOptions,
+    "ConnectionOptionsCybersourceAntiFraud": ConnectionOptionsCybersourceAntiFraud,
     "Connections": Connections,
     "DigitalWallet": DigitalWallet,
     "DigitalWalletRequest": DigitalWalletRequest,
@@ -395,6 +454,7 @@ let typeMap: {[index: string]: any} = {
     "ErrorDetail": ErrorDetail,
     "ErrorGeneric": ErrorGeneric,
     "GooglePayRequest": GooglePayRequest,
+    "GooglePayRequestAssuranceDetails": GooglePayRequestAssuranceDetails,
     "GooglePaySessionRequest": GooglePaySessionRequest,
     "PaymentMethod": PaymentMethod,
     "PaymentMethodDefinition": PaymentMethodDefinition,
@@ -430,15 +490,31 @@ let typeMap: {[index: string]: any} = {
     "Report": Report,
     "ReportCreate": ReportCreate,
     "ReportExecution": ReportExecution,
+    "ReportExecutionSummary": ReportExecutionSummary,
+    "ReportExecutionSummaryContext": ReportExecutionSummaryContext,
     "ReportExecutionUrl": ReportExecutionUrl,
     "ReportExecutions": ReportExecutions,
     "ReportSpec": ReportSpec,
+    "ReportSummary": ReportSummary,
     "ReportUpdate": ReportUpdate,
     "Reports": Reports,
     "RequiredFields": RequiredFields,
     "RequiredFieldsAddress": RequiredFieldsAddress,
     "ResetPasswordRequest": ResetPasswordRequest,
+    "Role": Role,
+    "RoleAssignment": RoleAssignment,
+    "RoleAssignmentAssignee": RoleAssignmentAssignee,
+    "RoleAssignmentRequest": RoleAssignmentRequest,
+    "RoleAssignmentRequestAssignee": RoleAssignmentRequestAssignee,
+    "RoleAssignmentRequestRole": RoleAssignmentRequestRole,
+    "RoleAssignments": RoleAssignments,
+    "RolePermissions": RolePermissions,
+    "Roles": Roles,
     "SetPasswordRequest": SetPasswordRequest,
+    "ShippingDetail": ShippingDetail,
+    "ShippingDetailRequest": ShippingDetailRequest,
+    "ShippingDetailUpdateRequest": ShippingDetailUpdateRequest,
+    "ShippingDetails": ShippingDetails,
     "StatementDescriptor": StatementDescriptor,
     "TaxId": TaxId,
     "ThreeDSecureData": ThreeDSecureData,
@@ -454,6 +530,7 @@ let typeMap: {[index: string]: any} = {
     "TransactionPaymentMethodRequest": TransactionPaymentMethodRequest,
     "TransactionRefundRequest": TransactionRefundRequest,
     "TransactionRequest": TransactionRequest,
+    "TransactionStatusSummary": TransactionStatusSummary,
     "TransactionSummary": TransactionSummary,
     "Transactions": Transactions,
     "TransactionsBatchCaptureRequest": TransactionsBatchCaptureRequest,

@@ -47,6 +47,10 @@ export class PaymentService {
     */
     'acceptedCountries'?: Array<string>;
     /**
+    * Defines if network tokens are enabled for the service. This feature can only be enabled if the payment service definition supports the `open_loop` feature and the PSP is set up to accept network tokens.
+    */
+    'networkTokensEnabled'?: boolean;
+    /**
     * Defines if 3-D Secure is enabled for the service (can only be enabled if the payment service definition supports the `three_d_secure_hosted` feature). This does not affect pass through 3-D Secure data.
     */
     'threeDSecureEnabled'?: boolean;
@@ -157,6 +161,11 @@ export class PaymentService {
             "name": "acceptedCountries",
             "baseName": "accepted_countries",
             "type": "Array<string>"
+        },
+        {
+            "name": "networkTokensEnabled",
+            "baseName": "network_tokens_enabled",
+            "type": "boolean"
         },
         {
             "name": "threeDSecureEnabled",

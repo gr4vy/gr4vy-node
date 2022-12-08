@@ -98,8 +98,9 @@ export class AuditLogsApi {
      * @summary List Audit Logs
      * @param limit Defines the maximum number of items to return for this request.
      * @param cursor A cursor that identifies the page of results to return. This is used to paginate the results of this API.  For the first page of results, this parameter can be left out. For additional pages, use the value returned by the API in the &#x60;next_cursor&#x60; field. Similarly the &#x60;previous_cursor&#x60; can be used to reverse backwards in the list.
+     * @param userId Filters the results to only the items for which the &#x60;user&#x60; has an &#x60;id&#x60; that matches this value.
      */
-    public async listAuditLogs (limit?: number, cursor?: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: AuditLogs;  }> {
+    public async listAuditLogs (limit?: number, cursor?: string, userId?: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: AuditLogs;  }> {
         const localVarPath = this.basePath + '/audit-logs';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
@@ -118,6 +119,10 @@ export class AuditLogsApi {
 
         if (cursor !== undefined) {
             localVarQueryParameters['cursor'] = ObjectSerializer.serialize(cursor, "string");
+        }
+
+        if (userId !== undefined) {
+            localVarQueryParameters['user_id'] = ObjectSerializer.serialize(userId, "string");
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);

@@ -11,31 +11,35 @@
  */
 
 import { RequestFile } from './models';
+import { RolePermissions } from './rolePermissions';
 
-/**
-* The user who performed the action.
-*/
-export class AuditLogUser {
+export class Role {
     /**
-    * The ID of the user.
+    * The type of this resource. Always `role`.
+    */
+    'type'?: Role.TypeEnum;
+    /**
+    * The unique ID for this role.
     */
     'id'?: string;
     /**
-    * The name of the user.
+    * The unique name for this role.
     */
     'name'?: string;
     /**
-    * The email address for this user.
+    * The description for this role.
     */
-    'emailAddress'?: string | null;
-    /**
-    * Whether the user is Gr4vy staff.
-    */
-    'staff'?: boolean;
+    'description'?: string;
+    'permissions'?: RolePermissions;
 
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "type",
+            "baseName": "type",
+            "type": "Role.TypeEnum"
+        },
         {
             "name": "id",
             "baseName": "id",
@@ -47,18 +51,23 @@ export class AuditLogUser {
             "type": "string"
         },
         {
-            "name": "emailAddress",
-            "baseName": "email_address",
+            "name": "description",
+            "baseName": "description",
             "type": "string"
         },
         {
-            "name": "staff",
-            "baseName": "staff",
-            "type": "boolean"
+            "name": "permissions",
+            "baseName": "permissions",
+            "type": "RolePermissions"
         }    ];
 
     static getAttributeTypeMap() {
-        return AuditLogUser.attributeTypeMap;
+        return Role.attributeTypeMap;
     }
 }
 
+export namespace Role {
+    export enum TypeEnum {
+        Role = <any> 'role'
+    }
+}

@@ -19,6 +19,14 @@ import { RequiredFields } from './requiredFields';
 */
 export class PaymentOptionContext {
     /**
+    * Gateway used for Google Pay payments.
+    */
+    'gateway'?: string;
+    /**
+    * Gateway merchant identifier used for Google Pay payments.
+    */
+    'gatewayMerchantId'?: string;
+    /**
     * Display name of the merchant as registered with the digital wallet provider.
     */
     'merchantName'?: string;
@@ -32,6 +40,16 @@ export class PaymentOptionContext {
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "gateway",
+            "baseName": "gateway",
+            "type": "string"
+        },
+        {
+            "name": "gatewayMerchantId",
+            "baseName": "gateway_merchant_id",
+            "type": "string"
+        },
         {
             "name": "merchantName",
             "baseName": "merchant_name",

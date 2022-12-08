@@ -24,6 +24,18 @@ export class CheckoutSessionRequest {
     * The ID of the Checkout Session.
     */
     'id': string;
+    /**
+    * An external identifier that can be used to match the card against your own records.
+    */
+    'externalIdentifier'?: string | null;
+    /**
+    * The ID of the buyer to associate this payment method to. If this field is provided then the `buyer_external_identifier` field needs to be unset.
+    */
+    'buyerId'?: string;
+    /**
+    * The `external_identifier` of the buyer to associate this payment method to. If this field is provided then the `buyer_id` field needs to be unset.
+    */
+    'buyerExternalIdentifier'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -36,6 +48,21 @@ export class CheckoutSessionRequest {
         {
             "name": "id",
             "baseName": "id",
+            "type": "string"
+        },
+        {
+            "name": "externalIdentifier",
+            "baseName": "external_identifier",
+            "type": "string"
+        },
+        {
+            "name": "buyerId",
+            "baseName": "buyer_id",
+            "type": "string"
+        },
+        {
+            "name": "buyerExternalIdentifier",
+            "baseName": "buyer_external_identifier",
             "type": "string"
         }    ];
 

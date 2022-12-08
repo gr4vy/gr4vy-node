@@ -23,6 +23,10 @@ import { Error401Unauthorized } from '../model/error401Unauthorized';
 import { Error404NotFound } from '../model/error404NotFound';
 import { Error409DuplicateRecord } from '../model/error409DuplicateRecord';
 import { ErrorGeneric } from '../model/errorGeneric';
+import { ShippingDetail } from '../model/shippingDetail';
+import { ShippingDetailRequest } from '../model/shippingDetailRequest';
+import { ShippingDetailUpdateRequest } from '../model/shippingDetailUpdateRequest';
+import { ShippingDetails } from '../model/shippingDetails';
 
 import { ObjectSerializer, Authentication, VoidAuth, Interceptor } from '../model/models';
 import { HttpBasicAuth, HttpBearerAuth, ApiKeyAuth, OAuth } from '../model/models';
@@ -167,6 +171,80 @@ export class BuyersApi {
         });
     }
     /**
+     * Adds a buyer shipping detail.
+     * @summary New buyer shipping detail
+     * @param buyerId The unique ID for a buyer.
+     * @param shippingDetailRequest 
+     */
+    public async addBuyerShippingDetail (buyerId: string, shippingDetailRequest?: ShippingDetailRequest, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: ShippingDetail;  }> {
+        const localVarPath = this.basePath + '/buyers/{buyer_id}/shipping-details'
+            .replace('{' + 'buyer_id' + '}', encodeURIComponent(String(buyerId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'buyerId' is not null or undefined
+        if (buyerId === null || buyerId === undefined) {
+            throw new Error('Required parameter buyerId was null or undefined when calling addBuyerShippingDetail.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(shippingDetailRequest, "ShippingDetailRequest")
+        };
+
+        let authenticationPromise = Promise.resolve();
+        if (this.authentications.BearerAuth.accessToken) {
+            authenticationPromise = authenticationPromise.then(() => this.authentications.BearerAuth.applyToRequest(localVarRequestOptions));
+        }
+        authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
+
+        let interceptorPromise = authenticationPromise;
+        for (const interceptor of this.interceptors) {
+            interceptorPromise = interceptorPromise.then(() => interceptor(localVarRequestOptions));
+        }
+
+        return interceptorPromise.then(() => {
+            if (Object.keys(localVarFormParams).length) {
+                if (localVarUseFormData) {
+                    (<any>localVarRequestOptions).formData = localVarFormParams;
+                } else {
+                    localVarRequestOptions.form = localVarFormParams;
+                }
+            }
+            return new Promise<{ response: http.IncomingMessage; body: ShippingDetail;  }>((resolve, reject) => {
+                localVarRequest(localVarRequestOptions, (error, response, body) => {
+                    if (error) {
+                        reject(error);
+                    } else {
+                        body = ObjectSerializer.deserialize(body, "ShippingDetail");
+                        if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                            resolve({ response: response, body: body });
+                        } else {
+                            reject(new HttpError(response, body, response.statusCode));
+                        }
+                    }
+                });
+            });
+        });
+    }
+    /**
      * Deletes a buyer record. Any associated tokenized payment methods will remain in the system but no longer associated to the buyer.
      * @summary Delete buyer
      * @param buyerId The unique ID for a buyer.
@@ -188,6 +266,84 @@ export class BuyersApi {
         // verify required parameter 'buyerId' is not null or undefined
         if (buyerId === null || buyerId === undefined) {
             throw new Error('Required parameter buyerId was null or undefined when calling deleteBuyer.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'DELETE',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        let authenticationPromise = Promise.resolve();
+        if (this.authentications.BearerAuth.accessToken) {
+            authenticationPromise = authenticationPromise.then(() => this.authentications.BearerAuth.applyToRequest(localVarRequestOptions));
+        }
+        authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
+
+        let interceptorPromise = authenticationPromise;
+        for (const interceptor of this.interceptors) {
+            interceptorPromise = interceptorPromise.then(() => interceptor(localVarRequestOptions));
+        }
+
+        return interceptorPromise.then(() => {
+            if (Object.keys(localVarFormParams).length) {
+                if (localVarUseFormData) {
+                    (<any>localVarRequestOptions).formData = localVarFormParams;
+                } else {
+                    localVarRequestOptions.form = localVarFormParams;
+                }
+            }
+            return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+                localVarRequest(localVarRequestOptions, (error, response, body) => {
+                    if (error) {
+                        reject(error);
+                    } else {
+                        if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                            resolve({ response: response, body: body });
+                        } else {
+                            reject(new HttpError(response, body, response.statusCode));
+                        }
+                    }
+                });
+            });
+        });
+    }
+    /**
+     * Deletes a buyer shipping detail.
+     * @summary Delete buyer shipping detail
+     * @param buyerId The unique ID for a buyer.
+     * @param shippingDetailId The unique ID for a buyer\&#39;s shipping detail.
+     */
+    public async deleteBuyerShippingDetail (buyerId: string, shippingDetailId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+        const localVarPath = this.basePath + '/buyers/{buyer_id}/shipping-details/{shipping_detail_id}'
+            .replace('{' + 'buyer_id' + '}', encodeURIComponent(String(buyerId)))
+            .replace('{' + 'shipping_detail_id' + '}', encodeURIComponent(String(shippingDetailId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'buyerId' is not null or undefined
+        if (buyerId === null || buyerId === undefined) {
+            throw new Error('Required parameter buyerId was null or undefined when calling deleteBuyerShippingDetail.');
+        }
+
+        // verify required parameter 'shippingDetailId' is not null or undefined
+        if (shippingDetailId === null || shippingDetailId === undefined) {
+            throw new Error('Required parameter shippingDetailId was null or undefined when calling deleteBuyerShippingDetail.');
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -299,6 +455,78 @@ export class BuyersApi {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "Buyer");
+                        if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                            resolve({ response: response, body: body });
+                        } else {
+                            reject(new HttpError(response, body, response.statusCode));
+                        }
+                    }
+                });
+            });
+        });
+    }
+    /**
+     * Retrieve all shipping details for a buyer.
+     * @summary Get buyer shipping details
+     * @param buyerId The unique ID for a buyer.
+     */
+    public async getBuyerShippingDetails (buyerId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: ShippingDetails;  }> {
+        const localVarPath = this.basePath + '/buyers/{buyer_id}/shipping-details'
+            .replace('{' + 'buyer_id' + '}', encodeURIComponent(String(buyerId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'buyerId' is not null or undefined
+        if (buyerId === null || buyerId === undefined) {
+            throw new Error('Required parameter buyerId was null or undefined when calling getBuyerShippingDetails.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        let authenticationPromise = Promise.resolve();
+        if (this.authentications.BearerAuth.accessToken) {
+            authenticationPromise = authenticationPromise.then(() => this.authentications.BearerAuth.applyToRequest(localVarRequestOptions));
+        }
+        authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
+
+        let interceptorPromise = authenticationPromise;
+        for (const interceptor of this.interceptors) {
+            interceptorPromise = interceptorPromise.then(() => interceptor(localVarRequestOptions));
+        }
+
+        return interceptorPromise.then(() => {
+            if (Object.keys(localVarFormParams).length) {
+                if (localVarUseFormData) {
+                    (<any>localVarRequestOptions).formData = localVarFormParams;
+                } else {
+                    localVarRequestOptions.form = localVarFormParams;
+                }
+            }
+            return new Promise<{ response: http.IncomingMessage; body: ShippingDetails;  }>((resolve, reject) => {
+                localVarRequest(localVarRequestOptions, (error, response, body) => {
+                    if (error) {
+                        reject(error);
+                    } else {
+                        body = ObjectSerializer.deserialize(body, "ShippingDetails");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                             resolve({ response: response, body: body });
                         } else {
@@ -453,6 +681,87 @@ export class BuyersApi {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "Buyer");
+                        if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                            resolve({ response: response, body: body });
+                        } else {
+                            reject(new HttpError(response, body, response.statusCode));
+                        }
+                    }
+                });
+            });
+        });
+    }
+    /**
+     * Updates a shipping detail for a buyer.
+     * @summary Update buyer shipping detail
+     * @param buyerId The unique ID for a buyer.
+     * @param shippingDetailId The unique ID for a buyer\&#39;s shipping detail.
+     * @param shippingDetailUpdateRequest 
+     */
+    public async updateBuyerShippingDetail (buyerId: string, shippingDetailId: string, shippingDetailUpdateRequest?: ShippingDetailUpdateRequest, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: ShippingDetail;  }> {
+        const localVarPath = this.basePath + '/buyers/{buyer_id}/shipping-details/{shipping_detail_id}'
+            .replace('{' + 'buyer_id' + '}', encodeURIComponent(String(buyerId)))
+            .replace('{' + 'shipping_detail_id' + '}', encodeURIComponent(String(shippingDetailId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'buyerId' is not null or undefined
+        if (buyerId === null || buyerId === undefined) {
+            throw new Error('Required parameter buyerId was null or undefined when calling updateBuyerShippingDetail.');
+        }
+
+        // verify required parameter 'shippingDetailId' is not null or undefined
+        if (shippingDetailId === null || shippingDetailId === undefined) {
+            throw new Error('Required parameter shippingDetailId was null or undefined when calling updateBuyerShippingDetail.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'PUT',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(shippingDetailUpdateRequest, "ShippingDetailUpdateRequest")
+        };
+
+        let authenticationPromise = Promise.resolve();
+        if (this.authentications.BearerAuth.accessToken) {
+            authenticationPromise = authenticationPromise.then(() => this.authentications.BearerAuth.applyToRequest(localVarRequestOptions));
+        }
+        authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
+
+        let interceptorPromise = authenticationPromise;
+        for (const interceptor of this.interceptors) {
+            interceptorPromise = interceptorPromise.then(() => interceptor(localVarRequestOptions));
+        }
+
+        return interceptorPromise.then(() => {
+            if (Object.keys(localVarFormParams).length) {
+                if (localVarUseFormData) {
+                    (<any>localVarRequestOptions).formData = localVarFormParams;
+                } else {
+                    localVarRequestOptions.form = localVarFormParams;
+                }
+            }
+            return new Promise<{ response: http.IncomingMessage; body: ShippingDetail;  }>((resolve, reject) => {
+                localVarRequest(localVarRequestOptions, (error, response, body) => {
+                    if (error) {
+                        reject(error);
+                    } else {
+                        body = ObjectSerializer.deserialize(body, "ShippingDetail");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                             resolve({ response: response, body: body });
                         } else {

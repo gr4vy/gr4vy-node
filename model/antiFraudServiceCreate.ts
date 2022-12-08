@@ -31,7 +31,7 @@ export class AntiFraudServiceCreate {
     */
     'active'?: boolean;
     /**
-    * A list of fields, each containing a key-value pair for each field defined by the definition for this anti-fraud service e.g. for sift `api_key` must be sent within this field when creating the service.  For updates, only the fields sent here will be updated, existing ones will not be affected if not present.
+    * A list of fields, each containing a key-value pair for each field defined by the definition for this anti-fraud service e.g. for Sift `api_key` must be sent within this field when creating the service.  For updates, only the fields sent here will be updated, existing ones will not be affected if not present.
     */
     'fields': Array<AntiFraudServiceUpdateFields>;
 
@@ -66,7 +66,7 @@ export class AntiFraudServiceCreate {
 
 export namespace AntiFraudServiceCreate {
     export enum AntiFraudServiceDefinitionIdEnum {
-        Sift = <any> 'sift',
-        Cybersource = <any> 'cybersource'
+        SiftAntiFraud = <any> 'sift-anti-fraud',
+        CybersourceAntiFraud = <any> 'cybersource-anti-fraud'
     }
 }

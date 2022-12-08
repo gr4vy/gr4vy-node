@@ -13,52 +13,52 @@
 import { RequestFile } from './models';
 
 /**
-* The user who performed the action.
+* Details of the log entry, stack trace and endpoint.
 */
-export class AuditLogUser {
+export class ApiLogResponseBodyDetails {
     /**
-    * The ID of the user.
+    * Log\'s pointer.
     */
-    'id'?: string;
+    'pointer'?: string;
     /**
-    * The name of the user.
+    * Detailed message on the log entry.
     */
-    'name'?: string;
+    'message'?: string;
     /**
-    * The email address for this user.
+    * Location on where the error happened.
     */
-    'emailAddress'?: string | null;
+    'location'?: string;
     /**
-    * Whether the user is Gr4vy staff.
+    * Detailed error type that is specified in the log entry.
     */
-    'staff'?: boolean;
+    'type'?: string;
 
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "id",
-            "baseName": "id",
+            "name": "pointer",
+            "baseName": "pointer",
             "type": "string"
         },
         {
-            "name": "name",
-            "baseName": "name",
+            "name": "message",
+            "baseName": "message",
             "type": "string"
         },
         {
-            "name": "emailAddress",
-            "baseName": "email_address",
+            "name": "location",
+            "baseName": "location",
             "type": "string"
         },
         {
-            "name": "staff",
-            "baseName": "staff",
-            "type": "boolean"
+            "name": "type",
+            "baseName": "type",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
-        return AuditLogUser.attributeTypeMap;
+        return ApiLogResponseBodyDetails.attributeTypeMap;
     }
 }
 

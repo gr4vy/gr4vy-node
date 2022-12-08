@@ -13,6 +13,7 @@
 import { RequestFile } from './models';
 import { BrowserInfo } from './browserInfo';
 import { CartItem } from './cartItem';
+import { ConnectionOptions } from './connectionOptions';
 import { StatementDescriptor } from './statementDescriptor';
 import { ThreeDSecureDataV1V2 } from './threeDSecureDataV1V2';
 import { TransactionPaymentMethodRequest } from './transactionPaymentMethodRequest';
@@ -73,6 +74,11 @@ export class TransactionRequest {
     */
     'previousSchemeTransactionId'?: string | null;
     'browserInfo'?: BrowserInfo;
+    /**
+    * The unique identifier of a set of shipping details stored for the buyer.  If provided, the created transaction will include a copy of the details at the point of transaction creation; i.e. it will not be affected by later changes to the detail in the database.
+    */
+    'shippingDetailsId'?: string | null;
+    'connectionOptions'?: ConnectionOptions;
 
     static discriminator: string | undefined = undefined;
 
@@ -156,6 +162,16 @@ export class TransactionRequest {
             "name": "browserInfo",
             "baseName": "browser_info",
             "type": "BrowserInfo"
+        },
+        {
+            "name": "shippingDetailsId",
+            "baseName": "shipping_details_id",
+            "type": "string"
+        },
+        {
+            "name": "connectionOptions",
+            "baseName": "connection_options",
+            "type": "ConnectionOptions"
         }    ];
 
     static getAttributeTypeMap() {

@@ -13,25 +13,13 @@
 import { RequestFile } from './models';
 
 /**
-* The user who performed the action.
+* The role to associate with the role assignment.
 */
-export class AuditLogUser {
+export class RoleAssignmentRequestRole {
     /**
-    * The ID of the user.
+    * The ID of the role to associate with the role assignment.
     */
-    'id'?: string;
-    /**
-    * The name of the user.
-    */
-    'name'?: string;
-    /**
-    * The email address for this user.
-    */
-    'emailAddress'?: string | null;
-    /**
-    * Whether the user is Gr4vy staff.
-    */
-    'staff'?: boolean;
+    'id': string;
 
     static discriminator: string | undefined = undefined;
 
@@ -40,25 +28,10 @@ export class AuditLogUser {
             "name": "id",
             "baseName": "id",
             "type": "string"
-        },
-        {
-            "name": "name",
-            "baseName": "name",
-            "type": "string"
-        },
-        {
-            "name": "emailAddress",
-            "baseName": "email_address",
-            "type": "string"
-        },
-        {
-            "name": "staff",
-            "baseName": "staff",
-            "type": "boolean"
         }    ];
 
     static getAttributeTypeMap() {
-        return AuditLogUser.attributeTypeMap;
+        return RoleAssignmentRequestRole.attributeTypeMap;
     }
 }
 

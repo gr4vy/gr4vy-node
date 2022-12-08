@@ -11,22 +11,16 @@
  */
 
 import { RequestFile } from './models';
-import { ReportExecutionSummary } from './reportExecutionSummary';
 import { ReportExecutionSummaryContext } from './reportExecutionSummaryContext';
-import { ReportSummary } from './reportSummary';
 
 /**
-* A report execution.
+* A report execution summary.
 */
-export class ReportExecution {
-    /**
-    * The report associated with this report execution.
-    */
-    'report'?: ReportSummary;
+export class ReportExecutionSummary {
     /**
     * The type of this resource. Is always `report-execution`.
     */
-    'type'?: ReportExecution.TypeEnum;
+    'type'?: ReportExecutionSummary.TypeEnum;
     /**
     * The unique identifier for this report execution.
     */
@@ -42,21 +36,16 @@ export class ReportExecution {
     /**
     * The status of this report execution.
     */
-    'status'?: ReportExecution.StatusEnum;
+    'status'?: ReportExecutionSummary.StatusEnum;
     'context'?: ReportExecutionSummaryContext;
 
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "report",
-            "baseName": "report",
-            "type": "ReportSummary"
-        },
-        {
             "name": "type",
             "baseName": "type",
-            "type": "ReportExecution.TypeEnum"
+            "type": "ReportExecutionSummary.TypeEnum"
         },
         {
             "name": "id",
@@ -76,7 +65,7 @@ export class ReportExecution {
         {
             "name": "status",
             "baseName": "status",
-            "type": "ReportExecution.StatusEnum"
+            "type": "ReportExecutionSummary.StatusEnum"
         },
         {
             "name": "context",
@@ -85,11 +74,11 @@ export class ReportExecution {
         }    ];
 
     static getAttributeTypeMap() {
-        return ReportExecution.attributeTypeMap;
+        return ReportExecutionSummary.attributeTypeMap;
     }
 }
 
-export namespace ReportExecution {
+export namespace ReportExecutionSummary {
     export enum TypeEnum {
         ReportExecution = <any> 'report-execution'
     }
