@@ -33,6 +33,10 @@ class Client {
   addBuyer: typeof BuyersApi.prototype.addBuyer
   updateBuyer: typeof BuyersApi.prototype.updateBuyer
   deleteBuyer: typeof BuyersApi.prototype.deleteBuyer
+  getBuyerShippingDetails: typeof BuyersApi.prototype.getBuyerShippingDetails
+  addBuyerShippingDetail: typeof BuyersApi.prototype.addBuyerShippingDetail
+  updateBuyerShippingDetail: typeof BuyersApi.prototype.updateBuyerShippingDetail
+  deleteBuyerShippingDetail: typeof BuyersApi.prototype.deleteBuyerShippingDetail
 
   // Checkout Sessions
   addCheckoutSession: typeof CheckoutSessionsApi.prototype.addCheckoutSession
@@ -87,6 +91,16 @@ class Client {
     this.addBuyer = this.wrap(ba.addBuyer.bind(ba))
     this.updateBuyer = this.wrap(ba.updateBuyer.bind(ba))
     this.deleteBuyer = this.wrap(ba.deleteBuyer.bind(ba))
+    this.getBuyerShippingDetails = this.wrap(
+      ba.getBuyerShippingDetails.bind(ba)
+    )
+    this.addBuyerShippingDetail = this.wrap(ba.addBuyerShippingDetail.bind(ba))
+    this.updateBuyerShippingDetail = this.wrap(
+      ba.updateBuyerShippingDetail.bind(ba)
+    )
+    this.deleteBuyerShippingDetail = this.wrap(
+      ba.deleteBuyerShippingDetail.bind(ba)
+    )
     this.apis.push(ba)
 
     // Checkout Sessions
