@@ -11,36 +11,22 @@
  */
 
 import { RequestFile } from './models';
+import { ConnectionOptionsCybersourceAntiFraud } from './connectionOptionsCybersourceAntiFraud';
 
-/**
-* A key-value pair that represents a field defined in the definition for this anti-fraud service.
-*/
-export class AntiFraudServiceFields {
-    /**
-    * The key of the field to set a value for.
-    */
-    'key': string;
-    /**
-    * The value of a field to set.
-    */
-    'value': string;
+export class ConnectionOptions {
+    'cybersourceAntiFraud'?: ConnectionOptionsCybersourceAntiFraud | null;
 
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "key",
-            "baseName": "key",
-            "type": "string"
-        },
-        {
-            "name": "value",
-            "baseName": "value",
-            "type": "string"
+            "name": "cybersourceAntiFraud",
+            "baseName": "cybersource-anti-fraud",
+            "type": "ConnectionOptionsCybersourceAntiFraud"
         }    ];
 
     static getAttributeTypeMap() {
-        return AntiFraudServiceFields.attributeTypeMap;
+        return ConnectionOptions.attributeTypeMap;
     }
 }
 

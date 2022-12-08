@@ -11,21 +11,14 @@
  */
 
 import { RequestFile } from './models';
-import { ReportExecution } from './reportExecution';
+import { ReportExecutionSummary } from './reportExecutionSummary';
 import { ReportSpec } from './reportSpec';
+import { ReportSummary } from './reportSummary';
 
 /**
 * A report record.
 */
 export class Report {
-    /**
-    * The type of this resource. Is always `report`.
-    */
-    'type'?: Report.TypeEnum;
-    /**
-    * The unique identifier for this report.
-    */
-    'id'?: string;
     /**
     * The date and time this report was created in our system.
     */
@@ -35,13 +28,25 @@ export class Report {
     */
     'updatedAt'?: Date;
     /**
-    * The name of this report.
+    * The date and time this report will next be executed, provided that `schedule_enabled` is `true`. This value is null if this is a one-off report.
     */
-    'name'?: string;
+    'nextExecutionAt'?: Date | null;
     /**
     * The description of this report.
     */
     'description'?: string | null;
+    /**
+    * Specifies the schedule of this report.  If this is a one-off report, this value is `once`.  If this is a recurring report, this value is set to the frequency by which the report will be executed. For example, a `monthly` schedule means that this report will be periodically executed at the start of each month.  Note that a `weekly` schedule means that the report is executed at the start of every Monday.
+    */
+    'schedule'?: Report.ScheduleEnum;
+    /**
+    * Indicates whether this report\'s scheduling is enabled. This value can only be set to `true` if this is a recurring report.  When this value is set to `true`, this report will be executed at the `next_execution_at` date and time.  When this value is set to `false`, future executions of this report are paused until this value is set to `true` again.
+    */
+    'scheduleEnabled'?: boolean;
+    /**
+    * The time zone in which the next execution will be scheduled. This value is used to calculate this report\'s `next_execution_at` value and is only relevant if this is a recurring report. This time zone is also used to calculate the timestamp range for reports that use date-time placeholders. Date-time placeholders are dynamic timestamps that change with every report execution.
+    */
+    'scheduleTimezone'?: string;
     /**
     * The specifications of this report.
     */
@@ -49,21 +54,23 @@ export class Report {
     /**
     * Details of the latest execution of this report.
     */
-    'latestExecution'?: ReportExecution | null;
+    'latestExecution'?: ReportExecutionSummary | null;
+    /**
+    * The type of this resource. Is always `report`.
+    */
+    'type'?: Report.TypeEnum;
+    /**
+    * The unique identifier for this report.
+    */
+    'id'?: string;
+    /**
+    * The name of this report.
+    */
+    'name'?: string;
 
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "type",
-            "baseName": "type",
-            "type": "Report.TypeEnum"
-        },
-        {
-            "name": "id",
-            "baseName": "id",
-            "type": "string"
-        },
         {
             "name": "createdAt",
             "baseName": "created_at",
@@ -75,13 +82,28 @@ export class Report {
             "type": "Date"
         },
         {
-            "name": "name",
-            "baseName": "name",
-            "type": "string"
+            "name": "nextExecutionAt",
+            "baseName": "next_execution_at",
+            "type": "Date"
         },
         {
             "name": "description",
             "baseName": "description",
+            "type": "string"
+        },
+        {
+            "name": "schedule",
+            "baseName": "schedule",
+            "type": "Report.ScheduleEnum"
+        },
+        {
+            "name": "scheduleEnabled",
+            "baseName": "schedule_enabled",
+            "type": "boolean"
+        },
+        {
+            "name": "scheduleTimezone",
+            "baseName": "schedule_timezone",
             "type": "string"
         },
         {
@@ -92,7 +114,22 @@ export class Report {
         {
             "name": "latestExecution",
             "baseName": "latest_execution",
-            "type": "ReportExecution"
+            "type": "ReportExecutionSummary"
+        },
+        {
+            "name": "type",
+            "baseName": "type",
+            "type": "Report.TypeEnum"
+        },
+        {
+            "name": "id",
+            "baseName": "id",
+            "type": "string"
+        },
+        {
+            "name": "name",
+            "baseName": "name",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
@@ -101,6 +138,12 @@ export class Report {
 }
 
 export namespace Report {
+    export enum ScheduleEnum {
+        Daily = <any> 'daily',
+        Monthly = <any> 'monthly',
+        Once = <any> 'once',
+        Weekly = <any> 'weekly'
+    }
     export enum TypeEnum {
         Report = <any> 'report'
     }

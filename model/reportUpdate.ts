@@ -24,6 +24,10 @@ export class ReportUpdate {
     * The description of the report.
     */
     'description'?: string | null;
+    /**
+    * Indicates whether the report\'s scheduling is enabled. This value can only be set to `true` if this is a recurring report.  When this value is set to `true`, the report will be executed at the `next_execution_at` date and time.  When this value is set to `false`, future executions of the report are paused until this value is set to `true` again.  If scheduling is enabled after being disabled, then the `next_execution_at` value is updated if and only if its current value is a past date-time. The `next_execution_at` value is then set to the next closest date-time in the future depending on the values of `schedule` and `schedule_timezone`.
+    */
+    'scheduleEnabled'?: boolean;
 
     static discriminator: string | undefined = undefined;
 
@@ -37,6 +41,11 @@ export class ReportUpdate {
             "name": "description",
             "baseName": "description",
             "type": "string"
+        },
+        {
+            "name": "scheduleEnabled",
+            "baseName": "schedule_enabled",
+            "type": "boolean"
         }    ];
 
     static getAttributeTypeMap() {

@@ -25,6 +25,18 @@ export class PaymentServiceDefinitionSupportedFeatures {
     */
     'networkTokens'?: boolean;
     /**
+    * Supports processing network tokens by default.
+    */
+    'networkTokensDefault'?: boolean;
+    /**
+    * Supports toggling processing of network tokens on or off.
+    */
+    'networkTokensToggle'?: boolean;
+    /**
+    * Supports processing transactions with either raw PAN details or network tokens.
+    */
+    'openLoop'?: boolean;
+    /**
     * Supports [partially refunding](#operation/refund-transaction) captured transactions.
     */
     'partialRefunds'?: boolean;
@@ -68,6 +80,21 @@ export class PaymentServiceDefinitionSupportedFeatures {
         {
             "name": "networkTokens",
             "baseName": "network_tokens",
+            "type": "boolean"
+        },
+        {
+            "name": "networkTokensDefault",
+            "baseName": "network_tokens_default",
+            "type": "boolean"
+        },
+        {
+            "name": "networkTokensToggle",
+            "baseName": "network_tokens_toggle",
+            "type": "boolean"
+        },
+        {
+            "name": "openLoop",
+            "baseName": "open_loop",
             "type": "boolean"
         },
         {

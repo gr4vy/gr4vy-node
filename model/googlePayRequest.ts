@@ -11,6 +11,7 @@
  */
 
 import { RequestFile } from './models';
+import { GooglePayRequestAssuranceDetails } from './googlePayRequestAssuranceDetails';
 
 /**
 * Details for a Google Pay payment method.
@@ -24,6 +25,15 @@ export class GooglePayRequest {
     * The encrypted (opaque) token returned by the Google Pay API that represents a payment method.
     */
     'token': object;
+    'assuranceDetails'?: GooglePayRequestAssuranceDetails | null;
+    /**
+    * Name of the card holder.
+    */
+    'cardHolderName'?: string | null;
+    /**
+    * The redirect URL to redirect a buyer to after they have authorized their transaction or payment method. This only applies to payment methods that require buyer approval.
+    */
+    'redirectUrl'?: string | null;
 
     static discriminator: string | undefined = undefined;
 
@@ -37,6 +47,21 @@ export class GooglePayRequest {
             "name": "token",
             "baseName": "token",
             "type": "object"
+        },
+        {
+            "name": "assuranceDetails",
+            "baseName": "assurance_details",
+            "type": "GooglePayRequestAssuranceDetails"
+        },
+        {
+            "name": "cardHolderName",
+            "baseName": "card_holder_name",
+            "type": "string"
+        },
+        {
+            "name": "redirectUrl",
+            "baseName": "redirect_url",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {

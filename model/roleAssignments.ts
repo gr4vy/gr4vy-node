@@ -11,16 +11,16 @@
  */
 
 import { RequestFile } from './models';
-import { ReportExecution } from './reportExecution';
+import { RoleAssignment } from './roleAssignment';
 
 /**
-* A list of report executions.
+* A list of role assignments.
 */
-export class ReportExecutions {
+export class RoleAssignments {
     /**
-    * A list of report executions.
+    * A list of role assignments.
     */
-    'items'?: Array<ReportExecution>;
+    'items'?: Array<RoleAssignment>;
     /**
     * The limit applied to request. This represents the number of items that are at maximum returned by this request.
     */
@@ -40,7 +40,7 @@ export class ReportExecutions {
         {
             "name": "items",
             "baseName": "items",
-            "type": "Array<ReportExecution>"
+            "type": "Array<RoleAssignment>"
         },
         {
             "name": "limit",
@@ -59,7 +59,7 @@ export class ReportExecutions {
         }    ];
 
     static getAttributeTypeMap() {
-        return ReportExecutions.attributeTypeMap;
+        return RoleAssignments.attributeTypeMap;
     }
 }
 

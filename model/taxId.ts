@@ -48,6 +48,8 @@ export namespace TaxId {
     export enum KindEnum {
         AeTrn = <any> 'ae.trn',
         AuAbn = <any> 'au.abn',
+        ArDni = <any> 'ar.dni',
+        ArCuil = <any> 'ar.cuil',
         ArCuit = <any> 'ar.cuit',
         BrCnpj = <any> 'br.cnpj',
         BrCpf = <any> 'br.cpf',
@@ -70,7 +72,7 @@ export namespace TaxId {
         JpRn = <any> 'jp.rn',
         KrBrn = <any> 'kr.brn',
         LiUid = <any> 'li.uid',
-        MxRfc = <any> 'mx.rfc',
+        MxCurp = <any> 'mx.curp',
         MyFrp = <any> 'my.frp',
         MyItn = <any> 'my.itn',
         MyNric = <any> 'my.nric',

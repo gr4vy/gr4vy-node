@@ -13,39 +13,39 @@
 import { RequestFile } from './models';
 
 /**
-* The specification of a report.
+* The assignee for this role assignment.
 */
-export class ReportSpec {
+export class RoleAssignmentAssignee {
     /**
-    * The model (dataset) that the data used for the report is retrieved from.
+    * The type of the assignee.
     */
-    'model': ReportSpec.ModelEnum;
+    'type'?: RoleAssignmentAssignee.TypeEnum;
     /**
-    * Parameters used to configure the report. Acceptable values for this property depend on the value specified for `model`.
+    * The unique ID of the assignee.
     */
-    'params': { [key: string]: object; };
+    'id'?: string;
 
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "model",
-            "baseName": "model",
-            "type": "ReportSpec.ModelEnum"
+            "name": "type",
+            "baseName": "type",
+            "type": "RoleAssignmentAssignee.TypeEnum"
         },
         {
-            "name": "params",
-            "baseName": "params",
-            "type": "{ [key: string]: object; }"
+            "name": "id",
+            "baseName": "id",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
-        return ReportSpec.attributeTypeMap;
+        return RoleAssignmentAssignee.attributeTypeMap;
     }
 }
 
-export namespace ReportSpec {
-    export enum ModelEnum {
-        Transactions = <any> 'transactions'
+export namespace RoleAssignmentAssignee {
+    export enum TypeEnum {
+        User = <any> 'user'
     }
 }

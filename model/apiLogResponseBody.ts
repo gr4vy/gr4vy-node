@@ -11,54 +11,61 @@
  */
 
 import { RequestFile } from './models';
+import { ApiLogResponseBodyDetails } from './apiLogResponseBodyDetails';
 
 /**
-* The user who performed the action.
+* The JSON response body for the log entry.
 */
-export class AuditLogUser {
+export class ApiLogResponseBody {
     /**
-    * The ID of the user.
+    * The error code.
     */
-    'id'?: string;
+    'code'?: string;
     /**
-    * The name of the user.
+    * The error message.
     */
-    'name'?: string;
+    'message'?: string;
     /**
-    * The email address for this user.
+    * The HTTP error code.
     */
-    'emailAddress'?: string | null;
+    'status'?: number;
     /**
-    * Whether the user is Gr4vy staff.
+    * Type of the log entry.
     */
-    'staff'?: boolean;
+    'type'?: string;
+    'details'?: ApiLogResponseBodyDetails;
 
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "id",
-            "baseName": "id",
+            "name": "code",
+            "baseName": "code",
             "type": "string"
         },
         {
-            "name": "name",
-            "baseName": "name",
+            "name": "message",
+            "baseName": "message",
             "type": "string"
         },
         {
-            "name": "emailAddress",
-            "baseName": "email_address",
+            "name": "status",
+            "baseName": "status",
+            "type": "number"
+        },
+        {
+            "name": "type",
+            "baseName": "type",
             "type": "string"
         },
         {
-            "name": "staff",
-            "baseName": "staff",
-            "type": "boolean"
+            "name": "details",
+            "baseName": "details",
+            "type": "ApiLogResponseBodyDetails"
         }    ];
 
     static getAttributeTypeMap() {
-        return AuditLogUser.attributeTypeMap;
+        return ApiLogResponseBody.attributeTypeMap;
     }
 }
 

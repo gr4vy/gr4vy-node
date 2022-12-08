@@ -15,6 +15,7 @@ import { BuyerSnapshot } from './buyerSnapshot';
 import { CartItem } from './cartItem';
 import { PaymentMethodSnapshot } from './paymentMethodSnapshot';
 import { PaymentServiceSnapshot } from './paymentServiceSnapshot';
+import { ShippingDetail } from './shippingDetail';
 import { StatementDescriptor } from './statementDescriptor';
 import { ThreeDSecureSummary } from './threeDSecureSummary';
 
@@ -119,6 +120,7 @@ export class Transaction {
     * Additional information about the transaction stored as key-value pairs.
     */
     'metadata'?: { [key: string]: string; };
+    'shippingDetails'?: ShippingDetail;
     'threeDSecure'?: ThreeDSecureSummary;
     /**
     * The date and time when this transaction was authorized in the payment service.  Don\'t use this field to determine whether the transaction was authorized. A `null` value doesn\'t necessarily imply that the transaction wasn\'t authorized, it can mean that the payment service doesn\'t provide this value, that it didn\'t provide it at the time the transaction was authorized or that the transaction was authorized before the introduction of this field.
@@ -275,6 +277,11 @@ export class Transaction {
             "name": "metadata",
             "baseName": "metadata",
             "type": "{ [key: string]: string; }"
+        },
+        {
+            "name": "shippingDetails",
+            "baseName": "shipping_details",
+            "type": "ShippingDetail"
         },
         {
             "name": "threeDSecure",

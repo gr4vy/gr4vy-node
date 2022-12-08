@@ -13,43 +13,43 @@
 import { RequestFile } from './models';
 
 /**
-* The billing address of the buyer.
+* An address for the buyer.
 */
 export class Address {
     /**
-    * The city for the billing address.
+    * The city for the address.
     */
-    'city'?: string;
+    'city'?: string | null;
     /**
-    * The country for the billing address.
+    * The country for the address in ISO 3166 format.
     */
-    'country'?: string;
+    'country'?: string | null;
     /**
-    * The postal code or zip code for the billing address.
+    * The postal code or zip code for the address.
     */
-    'postalCode'?: string;
+    'postalCode'?: string | null;
     /**
-    * The state, county, or province for the billing address.
+    * The state, county, or province for the address.
     */
-    'state'?: string;
+    'state'?: string | null;
     /**
-    * The code of state, county, or province for the billing address in ISO 3166-2 format.
+    * The code of state, county, or province for the address in ISO 3166-2 format.
     */
     'stateCode'?: string | null;
     /**
-    * The house number or name for the billing address. Not all payment services use this field but some do.
+    * The house number or name for the address. Not all payment services use this field but some do.
     */
     'houseNumberOrName'?: string | null;
     /**
-    * The first line of the billing address.
+    * The first line of the address.
     */
-    'line1'?: string;
+    'line1'?: string | null;
     /**
-    * The second line of the billing address.
+    * The second line of the address.
     */
     'line2'?: string | null;
     /**
-    * The optional name of the company or organisation to add to the billing address.
+    * The optional name of the company or organisation to add to the address.
     */
     'organization'?: string | null;
 

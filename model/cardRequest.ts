@@ -44,6 +44,10 @@ export class CardRequest {
     * The `external_identifier` of the buyer to associate this payment method to. If this field is provided then the `buyer_id` field needs to be unset.
     */
     'buyerExternalIdentifier'?: string;
+    /**
+    * The redirect URL to redirect a buyer to after they have authorized their transaction or payment method. This only applies to payment methods that require buyer approval.
+    */
+    'redirectUrl'?: string | null;
 
     static discriminator: string | undefined = undefined;
 
@@ -81,6 +85,11 @@ export class CardRequest {
         {
             "name": "buyerExternalIdentifier",
             "baseName": "buyer_external_identifier",
+            "type": "string"
+        },
+        {
+            "name": "redirectUrl",
+            "baseName": "redirect_url",
             "type": "string"
         }    ];
 

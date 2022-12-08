@@ -13,29 +13,30 @@
 import { RequestFile } from './models';
 
 /**
-* The user who performed the action.
+* A report record summary.
 */
-export class AuditLogUser {
+export class ReportSummary {
     /**
-    * The ID of the user.
+    * The type of this resource. Is always `report`.
+    */
+    'type'?: ReportSummary.TypeEnum;
+    /**
+    * The unique identifier for this report.
     */
     'id'?: string;
     /**
-    * The name of the user.
+    * The name of this report.
     */
     'name'?: string;
-    /**
-    * The email address for this user.
-    */
-    'emailAddress'?: string | null;
-    /**
-    * Whether the user is Gr4vy staff.
-    */
-    'staff'?: boolean;
 
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "type",
+            "baseName": "type",
+            "type": "ReportSummary.TypeEnum"
+        },
         {
             "name": "id",
             "baseName": "id",
@@ -45,20 +46,15 @@ export class AuditLogUser {
             "name": "name",
             "baseName": "name",
             "type": "string"
-        },
-        {
-            "name": "emailAddress",
-            "baseName": "email_address",
-            "type": "string"
-        },
-        {
-            "name": "staff",
-            "baseName": "staff",
-            "type": "boolean"
         }    ];
 
     static getAttributeTypeMap() {
-        return AuditLogUser.attributeTypeMap;
+        return ReportSummary.attributeTypeMap;
     }
 }
 
+export namespace ReportSummary {
+    export enum TypeEnum {
+        Report = <any> 'report'
+    }
+}
