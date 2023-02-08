@@ -26,7 +26,7 @@
     "@trust/keyto": "^1.0.1",
     "@types/bluebird": "^3.5.35",
     "bluebird": "^3.5.0",
-    "jsonwebtoken": "^8.5.1",
+    "jsonwebtoken": "^9.0.0",
     "jwk-thumbprint": "^0.1.4",
     "request": "^2.81.0",
     "rewire": "^5.0.0",
