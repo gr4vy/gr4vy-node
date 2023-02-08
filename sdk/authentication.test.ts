@@ -21,6 +21,15 @@ const embedParams = {
   metadata: {
     key: 'value',
   },
+  cartItems: [
+    {
+      name: 'Joust Duffle Bag',
+      quantity: 1,
+      unitAmount: 9000,
+      taxAmount: 0,
+      categories: ['Gear', 'Bags', 'Test'],
+    },
+  ],
 }
 
 describe('.getJWS', () => {
