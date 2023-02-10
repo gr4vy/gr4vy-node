@@ -30,6 +30,7 @@ describe('#authorizeNewTransaction', () => {
     const transactionRequest = new TransactionRequest()
     transactionRequest.amount = AMOUNT
     transactionRequest.currency = 'GBP'
+    transactionRequest.metadata = { source: 'node_sdk' }
     transactionRequest.paymentMethod = new TransactionPaymentMethodRequest()
     transactionRequest.paymentMethod.method = 'card'
     transactionRequest.paymentMethod.number = '4111111111111111'

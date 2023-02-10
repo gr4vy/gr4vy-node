@@ -3,6 +3,7 @@ import jwt from 'jsonwebtoken'
 import { jwkThumbprintByEncoding } from 'jwk-thumbprint'
 import snakeCaseKeys from 'snakecase-keys'
 import { v4 as uuid } from 'uuid'
+import { CartItem } from '../model/cartItem'
 import { version } from '../package.json'
 
 const issuer = `Gr4vy SDK ${version} - Node ${process.version}`
@@ -66,6 +67,7 @@ type EmbedParams = {
   buyerId?: string
   buyerExternalIdentifier?: string
   metadata?: Record<string, string>
+  cartItems?: Array<CartItem>
 }
 
 export default Authentication
