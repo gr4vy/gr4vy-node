@@ -106,7 +106,7 @@ describe('#voidTransaction', () => {
   test('it should void a specific transaction', async () => {
     const transactionToVoid = await client
       .authorizeNewTransaction(transactionRequest)
-      .catch((error) => {
+      .catch(() => {
         throw new Error('an error occurred while creating the transaction')
       })
 
