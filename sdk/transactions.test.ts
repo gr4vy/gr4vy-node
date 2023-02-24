@@ -25,18 +25,18 @@ let transactionId
 
 jest.setTimeout(30000)
 
+const transactionRequest = new TransactionRequest()
+transactionRequest.amount = AMOUNT
+transactionRequest.currency = 'GBP'
+transactionRequest.metadata = { source: 'node_sdk' }
+transactionRequest.paymentMethod = new TransactionPaymentMethodRequest()
+transactionRequest.paymentMethod.method = 'card'
+transactionRequest.paymentMethod.number = '4111111111111111'
+transactionRequest.paymentMethod.expirationDate = '11/25'
+transactionRequest.paymentMethod.securityCode = '123'
+
 describe('#authorizeNewTransaction', () => {
   test('it should create a transaction', async () => {
-    const transactionRequest = new TransactionRequest()
-    transactionRequest.amount = AMOUNT
-    transactionRequest.currency = 'GBP'
-    transactionRequest.metadata = { source: 'node_sdk' }
-    transactionRequest.paymentMethod = new TransactionPaymentMethodRequest()
-    transactionRequest.paymentMethod.method = 'card'
-    transactionRequest.paymentMethod.number = '4111111111111111'
-    transactionRequest.paymentMethod.expirationDate = '11/25'
-    transactionRequest.paymentMethod.securityCode = '123'
-
     const transaction = await client
       .authorizeNewTransaction(transactionRequest)
       .catch((error) => {
@@ -99,5 +99,23 @@ describe('#refundTransaction', () => {
     expect(transaction).toBeDefined()
     expect(transaction.body).toBeDefined()
     expect(transaction.body.amount).toBe(AMOUNT)
+  })
+})
+
+describe('#voidTransaction', () => {
+  test('it should void a specific transaction', async () => {
+    const transactionToVoid = await client
+      .authorizeNewTransaction(transactionRequest)
+      .catch((error) => {
+        throw new Error('an error occurred while creating the transaction')
+      })
+
+    const transaction = await client.voidTransaction(
+      transactionToVoid.body.id ?? ''
+    )
+
+    expect(transaction).toBeDefined()
+    expect(transaction.body).toBeDefined()
+    expect(transaction.body.status).toBe('authorization_voided')
   })
 })

@@ -67,6 +67,7 @@ class Client {
 
   // Transactions
   authorizeNewTransaction: typeof TransactionsApi.prototype.authorizeNewTransaction
+  voidTransaction: typeof TransactionsApi.prototype.voidTransaction
   captureTransaction: typeof TransactionsApi.prototype.captureTransaction
   getTransaction: typeof TransactionsApi.prototype.getTransaction
   listTransactions: typeof TransactionsApi.prototype.listTransactions
@@ -152,6 +153,9 @@ class Client {
     const ta = new TransactionsApi(this.baseUrl)
     this.authorizeNewTransaction = this.wrap(
       ta.authorizeNewTransaction.bind(ta)
+    )
+    this.voidTransaction = this.wrap(
+      ta.voidTransaction.bind(ta)
     )
     this.captureTransaction = this.wrap(ta.captureTransaction.bind(ta))
     this.getTransaction = this.wrap(ta.getTransaction.bind(ta))
