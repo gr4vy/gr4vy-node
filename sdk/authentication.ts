@@ -6,7 +6,7 @@ import { v4 as uuid } from 'uuid'
 import { CartItem } from '../model/cartItem'
 import { version } from '../package.json'
 
-const issuer = `Gr4vy SDK ${version} - Node ${process.version}`
+const issuer = `Gr4vy Node SDK ${version} - Node ${process.version}`
 
 class Authentication {
   privateKey: string

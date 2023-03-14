@@ -49,8 +49,8 @@ describe('.getJWS', () => {
     expect(typeof decoded.payload.iat).toBe('number')
     expect(typeof decoded.payload.nbf).toBe('number')
     expect(typeof decoded.payload.exp).toBe('number')
-    expect(decoded.payload.iss.startsWith('Gr4vy SDK')).toBeTruthy()
-    expect(decoded.payload.iss).toMatch('Gr4vy SDK')
+    expect(decoded.payload.iss.startsWith('Gr4vy Node SDK')).toBeTruthy()
+    expect(decoded.payload.iss).toMatch('Gr4vy Node SDK')
     expect(decoded.payload.iss).toMatch(version)
   })
 
