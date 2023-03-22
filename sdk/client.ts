@@ -72,6 +72,8 @@ class Client {
   getTransaction: typeof TransactionsApi.prototype.getTransaction
   listTransactions: typeof TransactionsApi.prototype.listTransactions
   refundTransaction: typeof TransactionsApi.prototype.refundTransaction
+  listTransactionRefunds: typeof TransactionsApi.prototype.listTransactionRefunds
+  getTransactionRefund: typeof TransactionsApi.prototype.getTransactionRefund
 
   constructor(options: Options) {
     this.validate(options)
@@ -159,6 +161,8 @@ class Client {
     this.getTransaction = this.wrap(ta.getTransaction.bind(ta))
     this.listTransactions = this.wrap(ta.listTransactions.bind(ta))
     this.refundTransaction = this.wrap(ta.refundTransaction.bind(ta))
+    this.listTransactionRefunds = this.wrap(ta.listTransactionRefunds.bind(ta))
+    this.getTransactionRefund = this.wrap(ta.getTransactionRefund.bind(ta))
     this.apis.push(ta)
   }
 
