@@ -29,31 +29,34 @@
     "jsonwebtoken": "^9.0.0",
     "jwk-thumbprint": "^0.1.4",
     "request": "^2.81.0",
-    "rewire": "^5.0.0",
-    "snakecase-keys": "^4.0.2",
-    "uuid": "^8.3.2"
+    "rewire": "^6.0.0",
+    "snakecase-keys": "^5.4.5",
+    "uuid": "^9.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.14.6",
     "@babel/preset-env": "^7.14.5",
     "@babel/preset-typescript": "^7.14.5",
-    "@types/jest": "^26.0.23",
-    "@types/node": "^15.12.3",
+    "@types/jest": "^29.5.0",
+    "@types/node": "^18.15.10",
     "@types/request": "^2.48.5",
-    "@typescript-eslint/eslint-plugin": "^4.27.0",
-    "@typescript-eslint/parser": "^4.27.0",
-    "babel-jest": "^27.0.2",
-    "eslint": "^7.28.0",
+    "@typescript-eslint/eslint-plugin": "^5.56.0",
+    "@typescript-eslint/parser": "^5.56.0",
+    "babel-jest": "^29.5.0",
+    "eslint": "^8.36.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-import": "^2.23.4",
-    "eslint-plugin-jest": "^24.3.6",
-    "eslint-plugin-prettier": "^3.4.0",
-    "jest": "^27.0.4",
+    "eslint-plugin-jest": "^27.2.1",
+    "eslint-plugin-prettier": "^4.2.1",
+    "jest": "^29.5.0",
     "prettier": "^2.3.1",
-    "typescript": "^4.3.4"
+    "typescript": "^5.0.2"
   },
   "bugs": {
     "url": "https://github.com/gr4vy/gr4vy-node/issues"
   },
-  "homepage": "https://github.com/gr4vy/gr4vy-node#readme"
+  "homepage": "https://github.com/gr4vy/gr4vy-node#readme",
+  "resolutions": {
+    "json-schema": "^0.4.0"
+  }
 }
