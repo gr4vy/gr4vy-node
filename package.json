@@ -55,5 +55,8 @@
   "bugs": {
     "url": "https://github.com/gr4vy/gr4vy-node/issues"
   },
-  "homepage": "https://github.com/gr4vy/gr4vy-node#readme"
+  "homepage": "https://github.com/gr4vy/gr4vy-node#readme",
+  "resolutions": {
+    "json-schema": "^0.4.0"
+  }
 }
