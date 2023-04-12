@@ -20,17 +20,17 @@ To make your first API call, you will need to [request](https://gr4vy.com) a Gr4
 Once you have been set up with a Gr4vy account you will need to head over to the **Integrations** panel and generate a private key. We recommend storing this key in a secure location but in this code sample we simply read the file from disk.
 
 ```js
-const fs = require("fs");
-const { Client, BuyerRequest } = require("@gr4vy/node");
+const fs = require('fs')
+const { Client, BuyerRequest } = require('@gr4vy/node')
 // or: import { Client, BuyerRequest } from "@gr4vy/node";
 
-const key = String(fs.readFileSync("./private.key"));
+const key = String(fs.readFileSync('./private.key'))
 
 const client = new Client({
-  gr4vyId: "YOUR_GR4VY_ID",
+  gr4vyId: 'YOUR_GR4VY_ID',
   privateKey: key,
-  environment:"production"
-});
+  environment: 'production',
+})
 
 const buyerRequest = new BuyerRequest()
 buyerRequest.displayName = 'John L.'
@@ -47,19 +47,17 @@ console.log(buyer)
 The SDK defaults the environment to "sandbox", to send transactions to production, set the environment in `Client`:
 
 ```js
+const client = new Client({
+  gr4vyId: 'YOUR_GR4VY_ID',
+  privateKey: key,
+  environment: 'sandbox',
+})
 
 const client = new Client({
-    gr4vyId: "YOUR_GR4VY_ID",
-    privateKey: key,
-    environment:"sandbox"
-});
-
-const client = new Client({
-    gr4vyId: "YOUR_GR4VY_ID",
-    privateKey: key,
-    environment:"production"
-});
-
+  gr4vyId: 'YOUR_GR4VY_ID',
+  privateKey: key,
+  environment: 'production',
+})
 ```
 
 ## Gr4vy Embed
@@ -71,7 +69,7 @@ with the amount, currency, and optional buyer information for Gr4vy Embed.
 const token = await client.getEmbedToken({
   amount: 1299,
   currency: 'USD',
-  buyerExternalIdentifier: 'user-1234'
+  buyerExternalIdentifier: 'user-1234',
   // or: buyerId: ...
 })
 ```
@@ -92,7 +90,7 @@ const buyer = await client.addBuyer(buyerRequest)
 const token = await client.getEmbedToken({
   amount: 1299,
   currency: 'USD',
-  buyerId: buyer.body.id
+  buyerId: buyer.body.id,
 })
 ```
 
@@ -103,8 +101,8 @@ The client can be initialized with the Gr4vy ID (`gr4vyId`) and the private key.
 ```js
 const client = new Client({
   gr4vyId: 'acme',
-  privateKey: key
-});
+  privateKey: key,
+})
 ```
 
 Alternatively, instead of the `gr4vyId` it can be initialized with the `baseUrl` of the server to use directly.
@@ -112,12 +110,11 @@ Alternatively, instead of the `gr4vyId` it can be initialized with the `baseUrl`
 ```js
 const client = new Client({
   baseUrl: 'https://api.acme.gr4vy.app',
-  privateKey: key
-});
+  privateKey: key,
+})
 ```
 
 Your API key can be created in your admin panel on the **Integrations** tab.
-
 
 ## Making API calls
 
@@ -154,11 +151,11 @@ The SDK can be used to create API access tokens for use with other request
 libraries.
 
 ```js
-import { JWTScope } from "@gr4vy/node"
+import { JWTScope } from '@gr4vy/node'
 
 const bearerToken = client.getBearerToken(
   [JWTScope.BuyersRead, JWTScope.BuyersWrite],
-  "1h"
+  '1h'
 )
 ```
 
@@ -185,12 +182,13 @@ For a failed API call, it returns a similar object is returned with the `body`
 of the error.
 
 ```js
-client.getBuyer(buyer.id)
-  .then(result => {
+client
+  .getBuyer(buyer.id)
+  .then((result) => {
     console.dir(result.body) // the parsed JSON
     console.dir(result.response.statusCode) // the status code of the response
   })
-  .catch(error => {
+  .catch((error) => {
     console.dir(error.response.body) // the parsed JSON of the error
     console.dir(error.response.statusCode) // the status code of the error
   })
@@ -204,8 +202,9 @@ The SDK makes it easy possible to the requests and responses to the console.
 const client = new Client({
   gr4vyId: 'demo',
   privateKey: key,
-  debug: true
-});
+  debug: true,
+  // merchantAccountId: 'my-merchant-id' # optional for multi merchant instances
+})
 ```
 
 This will output the request parameters and response to the console as follows.
@@ -237,9 +236,9 @@ Next, update `sdk/client.ts` to bind any new APIs or remove any APIs that are no
 longer available.
 
 ```js
-const poa = new PaymentOptionsApi(this.baseUrl);
-this.listPaymentOptions = this.wrap(poa.listPaymentOptions.bind(poa));
-this.apis.push(poa);
+const poa = new PaymentOptionsApi(this.baseUrl)
+this.listPaymentOptions = this.wrap(poa.listPaymentOptions.bind(poa))
+this.apis.push(poa)
 ```
 
 ### Publishing
