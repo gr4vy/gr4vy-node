@@ -164,6 +164,8 @@ class Client {
     this.listTransactionRefunds = this.wrap(ta.listTransactionRefunds.bind(ta))
     this.getTransactionRefund = this.wrap(ta.getTransactionRefund.bind(ta))
     this.apis.push(ta)
+
+    this.setMerchantAccountId(options.merchantAccountId ?? 'default')
   }
 
   /**
@@ -260,6 +262,18 @@ class Client {
   }
 
   /**
+   * Generates a new authorization token and attaches it to every API.
+   */
+  private setMerchantAccountId(merchantAccountId: string): void {
+    this.apis.forEach(
+      (api) =>
+        (api.defaultHeaders = {
+          'X-GR4VY-MERCHANT-ACCOUNT-ID': merchantAccountId,
+        })
+    )
+  }
+
+  /**
    * Internal logger
    */
   private log(...args: any[]) {
@@ -276,6 +290,7 @@ type Options =
       baseUrl?: string
       debug?: boolean
       environment?: 'production' | 'sandbox'
+      merchantAccountId?: string
     }
   | {
       gr4vyId?: string
@@ -283,6 +298,7 @@ type Options =
       baseUrl: string
       debug?: boolean
       environment?: 'production' | 'sandbox'
+      merchantAccountId?: string
     }
 
 export default Client

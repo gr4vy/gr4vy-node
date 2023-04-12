@@ -81,3 +81,17 @@ describe('.getEmbedToken()', () => {
     expect(decoded.payload.embed).toEqual(snakecaseKeys(embedParams))
   })
 })
+
+describe('.setMerchantAccountId()', () => {
+  test('it should set the default header for every request', async () => {
+    const client = new Client({
+      privateKey,
+      gr4vyId: 'demo',
+      merchantAccountId: 'test',
+    })
+
+    expect(
+      client.apis[0].defaultHeaders['X-GR4VY-MERCHANT-ACCOUNT-ID']
+    ).toEqual('test')
+  })
+})
