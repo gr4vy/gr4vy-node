@@ -59,8 +59,14 @@ export class Transaction {
     * The 2-letter ISO code of the country of the transaction. This is used to filter the payment services that is used to process the transaction. 
     */
     'country'?: string | null;
+    /**
+    * The payment method used for this transaction.
+    */
     'paymentMethod'?: PaymentMethodSnapshot;
-    'buyer'?: BuyerSnapshot;
+    /**
+    * The buyer used for this transaction.
+    */
+    'buyer'?: BuyerSnapshot | null;
     /**
     * The date and time when this transaction was created in our system.
     */
@@ -73,6 +79,9 @@ export class Transaction {
     * Defines when the transaction was last updated.
     */
     'updatedAt'?: Date;
+    /**
+    * The payment service used for this transaction.
+    */
     'paymentService'?: PaymentServiceSnapshot;
     /**
     * Indicates whether the transaction was initiated by the merchant (true) or customer (false).
@@ -86,7 +95,7 @@ export class Transaction {
     * Indicates whether the transaction represents a subsequent payment coming from a setup recurring payment. Please note there are some restrictions on how this flag may be used.  The flag can only be `false` (or not set) when the transaction meets one of the following criteria:  * It is not `merchant_initiated`. * `payment_source` is set to `card_on_file`.  The flag can only be set to `true` when the transaction meets one of the following criteria:  * It is not `merchant_initiated`. * `payment_source` is set to `recurring` or `installment` and `merchant_initiated` is set to `true`. * `payment_source` is set to `card_on_file`.
     */
     'isSubsequentPayment'?: boolean;
-    'statementDescriptor'?: StatementDescriptor;
+    'statementDescriptor'?: StatementDescriptor | null;
     /**
     * An array of cart items that represents the line items of a transaction.
     */
@@ -120,7 +129,10 @@ export class Transaction {
     * Additional information about the transaction stored as key-value pairs.
     */
     'metadata'?: { [key: string]: string; };
-    'shippingDetails'?: ShippingDetail;
+    /**
+    * The shipping details associated with the transaction.
+    */
+    'shippingDetails'?: ShippingDetail | null;
     'threeDSecure'?: ThreeDSecureSummary;
     /**
     * The date and time when this transaction was authorized in the payment service.  Don\'t use this field to determine whether the transaction was authorized. A `null` value doesn\'t necessarily imply that the transaction wasn\'t authorized, it can mean that the payment service doesn\'t provide this value, that it didn\'t provide it at the time the transaction was authorized or that the transaction was authorized before the introduction of this field.

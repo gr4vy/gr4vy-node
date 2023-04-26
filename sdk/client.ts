@@ -53,6 +53,7 @@ class Client {
 
   // Payment Options
   listPaymentOptions: typeof PaymentOptionsApi.prototype.listPaymentOptions
+  postListPaymentOptions: typeof PaymentOptionsApi.prototype.postListPaymentOptions
 
   // Payment Service Definitions
   listPaymentServiceDefinitions: typeof PaymentServiceDefinitionsApi.prototype.listPaymentServiceDefinitions

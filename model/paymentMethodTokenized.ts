@@ -24,7 +24,10 @@ export class PaymentMethodTokenized {
     * The unique ID of the payment method.
     */
     'id'?: string;
-    'method'?: string;
+    /**
+    * The type of this payment method.
+    */
+    'method'?: PaymentMethodTokenized.MethodEnum;
     /**
     * A label for the payment method. For a `card` payment method this is the last 4 digits on the card. For others it would be the email address.
     */
@@ -70,7 +73,7 @@ export class PaymentMethodTokenized {
         {
             "name": "method",
             "baseName": "method",
-            "type": "string"
+            "type": "PaymentMethodTokenized.MethodEnum"
         },
         {
             "name": "label",
@@ -116,6 +119,33 @@ export class PaymentMethodTokenized {
 export namespace PaymentMethodTokenized {
     export enum TypeEnum {
         PaymentMethod = <any> 'payment-method'
+    }
+    export enum MethodEnum {
+        Afterpay = <any> 'afterpay',
+        Applepay = <any> 'applepay',
+        Banked = <any> 'banked',
+        Bitpay = <any> 'bitpay',
+        Boleto = <any> 'boleto',
+        Card = <any> 'card',
+        Clearpay = <any> 'clearpay',
+        Dana = <any> 'dana',
+        Fortumo = <any> 'fortumo',
+        Gcash = <any> 'gcash',
+        Gocardless = <any> 'gocardless',
+        Googlepay = <any> 'googlepay',
+        Grabpay = <any> 'grabpay',
+        Klarna = <any> 'klarna',
+        Ovo = <any> 'ovo',
+        Paymaya = <any> 'paymaya',
+        Paypal = <any> 'paypal',
+        Pix = <any> 'pix',
+        Rabbitlinepay = <any> 'rabbitlinepay',
+        Scalapay = <any> 'scalapay',
+        Shopeepay = <any> 'shopeepay',
+        Stripedd = <any> 'stripedd',
+        Truemoney = <any> 'truemoney',
+        Trustly = <any> 'trustly',
+        Zippay = <any> 'zippay'
     }
     export enum SchemeEnum {
         Amex = <any> 'amex',

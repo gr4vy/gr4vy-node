@@ -27,7 +27,7 @@ export class AntiFraudServiceCreate {
     */
     'displayName': string;
     /**
-    * Defines if this service is currently active or not.
+    * Defines if this service is currently active or not. There can only be one active service at any time. When updating a service to active, the current active service will be deactivated.
     */
     'active'?: boolean;
     /**

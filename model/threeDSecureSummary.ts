@@ -12,6 +12,7 @@
 
 import { RequestFile } from './models';
 import { ThreeDSecureDataV1V2 } from './threeDSecureDataV1V2';
+import { ThreeDSecureError } from './threeDSecureError';
 
 /**
 * Details about the 3-D Secure challenge that was presented to the buyer for this transaction, where applicable.
@@ -29,6 +30,10 @@ export class ThreeDSecureSummary {
     * The method used for 3DS authentication for this transaction.
     */
     'method'?: ThreeDSecureSummary.MethodEnum;
+    /**
+    * If the transaction had a 3DS error, information about it.
+    */
+    'errorData'?: ThreeDSecureError | null;
     'responseData'?: ThreeDSecureDataV1V2;
 
     static discriminator: string | undefined = undefined;
@@ -48,6 +53,11 @@ export class ThreeDSecureSummary {
             "name": "method",
             "baseName": "method",
             "type": "ThreeDSecureSummary.MethodEnum"
+        },
+        {
+            "name": "errorData",
+            "baseName": "error_data",
+            "type": "ThreeDSecureError"
         },
         {
             "name": "responseData",

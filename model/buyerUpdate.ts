@@ -25,7 +25,10 @@ export class BuyerUpdate {
     * A unique name for this buyer which is used in the Gr4vy admin panel to give a buyer a human readable name.
     */
     'displayName'?: string | null;
-    'billingDetails'?: BillingDetailsUpdateRequest;
+    /**
+    * The billing details of the buyer.
+    */
+    'billingDetails'?: BillingDetailsUpdateRequest | null;
 
     static discriminator: string | undefined = undefined;
 

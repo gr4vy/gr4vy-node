@@ -21,6 +21,7 @@ import { DigitalWalletUpdate } from '../model/digitalWalletUpdate';
 import { DigitalWallets } from '../model/digitalWallets';
 import { Error401Unauthorized } from '../model/error401Unauthorized';
 import { Error404NotFound } from '../model/error404NotFound';
+import { Error409DuplicateRecord } from '../model/error409DuplicateRecord';
 import { ErrorGeneric } from '../model/errorGeneric';
 
 import { ObjectSerializer, Authentication, VoidAuth, Interceptor } from '../model/models';
@@ -99,11 +100,11 @@ export class DigitalWalletsApi {
     }
 
     /**
-     * De-registers a digital wallet with a provider. Upon successful de-registration, the digital wallet\'s record is deleted and will no longer be available.
+     * De-registers a digital wallet with a provider. Upon successful de-registration, the digital wallet\'s record is deleted and will no longer be available.  A digital wallet of the Apple provider may only be de-registered if there are no active Apple Pay certificates. When there are only incomplete or expired Apple Pay certificates, these certificates are deleted alongside the Apple digital wallet\'s record.
      * @summary De-register digital wallet
      * @param digitalWalletId The ID of the registered digital wallet.
      */
-    public async deregisterDigitalWallet (digitalWalletId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public async deleteDigitalWallet (digitalWalletId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/digital-wallets/{digital_wallet_id}'
             .replace('{' + 'digital_wallet_id' + '}', encodeURIComponent(String(digitalWalletId)));
         let localVarQueryParameters: any = {};
@@ -119,7 +120,7 @@ export class DigitalWalletsApi {
 
         // verify required parameter 'digitalWalletId' is not null or undefined
         if (digitalWalletId === null || digitalWalletId === undefined) {
-            throw new Error('Required parameter digitalWalletId was null or undefined when calling deregisterDigitalWallet.');
+            throw new Error('Required parameter digitalWalletId was null or undefined when calling deleteDigitalWallet.');
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -311,7 +312,7 @@ export class DigitalWalletsApi {
      * @summary Register digital wallet
      * @param digitalWalletRequest 
      */
-    public async registerDigitalWallet (digitalWalletRequest?: DigitalWalletRequest, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: DigitalWallet;  }> {
+    public async newDigitalWallet (digitalWalletRequest?: DigitalWalletRequest, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: DigitalWallet;  }> {
         const localVarPath = this.basePath + '/digital-wallets';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);

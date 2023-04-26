@@ -95,7 +95,7 @@ export class APILogsApi {
 
     /**
      * Returns a list of API 4XX and 5XX logs.
-     * @summary List API error Logs
+     * @summary List API error logs
      */
     public async listApiLogs (options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: ApiLogs;  }> {
         const localVarPath = this.basePath + '/api-logs';

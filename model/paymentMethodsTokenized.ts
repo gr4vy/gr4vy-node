@@ -14,11 +14,11 @@ import { RequestFile } from './models';
 import { PaymentMethodTokenized } from './paymentMethodTokenized';
 
 /**
-* A list of stored payment methods in token format.
+* A list of stored payment methods in summarized format.
 */
 export class PaymentMethodsTokenized {
     /**
-    * A list of stored payment methods in token format.
+    * A list of stored payment methods in summarized format.
     */
     'items'?: Array<PaymentMethodTokenized>;
 

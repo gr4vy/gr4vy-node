@@ -30,8 +30,14 @@ export class PaymentMethod {
     * The state of the payment method.  - `processing` - The payment method is still being stored. - `buyer_approval_required` - Storing the payment method requires   the buyer to provide approval. Follow the `approval_url` for next steps. - `succeeded` - The payment method is approved and stored with all   relevant payment services. - `failed` - Storing the payment method did not succeed.
     */
     'status'?: PaymentMethod.StatusEnum;
-    'method'?: string;
-    'mode'?: string;
+    /**
+    * The type of this payment method.
+    */
+    'method'?: PaymentMethod.MethodEnum;
+    /**
+    * The mode to use with this payment method.
+    */
+    'mode'?: PaymentMethod.ModeEnum;
     /**
     * The date and time when this payment method was first created in our system.
     */
@@ -44,7 +50,10 @@ export class PaymentMethod {
     * An external identifier that can be used to match the payment method against your own records.
     */
     'externalIdentifier'?: string | null;
-    'buyer'?: Buyer;
+    /**
+    * The optional buyer for which this payment method has been stored.
+    */
+    'buyer'?: Buyer | null;
     /**
     * A label for the card or the account. For a `paypal` payment method this is the user\'s email address. For a card it is the last 4 digits of the card.
     */
@@ -96,12 +105,12 @@ export class PaymentMethod {
         {
             "name": "method",
             "baseName": "method",
-            "type": "string"
+            "type": "PaymentMethod.MethodEnum"
         },
         {
             "name": "mode",
             "baseName": "mode",
-            "type": "string"
+            "type": "PaymentMethod.ModeEnum"
         },
         {
             "name": "createdAt",
@@ -178,6 +187,39 @@ export namespace PaymentMethod {
         BuyerApprovalRequired = <any> 'buyer_approval_required',
         Succeeded = <any> 'succeeded',
         Failed = <any> 'failed'
+    }
+    export enum MethodEnum {
+        Afterpay = <any> 'afterpay',
+        Applepay = <any> 'applepay',
+        Banked = <any> 'banked',
+        Bitpay = <any> 'bitpay',
+        Boleto = <any> 'boleto',
+        Card = <any> 'card',
+        Clearpay = <any> 'clearpay',
+        Dana = <any> 'dana',
+        Fortumo = <any> 'fortumo',
+        Gcash = <any> 'gcash',
+        Gocardless = <any> 'gocardless',
+        Googlepay = <any> 'googlepay',
+        Grabpay = <any> 'grabpay',
+        Klarna = <any> 'klarna',
+        Ovo = <any> 'ovo',
+        Paymaya = <any> 'paymaya',
+        Paypal = <any> 'paypal',
+        Pix = <any> 'pix',
+        Rabbitlinepay = <any> 'rabbitlinepay',
+        Scalapay = <any> 'scalapay',
+        Shopeepay = <any> 'shopeepay',
+        Stripedd = <any> 'stripedd',
+        Truemoney = <any> 'truemoney',
+        Trustly = <any> 'trustly',
+        Zippay = <any> 'zippay'
+    }
+    export enum ModeEnum {
+        Card = <any> 'card',
+        Redirect = <any> 'redirect',
+        Applepay = <any> 'applepay',
+        Googlepay = <any> 'googlepay'
     }
     export enum ApprovalTargetEnum {
         Any = <any> 'any',

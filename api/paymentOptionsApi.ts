@@ -18,6 +18,7 @@ import http from 'http';
 import { Error400BadRequest } from '../model/error400BadRequest';
 import { Error401Unauthorized } from '../model/error401Unauthorized';
 import { PaymentOptions } from '../model/paymentOptions';
+import { PaymentOptionsRequest } from '../model/paymentOptionsRequest';
 
 import { ObjectSerializer, Authentication, VoidAuth, Interceptor } from '../model/models';
 import { HttpBasicAuth, HttpBearerAuth, ApiKeyAuth, OAuth } from '../model/models';
@@ -95,7 +96,7 @@ export class PaymentOptionsApi {
     }
 
     /**
-     * Returns a list of available payment method options for the combination of amount, currency, country and metadata.  If the amount is zero, payment options which do not support zero amounts, will be omitted in the response.
+     * Returns a list of available payment method options for the combination of amount, currency, country and metadata.  If the amount is zero, payment options which do not support zero amounts, will be omitted in the response.  Checkout flow rules are used to limit these result.
      * @summary List payment options
      * @param country Filters the results to only the items which support this country code. A country is formatted as 2-letter ISO country code.
      * @param currency Filters the results to only the items which support this currency code. A currency is formatted as 3-letter ISO currency code.
@@ -147,6 +148,73 @@ export class PaymentOptionsApi {
             uri: localVarPath,
             useQuerystring: this._useQuerystring,
             json: true,
+        };
+
+        let authenticationPromise = Promise.resolve();
+        if (this.authentications.BearerAuth.accessToken) {
+            authenticationPromise = authenticationPromise.then(() => this.authentications.BearerAuth.applyToRequest(localVarRequestOptions));
+        }
+        authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
+
+        let interceptorPromise = authenticationPromise;
+        for (const interceptor of this.interceptors) {
+            interceptorPromise = interceptorPromise.then(() => interceptor(localVarRequestOptions));
+        }
+
+        return interceptorPromise.then(() => {
+            if (Object.keys(localVarFormParams).length) {
+                if (localVarUseFormData) {
+                    (<any>localVarRequestOptions).formData = localVarFormParams;
+                } else {
+                    localVarRequestOptions.form = localVarFormParams;
+                }
+            }
+            return new Promise<{ response: http.IncomingMessage; body: PaymentOptions;  }>((resolve, reject) => {
+                localVarRequest(localVarRequestOptions, (error, response, body) => {
+                    if (error) {
+                        reject(error);
+                    } else {
+                        body = ObjectSerializer.deserialize(body, "PaymentOptions");
+                        if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                            resolve({ response: response, body: body });
+                        } else {
+                            reject(new HttpError(response, body, response.statusCode));
+                        }
+                    }
+                });
+            });
+        });
+    }
+    /**
+     * Returns a list of available payment method options for the combination of amount, currency, country, metadata and list of cart items.  If the amount is zero, payment options which do not support zero amounts, will be omitted in the response.  Checkout flow rules are used to limit these result.
+     * @summary List payment options with POST
+     * @param paymentOptionsRequest 
+     */
+    public async postListPaymentOptions (paymentOptionsRequest?: PaymentOptionsRequest, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: PaymentOptions;  }> {
+        const localVarPath = this.basePath + '/payment-options';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+        let localVarFormParams: any = {};
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(paymentOptionsRequest, "PaymentOptionsRequest")
         };
 
         let authenticationPromise = Promise.resolve();

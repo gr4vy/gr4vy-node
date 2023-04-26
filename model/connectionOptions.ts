@@ -11,10 +11,12 @@
  */
 
 import { RequestFile } from './models';
+import { ConnectionOptionsAdyenCard } from './connectionOptionsAdyenCard';
 import { ConnectionOptionsCybersourceAntiFraud } from './connectionOptionsCybersourceAntiFraud';
 
 export class ConnectionOptions {
     'cybersourceAntiFraud'?: ConnectionOptionsCybersourceAntiFraud | null;
+    'adyenCard'?: ConnectionOptionsAdyenCard | null;
 
     static discriminator: string | undefined = undefined;
 
@@ -23,6 +25,11 @@ export class ConnectionOptions {
             "name": "cybersourceAntiFraud",
             "baseName": "cybersource-anti-fraud",
             "type": "ConnectionOptionsCybersourceAntiFraud"
+        },
+        {
+            "name": "adyenCard",
+            "baseName": "adyen-card",
+            "type": "ConnectionOptionsAdyenCard"
         }    ];
 
     static getAttributeTypeMap() {

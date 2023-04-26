@@ -10,10 +10,10 @@ export * from './checkoutSessionsApi';
 import { CheckoutSessionsApi } from './checkoutSessionsApi';
 export * from './digitalWalletsApi';
 import { DigitalWalletsApi } from './digitalWalletsApi';
+export * from './merchantAccountsApi';
+import { MerchantAccountsApi } from './merchantAccountsApi';
 export * from './paymentMethodDefinitionsApi';
 import { PaymentMethodDefinitionsApi } from './paymentMethodDefinitionsApi';
-export * from './paymentMethodTokensApi';
-import { PaymentMethodTokensApi } from './paymentMethodTokensApi';
 export * from './paymentMethodsApi';
 import { PaymentMethodsApi } from './paymentMethodsApi';
 export * from './paymentOptionsApi';
@@ -39,4 +39,4 @@ export class HttpError extends Error {
 
 export { RequestFile } from '../model/models';
 
-export const APIS = [APILogsApi, AuditLogsApi, BuyersApi, CardSchemeDefinitionsApi, CheckoutSessionsApi, DigitalWalletsApi, PaymentMethodDefinitionsApi, PaymentMethodTokensApi, PaymentMethodsApi, PaymentOptionsApi, PaymentServiceDefinitionsApi, PaymentServicesApi, ReportsApi, RolesApi, TransactionsApi];
+export const APIS = [APILogsApi, AuditLogsApi, BuyersApi, CardSchemeDefinitionsApi, CheckoutSessionsApi, DigitalWalletsApi, MerchantAccountsApi, PaymentMethodDefinitionsApi, PaymentMethodsApi, PaymentOptionsApi, PaymentServiceDefinitionsApi, PaymentServicesApi, ReportsApi, RolesApi, TransactionsApi];

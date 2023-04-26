@@ -48,6 +48,18 @@ export class DigitalWallet {
     * The date and time when this digital wallet was last updated.
     */
     'updatedAt'?: Date;
+    /**
+    * The number of active custom certificates registered for this digital wallet (Apple Pay only).
+    */
+    'activeCertificateCount'?: number;
+    /**
+    * The number of pending custom certificates registered for this digital wallet (Apple Pay only).
+    */
+    'pendingCertificateCount'?: number;
+    /**
+    * The number of expired custom certificates registered for this digital wallet (Apple Pay only).
+    */
+    'expiredCertificateCount'?: number;
 
     static discriminator: string | undefined = undefined;
 
@@ -91,6 +103,21 @@ export class DigitalWallet {
             "name": "updatedAt",
             "baseName": "updated_at",
             "type": "Date"
+        },
+        {
+            "name": "activeCertificateCount",
+            "baseName": "active_certificate_count",
+            "type": "number"
+        },
+        {
+            "name": "pendingCertificateCount",
+            "baseName": "pending_certificate_count",
+            "type": "number"
+        },
+        {
+            "name": "expiredCertificateCount",
+            "baseName": "expired_certificate_count",
+            "type": "number"
         }    ];
 
     static getAttributeTypeMap() {

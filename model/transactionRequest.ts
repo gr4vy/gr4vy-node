@@ -36,7 +36,7 @@ export class TransactionRequest {
     'country'?: string | null;
     'paymentMethod': TransactionPaymentMethodRequest;
     /**
-    * Whether or not to also try and store the payment method with us so that it can be used again for future use. This is only supported for payment methods that support this feature. There are also a few restrictions on how the flag may be set:  * The flag has to be set to `true` when the `payment_source` is set to `recurring` or `installment`, and `merchant_initiated` is set to `false`.  * The flag has to be set to `false` (or not set) when using a previously tokenized payment method.
+    * Whether or not to also try and store the payment method with us so that it can be used again for future use. This is only supported for payment methods that support this feature. There are also a few restrictions on how the flag may be set:  * The flag has to be set to `true` when the `payment_source` is set to `recurring` or `installment`, and `merchant_initiated` is set to `false`.  * The flag has to be set to `false` (or not set) when using a previously vaulted payment method.
     */
     'store'?: boolean;
     /**
@@ -61,10 +61,10 @@ export class TransactionRequest {
     */
     'isSubsequentPayment'?: boolean;
     /**
-    * Any additional information about the transaction that you would like to store as key-value pairs. This data is passed to payment service providers that support it. Please visit https://gr4vy.com/docs/ under `Connections` for more information on how specific providers support metadata.
+    * Any additional information about the transaction that you would like to store as key-value pairs. This data is passed to payment service providers that support it.
     */
     'metadata'?: { [key: string]: string; };
-    'statementDescriptor'?: StatementDescriptor;
+    'statementDescriptor'?: StatementDescriptor | null;
     /**
     * An array of cart items that represents the line items of a transaction.
     */
@@ -73,12 +73,22 @@ export class TransactionRequest {
     * A scheme\'s transaction identifier to use in connecting a merchant initiated transaction to a previous customer initiated transaction.  If not provided, and a qualifying customer initiated transaction has been previously made, then Gr4vy will populate this value with the identifier returned for that transaction.  e.g. the Visa Transaction Identifier, or Mastercard Trace ID.
     */
     'previousSchemeTransactionId'?: string | null;
-    'browserInfo'?: BrowserInfo;
+    /**
+    * Information about the browser used by the buyer.
+    */
+    'browserInfo'?: BrowserInfo | null;
     /**
     * The unique identifier of a set of shipping details stored for the buyer.  If provided, the created transaction will include a copy of the details at the point of transaction creation; i.e. it will not be affected by later changes to the detail in the database.
     */
     'shippingDetailsId'?: string | null;
-    'connectionOptions'?: ConnectionOptions;
+    /**
+    * Allows for passing optional configuration per connection to take advantage of connection specific features. When provided, the data is only passed to the target connection type to prevent sharing configuration across connections.
+    */
+    'connectionOptions'?: ConnectionOptions | null;
+    /**
+    * Whether to capture the transaction asynchronously.  - When `async_capture` is `false` (default), the transaction is captured   in the same request. - When `async_capture` is `true`, the transaction is automatically   captured at a later time.  Redirect transactions are not affected by this flag.  This flag can only be set to `true` when `intent` is set to `capture`.
+    */
+    'asyncCapture'?: boolean;
 
     static discriminator: string | undefined = undefined;
 
@@ -172,6 +182,11 @@ export class TransactionRequest {
             "name": "connectionOptions",
             "baseName": "connection_options",
             "type": "ConnectionOptions"
+        },
+        {
+            "name": "asyncCapture",
+            "baseName": "async_capture",
+            "type": "boolean"
         }    ];
 
     static getAttributeTypeMap() {

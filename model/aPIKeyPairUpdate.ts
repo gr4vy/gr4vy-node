@@ -12,23 +12,26 @@
 
 import { RequestFile } from './models';
 
-export class PaymentServiceRequestAllOf {
+/**
+* A request to update an API key-pair.
+*/
+export class APIKeyPairUpdate {
     /**
-    * The ID of the payment service to use.
+    * A name for this key-pair which is used in the Gr4vy admin panel to give the key-pair a human readable name.
     */
-    'paymentServiceDefinitionId'?: string;
+    'displayName': string;
 
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "paymentServiceDefinitionId",
-            "baseName": "payment_service_definition_id",
+            "name": "displayName",
+            "baseName": "display_name",
             "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
-        return PaymentServiceRequestAllOf.attributeTypeMap;
+        return APIKeyPairUpdate.attributeTypeMap;
     }
 }
 

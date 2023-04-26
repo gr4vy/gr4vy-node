@@ -38,8 +38,14 @@ export class BillingDetails {
     * The phone number of the buyer. This number is formatted according to the [E164 number standard](https://www.twilio.com/docs/glossary/what-e164).
     */
     'phoneNumber'?: string | null;
-    'address'?: Address;
-    'taxId'?: TaxId;
+    /**
+    * The billing address of the buyer.
+    */
+    'address'?: Address | null;
+    /**
+    * The tax information associated with the billing details.
+    */
+    'taxId'?: TaxId | null;
 
     static discriminator: string | undefined = undefined;
 

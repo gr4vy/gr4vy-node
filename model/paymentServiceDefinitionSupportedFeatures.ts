@@ -37,6 +37,10 @@ export class PaymentServiceDefinitionSupportedFeatures {
     */
     'openLoop'?: boolean;
     /**
+    * Supports toggling processing as open-loop on or off.
+    */
+    'openLoopToggle'?: boolean;
+    /**
     * Supports [partially refunding](#operation/refund-transaction) captured transactions.
     */
     'partialRefunds'?: boolean;
@@ -52,6 +56,10 @@ export class PaymentServiceDefinitionSupportedFeatures {
     * Supports [refunding](#operation/refund-transaction) captured transactions.
     */
     'refunds'?: boolean;
+    /**
+    * Requires merchant to set up `webhook_url` manually with provider.
+    */
+    'requiresWebhookSetup'?: boolean;
     /**
     * Supports hosted 3-D Secure with a redirect.
     */
@@ -98,6 +106,11 @@ export class PaymentServiceDefinitionSupportedFeatures {
             "type": "boolean"
         },
         {
+            "name": "openLoopToggle",
+            "baseName": "open_loop_toggle",
+            "type": "boolean"
+        },
+        {
             "name": "partialRefunds",
             "baseName": "partial_refunds",
             "type": "boolean"
@@ -115,6 +128,11 @@ export class PaymentServiceDefinitionSupportedFeatures {
         {
             "name": "refunds",
             "baseName": "refunds",
+            "type": "boolean"
+        },
+        {
+            "name": "requiresWebhookSetup",
+            "baseName": "requires_webhook_setup",
             "type": "boolean"
         },
         {

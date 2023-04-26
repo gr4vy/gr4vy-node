@@ -13,10 +13,13 @@
 import { RequestFile } from './models';
 
 /**
-* Request to use a redirect payment method in a transaction.
+* Details to register a new redirect payment method.
 */
 export class RedirectRequest {
-    'method': string;
+    /**
+    * The method to use, this can be any of the methods that support redirect requests.  When storing a new payment method, only `gocardless` and `stripedd` are currently supported.
+    */
+    'method': RedirectRequest.MethodEnum;
     /**
     * The redirect URL to redirect a buyer to after they have authorized their transaction.
     */
@@ -48,7 +51,7 @@ export class RedirectRequest {
         {
             "name": "method",
             "baseName": "method",
-            "type": "string"
+            "type": "RedirectRequest.MethodEnum"
         },
         {
             "name": "redirectUrl",
@@ -86,3 +89,12 @@ export class RedirectRequest {
     }
 }
 
+export namespace RedirectRequest {
+    export enum MethodEnum {
+        Paypal = <any> 'paypal',
+        Banked = <any> 'banked',
+        Bitpay = <any> 'bitpay',
+        Gocardless = <any> 'gocardless',
+        Stripedd = <any> 'stripedd'
+    }
+}

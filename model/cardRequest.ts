@@ -13,7 +13,7 @@
 import { RequestFile } from './models';
 
 /**
-* Card details to use in a transaction or to register a new payment method.
+* Details to register a new card payment method.
 */
 export class CardRequest {
     /**
@@ -28,10 +28,6 @@ export class CardRequest {
     * The expiration date of the card, formatted `MM/YY`.
     */
     'expirationDate': string;
-    /**
-    * The 3 or 4 digit security code often found on the card. This often referred to as the CVV or CVD.
-    */
-    'securityCode': string;
     /**
     * An external identifier that can be used to match the card against your own records.
     */
@@ -65,11 +61,6 @@ export class CardRequest {
         {
             "name": "expirationDate",
             "baseName": "expiration_date",
-            "type": "string"
-        },
-        {
-            "name": "securityCode",
-            "baseName": "security_code",
             "type": "string"
         },
         {

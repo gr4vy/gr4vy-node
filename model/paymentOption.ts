@@ -21,12 +21,18 @@ export class PaymentOption {
     * `payment-option`.
     */
     'type'?: PaymentOption.TypeEnum;
-    'method'?: string;
+    /**
+    * The type of payment method that is available.
+    */
+    'method'?: PaymentOption.MethodEnum;
     /**
     * An icon to display for the payment option.
     */
     'iconUrl'?: string | null;
-    'mode'?: string;
+    /**
+    * The mode to use with this payment option.
+    */
+    'mode'?: PaymentOption.ModeEnum;
     /**
     * A label that describes this payment option. This label is returned in the language defined by the `locale` query parameter. The label can be used to display a list of payment options to the buyer in their language.
     */
@@ -52,7 +58,7 @@ export class PaymentOption {
         {
             "name": "method",
             "baseName": "method",
-            "type": "string"
+            "type": "PaymentOption.MethodEnum"
         },
         {
             "name": "iconUrl",
@@ -62,7 +68,7 @@ export class PaymentOption {
         {
             "name": "mode",
             "baseName": "mode",
-            "type": "string"
+            "type": "PaymentOption.ModeEnum"
         },
         {
             "name": "label",
@@ -93,5 +99,38 @@ export class PaymentOption {
 export namespace PaymentOption {
     export enum TypeEnum {
         PaymentOption = <any> 'payment-option'
+    }
+    export enum MethodEnum {
+        Afterpay = <any> 'afterpay',
+        Applepay = <any> 'applepay',
+        Banked = <any> 'banked',
+        Bitpay = <any> 'bitpay',
+        Boleto = <any> 'boleto',
+        Card = <any> 'card',
+        Clearpay = <any> 'clearpay',
+        Dana = <any> 'dana',
+        Fortumo = <any> 'fortumo',
+        Gcash = <any> 'gcash',
+        Gocardless = <any> 'gocardless',
+        Googlepay = <any> 'googlepay',
+        Grabpay = <any> 'grabpay',
+        Klarna = <any> 'klarna',
+        Ovo = <any> 'ovo',
+        Paymaya = <any> 'paymaya',
+        Paypal = <any> 'paypal',
+        Pix = <any> 'pix',
+        Rabbitlinepay = <any> 'rabbitlinepay',
+        Scalapay = <any> 'scalapay',
+        Shopeepay = <any> 'shopeepay',
+        Stripedd = <any> 'stripedd',
+        Truemoney = <any> 'truemoney',
+        Trustly = <any> 'trustly',
+        Zippay = <any> 'zippay'
+    }
+    export enum ModeEnum {
+        Card = <any> 'card',
+        Redirect = <any> 'redirect',
+        Applepay = <any> 'applepay',
+        Googlepay = <any> 'googlepay'
     }
 }
