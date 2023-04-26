@@ -25,6 +25,11 @@ class Authentication {
 
     if (scopes.includes(JWTScope.Embed) && embed) {
       claims['embed'] = snakeCaseKeys(embed)
+
+      if (embed.metadata) {
+        // We don't want to snake case merchant-provided metadata keys
+        claims['embed']['metadata'] = embed.metadata
+      }
     }
 
     return jwt.sign(claims, this.privateKey, {

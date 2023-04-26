@@ -19,7 +19,8 @@ const embedParams = {
   currency: 'USD',
   buyerExternalIdentifier: 'user-123',
   metadata: {
-    key: 'value',
+    camelCaseKey: 'value1',
+    snake_case_key: 'value2',
   },
   cartItems: [
     {
@@ -64,7 +65,15 @@ describe('.getJWS', () => {
     })
 
     expect(decoded.payload.scopes).toEqual(['embed'])
-    expect(decoded.payload.embed).toEqual(snakecaseKeys(embedParams))
+
+    // We don't snake case merchant-provided metadata keys
+    expect(decoded.payload.embed.metadata).toEqual(embedParams.metadata)
+
+    const { metadata: _, ...payloadMinusMetadata } = decoded.payload.embed
+    const { metadata: __, ...embedParamsMinusMetadata } = embedParams
+    expect(payloadMinusMetadata).toEqual(
+      snakecaseKeys(embedParamsMinusMetadata)
+    )
   })
 
   test('it should ignore embed data if the embed scope was not set', async () => {
