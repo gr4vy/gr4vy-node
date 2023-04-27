@@ -23,7 +23,7 @@ let paymentServiceId
 
 jest.setTimeout(30000)
 
-describe('#addPaymentService', () => {
+describe('#newPaymentService', () => {
   test('it should create a payment service', async () => {
     const paymentServiceRequest = new PaymentServiceRequest()
     paymentServiceRequest.displayName = DISPLAY_NAME
@@ -39,7 +39,7 @@ describe('#addPaymentService', () => {
     paymentServiceRequest.paymentServiceDefinitionId = 'stripe-card'
 
     const paymentService = await client
-      .addPaymentService(paymentServiceRequest)
+      .newPaymentService(paymentServiceRequest)
       .catch((error) => {
         console.dir(error.response.body) // the parsed JSON of the error
         console.dir(error.response.statusCode) // the status code of the error
