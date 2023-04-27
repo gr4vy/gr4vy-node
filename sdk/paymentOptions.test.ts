@@ -1,7 +1,7 @@
 import fs from 'fs'
 import path from 'path'
+import { PaymentOptionsRequest } from '../model/paymentOptionsRequest'
 import Client from './client'
-import { PaymentOptionsRequest } from '../model/paymentOptionsRequest';
 
 let key
 if (process.env.PRIVATE_KEY) {
@@ -41,11 +41,13 @@ paymentOptionsRequest.metadata = { source: 'node_sdk' }
 
 describe('#postListPaymentOptions', () => {
   test('it should list payment options', async () => {
-    const paymentOptions = await client.postListPaymentOptions(paymentOptionsRequest).catch((error) => {
-      console.dir(error.response.body) // the parsed JSON of the error
-      console.dir(error.response.statusCode) // the status code of the error
-      throw new Error('an error occurred while listing the payment options')
-    })
+    const paymentOptions = await client
+      .postListPaymentOptions(paymentOptionsRequest)
+      .catch((error) => {
+        console.dir(error.response.body) // the parsed JSON of the error
+        console.dir(error.response.statusCode) // the status code of the error
+        throw new Error('an error occurred while listing the payment options')
+      })
 
     expect(paymentOptions).toBeDefined()
     expect(paymentOptions.body).toBeDefined()

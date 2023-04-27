@@ -131,7 +131,9 @@ class Client {
     // Payment Options
     const poa = new PaymentOptionsApi(this.baseUrl)
     this.listPaymentOptions = this.wrap(poa.listPaymentOptions.bind(poa))
-    this.postListPaymentOptions = this.wrap(poa.postListPaymentOptions.bind(poa))
+    this.postListPaymentOptions = this.wrap(
+      poa.postListPaymentOptions.bind(poa)
+    )
     this.apis.push(poa)
 
     // Payment Service Definitions
@@ -155,9 +157,7 @@ class Client {
 
     // Transactions
     const ta = new TransactionsApi(this.baseUrl)
-    this.newTransaction = this.wrap(
-      ta.newTransaction.bind(ta)
-    )
+    this.newTransaction = this.wrap(ta.newTransaction.bind(ta))
     this.voidTransaction = this.wrap(ta.voidTransaction.bind(ta))
     this.captureTransaction = this.wrap(ta.captureTransaction.bind(ta))
     this.getTransaction = this.wrap(ta.getTransaction.bind(ta))
