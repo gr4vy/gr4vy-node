@@ -65,14 +65,8 @@ describe('.getJWS', () => {
     })
 
     expect(decoded.payload.scopes).toEqual(['embed'])
-
-    // We don't snake case merchant-provided metadata keys
-    expect(decoded.payload.embed.metadata).toEqual(embedParams.metadata)
-
-    const { metadata: _, ...payloadMinusMetadata } = decoded.payload.embed
-    const { metadata: __, ...embedParamsMinusMetadata } = embedParams
-    expect(payloadMinusMetadata).toEqual(
-      snakecaseKeys(embedParamsMinusMetadata)
+    expect(decoded.payload.embed).toEqual(
+      snakecaseKeys(embedParams, { exclude: ['metadata'] })
     )
   })
 
