@@ -24,7 +24,7 @@ class Authentication {
     const claims = { scopes }
 
     if (scopes.includes(JWTScope.Embed) && embed) {
-      claims['embed'] = snakeCaseKeys(embed)
+      claims['embed'] = snakeCaseKeys(embed, { exclude: ['metadata'] })
     }
 
     return jwt.sign(claims, this.privateKey, {
