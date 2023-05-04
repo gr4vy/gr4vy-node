@@ -33,8 +33,8 @@ class Client {
   addBuyer: typeof BuyersApi.prototype.addBuyer
   updateBuyer: typeof BuyersApi.prototype.updateBuyer
   deleteBuyer: typeof BuyersApi.prototype.deleteBuyer
-  getBuyerShippingDetails: typeof BuyersApi.prototype.getBuyerShippingDetails
-  addBuyerShippingDetail: typeof BuyersApi.prototype.addBuyerShippingDetail
+  listBuyerShippingDetails: typeof BuyersApi.prototype.listBuyerShippingDetails
+  newBuyerShippingDetail: typeof BuyersApi.prototype.newBuyerShippingDetail
   updateBuyerShippingDetail: typeof BuyersApi.prototype.updateBuyerShippingDetail
   deleteBuyerShippingDetail: typeof BuyersApi.prototype.deleteBuyerShippingDetail
 
@@ -47,12 +47,13 @@ class Client {
   // Payment Methods
   listPaymentMethods: typeof PaymentMethodsApi.prototype.listPaymentMethods
   getPaymentMethod: typeof PaymentMethodsApi.prototype.getPaymentMethod
-  storePaymentMethod: typeof PaymentMethodsApi.prototype.storePaymentMethod
+  newPaymentMethod: typeof PaymentMethodsApi.prototype.newPaymentMethod
   deletePaymentMethod: typeof PaymentMethodsApi.prototype.deletePaymentMethod
   listBuyerPaymentMethods: typeof PaymentMethodsApi.prototype.listBuyerPaymentMethods
 
   // Payment Options
   listPaymentOptions: typeof PaymentOptionsApi.prototype.listPaymentOptions
+  postListPaymentOptions: typeof PaymentOptionsApi.prototype.postListPaymentOptions
 
   // Payment Service Definitions
   listPaymentServiceDefinitions: typeof PaymentServiceDefinitionsApi.prototype.listPaymentServiceDefinitions
@@ -66,14 +67,14 @@ class Client {
   deletePaymentService: typeof PaymentServicesApi.prototype.deletePaymentService
 
   // Transactions
-  authorizeNewTransaction: typeof TransactionsApi.prototype.authorizeNewTransaction
+  newTransaction: typeof TransactionsApi.prototype.newTransaction
   voidTransaction: typeof TransactionsApi.prototype.voidTransaction
   captureTransaction: typeof TransactionsApi.prototype.captureTransaction
   getTransaction: typeof TransactionsApi.prototype.getTransaction
   listTransactions: typeof TransactionsApi.prototype.listTransactions
-  refundTransaction: typeof TransactionsApi.prototype.refundTransaction
+  newRefund: typeof TransactionsApi.prototype.newRefund
   listTransactionRefunds: typeof TransactionsApi.prototype.listTransactionRefunds
-  getTransactionRefund: typeof TransactionsApi.prototype.getTransactionRefund
+  getRefund: typeof TransactionsApi.prototype.getRefund
 
   constructor(options: Options) {
     this.validate(options)
@@ -91,13 +92,13 @@ class Client {
     const ba = new BuyersApi(this.baseUrl)
     this.listBuyers = this.wrap(ba.listBuyers.bind(ba))
     this.getBuyer = this.wrap(ba.getBuyer.bind(ba))
-    this.addBuyer = this.wrap(ba.addBuyer.bind(ba))
+    this.newBuyer = this.wrap(ba.newBuyer.bind(ba))
     this.updateBuyer = this.wrap(ba.updateBuyer.bind(ba))
     this.deleteBuyer = this.wrap(ba.deleteBuyer.bind(ba))
-    this.getBuyerShippingDetails = this.wrap(
-      ba.getBuyerShippingDetails.bind(ba)
+    this.listBuyerShippingDetails = this.wrap(
+      ba.listBuyerShippingDetails.bind(ba)
     )
-    this.addBuyerShippingDetail = this.wrap(ba.addBuyerShippingDetail.bind(ba))
+    this.newBuyerShippingDetail = this.wrap(ba.newBuyerShippingDetail.bind(ba))
     this.updateBuyerShippingDetail = this.wrap(
       ba.updateBuyerShippingDetail.bind(ba)
     )
@@ -108,7 +109,7 @@ class Client {
 
     // Checkout Sessions
     const csa = new CheckoutSessionsApi(this.baseUrl)
-    this.addCheckoutSession = this.wrap(csa.addCheckoutSession.bind(csa))
+    this.newCheckoutSession = this.wrap(csa.newCheckoutSession.bind(csa))
     this.deleteCheckoutSession = this.wrap(csa.deleteCheckoutSession.bind(csa))
     this.getCheckoutSession = this.wrap(csa.getCheckoutSession.bind(csa))
     this.updateCheckoutSessionFields = this.wrap(
@@ -120,7 +121,7 @@ class Client {
     const pma = new PaymentMethodsApi(this.baseUrl)
     this.listPaymentMethods = this.wrap(pma.listPaymentMethods.bind(pma))
     this.getPaymentMethod = this.wrap(pma.getPaymentMethod.bind(pma))
-    this.storePaymentMethod = this.wrap(pma.storePaymentMethod.bind(pma))
+    this.newPaymentMethod = this.wrap(pma.newPaymentMethod.bind(pma))
     this.deletePaymentMethod = this.wrap(pma.deletePaymentMethod.bind(pma))
     this.listBuyerPaymentMethods = this.wrap(
       pma.listBuyerPaymentMethods.bind(pma)
@@ -130,6 +131,9 @@ class Client {
     // Payment Options
     const poa = new PaymentOptionsApi(this.baseUrl)
     this.listPaymentOptions = this.wrap(poa.listPaymentOptions.bind(poa))
+    this.postListPaymentOptions = this.wrap(
+      poa.postListPaymentOptions.bind(poa)
+    )
     this.apis.push(poa)
 
     // Payment Service Definitions
@@ -146,23 +150,21 @@ class Client {
     const psa = new PaymentServicesApi(this.baseUrl)
     this.listPaymentServices = this.wrap(psa.listPaymentServices.bind(psa))
     this.getPaymentService = this.wrap(psa.getPaymentService.bind(psa))
-    this.addPaymentService = this.wrap(psa.addPaymentService.bind(psa))
+    this.newPaymentService = this.wrap(psa.newPaymentService.bind(psa))
     this.updatePaymentService = this.wrap(psa.updatePaymentService.bind(psa))
     this.deletePaymentService = this.wrap(psa.deletePaymentService.bind(psa))
     this.apis.push(psa)
 
     // Transactions
     const ta = new TransactionsApi(this.baseUrl)
-    this.authorizeNewTransaction = this.wrap(
-      ta.authorizeNewTransaction.bind(ta)
-    )
+    this.newTransaction = this.wrap(ta.newTransaction.bind(ta))
     this.voidTransaction = this.wrap(ta.voidTransaction.bind(ta))
     this.captureTransaction = this.wrap(ta.captureTransaction.bind(ta))
     this.getTransaction = this.wrap(ta.getTransaction.bind(ta))
     this.listTransactions = this.wrap(ta.listTransactions.bind(ta))
-    this.refundTransaction = this.wrap(ta.refundTransaction.bind(ta))
+    this.newRefund = this.wrap(ta.newRefund.bind(ta))
     this.listTransactionRefunds = this.wrap(ta.listTransactionRefunds.bind(ta))
-    this.getTransactionRefund = this.wrap(ta.getTransactionRefund.bind(ta))
+    this.getRefund = this.wrap(ta.getRefund.bind(ta))
     this.apis.push(ta)
 
     this.setMerchantAccountId(options.merchantAccountId ?? 'default')

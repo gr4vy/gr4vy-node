@@ -34,7 +34,7 @@ const client = new Client({
 
 const buyerRequest = new BuyerRequest()
 buyerRequest.displayName = 'John L.'
-const buyer = await client.addBuyer(buyerRequest)
+const buyer = await client.newBuyer(buyerRequest)
 console.log(buyer)
 // {
 //   response: {...} the HTTP response object
@@ -85,7 +85,7 @@ be created before it can be used in this way.
 const buyerRequest = new BuyerRequest()
 buyerRequest.displayName = 'John L.'
 buyerRequest.externalIdentifier = 'user-1234'
-const buyer = await client.addBuyer(buyerRequest)
+const buyer = await client.newBuyer(buyerRequest)
 
 const token = await client.getEmbedToken({
   amount: 1299,
@@ -134,7 +134,7 @@ the `addBuyer` method.
 ```js
 const buyerRequest = new BuyerRequest()
 buyerRequest.displayName = 'John L.'
-const buyer = await client.addBuyer(buyerRequest)
+const buyer = await client.newBuyer(buyerRequest)
 ```
 
 Similarly, to update a buyer you will need to pass in the `BuyerUpdateRequest`.

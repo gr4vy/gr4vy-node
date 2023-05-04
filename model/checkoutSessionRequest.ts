@@ -13,7 +13,7 @@
 import { RequestFile } from './models';
 
 /**
-* Details for a Checkout Session payment method.
+* Details to register a new Checkout Session payment method.
 */
 export class CheckoutSessionRequest {
     /**

@@ -23,12 +23,12 @@ let sessionId
 
 jest.setTimeout(30000)
 
-describe('#addCheckoutSession', () => {
+describe('#newCheckoutSession', () => {
   test('it should create a checkout session', async () => {
     const checkoutSessionRequest = new CheckoutSessionRequest()
 
     const session = await client
-      .addCheckoutSession(checkoutSessionRequest)
+      .newCheckoutSession(checkoutSessionRequest)
       .catch((error) => {
         console.dir(error.response.body) // the parsed JSON of the error
         console.dir(error.response.statusCode) // the status code of the error

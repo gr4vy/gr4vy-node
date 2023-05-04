@@ -23,14 +23,14 @@ let buyerId
 
 jest.setTimeout(30000)
 
-describe('#addBuyer', () => {
+describe('#newBuyer', () => {
   test('it should create a buyer', async () => {
     const buyerRequest = new BuyerRequest()
     buyerRequest.displayName = DISPLAY_NAME
     buyerRequest.externalIdentifier =
       'test-' + (Math.random() + 1).toString(36).substring(8)
 
-    const buyer = await client.addBuyer(buyerRequest).catch((error) => {
+    const buyer = await client.newBuyer(buyerRequest).catch((error) => {
       console.dir(error.response.body) // the parsed JSON of the error
       console.dir(error.response.statusCode) // the status code of the error
       throw new Error('an error occurred while creating the buyer')

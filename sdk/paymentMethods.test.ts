@@ -21,7 +21,7 @@ let paymentMethodId
 
 jest.setTimeout(30000)
 
-describe('#storePaymentMethod', () => {
+describe('#newPaymentMethod', () => {
   test('it should create a payment method', async () => {
     //method
     //number
@@ -41,7 +41,7 @@ describe('#storePaymentMethod', () => {
     paymentMethodRequest.securityCode = '123'
 
     const paymentMethod = await client
-      .storePaymentMethod(paymentMethodRequest)
+      .newPaymentMethod(paymentMethodRequest)
       .catch((error) => {
         console.dir(error.response.body) // the parsed JSON of the error
         console.dir(error.response.statusCode) // the status code of the error

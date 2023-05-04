@@ -95,12 +95,14 @@ export class AuditLogsApi {
 
     /**
      * Returns a list of audit logs.
-     * @summary List Audit Logs
+     * @summary List audit logs
      * @param limit Defines the maximum number of items to return for this request.
      * @param cursor A cursor that identifies the page of results to return. This is used to paginate the results of this API.  For the first page of results, this parameter can be left out. For additional pages, use the value returned by the API in the &#x60;next_cursor&#x60; field. Similarly the &#x60;previous_cursor&#x60; can be used to reverse backwards in the list.
      * @param userId Filters the results to only the items for which the &#x60;user&#x60; has an &#x60;id&#x60; that matches this value.
+     * @param action Filters the results to only the items for which the &#x60;audit-log&#x60; has an &#x60;action&#x60; that matches this value.
+     * @param resourceType Filters the results to only the items for which the &#x60;audit-log&#x60; has a &#x60;resource&#x60; that matches this type value.
      */
-    public async listAuditLogs (limit?: number, cursor?: string, userId?: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: AuditLogs;  }> {
+    public async listAuditLogs (limit?: number, cursor?: string, userId?: string, action?: 'created' | 'updated' | 'deleted', resourceType?: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: AuditLogs;  }> {
         const localVarPath = this.basePath + '/audit-logs';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
@@ -123,6 +125,14 @@ export class AuditLogsApi {
 
         if (userId !== undefined) {
             localVarQueryParameters['user_id'] = ObjectSerializer.serialize(userId, "string");
+        }
+
+        if (action !== undefined) {
+            localVarQueryParameters['action'] = ObjectSerializer.serialize(action, "'created' | 'updated' | 'deleted'");
+        }
+
+        if (resourceType !== undefined) {
+            localVarQueryParameters['resource_type'] = ObjectSerializer.serialize(resourceType, "string");
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);

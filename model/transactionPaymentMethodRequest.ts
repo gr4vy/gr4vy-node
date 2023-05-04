@@ -16,17 +16,20 @@ import { RequestFile } from './models';
 * Payment method details to use in a transaction or to register a new payment method.
 */
 export class TransactionPaymentMethodRequest {
-    'method': string;
     /**
-    * The 13-19 digit number for this credit card as it can be found on the front of the card.  If a card has been stored with us previously, this number will represent the unique tokenized card ID provided via our API.
+    * The method to use for this request.
+    */
+    'method': TransactionPaymentMethodRequest.MethodEnum;
+    /**
+    * The 13-19 digit number for this credit card as it can be found on the front of the card.
     */
     'number'?: string;
     /**
-    * The expiration date of the card, formatted `MM/YY`. If a card has been previously stored with us this value is optional.  If the `number` of this card represents a tokenized card, then this value is ignored.
+    * The expiration date of the card, formatted `MM/YY`. If a card has been previously stored with us this value is optional.
     */
     'expirationDate'?: string;
     /**
-    * The 3 or 4 digit security code often found on the card. This often referred to as the CVV or CVD.  If the `number` of this card represents a tokenized card, then this value is ignored.
+    * The 3 or 4 digit security code often found on the card. This often referred to as the CVV or CVD.
     */
     'securityCode'?: string;
     /**
@@ -46,7 +49,7 @@ export class TransactionPaymentMethodRequest {
     */
     'redirectUrl'?: string;
     /**
-    * An identifier for a previously tokenized payment method. This id can represent any type of payment method.
+    * An identifier for a previously vaulted payment method. This id can represent any type of payment method.
     */
     'id'?: string;
 
@@ -56,7 +59,7 @@ export class TransactionPaymentMethodRequest {
         {
             "name": "method",
             "baseName": "method",
-            "type": "string"
+            "type": "TransactionPaymentMethodRequest.MethodEnum"
         },
         {
             "name": "number",
@@ -104,3 +107,32 @@ export class TransactionPaymentMethodRequest {
     }
 }
 
+export namespace TransactionPaymentMethodRequest {
+    export enum MethodEnum {
+        Afterpay = <any> 'afterpay',
+        Applepay = <any> 'applepay',
+        Banked = <any> 'banked',
+        Bitpay = <any> 'bitpay',
+        Boleto = <any> 'boleto',
+        Card = <any> 'card',
+        Clearpay = <any> 'clearpay',
+        Dana = <any> 'dana',
+        Fortumo = <any> 'fortumo',
+        Gcash = <any> 'gcash',
+        Gocardless = <any> 'gocardless',
+        Googlepay = <any> 'googlepay',
+        Grabpay = <any> 'grabpay',
+        Klarna = <any> 'klarna',
+        Ovo = <any> 'ovo',
+        Paymaya = <any> 'paymaya',
+        Paypal = <any> 'paypal',
+        Pix = <any> 'pix',
+        Rabbitlinepay = <any> 'rabbitlinepay',
+        Scalapay = <any> 'scalapay',
+        Shopeepay = <any> 'shopeepay',
+        Stripedd = <any> 'stripedd',
+        Truemoney = <any> 'truemoney',
+        Trustly = <any> 'trustly',
+        Zippay = <any> 'zippay'
+    }
+}

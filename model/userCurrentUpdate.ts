@@ -11,28 +11,27 @@
  */
 
 import { RequestFile } from './models';
-import { PaymentMethodToken } from './paymentMethodToken';
 
 /**
-* A list of tokens for a payment method.
+* A request to update the current user.
 */
-export class PaymentMethodTokens {
+export class UserCurrentUpdate {
     /**
-    * A list of stored tokens for payment methods.
+    * The full name of the user which is used in the Gr4vy admin panel to give a user a human readable name.
     */
-    'items'?: Array<PaymentMethodToken>;
+    'name'?: string;
 
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "items",
-            "baseName": "items",
-            "type": "Array<PaymentMethodToken>"
+            "name": "name",
+            "baseName": "name",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
-        return PaymentMethodTokens.attributeTypeMap;
+        return UserCurrentUpdate.attributeTypeMap;
     }
 }
 

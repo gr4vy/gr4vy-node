@@ -17,26 +17,44 @@ import { RequestFile } from './models';
 */
 export class UserRequest {
     /**
-    * An external identifier that can be used to match the buyer against your own records. This value needs to be unique for all buyers.
+    * The full name of the user which is used in the Gr4vy admin panel to give an user a human readable name.
     */
-    'displayName'?: string;
+    'name'?: string;
     /**
-    * A unique name for this buyer which is used in the Gr4vy admin panel to give a buyer a human readable name.
+    * The email address for this user.
     */
     'emailAddress'?: string;
+    /**
+    * A list of role ids that will be assigned to the user being created. The creator must have `roles.write` or the role that is being assigned.
+    */
+    'roleIds'?: Array<string>;
+    /**
+    * A list of merchant account IDs that the user being created will be assigned to.
+    */
+    'merchantAccountIds'?: Array<string> | null;
 
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "displayName",
-            "baseName": "display_name",
+            "name": "name",
+            "baseName": "name",
             "type": "string"
         },
         {
             "name": "emailAddress",
             "baseName": "email_address",
             "type": "string"
+        },
+        {
+            "name": "roleIds",
+            "baseName": "role_ids",
+            "type": "Array<string>"
+        },
+        {
+            "name": "merchantAccountIds",
+            "baseName": "merchant_account_ids",
+            "type": "Array<string>"
         }    ];
 
     static getAttributeTypeMap() {

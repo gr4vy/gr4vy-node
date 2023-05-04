@@ -55,8 +55,14 @@ export class TransactionSummary {
     * The 2-letter ISO code of the country of the transaction. This is used to filter the payment services that is used to process the transaction. 
     */
     'country'?: string | null;
+    /**
+    * The payment method used for this transaction.
+    */
     'paymentMethod'?: PaymentMethodSnapshot;
-    'buyer'?: BuyerSnapshot;
+    /**
+    * The buyer used for this transaction.
+    */
+    'buyer'?: BuyerSnapshot | null;
     /**
     * The date and time when this transaction was created in our system.
     */
@@ -69,6 +75,9 @@ export class TransactionSummary {
     * Defines when the transaction was last updated.
     */
     'updatedAt'?: Date;
+    /**
+    * The payment service used for this transaction.
+    */
     'paymentService'?: PaymentServiceSnapshot;
     'method'?: TransactionSummary.MethodEnum;
     /**

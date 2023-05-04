@@ -28,7 +28,10 @@ export class PaymentServiceSnapshot {
     * The ID of the payment service definition used to create this service. 
     */
     'paymentServiceDefinitionId'?: string;
-    'method'?: string;
+    /**
+    * The payment method that this services handles.
+    */
+    'method'?: PaymentServiceSnapshot.MethodEnum;
     /**
     * The custom name set for this service.
     */
@@ -55,7 +58,7 @@ export class PaymentServiceSnapshot {
         {
             "name": "method",
             "baseName": "method",
-            "type": "string"
+            "type": "PaymentServiceSnapshot.MethodEnum"
         },
         {
             "name": "displayName",
@@ -71,5 +74,32 @@ export class PaymentServiceSnapshot {
 export namespace PaymentServiceSnapshot {
     export enum TypeEnum {
         PaymentService = <any> 'payment-service'
+    }
+    export enum MethodEnum {
+        Afterpay = <any> 'afterpay',
+        Applepay = <any> 'applepay',
+        Banked = <any> 'banked',
+        Bitpay = <any> 'bitpay',
+        Boleto = <any> 'boleto',
+        Card = <any> 'card',
+        Clearpay = <any> 'clearpay',
+        Dana = <any> 'dana',
+        Fortumo = <any> 'fortumo',
+        Gcash = <any> 'gcash',
+        Gocardless = <any> 'gocardless',
+        Googlepay = <any> 'googlepay',
+        Grabpay = <any> 'grabpay',
+        Klarna = <any> 'klarna',
+        Ovo = <any> 'ovo',
+        Paymaya = <any> 'paymaya',
+        Paypal = <any> 'paypal',
+        Pix = <any> 'pix',
+        Rabbitlinepay = <any> 'rabbitlinepay',
+        Scalapay = <any> 'scalapay',
+        Shopeepay = <any> 'shopeepay',
+        Stripedd = <any> 'stripedd',
+        Truemoney = <any> 'truemoney',
+        Trustly = <any> 'trustly',
+        Zippay = <any> 'zippay'
     }
 }

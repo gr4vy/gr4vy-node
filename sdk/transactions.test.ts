@@ -35,10 +35,23 @@ transactionRequest.paymentMethod.number = '4111111111111111'
 transactionRequest.paymentMethod.expirationDate = '11/25'
 transactionRequest.paymentMethod.securityCode = '123'
 
-describe('#authorizeNewTransaction', () => {
+function makeid(length) {
+  let result = ''
+  const characters =
+    'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
+  const charactersLength = characters.length
+  let counter = 0
+  while (counter < length) {
+    result += characters.charAt(Math.floor(Math.random() * charactersLength))
+    counter += 1
+  }
+  return result
+}
+
+describe('#newTransaction', () => {
   test('it should create a transaction', async () => {
     const transaction = await client
-      .authorizeNewTransaction(transactionRequest)
+      .newTransaction(makeid(10), transactionRequest)
       .catch((error) => {
         console.dir(error.response.body) // the parsed JSON of the error
         console.dir(error.response.statusCode) // the status code of the error
@@ -86,12 +99,12 @@ describe('#captureTransaction', () => {
   })
 })
 
-describe('#refundTransaction', () => {
+describe('#newRefund', () => {
   test('it should refund a specific transaction', async () => {
     const transactionRefundRequest = new TransactionRefundRequest()
     transactionRefundRequest.amount = AMOUNT
 
-    const transaction = await client.refundTransaction(
+    const transaction = await client.newRefund(
       transactionId,
       transactionRefundRequest
     )
@@ -105,7 +118,7 @@ describe('#refundTransaction', () => {
 describe('#voidTransaction', () => {
   test('it should void a specific transaction', async () => {
     const transactionToVoid = await client
-      .authorizeNewTransaction(transactionRequest)
+      .newTransaction(makeid(10), transactionRequest)
       .catch(() => {
         throw new Error('an error occurred while creating the transaction')
       })

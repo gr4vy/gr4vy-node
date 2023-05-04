@@ -17,6 +17,7 @@ import http from 'http';
 /* tslint:disable:no-unused-locals */
 import { Error401Unauthorized } from '../model/error401Unauthorized';
 import { Error404NotFound } from '../model/error404NotFound';
+import { Error409DuplicateRecord } from '../model/error409DuplicateRecord';
 import { ErrorGeneric } from '../model/errorGeneric';
 import { PaymentMethod } from '../model/paymentMethod';
 import { PaymentMethodRequest } from '../model/paymentMethodRequest';
@@ -171,7 +172,7 @@ export class PaymentMethodsApi {
     }
     /**
      * Gets the details for a stored payment method.
-     * @summary Get stored payment method
+     * @summary Get payment method
      * @param paymentMethodId The ID of the payment method.
      */
     public async getPaymentMethod (paymentMethodId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: PaymentMethod;  }> {
@@ -242,8 +243,8 @@ export class PaymentMethodsApi {
         });
     }
     /**
-     * Returns a list of stored (tokenized) payment methods for a buyer in a short tokenized format. Only payment methods that are compatible with at least one active payment service in that region are shown.
-     * @summary List stored payment methods for a buyer
+     * Returns a list of stored payment methods for a buyer in a summarized format. Only payment methods that are compatible with at least one active payment service in that region are shown.
+     * @summary List payment methods for buyer
      * @param buyerId Filters the results to only the items for which the &#x60;buyer&#x60; has an &#x60;id&#x60; that matches this value.
      * @param buyerExternalIdentifier Filters the results to only the items for which the &#x60;buyer&#x60; has an &#x60;external_identifier&#x60; that matches this value.
      * @param country Filters the results to only the items which support this country code. A country is formatted as 2-letter ISO country code.
@@ -327,7 +328,7 @@ export class PaymentMethodsApi {
         });
     }
     /**
-     * Returns a list of stored (tokenized) payment methods.
+     * Returns a list of stored payment methods.
      * @summary List payment methods
      * @param buyerId Filters the results to only the items for which the &#x60;buyer&#x60; has an &#x60;id&#x60; that matches this value.
      * @param buyerExternalIdentifier Filters the results to only the items for which the &#x60;buyer&#x60; has an &#x60;external_identifier&#x60; that matches this value.
@@ -417,11 +418,11 @@ export class PaymentMethodsApi {
         });
     }
     /**
-     * Stores and tokenizes a new payment method.
+     * Stores and vaults a new payment method.  Vaulting a card only stores its information but doesn\'t validate it against any PSP, so ephemeral data like the security code, often referred to as the CVV or CVD, won\'t be used. In order to validate the card data, a CIT (Customer Initiated Transaction) must be done, even if it\'s a zero-value one. 
      * @summary New payment method
      * @param paymentMethodRequest 
      */
-    public async storePaymentMethod (paymentMethodRequest?: PaymentMethodRequest, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: PaymentMethod;  }> {
+    public async newPaymentMethod (paymentMethodRequest?: PaymentMethodRequest, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: PaymentMethod;  }> {
         const localVarPath = this.basePath + '/payment-methods';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);

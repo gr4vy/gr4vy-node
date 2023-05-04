@@ -13,34 +13,25 @@
 import { RequestFile } from './models';
 
 /**
-* A key-value pair that represents a field defined in the definition for this payment service.
+* Additional options to be passed through to Adyen when processing card transactions.
 */
-export class PaymentServiceUpdateFields {
+export class ConnectionOptionsAdyenCard {
     /**
-    * The key of the field to set a value for.
+    * A key-value object representing additional data to be passed to Adyen.
     */
-    'key': string;
-    /**
-    * The value of a field to set.
-    */
-    'value': string;
+    'additionalData'?: { [key: string]: string; };
 
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "key",
-            "baseName": "key",
-            "type": "string"
-        },
-        {
-            "name": "value",
-            "baseName": "value",
-            "type": "string"
+            "name": "additionalData",
+            "baseName": "additionalData",
+            "type": "{ [key: string]: string; }"
         }    ];
 
     static getAttributeTypeMap() {
-        return PaymentServiceUpdateFields.attributeTypeMap;
+        return ConnectionOptionsAdyenCard.attributeTypeMap;
     }
 }
 

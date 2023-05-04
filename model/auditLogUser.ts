@@ -32,6 +32,10 @@ export class AuditLogUser {
     * Whether the user is Gr4vy staff.
     */
     'staff'?: boolean;
+    /**
+    * The status of the user.
+    */
+    'status'?: AuditLogUser.StatusEnum;
 
     static discriminator: string | undefined = undefined;
 
@@ -55,6 +59,11 @@ export class AuditLogUser {
             "name": "staff",
             "baseName": "staff",
             "type": "boolean"
+        },
+        {
+            "name": "status",
+            "baseName": "status",
+            "type": "AuditLogUser.StatusEnum"
         }    ];
 
     static getAttributeTypeMap() {
@@ -62,3 +71,10 @@ export class AuditLogUser {
     }
 }
 
+export namespace AuditLogUser {
+    export enum StatusEnum {
+        Active = <any> 'active',
+        Pending = <any> 'pending',
+        Deleted = <any> 'deleted'
+    }
+}

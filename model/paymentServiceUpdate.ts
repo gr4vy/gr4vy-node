@@ -11,7 +11,8 @@
  */
 
 import { RequestFile } from './models';
-import { PaymentServiceUpdateFields } from './paymentServiceUpdateFields';
+import { MerchantProfile } from './merchantProfile';
+import { PaymentServiceRequestFields } from './paymentServiceRequestFields';
 
 /**
 * Request body for updating an active payment service.
@@ -24,7 +25,7 @@ export class PaymentServiceUpdate {
     /**
     * A list of fields, each containing a key-value pair for each field defined by the definition for this payment service e.g. for stripe-card `secret_key` is required and so must be sent within this field.
     */
-    'fields'?: Array<PaymentServiceUpdateFields>;
+    'fields'?: Array<PaymentServiceRequestFields>;
     /**
     * A list of countries that this payment service needs to support in ISO two-letter code format.
     */
@@ -38,41 +39,9 @@ export class PaymentServiceUpdate {
     */
     'threeDSecureEnabled'?: boolean;
     /**
-    * Acquiring institution identification code for VISA.
+    * Configuration for each supported card scheme. When updating a Payment Service, a key not being present will indicate no updates to be done on that scheme, whereas an object being sent as Null for a key will empty the configuration for that scheme.
     */
-    'acquirerBinVisa'?: string | null;
-    /**
-    * Acquiring institution identification code for Mastercard.
-    */
-    'acquirerBinMastercard'?: string | null;
-    /**
-    * Acquiring institution identification code for Amex.
-    */
-    'acquirerBinAmex'?: string | null;
-    /**
-    * Acquiring institution identification code for Discover.
-    */
-    'acquirerBinDiscover'?: string | null;
-    /**
-    * Merchant identifier used in authorisation requests (assigned by the acquirer).
-    */
-    'acquirerMerchantId'?: string | null;
-    /**
-    * Merchant name (assigned by the acquirer).
-    */
-    'merchantName'?: string | null;
-    /**
-    * ISO 3166-1 numeric three-digit country code.
-    */
-    'merchantCountryCode'?: string | null;
-    /**
-    * Merchant category code that describes the business.
-    */
-    'merchantCategoryCode'?: string | null;
-    /**
-    * Fully qualified URL of 3-D Secure requestor website or customer care site.
-    */
-    'merchantUrl'?: string | null;
+    'merchantProfile'?: MerchantProfile | null;
     /**
     * Defines if this service is currently active or not.
     */
@@ -82,11 +51,15 @@ export class PaymentServiceUpdate {
     */
     'position'?: number;
     /**
-    * Defines if tokenization is enabled for the service (can only be enabled if the payment service definition supports it).
+    * Defines if the service works as an open-loop service. This feature can only be enabled if the PSP is set up to accept previous scheme transaction IDs.  If this value is set to `null`, it will be set to the value of `open_loop` in the payment service definition.  If `open_loop_toggle` is `false` in the payment service definition, `open_loop` should either not be provided or set to `null`, or it will fail with a validation error.
+    */
+    'openLoop'?: boolean | null;
+    /**
+    * Defines if tokenization is enabled for the service. This feature can only be enabled if the payment service is NOT set as `open_loop` and the PSP is set up to tokenize.
     */
     'paymentMethodTokenizationEnabled'?: boolean;
     /**
-    * Defines if network tokens are enabled for the service. This feature can only be enabled if the payment service definition supports the `open_loop` feature and the PSP is set up to accept network tokens.  If this value is not provided or is set to `null`, it will be set to the value of `network_tokens_default` in the payment service definition.  If `network_tokens_toggle` is `false`, `network_tokens_enabled` should either not be provided or set to `null`, or it will fail with a validation error. This will then be set to the value of `network_tokens_default`.
+    * Defines if network tokens are enabled for the service. This feature can only be enabled if the payment service is set as `open_loop` and the PSP is set up to accept network tokens.  If this value is set to `null`, it will be set to the value of `network_tokens_default` in the payment service definition.  If `network_tokens_toggle` is `false` in the payment service definition, `network_tokens_enabled` should either not be provided or set to `null`, or it will fail with a validation error.
     */
     'networkTokensEnabled'?: boolean | null;
 
@@ -101,7 +74,7 @@ export class PaymentServiceUpdate {
         {
             "name": "fields",
             "baseName": "fields",
-            "type": "Array<PaymentServiceUpdateFields>"
+            "type": "Array<PaymentServiceRequestFields>"
         },
         {
             "name": "acceptedCountries",
@@ -119,49 +92,9 @@ export class PaymentServiceUpdate {
             "type": "boolean"
         },
         {
-            "name": "acquirerBinVisa",
-            "baseName": "acquirer_bin_visa",
-            "type": "string"
-        },
-        {
-            "name": "acquirerBinMastercard",
-            "baseName": "acquirer_bin_mastercard",
-            "type": "string"
-        },
-        {
-            "name": "acquirerBinAmex",
-            "baseName": "acquirer_bin_amex",
-            "type": "string"
-        },
-        {
-            "name": "acquirerBinDiscover",
-            "baseName": "acquirer_bin_discover",
-            "type": "string"
-        },
-        {
-            "name": "acquirerMerchantId",
-            "baseName": "acquirer_merchant_id",
-            "type": "string"
-        },
-        {
-            "name": "merchantName",
-            "baseName": "merchant_name",
-            "type": "string"
-        },
-        {
-            "name": "merchantCountryCode",
-            "baseName": "merchant_country_code",
-            "type": "string"
-        },
-        {
-            "name": "merchantCategoryCode",
-            "baseName": "merchant_category_code",
-            "type": "string"
-        },
-        {
-            "name": "merchantUrl",
-            "baseName": "merchant_url",
-            "type": "string"
+            "name": "merchantProfile",
+            "baseName": "merchant_profile",
+            "type": "MerchantProfile"
         },
         {
             "name": "active",
@@ -172,6 +105,11 @@ export class PaymentServiceUpdate {
             "name": "position",
             "baseName": "position",
             "type": "number"
+        },
+        {
+            "name": "openLoop",
+            "baseName": "open_loop",
+            "type": "boolean"
         },
         {
             "name": "paymentMethodTokenizationEnabled",

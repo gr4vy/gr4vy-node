@@ -38,7 +38,10 @@ export class BillingDetailsRequest {
     * The billing address for the buyer.
     */
     'address'?: Address | null;
-    'taxId'?: TaxId;
+    /**
+    * The tax ID information associated with the billing details.
+    */
+    'taxId'?: TaxId | null;
 
     static discriminator: string | undefined = undefined;
 

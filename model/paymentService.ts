@@ -11,6 +11,7 @@
  */
 
 import { RequestFile } from './models';
+import { MerchantProfile } from './merchantProfile';
 import { PaymentServiceFields } from './paymentServiceFields';
 
 /**
@@ -29,7 +30,10 @@ export class PaymentService {
     * The ID of the payment service definition used to create this service. 
     */
     'paymentServiceDefinitionId'?: string;
-    'method'?: string;
+    /**
+    * The payment method that this service handles.
+    */
+    'method'?: PaymentService.MethodEnum;
     /**
     * The custom name set for this service.
     */
@@ -47,7 +51,15 @@ export class PaymentService {
     */
     'acceptedCountries'?: Array<string>;
     /**
-    * Defines if network tokens are enabled for the service. This feature can only be enabled if the payment service definition supports the `open_loop` feature and the PSP is set up to accept network tokens.
+    * Defines if the service works as an open-loop service. This feature can only be enabled if the PSP is set up to accept previous scheme transaction IDs.
+    */
+    'openLoop'?: boolean;
+    /**
+    * Defines if tokenization is enabled for the service. This feature can only be enabled if the payment service is NOT set as `open_loop` and the PSP is set up to tokenize.
+    */
+    'paymentMethodTokenizationEnabled'?: boolean;
+    /**
+    * Defines if network tokens are enabled for the service. This feature can only be enabled if the payment service is set as `open_loop` and the PSP is set up to accept network tokens.
     */
     'networkTokensEnabled'?: boolean;
     /**
@@ -55,41 +67,9 @@ export class PaymentService {
     */
     'threeDSecureEnabled'?: boolean;
     /**
-    * Acquiring institution identification code for VISA.
+    * An object containing a key for each supported card scheme (Amex, Discover, Mastercard and Visa), and for each key an object with the merchant profile for this service and the corresponding scheme.
     */
-    'acquirerBinVisa'?: string | null;
-    /**
-    * Acquiring institution identification code for Mastercard.
-    */
-    'acquirerBinMastercard'?: string | null;
-    /**
-    * Acquiring institution identification code for Amex.
-    */
-    'acquirerBinAmex'?: string | null;
-    /**
-    * Acquiring institution identification code for Discover.
-    */
-    'acquirerBinDiscover'?: string | null;
-    /**
-    * Merchant identifier used in authorisation requests (assigned by the acquirer).
-    */
-    'acquirerMerchantId'?: string | null;
-    /**
-    * Merchant name (assigned by the acquirer).
-    */
-    'merchantName'?: string | null;
-    /**
-    * ISO 3166-1 numeric three-digit country code.
-    */
-    'merchantCountryCode'?: string | null;
-    /**
-    * Merchant category code that describes the business.
-    */
-    'merchantCategoryCode'?: string | null;
-    /**
-    * Fully qualified URL of 3-D Secure requestor website or customer care site.
-    */
-    'merchantUrl'?: string | null;
+    'merchantProfile'?: MerchantProfile | null;
     /**
     * Defines if this service is currently active or not.
     */
@@ -98,10 +78,6 @@ export class PaymentService {
     * The numeric rank of a payment service. Payment services with a lower position value are processed first.
     */
     'position'?: number;
-    /**
-    * Defines if tokenization is enabled for the service (can only be enabled if the payment service definition supports it).
-    */
-    'paymentMethodTokenizationEnabled'?: boolean;
     /**
     * The date and time when this service was created.
     */
@@ -140,7 +116,7 @@ export class PaymentService {
         {
             "name": "method",
             "baseName": "method",
-            "type": "string"
+            "type": "PaymentService.MethodEnum"
         },
         {
             "name": "displayName",
@@ -163,6 +139,16 @@ export class PaymentService {
             "type": "Array<string>"
         },
         {
+            "name": "openLoop",
+            "baseName": "open_loop",
+            "type": "boolean"
+        },
+        {
+            "name": "paymentMethodTokenizationEnabled",
+            "baseName": "payment_method_tokenization_enabled",
+            "type": "boolean"
+        },
+        {
             "name": "networkTokensEnabled",
             "baseName": "network_tokens_enabled",
             "type": "boolean"
@@ -173,49 +159,9 @@ export class PaymentService {
             "type": "boolean"
         },
         {
-            "name": "acquirerBinVisa",
-            "baseName": "acquirer_bin_visa",
-            "type": "string"
-        },
-        {
-            "name": "acquirerBinMastercard",
-            "baseName": "acquirer_bin_mastercard",
-            "type": "string"
-        },
-        {
-            "name": "acquirerBinAmex",
-            "baseName": "acquirer_bin_amex",
-            "type": "string"
-        },
-        {
-            "name": "acquirerBinDiscover",
-            "baseName": "acquirer_bin_discover",
-            "type": "string"
-        },
-        {
-            "name": "acquirerMerchantId",
-            "baseName": "acquirer_merchant_id",
-            "type": "string"
-        },
-        {
-            "name": "merchantName",
-            "baseName": "merchant_name",
-            "type": "string"
-        },
-        {
-            "name": "merchantCountryCode",
-            "baseName": "merchant_country_code",
-            "type": "string"
-        },
-        {
-            "name": "merchantCategoryCode",
-            "baseName": "merchant_category_code",
-            "type": "string"
-        },
-        {
-            "name": "merchantUrl",
-            "baseName": "merchant_url",
-            "type": "string"
+            "name": "merchantProfile",
+            "baseName": "merchant_profile",
+            "type": "MerchantProfile"
         },
         {
             "name": "active",
@@ -226,11 +172,6 @@ export class PaymentService {
             "name": "position",
             "baseName": "position",
             "type": "number"
-        },
-        {
-            "name": "paymentMethodTokenizationEnabled",
-            "baseName": "payment_method_tokenization_enabled",
-            "type": "boolean"
         },
         {
             "name": "createdAt",
@@ -261,6 +202,33 @@ export class PaymentService {
 export namespace PaymentService {
     export enum TypeEnum {
         PaymentService = <any> 'payment-service'
+    }
+    export enum MethodEnum {
+        Afterpay = <any> 'afterpay',
+        Applepay = <any> 'applepay',
+        Banked = <any> 'banked',
+        Bitpay = <any> 'bitpay',
+        Boleto = <any> 'boleto',
+        Card = <any> 'card',
+        Clearpay = <any> 'clearpay',
+        Dana = <any> 'dana',
+        Fortumo = <any> 'fortumo',
+        Gcash = <any> 'gcash',
+        Gocardless = <any> 'gocardless',
+        Googlepay = <any> 'googlepay',
+        Grabpay = <any> 'grabpay',
+        Klarna = <any> 'klarna',
+        Ovo = <any> 'ovo',
+        Paymaya = <any> 'paymaya',
+        Paypal = <any> 'paypal',
+        Pix = <any> 'pix',
+        Rabbitlinepay = <any> 'rabbitlinepay',
+        Scalapay = <any> 'scalapay',
+        Shopeepay = <any> 'shopeepay',
+        Stripedd = <any> 'stripedd',
+        Truemoney = <any> 'truemoney',
+        Trustly = <any> 'trustly',
+        Zippay = <any> 'zippay'
     }
     export enum StatusEnum {
         Pending = <any> 'pending',

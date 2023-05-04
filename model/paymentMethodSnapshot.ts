@@ -25,7 +25,10 @@ export class PaymentMethodSnapshot {
     * The unique ID of the payment method.
     */
     'id'?: string | null;
-    'method'?: string;
+    /**
+    * The type of this payment method.
+    */
+    'method'?: PaymentMethodSnapshot.MethodEnum;
     /**
     * An external identifier that can be used to match the payment method against your own records.
     */
@@ -76,7 +79,7 @@ export class PaymentMethodSnapshot {
         {
             "name": "method",
             "baseName": "method",
-            "type": "string"
+            "type": "PaymentMethodSnapshot.MethodEnum"
         },
         {
             "name": "externalIdentifier",
@@ -132,6 +135,33 @@ export class PaymentMethodSnapshot {
 export namespace PaymentMethodSnapshot {
     export enum TypeEnum {
         PaymentMethod = <any> 'payment-method'
+    }
+    export enum MethodEnum {
+        Afterpay = <any> 'afterpay',
+        Applepay = <any> 'applepay',
+        Banked = <any> 'banked',
+        Bitpay = <any> 'bitpay',
+        Boleto = <any> 'boleto',
+        Card = <any> 'card',
+        Clearpay = <any> 'clearpay',
+        Dana = <any> 'dana',
+        Fortumo = <any> 'fortumo',
+        Gcash = <any> 'gcash',
+        Gocardless = <any> 'gocardless',
+        Googlepay = <any> 'googlepay',
+        Grabpay = <any> 'grabpay',
+        Klarna = <any> 'klarna',
+        Ovo = <any> 'ovo',
+        Paymaya = <any> 'paymaya',
+        Paypal = <any> 'paypal',
+        Pix = <any> 'pix',
+        Rabbitlinepay = <any> 'rabbitlinepay',
+        Scalapay = <any> 'scalapay',
+        Shopeepay = <any> 'shopeepay',
+        Stripedd = <any> 'stripedd',
+        Truemoney = <any> 'truemoney',
+        Trustly = <any> 'trustly',
+        Zippay = <any> 'zippay'
     }
     export enum ApprovalTargetEnum {
         Any = <any> 'any',

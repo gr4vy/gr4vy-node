@@ -30,7 +30,10 @@ export class Buyer {
     * A unique name for this buyer which is used in the Gr4vy admin panel to give a buyer a human readable name.
     */
     'displayName'?: string | null;
-    'billingDetails'?: BillingDetails;
+    /**
+    * The billing details associated with a buyer.
+    */
+    'billingDetails'?: BillingDetails | null;
     /**
     * The date and time when this buyer was created in our system.
     */
