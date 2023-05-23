@@ -17,6 +17,7 @@ import http from 'http';
 /* tslint:disable:no-unused-locals */
 import { Error401Unauthorized } from '../model/error401Unauthorized';
 import { Error404NotFound } from '../model/error404NotFound';
+import { Error409DuplicateRecord } from '../model/error409DuplicateRecord';
 import { ErrorGeneric } from '../model/errorGeneric';
 import { MerchantAccount } from '../model/merchantAccount';
 import { MerchantAccountCreate } from '../model/merchantAccountCreate';
@@ -235,7 +236,7 @@ export class MerchantAccountsApi {
         });
     }
     /**
-     * Create a merchant account. Optionally, provide an `outbound_webhook_url`, and if HTTP Basic Authentication is required, provide the `outbound_webhook_username` and `outbound_webhook_password`. When retrieving a Merchant Account the `outbound_webhook_password` will be omitted.
+     * Create a merchant account. Optionally, provide an `outbound_webhook_url`, and if HTTP Basic Authentication is required, provide the `outbound_webhook_username` and `outbound_webhook_password`. When retrieving a Merchant Account the `outbound_webhook_password` will be omitted.  Optionally provide Network Tokens configuration per scheme. If done, all parameters for the same scheme must be provided.
      * @summary New merchant account
      * @param merchantAccountCreate 
      */
@@ -302,7 +303,7 @@ export class MerchantAccountsApi {
         });
     }
     /**
-     * Update an existing merchant account. Optionally, provide an `outbound_webhook_url`, and if HTTP Basic Authentication is required, provide the `outbound_webhook_username` and `outbound_webhook_password`. When retrieving a Merchant Account the `outbound_webhook_password` will be omitted.
+     * Update an existing merchant account. Optionally, provide an `outbound_webhook_url`, and if HTTP Basic Authentication is required, provide the `outbound_webhook_username` and `outbound_webhook_password`. When retrieving a Merchant Account the `outbound_webhook_password` will be omitted.  Optionally provide Network Tokens configuration per scheme. If done, all parameters for the same scheme must be provided.
      * @summary Update merchant account
      * @param merchantAccountId The unique ID for a merchant account.
      * @param merchantAccountUpdate 

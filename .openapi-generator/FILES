@@ -13,6 +13,7 @@ api/paymentServiceDefinitionsApi.ts
 api/paymentServicesApi.ts
 api/reportsApi.ts
 api/rolesApi.ts
+api/tokensApi.ts
 api/transactionsApi.ts
 model/aPIKeyPairCreate.ts
 model/aPIKeyPairUpdate.ts
@@ -56,6 +57,7 @@ model/connectionOptions.ts
 model/connectionOptionsAdyenCard.ts
 model/connectionOptionsCybersourceAntiFraud.ts
 model/connections.ts
+model/cryptogram.ts
 model/digitalWallet.ts
 model/digitalWalletRequest.ts
 model/digitalWalletUpdate.ts
@@ -73,6 +75,7 @@ model/errorGeneric.ts
 model/googlePayRequest.ts
 model/googlePayRequestAssuranceDetails.ts
 model/googlePaySessionRequest.ts
+model/issueCryptogramRequest.ts
 model/merchantAccount.ts
 model/merchantAccountCreate.ts
 model/merchantAccountUpdate.ts
@@ -80,6 +83,9 @@ model/merchantAccounts.ts
 model/merchantProfile.ts
 model/merchantProfileScheme.ts
 model/models.ts
+model/networkToken.ts
+model/networkTokenRequest.ts
+model/networkTokens.ts
 model/paymentMethod.ts
 model/paymentMethodDefinition.ts
 model/paymentMethodDefinitions.ts
@@ -104,6 +110,9 @@ model/paymentServiceFields.ts
 model/paymentServiceRequest.ts
 model/paymentServiceRequestFields.ts
 model/paymentServiceSnapshot.ts
+model/paymentServiceToken.ts
+model/paymentServiceTokenRequest.ts
+model/paymentServiceTokens.ts
 model/paymentServiceUpdate.ts
 model/paymentServices.ts
 model/redirectRequest.ts
@@ -154,7 +163,6 @@ model/transaction.ts
 model/transactionCaptureRequest.ts
 model/transactionCardRequest.ts
 model/transactionCheckoutSessionRequest.ts
-model/transactionHistoryEvents.ts
 model/transactionPaymentMethodRequest.ts
 model/transactionRedirectRequest.ts
 model/transactionRefundRequest.ts

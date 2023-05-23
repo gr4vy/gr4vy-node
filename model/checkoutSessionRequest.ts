@@ -25,6 +25,10 @@ export class CheckoutSessionRequest {
     */
     'id': string;
     /**
+    * The redirect URL to redirect a buyer to after they have authorized their transaction or payment method. This only applies to payment methods that require buyer approval.
+    */
+    'redirectUrl'?: string | null;
+    /**
     * An external identifier that can be used to match the card against your own records.
     */
     'externalIdentifier'?: string | null;
@@ -48,6 +52,11 @@ export class CheckoutSessionRequest {
         {
             "name": "id",
             "baseName": "id",
+            "type": "string"
+        },
+        {
+            "name": "redirectUrl",
+            "baseName": "redirect_url",
             "type": "string"
         },
         {

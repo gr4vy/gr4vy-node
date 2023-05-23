@@ -32,6 +32,10 @@ export class Transaction {
     */
     'id'?: string;
     /**
+    * The ID of the merchant account to which this transaction belongs to.
+    */
+    'merchantAccountId'?: string;
+    /**
     * The status of the transaction. The status may change over time as asynchronous processing events occur.
     */
     'status'?: Transaction.StatusEnum;
@@ -158,6 +162,11 @@ export class Transaction {
         {
             "name": "id",
             "baseName": "id",
+            "type": "string"
+        },
+        {
+            "name": "merchantAccountId",
+            "baseName": "merchant_account_id",
             "type": "string"
         },
         {

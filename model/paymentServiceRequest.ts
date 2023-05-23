@@ -51,10 +51,6 @@ export class PaymentServiceRequest {
     */
     'active'?: boolean;
     /**
-    * The numeric rank of a payment service. Payment services with a lower position value are processed first. When a payment services is inserted at a position, any payment services with the the same value or higher are shifted down a position accordingly. When left out, the payment service is inserted at the end of the list.
-    */
-    'position'?: number;
-    /**
     * Defines if the service works as an open-loop service. This feature can only be enabled if the PSP is set up to accept previous scheme transaction IDs.  If this value is not provided or is set to `null`, it will be set to the value of `open_loop` in the payment service definition.  If `open_loop_toggle` is `false` in the payment service definition, `open_loop` should either not be provided or set to `null`, or it will fail with a validation error.
     */
     'openLoop'?: boolean | null;
@@ -109,11 +105,6 @@ export class PaymentServiceRequest {
             "name": "active",
             "baseName": "active",
             "type": "boolean"
-        },
-        {
-            "name": "position",
-            "baseName": "position",
-            "type": "number"
         },
         {
             "name": "openLoop",

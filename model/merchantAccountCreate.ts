@@ -36,6 +36,30 @@ export class MerchantAccountCreate {
     * The optional password to use when `outbound_webhook_url` is configured and requires basic authentication.
     */
     'outboundWebhookPassword'?: string | null;
+    /**
+    * Requestor ID provided for Visa after onboarding to use Network Tokens. The requestor ID must be unique across all schemes and merchant accounts.
+    */
+    'visaNetworkTokensRequestorId'?: string | null;
+    /**
+    * Application ID provided for Visa after onboarding to use Network Tokens. The application ID must be unique across all schemes and merchant accounts.
+    */
+    'visaNetworkTokensAppId'?: string | null;
+    /**
+    * Requestor ID provided for Amex after onboarding to use Network Tokens. The requestor ID must be unique across all schemes and merchant accounts.
+    */
+    'amexNetworkTokensRequestorId'?: string | null;
+    /**
+    * Application ID provided for Amex after onboarding to use Network Tokens. The application ID must be unique across all schemes and merchant accounts.
+    */
+    'amexNetworkTokensAppId'?: string | null;
+    /**
+    * Requestor ID provided for Mastercard after onboarding to use Network Tokens. The requestor ID must be unique across all schemes and merchant accounts.
+    */
+    'mastercardNetworkTokensRequestorId'?: string | null;
+    /**
+    * Application ID provided for Mastercard after onboarding to use Network Tokens. The application ID must be unique across all schemes and merchant accounts.
+    */
+    'mastercardNetworkTokensAppId'?: string | null;
 
     static discriminator: string | undefined = undefined;
 
@@ -63,6 +87,36 @@ export class MerchantAccountCreate {
         {
             "name": "outboundWebhookPassword",
             "baseName": "outbound_webhook_password",
+            "type": "string"
+        },
+        {
+            "name": "visaNetworkTokensRequestorId",
+            "baseName": "visa_network_tokens_requestor_id",
+            "type": "string"
+        },
+        {
+            "name": "visaNetworkTokensAppId",
+            "baseName": "visa_network_tokens_app_id",
+            "type": "string"
+        },
+        {
+            "name": "amexNetworkTokensRequestorId",
+            "baseName": "amex_network_tokens_requestor_id",
+            "type": "string"
+        },
+        {
+            "name": "amexNetworkTokensAppId",
+            "baseName": "amex_network_tokens_app_id",
+            "type": "string"
+        },
+        {
+            "name": "mastercardNetworkTokensRequestorId",
+            "baseName": "mastercard_network_tokens_requestor_id",
+            "type": "string"
+        },
+        {
+            "name": "mastercardNetworkTokensAppId",
+            "baseName": "mastercard_network_tokens_app_id",
             "type": "string"
         }    ];
 

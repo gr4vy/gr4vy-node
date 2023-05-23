@@ -23,6 +23,10 @@ export class Buyer {
     */
     'id'?: string;
     /**
+    * The unique ID for a merchant account.
+    */
+    'merchantAccountId'?: string;
+    /**
     * An external identifier that can be used to match the buyer against your own records.
     */
     'externalIdentifier'?: string | null;
@@ -54,6 +58,11 @@ export class Buyer {
         {
             "name": "id",
             "baseName": "id",
+            "type": "string"
+        },
+        {
+            "name": "merchantAccountId",
+            "baseName": "merchant_account_id",
             "type": "string"
         },
         {

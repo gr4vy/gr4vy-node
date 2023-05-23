@@ -34,6 +34,30 @@ export class MerchantAccount {
     */
     'outboundWebhookUsername'?: string | null;
     /**
+    * Requestor ID provided for Visa after onboarding to use Network Tokens.
+    */
+    'visaNetworkTokensRequestorId'?: string | null;
+    /**
+    * Application ID provided for Visa after onboarding to use Network Tokens.
+    */
+    'visaNetworkTokensAppId'?: string | null;
+    /**
+    * Requestor ID provided for Amex after onboarding to use Network Tokens.
+    */
+    'amexNetworkTokensRequestorId'?: string | null;
+    /**
+    * Application ID provided for Amex after onboarding to use Network Tokens.
+    */
+    'amexNetworkTokensAppId'?: string | null;
+    /**
+    * Requestor ID provided for Mastercard after onboarding to use Network Tokens.
+    */
+    'mastercardNetworkTokensRequestorId'?: string | null;
+    /**
+    * Application ID provided for Mastercard after onboarding to use Network Tokens.
+    */
+    'mastercardNetworkTokensAppId'?: string | null;
+    /**
     * The date and time when this merchant account was created.
     */
     'createdAt'?: Date;
@@ -68,6 +92,36 @@ export class MerchantAccount {
         {
             "name": "outboundWebhookUsername",
             "baseName": "outbound_webhook_username",
+            "type": "string"
+        },
+        {
+            "name": "visaNetworkTokensRequestorId",
+            "baseName": "visa_network_tokens_requestor_id",
+            "type": "string"
+        },
+        {
+            "name": "visaNetworkTokensAppId",
+            "baseName": "visa_network_tokens_app_id",
+            "type": "string"
+        },
+        {
+            "name": "amexNetworkTokensRequestorId",
+            "baseName": "amex_network_tokens_requestor_id",
+            "type": "string"
+        },
+        {
+            "name": "amexNetworkTokensAppId",
+            "baseName": "amex_network_tokens_app_id",
+            "type": "string"
+        },
+        {
+            "name": "mastercardNetworkTokensRequestorId",
+            "baseName": "mastercard_network_tokens_requestor_id",
+            "type": "string"
+        },
+        {
+            "name": "mastercardNetworkTokensAppId",
+            "baseName": "mastercard_network_tokens_app_id",
             "type": "string"
         },
         {

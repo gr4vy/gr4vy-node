@@ -26,6 +26,8 @@ export * from './reportsApi';
 import { ReportsApi } from './reportsApi';
 export * from './rolesApi';
 import { RolesApi } from './rolesApi';
+export * from './tokensApi';
+import { TokensApi } from './tokensApi';
 export * from './transactionsApi';
 import { TransactionsApi } from './transactionsApi';
 import * as http from 'http';
@@ -39,4 +41,4 @@ export class HttpError extends Error {
 
 export { RequestFile } from '../model/models';
 
-export const APIS = [APILogsApi, AuditLogsApi, BuyersApi, CardSchemeDefinitionsApi, CheckoutSessionsApi, DigitalWalletsApi, MerchantAccountsApi, PaymentMethodDefinitionsApi, PaymentMethodsApi, PaymentOptionsApi, PaymentServiceDefinitionsApi, PaymentServicesApi, ReportsApi, RolesApi, TransactionsApi];
+export const APIS = [APILogsApi, AuditLogsApi, BuyersApi, CardSchemeDefinitionsApi, CheckoutSessionsApi, DigitalWalletsApi, MerchantAccountsApi, PaymentMethodDefinitionsApi, PaymentMethodsApi, PaymentOptionsApi, PaymentServiceDefinitionsApi, PaymentServicesApi, ReportsApi, RolesApi, TokensApi, TransactionsApi];

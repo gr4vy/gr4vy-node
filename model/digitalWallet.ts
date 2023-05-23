@@ -21,13 +21,17 @@ export class DigitalWallet {
     */
     'type'?: DigitalWallet.TypeEnum;
     /**
-    * The name of the digital wallet provider.
-    */
-    'provider'?: DigitalWallet.ProviderEnum;
-    /**
     * The ID of the registered digital wallet.
     */
     'id'?: string;
+    /**
+    * The unique ID for a merchant account.
+    */
+    'merchantAccountId'?: string;
+    /**
+    * The name of the digital wallet provider.
+    */
+    'provider'?: DigitalWallet.ProviderEnum;
     /**
     * The name of the merchant the digital wallet is registered to.
     */
@@ -70,14 +74,19 @@ export class DigitalWallet {
             "type": "DigitalWallet.TypeEnum"
         },
         {
-            "name": "provider",
-            "baseName": "provider",
-            "type": "DigitalWallet.ProviderEnum"
-        },
-        {
             "name": "id",
             "baseName": "id",
             "type": "string"
+        },
+        {
+            "name": "merchantAccountId",
+            "baseName": "merchant_account_id",
+            "type": "string"
+        },
+        {
+            "name": "provider",
+            "baseName": "provider",
+            "type": "DigitalWallet.ProviderEnum"
         },
         {
             "name": "merchantName",

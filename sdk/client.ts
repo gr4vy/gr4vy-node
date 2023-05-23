@@ -30,7 +30,7 @@ class Client {
   // Buyers
   listBuyers: typeof BuyersApi.prototype.listBuyers
   getBuyer: typeof BuyersApi.prototype.getBuyer
-  addBuyer: typeof BuyersApi.prototype.addBuyer
+  newBuyer: typeof BuyersApi.prototype.newBuyer
   updateBuyer: typeof BuyersApi.prototype.updateBuyer
   deleteBuyer: typeof BuyersApi.prototype.deleteBuyer
   listBuyerShippingDetails: typeof BuyersApi.prototype.listBuyerShippingDetails
@@ -39,7 +39,7 @@ class Client {
   deleteBuyerShippingDetail: typeof BuyersApi.prototype.deleteBuyerShippingDetail
 
   // Checkout Sessions
-  addCheckoutSession: typeof CheckoutSessionsApi.prototype.addCheckoutSession
+  newCheckoutSession: typeof CheckoutSessionsApi.prototype.newCheckoutSession
   deleteCheckoutSession: typeof CheckoutSessionsApi.prototype.deleteCheckoutSession
   getCheckoutSession: typeof CheckoutSessionsApi.prototype.getCheckoutSession
   updateCheckoutSessionFields: typeof CheckoutSessionsApi.prototype.updateCheckoutSessionFields
@@ -62,7 +62,7 @@ class Client {
   // Payment Services
   listPaymentServices: typeof PaymentServicesApi.prototype.listPaymentServices
   getPaymentService: typeof PaymentServicesApi.prototype.getPaymentService
-  addPaymentService: typeof PaymentServicesApi.prototype.addPaymentService
+  newPaymentService: typeof PaymentServicesApi.prototype.newPaymentService
   updatePaymentService: typeof PaymentServicesApi.prototype.updatePaymentService
   deletePaymentService: typeof PaymentServicesApi.prototype.deletePaymentService
 

@@ -11,16 +11,16 @@
  */
 
 import { RequestFile } from './models';
-import { TransactionHistoryEvent } from './transactionHistoryEvent';
+import { NetworkToken } from './networkToken';
 
 /**
-* A list of transaction history events.
+* A list of network tokens.
 */
-export class TransactionHistoryEvents {
+export class NetworkTokens {
     /**
-    * A list of events related to processing a transaction.
+    * A list of network tokens.
     */
-    'items'?: Array<TransactionHistoryEvent>;
+    'items'?: Array<NetworkToken>;
     /**
     * The limit applied to request. This represents the number of items that are at maximum returned by this request.
     */
@@ -40,7 +40,7 @@ export class TransactionHistoryEvents {
         {
             "name": "items",
             "baseName": "items",
-            "type": "Array<TransactionHistoryEvent>"
+            "type": "Array<NetworkToken>"
         },
         {
             "name": "limit",
@@ -59,7 +59,7 @@ export class TransactionHistoryEvents {
         }    ];
 
     static getAttributeTypeMap() {
-        return TransactionHistoryEvents.attributeTypeMap;
+        return NetworkTokens.attributeTypeMap;
     }
 }
 

@@ -64,6 +64,10 @@ export class Report {
     */
     'id'?: string;
     /**
+    * The unique ID for a merchant account.
+    */
+    'merchantAccountId'?: string;
+    /**
     * The name of this report.
     */
     'name'?: string;
@@ -124,6 +128,11 @@ export class Report {
         {
             "name": "id",
             "baseName": "id",
+            "type": "string"
+        },
+        {
+            "name": "merchantAccountId",
+            "baseName": "merchant_account_id",
             "type": "string"
         },
         {

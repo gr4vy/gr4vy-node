@@ -19,13 +19,17 @@ import { PaymentServiceFields } from './paymentServiceFields';
 */
 export class PaymentService {
     /**
+    * The type of this resource.
+    */
+    'type'?: PaymentService.TypeEnum;
+    /**
     * The ID of this payment service.
     */
     'id'?: string;
     /**
-    * The type of this resource.
+    * The unique ID for a merchant account.
     */
-    'type'?: PaymentService.TypeEnum;
+    'merchantAccountId'?: string;
     /**
     * The ID of the payment service definition used to create this service. 
     */
@@ -75,10 +79,6 @@ export class PaymentService {
     */
     'active'?: boolean;
     /**
-    * The numeric rank of a payment service. Payment services with a lower position value are processed first.
-    */
-    'position'?: number;
-    /**
     * The date and time when this service was created.
     */
     'createdAt'?: Date;
@@ -99,14 +99,19 @@ export class PaymentService {
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
+            "name": "type",
+            "baseName": "type",
+            "type": "PaymentService.TypeEnum"
+        },
+        {
             "name": "id",
             "baseName": "id",
             "type": "string"
         },
         {
-            "name": "type",
-            "baseName": "type",
-            "type": "PaymentService.TypeEnum"
+            "name": "merchantAccountId",
+            "baseName": "merchant_account_id",
+            "type": "string"
         },
         {
             "name": "paymentServiceDefinitionId",
@@ -167,11 +172,6 @@ export class PaymentService {
             "name": "active",
             "baseName": "active",
             "type": "boolean"
-        },
-        {
-            "name": "position",
-            "baseName": "position",
-            "type": "number"
         },
         {
             "name": "createdAt",

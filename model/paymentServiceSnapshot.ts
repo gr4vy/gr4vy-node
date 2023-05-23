@@ -17,13 +17,13 @@ import { RequestFile } from './models';
 */
 export class PaymentServiceSnapshot {
     /**
-    * The ID of this payment service.
-    */
-    'id'?: string;
-    /**
     * The type of this resource.
     */
     'type'?: PaymentServiceSnapshot.TypeEnum;
+    /**
+    * The ID of this payment service.
+    */
+    'id'?: string;
     /**
     * The ID of the payment service definition used to create this service. 
     */
@@ -41,14 +41,14 @@ export class PaymentServiceSnapshot {
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "id",
-            "baseName": "id",
-            "type": "string"
-        },
-        {
             "name": "type",
             "baseName": "type",
             "type": "PaymentServiceSnapshot.TypeEnum"
+        },
+        {
+            "name": "id",
+            "baseName": "id",
+            "type": "string"
         },
         {
             "name": "paymentServiceDefinitionId",

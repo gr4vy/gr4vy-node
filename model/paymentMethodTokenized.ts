@@ -25,6 +25,10 @@ export class PaymentMethodTokenized {
     */
     'id'?: string;
     /**
+    * The unique ID for a merchant account.
+    */
+    'merchantAccountId'?: string;
+    /**
     * The type of this payment method.
     */
     'method'?: PaymentMethodTokenized.MethodEnum;
@@ -68,6 +72,11 @@ export class PaymentMethodTokenized {
         {
             "name": "id",
             "baseName": "id",
+            "type": "string"
+        },
+        {
+            "name": "merchantAccountId",
+            "baseName": "merchant_account_id",
             "type": "string"
         },
         {

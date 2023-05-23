@@ -42,6 +42,7 @@ export * from './connectionOptions';
 export * from './connectionOptionsAdyenCard';
 export * from './connectionOptionsCybersourceAntiFraud';
 export * from './connections';
+export * from './cryptogram';
 export * from './digitalWallet';
 export * from './digitalWalletRequest';
 export * from './digitalWalletUpdate';
@@ -59,12 +60,16 @@ export * from './errorGeneric';
 export * from './googlePayRequest';
 export * from './googlePayRequestAssuranceDetails';
 export * from './googlePaySessionRequest';
+export * from './issueCryptogramRequest';
 export * from './merchantAccount';
 export * from './merchantAccountCreate';
 export * from './merchantAccountUpdate';
 export * from './merchantAccounts';
 export * from './merchantProfile';
 export * from './merchantProfileScheme';
+export * from './networkToken';
+export * from './networkTokenRequest';
+export * from './networkTokens';
 export * from './paymentMethod';
 export * from './paymentMethodDefinition';
 export * from './paymentMethodDefinitions';
@@ -89,6 +94,9 @@ export * from './paymentServiceFields';
 export * from './paymentServiceRequest';
 export * from './paymentServiceRequestFields';
 export * from './paymentServiceSnapshot';
+export * from './paymentServiceToken';
+export * from './paymentServiceTokenRequest';
+export * from './paymentServiceTokens';
 export * from './paymentServiceUpdate';
 export * from './paymentServices';
 export * from './redirectRequest';
@@ -139,7 +147,6 @@ export * from './transaction';
 export * from './transactionCaptureRequest';
 export * from './transactionCardRequest';
 export * from './transactionCheckoutSessionRequest';
-export * from './transactionHistoryEvents';
 export * from './transactionPaymentMethodRequest';
 export * from './transactionRedirectRequest';
 export * from './transactionRefundRequest';
@@ -208,6 +215,7 @@ import { ConnectionOptions } from './connectionOptions';
 import { ConnectionOptionsAdyenCard } from './connectionOptionsAdyenCard';
 import { ConnectionOptionsCybersourceAntiFraud } from './connectionOptionsCybersourceAntiFraud';
 import { Connections } from './connections';
+import { Cryptogram } from './cryptogram';
 import { DigitalWallet } from './digitalWallet';
 import { DigitalWalletRequest } from './digitalWalletRequest';
 import { DigitalWalletUpdate } from './digitalWalletUpdate';
@@ -225,12 +233,16 @@ import { ErrorGeneric } from './errorGeneric';
 import { GooglePayRequest } from './googlePayRequest';
 import { GooglePayRequestAssuranceDetails } from './googlePayRequestAssuranceDetails';
 import { GooglePaySessionRequest } from './googlePaySessionRequest';
+import { IssueCryptogramRequest } from './issueCryptogramRequest';
 import { MerchantAccount } from './merchantAccount';
 import { MerchantAccountCreate } from './merchantAccountCreate';
 import { MerchantAccountUpdate } from './merchantAccountUpdate';
 import { MerchantAccounts } from './merchantAccounts';
 import { MerchantProfile } from './merchantProfile';
 import { MerchantProfileScheme } from './merchantProfileScheme';
+import { NetworkToken } from './networkToken';
+import { NetworkTokenRequest } from './networkTokenRequest';
+import { NetworkTokens } from './networkTokens';
 import { PaymentMethod } from './paymentMethod';
 import { PaymentMethodDefinition } from './paymentMethodDefinition';
 import { PaymentMethodDefinitions } from './paymentMethodDefinitions';
@@ -255,6 +267,9 @@ import { PaymentServiceFields } from './paymentServiceFields';
 import { PaymentServiceRequest } from './paymentServiceRequest';
 import { PaymentServiceRequestFields } from './paymentServiceRequestFields';
 import { PaymentServiceSnapshot } from './paymentServiceSnapshot';
+import { PaymentServiceToken } from './paymentServiceToken';
+import { PaymentServiceTokenRequest } from './paymentServiceTokenRequest';
+import { PaymentServiceTokens } from './paymentServiceTokens';
 import { PaymentServiceUpdate } from './paymentServiceUpdate';
 import { PaymentServices } from './paymentServices';
 import { RedirectRequest } from './redirectRequest';
@@ -305,7 +320,6 @@ import { Transaction } from './transaction';
 import { TransactionCaptureRequest } from './transactionCaptureRequest';
 import { TransactionCardRequest } from './transactionCardRequest';
 import { TransactionCheckoutSessionRequest } from './transactionCheckoutSessionRequest';
-import { TransactionHistoryEvents } from './transactionHistoryEvents';
 import { TransactionPaymentMethodRequest } from './transactionPaymentMethodRequest';
 import { TransactionRedirectRequest } from './transactionRedirectRequest';
 import { TransactionRefundRequest } from './transactionRefundRequest';
@@ -390,6 +404,7 @@ let enumsMap: {[index: string]: any} = {
         "ErrorGeneric.TypeEnum": ErrorGeneric.TypeEnum,
         "GooglePayRequest.MethodEnum": GooglePayRequest.MethodEnum,
         "MerchantAccount.TypeEnum": MerchantAccount.TypeEnum,
+        "NetworkToken.StatusEnum": NetworkToken.StatusEnum,
         "PaymentMethod.TypeEnum": PaymentMethod.TypeEnum,
         "PaymentMethod.StatusEnum": PaymentMethod.StatusEnum,
         "PaymentMethod.MethodEnum": PaymentMethod.MethodEnum,
@@ -415,6 +430,7 @@ let enumsMap: {[index: string]: any} = {
         "PaymentServiceDefinitionFields.FormatEnum": PaymentServiceDefinitionFields.FormatEnum,
         "PaymentServiceSnapshot.TypeEnum": PaymentServiceSnapshot.TypeEnum,
         "PaymentServiceSnapshot.MethodEnum": PaymentServiceSnapshot.MethodEnum,
+        "PaymentServiceToken.StatusEnum": PaymentServiceToken.StatusEnum,
         "RedirectRequest.MethodEnum": RedirectRequest.MethodEnum,
         "Refund.TypeEnum": Refund.TypeEnum,
         "Refund.StatusEnum": Refund.StatusEnum,
@@ -504,6 +520,7 @@ let typeMap: {[index: string]: any} = {
     "ConnectionOptionsAdyenCard": ConnectionOptionsAdyenCard,
     "ConnectionOptionsCybersourceAntiFraud": ConnectionOptionsCybersourceAntiFraud,
     "Connections": Connections,
+    "Cryptogram": Cryptogram,
     "DigitalWallet": DigitalWallet,
     "DigitalWalletRequest": DigitalWalletRequest,
     "DigitalWalletUpdate": DigitalWalletUpdate,
@@ -521,12 +538,16 @@ let typeMap: {[index: string]: any} = {
     "GooglePayRequest": GooglePayRequest,
     "GooglePayRequestAssuranceDetails": GooglePayRequestAssuranceDetails,
     "GooglePaySessionRequest": GooglePaySessionRequest,
+    "IssueCryptogramRequest": IssueCryptogramRequest,
     "MerchantAccount": MerchantAccount,
     "MerchantAccountCreate": MerchantAccountCreate,
     "MerchantAccountUpdate": MerchantAccountUpdate,
     "MerchantAccounts": MerchantAccounts,
     "MerchantProfile": MerchantProfile,
     "MerchantProfileScheme": MerchantProfileScheme,
+    "NetworkToken": NetworkToken,
+    "NetworkTokenRequest": NetworkTokenRequest,
+    "NetworkTokens": NetworkTokens,
     "PaymentMethod": PaymentMethod,
     "PaymentMethodDefinition": PaymentMethodDefinition,
     "PaymentMethodDefinitions": PaymentMethodDefinitions,
@@ -551,6 +572,9 @@ let typeMap: {[index: string]: any} = {
     "PaymentServiceRequest": PaymentServiceRequest,
     "PaymentServiceRequestFields": PaymentServiceRequestFields,
     "PaymentServiceSnapshot": PaymentServiceSnapshot,
+    "PaymentServiceToken": PaymentServiceToken,
+    "PaymentServiceTokenRequest": PaymentServiceTokenRequest,
+    "PaymentServiceTokens": PaymentServiceTokens,
     "PaymentServiceUpdate": PaymentServiceUpdate,
     "PaymentServices": PaymentServices,
     "RedirectRequest": RedirectRequest,
@@ -601,7 +625,6 @@ let typeMap: {[index: string]: any} = {
     "TransactionCaptureRequest": TransactionCaptureRequest,
     "TransactionCardRequest": TransactionCardRequest,
     "TransactionCheckoutSessionRequest": TransactionCheckoutSessionRequest,
-    "TransactionHistoryEvents": TransactionHistoryEvents,
     "TransactionPaymentMethodRequest": TransactionPaymentMethodRequest,
     "TransactionRedirectRequest": TransactionRedirectRequest,
     "TransactionRefundRequest": TransactionRefundRequest,
