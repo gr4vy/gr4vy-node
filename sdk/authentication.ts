@@ -68,6 +68,7 @@ type EmbedParams = {
   buyerExternalIdentifier?: string
   metadata?: Record<string, string>
   cartItems?: Array<CartItem>
+  merchantAccountId?: string
 }
 
 export default Authentication
