@@ -12,6 +12,9 @@
     "require": "./dist/sdk/index.js",
     "import": "./esm/index.js"
   },
+  "bin": {
+    "gr4vy": "./dist/bin/index.js"
+  },
   "scripts": {
     "clean": "rm -rf dist/*",
     "build": "tsc",

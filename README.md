@@ -221,6 +221,44 @@ Gr4vy - Response - .getBuyer - 200): Buyer {
 }
 ```
 
+## CLI
+
+The Node SDK also serves as a CLI to generate bearer tokens for use via the API or in Embed.
+
+### Setup
+
+To use the CLI install the Node SDK globally.
+
+```sh
+npm install -g @gr4vy/node
+```
+
+Next, create a `.gr4vyrc.json` file with at least the `gr4vyId`, `environment`, and `privateKey` values. All these values map to the parameters for the `Client`, except the `privateKey` will need to be the location of your private key file.
+
+```json
+{
+  "gr4vyId": "acme",
+  "environment": "sandbox",
+  "privateKey": "./path/to/private_key.pem"
+}
+```
+
+### Generate a bearer token
+
+To generate a token for server-to-server API calls, call the `gr4vy token` command. This accepts additional options that can be used to define the scopes and expiration time.
+
+```sh
+gr4vy token scopes=buyers.read,transactions.read expiresIn=1h
+```
+
+### Generate an Embed token
+
+To generate a token for use with Embed call the `gr4vy embed` command. This will require the `amount` and `currency` as well as any additional data to pin.
+
+```sh
+gr4vy embed amount=1299 currency=USD buyer_external_identifier=user-1234
+```
+
 ## Development
 
 ### Adding new APIs
