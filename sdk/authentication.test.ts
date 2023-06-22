@@ -118,7 +118,7 @@ describe('.parseJSW', () => {
       checkoutSessionId
     )
 
-    timekeeper.travel(Date.now() + 1000)
+    timekeeper.travel(Date.now() + 1000 * 90)
 
     const token2 = await auth.updateJWS(token1, '1m')
 

@@ -45,6 +45,7 @@ class Authentication {
   public async updateJWS(token: string, expiresIn = '30s'): Promise<string> {
     const payload = jwt.verify(token, this.privateKey, {
       algorithms: ['ES512'],
+      ignoreExpiration: true,
     })
     const { scopes, checkout_session_id: checkoutSessionId, embed } = payload
     return this.getJWS(scopes, expiresIn, embed, checkoutSessionId)
