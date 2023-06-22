@@ -106,6 +106,28 @@ describe('.updateEmbedToken()', () => {
   })
 })
 
+describe('.updateBearerToken()', () => {
+  test('it should update a valid signed JWT token', async () => {
+    const client = new Client({ privateKey, gr4vyId: 'demo' })
+    timekeeper.freeze(Date.now())
+    const token1 = await client.getBearerToken()
+    timekeeper.travel(Date.now() + 1000)
+    const token2 = await client.getBearerToken()
+
+    const decoded1 = jwt.decode(token1, { complete: true })
+    const decoded2 = jwt.decode(token2, { complete: true })
+
+    expect(decoded2.header).toEqual(decoded1.header)
+    expect(decoded2.payload.scopes).toEqual(decoded1.payload.scopes)
+    expect(decoded2.payload.checkout_session_id).toEqual(
+      decoded1.payload.checkout_session_id
+    )
+    expect(decoded2.payload.iat).toBeGreaterThan(decoded1.payload.iat)
+    expect(decoded2.payload.exp).toBeGreaterThan(decoded1.payload.exp)
+    expect(decoded2.payload.nbf).toBeGreaterThan(decoded1.payload.nbf)
+  })
+})
+
 describe('.setMerchantAccountId()', () => {
   test('it should set the default header for every request', async () => {
     const client = new Client({

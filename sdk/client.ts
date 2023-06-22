@@ -246,6 +246,17 @@ class Client {
   }
 
   /**
+   * Updates a bearer token, keeping any existing claims
+   * but resigning it with a new expiration date.
+   */
+  public async updateBearerToken(
+    token: string,
+    expiresIn = '30s'
+  ): Promise<string> {
+    return this.authentication.updateJWS(token, expiresIn)
+  }
+
+  /**
    * Wrap an API endpoint with pre and post processing
    * @param fn The API endpoint to wrap
    */
@@ -270,7 +281,7 @@ class Client {
    */
   private async preprocess(fn, args) {
     this.log(`Gr4vy - Request - ${fn.name.replace('bound ', '.')}:`, ...args)
-    await this.updateBearerToken()
+    await this.attachBearerToken()
   }
 
   /**
@@ -291,7 +302,7 @@ class Client {
   /**
    * Generates a new authorization token and attaches it to every API.
    */
-  private async updateBearerToken(): Promise<void> {
+  private async attachBearerToken(): Promise<void> {
     const token: string = await this.getBearerToken()
     this.apis.map((api) => (api.accessToken = token))
   }
