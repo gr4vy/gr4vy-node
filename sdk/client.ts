@@ -207,9 +207,42 @@ class Client {
     return this.authentication.getJWS(scopes, expiresIn)
   }
 
-  public getEmbedToken(embed: EmbedParams): Promise<string> {
+  /**
+   * Returns a token for use with Embed. This token is limited to 1 hour and
+   * the `embed` scope.
+   *
+   * @param embed An object that's added to the `embed` value in the JWT claim
+   */
+  public getEmbedToken(
+    embed: EmbedParams,
+    checkoutSessionId?: string
+  ): Promise<string> {
     const scopes = [JWTScope.Embed]
-    return this.authentication.getJWS(scopes, '1h', embed)
+    return this.authentication.getJWS(scopes, '1h', embed, checkoutSessionId)
+  }
+
+  /**
+   * Returns a token for use with Embed which ties all transactions to Embed. This
+   * will automatically create a checkout session and add it to the claims in the JWT. This
+   * then ties all the transactions to this token.
+   *
+   * This token is limited to 1 hour and the `embed` scope
+   *
+   * @param embed An object that's added to the `embed` value in the JWT claim
+   */
+  public async getEmbedTokenWithCheckoutSession(
+    embed: EmbedParams
+  ): Promise<string> {
+    const response = await this.newCheckoutSession()
+    return this.getEmbedToken(embed, response.body.id)
+  }
+
+  /**
+   * Updates an Embed token, keeping any existing claims
+   * but resigning it with a new expiration date.
+   */
+  public async updateEmbedToken(token: string): Promise<string> {
+    return this.authentication.updateJWS(token, '1h')
   }
 
   /**
