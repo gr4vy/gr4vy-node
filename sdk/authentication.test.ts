@@ -106,8 +106,8 @@ describe('.getJWS', () => {
   })
 })
 
-describe('.parseJSW', () => {
-  test('it should decode a token', async () => {
+describe('.updateJWS', () => {
+  test('it should update a token', async () => {
     timekeeper.freeze(Date.now())
 
     const auth = new Authentication(privateKey)
@@ -134,5 +134,34 @@ describe('.parseJSW', () => {
     expect(decoded2.payload.iat).toBeGreaterThan(decoded1.payload.iat)
     expect(decoded2.payload.exp).toBeGreaterThan(decoded1.payload.exp)
     expect(decoded2.payload.nbf).toBeGreaterThan(decoded1.payload.nbf)
+  })
+
+  test('it should allow the token to be updated with new Embed params', async () => {
+    timekeeper.freeze(Date.now())
+
+    const auth = new Authentication(privateKey)
+    const token1 = await auth.getJWS(
+      [JWTScope.Embed],
+      '1m',
+      embedParams,
+      checkoutSessionId
+    )
+
+    timekeeper.travel(Date.now() + 1000 * 90)
+
+    const embedParams2 = {
+      amount: 1299,
+      currency: 'USD',
+    }
+
+    const token2 = await auth.updateJWS(token1, '1m', embedParams2)
+
+    const decoded1 = jwt.decode(token1, { complete: true })
+    const decoded2 = jwt.decode(token2, { complete: true })
+
+    expect(decoded2.payload.embed).toEqual(embedParams2)
+    expect(decoded2.payload.checkout_session_id).toEqual(
+      decoded1.payload.checkout_session_id
+    )
   })
 })

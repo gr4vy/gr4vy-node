@@ -18,7 +18,7 @@ class Authentication {
   public async getJWS(
     scopes: JWTScopes = [JWTScope.ReadAll, JWTScope.WriteAll],
     expiresIn = '30s',
-    embed?: EmbedParams,
+    embedParams?: EmbedParams,
     checkoutSessionId?: string
   ): Promise<string> {
     const keyid: string = await this.getKeyId()
@@ -28,8 +28,8 @@ class Authentication {
       claims['checkout_session_id'] = checkoutSessionId
     }
 
-    if (scopes.includes(JWTScope.Embed) && embed) {
-      claims['embed'] = snakeCaseKeys(embed, { exclude: ['metadata'] })
+    if (scopes.includes(JWTScope.Embed) && embedParams) {
+      claims['embed'] = snakeCaseKeys(embedParams, { exclude: ['metadata'] })
     }
 
     return jwt.sign(claims, this.privateKey, {
@@ -42,13 +42,24 @@ class Authentication {
     })
   }
 
-  public async updateJWS(token: string, expiresIn = '30s'): Promise<string> {
+  public async updateJWS(
+    token: string,
+    expiresIn = '30s',
+    embedParams?: EmbedParams
+  ): Promise<string> {
     const payload = jwt.verify(token, this.privateKey, {
       algorithms: ['ES512'],
       ignoreExpiration: true,
     })
+
     const { scopes, checkout_session_id: checkoutSessionId, embed } = payload
-    return this.getJWS(scopes, expiresIn, embed, checkoutSessionId)
+
+    return this.getJWS(
+      scopes,
+      expiresIn,
+      embedParams ?? embed,
+      checkoutSessionId
+    )
   }
 
   public async getKeyId(): Promise<string> {

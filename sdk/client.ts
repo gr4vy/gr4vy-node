@@ -7,6 +7,7 @@ import {
 } from '../api/apis'
 import { CheckoutSessionsApi } from '../api/checkoutSessionsApi'
 import { PaymentServiceDefinitionsApi } from '../api/paymentServiceDefinitionsApi'
+import { CheckoutSession } from '../model/checkoutSession'
 import Authentication, {
   JWTScope,
   JWTScopes,
@@ -232,17 +233,21 @@ class Client {
    */
   public async getEmbedTokenWithCheckoutSession(
     embed: EmbedParams
-  ): Promise<string> {
-    const response = await this.newCheckoutSession()
-    return this.getEmbedToken(embed, response.body.id)
+  ): Promise<Record<string, string | CheckoutSession>> {
+    const { body: checkoutSession } = await this.newCheckoutSession()
+    const token = await this.getEmbedToken(embed, checkoutSession.id)
+    return { checkoutSession, token }
   }
 
   /**
    * Updates an Embed token, keeping any existing claims
    * but resigning it with a new expiration date.
    */
-  public async updateEmbedToken(token: string): Promise<string> {
-    return this.authentication.updateJWS(token, '1h')
+  public async updateEmbedToken(
+    token: string,
+    embedParams?: EmbedParams
+  ): Promise<string> {
+    return this.authentication.updateJWS(token, '1h', embedParams)
   }
 
   /**
@@ -293,7 +298,7 @@ class Client {
   private async postprocess(fn, data) {
     this.log(
       `Gr4vy - Response - ${fn.name.replace('bound ', '.')} - ${
-        data.response.statusCode
+        data?.response?.statusCode
       }):`,
       data.body
     )

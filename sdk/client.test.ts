@@ -1,6 +1,7 @@
 import jwt from 'jsonwebtoken'
 import snakecaseKeys from 'snakecase-keys'
 import timekeeper from 'timekeeper'
+import { CheckoutSessionsApi } from '../api/checkoutSessionsApi'
 import Client from './client'
 
 const privateKey = `-----BEGIN PRIVATE KEY-----
@@ -13,6 +14,15 @@ rw==
 -----END PRIVATE KEY-----`
 
 const thumbprint = 'va-SLs5AxJNfqKXD8LI5Y38BflpNvjZjY4RSWz66U1w'
+
+const checkoutSessionId = 'checkout-session-id'
+
+jest.mock('../api/checkoutSessionsApi')
+const NewCheckoutSession = CheckoutSessionsApi.prototype
+  .newCheckoutSession as jest.Mock
+NewCheckoutSession.mockReturnValue(
+  Promise.resolve({ body: { id: checkoutSessionId } })
+)
 
 const embedParams = {
   amount: 9000,
@@ -83,6 +93,29 @@ describe('.getEmbedToken()', () => {
   })
 })
 
+describe('.getEmbedTokenWithCheckoutSession()', () => {
+  test('it should create a valid embed token with a pinned checkout session', async () => {
+    const client = new Client({
+      privateKey,
+      gr4vyId: 'demo',
+    })
+
+    const { token, checkoutSession } =
+      await client.getEmbedTokenWithCheckoutSession(embedParams)
+
+    const decoded = jwt.verify(token, privateKey, {
+      algorithms: ['ES512'],
+      complete: true,
+    })
+
+    expect(decoded.header.kid).toBe(thumbprint)
+    expect(decoded.payload.scopes).toEqual(['embed'])
+    expect(decoded.payload.embed).toEqual(snakecaseKeys(embedParams))
+
+    expect(checkoutSession.id).toBe(checkoutSessionId)
+  })
+})
+
 describe('.updateEmbedToken()', () => {
   test('it should update a valid signed JWT token', async () => {
     const client = new Client({ privateKey, gr4vyId: 'demo' })
@@ -103,6 +136,24 @@ describe('.updateEmbedToken()', () => {
     expect(decoded2.payload.iat).toBeGreaterThan(decoded1.payload.iat)
     expect(decoded2.payload.exp).toBeGreaterThan(decoded1.payload.exp)
     expect(decoded2.payload.nbf).toBeGreaterThan(decoded1.payload.nbf)
+  })
+
+  test('it shoud allow for new Embed params to be set', async () => {
+    const client = new Client({ privateKey, gr4vyId: 'demo' })
+    const token1 = await client.getEmbedToken(embedParams)
+
+    const embedParams2 = {
+      amount: 1299,
+      currency: 'USD',
+    }
+    const token2 = await client.updateEmbedToken(token1, embedParams2)
+
+    const decoded1 = jwt.decode(token1, { complete: true })
+    const decoded2 = jwt.decode(token2, { complete: true })
+
+    expect(decoded2.payload.checkout_session_id).toEqual(
+      decoded1.payload.checkout_session_id
+    )
   })
 })
 

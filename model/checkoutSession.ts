@@ -10,51 +10,56 @@
  * Do not edit the class manually.
  */
 
-import { RequestFile } from './models';
+import { RequestFile } from './models'
 
 /**
-* A short-lived checkout session.
-*/
+ * A short-lived checkout session.
+ */
 export class CheckoutSession {
-    /**
-    * `checkout-session`.
-    */
-    'type'?: CheckoutSession.TypeEnum;
-    /**
-    * The ID of the Checkout Session.
-    */
-    'id'?: string;
-    /**
-    * The date and time when the Checkout Session will expire. By default this will be set to 1 hour from the date of creation.
-    */
-    'expiresAt'?: Date;
+  /**
+   * `checkout-session`.
+   */
+  'type'?: CheckoutSession.TypeEnum
+  /**
+   * The ID of the Checkout Session.
+   */
+  'id'?: string
+  /**
+   * The date and time when the Checkout Session will expire. By default this will be set to 1 hour from the date of creation.
+   */
+  'expiresAt'?: Date
 
-    static discriminator: string | undefined = undefined;
+  static discriminator: string | undefined = undefined
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "type",
-            "baseName": "type",
-            "type": "CheckoutSession.TypeEnum"
-        },
-        {
-            "name": "id",
-            "baseName": "id",
-            "type": "string"
-        },
-        {
-            "name": "expiresAt",
-            "baseName": "expires_at",
-            "type": "Date"
-        }    ];
+  static attributeTypeMap: Array<{
+    name: string
+    baseName: string
+    type: string
+  }> = [
+    {
+      name: 'type',
+      baseName: 'type',
+      type: 'CheckoutSession.TypeEnum',
+    },
+    {
+      name: 'id',
+      baseName: 'id',
+      type: 'string',
+    },
+    {
+      name: 'expiresAt',
+      baseName: 'expires_at',
+      type: 'Date',
+    },
+  ]
 
-    static getAttributeTypeMap() {
-        return CheckoutSession.attributeTypeMap;
-    }
+  static getAttributeTypeMap() {
+    return CheckoutSession.attributeTypeMap
+  }
 }
 
 export namespace CheckoutSession {
-    export enum TypeEnum {
-        CheckoutSession = <any> 'checkout-session'
-    }
+  export enum TypeEnum {
+    CheckoutSession = <any>'checkout-session',
+  }
 }
