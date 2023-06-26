@@ -285,8 +285,8 @@ class Client {
    * @param args The arguments that were passed to the function
    */
   private async preprocess(fn, args) {
-    this.log(`Gr4vy - Request - ${fn.name.replace('bound ', '.')}:`, ...args)
     await this.attachBearerToken()
+    this.log(`Gr4vy - Request - ${fn.name.replace('bound ', '.')}:`, ...args)
   }
 
   /**
@@ -300,7 +300,8 @@ class Client {
       `Gr4vy - Response - ${fn.name.replace('bound ', '.')} - ${
         data?.response?.statusCode
       }):`,
-      data.body
+      data.body,
+      data.defaultHeaders
     )
   }
 
