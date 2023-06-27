@@ -1,6 +1,6 @@
 {
   "name": "@gr4vy/node",
-  "version": "0.49.0-canary.d5c5b302640e61cb0ea94b3342abe16430c9c645",
+  "version": "0.49.0",
   "description": "NodeJS client for @gr4vy/node",
   "repository": {
     "type": "git",
