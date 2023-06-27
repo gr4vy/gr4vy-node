@@ -1,5 +1,6 @@
 import jwt from 'jsonwebtoken'
 import snakecaseKeys from 'snakecase-keys'
+import timekeeper from 'timekeeper'
 import { version } from '../package.json'
 import Authentication, { JWTScope } from './authentication'
 
@@ -32,6 +33,8 @@ const embedParams = {
     },
   ],
 }
+
+const checkoutSessionId = '0ebde6a1-f66c-43ea-bb8b-73751864c604'
 
 describe('.getJWS', () => {
   test('it should create a valid signed JWT token', async () => {
@@ -81,5 +84,84 @@ describe('.getJWS', () => {
 
     expect(decoded.payload.scopes).toEqual(['*.read'])
     expect(decoded.payload.embed).toBeUndefined()
+  })
+
+  test('it should take an optional checkout session ID', async () => {
+    const checkoutSessionId = 'id'
+
+    const auth = new Authentication(privateKey)
+    const jws = await auth.getJWS(
+      [JWTScope.ReadAll],
+      '1m',
+      embedParams,
+      checkoutSessionId
+    )
+
+    const decoded = jwt.verify(jws, privateKey, {
+      algorithms: ['ES512'],
+      complete: true,
+    })
+
+    expect(decoded.payload.checkout_session_id).toEqual(checkoutSessionId)
+  })
+})
+
+describe('.updateJWS', () => {
+  test('it should update a token', async () => {
+    timekeeper.freeze(Date.now())
+
+    const auth = new Authentication(privateKey)
+    const token1 = await auth.getJWS(
+      [JWTScope.Embed],
+      '1m',
+      embedParams,
+      checkoutSessionId
+    )
+
+    timekeeper.travel(Date.now() + 1000 * 90)
+
+    const token2 = await auth.updateJWS(token1, '1m')
+
+    const decoded1 = jwt.decode(token1, { complete: true })
+    const decoded2 = jwt.decode(token2, { complete: true })
+
+    expect(decoded2.header).toEqual(decoded1.header)
+    expect(decoded2.payload.scopes).toEqual(decoded1.payload.scopes)
+    expect(decoded2.payload.embed).toEqual(decoded1.payload.embed)
+    expect(decoded2.payload.checkout_session_id).toEqual(
+      decoded1.payload.checkout_session_id
+    )
+    expect(decoded2.payload.iat).toBeGreaterThan(decoded1.payload.iat)
+    expect(decoded2.payload.exp).toBeGreaterThan(decoded1.payload.exp)
+    expect(decoded2.payload.nbf).toBeGreaterThan(decoded1.payload.nbf)
+  })
+
+  test('it should allow the token to be updated with new Embed params', async () => {
+    timekeeper.freeze(Date.now())
+
+    const auth = new Authentication(privateKey)
+    const token1 = await auth.getJWS(
+      [JWTScope.Embed],
+      '1m',
+      embedParams,
+      checkoutSessionId
+    )
+
+    timekeeper.travel(Date.now() + 1000 * 90)
+
+    const embedParams2 = {
+      amount: 1299,
+      currency: 'USD',
+    }
+
+    const token2 = await auth.updateJWS(token1, '1m', embedParams2)
+
+    const decoded1 = jwt.decode(token1, { complete: true })
+    const decoded2 = jwt.decode(token2, { complete: true })
+
+    expect(decoded2.payload.embed).toEqual(embedParams2)
+    expect(decoded2.payload.checkout_session_id).toEqual(
+      decoded1.payload.checkout_session_id
+    )
   })
 })

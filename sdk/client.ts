@@ -7,6 +7,7 @@ import {
 } from '../api/apis'
 import { CheckoutSessionsApi } from '../api/checkoutSessionsApi'
 import { PaymentServiceDefinitionsApi } from '../api/paymentServiceDefinitionsApi'
+import { CheckoutSession } from '../model/checkoutSession'
 import Authentication, {
   JWTScope,
   JWTScopes,
@@ -207,9 +208,57 @@ class Client {
     return this.authentication.getJWS(scopes, expiresIn)
   }
 
-  public getEmbedToken(embed: EmbedParams): Promise<string> {
+  /**
+   * Returns a token for use with Embed. This token is limited to 1 hour and
+   * the `embed` scope.
+   *
+   * @param embed An object that's added to the `embed` value in the JWT claim
+   */
+  public getEmbedToken(
+    embed: EmbedParams,
+    checkoutSessionId?: string
+  ): Promise<string> {
     const scopes = [JWTScope.Embed]
-    return this.authentication.getJWS(scopes, '1h', embed)
+    return this.authentication.getJWS(scopes, '1h', embed, checkoutSessionId)
+  }
+
+  /**
+   * Returns a token for use with Embed which ties all transactions to Embed. This
+   * will automatically create a checkout session and add it to the claims in the JWT. This
+   * then ties all the transactions to this token.
+   *
+   * This token is limited to 1 hour and the `embed` scope
+   *
+   * @param embed An object that's added to the `embed` value in the JWT claim
+   */
+  public async getEmbedTokenWithCheckoutSession(
+    embed: EmbedParams
+  ): Promise<Record<string, string | CheckoutSession>> {
+    const { body: checkoutSession } = await this.newCheckoutSession()
+    const token = await this.getEmbedToken(embed, checkoutSession.id)
+    return { checkoutSession, token }
+  }
+
+  /**
+   * Updates an Embed token, keeping any existing claims
+   * but resigning it with a new expiration date.
+   */
+  public async updateEmbedToken(
+    token: string,
+    embedParams?: EmbedParams
+  ): Promise<string> {
+    return this.authentication.updateJWS(token, '1h', embedParams)
+  }
+
+  /**
+   * Updates a bearer token, keeping any existing claims
+   * but resigning it with a new expiration date.
+   */
+  public async updateBearerToken(
+    token: string,
+    expiresIn = '30s'
+  ): Promise<string> {
+    return this.authentication.updateJWS(token, expiresIn)
   }
 
   /**
@@ -236,8 +285,8 @@ class Client {
    * @param args The arguments that were passed to the function
    */
   private async preprocess(fn, args) {
+    await this.attachBearerToken()
     this.log(`Gr4vy - Request - ${fn.name.replace('bound ', '.')}:`, ...args)
-    await this.updateBearerToken()
   }
 
   /**
@@ -249,16 +298,17 @@ class Client {
   private async postprocess(fn, data) {
     this.log(
       `Gr4vy - Response - ${fn.name.replace('bound ', '.')} - ${
-        data.response.statusCode
+        data?.response?.statusCode
       }):`,
-      data.body
+      data.body,
+      data.defaultHeaders
     )
   }
 
   /**
    * Generates a new authorization token and attaches it to every API.
    */
-  private async updateBearerToken(): Promise<void> {
+  private async attachBearerToken(): Promise<void> {
     const token: string = await this.getBearerToken()
     this.apis.map((api) => (api.accessToken = token))
   }

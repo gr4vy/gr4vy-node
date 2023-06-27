@@ -66,20 +66,44 @@ To create a token for Gr4vy Embed, call the `client.getEmbedToken()` function
 with the amount, currency, and optional buyer information for Gr4vy Embed.
 
 ```js
+// generate a session to tie any transactions to
+const response = await this.newCheckoutSession()
+// generate the token
 const token = await client.getEmbedToken({
   amount: 1299,
   currency: 'USD',
   buyerExternalIdentifier: 'user-1234',
+  checkoutSessionId: response.body.id,
   // or: buyerId: ...
+})
+
+// or to combine both calls in one
+const { token, checkoutSession } =
+  await client.getEmbedTokenWithCheckoutSession(embedParams)
+```
+
+You can now pass this token to your front end where it can be used to
+authenticate Gr4vy Embed.
+
+### Refreshing a token
+
+To get a new token with a new expiration date, or to add new data to a token, without losing the checkout session ID,
+you can call the `updateEmbedToken` method again with the original token and the new data. Your checkout session will
+automatically be added to the same token.
+
+```js
+const token = await client.updateEmbedToken(oldToken, {
+  amount: 1299,
+  currency: 'USD',
+  buyerExternalIdentifier: 'user-1234',
 })
 ```
 
-You can now pass this token to your frontend where it can be used to
-authenticate Gr4vy Embed.
+### Additional data
 
-The `buyerId` and `buyerExternalIdentifier` fields can be used to allow the
-token to pull in previously stored payment methods for a user. A buyer needs to
-be created before it can be used in this way.
+Additional data can be added to a token. The `buyerId` and `buyerExternalIdentifier`
+fields can be used to allow the token to pull in previously stored payment methods for a user.
+A buyer needs to be created before it can be used in this way.
 
 ```js
 const buyerRequest = new BuyerRequest()
