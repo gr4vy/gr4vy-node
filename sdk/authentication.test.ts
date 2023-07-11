@@ -20,11 +20,11 @@ const embedParams = {
   currency: 'USD',
   buyerExternalIdentifier: 'user-123',
   connectionOptions: {
-    "stripe-card": {
+    'stripe-card': {
       stripe_connect: {
-        key: "value"
-      }
-    }
+        key: 'value',
+      },
+    },
   },
   metadata: {
     camelCaseKey: 'value1',
@@ -73,8 +73,9 @@ describe('.getJWS', () => {
       algorithms: ['ES512'],
       complete: true,
     })
-    let connOptions = embedParams.connectionOptions || embedParams["connection_options"]
-    let expected = snakecaseKeys(embedParams, { exclude: ['metadata'] });
+    const connOptions =
+      embedParams.connectionOptions || embedParams['connection_options']
+    const expected = snakecaseKeys(embedParams, { exclude: ['metadata'] })
     expected['connection_options'] = connOptions
 
     expect(decoded.payload.scopes).toEqual(['embed'])

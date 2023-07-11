@@ -29,7 +29,8 @@ class Authentication {
     }
 
     if (scopes.includes(JWTScope.Embed) && embedParams) {
-      let connOptions = embedParams.connectionOptions || embedParams["connection_options"]
+      const connOptions =
+        embedParams.connectionOptions || embedParams['connection_options']
       claims['embed'] = snakeCaseKeys(embedParams, { exclude: ['metadata'] })
       claims['embed']['connection_options'] = connOptions
     }
