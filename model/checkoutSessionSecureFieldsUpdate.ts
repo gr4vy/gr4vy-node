@@ -11,13 +11,13 @@
  */
 
 import { RequestFile } from './models';
-import { CardRequest } from './cardRequest';
+import { CheckoutSessionFieldsPaymentMethod } from './checkoutSessionFieldsPaymentMethod';
 
 /**
 * A request to update the secure fields of a checkout session.
 */
 export class CheckoutSessionSecureFieldsUpdate {
-    'paymentMethod'?: CardRequest;
+    'paymentMethod'?: CheckoutSessionFieldsPaymentMethod;
 
     static discriminator: string | undefined = undefined;
 
@@ -25,7 +25,7 @@ export class CheckoutSessionSecureFieldsUpdate {
         {
             "name": "paymentMethod",
             "baseName": "payment_method",
-            "type": "CardRequest"
+            "type": "CheckoutSessionFieldsPaymentMethod"
         }    ];
 
     static getAttributeTypeMap() {

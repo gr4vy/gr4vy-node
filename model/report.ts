@@ -71,6 +71,18 @@ export class Report {
     * The name of this report.
     */
     'name'?: string;
+    /**
+    * The unique identifier for the creator of this report.
+    */
+    'creatorId'?: string | null;
+    /**
+    * The name of the creator of this report.
+    */
+    'creatorDisplayName'?: string | null;
+    /**
+    * The type of the creator of this report.
+    */
+    'creatorType'?: Report.CreatorTypeEnum;
 
     static discriminator: string | undefined = undefined;
 
@@ -139,6 +151,21 @@ export class Report {
             "name": "name",
             "baseName": "name",
             "type": "string"
+        },
+        {
+            "name": "creatorId",
+            "baseName": "creator_id",
+            "type": "string"
+        },
+        {
+            "name": "creatorDisplayName",
+            "baseName": "creator_display_name",
+            "type": "string"
+        },
+        {
+            "name": "creatorType",
+            "baseName": "creator_type",
+            "type": "Report.CreatorTypeEnum"
         }    ];
 
     static getAttributeTypeMap() {
@@ -155,5 +182,9 @@ export namespace Report {
     }
     export enum TypeEnum {
         Report = <any> 'report'
+    }
+    export enum CreatorTypeEnum {
+        User = <any> 'user',
+        PrivateKey = <any> 'private_key'
     }
 }

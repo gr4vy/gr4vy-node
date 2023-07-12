@@ -31,6 +31,10 @@ export class AntiFraudServiceCreate {
     */
     'active'?: boolean;
     /**
+    * Defines if this service needs to handle the review status from anti-fraud responses with a proper review workflow. If not, the review status will be treated as any other one.
+    */
+    'reviewsEnabled'?: boolean;
+    /**
     * A list of fields, each containing a key-value pair for each field defined by the definition for this anti-fraud service e.g. for Sift `api_key` must be sent within this field when creating the service.  For updates, only the fields sent here will be updated, existing ones will not be affected if not present.
     */
     'fields': Array<AntiFraudServiceUpdateFields>;
@@ -51,6 +55,11 @@ export class AntiFraudServiceCreate {
         {
             "name": "active",
             "baseName": "active",
+            "type": "boolean"
+        },
+        {
+            "name": "reviewsEnabled",
+            "baseName": "reviews_enabled",
             "type": "boolean"
         },
         {

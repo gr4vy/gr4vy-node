@@ -419,11 +419,13 @@ export class TransactionsApi {
      * @param amountEq Filters for transactions that have an &#x60;amount&#x60; that is equal to the provided &#x60;amount_eq&#x60; value.
      * @param amountGte Filters for transactions that have an &#x60;amount&#x60; that is greater than or equal to the &#x60;amount_gte&#x60; value.
      * @param amountLte Filters for transactions that have an &#x60;amount&#x60; that is less than or equal to the &#x60;amount_lte&#x60; value.
+     * @param checkoutSessionId Filters for transactions that are linked to the unique ID for a Checkout Session.
      * @param createdAtGte Filters the results to only transactions created after this ISO date-time string. The time zone must be included.  Ensure that the date-time string is URL encoded, e.g. &#x60;2022-01-01T12:00:00+08:00&#x60; must be encoded as &#x60;2022-01-01T12%3A00%3A00%2B08%3A00&#x60;.
      * @param createdAtLte Filters the results to only transactions created before this ISO date-time string. The time zone must be included.  Ensure that the date-time string is URL encoded, e.g. &#x60;2022-01-01T12:00:00+08:00&#x60; must be encoded as &#x60;2022-01-01T12%3A00%3A00%2B08%3A00&#x60;.
      * @param currency Filters for transactions that have matching &#x60;currency&#x60; values. The &#x60;currency&#x60; values provided must be formatted as 3-letter ISO currency code.
      * @param externalIdentifier Filters the results to only the items for which the &#x60;external_identifier&#x60; matches this value.
      * @param hasRefunds When set to &#x60;true&#x60;, filter for transactions that have at least one completed refund associated with it. When set to &#x60;false&#x60;, filter for transactions that have no completed refunds.
+     * @param pendingReview When set to &#x60;true&#x60;, filter for transactions that have a manual review pending. When set to &#x60;false&#x60;, filter for transactions that don\&#39;t have a manual review pending.
      * @param id Filters for the transaction that has a matching &#x60;id&#x60; value.
      * @param metadata Filters for transactions where their &#x60;metadata&#x60; values contain all of the provided &#x60;metadata&#x60; keys. The value sent for &#x60;metadata&#x60; must be formatted as a JSON string, and all keys and values must be strings. This value should also be URL encoded.  Duplicate keys are not supported. If a key is duplicated, only the last appearing value will be used.
      * @param method Filters the results to only the items for which the &#x60;method&#x60; has been set to this value.
@@ -436,7 +438,7 @@ export class TransactionsApi {
      * @param updatedAtGte Filters the results to only transactions last updated after this ISO date-time string. The time zone must be included.  Ensure that the date-time string is URL encoded, e.g. &#x60;2022-01-01T12:00:00+08:00&#x60; must be encoded as &#x60;2022-01-01T12%3A00%3A00%2B08%3A00&#x60;.
      * @param updatedAtLte Filters the results to only transactions last updated before this ISO date-time string. The time zone must be included.  Ensure that the date-time string is URL encoded, e.g. &#x60;2022-01-01T12:00:00+08:00&#x60; must be encoded as &#x60;2022-01-01T12%3A00%3A00%2B08%3A00&#x60;.
      */
-    public async listTransactions (buyerExternalIdentifier?: string, buyerId?: string, cursor?: string, limit?: number, amountEq?: number, amountGte?: number, amountLte?: number, createdAtGte?: Date, createdAtLte?: Date, currency?: Array<string>, externalIdentifier?: string, hasRefunds?: boolean, id?: string, metadata?: Array<string>, method?: Array<'afterpay' | 'applepay' | 'banked' | 'bitpay' | 'boleto' | 'card' | 'clearpay' | 'dana' | 'fortumo' | 'gcash' | 'gocardless' | 'googlepay' | 'grabpay' | 'klarna' | 'ovo' | 'paymaya' | 'paypal' | 'pix' | 'rabbitlinepay' | 'scalapay' | 'shopeepay' | 'stripedd' | 'truemoney' | 'trustly' | 'zippay'>, paymentMethodId?: string, paymentMethodLabel?: string, paymentServiceId?: Array<string>, paymentServiceTransactionId?: string, search?: string, status?: Array<'processing' | 'buyer_approval_pending' | 'authorization_succeeded' | 'authorization_failed' | 'authorization_declined' | 'capture_pending' | 'capture_succeeded' | 'authorization_void_pending' | 'authorization_voided'>, updatedAtGte?: Date, updatedAtLte?: Date, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Transactions;  }> {
+    public async listTransactions (buyerExternalIdentifier?: string, buyerId?: string, cursor?: string, limit?: number, amountEq?: number, amountGte?: number, amountLte?: number, checkoutSessionId?: string, createdAtGte?: Date, createdAtLte?: Date, currency?: Array<string>, externalIdentifier?: string, hasRefunds?: boolean, pendingReview?: boolean, id?: string, metadata?: Array<string>, method?: Array<'afterpay' | 'applepay' | 'banked' | 'bitpay' | 'boleto' | 'card' | 'clearpay' | 'dana' | 'fortumo' | 'gcash' | 'gocardless' | 'googlepay' | 'grabpay' | 'klarna' | 'ovo' | 'paymaya' | 'paypal' | 'pix' | 'rabbitlinepay' | 'scalapay' | 'shopeepay' | 'stripedd' | 'truemoney' | 'trustly' | 'zippay'>, paymentMethodId?: string, paymentMethodLabel?: string, paymentServiceId?: Array<string>, paymentServiceTransactionId?: string, search?: string, status?: Array<'processing' | 'buyer_approval_pending' | 'authorization_succeeded' | 'authorization_failed' | 'authorization_declined' | 'capture_pending' | 'capture_succeeded' | 'authorization_void_pending' | 'authorization_voided'>, updatedAtGte?: Date, updatedAtLte?: Date, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Transactions;  }> {
         const localVarPath = this.basePath + '/transactions';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
@@ -477,6 +479,10 @@ export class TransactionsApi {
             localVarQueryParameters['amount_lte'] = ObjectSerializer.serialize(amountLte, "number");
         }
 
+        if (checkoutSessionId !== undefined) {
+            localVarQueryParameters['checkout_session_id'] = ObjectSerializer.serialize(checkoutSessionId, "string");
+        }
+
         if (createdAtGte !== undefined) {
             localVarQueryParameters['created_at_gte'] = ObjectSerializer.serialize(createdAtGte, "Date");
         }
@@ -495,6 +501,10 @@ export class TransactionsApi {
 
         if (hasRefunds !== undefined) {
             localVarQueryParameters['has_refunds'] = ObjectSerializer.serialize(hasRefunds, "boolean");
+        }
+
+        if (pendingReview !== undefined) {
+            localVarQueryParameters['pending_review'] = ObjectSerializer.serialize(pendingReview, "boolean");
         }
 
         if (id !== undefined) {
@@ -733,7 +743,7 @@ export class TransactionsApi {
         });
     }
     /**
-     * Voids a transaction.  If the transaction was not yet successfully authorized, or was already captured, the void will not be processed. Captured transactions can be refunded instead.  Voiding zero-amount authorized transactions is not supported.
+     * Voids a transaction.  If the transaction was not yet successfully authorized, or was already captured, the void will not be processed. Captured transactions can be refunded instead.  Voiding zero-amount authorized transactions is not supported.  Once voided, the status of the transaction will be either `authorization_voided`, `authorization_void_pending`, or if the void fails the original status will remain.
      * @summary Void transaction
      * @param transactionId The ID for the transaction to get the information for.
      */
