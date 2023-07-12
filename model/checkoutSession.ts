@@ -11,6 +11,7 @@
  */
 
 import { RequestFile } from './models';
+import { CartItem } from './cartItem';
 
 /**
 * A short-lived checkout session.
@@ -28,6 +29,14 @@ export class CheckoutSession {
     * The date and time when the Checkout Session will expire. By default this will be set to 1 hour from the date of creation.
     */
     'expiresAt'?: Date;
+    /**
+    * An array of cart items that represents the line items of a transaction.
+    */
+    'cartItems'?: Array<CartItem> | null;
+    /**
+    * Any additional information about the transaction that you would like to store as key-value pairs. This data is passed to payment service providers that support it.
+    */
+    'metadata'?: { [key: string]: string; } | null;
 
     static discriminator: string | undefined = undefined;
 
@@ -46,6 +55,16 @@ export class CheckoutSession {
             "name": "expiresAt",
             "baseName": "expires_at",
             "type": "Date"
+        },
+        {
+            "name": "cartItems",
+            "baseName": "cart_items",
+            "type": "Array<CartItem>"
+        },
+        {
+            "name": "metadata",
+            "baseName": "metadata",
+            "type": "{ [key: string]: string; }"
         }    ];
 
     static getAttributeTypeMap() {

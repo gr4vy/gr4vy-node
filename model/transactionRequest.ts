@@ -11,12 +11,18 @@
  */
 
 import { RequestFile } from './models';
+import { ApplePayRequest } from './applePayRequest';
 import { BrowserInfo } from './browserInfo';
 import { CartItem } from './cartItem';
 import { ConnectionOptions } from './connectionOptions';
+import { GooglePayRequest } from './googlePayRequest';
 import { StatementDescriptor } from './statementDescriptor';
-import { ThreeDSecureDataV1V2 } from './threeDSecureDataV1V2';
-import { TransactionPaymentMethodRequest } from './transactionPaymentMethodRequest';
+import { ThreeDSecureDataV1 } from './threeDSecureDataV1';
+import { ThreeDSecureDataV2 } from './threeDSecureDataV2';
+import { TokenizedRequest } from './tokenizedRequest';
+import { TransactionCardRequest } from './transactionCardRequest';
+import { TransactionCheckoutSessionRequest } from './transactionCheckoutSessionRequest';
+import { TransactionRedirectRequest } from './transactionRedirectRequest';
 
 /**
 * A request to create a transaction.
@@ -34,7 +40,10 @@ export class TransactionRequest {
     * The 2-letter ISO code of the country of the transaction. This is used to filter the payment services that is used to process the transaction.  If this value is provided for redirect requests and it\'s not `null`, it must match the one specified for `country` in `payment_method`. Otherwise, the value specified for `country` in `payment_method` will be assumed implicitly. 
     */
     'country'?: string | null;
-    'paymentMethod': TransactionPaymentMethodRequest;
+    /**
+    * The optional payment method details to create an authorization for. This field is required for processing a card.
+    */
+    'paymentMethod': TransactionCardRequest | TransactionRedirectRequest | TokenizedRequest | ApplePayRequest | GooglePayRequest | TransactionCheckoutSessionRequest;
     /**
     * Whether or not to also try and store the payment method with us so that it can be used again for future use. This is only supported for payment methods that support this feature. There are also a few restrictions on how the flag may be set:  * The flag has to be set to `true` when the `payment_source` is set to `recurring` or `installment`, and `merchant_initiated` is set to `false`.  * The flag has to be set to `false` (or not set) when using a previously vaulted payment method.
     */
@@ -47,7 +56,10 @@ export class TransactionRequest {
     * An external identifier that can be used to match the transaction against your own records.
     */
     'externalIdentifier'?: string | null;
-    'threeDSecureData'?: ThreeDSecureDataV1V2;
+    /**
+    * Pass through 3-D Secure data to support external 3-D Secure authorisation. If using an external 3-D Secure provider, you should not pass a `redirect_url` in the `payment_method` object for a transaction.
+    */
+    'threeDSecureData'?: ThreeDSecureDataV1 | ThreeDSecureDataV2;
     /**
     * Indicates whether the transaction was initiated by the merchant (true) or customer (false).
     */
@@ -82,7 +94,7 @@ export class TransactionRequest {
     */
     'shippingDetailsId'?: string | null;
     /**
-    * Allows for passing optional configuration per connection to take advantage of connection specific features. When provided, the data is only passed to the target connection type to prevent sharing configuration across connections.
+    * Allows for passing optional configuration per connection to take advantage of connection specific features. When provided, the data is only passed to the target connection type to prevent sharing configuration across connections.  Please note that each of the keys this object are in kebab-case, for example `cybersource-anti-fraud` as they represent the ID of the connector. All the other keys will be snake-case, for example `device_fingerprint_id`.
     */
     'connectionOptions'?: ConnectionOptions | null;
     /**
@@ -111,7 +123,7 @@ export class TransactionRequest {
         {
             "name": "paymentMethod",
             "baseName": "payment_method",
-            "type": "TransactionPaymentMethodRequest"
+            "type": "TransactionCardRequest | TransactionRedirectRequest | TokenizedRequest | ApplePayRequest | GooglePayRequest | TransactionCheckoutSessionRequest"
         },
         {
             "name": "store",
@@ -131,7 +143,7 @@ export class TransactionRequest {
         {
             "name": "threeDSecureData",
             "baseName": "three_d_secure_data",
-            "type": "ThreeDSecureDataV1V2"
+            "type": "ThreeDSecureDataV1 | ThreeDSecureDataV2"
         },
         {
             "name": "merchantInitiated",

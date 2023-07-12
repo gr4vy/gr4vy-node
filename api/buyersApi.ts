@@ -15,10 +15,14 @@ import localVarRequest from 'request';
 import http from 'http';
 
 /* tslint:disable:no-unused-locals */
+import { BillingDetails } from '../model/billingDetails';
+import { BillingDetailsUpdateRequest } from '../model/billingDetailsUpdateRequest';
 import { Buyer } from '../model/buyer';
 import { BuyerRequest } from '../model/buyerRequest';
 import { BuyerUpdate } from '../model/buyerUpdate';
 import { Buyers } from '../model/buyers';
+import { Error400BadRequest } from '../model/error400BadRequest';
+import { Error400IncorrectJson } from '../model/error400IncorrectJson';
 import { Error401Unauthorized } from '../model/error401Unauthorized';
 import { Error404NotFound } from '../model/error404NotFound';
 import { Error409DuplicateRecord } from '../model/error409DuplicateRecord';
@@ -314,6 +318,81 @@ export class BuyersApi {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "Buyer");
+                        if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                            resolve({ response: response, body: body });
+                        } else {
+                            reject(new HttpError(response, body, response.statusCode));
+                        }
+                    }
+                });
+            });
+        });
+    }
+    /**
+     * Gets the information about a buyer\'s billing details. Note that only one of either buyer\'s ID or external identifier may be passed as a query parameter, and not both.
+     * @summary Get buyer billing details
+     * @param buyerId Filters the results to only the items for which the &#x60;buyer&#x60; has an &#x60;id&#x60; that matches this value.
+     * @param buyerExternalIdentifier Filters the results to only the items for which the &#x60;buyer&#x60; has an &#x60;external_identifier&#x60; that matches this value.
+     */
+    public async getBuyerBillingDetails (buyerId?: string, buyerExternalIdentifier?: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: BillingDetails;  }> {
+        const localVarPath = this.basePath + '/buyers/billing-details';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+        let localVarFormParams: any = {};
+
+        if (buyerId !== undefined) {
+            localVarQueryParameters['buyer_id'] = ObjectSerializer.serialize(buyerId, "string");
+        }
+
+        if (buyerExternalIdentifier !== undefined) {
+            localVarQueryParameters['buyer_external_identifier'] = ObjectSerializer.serialize(buyerExternalIdentifier, "string");
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        let authenticationPromise = Promise.resolve();
+        if (this.authentications.BearerAuth.accessToken) {
+            authenticationPromise = authenticationPromise.then(() => this.authentications.BearerAuth.applyToRequest(localVarRequestOptions));
+        }
+        authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
+
+        let interceptorPromise = authenticationPromise;
+        for (const interceptor of this.interceptors) {
+            interceptorPromise = interceptorPromise.then(() => interceptor(localVarRequestOptions));
+        }
+
+        return interceptorPromise.then(() => {
+            if (Object.keys(localVarFormParams).length) {
+                if (localVarUseFormData) {
+                    (<any>localVarRequestOptions).formData = localVarFormParams;
+                } else {
+                    localVarRequestOptions.form = localVarFormParams;
+                }
+            }
+            return new Promise<{ response: http.IncomingMessage; body: BillingDetails;  }>((resolve, reject) => {
+                localVarRequest(localVarRequestOptions, (error, response, body) => {
+                    if (error) {
+                        reject(error);
+                    } else {
+                        body = ObjectSerializer.deserialize(body, "BillingDetails");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                             resolve({ response: response, body: body });
                         } else {
@@ -681,6 +760,83 @@ export class BuyersApi {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "Buyer");
+                        if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                            resolve({ response: response, body: body });
+                        } else {
+                            reject(new HttpError(response, body, response.statusCode));
+                        }
+                    }
+                });
+            });
+        });
+    }
+    /**
+     * Updates the billing details of a buyer. Note that only one of either buyer\'s ID or external identifier may be passed as a query parameter, and not both.
+     * @summary Update buyer billing details
+     * @param buyerId Filters the results to only the items for which the &#x60;buyer&#x60; has an &#x60;id&#x60; that matches this value.
+     * @param buyerExternalIdentifier Filters the results to only the items for which the &#x60;buyer&#x60; has an &#x60;external_identifier&#x60; that matches this value.
+     * @param billingDetailsUpdateRequest 
+     */
+    public async updateBuyerBillingDetails (buyerId?: string, buyerExternalIdentifier?: string, billingDetailsUpdateRequest?: BillingDetailsUpdateRequest, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: BillingDetails;  }> {
+        const localVarPath = this.basePath + '/buyers/billing-details';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+        let localVarFormParams: any = {};
+
+        if (buyerId !== undefined) {
+            localVarQueryParameters['buyer_id'] = ObjectSerializer.serialize(buyerId, "string");
+        }
+
+        if (buyerExternalIdentifier !== undefined) {
+            localVarQueryParameters['buyer_external_identifier'] = ObjectSerializer.serialize(buyerExternalIdentifier, "string");
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'PUT',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(billingDetailsUpdateRequest, "BillingDetailsUpdateRequest")
+        };
+
+        let authenticationPromise = Promise.resolve();
+        if (this.authentications.BearerAuth.accessToken) {
+            authenticationPromise = authenticationPromise.then(() => this.authentications.BearerAuth.applyToRequest(localVarRequestOptions));
+        }
+        authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
+
+        let interceptorPromise = authenticationPromise;
+        for (const interceptor of this.interceptors) {
+            interceptorPromise = interceptorPromise.then(() => interceptor(localVarRequestOptions));
+        }
+
+        return interceptorPromise.then(() => {
+            if (Object.keys(localVarFormParams).length) {
+                if (localVarUseFormData) {
+                    (<any>localVarRequestOptions).formData = localVarFormParams;
+                } else {
+                    localVarRequestOptions.form = localVarFormParams;
+                }
+            }
+            return new Promise<{ response: http.IncomingMessage; body: BillingDetails;  }>((resolve, reject) => {
+                localVarRequest(localVarRequestOptions, (error, response, body) => {
+                    if (error) {
+                        reject(error);
+                    } else {
+                        body = ObjectSerializer.deserialize(body, "BillingDetails");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                             resolve({ response: response, body: body });
                         } else {

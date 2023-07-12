@@ -15,10 +15,11 @@ import localVarRequest from 'request';
 import http from 'http';
 
 /* tslint:disable:no-unused-locals */
+import { Error400BadRequest } from '../model/error400BadRequest';
+import { Error400IncorrectJson } from '../model/error400IncorrectJson';
 import { Error401Unauthorized } from '../model/error401Unauthorized';
 import { Error404NotFound } from '../model/error404NotFound';
 import { Error409DuplicateRecord } from '../model/error409DuplicateRecord';
-import { ErrorGeneric } from '../model/errorGeneric';
 import { MerchantAccount } from '../model/merchantAccount';
 import { MerchantAccountCreate } from '../model/merchantAccountCreate';
 import { MerchantAccountUpdate } from '../model/merchantAccountUpdate';

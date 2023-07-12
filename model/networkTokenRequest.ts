@@ -17,7 +17,7 @@ import { RequestFile } from './models';
 */
 export class NetworkTokenRequest {
     /**
-    * The CVV of the card. This can be `null` only if `merchant_initiated` is set to `true`.
+    * The 3 or 4 digit security code often found on the card. This often referred to as the CVV or CVD.  The security code can only be set if the stored payment method represents a card.
     */
     'securityCode'?: string;
     /**

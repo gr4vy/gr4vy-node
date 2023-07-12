@@ -15,14 +15,17 @@ import localVarRequest from 'request';
 import http from 'http';
 
 /* tslint:disable:no-unused-locals */
+import { CardRequest } from '../model/cardRequest';
+import { CheckoutSessionRequest } from '../model/checkoutSessionRequest';
+import { Error400BadRequest } from '../model/error400BadRequest';
+import { Error400IncorrectJson } from '../model/error400IncorrectJson';
 import { Error401Unauthorized } from '../model/error401Unauthorized';
 import { Error404NotFound } from '../model/error404NotFound';
 import { Error409DuplicateRecord } from '../model/error409DuplicateRecord';
-import { ErrorGeneric } from '../model/errorGeneric';
 import { PaymentMethod } from '../model/paymentMethod';
-import { PaymentMethodRequest } from '../model/paymentMethodRequest';
 import { PaymentMethods } from '../model/paymentMethods';
 import { PaymentMethodsTokenized } from '../model/paymentMethodsTokenized';
+import { RedirectRequest } from '../model/redirectRequest';
 
 import { ObjectSerializer, Authentication, VoidAuth, Interceptor } from '../model/models';
 import { HttpBasicAuth, HttpBearerAuth, ApiKeyAuth, OAuth } from '../model/models';
@@ -420,9 +423,9 @@ export class PaymentMethodsApi {
     /**
      * Stores and vaults a new payment method.  Vaulting a card only stores its information but doesn\'t validate it against any PSP, so ephemeral data like the security code, often referred to as the CVV or CVD, won\'t be used. In order to validate the card data, a CIT (Customer Initiated Transaction) must be done, even if it\'s a zero-value one. 
      * @summary New payment method
-     * @param paymentMethodRequest 
+     * @param cardRequestRedirectRequestCheckoutSessionRequest 
      */
-    public async newPaymentMethod (paymentMethodRequest?: PaymentMethodRequest, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: PaymentMethod;  }> {
+    public async newPaymentMethod (cardRequestRedirectRequestCheckoutSessionRequest?: CardRequest | RedirectRequest | CheckoutSessionRequest, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: PaymentMethod;  }> {
         const localVarPath = this.basePath + '/payment-methods';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
@@ -446,7 +449,7 @@ export class PaymentMethodsApi {
             uri: localVarPath,
             useQuerystring: this._useQuerystring,
             json: true,
-            body: ObjectSerializer.serialize(paymentMethodRequest, "PaymentMethodRequest")
+            body: ObjectSerializer.serialize(cardRequestRedirectRequestCheckoutSessionRequest, "CardRequest | RedirectRequest | CheckoutSessionRequest")
         };
 
         let authenticationPromise = Promise.resolve();

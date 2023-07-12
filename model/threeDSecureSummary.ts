@@ -11,7 +11,8 @@
  */
 
 import { RequestFile } from './models';
-import { ThreeDSecureDataV1V2 } from './threeDSecureDataV1V2';
+import { ThreeDSecureDataV1 } from './threeDSecureDataV1';
+import { ThreeDSecureDataV2 } from './threeDSecureDataV2';
 import { ThreeDSecureError } from './threeDSecureError';
 
 /**
@@ -34,7 +35,10 @@ export class ThreeDSecureSummary {
     * If the transaction had a 3DS error, information about it.
     */
     'errorData'?: ThreeDSecureError | null;
-    'responseData'?: ThreeDSecureDataV1V2;
+    /**
+    * The response for the 3DS authentication for this transaction.
+    */
+    'responseData'?: ThreeDSecureDataV1 | ThreeDSecureDataV2 | null;
 
     static discriminator: string | undefined = undefined;
 
@@ -62,7 +66,7 @@ export class ThreeDSecureSummary {
         {
             "name": "responseData",
             "baseName": "response_data",
-            "type": "ThreeDSecureDataV1V2"
+            "type": "ThreeDSecureDataV1 | ThreeDSecureDataV2"
         }    ];
 
     static getAttributeTypeMap() {

@@ -15,16 +15,21 @@ import localVarRequest from 'request';
 import http from 'http';
 
 /* tslint:disable:no-unused-locals */
+import { Actions } from '../model/actions';
+import { Error400BadRequest } from '../model/error400BadRequest';
+import { Error400IncorrectJson } from '../model/error400IncorrectJson';
 import { Error401Unauthorized } from '../model/error401Unauthorized';
 import { Error404NotFound } from '../model/error404NotFound';
+import { Error404PendingCreation } from '../model/error404PendingCreation';
 import { Error409DuplicateRecord } from '../model/error409DuplicateRecord';
-import { ErrorGeneric } from '../model/errorGeneric';
 import { Refund } from '../model/refund';
 import { Refunds } from '../model/refunds';
 import { Transaction } from '../model/transaction';
 import { TransactionCaptureRequest } from '../model/transactionCaptureRequest';
+import { TransactionHistoryEvents } from '../model/transactionHistoryEvents';
 import { TransactionRefundRequest } from '../model/transactionRefundRequest';
 import { TransactionRequest } from '../model/transactionRequest';
+import { TransactionStatusSummary } from '../model/transactionStatusSummary';
 import { Transactions } from '../model/transactions';
 
 import { ObjectSerializer, Authentication, VoidAuth, Interceptor } from '../model/models';
@@ -328,6 +333,222 @@ export class TransactionsApi {
         });
     }
     /**
+     * Gets actions for a given transaction.
+     * @summary List actions for transaction
+     * @param transactionId The ID for the transaction to get the information for.
+     */
+    public async getTransactionActions (transactionId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Actions;  }> {
+        const localVarPath = this.basePath + '/transactions/{transaction_id}/actions'
+            .replace('{' + 'transaction_id' + '}', encodeURIComponent(String(transactionId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'transactionId' is not null or undefined
+        if (transactionId === null || transactionId === undefined) {
+            throw new Error('Required parameter transactionId was null or undefined when calling getTransactionActions.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        let authenticationPromise = Promise.resolve();
+        if (this.authentications.BearerAuth.accessToken) {
+            authenticationPromise = authenticationPromise.then(() => this.authentications.BearerAuth.applyToRequest(localVarRequestOptions));
+        }
+        authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
+
+        let interceptorPromise = authenticationPromise;
+        for (const interceptor of this.interceptors) {
+            interceptorPromise = interceptorPromise.then(() => interceptor(localVarRequestOptions));
+        }
+
+        return interceptorPromise.then(() => {
+            if (Object.keys(localVarFormParams).length) {
+                if (localVarUseFormData) {
+                    (<any>localVarRequestOptions).formData = localVarFormParams;
+                } else {
+                    localVarRequestOptions.form = localVarFormParams;
+                }
+            }
+            return new Promise<{ response: http.IncomingMessage; body: Actions;  }>((resolve, reject) => {
+                localVarRequest(localVarRequestOptions, (error, response, body) => {
+                    if (error) {
+                        reject(error);
+                    } else {
+                        body = ObjectSerializer.deserialize(body, "Actions");
+                        if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                            resolve({ response: response, body: body });
+                        } else {
+                            reject(new HttpError(response, body, response.statusCode));
+                        }
+                    }
+                });
+            });
+        });
+    }
+    /**
+     * Get a list of events related to processing a transaction.  This is currently a new endpoint and only offers a limited amount of events. More events will be added soon.
+     * @summary List events for transaction
+     * @param transactionId The ID for the transaction to get the information for.
+     */
+    public async getTransactionEvents (transactionId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: TransactionHistoryEvents;  }> {
+        const localVarPath = this.basePath + '/transactions/{transaction_id}/events'
+            .replace('{' + 'transaction_id' + '}', encodeURIComponent(String(transactionId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'transactionId' is not null or undefined
+        if (transactionId === null || transactionId === undefined) {
+            throw new Error('Required parameter transactionId was null or undefined when calling getTransactionEvents.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        let authenticationPromise = Promise.resolve();
+        if (this.authentications.BearerAuth.accessToken) {
+            authenticationPromise = authenticationPromise.then(() => this.authentications.BearerAuth.applyToRequest(localVarRequestOptions));
+        }
+        authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
+
+        let interceptorPromise = authenticationPromise;
+        for (const interceptor of this.interceptors) {
+            interceptorPromise = interceptorPromise.then(() => interceptor(localVarRequestOptions));
+        }
+
+        return interceptorPromise.then(() => {
+            if (Object.keys(localVarFormParams).length) {
+                if (localVarUseFormData) {
+                    (<any>localVarRequestOptions).formData = localVarFormParams;
+                } else {
+                    localVarRequestOptions.form = localVarFormParams;
+                }
+            }
+            return new Promise<{ response: http.IncomingMessage; body: TransactionHistoryEvents;  }>((resolve, reject) => {
+                localVarRequest(localVarRequestOptions, (error, response, body) => {
+                    if (error) {
+                        reject(error);
+                    } else {
+                        body = ObjectSerializer.deserialize(body, "TransactionHistoryEvents");
+                        if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                            resolve({ response: response, body: body });
+                        } else {
+                            reject(new HttpError(response, body, response.statusCode));
+                        }
+                    }
+                });
+            });
+        });
+    }
+    /**
+     * Gets summary for a given transaction.
+     * @summary Get transaction summary
+     * @param transactionId The ID for the transaction to get the information for.
+     */
+    public async getTransactionSummary (transactionId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: TransactionStatusSummary;  }> {
+        const localVarPath = this.basePath + '/transactions/{transaction_id}/summary'
+            .replace('{' + 'transaction_id' + '}', encodeURIComponent(String(transactionId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'transactionId' is not null or undefined
+        if (transactionId === null || transactionId === undefined) {
+            throw new Error('Required parameter transactionId was null or undefined when calling getTransactionSummary.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        let authenticationPromise = Promise.resolve();
+        if (this.authentications.BearerAuth.accessToken) {
+            authenticationPromise = authenticationPromise.then(() => this.authentications.BearerAuth.applyToRequest(localVarRequestOptions));
+        }
+        authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
+
+        let interceptorPromise = authenticationPromise;
+        for (const interceptor of this.interceptors) {
+            interceptorPromise = interceptorPromise.then(() => interceptor(localVarRequestOptions));
+        }
+
+        return interceptorPromise.then(() => {
+            if (Object.keys(localVarFormParams).length) {
+                if (localVarUseFormData) {
+                    (<any>localVarRequestOptions).formData = localVarFormParams;
+                } else {
+                    localVarRequestOptions.form = localVarFormParams;
+                }
+            }
+            return new Promise<{ response: http.IncomingMessage; body: TransactionStatusSummary;  }>((resolve, reject) => {
+                localVarRequest(localVarRequestOptions, (error, response, body) => {
+                    if (error) {
+                        reject(error);
+                    } else {
+                        body = ObjectSerializer.deserialize(body, "TransactionStatusSummary");
+                        if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                            resolve({ response: response, body: body });
+                        } else {
+                            reject(new HttpError(response, body, response.statusCode));
+                        }
+                    }
+                });
+            });
+        });
+    }
+    /**
      * Lists all refunds associated with a certain transaction.
      * @summary List refunds
      * @param transactionId The ID for the transaction to get the information for.
@@ -419,11 +640,13 @@ export class TransactionsApi {
      * @param amountEq Filters for transactions that have an &#x60;amount&#x60; that is equal to the provided &#x60;amount_eq&#x60; value.
      * @param amountGte Filters for transactions that have an &#x60;amount&#x60; that is greater than or equal to the &#x60;amount_gte&#x60; value.
      * @param amountLte Filters for transactions that have an &#x60;amount&#x60; that is less than or equal to the &#x60;amount_lte&#x60; value.
+     * @param checkoutSessionId Filters for transactions that are linked to the unique ID for a Checkout Session.
      * @param createdAtGte Filters the results to only transactions created after this ISO date-time string. The time zone must be included.  Ensure that the date-time string is URL encoded, e.g. &#x60;2022-01-01T12:00:00+08:00&#x60; must be encoded as &#x60;2022-01-01T12%3A00%3A00%2B08%3A00&#x60;.
      * @param createdAtLte Filters the results to only transactions created before this ISO date-time string. The time zone must be included.  Ensure that the date-time string is URL encoded, e.g. &#x60;2022-01-01T12:00:00+08:00&#x60; must be encoded as &#x60;2022-01-01T12%3A00%3A00%2B08%3A00&#x60;.
      * @param currency Filters for transactions that have matching &#x60;currency&#x60; values. The &#x60;currency&#x60; values provided must be formatted as 3-letter ISO currency code.
      * @param externalIdentifier Filters the results to only the items for which the &#x60;external_identifier&#x60; matches this value.
      * @param hasRefunds When set to &#x60;true&#x60;, filter for transactions that have at least one completed refund associated with it. When set to &#x60;false&#x60;, filter for transactions that have no completed refunds.
+     * @param pendingReview When set to &#x60;true&#x60;, filter for transactions that have a manual review pending. When set to &#x60;false&#x60;, filter for transactions that don\&#39;t have a manual review pending.
      * @param id Filters for the transaction that has a matching &#x60;id&#x60; value.
      * @param metadata Filters for transactions where their &#x60;metadata&#x60; values contain all of the provided &#x60;metadata&#x60; keys. The value sent for &#x60;metadata&#x60; must be formatted as a JSON string, and all keys and values must be strings. This value should also be URL encoded.  Duplicate keys are not supported. If a key is duplicated, only the last appearing value will be used.
      * @param method Filters the results to only the items for which the &#x60;method&#x60; has been set to this value.
@@ -436,7 +659,7 @@ export class TransactionsApi {
      * @param updatedAtGte Filters the results to only transactions last updated after this ISO date-time string. The time zone must be included.  Ensure that the date-time string is URL encoded, e.g. &#x60;2022-01-01T12:00:00+08:00&#x60; must be encoded as &#x60;2022-01-01T12%3A00%3A00%2B08%3A00&#x60;.
      * @param updatedAtLte Filters the results to only transactions last updated before this ISO date-time string. The time zone must be included.  Ensure that the date-time string is URL encoded, e.g. &#x60;2022-01-01T12:00:00+08:00&#x60; must be encoded as &#x60;2022-01-01T12%3A00%3A00%2B08%3A00&#x60;.
      */
-    public async listTransactions (buyerExternalIdentifier?: string, buyerId?: string, cursor?: string, limit?: number, amountEq?: number, amountGte?: number, amountLte?: number, createdAtGte?: Date, createdAtLte?: Date, currency?: Array<string>, externalIdentifier?: string, hasRefunds?: boolean, id?: string, metadata?: Array<string>, method?: Array<'afterpay' | 'applepay' | 'banked' | 'bitpay' | 'boleto' | 'card' | 'clearpay' | 'dana' | 'fortumo' | 'gcash' | 'gocardless' | 'googlepay' | 'grabpay' | 'klarna' | 'ovo' | 'paymaya' | 'paypal' | 'pix' | 'rabbitlinepay' | 'scalapay' | 'shopeepay' | 'stripedd' | 'truemoney' | 'trustly' | 'zippay'>, paymentMethodId?: string, paymentMethodLabel?: string, paymentServiceId?: Array<string>, paymentServiceTransactionId?: string, search?: string, status?: Array<'processing' | 'buyer_approval_pending' | 'authorization_succeeded' | 'authorization_failed' | 'authorization_declined' | 'capture_pending' | 'capture_succeeded' | 'authorization_void_pending' | 'authorization_voided'>, updatedAtGte?: Date, updatedAtLte?: Date, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Transactions;  }> {
+    public async listTransactions (buyerExternalIdentifier?: string, buyerId?: string, cursor?: string, limit?: number, amountEq?: number, amountGte?: number, amountLte?: number, checkoutSessionId?: string, createdAtGte?: Date, createdAtLte?: Date, currency?: Array<string>, externalIdentifier?: string, hasRefunds?: boolean, pendingReview?: boolean, id?: string, metadata?: Array<string>, method?: Array<'afterpay' | 'applepay' | 'banked' | 'bitpay' | 'boleto' | 'card' | 'clearpay' | 'dana' | 'fortumo' | 'gcash' | 'gocardless' | 'googlepay' | 'grabpay' | 'klarna' | 'ovo' | 'paymaya' | 'paypal' | 'pix' | 'rabbitlinepay' | 'scalapay' | 'shopeepay' | 'stripedd' | 'truemoney' | 'trustly' | 'zippay'>, paymentMethodId?: string, paymentMethodLabel?: string, paymentServiceId?: Array<string>, paymentServiceTransactionId?: string, search?: string, status?: Array<'processing' | 'buyer_approval_pending' | 'authorization_succeeded' | 'authorization_failed' | 'authorization_declined' | 'capture_pending' | 'capture_succeeded' | 'authorization_void_pending' | 'authorization_voided'>, updatedAtGte?: Date, updatedAtLte?: Date, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Transactions;  }> {
         const localVarPath = this.basePath + '/transactions';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
@@ -477,6 +700,10 @@ export class TransactionsApi {
             localVarQueryParameters['amount_lte'] = ObjectSerializer.serialize(amountLte, "number");
         }
 
+        if (checkoutSessionId !== undefined) {
+            localVarQueryParameters['checkout_session_id'] = ObjectSerializer.serialize(checkoutSessionId, "string");
+        }
+
         if (createdAtGte !== undefined) {
             localVarQueryParameters['created_at_gte'] = ObjectSerializer.serialize(createdAtGte, "Date");
         }
@@ -495,6 +722,10 @@ export class TransactionsApi {
 
         if (hasRefunds !== undefined) {
             localVarQueryParameters['has_refunds'] = ObjectSerializer.serialize(hasRefunds, "boolean");
+        }
+
+        if (pendingReview !== undefined) {
+            localVarQueryParameters['pending_review'] = ObjectSerializer.serialize(pendingReview, "boolean");
         }
 
         if (id !== undefined) {
@@ -733,7 +964,7 @@ export class TransactionsApi {
         });
     }
     /**
-     * Voids a transaction.  If the transaction was not yet successfully authorized, or was already captured, the void will not be processed. Captured transactions can be refunded instead.  Voiding zero-amount authorized transactions is not supported.
+     * Voids a transaction.  If the transaction was not yet successfully authorized, or was already captured, the void will not be processed. Captured transactions can be refunded instead.  Voiding zero-amount authorized transactions is not supported.  Once voided, the status of the transaction will be either `authorization_voided`, `authorization_void_pending`, or if the void fails the original status will remain.
      * @summary Void transaction
      * @param transactionId The ID for the transaction to get the information for.
      */
