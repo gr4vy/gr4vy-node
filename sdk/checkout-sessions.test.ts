@@ -25,15 +25,11 @@ jest.setTimeout(30000)
 
 describe('#newCheckoutSession', () => {
   test('it should create a checkout session', async () => {
-    const checkoutSessionRequest = new CheckoutSessionRequest()
-
-    const session = await client
-      .newCheckoutSession(checkoutSessionRequest)
-      .catch((error) => {
-        console.dir(error.response.body) // the parsed JSON of the error
-        console.dir(error.response.statusCode) // the status code of the error
-        throw new Error('an error occurred while creating the session')
-      })
+    const session = await client.newCheckoutSession().catch((error) => {
+      console.dir(error.response.body) // the parsed JSON of the error
+      console.dir(error.response.statusCode) // the status code of the error
+      throw new Error('an error occurred while creating the session')
+    })
 
     expect(session).toBeDefined()
     expect(session.body).toBeDefined()

@@ -29,7 +29,7 @@ describe('#listPaymentOptions', () => {
 
     expect(paymentOptions).toBeDefined()
     expect(paymentOptions.body).toBeDefined()
-    expect(paymentOptions.body.items.length).toBeGreaterThan(0)
+    expect(paymentOptions.body.items?.length).toBeGreaterThan(0)
   })
 })
 
@@ -51,6 +51,6 @@ describe('#postListPaymentOptions', () => {
 
     expect(paymentOptions).toBeDefined()
     expect(paymentOptions.body).toBeDefined()
-    expect(paymentOptions.body.items.length).toBeGreaterThan(0)
+    expect(paymentOptions.body.items?.length).toBeGreaterThan(0)
   })
 })

@@ -48,7 +48,7 @@ describe('#listBuyers', () => {
     const buyers = await client.listBuyers()
     expect(buyers).toBeDefined()
     expect(buyers.body.items).toBeDefined()
-    expect(buyers.body.items.length).toBeGreaterThan(0)
+    expect(buyers.body.items?.length).toBeGreaterThan(0)
   })
 })
 

@@ -38,7 +38,6 @@ describe('#newPaymentMethod', () => {
     paymentMethodRequest.method = 'card'
     paymentMethodRequest.number = '4111111111111111'
     paymentMethodRequest.expirationDate = '12/32'
-    paymentMethodRequest.securityCode = '123'
 
     const paymentMethod = await client
       .newPaymentMethod(paymentMethodRequest)
@@ -61,7 +60,7 @@ describe('#listPaymentMethods', () => {
     const paymentMethods = await client.listPaymentMethods()
     expect(paymentMethods).toBeDefined()
     expect(paymentMethods.body.items).toBeDefined()
-    expect(paymentMethods.body.items.length).toBeGreaterThan(0)
+    expect(paymentMethods.body.items?.length).toBeGreaterThan(0)
   })
 })
 

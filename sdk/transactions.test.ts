@@ -30,7 +30,8 @@ transactionRequest.amount = AMOUNT
 transactionRequest.currency = 'GBP'
 transactionRequest.metadata = { source: 'node_sdk' }
 transactionRequest.paymentMethod = new TransactionPaymentMethodRequest()
-transactionRequest.paymentMethod.method = 'card'
+transactionRequest.paymentMethod.method =
+  TransactionPaymentMethodRequest.MethodEnum.Card
 transactionRequest.paymentMethod.number = '4111111111111111'
 transactionRequest.paymentMethod.expirationDate = '11/25'
 transactionRequest.paymentMethod.securityCode = '123'
@@ -70,7 +71,7 @@ describe('#listTransactions', () => {
     const transactions = await client.listTransactions()
     expect(transactions).toBeDefined()
     expect(transactions.body.items).toBeDefined()
-    expect(transactions.body.items.length).toBeGreaterThan(0)
+    expect(transactions.body.items?.length).toBeGreaterThan(0)
   })
 })
 

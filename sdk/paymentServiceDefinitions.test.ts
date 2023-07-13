@@ -30,7 +30,9 @@ describe('#listPaymentServiceDefinitions', () => {
 
     expect(psd).toBeDefined()
     expect(psd.body).toBeDefined()
-    paymentServiceDefinitionId = psd.body.items[0].id
+    if (psd.body.items?.length) {
+      paymentServiceDefinitionId = psd.body.items[0].id
+    }
     expect(paymentServiceDefinitionId.length).toBeGreaterThan(0)
   })
 })
