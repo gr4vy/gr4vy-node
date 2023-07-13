@@ -36,5 +36,6 @@ jobs:
       - name: Run tests
         env:
           PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
+          GR4VY_ID: ${{ secrets.GR4VY_ID }}
         run: |
           yarn test

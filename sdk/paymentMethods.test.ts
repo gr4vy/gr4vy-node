@@ -1,21 +1,7 @@
-import fs from 'fs'
-import path from 'path'
 import { PaymentMethodRequest } from '../model/paymentMethodRequest'
-import Client from './client'
+import { getTestClient } from './helpers'
 
-let key
-if (process.env.PRIVATE_KEY) {
-  key = process.env.PRIVATE_KEY
-} else {
-  const my_path = path.resolve(__dirname, './private_key.pem')
-  key = String(fs.readFileSync(my_path))
-}
-
-const client = new Client({
-  gr4vyId: 'spider',
-  environment: 'sandbox',
-  privateKey: key,
-})
+const client = getTestClient()
 
 let paymentMethodId
 
@@ -23,17 +9,6 @@ jest.setTimeout(30000)
 
 describe('#newPaymentMethod', () => {
   test('it should create a payment method', async () => {
-    //method
-    //number
-    //expirationDate
-    //securityCode
-    //externalIdentifier
-    //buyerId
-    //buyerExternalIdentifier
-    //redirectUrl
-    //currency
-    //country
-    //environment
     const paymentMethodRequest = new PaymentMethodRequest()
     paymentMethodRequest.method = 'card'
     paymentMethodRequest.number = '4111111111111111'
@@ -85,5 +60,3 @@ describe('#deletePaymentMethod', () => {
     expect(paymentMethod.response.statusCode).toEqual(204)
   })
 })
-
-//listBuyerPaymentMethods: typeof PaymentMethodsApi.prototype.listBuyerPaymentMethods

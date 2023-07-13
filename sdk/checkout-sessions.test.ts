@@ -1,23 +1,8 @@
-import fs from 'fs'
-import path from 'path'
 import { CardRequest } from '../model/cardRequest'
-import { CheckoutSessionRequest } from '../model/checkoutSessionRequest'
 import { CheckoutSessionSecureFieldsUpdate } from '../model/checkoutSessionSecureFieldsUpdate'
-import Client from './client'
+import { getTestClient } from './helpers'
 
-let key
-if (process.env.PRIVATE_KEY) {
-  key = process.env.PRIVATE_KEY
-} else {
-  const my_path = path.resolve(__dirname, './private_key.pem')
-  key = String(fs.readFileSync(my_path))
-}
-
-const client = new Client({
-  gr4vyId: 'spider',
-  environment: 'sandbox',
-  privateKey: key,
-})
+const client = getTestClient()
 
 let sessionId
 
