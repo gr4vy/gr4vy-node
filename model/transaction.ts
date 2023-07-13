@@ -36,7 +36,7 @@ export class Transaction {
     */
     'merchantAccountId'?: string;
     /**
-    * The status of the transaction. The status may change over time as asynchronous processing events occur.
+    * The status of the transaction. The status may change over time as asynchronous processing events occur.  Please note that the possible statuses returned will depend on the operation performed. For example, a captured transaction will never move to a `authorization_voided` status.
     */
     'status'?: Transaction.StatusEnum;
     /**
@@ -87,6 +87,10 @@ export class Transaction {
     * The payment service used for this transaction.
     */
     'paymentService'?: PaymentServiceSnapshot;
+    /**
+    * Whether a manual review is pending.
+    */
+    'pendingReview'?: boolean;
     /**
     * Indicates whether the transaction was initiated by the merchant (true) or customer (false).
     */
@@ -150,6 +154,10 @@ export class Transaction {
     * The date and time when this transaction was voided in the payment service.  Don\'t use this field to determine whether the transaction was voided. A `null` value doesn\'t necessarily imply that the transaction wasn\'t voided, it can mean that the payment service doesn\'t provide this value, that it didn\'t provide it at the time the transaction was voided or that the transaction was voided before the introduction of this field.
     */
     'voidedAt'?: Date | null;
+    /**
+    * The identifier for the checkout session this transaction is associated with.
+    */
+    'checkoutSessionId'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -233,6 +241,11 @@ export class Transaction {
             "name": "paymentService",
             "baseName": "payment_service",
             "type": "PaymentServiceSnapshot"
+        },
+        {
+            "name": "pendingReview",
+            "baseName": "pending_review",
+            "type": "boolean"
         },
         {
             "name": "merchantInitiated",
@@ -323,6 +336,11 @@ export class Transaction {
             "name": "voidedAt",
             "baseName": "voided_at",
             "type": "Date"
+        },
+        {
+            "name": "checkoutSessionId",
+            "baseName": "checkout_session_id",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {

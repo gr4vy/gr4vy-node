@@ -52,6 +52,14 @@ export class TransactionPaymentMethodRequest {
     * An identifier for a previously vaulted payment method. This id can represent any type of payment method.
     */
     'id'?: string;
+    /**
+    * The ISO-4217 currency code to store this payment method for. This is used to select the payment service to use.  This only applies to `redirect` mode payment methods like `gocardless`.
+    */
+    'currency'?: string;
+    /**
+    * The 2-letter ISO code of the country to store this payment method for. This is used to select the payment service to use.  This only applies to `redirect` mode payment methods like `gocardless`.
+    */
+    'country'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -99,6 +107,16 @@ export class TransactionPaymentMethodRequest {
         {
             "name": "id",
             "baseName": "id",
+            "type": "string"
+        },
+        {
+            "name": "currency",
+            "baseName": "currency",
+            "type": "string"
+        },
+        {
+            "name": "country",
+            "baseName": "country",
             "type": "string"
         }    ];
 

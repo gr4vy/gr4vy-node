@@ -30,6 +30,8 @@ export * from './tokensApi';
 import { TokensApi } from './tokensApi';
 export * from './transactionsApi';
 import { TransactionsApi } from './transactionsApi';
+export * from './vaultForwardApi';
+import { VaultForwardApi } from './vaultForwardApi';
 import * as http from 'http';
 
 export class HttpError extends Error {
@@ -41,4 +43,4 @@ export class HttpError extends Error {
 
 export { RequestFile } from '../model/models';
 
-export const APIS = [APILogsApi, AuditLogsApi, BuyersApi, CardSchemeDefinitionsApi, CheckoutSessionsApi, DigitalWalletsApi, MerchantAccountsApi, PaymentMethodDefinitionsApi, PaymentMethodsApi, PaymentOptionsApi, PaymentServiceDefinitionsApi, PaymentServicesApi, ReportsApi, RolesApi, TokensApi, TransactionsApi];
+export const APIS = [APILogsApi, AuditLogsApi, BuyersApi, CardSchemeDefinitionsApi, CheckoutSessionsApi, DigitalWalletsApi, MerchantAccountsApi, PaymentMethodDefinitionsApi, PaymentMethodsApi, PaymentOptionsApi, PaymentServiceDefinitionsApi, PaymentServicesApi, ReportsApi, RolesApi, TokensApi, TransactionsApi, VaultForwardApi];

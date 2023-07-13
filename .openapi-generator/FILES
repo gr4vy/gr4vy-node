@@ -15,6 +15,7 @@ api/reportsApi.ts
 api/rolesApi.ts
 api/tokensApi.ts
 api/transactionsApi.ts
+api/vaultForwardApi.ts
 model/aPIKeyPairCreate.ts
 model/aPIKeyPairUpdate.ts
 model/address.ts
@@ -48,6 +49,7 @@ model/cardSchemeDefinition.ts
 model/cardSchemeDefinitions.ts
 model/cartItem.ts
 model/checkoutSession.ts
+model/checkoutSessionFieldsPaymentMethod.ts
 model/checkoutSessionRequest.ts
 model/checkoutSessionSecureFieldsUpdate.ts
 model/connection.ts

@@ -1,22 +1,8 @@
-import fs from 'fs'
-import path from 'path'
 import { BuyerRequest } from '../model/buyerRequest'
 import { BuyerUpdate } from '../model/buyerUpdate'
-import Client from './client'
+import { getTestClient } from './helpers'
 
-let key
-if (process.env.PRIVATE_KEY) {
-  key = process.env.PRIVATE_KEY
-} else {
-  const my_path = path.resolve(__dirname, './private_key.pem')
-  key = String(fs.readFileSync(my_path))
-}
-
-const client = new Client({
-  gr4vyId: 'spider',
-  environment: 'sandbox',
-  privateKey: key,
-})
+const client = getTestClient()
 
 const DISPLAY_NAME = 'Tester T.'
 let buyerId
@@ -48,7 +34,7 @@ describe('#listBuyers', () => {
     const buyers = await client.listBuyers()
     expect(buyers).toBeDefined()
     expect(buyers.body.items).toBeDefined()
-    expect(buyers.body.items.length).toBeGreaterThan(0)
+    expect(buyers.body.items?.length).toBeGreaterThan(0)
   })
 })
 

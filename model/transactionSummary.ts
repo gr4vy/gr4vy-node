@@ -83,6 +83,10 @@ export class TransactionSummary {
     * The payment service used for this transaction.
     */
     'paymentService'?: PaymentServiceSnapshot;
+    /**
+    * Whether a manual review is pending.
+    */
+    'pendingReview'?: boolean;
     'method'?: TransactionSummary.MethodEnum;
     /**
     * This is the response code received from the payment service. This can be set to any value and is not standardized across different payment services.
@@ -92,6 +96,10 @@ export class TransactionSummary {
     * This is the response description received from the payment service. This can be set to any value and is not standardized across different payment services.
     */
     'rawResponseDescription'?: string | null;
+    /**
+    * The identifier for the checkout session this transaction is associated with.
+    */
+    'checkoutSessionId'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -177,6 +185,11 @@ export class TransactionSummary {
             "type": "PaymentServiceSnapshot"
         },
         {
+            "name": "pendingReview",
+            "baseName": "pending_review",
+            "type": "boolean"
+        },
+        {
             "name": "method",
             "baseName": "method",
             "type": "TransactionSummary.MethodEnum"
@@ -189,6 +202,11 @@ export class TransactionSummary {
         {
             "name": "rawResponseDescription",
             "baseName": "raw_response_description",
+            "type": "string"
+        },
+        {
+            "name": "checkoutSessionId",
+            "baseName": "checkout_session_id",
             "type": "string"
         }    ];
 
