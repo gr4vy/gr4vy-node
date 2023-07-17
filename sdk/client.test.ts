@@ -57,6 +57,7 @@ describe('#constructor', () => {
     expect(() => {
       new Client({
         privateKey,
+        baseUrl: '',
       })
     }).toThrowError()
   })
@@ -112,7 +113,7 @@ describe('.getEmbedTokenWithCheckoutSession()', () => {
     expect(decoded.payload.scopes).toEqual(['embed'])
     expect(decoded.payload.embed).toEqual(snakecaseKeys(embedParams))
 
-    expect(checkoutSession.id).toBe(checkoutSessionId)
+    expect(checkoutSession?.id).toBe(checkoutSessionId)
   })
 })
 

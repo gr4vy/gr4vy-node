@@ -1,21 +1,7 @@
-import fs from 'fs'
-import path from 'path'
 import { PaymentOptionsRequest } from '../model/paymentOptionsRequest'
-import Client from './client'
+import { getTestClient } from './helpers'
 
-let key
-if (process.env.PRIVATE_KEY) {
-  key = process.env.PRIVATE_KEY
-} else {
-  const my_path = path.resolve(__dirname, './private_key.pem')
-  key = String(fs.readFileSync(my_path))
-}
-
-const client = new Client({
-  gr4vyId: 'spider',
-  environment: 'sandbox',
-  privateKey: key,
-})
+const client = getTestClient()
 
 jest.setTimeout(30000)
 
@@ -29,7 +15,7 @@ describe('#listPaymentOptions', () => {
 
     expect(paymentOptions).toBeDefined()
     expect(paymentOptions.body).toBeDefined()
-    expect(paymentOptions.body.items.length).toBeGreaterThan(0)
+    expect(paymentOptions.body.items?.length).toBeGreaterThan(0)
   })
 })
 
@@ -51,6 +37,6 @@ describe('#postListPaymentOptions', () => {
 
     expect(paymentOptions).toBeDefined()
     expect(paymentOptions.body).toBeDefined()
-    expect(paymentOptions.body.items.length).toBeGreaterThan(0)
+    expect(paymentOptions.body.items?.length).toBeGreaterThan(0)
   })
 })

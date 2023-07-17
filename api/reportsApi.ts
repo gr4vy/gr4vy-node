@@ -333,8 +333,9 @@ export class ReportsApi {
      * @param createdAtLte Filters the results to report executions created before this ISO date-time string. The time zone must be included.  Ensure that the date-time string is URL encoded, e.g. &#x60;2022-01-01T12:00:00+08:00&#x60; must be encoded as &#x60;2022-01-01T12%3A00%3A00%2B08%3A00&#x60;.
      * @param reportName Filters for executions of reports that have a matching &#x60;name&#x60; value. This filter is case-insensitive.  Ensure that when necessary, the value you pass for this filter is URL encoded.
      * @param status Filters for report executions that have a matching &#x60;status&#x60; value.  This filter accepts multiple values.
+     * @param creatorId Filters the results to only match the reports that their &#x60;creator_id&#x60; matches with any of the provided creator IDs.
      */
-    public async listAllReportExecutions (cursor?: string, limit?: number, createdAtGte?: Date, createdAtLte?: Date, reportName?: string, status?: Array<'dispatched' | 'failed' | 'pending' | 'processing' | 'succeeded'>, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: ReportExecutions;  }> {
+    public async listAllReportExecutions (cursor?: string, limit?: number, createdAtGte?: Date, createdAtLte?: Date, reportName?: string, status?: Array<'dispatched' | 'failed' | 'pending' | 'processing' | 'succeeded'>, creatorId?: Array<string>, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: ReportExecutions;  }> {
         const localVarPath = this.basePath + '/report-executions';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
@@ -369,6 +370,10 @@ export class ReportsApi {
 
         if (status !== undefined) {
             localVarQueryParameters['status'] = ObjectSerializer.serialize(status, "Array<'dispatched' | 'failed' | 'pending' | 'processing' | 'succeeded'>");
+        }
+
+        if (creatorId !== undefined) {
+            localVarQueryParameters['creator_id'] = ObjectSerializer.serialize(creatorId, "Array<string>");
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);

@@ -231,9 +231,10 @@ class Client {
    *
    * @param embed An object that's added to the `embed` value in the JWT claim
    */
-  public async getEmbedTokenWithCheckoutSession(
-    embed: EmbedParams
-  ): Promise<Record<string, string | CheckoutSession>> {
+  public async getEmbedTokenWithCheckoutSession(embed: EmbedParams): Promise<{
+    token: string
+    checkoutSession: CheckoutSession
+  }> {
     const { body: checkoutSession } = await this.newCheckoutSession()
     const token = await this.getEmbedToken(embed, checkoutSession.id)
     return { checkoutSession, token }

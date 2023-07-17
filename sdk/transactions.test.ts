@@ -1,24 +1,10 @@
-import fs from 'fs'
-import path from 'path'
 import { TransactionCaptureRequest } from '../model/transactionCaptureRequest'
 import { TransactionPaymentMethodRequest } from '../model/transactionPaymentMethodRequest'
 import { TransactionRefundRequest } from '../model/transactionRefundRequest'
 import { TransactionRequest } from '../model/transactionRequest'
-import Client from './client'
+import { getTestClient } from './helpers'
 
-let key
-if (process.env.PRIVATE_KEY) {
-  key = process.env.PRIVATE_KEY
-} else {
-  const my_path = path.resolve(__dirname, './private_key.pem')
-  key = String(fs.readFileSync(my_path))
-}
-
-const client = new Client({
-  gr4vyId: 'spider',
-  environment: 'sandbox',
-  privateKey: key,
-})
+const client = getTestClient()
 
 const AMOUNT = 1299
 let transactionId
@@ -27,10 +13,11 @@ jest.setTimeout(30000)
 
 const transactionRequest = new TransactionRequest()
 transactionRequest.amount = AMOUNT
-transactionRequest.currency = 'GBP'
+transactionRequest.currency = 'USD'
 transactionRequest.metadata = { source: 'node_sdk' }
 transactionRequest.paymentMethod = new TransactionPaymentMethodRequest()
-transactionRequest.paymentMethod.method = 'card'
+transactionRequest.paymentMethod.method =
+  TransactionPaymentMethodRequest.MethodEnum.Card
 transactionRequest.paymentMethod.number = '4111111111111111'
 transactionRequest.paymentMethod.expirationDate = '11/25'
 transactionRequest.paymentMethod.securityCode = '123'
@@ -70,7 +57,7 @@ describe('#listTransactions', () => {
     const transactions = await client.listTransactions()
     expect(transactions).toBeDefined()
     expect(transactions.body.items).toBeDefined()
-    expect(transactions.body.items.length).toBeGreaterThan(0)
+    expect(transactions.body.items?.length).toBeGreaterThan(0)
   })
 })
 

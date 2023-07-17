@@ -25,6 +25,10 @@ export class APIKeyPairCreate {
     */
     'algorithm'?: APIKeyPairCreate.AlgorithmEnum;
     /**
+    * A list of role IDs that will be assigned to the API Key Pair being created. Only the \"Administrator\" and \"Integration\" roles are supported.
+    */
+    'roleIds'?: Array<string>;
+    /**
     * The optional ID of the merchant account this API Key Pair should be assigned to. Leave this unset to create an API key that works across all merchant accounts.
     */
     'merchantAccountId'?: string | null;
@@ -41,6 +45,11 @@ export class APIKeyPairCreate {
             "name": "algorithm",
             "baseName": "algorithm",
             "type": "APIKeyPairCreate.AlgorithmEnum"
+        },
+        {
+            "name": "roleIds",
+            "baseName": "role_ids",
+            "type": "Array<string>"
         },
         {
             "name": "merchantAccountId",

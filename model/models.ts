@@ -33,6 +33,7 @@ export * from './cardSchemeDefinition';
 export * from './cardSchemeDefinitions';
 export * from './cartItem';
 export * from './checkoutSession';
+export * from './checkoutSessionFieldsPaymentMethod';
 export * from './checkoutSessionRequest';
 export * from './checkoutSessionSecureFieldsUpdate';
 export * from './connection';
@@ -206,6 +207,7 @@ import { CardSchemeDefinition } from './cardSchemeDefinition';
 import { CardSchemeDefinitions } from './cardSchemeDefinitions';
 import { CartItem } from './cartItem';
 import { CheckoutSession } from './checkoutSession';
+import { CheckoutSessionFieldsPaymentMethod } from './checkoutSessionFieldsPaymentMethod';
 import { CheckoutSessionRequest } from './checkoutSessionRequest';
 import { CheckoutSessionSecureFieldsUpdate } from './checkoutSessionSecureFieldsUpdate';
 import { Connection } from './connection';
@@ -366,6 +368,7 @@ let enumsMap: {[index: string]: any} = {
         "CardSchemeDefinition.TypeEnum": CardSchemeDefinition.TypeEnum,
         "CartItem.ProductTypeEnum": CartItem.ProductTypeEnum,
         "CheckoutSession.TypeEnum": CheckoutSession.TypeEnum,
+        "CheckoutSessionFieldsPaymentMethod.MethodEnum": CheckoutSessionFieldsPaymentMethod.MethodEnum,
         "CheckoutSessionRequest.MethodEnum": CheckoutSessionRequest.MethodEnum,
         "ConnectionDefinition.GroupEnum": ConnectionDefinition.GroupEnum,
         "ConnectionDefinition.CategoryEnum": ConnectionDefinition.CategoryEnum,
@@ -436,6 +439,7 @@ let enumsMap: {[index: string]: any} = {
         "Refund.StatusEnum": Refund.StatusEnum,
         "Report.ScheduleEnum": Report.ScheduleEnum,
         "Report.TypeEnum": Report.TypeEnum,
+        "Report.CreatorTypeEnum": Report.CreatorTypeEnum,
         "ReportCreate.ScheduleEnum": ReportCreate.ScheduleEnum,
         "ReportExecution.TypeEnum": ReportExecution.TypeEnum,
         "ReportExecution.StatusEnum": ReportExecution.StatusEnum,
@@ -443,6 +447,7 @@ let enumsMap: {[index: string]: any} = {
         "ReportExecutionSummary.StatusEnum": ReportExecutionSummary.StatusEnum,
         "ReportSpec.ModelEnum": ReportSpec.ModelEnum,
         "ReportSummary.TypeEnum": ReportSummary.TypeEnum,
+        "ReportSummary.CreatorTypeEnum": ReportSummary.CreatorTypeEnum,
         "Role.TypeEnum": Role.TypeEnum,
         "RoleAssignment.TypeEnum": RoleAssignment.TypeEnum,
         "RoleAssignmentAssignee.TypeEnum": RoleAssignmentAssignee.TypeEnum,
@@ -511,6 +516,7 @@ let typeMap: {[index: string]: any} = {
     "CardSchemeDefinitions": CardSchemeDefinitions,
     "CartItem": CartItem,
     "CheckoutSession": CheckoutSession,
+    "CheckoutSessionFieldsPaymentMethod": CheckoutSessionFieldsPaymentMethod,
     "CheckoutSessionRequest": CheckoutSessionRequest,
     "CheckoutSessionSecureFieldsUpdate": CheckoutSessionSecureFieldsUpdate,
     "Connection": Connection,

@@ -1,22 +1,8 @@
-import fs from 'fs'
-import path from 'path'
 import { PaymentServiceRequest } from '../model/paymentServiceRequest'
 import { PaymentServiceUpdate } from '../model/paymentServiceUpdate'
-import Client from './client'
+import { getTestClient } from './helpers'
 
-let key
-if (process.env.PRIVATE_KEY) {
-  key = process.env.PRIVATE_KEY
-} else {
-  const my_path = path.resolve(__dirname, './private_key.pem')
-  key = String(fs.readFileSync(my_path))
-}
-
-const client = new Client({
-  gr4vyId: 'spider',
-  environment: 'sandbox',
-  privateKey: key,
-})
+const client = getTestClient()
 
 const DISPLAY_NAME = 'My Payment Service'
 let paymentServiceId
@@ -58,7 +44,7 @@ describe('#listPaymentServices', () => {
     const paymentServices = await client.listPaymentServices()
     expect(paymentServices).toBeDefined()
     expect(paymentServices.body.items).toBeDefined()
-    expect(paymentServices.body.items.length).toBeGreaterThan(0)
+    expect(paymentServices.body.items?.length).toBeGreaterThan(0)
   })
 })
 
