@@ -19,6 +19,13 @@ const embedParams = {
   amount: 9000,
   currency: 'USD',
   buyerExternalIdentifier: 'user-123',
+  connectionOptions: {
+    'stripe-card': {
+      stripe_connect: {
+        key: 'value',
+      },
+    },
+  },
   metadata: {
     camelCaseKey: 'value1',
     snake_case_key: 'value2',
@@ -66,11 +73,13 @@ describe('.getJWS', () => {
       algorithms: ['ES512'],
       complete: true,
     })
+    const connOptions =
+      embedParams.connectionOptions || embedParams['connection_options']
+    const expected = snakecaseKeys(embedParams, { exclude: ['metadata'] })
+    expected['connection_options'] = connOptions
 
     expect(decoded.payload.scopes).toEqual(['embed'])
-    expect(decoded.payload.embed).toEqual(
-      snakecaseKeys(embedParams, { exclude: ['metadata'] })
-    )
+    expect(decoded.payload.embed).toEqual(expected)
   })
 
   test('it should ignore embed data if the embed scope was not set', async () => {

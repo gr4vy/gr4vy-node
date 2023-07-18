@@ -29,7 +29,10 @@ class Authentication {
     }
 
     if (scopes.includes(JWTScope.Embed) && embedParams) {
+      const connOptions =
+        embedParams.connectionOptions || embedParams['connection_options']
       claims['embed'] = snakeCaseKeys(embedParams, { exclude: ['metadata'] })
+      claims['embed']['connection_options'] = connOptions
     }
 
     return jwt.sign(claims, this.privateKey, {
@@ -92,6 +95,7 @@ type EmbedParams = {
   buyerId?: string
   buyerExternalIdentifier?: string
   metadata?: Record<string, string>
+  connectionOptions?: Record<string, any>
   cartItems?: Array<CartItem>
   merchantAccountId?: string
 }
