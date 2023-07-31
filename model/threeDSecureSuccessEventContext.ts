@@ -15,7 +15,7 @@ import { RequestFile } from './models';
 /**
 * 3DS context.
 */
-export class ThreeDSecureSuccessTransactionEventContext {
+export class ThreeDSecureSuccessEventContext {
     /**
     * The electronic commerce indicator for the 3DS transaction.
     */
@@ -47,7 +47,7 @@ export class ThreeDSecureSuccessTransactionEventContext {
     /**
     * The method used for 3DS authentication for this transaction.
     */
-    'method'?: ThreeDSecureSuccessTransactionEventContext.MethodEnum;
+    'method'?: ThreeDSecureSuccessEventContext.MethodEnum;
 
     static discriminator: string | undefined = undefined;
 
@@ -90,15 +90,15 @@ export class ThreeDSecureSuccessTransactionEventContext {
         {
             "name": "method",
             "baseName": "method",
-            "type": "ThreeDSecureSuccessTransactionEventContext.MethodEnum"
+            "type": "ThreeDSecureSuccessEventContext.MethodEnum"
         }    ];
 
     static getAttributeTypeMap() {
-        return ThreeDSecureSuccessTransactionEventContext.attributeTypeMap;
+        return ThreeDSecureSuccessEventContext.attributeTypeMap;
     }
 }
 
-export namespace ThreeDSecureSuccessTransactionEventContext {
+export namespace ThreeDSecureSuccessEventContext {
     export enum MethodEnum {
         Challenge = <any> 'challenge',
         Frictionless = <any> 'frictionless'

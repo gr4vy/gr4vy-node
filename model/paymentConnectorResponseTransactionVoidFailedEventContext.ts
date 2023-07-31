@@ -12,41 +12,44 @@
 
 import { RequestFile } from './models';
 
-export class ThreeDSecureDataV1AllOf {
+/**
+* Additional context for this event.
+*/
+export class PaymentConnectorResponseTransactionVoidFailedEventContext {
     /**
-    * The response for the 3DS authentication call.
+    * The unique ID of the payment service used.
     */
-    'authenticationResponse': string;
+    'paymentServiceId'?: string;
     /**
-    * The CAVV algorithm used.
+    * The display name of the payment service used.
     */
-    'cavvAlgorithm': string;
+    'paymentServiceDisplayName'?: string;
     /**
-    * The transaction identifier.
+    * The payment service definition used.
     */
-    'xid': string;
+    'paymentServiceDefinitionId'?: string;
 
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "authenticationResponse",
-            "baseName": "authentication_response",
+            "name": "paymentServiceId",
+            "baseName": "payment_service_id",
             "type": "string"
         },
         {
-            "name": "cavvAlgorithm",
-            "baseName": "cavv_algorithm",
+            "name": "paymentServiceDisplayName",
+            "baseName": "payment_service_display_name",
             "type": "string"
         },
         {
-            "name": "xid",
-            "baseName": "xid",
+            "name": "paymentServiceDefinitionId",
+            "baseName": "payment_service_definition_id",
             "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
-        return ThreeDSecureDataV1AllOf.attributeTypeMap;
+        return PaymentConnectorResponseTransactionVoidFailedEventContext.attributeTypeMap;
     }
 }
 

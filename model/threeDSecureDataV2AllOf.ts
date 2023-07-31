@@ -14,9 +14,13 @@ import { RequestFile } from './models';
 
 export class ThreeDSecureDataV2AllOf {
     /**
-    * The transaction status from the challenge result (not required for frictionless).
+    * The transaction status after a the 3DS challenge. This will be null in case of a frictionless 3DS flow.
     */
-    'authenticationResponse'?: string;
+    'authenticationResponse'?: ThreeDSecureDataV2AllOf.AuthenticationResponseEnum;
+    /**
+    * The transaction status received as part of the authentication request.
+    */
+    'directoryResponse'?: ThreeDSecureDataV2AllOf.DirectoryResponseEnum;
     /**
     * The transaction identifier.
     */
@@ -28,7 +32,12 @@ export class ThreeDSecureDataV2AllOf {
         {
             "name": "authenticationResponse",
             "baseName": "authentication_response",
-            "type": "string"
+            "type": "ThreeDSecureDataV2AllOf.AuthenticationResponseEnum"
+        },
+        {
+            "name": "directoryResponse",
+            "baseName": "directory_response",
+            "type": "ThreeDSecureDataV2AllOf.DirectoryResponseEnum"
         },
         {
             "name": "directoryTransactionId",
@@ -41,3 +50,20 @@ export class ThreeDSecureDataV2AllOf {
     }
 }
 
+export namespace ThreeDSecureDataV2AllOf {
+    export enum AuthenticationResponseEnum {
+        Y = <any> 'Y',
+        A = <any> 'A',
+        N = <any> 'N',
+        R = <any> 'R',
+        U = <any> 'U'
+    }
+    export enum DirectoryResponseEnum {
+        C = <any> 'C',
+        Y = <any> 'Y',
+        A = <any> 'A',
+        N = <any> 'N',
+        R = <any> 'R',
+        U = <any> 'U'
+    }
+}

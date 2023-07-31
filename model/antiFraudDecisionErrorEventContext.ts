@@ -13,25 +13,9 @@
 import { RequestFile } from './models';
 
 /**
-* Anti-fraud decision context.
+* Additional context for this event.
 */
-export class AntiFraudDecisionTransactionEventContext {
-    /**
-    * The HTTP body sent to fetch a decision.
-    */
-    'request'?: string;
-    /**
-    * The HTTP body received from the anti-fraud provider.
-    */
-    'response'?: string;
-    /**
-    * The HTTP response status code from the anti-fraud provider.
-    */
-    'responseStatusCode'?: number;
-    /**
-    * The parsed decision response from the anti-fraud provider response.
-    */
-    'decision'?: string;
+export class AntiFraudDecisionErrorEventContext {
     /**
     * The unique ID of the anti-fraud service used.
     */
@@ -44,30 +28,18 @@ export class AntiFraudDecisionTransactionEventContext {
     * The anti-fraud service definition used.
     */
     'antiFraudServiceDefinitionId'?: string;
+    /**
+    * The HTTP response status code from the anti-fraud provider, if we received any.
+    */
+    'statusCode'?: number;
+    /**
+    * The reason we could not get the anti-fraud decision.
+    */
+    'reason'?: string;
 
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "request",
-            "baseName": "request",
-            "type": "string"
-        },
-        {
-            "name": "response",
-            "baseName": "response",
-            "type": "string"
-        },
-        {
-            "name": "responseStatusCode",
-            "baseName": "response_status_code",
-            "type": "number"
-        },
-        {
-            "name": "decision",
-            "baseName": "decision",
-            "type": "string"
-        },
         {
             "name": "antiFraudServiceId",
             "baseName": "anti_fraud_service_id",
@@ -82,10 +54,20 @@ export class AntiFraudDecisionTransactionEventContext {
             "name": "antiFraudServiceDefinitionId",
             "baseName": "anti_fraud_service_definition_id",
             "type": "string"
+        },
+        {
+            "name": "statusCode",
+            "baseName": "status_code",
+            "type": "number"
+        },
+        {
+            "name": "reason",
+            "baseName": "reason",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
-        return AntiFraudDecisionTransactionEventContext.attributeTypeMap;
+        return AntiFraudDecisionErrorEventContext.attributeTypeMap;
     }
 }
 

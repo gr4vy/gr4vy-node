@@ -17,10 +17,6 @@ import { RequestFile } from './models';
 */
 export class ConnectionOptionsCybersourceAntiFraud {
     /**
-    * This field represents device fingerprint ID.
-    */
-    'deviceFingerprintId'?: string;
-    /**
     * This is a key-value object for merchant defined data.
     */
     'merchantDefinedData'?: { [key: string]: string; };
@@ -28,11 +24,6 @@ export class ConnectionOptionsCybersourceAntiFraud {
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "deviceFingerprintId",
-            "baseName": "device_fingerprint_id",
-            "type": "string"
-        },
         {
             "name": "merchantDefinedData",
             "baseName": "merchant_defined_data",

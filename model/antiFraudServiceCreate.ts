@@ -75,7 +75,8 @@ export class AntiFraudServiceCreate {
 
 export namespace AntiFraudServiceCreate {
     export enum AntiFraudServiceDefinitionIdEnum {
-        SiftAntiFraud = <any> 'sift-anti-fraud',
-        CybersourceAntiFraud = <any> 'cybersource-anti-fraud'
+        CybersourceAntiFraud = <any> 'cybersource-anti-fraud',
+        ForterAntiFraud = <any> 'forter-anti-fraud',
+        SiftAntiFraud = <any> 'sift-anti-fraud'
     }
 }

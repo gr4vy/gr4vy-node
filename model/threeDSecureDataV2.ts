@@ -28,13 +28,13 @@ export class ThreeDSecureDataV2 {
     */
     'version': string;
     /**
-    * For 3-D Secure version 1, the enrolment response. For 3-D Secure version , the transaction status from the `ARes`.
+    * The transaction status received as part of the authentication request.
     */
-    'directoryResponse': string;
+    'directoryResponse': ThreeDSecureDataV2.DirectoryResponseEnum;
     /**
-    * The transaction status from the challenge result (not required for frictionless).
+    * The transaction status after a the 3DS challenge. This will be null in case of a frictionless 3DS flow.
     */
-    'authenticationResponse'?: string;
+    'authenticationResponse'?: ThreeDSecureDataV2.AuthenticationResponseEnum;
     /**
     * The transaction identifier.
     */
@@ -61,12 +61,12 @@ export class ThreeDSecureDataV2 {
         {
             "name": "directoryResponse",
             "baseName": "directory_response",
-            "type": "string"
+            "type": "ThreeDSecureDataV2.DirectoryResponseEnum"
         },
         {
             "name": "authenticationResponse",
             "baseName": "authentication_response",
-            "type": "string"
+            "type": "ThreeDSecureDataV2.AuthenticationResponseEnum"
         },
         {
             "name": "directoryTransactionId",
@@ -79,3 +79,20 @@ export class ThreeDSecureDataV2 {
     }
 }
 
+export namespace ThreeDSecureDataV2 {
+    export enum DirectoryResponseEnum {
+        C = <any> 'C',
+        Y = <any> 'Y',
+        A = <any> 'A',
+        N = <any> 'N',
+        R = <any> 'R',
+        U = <any> 'U'
+    }
+    export enum AuthenticationResponseEnum {
+        Y = <any> 'Y',
+        A = <any> 'A',
+        N = <any> 'N',
+        R = <any> 'R',
+        U = <any> 'U'
+    }
+}
