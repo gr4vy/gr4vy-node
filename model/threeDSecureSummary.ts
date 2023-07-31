@@ -15,7 +15,7 @@ import { ThreeDSecureDataV1V2 } from './threeDSecureDataV1V2';
 import { ThreeDSecureError } from './threeDSecureError';
 
 /**
-* Details about the 3-D Secure challenge that was presented to the buyer for this transaction, where applicable.
+* The 3-D Secure data that was sent to the payment service for the transaction.
 */
 export class ThreeDSecureSummary {
     /**
@@ -31,7 +31,7 @@ export class ThreeDSecureSummary {
     */
     'method'?: ThreeDSecureSummary.MethodEnum;
     /**
-    * If the transaction had a 3DS error, information about it.
+    * The error data received from our 3DS server. This will not be populated if the customer failed the authentication with a status code of `N`, `R`, or `U`.  To see full details about the 3DS calls in those situations please use our transaction events API.
     */
     'errorData'?: ThreeDSecureError | null;
     'responseData'?: ThreeDSecureDataV1V2;

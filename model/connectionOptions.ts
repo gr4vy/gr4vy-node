@@ -13,9 +13,11 @@
 import { RequestFile } from './models';
 import { ConnectionOptionsAdyenCard } from './connectionOptionsAdyenCard';
 import { ConnectionOptionsCybersourceAntiFraud } from './connectionOptionsCybersourceAntiFraud';
+import { ConnectionOptionsForterAntiFraud } from './connectionOptionsForterAntiFraud';
 
 export class ConnectionOptions {
     'cybersourceAntiFraud'?: ConnectionOptionsCybersourceAntiFraud | null;
+    'forterAntiFraud'?: ConnectionOptionsForterAntiFraud | null;
     'adyenCard'?: ConnectionOptionsAdyenCard | null;
 
     static discriminator: string | undefined = undefined;
@@ -25,6 +27,11 @@ export class ConnectionOptions {
             "name": "cybersourceAntiFraud",
             "baseName": "cybersource-anti-fraud",
             "type": "ConnectionOptionsCybersourceAntiFraud"
+        },
+        {
+            "name": "forterAntiFraud",
+            "baseName": "forter-anti-fraud",
+            "type": "ConnectionOptionsForterAntiFraud"
         },
         {
             "name": "adyenCard",

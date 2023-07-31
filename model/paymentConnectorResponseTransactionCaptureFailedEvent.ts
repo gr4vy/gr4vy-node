@@ -11,29 +11,29 @@
  */
 
 import { RequestFile } from './models';
-import { ThreeDSecureSuccessTransactionEventContext } from './threeDSecureSuccessTransactionEventContext';
+import { PaymentConnectorResponseTransactionCaptureDeclinedEventContext } from './paymentConnectorResponseTransactionCaptureDeclinedEventContext';
 
 /**
-* Details related to 3DS processing.
+* This event logs the exact details parsed details for a failed capture as reported by our connector.
 */
-export class ThreeDSecureSuccessTransactionEvent {
+export class PaymentConnectorResponseTransactionCaptureFailedEvent {
     /**
     * The type of this resource. Is always `transaction-event`.
     */
-    'type'?: ThreeDSecureSuccessTransactionEvent.TypeEnum;
+    'type'?: PaymentConnectorResponseTransactionCaptureFailedEvent.TypeEnum;
     /**
     * The unique identifier for this event.
     */
     'id'?: string;
     /**
-    * The name of this resource. Is always `three-d-secure-success`.
+    * The name of this resource. Is always `payment-connector-response-transaction-capture-failed`.
     */
-    'name'?: ThreeDSecureSuccessTransactionEvent.NameEnum;
+    'name'?: PaymentConnectorResponseTransactionCaptureFailedEvent.NameEnum;
     /**
     * The date and time when this transaction was created in our system.
     */
     'createdAt'?: Date;
-    'context'?: ThreeDSecureSuccessTransactionEventContext;
+    'context'?: PaymentConnectorResponseTransactionCaptureDeclinedEventContext;
 
     static discriminator: string | undefined = undefined;
 
@@ -41,7 +41,7 @@ export class ThreeDSecureSuccessTransactionEvent {
         {
             "name": "type",
             "baseName": "type",
-            "type": "ThreeDSecureSuccessTransactionEvent.TypeEnum"
+            "type": "PaymentConnectorResponseTransactionCaptureFailedEvent.TypeEnum"
         },
         {
             "name": "id",
@@ -51,7 +51,7 @@ export class ThreeDSecureSuccessTransactionEvent {
         {
             "name": "name",
             "baseName": "name",
-            "type": "ThreeDSecureSuccessTransactionEvent.NameEnum"
+            "type": "PaymentConnectorResponseTransactionCaptureFailedEvent.NameEnum"
         },
         {
             "name": "createdAt",
@@ -61,19 +61,19 @@ export class ThreeDSecureSuccessTransactionEvent {
         {
             "name": "context",
             "baseName": "context",
-            "type": "ThreeDSecureSuccessTransactionEventContext"
+            "type": "PaymentConnectorResponseTransactionCaptureDeclinedEventContext"
         }    ];
 
     static getAttributeTypeMap() {
-        return ThreeDSecureSuccessTransactionEvent.attributeTypeMap;
+        return PaymentConnectorResponseTransactionCaptureFailedEvent.attributeTypeMap;
     }
 }
 
-export namespace ThreeDSecureSuccessTransactionEvent {
+export namespace PaymentConnectorResponseTransactionCaptureFailedEvent {
     export enum TypeEnum {
         TransactionEvent = <any> 'transaction-event'
     }
     export enum NameEnum {
-        ThreeDSecureSuccess = <any> 'three-d-secure-success'
+        PaymentConnectorResponseTransactionCaptureFailed = <any> 'payment-connector-response-transaction-capture-failed'
     }
 }

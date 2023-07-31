@@ -11,29 +11,29 @@
  */
 
 import { RequestFile } from './models';
-import { AntiFraudDecisionTransactionEventContext } from './antiFraudDecisionTransactionEventContext';
+import { ThreeDSecureSuccessEventContext } from './threeDSecureSuccessEventContext';
 
 /**
-* The request/response details of HTTP calls made to an anti-fraud provider.
+* Details related to 3DS processing.
 */
-export class AntiFraudDecisionTransactionEvent {
+export class ThreeDSecureSuccessEvent {
     /**
     * The type of this resource. Is always `transaction-event`.
     */
-    'type'?: AntiFraudDecisionTransactionEvent.TypeEnum;
+    'type'?: ThreeDSecureSuccessEvent.TypeEnum;
     /**
     * The unique identifier for this event.
     */
     'id'?: string;
     /**
-    * The name of this resource. Is always `anti-fraud-decision `.
+    * The name of this resource. Is always `three-d-secure-success`.
     */
-    'name'?: AntiFraudDecisionTransactionEvent.NameEnum;
+    'name'?: ThreeDSecureSuccessEvent.NameEnum;
     /**
     * The date and time when this transaction was created in our system.
     */
     'createdAt'?: Date;
-    'context'?: AntiFraudDecisionTransactionEventContext;
+    'context'?: ThreeDSecureSuccessEventContext;
 
     static discriminator: string | undefined = undefined;
 
@@ -41,7 +41,7 @@ export class AntiFraudDecisionTransactionEvent {
         {
             "name": "type",
             "baseName": "type",
-            "type": "AntiFraudDecisionTransactionEvent.TypeEnum"
+            "type": "ThreeDSecureSuccessEvent.TypeEnum"
         },
         {
             "name": "id",
@@ -51,7 +51,7 @@ export class AntiFraudDecisionTransactionEvent {
         {
             "name": "name",
             "baseName": "name",
-            "type": "AntiFraudDecisionTransactionEvent.NameEnum"
+            "type": "ThreeDSecureSuccessEvent.NameEnum"
         },
         {
             "name": "createdAt",
@@ -61,19 +61,19 @@ export class AntiFraudDecisionTransactionEvent {
         {
             "name": "context",
             "baseName": "context",
-            "type": "AntiFraudDecisionTransactionEventContext"
+            "type": "ThreeDSecureSuccessEventContext"
         }    ];
 
     static getAttributeTypeMap() {
-        return AntiFraudDecisionTransactionEvent.attributeTypeMap;
+        return ThreeDSecureSuccessEvent.attributeTypeMap;
     }
 }
 
-export namespace AntiFraudDecisionTransactionEvent {
+export namespace ThreeDSecureSuccessEvent {
     export enum TypeEnum {
         TransactionEvent = <any> 'transaction-event'
     }
     export enum NameEnum {
-        AntiFraudDecision = <any> 'anti-fraud-decision'
+        ThreeDSecureSuccess = <any> 'three-d-secure-success'
     }
 }

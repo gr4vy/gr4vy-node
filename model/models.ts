@@ -3,11 +3,17 @@ import localVarRequest from 'request';
 export * from './aPIKeyPairCreate';
 export * from './aPIKeyPairUpdate';
 export * from './address';
-export * from './antiFraudDecisionTransactionEvent';
-export * from './antiFraudDecisionTransactionEventContext';
+export * from './antiFraudDecisionErrorEvent';
+export * from './antiFraudDecisionErrorEventContext';
+export * from './antiFraudDecisionEvent';
+export * from './antiFraudDecisionEventContext';
+export * from './antiFraudDecisionSkippedEvent';
+export * from './antiFraudDecisionSkippedEventContext';
 export * from './antiFraudServiceCreate';
 export * from './antiFraudServiceUpdate';
 export * from './antiFraudServiceUpdateFields';
+export * from './antiFraudWebhookEvent';
+export * from './antiFraudWebhookEventContext';
 export * from './apiLog';
 export * from './apiLogResponseBody';
 export * from './apiLogResponseBodyDetails';
@@ -42,6 +48,7 @@ export * from './connectionDefinitions';
 export * from './connectionOptions';
 export * from './connectionOptionsAdyenCard';
 export * from './connectionOptionsCybersourceAntiFraud';
+export * from './connectionOptionsForterAntiFraud';
 export * from './connections';
 export * from './cryptogram';
 export * from './digitalWallet';
@@ -71,6 +78,23 @@ export * from './merchantProfileScheme';
 export * from './networkToken';
 export * from './networkTokenRequest';
 export * from './networkTokens';
+export * from './paymentConnectorResponseTransactionAuthorizationFailedEvent';
+export * from './paymentConnectorResponseTransactionAuthorizationFailedEventContext';
+export * from './paymentConnectorResponseTransactionAuthorizationSucceededEvent';
+export * from './paymentConnectorResponseTransactionAuthorizationSucceededEventContext';
+export * from './paymentConnectorResponseTransactionCaptureDeclinedEvent';
+export * from './paymentConnectorResponseTransactionCaptureDeclinedEventContext';
+export * from './paymentConnectorResponseTransactionCaptureFailedEvent';
+export * from './paymentConnectorResponseTransactionCaptureSucceededEvent';
+export * from './paymentConnectorResponseTransactionCaptureSucceededEventContext';
+export * from './paymentConnectorResponseTransactionDeclinedEvent';
+export * from './paymentConnectorResponseTransactionDeclinedEventContext';
+export * from './paymentConnectorResponseTransactionVoidDeclinedEvent';
+export * from './paymentConnectorResponseTransactionVoidDeclinedEventContext';
+export * from './paymentConnectorResponseTransactionVoidFailedEvent';
+export * from './paymentConnectorResponseTransactionVoidFailedEventContext';
+export * from './paymentConnectorResponseTransactionVoidSucceededEvent';
+export * from './paymentConnectorResponseTransactionVoidSucceededEventContext';
 export * from './paymentMethod';
 export * from './paymentMethodDefinition';
 export * from './paymentMethodDefinitions';
@@ -133,6 +157,8 @@ export * from './shippingDetailUpdateRequest';
 export * from './shippingDetails';
 export * from './statementDescriptor';
 export * from './taxId';
+export * from './threeDSecureAuthenticationRequestEvent';
+export * from './threeDSecureAuthenticationRequestEventContext';
 export * from './threeDSecureData';
 export * from './threeDSecureDataV1';
 export * from './threeDSecureDataV1AllOf';
@@ -140,14 +166,21 @@ export * from './threeDSecureDataV1V2';
 export * from './threeDSecureDataV2';
 export * from './threeDSecureDataV2AllOf';
 export * from './threeDSecureError';
-export * from './threeDSecureSuccessTransactionEvent';
-export * from './threeDSecureSuccessTransactionEventContext';
+export * from './threeDSecurePreparationRequestEvent';
+export * from './threeDSecurePreparationRequestEventContext';
+export * from './threeDSecureRequestErrorEvent';
+export * from './threeDSecureRequestErrorEventContext';
+export * from './threeDSecureResultRequestEvent';
+export * from './threeDSecureResultRequestEventContext';
+export * from './threeDSecureSuccessEvent';
+export * from './threeDSecureSuccessEventContext';
 export * from './threeDSecureSummary';
 export * from './tokenizedRequest';
 export * from './transaction';
 export * from './transactionCaptureRequest';
 export * from './transactionCardRequest';
 export * from './transactionCheckoutSessionRequest';
+export * from './transactionHistoryEvent';
 export * from './transactionPaymentMethodRequest';
 export * from './transactionRedirectRequest';
 export * from './transactionRefundRequest';
@@ -177,11 +210,17 @@ export type RequestFile = string | Buffer | fs.ReadStream | RequestDetailedFile;
 import { APIKeyPairCreate } from './aPIKeyPairCreate';
 import { APIKeyPairUpdate } from './aPIKeyPairUpdate';
 import { Address } from './address';
-import { AntiFraudDecisionTransactionEvent } from './antiFraudDecisionTransactionEvent';
-import { AntiFraudDecisionTransactionEventContext } from './antiFraudDecisionTransactionEventContext';
+import { AntiFraudDecisionErrorEvent } from './antiFraudDecisionErrorEvent';
+import { AntiFraudDecisionErrorEventContext } from './antiFraudDecisionErrorEventContext';
+import { AntiFraudDecisionEvent } from './antiFraudDecisionEvent';
+import { AntiFraudDecisionEventContext } from './antiFraudDecisionEventContext';
+import { AntiFraudDecisionSkippedEvent } from './antiFraudDecisionSkippedEvent';
+import { AntiFraudDecisionSkippedEventContext } from './antiFraudDecisionSkippedEventContext';
 import { AntiFraudServiceCreate } from './antiFraudServiceCreate';
 import { AntiFraudServiceUpdate } from './antiFraudServiceUpdate';
 import { AntiFraudServiceUpdateFields } from './antiFraudServiceUpdateFields';
+import { AntiFraudWebhookEvent } from './antiFraudWebhookEvent';
+import { AntiFraudWebhookEventContext } from './antiFraudWebhookEventContext';
 import { ApiLog } from './apiLog';
 import { ApiLogResponseBody } from './apiLogResponseBody';
 import { ApiLogResponseBodyDetails } from './apiLogResponseBodyDetails';
@@ -216,6 +255,7 @@ import { ConnectionDefinitions } from './connectionDefinitions';
 import { ConnectionOptions } from './connectionOptions';
 import { ConnectionOptionsAdyenCard } from './connectionOptionsAdyenCard';
 import { ConnectionOptionsCybersourceAntiFraud } from './connectionOptionsCybersourceAntiFraud';
+import { ConnectionOptionsForterAntiFraud } from './connectionOptionsForterAntiFraud';
 import { Connections } from './connections';
 import { Cryptogram } from './cryptogram';
 import { DigitalWallet } from './digitalWallet';
@@ -245,6 +285,23 @@ import { MerchantProfileScheme } from './merchantProfileScheme';
 import { NetworkToken } from './networkToken';
 import { NetworkTokenRequest } from './networkTokenRequest';
 import { NetworkTokens } from './networkTokens';
+import { PaymentConnectorResponseTransactionAuthorizationFailedEvent } from './paymentConnectorResponseTransactionAuthorizationFailedEvent';
+import { PaymentConnectorResponseTransactionAuthorizationFailedEventContext } from './paymentConnectorResponseTransactionAuthorizationFailedEventContext';
+import { PaymentConnectorResponseTransactionAuthorizationSucceededEvent } from './paymentConnectorResponseTransactionAuthorizationSucceededEvent';
+import { PaymentConnectorResponseTransactionAuthorizationSucceededEventContext } from './paymentConnectorResponseTransactionAuthorizationSucceededEventContext';
+import { PaymentConnectorResponseTransactionCaptureDeclinedEvent } from './paymentConnectorResponseTransactionCaptureDeclinedEvent';
+import { PaymentConnectorResponseTransactionCaptureDeclinedEventContext } from './paymentConnectorResponseTransactionCaptureDeclinedEventContext';
+import { PaymentConnectorResponseTransactionCaptureFailedEvent } from './paymentConnectorResponseTransactionCaptureFailedEvent';
+import { PaymentConnectorResponseTransactionCaptureSucceededEvent } from './paymentConnectorResponseTransactionCaptureSucceededEvent';
+import { PaymentConnectorResponseTransactionCaptureSucceededEventContext } from './paymentConnectorResponseTransactionCaptureSucceededEventContext';
+import { PaymentConnectorResponseTransactionDeclinedEvent } from './paymentConnectorResponseTransactionDeclinedEvent';
+import { PaymentConnectorResponseTransactionDeclinedEventContext } from './paymentConnectorResponseTransactionDeclinedEventContext';
+import { PaymentConnectorResponseTransactionVoidDeclinedEvent } from './paymentConnectorResponseTransactionVoidDeclinedEvent';
+import { PaymentConnectorResponseTransactionVoidDeclinedEventContext } from './paymentConnectorResponseTransactionVoidDeclinedEventContext';
+import { PaymentConnectorResponseTransactionVoidFailedEvent } from './paymentConnectorResponseTransactionVoidFailedEvent';
+import { PaymentConnectorResponseTransactionVoidFailedEventContext } from './paymentConnectorResponseTransactionVoidFailedEventContext';
+import { PaymentConnectorResponseTransactionVoidSucceededEvent } from './paymentConnectorResponseTransactionVoidSucceededEvent';
+import { PaymentConnectorResponseTransactionVoidSucceededEventContext } from './paymentConnectorResponseTransactionVoidSucceededEventContext';
 import { PaymentMethod } from './paymentMethod';
 import { PaymentMethodDefinition } from './paymentMethodDefinition';
 import { PaymentMethodDefinitions } from './paymentMethodDefinitions';
@@ -307,6 +364,8 @@ import { ShippingDetailUpdateRequest } from './shippingDetailUpdateRequest';
 import { ShippingDetails } from './shippingDetails';
 import { StatementDescriptor } from './statementDescriptor';
 import { TaxId } from './taxId';
+import { ThreeDSecureAuthenticationRequestEvent } from './threeDSecureAuthenticationRequestEvent';
+import { ThreeDSecureAuthenticationRequestEventContext } from './threeDSecureAuthenticationRequestEventContext';
 import { ThreeDSecureData } from './threeDSecureData';
 import { ThreeDSecureDataV1 } from './threeDSecureDataV1';
 import { ThreeDSecureDataV1AllOf } from './threeDSecureDataV1AllOf';
@@ -314,14 +373,21 @@ import { ThreeDSecureDataV1V2 } from './threeDSecureDataV1V2';
 import { ThreeDSecureDataV2 } from './threeDSecureDataV2';
 import { ThreeDSecureDataV2AllOf } from './threeDSecureDataV2AllOf';
 import { ThreeDSecureError } from './threeDSecureError';
-import { ThreeDSecureSuccessTransactionEvent } from './threeDSecureSuccessTransactionEvent';
-import { ThreeDSecureSuccessTransactionEventContext } from './threeDSecureSuccessTransactionEventContext';
+import { ThreeDSecurePreparationRequestEvent } from './threeDSecurePreparationRequestEvent';
+import { ThreeDSecurePreparationRequestEventContext } from './threeDSecurePreparationRequestEventContext';
+import { ThreeDSecureRequestErrorEvent } from './threeDSecureRequestErrorEvent';
+import { ThreeDSecureRequestErrorEventContext } from './threeDSecureRequestErrorEventContext';
+import { ThreeDSecureResultRequestEvent } from './threeDSecureResultRequestEvent';
+import { ThreeDSecureResultRequestEventContext } from './threeDSecureResultRequestEventContext';
+import { ThreeDSecureSuccessEvent } from './threeDSecureSuccessEvent';
+import { ThreeDSecureSuccessEventContext } from './threeDSecureSuccessEventContext';
 import { ThreeDSecureSummary } from './threeDSecureSummary';
 import { TokenizedRequest } from './tokenizedRequest';
 import { Transaction } from './transaction';
 import { TransactionCaptureRequest } from './transactionCaptureRequest';
 import { TransactionCardRequest } from './transactionCardRequest';
 import { TransactionCheckoutSessionRequest } from './transactionCheckoutSessionRequest';
+import { TransactionHistoryEvent } from './transactionHistoryEvent';
 import { TransactionPaymentMethodRequest } from './transactionPaymentMethodRequest';
 import { TransactionRedirectRequest } from './transactionRedirectRequest';
 import { TransactionRefundRequest } from './transactionRefundRequest';
@@ -349,10 +415,16 @@ let primitives = [
 
 let enumsMap: {[index: string]: any} = {
         "APIKeyPairCreate.AlgorithmEnum": APIKeyPairCreate.AlgorithmEnum,
-        "AntiFraudDecisionTransactionEvent.TypeEnum": AntiFraudDecisionTransactionEvent.TypeEnum,
-        "AntiFraudDecisionTransactionEvent.NameEnum": AntiFraudDecisionTransactionEvent.NameEnum,
+        "AntiFraudDecisionErrorEvent.TypeEnum": AntiFraudDecisionErrorEvent.TypeEnum,
+        "AntiFraudDecisionErrorEvent.NameEnum": AntiFraudDecisionErrorEvent.NameEnum,
+        "AntiFraudDecisionEvent.TypeEnum": AntiFraudDecisionEvent.TypeEnum,
+        "AntiFraudDecisionEvent.NameEnum": AntiFraudDecisionEvent.NameEnum,
+        "AntiFraudDecisionSkippedEvent.TypeEnum": AntiFraudDecisionSkippedEvent.TypeEnum,
+        "AntiFraudDecisionSkippedEvent.NameEnum": AntiFraudDecisionSkippedEvent.NameEnum,
         "AntiFraudServiceCreate.AntiFraudServiceDefinitionIdEnum": AntiFraudServiceCreate.AntiFraudServiceDefinitionIdEnum,
         "AntiFraudServiceUpdate.AntiFraudServiceDefinitionIdEnum": AntiFraudServiceUpdate.AntiFraudServiceDefinitionIdEnum,
+        "AntiFraudWebhookEvent.TypeEnum": AntiFraudWebhookEvent.TypeEnum,
+        "AntiFraudWebhookEvent.NameEnum": AntiFraudWebhookEvent.NameEnum,
         "ApiLog.TypeEnum": ApiLog.TypeEnum,
         "ApplePayRequest.MethodEnum": ApplePayRequest.MethodEnum,
         "AuditLog.TypeEnum": AuditLog.TypeEnum,
@@ -408,6 +480,42 @@ let enumsMap: {[index: string]: any} = {
         "GooglePayRequest.MethodEnum": GooglePayRequest.MethodEnum,
         "MerchantAccount.TypeEnum": MerchantAccount.TypeEnum,
         "NetworkToken.StatusEnum": NetworkToken.StatusEnum,
+        "PaymentConnectorResponseTransactionAuthorizationFailedEvent.TypeEnum": PaymentConnectorResponseTransactionAuthorizationFailedEvent.TypeEnum,
+        "PaymentConnectorResponseTransactionAuthorizationFailedEvent.NameEnum": PaymentConnectorResponseTransactionAuthorizationFailedEvent.NameEnum,
+        "PaymentConnectorResponseTransactionAuthorizationFailedEventContext.StatusEnum": PaymentConnectorResponseTransactionAuthorizationFailedEventContext.StatusEnum,
+        "PaymentConnectorResponseTransactionAuthorizationFailedEventContext.InstrumentTypeEnum": PaymentConnectorResponseTransactionAuthorizationFailedEventContext.InstrumentTypeEnum,
+        "PaymentConnectorResponseTransactionAuthorizationFailedEventContext.RetryRuleEnum": PaymentConnectorResponseTransactionAuthorizationFailedEventContext.RetryRuleEnum,
+        "PaymentConnectorResponseTransactionAuthorizationFailedEventContext.AvsResponseCodeEnum": PaymentConnectorResponseTransactionAuthorizationFailedEventContext.AvsResponseCodeEnum,
+        "PaymentConnectorResponseTransactionAuthorizationFailedEventContext.CvvResponseCodeEnum": PaymentConnectorResponseTransactionAuthorizationFailedEventContext.CvvResponseCodeEnum,
+        "PaymentConnectorResponseTransactionAuthorizationSucceededEvent.TypeEnum": PaymentConnectorResponseTransactionAuthorizationSucceededEvent.TypeEnum,
+        "PaymentConnectorResponseTransactionAuthorizationSucceededEvent.NameEnum": PaymentConnectorResponseTransactionAuthorizationSucceededEvent.NameEnum,
+        "PaymentConnectorResponseTransactionAuthorizationSucceededEventContext.StatusEnum": PaymentConnectorResponseTransactionAuthorizationSucceededEventContext.StatusEnum,
+        "PaymentConnectorResponseTransactionAuthorizationSucceededEventContext.InstrumentTypeEnum": PaymentConnectorResponseTransactionAuthorizationSucceededEventContext.InstrumentTypeEnum,
+        "PaymentConnectorResponseTransactionAuthorizationSucceededEventContext.AvsResponseCodeEnum": PaymentConnectorResponseTransactionAuthorizationSucceededEventContext.AvsResponseCodeEnum,
+        "PaymentConnectorResponseTransactionAuthorizationSucceededEventContext.CvvResponseCodeEnum": PaymentConnectorResponseTransactionAuthorizationSucceededEventContext.CvvResponseCodeEnum,
+        "PaymentConnectorResponseTransactionCaptureDeclinedEvent.TypeEnum": PaymentConnectorResponseTransactionCaptureDeclinedEvent.TypeEnum,
+        "PaymentConnectorResponseTransactionCaptureDeclinedEvent.NameEnum": PaymentConnectorResponseTransactionCaptureDeclinedEvent.NameEnum,
+        "PaymentConnectorResponseTransactionCaptureDeclinedEventContext.AvsResponseCodeEnum": PaymentConnectorResponseTransactionCaptureDeclinedEventContext.AvsResponseCodeEnum,
+        "PaymentConnectorResponseTransactionCaptureDeclinedEventContext.CvvResponseCodeEnum": PaymentConnectorResponseTransactionCaptureDeclinedEventContext.CvvResponseCodeEnum,
+        "PaymentConnectorResponseTransactionCaptureFailedEvent.TypeEnum": PaymentConnectorResponseTransactionCaptureFailedEvent.TypeEnum,
+        "PaymentConnectorResponseTransactionCaptureFailedEvent.NameEnum": PaymentConnectorResponseTransactionCaptureFailedEvent.NameEnum,
+        "PaymentConnectorResponseTransactionCaptureSucceededEvent.TypeEnum": PaymentConnectorResponseTransactionCaptureSucceededEvent.TypeEnum,
+        "PaymentConnectorResponseTransactionCaptureSucceededEvent.NameEnum": PaymentConnectorResponseTransactionCaptureSucceededEvent.NameEnum,
+        "PaymentConnectorResponseTransactionCaptureSucceededEventContext.StatusEnum": PaymentConnectorResponseTransactionCaptureSucceededEventContext.StatusEnum,
+        "PaymentConnectorResponseTransactionCaptureSucceededEventContext.InstrumentTypeEnum": PaymentConnectorResponseTransactionCaptureSucceededEventContext.InstrumentTypeEnum,
+        "PaymentConnectorResponseTransactionCaptureSucceededEventContext.AvsResponseCodeEnum": PaymentConnectorResponseTransactionCaptureSucceededEventContext.AvsResponseCodeEnum,
+        "PaymentConnectorResponseTransactionCaptureSucceededEventContext.CvvResponseCodeEnum": PaymentConnectorResponseTransactionCaptureSucceededEventContext.CvvResponseCodeEnum,
+        "PaymentConnectorResponseTransactionDeclinedEvent.TypeEnum": PaymentConnectorResponseTransactionDeclinedEvent.TypeEnum,
+        "PaymentConnectorResponseTransactionDeclinedEvent.NameEnum": PaymentConnectorResponseTransactionDeclinedEvent.NameEnum,
+        "PaymentConnectorResponseTransactionDeclinedEventContext.StatusEnum": PaymentConnectorResponseTransactionDeclinedEventContext.StatusEnum,
+        "PaymentConnectorResponseTransactionDeclinedEventContext.AvsResponseCodeEnum": PaymentConnectorResponseTransactionDeclinedEventContext.AvsResponseCodeEnum,
+        "PaymentConnectorResponseTransactionDeclinedEventContext.CvvResponseCodeEnum": PaymentConnectorResponseTransactionDeclinedEventContext.CvvResponseCodeEnum,
+        "PaymentConnectorResponseTransactionVoidDeclinedEvent.TypeEnum": PaymentConnectorResponseTransactionVoidDeclinedEvent.TypeEnum,
+        "PaymentConnectorResponseTransactionVoidDeclinedEvent.NameEnum": PaymentConnectorResponseTransactionVoidDeclinedEvent.NameEnum,
+        "PaymentConnectorResponseTransactionVoidFailedEvent.TypeEnum": PaymentConnectorResponseTransactionVoidFailedEvent.TypeEnum,
+        "PaymentConnectorResponseTransactionVoidFailedEvent.NameEnum": PaymentConnectorResponseTransactionVoidFailedEvent.NameEnum,
+        "PaymentConnectorResponseTransactionVoidSucceededEvent.TypeEnum": PaymentConnectorResponseTransactionVoidSucceededEvent.TypeEnum,
+        "PaymentConnectorResponseTransactionVoidSucceededEvent.NameEnum": PaymentConnectorResponseTransactionVoidSucceededEvent.NameEnum,
         "PaymentMethod.TypeEnum": PaymentMethod.TypeEnum,
         "PaymentMethod.StatusEnum": PaymentMethod.StatusEnum,
         "PaymentMethod.MethodEnum": PaymentMethod.MethodEnum,
@@ -454,9 +562,23 @@ let enumsMap: {[index: string]: any} = {
         "RoleAssignmentRequestAssignee.TypeEnum": RoleAssignmentRequestAssignee.TypeEnum,
         "ShippingDetail.TypeEnum": ShippingDetail.TypeEnum,
         "TaxId.KindEnum": TaxId.KindEnum,
-        "ThreeDSecureSuccessTransactionEvent.TypeEnum": ThreeDSecureSuccessTransactionEvent.TypeEnum,
-        "ThreeDSecureSuccessTransactionEvent.NameEnum": ThreeDSecureSuccessTransactionEvent.NameEnum,
-        "ThreeDSecureSuccessTransactionEventContext.MethodEnum": ThreeDSecureSuccessTransactionEventContext.MethodEnum,
+        "ThreeDSecureAuthenticationRequestEvent.TypeEnum": ThreeDSecureAuthenticationRequestEvent.TypeEnum,
+        "ThreeDSecureAuthenticationRequestEvent.NameEnum": ThreeDSecureAuthenticationRequestEvent.NameEnum,
+        "ThreeDSecureDataV1V2.DirectoryResponseEnum": ThreeDSecureDataV1V2.DirectoryResponseEnum,
+        "ThreeDSecureDataV1V2.AuthenticationResponseEnum": ThreeDSecureDataV1V2.AuthenticationResponseEnum,
+        "ThreeDSecureDataV2.DirectoryResponseEnum": ThreeDSecureDataV2.DirectoryResponseEnum,
+        "ThreeDSecureDataV2.AuthenticationResponseEnum": ThreeDSecureDataV2.AuthenticationResponseEnum,
+        "ThreeDSecureDataV2AllOf.AuthenticationResponseEnum": ThreeDSecureDataV2AllOf.AuthenticationResponseEnum,
+        "ThreeDSecureDataV2AllOf.DirectoryResponseEnum": ThreeDSecureDataV2AllOf.DirectoryResponseEnum,
+        "ThreeDSecurePreparationRequestEvent.TypeEnum": ThreeDSecurePreparationRequestEvent.TypeEnum,
+        "ThreeDSecurePreparationRequestEvent.NameEnum": ThreeDSecurePreparationRequestEvent.NameEnum,
+        "ThreeDSecureRequestErrorEvent.TypeEnum": ThreeDSecureRequestErrorEvent.TypeEnum,
+        "ThreeDSecureRequestErrorEvent.NameEnum": ThreeDSecureRequestErrorEvent.NameEnum,
+        "ThreeDSecureResultRequestEvent.TypeEnum": ThreeDSecureResultRequestEvent.TypeEnum,
+        "ThreeDSecureResultRequestEvent.NameEnum": ThreeDSecureResultRequestEvent.NameEnum,
+        "ThreeDSecureSuccessEvent.TypeEnum": ThreeDSecureSuccessEvent.TypeEnum,
+        "ThreeDSecureSuccessEvent.NameEnum": ThreeDSecureSuccessEvent.NameEnum,
+        "ThreeDSecureSuccessEventContext.MethodEnum": ThreeDSecureSuccessEventContext.MethodEnum,
         "ThreeDSecureSummary.StatusEnum": ThreeDSecureSummary.StatusEnum,
         "ThreeDSecureSummary.MethodEnum": ThreeDSecureSummary.MethodEnum,
         "TokenizedRequest.MethodEnum": TokenizedRequest.MethodEnum,
@@ -469,6 +591,8 @@ let enumsMap: {[index: string]: any} = {
         "Transaction.MethodEnum": Transaction.MethodEnum,
         "TransactionCardRequest.MethodEnum": TransactionCardRequest.MethodEnum,
         "TransactionCheckoutSessionRequest.MethodEnum": TransactionCheckoutSessionRequest.MethodEnum,
+        "TransactionHistoryEvent.TypeEnum": TransactionHistoryEvent.TypeEnum,
+        "TransactionHistoryEvent.NameEnum": TransactionHistoryEvent.NameEnum,
         "TransactionPaymentMethodRequest.MethodEnum": TransactionPaymentMethodRequest.MethodEnum,
         "TransactionRedirectRequest.MethodEnum": TransactionRedirectRequest.MethodEnum,
         "TransactionRequest.IntentEnum": TransactionRequest.IntentEnum,
@@ -486,11 +610,17 @@ let typeMap: {[index: string]: any} = {
     "APIKeyPairCreate": APIKeyPairCreate,
     "APIKeyPairUpdate": APIKeyPairUpdate,
     "Address": Address,
-    "AntiFraudDecisionTransactionEvent": AntiFraudDecisionTransactionEvent,
-    "AntiFraudDecisionTransactionEventContext": AntiFraudDecisionTransactionEventContext,
+    "AntiFraudDecisionErrorEvent": AntiFraudDecisionErrorEvent,
+    "AntiFraudDecisionErrorEventContext": AntiFraudDecisionErrorEventContext,
+    "AntiFraudDecisionEvent": AntiFraudDecisionEvent,
+    "AntiFraudDecisionEventContext": AntiFraudDecisionEventContext,
+    "AntiFraudDecisionSkippedEvent": AntiFraudDecisionSkippedEvent,
+    "AntiFraudDecisionSkippedEventContext": AntiFraudDecisionSkippedEventContext,
     "AntiFraudServiceCreate": AntiFraudServiceCreate,
     "AntiFraudServiceUpdate": AntiFraudServiceUpdate,
     "AntiFraudServiceUpdateFields": AntiFraudServiceUpdateFields,
+    "AntiFraudWebhookEvent": AntiFraudWebhookEvent,
+    "AntiFraudWebhookEventContext": AntiFraudWebhookEventContext,
     "ApiLog": ApiLog,
     "ApiLogResponseBody": ApiLogResponseBody,
     "ApiLogResponseBodyDetails": ApiLogResponseBodyDetails,
@@ -525,6 +655,7 @@ let typeMap: {[index: string]: any} = {
     "ConnectionOptions": ConnectionOptions,
     "ConnectionOptionsAdyenCard": ConnectionOptionsAdyenCard,
     "ConnectionOptionsCybersourceAntiFraud": ConnectionOptionsCybersourceAntiFraud,
+    "ConnectionOptionsForterAntiFraud": ConnectionOptionsForterAntiFraud,
     "Connections": Connections,
     "Cryptogram": Cryptogram,
     "DigitalWallet": DigitalWallet,
@@ -554,6 +685,23 @@ let typeMap: {[index: string]: any} = {
     "NetworkToken": NetworkToken,
     "NetworkTokenRequest": NetworkTokenRequest,
     "NetworkTokens": NetworkTokens,
+    "PaymentConnectorResponseTransactionAuthorizationFailedEvent": PaymentConnectorResponseTransactionAuthorizationFailedEvent,
+    "PaymentConnectorResponseTransactionAuthorizationFailedEventContext": PaymentConnectorResponseTransactionAuthorizationFailedEventContext,
+    "PaymentConnectorResponseTransactionAuthorizationSucceededEvent": PaymentConnectorResponseTransactionAuthorizationSucceededEvent,
+    "PaymentConnectorResponseTransactionAuthorizationSucceededEventContext": PaymentConnectorResponseTransactionAuthorizationSucceededEventContext,
+    "PaymentConnectorResponseTransactionCaptureDeclinedEvent": PaymentConnectorResponseTransactionCaptureDeclinedEvent,
+    "PaymentConnectorResponseTransactionCaptureDeclinedEventContext": PaymentConnectorResponseTransactionCaptureDeclinedEventContext,
+    "PaymentConnectorResponseTransactionCaptureFailedEvent": PaymentConnectorResponseTransactionCaptureFailedEvent,
+    "PaymentConnectorResponseTransactionCaptureSucceededEvent": PaymentConnectorResponseTransactionCaptureSucceededEvent,
+    "PaymentConnectorResponseTransactionCaptureSucceededEventContext": PaymentConnectorResponseTransactionCaptureSucceededEventContext,
+    "PaymentConnectorResponseTransactionDeclinedEvent": PaymentConnectorResponseTransactionDeclinedEvent,
+    "PaymentConnectorResponseTransactionDeclinedEventContext": PaymentConnectorResponseTransactionDeclinedEventContext,
+    "PaymentConnectorResponseTransactionVoidDeclinedEvent": PaymentConnectorResponseTransactionVoidDeclinedEvent,
+    "PaymentConnectorResponseTransactionVoidDeclinedEventContext": PaymentConnectorResponseTransactionVoidDeclinedEventContext,
+    "PaymentConnectorResponseTransactionVoidFailedEvent": PaymentConnectorResponseTransactionVoidFailedEvent,
+    "PaymentConnectorResponseTransactionVoidFailedEventContext": PaymentConnectorResponseTransactionVoidFailedEventContext,
+    "PaymentConnectorResponseTransactionVoidSucceededEvent": PaymentConnectorResponseTransactionVoidSucceededEvent,
+    "PaymentConnectorResponseTransactionVoidSucceededEventContext": PaymentConnectorResponseTransactionVoidSucceededEventContext,
     "PaymentMethod": PaymentMethod,
     "PaymentMethodDefinition": PaymentMethodDefinition,
     "PaymentMethodDefinitions": PaymentMethodDefinitions,
@@ -616,6 +764,8 @@ let typeMap: {[index: string]: any} = {
     "ShippingDetails": ShippingDetails,
     "StatementDescriptor": StatementDescriptor,
     "TaxId": TaxId,
+    "ThreeDSecureAuthenticationRequestEvent": ThreeDSecureAuthenticationRequestEvent,
+    "ThreeDSecureAuthenticationRequestEventContext": ThreeDSecureAuthenticationRequestEventContext,
     "ThreeDSecureData": ThreeDSecureData,
     "ThreeDSecureDataV1": ThreeDSecureDataV1,
     "ThreeDSecureDataV1AllOf": ThreeDSecureDataV1AllOf,
@@ -623,14 +773,21 @@ let typeMap: {[index: string]: any} = {
     "ThreeDSecureDataV2": ThreeDSecureDataV2,
     "ThreeDSecureDataV2AllOf": ThreeDSecureDataV2AllOf,
     "ThreeDSecureError": ThreeDSecureError,
-    "ThreeDSecureSuccessTransactionEvent": ThreeDSecureSuccessTransactionEvent,
-    "ThreeDSecureSuccessTransactionEventContext": ThreeDSecureSuccessTransactionEventContext,
+    "ThreeDSecurePreparationRequestEvent": ThreeDSecurePreparationRequestEvent,
+    "ThreeDSecurePreparationRequestEventContext": ThreeDSecurePreparationRequestEventContext,
+    "ThreeDSecureRequestErrorEvent": ThreeDSecureRequestErrorEvent,
+    "ThreeDSecureRequestErrorEventContext": ThreeDSecureRequestErrorEventContext,
+    "ThreeDSecureResultRequestEvent": ThreeDSecureResultRequestEvent,
+    "ThreeDSecureResultRequestEventContext": ThreeDSecureResultRequestEventContext,
+    "ThreeDSecureSuccessEvent": ThreeDSecureSuccessEvent,
+    "ThreeDSecureSuccessEventContext": ThreeDSecureSuccessEventContext,
     "ThreeDSecureSummary": ThreeDSecureSummary,
     "TokenizedRequest": TokenizedRequest,
     "Transaction": Transaction,
     "TransactionCaptureRequest": TransactionCaptureRequest,
     "TransactionCardRequest": TransactionCardRequest,
     "TransactionCheckoutSessionRequest": TransactionCheckoutSessionRequest,
+    "TransactionHistoryEvent": TransactionHistoryEvent,
     "TransactionPaymentMethodRequest": TransactionPaymentMethodRequest,
     "TransactionRedirectRequest": TransactionRedirectRequest,
     "TransactionRefundRequest": TransactionRefundRequest,

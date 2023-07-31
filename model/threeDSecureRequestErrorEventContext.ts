@@ -12,41 +12,35 @@
 
 import { RequestFile } from './models';
 
-export class ThreeDSecureDataV1AllOf {
+/**
+* 3DS post-authentication context.
+*/
+export class ThreeDSecureRequestErrorEventContext {
     /**
-    * The response for the 3DS authentication call.
+    * The URL that was called for this request.
     */
-    'authenticationResponse': string;
+    'url'?: string;
     /**
-    * The CAVV algorithm used.
+    * The reason for the error.
     */
-    'cavvAlgorithm': string;
-    /**
-    * The transaction identifier.
-    */
-    'xid': string;
+    'reason'?: string;
 
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "authenticationResponse",
-            "baseName": "authentication_response",
+            "name": "url",
+            "baseName": "url",
             "type": "string"
         },
         {
-            "name": "cavvAlgorithm",
-            "baseName": "cavv_algorithm",
-            "type": "string"
-        },
-        {
-            "name": "xid",
-            "baseName": "xid",
+            "name": "reason",
+            "baseName": "reason",
             "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
-        return ThreeDSecureDataV1AllOf.attributeTypeMap;
+        return ThreeDSecureRequestErrorEventContext.attributeTypeMap;
     }
 }
 

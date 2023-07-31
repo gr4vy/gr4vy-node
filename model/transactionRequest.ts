@@ -82,13 +82,17 @@ export class TransactionRequest {
     */
     'shippingDetailsId'?: string | null;
     /**
-    * Allows for passing optional configuration per connection to take advantage of connection specific features. When provided, the data is only passed to the target connection type to prevent sharing configuration across connections.  Please note that each of the keys this object are in kebab-case, for example `cybersource-anti-fraud` as they represent the ID of the connector. All the other keys will be snake-case, for example `device_fingerprint_id`.
+    * Allows for passing optional configuration per connection to take advantage of connection specific features. When provided, the data is only passed to the target connection type to prevent sharing configuration across connections.  Please note that each of the keys this object are in kebab-case, for example `cybersource-anti-fraud` as they represent the ID of the connector. All the other keys will be snake-case, for example `merchant_defined_data`.
     */
     'connectionOptions'?: ConnectionOptions | null;
     /**
     * Whether to capture the transaction asynchronously.  - When `async_capture` is `false` (default), the transaction is captured   in the same request. - When `async_capture` is `true`, the transaction is automatically   captured at a later time.  Redirect transactions are not affected by this flag.  This flag can only be set to `true` when `intent` is set to `capture`.
     */
     'asyncCapture'?: boolean;
+    /**
+    * This field represents the fingerprint data to be passed to the active anti-fraud service.
+    */
+    'antiFraudFingerprint'?: string | null;
 
     static discriminator: string | undefined = undefined;
 
@@ -187,6 +191,11 @@ export class TransactionRequest {
             "name": "asyncCapture",
             "baseName": "async_capture",
             "type": "boolean"
+        },
+        {
+            "name": "antiFraudFingerprint",
+            "baseName": "anti_fraud_fingerprint",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {

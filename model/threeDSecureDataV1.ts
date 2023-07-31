@@ -32,11 +32,11 @@ export class ThreeDSecureDataV1 {
     */
     'directoryResponse': string;
     /**
-    * The authentication response.
+    * The response for the 3DS authentication call.
     */
     'authenticationResponse': string;
     /**
-    * The CAVV Algorithm used.
+    * The CAVV algorithm used.
     */
     'cavvAlgorithm': string;
     /**
