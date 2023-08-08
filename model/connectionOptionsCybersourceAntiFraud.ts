@@ -17,7 +17,7 @@ import { RequestFile } from './models';
 */
 export class ConnectionOptionsCybersourceAntiFraud {
     /**
-    * This is a key-value object for merchant defined data.
+    * This is a key-value object for merchant defined data. Each key needs to be a numeric string identifying the MDD field to set. For example, for field 1 set the key to \"1\".
     */
     'merchantDefinedData'?: { [key: string]: string; };
 

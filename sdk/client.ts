@@ -43,6 +43,7 @@ class Client {
   newCheckoutSession: typeof CheckoutSessionsApi.prototype.newCheckoutSession
   deleteCheckoutSession: typeof CheckoutSessionsApi.prototype.deleteCheckoutSession
   getCheckoutSession: typeof CheckoutSessionsApi.prototype.getCheckoutSession
+  updateCheckoutSession: typeof CheckoutSessionsApi.prototype.updateCheckoutSession
   updateCheckoutSessionFields: typeof CheckoutSessionsApi.prototype.updateCheckoutSessionFields
 
   // Payment Methods
@@ -113,6 +114,7 @@ class Client {
     this.newCheckoutSession = this.wrap(csa.newCheckoutSession.bind(csa))
     this.deleteCheckoutSession = this.wrap(csa.deleteCheckoutSession.bind(csa))
     this.getCheckoutSession = this.wrap(csa.getCheckoutSession.bind(csa))
+    this.updateCheckoutSession = this.wrap(csa.updateCheckoutSession.bind(csa))
     this.updateCheckoutSessionFields = this.wrap(
       csa.updateCheckoutSessionFields.bind(csa)
     )

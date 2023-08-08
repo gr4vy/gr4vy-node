@@ -55,9 +55,11 @@ model/cardSchemeDefinition.ts
 model/cardSchemeDefinitions.ts
 model/cartItem.ts
 model/checkoutSession.ts
+model/checkoutSessionCreateRequest.ts
 model/checkoutSessionFieldsPaymentMethod.ts
 model/checkoutSessionRequest.ts
 model/checkoutSessionSecureFieldsUpdate.ts
+model/checkoutSessionUpdateRequest.ts
 model/connection.ts
 model/connectionDefinition.ts
 model/connectionDefinitions.ts

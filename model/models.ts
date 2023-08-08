@@ -39,9 +39,11 @@ export * from './cardSchemeDefinition';
 export * from './cardSchemeDefinitions';
 export * from './cartItem';
 export * from './checkoutSession';
+export * from './checkoutSessionCreateRequest';
 export * from './checkoutSessionFieldsPaymentMethod';
 export * from './checkoutSessionRequest';
 export * from './checkoutSessionSecureFieldsUpdate';
+export * from './checkoutSessionUpdateRequest';
 export * from './connection';
 export * from './connectionDefinition';
 export * from './connectionDefinitions';
@@ -246,9 +248,11 @@ import { CardSchemeDefinition } from './cardSchemeDefinition';
 import { CardSchemeDefinitions } from './cardSchemeDefinitions';
 import { CartItem } from './cartItem';
 import { CheckoutSession } from './checkoutSession';
+import { CheckoutSessionCreateRequest } from './checkoutSessionCreateRequest';
 import { CheckoutSessionFieldsPaymentMethod } from './checkoutSessionFieldsPaymentMethod';
 import { CheckoutSessionRequest } from './checkoutSessionRequest';
 import { CheckoutSessionSecureFieldsUpdate } from './checkoutSessionSecureFieldsUpdate';
+import { CheckoutSessionUpdateRequest } from './checkoutSessionUpdateRequest';
 import { Connection } from './connection';
 import { ConnectionDefinition } from './connectionDefinition';
 import { ConnectionDefinitions } from './connectionDefinitions';
@@ -646,9 +650,11 @@ let typeMap: {[index: string]: any} = {
     "CardSchemeDefinitions": CardSchemeDefinitions,
     "CartItem": CartItem,
     "CheckoutSession": CheckoutSession,
+    "CheckoutSessionCreateRequest": CheckoutSessionCreateRequest,
     "CheckoutSessionFieldsPaymentMethod": CheckoutSessionFieldsPaymentMethod,
     "CheckoutSessionRequest": CheckoutSessionRequest,
     "CheckoutSessionSecureFieldsUpdate": CheckoutSessionSecureFieldsUpdate,
+    "CheckoutSessionUpdateRequest": CheckoutSessionUpdateRequest,
     "Connection": Connection,
     "ConnectionDefinition": ConnectionDefinition,
     "ConnectionDefinitions": ConnectionDefinitions,

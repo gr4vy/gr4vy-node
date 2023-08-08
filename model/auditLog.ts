@@ -34,6 +34,10 @@ export class AuditLog {
     * The action that was performed.
     */
     'action'?: AuditLog.ActionEnum;
+    /**
+    * The ID of the merchant account this entry was created for.
+    */
+    'merchantAccountId'?: string | null;
     'user'?: AuditLogUser;
     'resource'?: AuditLogResource;
 
@@ -59,6 +63,11 @@ export class AuditLog {
             "name": "action",
             "baseName": "action",
             "type": "AuditLog.ActionEnum"
+        },
+        {
+            "name": "merchantAccountId",
+            "baseName": "merchant_account_id",
+            "type": "string"
         },
         {
             "name": "user",
