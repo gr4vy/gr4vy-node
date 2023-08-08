@@ -14,21 +14,9 @@ import { RequestFile } from './models';
 import { CartItem } from './cartItem';
 
 /**
-* A short-lived checkout session.
+* A request to update a checkout session.
 */
-export class CheckoutSession {
-    /**
-    * `checkout-session`.
-    */
-    'type'?: CheckoutSession.TypeEnum;
-    /**
-    * The ID of the Checkout Session.
-    */
-    'id'?: string;
-    /**
-    * The date and time when the Checkout Session will expire. By default this will be set to 1 hour from the date of creation.
-    */
-    'expiresAt'?: Date;
+export class CheckoutSessionUpdateRequest {
     /**
     * An array of cart items that represents the line items of a transaction.
     */
@@ -42,21 +30,6 @@ export class CheckoutSession {
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "type",
-            "baseName": "type",
-            "type": "CheckoutSession.TypeEnum"
-        },
-        {
-            "name": "id",
-            "baseName": "id",
-            "type": "string"
-        },
-        {
-            "name": "expiresAt",
-            "baseName": "expires_at",
-            "type": "Date"
-        },
-        {
             "name": "cartItems",
             "baseName": "cart_items",
             "type": "Array<CartItem>"
@@ -68,12 +41,7 @@ export class CheckoutSession {
         }    ];
 
     static getAttributeTypeMap() {
-        return CheckoutSession.attributeTypeMap;
+        return CheckoutSessionUpdateRequest.attributeTypeMap;
     }
 }
 
-export namespace CheckoutSession {
-    export enum TypeEnum {
-        CheckoutSession = <any> 'checkout-session'
-    }
-}

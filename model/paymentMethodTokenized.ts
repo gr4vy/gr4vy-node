@@ -60,6 +60,14 @@ export class PaymentMethodTokenized {
     * The 2-letter ISO code of the country this payment method can be used for. If this value is `null` the payment method may be used in multiple countries.
     */
     'country'?: string | null;
+    /**
+    * The date and time when this card was last replaced.  When the Account Updater determines that new card details are available (e.g. when it\'s about to expire), existing details are not changed immediately. The actual replacement occurs when a transaction using this payment method is declined with any of the following codes:  * `canceled_payment_method` * `expired_payment_method` * `unavailable_payment_method` * `unknown_payment_method`  When the replacement is applied, this field is updated. For non-card payment methods, the value of this field is always set to `null`.
+    */
+    'lastReplacedAt'?: Date | null;
+    /**
+    * Whether this card has a pending replacement that hasn\'t been applied yet.  When the Account Updater determines that new card details are available (e.g. when it\'s about to expire), existing details are not changed immediately, but this field is set to `true`. The actual replacement occurs when a transaction using this payment method is declined with any of the following codes:  * `canceled_payment_method` * `expired_payment_method` * `unavailable_payment_method` * `unknown_payment_method`  When the replacement is applied, this field is set to `false`. For non-card payment methods, the value of this field is always set to `false`.
+    */
+    'hasReplacement'?: boolean;
 
     static discriminator: string | undefined = undefined;
 
@@ -118,6 +126,16 @@ export class PaymentMethodTokenized {
             "name": "country",
             "baseName": "country",
             "type": "string"
+        },
+        {
+            "name": "lastReplacedAt",
+            "baseName": "last_replaced_at",
+            "type": "Date"
+        },
+        {
+            "name": "hasReplacement",
+            "baseName": "has_replacement",
+            "type": "boolean"
         }    ];
 
     static getAttributeTypeMap() {

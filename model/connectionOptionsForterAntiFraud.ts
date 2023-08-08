@@ -17,7 +17,7 @@ import { RequestFile } from './models';
 */
 export class ConnectionOptionsForterAntiFraud {
     /**
-    * Value to populate the `deliveryType` field in `primaryDeliveryDetails`.  Represents the type of delivery: PHYSICAL for any type of shipped goods. DIGITAL for non-shipped goods (services, gift cards etc.). Possible values are: \"DIGITAL\", \"PHYSICAL\", \"HYBRID\".
+    * Value to populate the `deliveryType` field in `primaryDeliveryDetails`.  Represents the type of delivery. This can be set to `PHYSICAL` for any type of shipped goods, `DIGITAL` for non-shipped goods (services, gift cards etc.), or `HYBRID` for others.
     */
     'deliveryType'?: string | null;
     /**
