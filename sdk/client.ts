@@ -1,5 +1,6 @@
 import {
   BuyersApi,
+  MerchantAccountsApi,
   PaymentMethodsApi,
   PaymentOptionsApi,
   PaymentServicesApi,
@@ -21,6 +22,7 @@ class Client {
   apis: (
     | BuyersApi
     | CheckoutSessionsApi
+    | MerchantAccountsApi
     | PaymentMethodsApi
     | PaymentOptionsApi
     | PaymentServiceDefinitionsApi
@@ -45,6 +47,12 @@ class Client {
   getCheckoutSession: typeof CheckoutSessionsApi.prototype.getCheckoutSession
   updateCheckoutSession: typeof CheckoutSessionsApi.prototype.updateCheckoutSession
   updateCheckoutSessionFields: typeof CheckoutSessionsApi.prototype.updateCheckoutSessionFields
+
+  // Merchant Accounts
+  listMerchantAccounts: typeof MerchantAccountsApi.prototype.listMerchantAccounts
+  newMerchantAccount: typeof MerchantAccountsApi.prototype.newMerchantAccount
+  updateMerchantAccount: typeof MerchantAccountsApi.prototype.updateMerchantAccount
+  deleteMerchantAccuont: typeof MerchantAccountsApi.prototype.deleteMerchantAccuont
 
   // Payment Methods
   listPaymentMethods: typeof PaymentMethodsApi.prototype.listPaymentMethods
@@ -119,6 +127,14 @@ class Client {
       csa.updateCheckoutSessionFields.bind(csa)
     )
     this.apis.push(csa)
+
+    // Merchant Accounts
+    const maa = new MerchantAccountsApi(this.baseUrl)
+    this.listMerchantAccounts = this.wrap(maa.listMerchantAccounts.bind(maa))
+    this.newMerchantAccount = this.wrap(maa.newMerchantAccount.bind(maa))
+    this.updateMerchantAccount = this.wrap(maa.updateMerchantAccount.bind(maa))
+    this.deleteMerchantAccuont = this.wrap(maa.deleteMerchantAccuont.bind(maa))
+    this.apis.push(maa)
 
     // Payment Methods
     const pma = new PaymentMethodsApi(this.baseUrl)
