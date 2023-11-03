@@ -120,3 +120,64 @@ describe('#voidTransaction', () => {
     expect(transaction.body.status).toBe('authorization_voided')
   })
 })
+
+describe('#newTransactionWithConnectionOptions', () => {
+  test('it should create a transaction with connectionOptions', async () => {
+
+    const req = new TransactionRequest()
+    req.amount = AMOUNT
+    req.currency = 'USD'
+    req.metadata = { source: 'node_sdk' }
+
+    req.paymentMethod = {
+      method: 'card',
+      number: '4111111111111111',
+      expirationDate: '11/25',
+      securityCode: '123',
+      redirectUrl: 'https://gr4vy.com',
+      buyerId: '1ec415c3-7cdb-4ed2-858d-0c7569c43bbf'
+    }
+
+    req.connectionOptions = {
+      "forterAntiFraud": {
+        "isGuestBuyer": false,
+        "totalDiscount": {
+          "couponCodeUsed": "FATHERSDAY2015",
+          "discountType": "COUPON",
+          "couponDiscountAmount": {
+              "amountUsd": "10.99",
+              "amountLocalCurrency": "8.99",
+              "currency": "GBP"
+          },
+          "couponDiscountPercent": "10%"
+        },
+      }
+    }
+
+    req.browserInfo = {
+      colorDepth: '24',
+      javaEnabled: 'true',
+      javascriptEnabled: 'true',
+      language: 'en',
+      screenHeight: '864',
+      screenWidth: '1536',
+      timeZoneOffset: '-330',
+      userAgent: "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, ikeGecko) Chrome/99.0.4844.74 Safari/537.36",
+      userDevice: 'desktop',
+      acceptHeader: 'application/json'
+    };
+
+    const transaction = await client
+      .newTransaction(makeid(10), req)
+      .catch((error) => {
+        console.dir(error.response.body) // the parsed JSON of the error
+        console.dir(error.response.statusCode) // the status code of the error
+        throw new Error('an error occurred while creating the transaction')
+      })
+
+    expect(transaction).toBeDefined()
+    expect(transaction.body).toBeDefined()
+    transactionId = transaction.body.id
+    expect(transactionId).toHaveLength(36)
+  })
+})
