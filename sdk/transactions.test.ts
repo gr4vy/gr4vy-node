@@ -123,7 +123,6 @@ describe('#voidTransaction', () => {
 
 describe('#newTransactionWithConnectionOptions', () => {
   test('it should create a transaction with connectionOptions', async () => {
-
     const req = new TransactionRequest()
     req.amount = AMOUNT
     req.currency = 'USD'
@@ -135,23 +134,23 @@ describe('#newTransactionWithConnectionOptions', () => {
       expirationDate: '11/25',
       securityCode: '123',
       redirectUrl: 'https://gr4vy.com',
-      buyerId: '1ec415c3-7cdb-4ed2-858d-0c7569c43bbf'
+      buyerId: '1ec415c3-7cdb-4ed2-858d-0c7569c43bbf',
     }
 
     req.connectionOptions = {
-      "forterAntiFraud": {
-        "isGuestBuyer": false,
-        "totalDiscount": {
-          "couponCodeUsed": "FATHERSDAY2015",
-          "discountType": "COUPON",
-          "couponDiscountAmount": {
-              "amountUsd": "10.99",
-              "amountLocalCurrency": "8.99",
-              "currency": "GBP"
+      forterAntiFraud: {
+        isGuestBuyer: false,
+        totalDiscount: {
+          couponCodeUsed: 'FATHERSDAY2015',
+          discountType: 'COUPON',
+          couponDiscountAmount: {
+            amountUsd: '10.99',
+            amountLocalCurrency: '8.99',
+            currency: 'GBP',
           },
-          "couponDiscountPercent": "10%"
+          couponDiscountPercent: '10%',
         },
-      }
+      },
     }
 
     req.browserInfo = {
@@ -162,10 +161,11 @@ describe('#newTransactionWithConnectionOptions', () => {
       screenHeight: '864',
       screenWidth: '1536',
       timeZoneOffset: '-330',
-      userAgent: "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, ikeGecko) Chrome/99.0.4844.74 Safari/537.36",
+      userAgent:
+        'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, ikeGecko) Chrome/99.0.4844.74 Safari/537.36',
       userDevice: 'desktop',
-      acceptHeader: 'application/json'
-    };
+      acceptHeader: 'application/json',
+    }
 
     const transaction = await client
       .newTransaction(makeid(10), req)
