@@ -46,7 +46,6 @@ class Client {
   deleteCheckoutSession: typeof CheckoutSessionsApi.prototype.deleteCheckoutSession
   getCheckoutSession: typeof CheckoutSessionsApi.prototype.getCheckoutSession
   updateCheckoutSession: typeof CheckoutSessionsApi.prototype.updateCheckoutSession
-  updateCheckoutSessionFields: typeof CheckoutSessionsApi.prototype.updateCheckoutSessionFields
 
   // Merchant Accounts
   listMerchantAccounts: typeof MerchantAccountsApi.prototype.listMerchantAccounts

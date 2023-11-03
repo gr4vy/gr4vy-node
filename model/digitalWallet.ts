@@ -11,7 +11,7 @@
  */
 
 import { RequestFile } from './models';
-import { DigitalWalletFields } from './digitalWalletFields';
+import { DigitalWalletClickToPayFields } from './digitalWalletClickToPayFields';
 
 /**
 * A digital wallet (e.g. Apple Pay) that has been registered.
@@ -53,7 +53,7 @@ export class DigitalWallet {
     * The list of domain names that a digital wallet can be used on. To use a digital wallet on a website, the domain of the site is required to be in this list.
     */
     'domainNames'?: Array<string>;
-    'fields'?: DigitalWalletFields;
+    'fields'?: DigitalWalletClickToPayFields;
     /**
     * The date and time when this digital wallet was registered.
     */
@@ -126,7 +126,7 @@ export class DigitalWallet {
         {
             "name": "fields",
             "baseName": "fields",
-            "type": "DigitalWalletFields"
+            "type": "DigitalWalletClickToPayFields"
         },
         {
             "name": "createdAt",
