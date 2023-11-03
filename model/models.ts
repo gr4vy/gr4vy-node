@@ -58,6 +58,16 @@ export * from './connectionOptions';
 export * from './connectionOptionsAdyenCard';
 export * from './connectionOptionsCybersourceAntiFraud';
 export * from './connectionOptionsForterAntiFraud';
+export * from './connectionOptionsForterAntiFraudAddress';
+export * from './connectionOptionsForterAntiFraudBasicItemData';
+export * from './connectionOptionsForterAntiFraudBeneficiaries';
+export * from './connectionOptionsForterAntiFraudCartItems';
+export * from './connectionOptionsForterAntiFraudComments';
+export * from './connectionOptionsForterAntiFraudDeliveryDetails';
+export * from './connectionOptionsForterAntiFraudPersonalDetails';
+export * from './connectionOptionsForterAntiFraudPhone';
+export * from './connectionOptionsForterAntiFraudTotalDiscount';
+export * from './connectionOptionsForterAntiFraudTotalDiscountCouponDiscountAmount';
 export * from './connectionOptionsPaypalPaypal';
 export * from './connectionOptionsPaypalPaypalAdditionalData';
 export * from './connections';
@@ -295,6 +305,16 @@ import { ConnectionOptions } from './connectionOptions';
 import { ConnectionOptionsAdyenCard } from './connectionOptionsAdyenCard';
 import { ConnectionOptionsCybersourceAntiFraud } from './connectionOptionsCybersourceAntiFraud';
 import { ConnectionOptionsForterAntiFraud } from './connectionOptionsForterAntiFraud';
+import { ConnectionOptionsForterAntiFraudAddress } from './connectionOptionsForterAntiFraudAddress';
+import { ConnectionOptionsForterAntiFraudBasicItemData } from './connectionOptionsForterAntiFraudBasicItemData';
+import { ConnectionOptionsForterAntiFraudBeneficiaries } from './connectionOptionsForterAntiFraudBeneficiaries';
+import { ConnectionOptionsForterAntiFraudCartItems } from './connectionOptionsForterAntiFraudCartItems';
+import { ConnectionOptionsForterAntiFraudComments } from './connectionOptionsForterAntiFraudComments';
+import { ConnectionOptionsForterAntiFraudDeliveryDetails } from './connectionOptionsForterAntiFraudDeliveryDetails';
+import { ConnectionOptionsForterAntiFraudPersonalDetails } from './connectionOptionsForterAntiFraudPersonalDetails';
+import { ConnectionOptionsForterAntiFraudPhone } from './connectionOptionsForterAntiFraudPhone';
+import { ConnectionOptionsForterAntiFraudTotalDiscount } from './connectionOptionsForterAntiFraudTotalDiscount';
+import { ConnectionOptionsForterAntiFraudTotalDiscountCouponDiscountAmount } from './connectionOptionsForterAntiFraudTotalDiscountCouponDiscountAmount';
 import { ConnectionOptionsPaypalPaypal } from './connectionOptionsPaypalPaypal';
 import { ConnectionOptionsPaypalPaypalAdditionalData } from './connectionOptionsPaypalPaypalAdditionalData';
 import { Connections } from './connections';
@@ -512,6 +532,9 @@ let enumsMap: {[index: string]: any} = {
         "CheckoutSessionRequest.MethodEnum": CheckoutSessionRequest.MethodEnum,
         "ConnectionDefinition.GroupEnum": ConnectionDefinition.GroupEnum,
         "ConnectionDefinition.CategoryEnum": ConnectionDefinition.CategoryEnum,
+        "ConnectionOptionsForterAntiFraud.DeliveryTypeEnum": ConnectionOptionsForterAntiFraud.DeliveryTypeEnum,
+        "ConnectionOptionsForterAntiFraudBasicItemData.TypeEnum": ConnectionOptionsForterAntiFraudBasicItemData.TypeEnum,
+        "ConnectionOptionsForterAntiFraudDeliveryDetails.DeliveryTypeEnum": ConnectionOptionsForterAntiFraudDeliveryDetails.DeliveryTypeEnum,
         "DigitalWallet.TypeEnum": DigitalWallet.TypeEnum,
         "DigitalWallet.ProviderEnum": DigitalWallet.ProviderEnum,
         "DigitalWalletApplePayTokenDecrypted.TypeEnum": DigitalWalletApplePayTokenDecrypted.TypeEnum,
@@ -750,6 +773,16 @@ let typeMap: {[index: string]: any} = {
     "ConnectionOptionsAdyenCard": ConnectionOptionsAdyenCard,
     "ConnectionOptionsCybersourceAntiFraud": ConnectionOptionsCybersourceAntiFraud,
     "ConnectionOptionsForterAntiFraud": ConnectionOptionsForterAntiFraud,
+    "ConnectionOptionsForterAntiFraudAddress": ConnectionOptionsForterAntiFraudAddress,
+    "ConnectionOptionsForterAntiFraudBasicItemData": ConnectionOptionsForterAntiFraudBasicItemData,
+    "ConnectionOptionsForterAntiFraudBeneficiaries": ConnectionOptionsForterAntiFraudBeneficiaries,
+    "ConnectionOptionsForterAntiFraudCartItems": ConnectionOptionsForterAntiFraudCartItems,
+    "ConnectionOptionsForterAntiFraudComments": ConnectionOptionsForterAntiFraudComments,
+    "ConnectionOptionsForterAntiFraudDeliveryDetails": ConnectionOptionsForterAntiFraudDeliveryDetails,
+    "ConnectionOptionsForterAntiFraudPersonalDetails": ConnectionOptionsForterAntiFraudPersonalDetails,
+    "ConnectionOptionsForterAntiFraudPhone": ConnectionOptionsForterAntiFraudPhone,
+    "ConnectionOptionsForterAntiFraudTotalDiscount": ConnectionOptionsForterAntiFraudTotalDiscount,
+    "ConnectionOptionsForterAntiFraudTotalDiscountCouponDiscountAmount": ConnectionOptionsForterAntiFraudTotalDiscountCouponDiscountAmount,
     "ConnectionOptionsPaypalPaypal": ConnectionOptionsPaypalPaypal,
     "ConnectionOptionsPaypalPaypalAdditionalData": ConnectionOptionsPaypalPaypalAdditionalData,
     "Connections": Connections,

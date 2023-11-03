@@ -11,6 +11,8 @@
  */
 
 import { RequestFile } from './models';
+import { ConnectionOptionsForterAntiFraudCartItems } from './connectionOptionsForterAntiFraudCartItems';
+import { ConnectionOptionsForterAntiFraudTotalDiscount } from './connectionOptionsForterAntiFraudTotalDiscount';
 
 /**
 * Additional options for Forter (anti-fraud).
@@ -19,11 +21,20 @@ export class ConnectionOptionsForterAntiFraud {
     /**
     * Value to populate the `deliveryType` field in `primaryDeliveryDetails`.  Represents the type of delivery. This can be set to `PHYSICAL` for any type of shipped goods, `DIGITAL` for non-shipped goods (services, gift cards etc.), or `HYBRID` for others.
     */
-    'deliveryType'?: string | null;
+    'deliveryType'?: ConnectionOptionsForterAntiFraud.DeliveryTypeEnum;
     /**
     * Value to populate the `deliveryMethod` field in `primaryDeliveryDetails`.  Represents the delivery method chosen by customer such as postal service, email, in game transfer, etc.
     */
     'deliveryMethod'?: string | null;
+    /**
+    * Defines if this is a guest check-out. This will redact the `accountId` and `created` fields from the `accountOwner` details sent to Forter.
+    */
+    'isGuestBuyer'?: boolean;
+    /**
+    * A list of Forter cart item objects. These will be merged into the `cart_items` passed to the transaction. Every cart item here will be merged with a cart item on the transaction with the same index.  Together, these will augment the `cartItems` values sent to the Forter validation API.
+    */
+    'cartItems'?: Array<ConnectionOptionsForterAntiFraudCartItems>;
+    'totalDiscount'?: ConnectionOptionsForterAntiFraudTotalDiscount | null;
 
     static discriminator: string | undefined = undefined;
 
@@ -31,12 +42,27 @@ export class ConnectionOptionsForterAntiFraud {
         {
             "name": "deliveryType",
             "baseName": "delivery_type",
-            "type": "string"
+            "type": "ConnectionOptionsForterAntiFraud.DeliveryTypeEnum"
         },
         {
             "name": "deliveryMethod",
             "baseName": "delivery_method",
             "type": "string"
+        },
+        {
+            "name": "isGuestBuyer",
+            "baseName": "is_guest_buyer",
+            "type": "boolean"
+        },
+        {
+            "name": "cartItems",
+            "baseName": "cart_items",
+            "type": "Array<ConnectionOptionsForterAntiFraudCartItems>"
+        },
+        {
+            "name": "totalDiscount",
+            "baseName": "total_discount",
+            "type": "ConnectionOptionsForterAntiFraudTotalDiscount"
         }    ];
 
     static getAttributeTypeMap() {
@@ -44,3 +70,10 @@ export class ConnectionOptionsForterAntiFraud {
     }
 }
 
+export namespace ConnectionOptionsForterAntiFraud {
+    export enum DeliveryTypeEnum {
+        Physical = <any> 'PHYSICAL',
+        Digital = <any> 'DIGITAL',
+        Hybrid = <any> 'HYBRID'
+    }
+}
