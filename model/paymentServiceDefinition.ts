@@ -11,8 +11,8 @@
  */
 
 import { RequestFile } from './models';
+import { GiftCardServiceDefinitionFields } from './giftCardServiceDefinitionFields';
 import { PaymentServiceDefinitionConfiguration } from './paymentServiceDefinitionConfiguration';
-import { PaymentServiceDefinitionFields } from './paymentServiceDefinitionFields';
 import { PaymentServiceDefinitionSupportedFeatures } from './paymentServiceDefinitionSupportedFeatures';
 
 /**
@@ -26,7 +26,7 @@ export class PaymentServiceDefinition {
     /**
     * `payment-service-definition`.
     */
-    'type'?: string;
+    'type'?: PaymentServiceDefinition.TypeEnum;
     /**
     * The display name of this service.
     */
@@ -38,7 +38,7 @@ export class PaymentServiceDefinition {
     /**
     * A list of fields that need to be submitted when activating the payment. service.
     */
-    'fields'?: Array<PaymentServiceDefinitionFields>;
+    'fields'?: Array<GiftCardServiceDefinitionFields>;
     /**
     * A list of three-letter ISO currency codes that this service supports.
     */
@@ -69,7 +69,7 @@ export class PaymentServiceDefinition {
         {
             "name": "type",
             "baseName": "type",
-            "type": "string"
+            "type": "PaymentServiceDefinition.TypeEnum"
         },
         {
             "name": "displayName",
@@ -84,7 +84,7 @@ export class PaymentServiceDefinition {
         {
             "name": "fields",
             "baseName": "fields",
-            "type": "Array<PaymentServiceDefinitionFields>"
+            "type": "Array<GiftCardServiceDefinitionFields>"
         },
         {
             "name": "supportedCurrencies",
@@ -123,31 +123,70 @@ export class PaymentServiceDefinition {
 }
 
 export namespace PaymentServiceDefinition {
+    export enum TypeEnum {
+        PaymentServiceDefinition = <any> 'payment-service-definition'
+    }
     export enum MethodEnum {
         Afterpay = <any> 'afterpay',
+        Alipay = <any> 'alipay',
+        Alipayhk = <any> 'alipayhk',
         Applepay = <any> 'applepay',
+        Bacs = <any> 'bacs',
+        Bancontact = <any> 'bancontact',
         Banked = <any> 'banked',
+        Becs = <any> 'becs',
         Bitpay = <any> 'bitpay',
         Boleto = <any> 'boleto',
+        Boost = <any> 'boost',
         Card = <any> 'card',
+        CheckoutSession = <any> 'checkout-session',
+        ClickToPay = <any> 'click-to-pay',
         Clearpay = <any> 'clearpay',
         Dana = <any> 'dana',
+        Dcb = <any> 'dcb',
+        Eps = <any> 'eps',
         Fortumo = <any> 'fortumo',
         Gcash = <any> 'gcash',
+        Giropay = <any> 'giropay',
         Gocardless = <any> 'gocardless',
         Googlepay = <any> 'googlepay',
+        Gopay = <any> 'gopay',
         Grabpay = <any> 'grabpay',
+        Ideal = <any> 'ideal',
+        Id = <any> 'id',
+        Kakaopay = <any> 'kakaopay',
         Klarna = <any> 'klarna',
+        Laybuy = <any> 'laybuy',
+        Linepay = <any> 'linepay',
+        Linkaja = <any> 'linkaja',
+        Maybankqrpay = <any> 'maybankqrpay',
+        Multibanco = <any> 'multibanco',
+        Oney3x = <any> 'oney_3x',
+        Oney4x = <any> 'oney_4x',
+        Oney6x = <any> 'oney_6x',
+        Oney10x = <any> 'oney_10x',
+        Oney12x = <any> 'oney_12x',
         Ovo = <any> 'ovo',
+        Oxxo = <any> 'oxxo',
         Paymaya = <any> 'paymaya',
         Paypal = <any> 'paypal',
+        Paypalpaylater = <any> 'paypalpaylater',
         Pix = <any> 'pix',
         Rabbitlinepay = <any> 'rabbitlinepay',
+        Razorpay = <any> 'razorpay',
         Scalapay = <any> 'scalapay',
+        Sepa = <any> 'sepa',
         Shopeepay = <any> 'shopeepay',
+        Singteldash = <any> 'singteldash',
+        Sofort = <any> 'sofort',
         Stripedd = <any> 'stripedd',
+        Thaiqr = <any> 'thaiqr',
+        Touchngo = <any> 'touchngo',
         Truemoney = <any> 'truemoney',
         Trustly = <any> 'trustly',
+        Venmo = <any> 'venmo',
+        Waave = <any> 'waave',
+        Wechat = <any> 'wechat',
         Zippay = <any> 'zippay'
     }
     export enum ModeEnum {

@@ -14,11 +14,14 @@ import { RequestFile } from './models';
 import { ConnectionOptionsAdyenCard } from './connectionOptionsAdyenCard';
 import { ConnectionOptionsCybersourceAntiFraud } from './connectionOptionsCybersourceAntiFraud';
 import { ConnectionOptionsForterAntiFraud } from './connectionOptionsForterAntiFraud';
+import { ConnectionOptionsPaypalPaypal } from './connectionOptionsPaypalPaypal';
 
 export class ConnectionOptions {
     'cybersourceAntiFraud'?: ConnectionOptionsCybersourceAntiFraud | null;
     'forterAntiFraud'?: ConnectionOptionsForterAntiFraud | null;
     'adyenCard'?: ConnectionOptionsAdyenCard | null;
+    'paypalPaypal'?: ConnectionOptionsPaypalPaypal | null;
+    'paypalPaypalpaylater'?: ConnectionOptionsPaypalPaypal | null;
 
     static discriminator: string | undefined = undefined;
 
@@ -37,6 +40,16 @@ export class ConnectionOptions {
             "name": "adyenCard",
             "baseName": "adyen-card",
             "type": "ConnectionOptionsAdyenCard"
+        },
+        {
+            "name": "paypalPaypal",
+            "baseName": "paypal-paypal",
+            "type": "ConnectionOptionsPaypalPaypal"
+        },
+        {
+            "name": "paypalPaypalpaylater",
+            "baseName": "paypal-paypalpaylater",
+            "type": "ConnectionOptionsPaypalPaypal"
         }    ];
 
     static getAttributeTypeMap() {

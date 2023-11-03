@@ -25,9 +25,17 @@ export class DigitalWalletRequest {
     */
     'merchantName': string;
     /**
-    * The main URL of the merchant. This is used to register the merchant with a digital wallet provider and this URL is not displayed to the buyer.
+    * The main URL of the merchant.
     */
     'merchantUrl'?: string | null;
+    /**
+    * The consumer facing name of the merchant.
+    */
+    'merchantDisplayName'?: string | null;
+    /**
+    * The country code where the merchant is registered.
+    */
+    'merchantCountryCode'?: string | null;
     /**
     * The list of domain names that a digital wallet can be used on. To use a digital wallet on a website, the domain of the site is required to be in this list.
     */
@@ -53,6 +61,16 @@ export class DigitalWalletRequest {
         {
             "name": "merchantUrl",
             "baseName": "merchant_url",
+            "type": "string"
+        },
+        {
+            "name": "merchantDisplayName",
+            "baseName": "merchant_display_name",
+            "type": "string"
+        },
+        {
+            "name": "merchantCountryCode",
+            "baseName": "merchant_country_code",
             "type": "string"
         },
         {

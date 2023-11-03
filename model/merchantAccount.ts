@@ -34,6 +34,10 @@ export class MerchantAccount {
     */
     'outboundWebhookUsername'?: string | null;
     /**
+    * The optional password to use when `outbound_webhook_url` is configured and requires basic authentication.  If the field is not `null`, the value is masked to avoid exposing sensitive information.
+    */
+    'outboundWebhookPassword'?: string | null;
+    /**
     * Requestor ID provided for Visa after onboarding to use Network Tokens.
     */
     'visaNetworkTokensRequestorId'?: string | null;
@@ -92,6 +96,11 @@ export class MerchantAccount {
         {
             "name": "outboundWebhookUsername",
             "baseName": "outbound_webhook_username",
+            "type": "string"
+        },
+        {
+            "name": "outboundWebhookPassword",
+            "baseName": "outbound_webhook_password",
             "type": "string"
         },
         {

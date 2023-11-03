@@ -12,6 +12,7 @@
 
 import { RequestFile } from './models';
 import { CartItem } from './cartItem';
+import { CheckoutSessionPaymentMethod } from './checkoutSessionPaymentMethod';
 
 /**
 * A short-lived checkout session.
@@ -37,6 +38,7 @@ export class CheckoutSession {
     * Any additional information about the transaction that you would like to store as key-value pairs. This data is passed to payment service providers that support it.
     */
     'metadata'?: { [key: string]: string; } | null;
+    'paymentMethod'?: CheckoutSessionPaymentMethod | null;
 
     static discriminator: string | undefined = undefined;
 
@@ -65,6 +67,11 @@ export class CheckoutSession {
             "name": "metadata",
             "baseName": "metadata",
             "type": "{ [key: string]: string; }"
+        },
+        {
+            "name": "paymentMethod",
+            "baseName": "payment_method",
+            "type": "CheckoutSessionPaymentMethod"
         }    ];
 
     static getAttributeTypeMap() {

@@ -21,6 +21,7 @@ transactionRequest.paymentMethod.method =
 transactionRequest.paymentMethod.number = '4111111111111111'
 transactionRequest.paymentMethod.expirationDate = '11/25'
 transactionRequest.paymentMethod.securityCode = '123'
+transactionRequest.paymentMethod.redirectUrl = 'https://gr4vy.com'
 
 function makeid(length) {
   let result = ''

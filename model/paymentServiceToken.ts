@@ -17,6 +17,10 @@ import { RequestFile } from './models';
 */
 export class PaymentServiceToken {
     /**
+    * The type of this resource.
+    */
+    'type'?: PaymentServiceToken.TypeEnum;
+    /**
     * The unique ID of the token.
     */
     'id'?: string;
@@ -52,6 +56,11 @@ export class PaymentServiceToken {
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "type",
+            "baseName": "type",
+            "type": "PaymentServiceToken.TypeEnum"
+        },
         {
             "name": "id",
             "baseName": "id",
@@ -99,6 +108,9 @@ export class PaymentServiceToken {
 }
 
 export namespace PaymentServiceToken {
+    export enum TypeEnum {
+        PaymentServiceToken = <any> 'payment-service-token'
+    }
     export enum StatusEnum {
         Processing = <any> 'processing',
         BuyerApprovalRequired = <any> 'buyer_approval_required',

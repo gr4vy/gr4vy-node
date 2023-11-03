@@ -12,6 +12,10 @@ export * from './antiFraudDecisionSkippedEventContext';
 export * from './antiFraudServiceCreate';
 export * from './antiFraudServiceUpdate';
 export * from './antiFraudServiceUpdateFields';
+export * from './antiFraudTransactionStatusUpdateErrorEvent';
+export * from './antiFraudTransactionStatusUpdateErrorEventContext';
+export * from './antiFraudTransactionStatusUpdateEvent';
+export * from './antiFraudTransactionStatusUpdateEventContext';
 export * from './antiFraudWebhookEvent';
 export * from './antiFraudWebhookEventContext';
 export * from './apiLog';
@@ -24,6 +28,8 @@ export * from './auditLog';
 export * from './auditLogResource';
 export * from './auditLogUser';
 export * from './auditLogs';
+export * from './bINLookupRequest';
+export * from './bINLookupRequestContext';
 export * from './billingDetails';
 export * from './billingDetailsRequest';
 export * from './billingDetailsUpdateRequest';
@@ -35,14 +41,15 @@ export * from './buyerUpdate';
 export * from './buyers';
 export * from './cardDetails';
 export * from './cardRequest';
+export * from './cardScheme';
 export * from './cardSchemeDefinition';
 export * from './cardSchemeDefinitions';
 export * from './cartItem';
 export * from './checkoutSession';
 export * from './checkoutSessionCreateRequest';
-export * from './checkoutSessionFieldsPaymentMethod';
+export * from './checkoutSessionPaymentMethod';
+export * from './checkoutSessionPaymentMethodDetails';
 export * from './checkoutSessionRequest';
-export * from './checkoutSessionSecureFieldsUpdate';
 export * from './checkoutSessionUpdateRequest';
 export * from './connection';
 export * from './connectionDefinition';
@@ -51,9 +58,18 @@ export * from './connectionOptions';
 export * from './connectionOptionsAdyenCard';
 export * from './connectionOptionsCybersourceAntiFraud';
 export * from './connectionOptionsForterAntiFraud';
+export * from './connectionOptionsPaypalPaypal';
+export * from './connectionOptionsPaypalPaypalAdditionalData';
 export * from './connections';
 export * from './cryptogram';
 export * from './digitalWallet';
+export * from './digitalWalletApplePayTokenDecrypted';
+export * from './digitalWalletApplePayTokenDecryptedContext';
+export * from './digitalWalletClickToPayFields';
+export * from './digitalWalletClickToPayTokenDecrypted';
+export * from './digitalWalletClickToPayTokenDecryptedContext';
+export * from './digitalWalletGooglePayTokenDecrypted';
+export * from './digitalWalletGooglePayTokenDecryptedContext';
 export * from './digitalWalletRequest';
 export * from './digitalWalletUpdate';
 export * from './digitalWallets';
@@ -67,6 +83,16 @@ export * from './error404PendingCreation';
 export * from './error409DuplicateRecord';
 export * from './errorDetail';
 export * from './errorGeneric';
+export * from './giftCardService';
+export * from './giftCardServiceCreateRequest';
+export * from './giftCardServiceCreateRequestFields';
+export * from './giftCardServiceDefinition';
+export * from './giftCardServiceDefinitionFields';
+export * from './giftCardServiceFields';
+export * from './giftCardServiceUpdateRequest';
+export * from './giftCardServiceUpdateRequestFields';
+export * from './giftCardServiceVerifyRequest';
+export * from './giftCardServiceVerifyRequestFields';
 export * from './googlePayRequest';
 export * from './googlePayRequestAssuranceDetails';
 export * from './googlePaySessionRequest';
@@ -80,6 +106,8 @@ export * from './merchantProfileScheme';
 export * from './networkToken';
 export * from './networkTokenRequest';
 export * from './networkTokens';
+export * from './paymentConnectorExternalTransactionRequest';
+export * from './paymentConnectorExternalTransactionRequestContext';
 export * from './paymentConnectorResponseTransactionAuthorizationFailedEvent';
 export * from './paymentConnectorResponseTransactionAuthorizationFailedEventContext';
 export * from './paymentConnectorResponseTransactionAuthorizationSucceededEvent';
@@ -114,10 +142,8 @@ export * from './paymentOptionsRequest';
 export * from './paymentService';
 export * from './paymentServiceDefinition';
 export * from './paymentServiceDefinitionConfiguration';
-export * from './paymentServiceDefinitionFields';
 export * from './paymentServiceDefinitionSupportedFeatures';
 export * from './paymentServiceDefinitions';
-export * from './paymentServiceFields';
 export * from './paymentServiceRequest';
 export * from './paymentServiceRequestFields';
 export * from './paymentServiceSnapshot';
@@ -177,12 +203,14 @@ export * from './threeDSecureResultRequestEventContext';
 export * from './threeDSecureSuccessEvent';
 export * from './threeDSecureSuccessEventContext';
 export * from './threeDSecureSummary';
+export * from './threeDSecureV2';
 export * from './tokenizedRequest';
 export * from './transaction';
 export * from './transactionCaptureRequest';
 export * from './transactionCardRequest';
 export * from './transactionCheckoutSessionRequest';
 export * from './transactionHistoryEvent';
+export * from './transactionHistoryEvents';
 export * from './transactionPaymentMethodRequest';
 export * from './transactionRedirectRequest';
 export * from './transactionRefundRequest';
@@ -221,6 +249,10 @@ import { AntiFraudDecisionSkippedEventContext } from './antiFraudDecisionSkipped
 import { AntiFraudServiceCreate } from './antiFraudServiceCreate';
 import { AntiFraudServiceUpdate } from './antiFraudServiceUpdate';
 import { AntiFraudServiceUpdateFields } from './antiFraudServiceUpdateFields';
+import { AntiFraudTransactionStatusUpdateErrorEvent } from './antiFraudTransactionStatusUpdateErrorEvent';
+import { AntiFraudTransactionStatusUpdateErrorEventContext } from './antiFraudTransactionStatusUpdateErrorEventContext';
+import { AntiFraudTransactionStatusUpdateEvent } from './antiFraudTransactionStatusUpdateEvent';
+import { AntiFraudTransactionStatusUpdateEventContext } from './antiFraudTransactionStatusUpdateEventContext';
 import { AntiFraudWebhookEvent } from './antiFraudWebhookEvent';
 import { AntiFraudWebhookEventContext } from './antiFraudWebhookEventContext';
 import { ApiLog } from './apiLog';
@@ -233,6 +265,8 @@ import { AuditLog } from './auditLog';
 import { AuditLogResource } from './auditLogResource';
 import { AuditLogUser } from './auditLogUser';
 import { AuditLogs } from './auditLogs';
+import { BINLookupRequest } from './bINLookupRequest';
+import { BINLookupRequestContext } from './bINLookupRequestContext';
 import { BillingDetails } from './billingDetails';
 import { BillingDetailsRequest } from './billingDetailsRequest';
 import { BillingDetailsUpdateRequest } from './billingDetailsUpdateRequest';
@@ -244,14 +278,15 @@ import { BuyerUpdate } from './buyerUpdate';
 import { Buyers } from './buyers';
 import { CardDetails } from './cardDetails';
 import { CardRequest } from './cardRequest';
+import { CardScheme } from './cardScheme';
 import { CardSchemeDefinition } from './cardSchemeDefinition';
 import { CardSchemeDefinitions } from './cardSchemeDefinitions';
 import { CartItem } from './cartItem';
 import { CheckoutSession } from './checkoutSession';
 import { CheckoutSessionCreateRequest } from './checkoutSessionCreateRequest';
-import { CheckoutSessionFieldsPaymentMethod } from './checkoutSessionFieldsPaymentMethod';
+import { CheckoutSessionPaymentMethod } from './checkoutSessionPaymentMethod';
+import { CheckoutSessionPaymentMethodDetails } from './checkoutSessionPaymentMethodDetails';
 import { CheckoutSessionRequest } from './checkoutSessionRequest';
-import { CheckoutSessionSecureFieldsUpdate } from './checkoutSessionSecureFieldsUpdate';
 import { CheckoutSessionUpdateRequest } from './checkoutSessionUpdateRequest';
 import { Connection } from './connection';
 import { ConnectionDefinition } from './connectionDefinition';
@@ -260,9 +295,18 @@ import { ConnectionOptions } from './connectionOptions';
 import { ConnectionOptionsAdyenCard } from './connectionOptionsAdyenCard';
 import { ConnectionOptionsCybersourceAntiFraud } from './connectionOptionsCybersourceAntiFraud';
 import { ConnectionOptionsForterAntiFraud } from './connectionOptionsForterAntiFraud';
+import { ConnectionOptionsPaypalPaypal } from './connectionOptionsPaypalPaypal';
+import { ConnectionOptionsPaypalPaypalAdditionalData } from './connectionOptionsPaypalPaypalAdditionalData';
 import { Connections } from './connections';
 import { Cryptogram } from './cryptogram';
 import { DigitalWallet } from './digitalWallet';
+import { DigitalWalletApplePayTokenDecrypted } from './digitalWalletApplePayTokenDecrypted';
+import { DigitalWalletApplePayTokenDecryptedContext } from './digitalWalletApplePayTokenDecryptedContext';
+import { DigitalWalletClickToPayFields } from './digitalWalletClickToPayFields';
+import { DigitalWalletClickToPayTokenDecrypted } from './digitalWalletClickToPayTokenDecrypted';
+import { DigitalWalletClickToPayTokenDecryptedContext } from './digitalWalletClickToPayTokenDecryptedContext';
+import { DigitalWalletGooglePayTokenDecrypted } from './digitalWalletGooglePayTokenDecrypted';
+import { DigitalWalletGooglePayTokenDecryptedContext } from './digitalWalletGooglePayTokenDecryptedContext';
 import { DigitalWalletRequest } from './digitalWalletRequest';
 import { DigitalWalletUpdate } from './digitalWalletUpdate';
 import { DigitalWallets } from './digitalWallets';
@@ -276,6 +320,16 @@ import { Error404PendingCreation } from './error404PendingCreation';
 import { Error409DuplicateRecord } from './error409DuplicateRecord';
 import { ErrorDetail } from './errorDetail';
 import { ErrorGeneric } from './errorGeneric';
+import { GiftCardService } from './giftCardService';
+import { GiftCardServiceCreateRequest } from './giftCardServiceCreateRequest';
+import { GiftCardServiceCreateRequestFields } from './giftCardServiceCreateRequestFields';
+import { GiftCardServiceDefinition } from './giftCardServiceDefinition';
+import { GiftCardServiceDefinitionFields } from './giftCardServiceDefinitionFields';
+import { GiftCardServiceFields } from './giftCardServiceFields';
+import { GiftCardServiceUpdateRequest } from './giftCardServiceUpdateRequest';
+import { GiftCardServiceUpdateRequestFields } from './giftCardServiceUpdateRequestFields';
+import { GiftCardServiceVerifyRequest } from './giftCardServiceVerifyRequest';
+import { GiftCardServiceVerifyRequestFields } from './giftCardServiceVerifyRequestFields';
 import { GooglePayRequest } from './googlePayRequest';
 import { GooglePayRequestAssuranceDetails } from './googlePayRequestAssuranceDetails';
 import { GooglePaySessionRequest } from './googlePaySessionRequest';
@@ -289,6 +343,8 @@ import { MerchantProfileScheme } from './merchantProfileScheme';
 import { NetworkToken } from './networkToken';
 import { NetworkTokenRequest } from './networkTokenRequest';
 import { NetworkTokens } from './networkTokens';
+import { PaymentConnectorExternalTransactionRequest } from './paymentConnectorExternalTransactionRequest';
+import { PaymentConnectorExternalTransactionRequestContext } from './paymentConnectorExternalTransactionRequestContext';
 import { PaymentConnectorResponseTransactionAuthorizationFailedEvent } from './paymentConnectorResponseTransactionAuthorizationFailedEvent';
 import { PaymentConnectorResponseTransactionAuthorizationFailedEventContext } from './paymentConnectorResponseTransactionAuthorizationFailedEventContext';
 import { PaymentConnectorResponseTransactionAuthorizationSucceededEvent } from './paymentConnectorResponseTransactionAuthorizationSucceededEvent';
@@ -323,10 +379,8 @@ import { PaymentOptionsRequest } from './paymentOptionsRequest';
 import { PaymentService } from './paymentService';
 import { PaymentServiceDefinition } from './paymentServiceDefinition';
 import { PaymentServiceDefinitionConfiguration } from './paymentServiceDefinitionConfiguration';
-import { PaymentServiceDefinitionFields } from './paymentServiceDefinitionFields';
 import { PaymentServiceDefinitionSupportedFeatures } from './paymentServiceDefinitionSupportedFeatures';
 import { PaymentServiceDefinitions } from './paymentServiceDefinitions';
-import { PaymentServiceFields } from './paymentServiceFields';
 import { PaymentServiceRequest } from './paymentServiceRequest';
 import { PaymentServiceRequestFields } from './paymentServiceRequestFields';
 import { PaymentServiceSnapshot } from './paymentServiceSnapshot';
@@ -386,12 +440,14 @@ import { ThreeDSecureResultRequestEventContext } from './threeDSecureResultReque
 import { ThreeDSecureSuccessEvent } from './threeDSecureSuccessEvent';
 import { ThreeDSecureSuccessEventContext } from './threeDSecureSuccessEventContext';
 import { ThreeDSecureSummary } from './threeDSecureSummary';
+import { ThreeDSecureV2 } from './threeDSecureV2';
 import { TokenizedRequest } from './tokenizedRequest';
 import { Transaction } from './transaction';
 import { TransactionCaptureRequest } from './transactionCaptureRequest';
 import { TransactionCardRequest } from './transactionCardRequest';
 import { TransactionCheckoutSessionRequest } from './transactionCheckoutSessionRequest';
 import { TransactionHistoryEvent } from './transactionHistoryEvent';
+import { TransactionHistoryEvents } from './transactionHistoryEvents';
 import { TransactionPaymentMethodRequest } from './transactionPaymentMethodRequest';
 import { TransactionRedirectRequest } from './transactionRedirectRequest';
 import { TransactionRefundRequest } from './transactionRefundRequest';
@@ -427,6 +483,10 @@ let enumsMap: {[index: string]: any} = {
         "AntiFraudDecisionSkippedEvent.NameEnum": AntiFraudDecisionSkippedEvent.NameEnum,
         "AntiFraudServiceCreate.AntiFraudServiceDefinitionIdEnum": AntiFraudServiceCreate.AntiFraudServiceDefinitionIdEnum,
         "AntiFraudServiceUpdate.AntiFraudServiceDefinitionIdEnum": AntiFraudServiceUpdate.AntiFraudServiceDefinitionIdEnum,
+        "AntiFraudTransactionStatusUpdateErrorEvent.TypeEnum": AntiFraudTransactionStatusUpdateErrorEvent.TypeEnum,
+        "AntiFraudTransactionStatusUpdateErrorEvent.NameEnum": AntiFraudTransactionStatusUpdateErrorEvent.NameEnum,
+        "AntiFraudTransactionStatusUpdateEvent.TypeEnum": AntiFraudTransactionStatusUpdateEvent.TypeEnum,
+        "AntiFraudTransactionStatusUpdateEvent.NameEnum": AntiFraudTransactionStatusUpdateEvent.NameEnum,
         "AntiFraudWebhookEvent.TypeEnum": AntiFraudWebhookEvent.TypeEnum,
         "AntiFraudWebhookEvent.NameEnum": AntiFraudWebhookEvent.NameEnum,
         "ApiLog.TypeEnum": ApiLog.TypeEnum,
@@ -434,6 +494,8 @@ let enumsMap: {[index: string]: any} = {
         "AuditLog.TypeEnum": AuditLog.TypeEnum,
         "AuditLog.ActionEnum": AuditLog.ActionEnum,
         "AuditLogUser.StatusEnum": AuditLogUser.StatusEnum,
+        "BINLookupRequest.TypeEnum": BINLookupRequest.TypeEnum,
+        "BINLookupRequest.NameEnum": BINLookupRequest.NameEnum,
         "BillingDetails.TypeEnum": BillingDetails.TypeEnum,
         "BrowserInfo.UserDeviceEnum": BrowserInfo.UserDeviceEnum,
         "Buyer.TypeEnum": Buyer.TypeEnum,
@@ -441,15 +503,26 @@ let enumsMap: {[index: string]: any} = {
         "CardDetails.TypeEnum": CardDetails.TypeEnum,
         "CardDetails.CardTypeEnum": CardDetails.CardTypeEnum,
         "CardRequest.MethodEnum": CardRequest.MethodEnum,
+        "CardScheme": CardScheme,
         "CardSchemeDefinition.TypeEnum": CardSchemeDefinition.TypeEnum,
         "CartItem.ProductTypeEnum": CartItem.ProductTypeEnum,
         "CheckoutSession.TypeEnum": CheckoutSession.TypeEnum,
-        "CheckoutSessionFieldsPaymentMethod.MethodEnum": CheckoutSessionFieldsPaymentMethod.MethodEnum,
+        "CheckoutSessionPaymentMethod.MethodEnum": CheckoutSessionPaymentMethod.MethodEnum,
+        "CheckoutSessionPaymentMethodDetails.CardTypeEnum": CheckoutSessionPaymentMethodDetails.CardTypeEnum,
         "CheckoutSessionRequest.MethodEnum": CheckoutSessionRequest.MethodEnum,
         "ConnectionDefinition.GroupEnum": ConnectionDefinition.GroupEnum,
         "ConnectionDefinition.CategoryEnum": ConnectionDefinition.CategoryEnum,
         "DigitalWallet.TypeEnum": DigitalWallet.TypeEnum,
         "DigitalWallet.ProviderEnum": DigitalWallet.ProviderEnum,
+        "DigitalWalletApplePayTokenDecrypted.TypeEnum": DigitalWalletApplePayTokenDecrypted.TypeEnum,
+        "DigitalWalletApplePayTokenDecrypted.NameEnum": DigitalWalletApplePayTokenDecrypted.NameEnum,
+        "DigitalWalletApplePayTokenDecryptedContext.TypeEnum": DigitalWalletApplePayTokenDecryptedContext.TypeEnum,
+        "DigitalWalletClickToPayTokenDecrypted.TypeEnum": DigitalWalletClickToPayTokenDecrypted.TypeEnum,
+        "DigitalWalletClickToPayTokenDecrypted.NameEnum": DigitalWalletClickToPayTokenDecrypted.NameEnum,
+        "DigitalWalletClickToPayTokenDecryptedContext.TypeEnum": DigitalWalletClickToPayTokenDecryptedContext.TypeEnum,
+        "DigitalWalletGooglePayTokenDecrypted.TypeEnum": DigitalWalletGooglePayTokenDecrypted.TypeEnum,
+        "DigitalWalletGooglePayTokenDecrypted.NameEnum": DigitalWalletGooglePayTokenDecrypted.NameEnum,
+        "DigitalWalletGooglePayTokenDecryptedContext.TypeEnum": DigitalWalletGooglePayTokenDecryptedContext.TypeEnum,
         "DigitalWalletRequest.ProviderEnum": DigitalWalletRequest.ProviderEnum,
         "Error400BadRequest.TypeEnum": Error400BadRequest.TypeEnum,
         "Error400BadRequest.CodeEnum": Error400BadRequest.CodeEnum,
@@ -481,9 +554,15 @@ let enumsMap: {[index: string]: any} = {
         "Error409DuplicateRecord.StatusEnum": Error409DuplicateRecord.StatusEnum,
         "ErrorDetail.LocationEnum": ErrorDetail.LocationEnum,
         "ErrorGeneric.TypeEnum": ErrorGeneric.TypeEnum,
+        "GiftCardService.TypeEnum": GiftCardService.TypeEnum,
+        "GiftCardServiceDefinition.TypeEnum": GiftCardServiceDefinition.TypeEnum,
+        "GiftCardServiceDefinitionFields.FormatEnum": GiftCardServiceDefinitionFields.FormatEnum,
         "GooglePayRequest.MethodEnum": GooglePayRequest.MethodEnum,
         "MerchantAccount.TypeEnum": MerchantAccount.TypeEnum,
+        "NetworkToken.TypeEnum": NetworkToken.TypeEnum,
         "NetworkToken.StatusEnum": NetworkToken.StatusEnum,
+        "PaymentConnectorExternalTransactionRequest.TypeEnum": PaymentConnectorExternalTransactionRequest.TypeEnum,
+        "PaymentConnectorExternalTransactionRequest.NameEnum": PaymentConnectorExternalTransactionRequest.NameEnum,
         "PaymentConnectorResponseTransactionAuthorizationFailedEvent.TypeEnum": PaymentConnectorResponseTransactionAuthorizationFailedEvent.TypeEnum,
         "PaymentConnectorResponseTransactionAuthorizationFailedEvent.NameEnum": PaymentConnectorResponseTransactionAuthorizationFailedEvent.NameEnum,
         "PaymentConnectorResponseTransactionAuthorizationFailedEventContext.StatusEnum": PaymentConnectorResponseTransactionAuthorizationFailedEventContext.StatusEnum,
@@ -539,12 +618,13 @@ let enumsMap: {[index: string]: any} = {
         "PaymentService.TypeEnum": PaymentService.TypeEnum,
         "PaymentService.MethodEnum": PaymentService.MethodEnum,
         "PaymentService.StatusEnum": PaymentService.StatusEnum,
+        "PaymentServiceDefinition.TypeEnum": PaymentServiceDefinition.TypeEnum,
         "PaymentServiceDefinition.MethodEnum": PaymentServiceDefinition.MethodEnum,
         "PaymentServiceDefinition.ModeEnum": PaymentServiceDefinition.ModeEnum,
         "PaymentServiceDefinitionConfiguration.ApprovalUiTargetEnum": PaymentServiceDefinitionConfiguration.ApprovalUiTargetEnum,
-        "PaymentServiceDefinitionFields.FormatEnum": PaymentServiceDefinitionFields.FormatEnum,
         "PaymentServiceSnapshot.TypeEnum": PaymentServiceSnapshot.TypeEnum,
         "PaymentServiceSnapshot.MethodEnum": PaymentServiceSnapshot.MethodEnum,
+        "PaymentServiceToken.TypeEnum": PaymentServiceToken.TypeEnum,
         "PaymentServiceToken.StatusEnum": PaymentServiceToken.StatusEnum,
         "RedirectRequest.MethodEnum": RedirectRequest.MethodEnum,
         "Refund.TypeEnum": Refund.TypeEnum,
@@ -585,6 +665,8 @@ let enumsMap: {[index: string]: any} = {
         "ThreeDSecureSuccessEventContext.MethodEnum": ThreeDSecureSuccessEventContext.MethodEnum,
         "ThreeDSecureSummary.StatusEnum": ThreeDSecureSummary.StatusEnum,
         "ThreeDSecureSummary.MethodEnum": ThreeDSecureSummary.MethodEnum,
+        "ThreeDSecureV2.AuthenticationResponseEnum": ThreeDSecureV2.AuthenticationResponseEnum,
+        "ThreeDSecureV2.DirectoryResponseEnum": ThreeDSecureV2.DirectoryResponseEnum,
         "TokenizedRequest.MethodEnum": TokenizedRequest.MethodEnum,
         "Transaction.TypeEnum": Transaction.TypeEnum,
         "Transaction.StatusEnum": Transaction.StatusEnum,
@@ -623,6 +705,10 @@ let typeMap: {[index: string]: any} = {
     "AntiFraudServiceCreate": AntiFraudServiceCreate,
     "AntiFraudServiceUpdate": AntiFraudServiceUpdate,
     "AntiFraudServiceUpdateFields": AntiFraudServiceUpdateFields,
+    "AntiFraudTransactionStatusUpdateErrorEvent": AntiFraudTransactionStatusUpdateErrorEvent,
+    "AntiFraudTransactionStatusUpdateErrorEventContext": AntiFraudTransactionStatusUpdateErrorEventContext,
+    "AntiFraudTransactionStatusUpdateEvent": AntiFraudTransactionStatusUpdateEvent,
+    "AntiFraudTransactionStatusUpdateEventContext": AntiFraudTransactionStatusUpdateEventContext,
     "AntiFraudWebhookEvent": AntiFraudWebhookEvent,
     "AntiFraudWebhookEventContext": AntiFraudWebhookEventContext,
     "ApiLog": ApiLog,
@@ -635,6 +721,8 @@ let typeMap: {[index: string]: any} = {
     "AuditLogResource": AuditLogResource,
     "AuditLogUser": AuditLogUser,
     "AuditLogs": AuditLogs,
+    "BINLookupRequest": BINLookupRequest,
+    "BINLookupRequestContext": BINLookupRequestContext,
     "BillingDetails": BillingDetails,
     "BillingDetailsRequest": BillingDetailsRequest,
     "BillingDetailsUpdateRequest": BillingDetailsUpdateRequest,
@@ -651,9 +739,9 @@ let typeMap: {[index: string]: any} = {
     "CartItem": CartItem,
     "CheckoutSession": CheckoutSession,
     "CheckoutSessionCreateRequest": CheckoutSessionCreateRequest,
-    "CheckoutSessionFieldsPaymentMethod": CheckoutSessionFieldsPaymentMethod,
+    "CheckoutSessionPaymentMethod": CheckoutSessionPaymentMethod,
+    "CheckoutSessionPaymentMethodDetails": CheckoutSessionPaymentMethodDetails,
     "CheckoutSessionRequest": CheckoutSessionRequest,
-    "CheckoutSessionSecureFieldsUpdate": CheckoutSessionSecureFieldsUpdate,
     "CheckoutSessionUpdateRequest": CheckoutSessionUpdateRequest,
     "Connection": Connection,
     "ConnectionDefinition": ConnectionDefinition,
@@ -662,9 +750,18 @@ let typeMap: {[index: string]: any} = {
     "ConnectionOptionsAdyenCard": ConnectionOptionsAdyenCard,
     "ConnectionOptionsCybersourceAntiFraud": ConnectionOptionsCybersourceAntiFraud,
     "ConnectionOptionsForterAntiFraud": ConnectionOptionsForterAntiFraud,
+    "ConnectionOptionsPaypalPaypal": ConnectionOptionsPaypalPaypal,
+    "ConnectionOptionsPaypalPaypalAdditionalData": ConnectionOptionsPaypalPaypalAdditionalData,
     "Connections": Connections,
     "Cryptogram": Cryptogram,
     "DigitalWallet": DigitalWallet,
+    "DigitalWalletApplePayTokenDecrypted": DigitalWalletApplePayTokenDecrypted,
+    "DigitalWalletApplePayTokenDecryptedContext": DigitalWalletApplePayTokenDecryptedContext,
+    "DigitalWalletClickToPayFields": DigitalWalletClickToPayFields,
+    "DigitalWalletClickToPayTokenDecrypted": DigitalWalletClickToPayTokenDecrypted,
+    "DigitalWalletClickToPayTokenDecryptedContext": DigitalWalletClickToPayTokenDecryptedContext,
+    "DigitalWalletGooglePayTokenDecrypted": DigitalWalletGooglePayTokenDecrypted,
+    "DigitalWalletGooglePayTokenDecryptedContext": DigitalWalletGooglePayTokenDecryptedContext,
     "DigitalWalletRequest": DigitalWalletRequest,
     "DigitalWalletUpdate": DigitalWalletUpdate,
     "DigitalWallets": DigitalWallets,
@@ -678,6 +775,16 @@ let typeMap: {[index: string]: any} = {
     "Error409DuplicateRecord": Error409DuplicateRecord,
     "ErrorDetail": ErrorDetail,
     "ErrorGeneric": ErrorGeneric,
+    "GiftCardService": GiftCardService,
+    "GiftCardServiceCreateRequest": GiftCardServiceCreateRequest,
+    "GiftCardServiceCreateRequestFields": GiftCardServiceCreateRequestFields,
+    "GiftCardServiceDefinition": GiftCardServiceDefinition,
+    "GiftCardServiceDefinitionFields": GiftCardServiceDefinitionFields,
+    "GiftCardServiceFields": GiftCardServiceFields,
+    "GiftCardServiceUpdateRequest": GiftCardServiceUpdateRequest,
+    "GiftCardServiceUpdateRequestFields": GiftCardServiceUpdateRequestFields,
+    "GiftCardServiceVerifyRequest": GiftCardServiceVerifyRequest,
+    "GiftCardServiceVerifyRequestFields": GiftCardServiceVerifyRequestFields,
     "GooglePayRequest": GooglePayRequest,
     "GooglePayRequestAssuranceDetails": GooglePayRequestAssuranceDetails,
     "GooglePaySessionRequest": GooglePaySessionRequest,
@@ -691,6 +798,8 @@ let typeMap: {[index: string]: any} = {
     "NetworkToken": NetworkToken,
     "NetworkTokenRequest": NetworkTokenRequest,
     "NetworkTokens": NetworkTokens,
+    "PaymentConnectorExternalTransactionRequest": PaymentConnectorExternalTransactionRequest,
+    "PaymentConnectorExternalTransactionRequestContext": PaymentConnectorExternalTransactionRequestContext,
     "PaymentConnectorResponseTransactionAuthorizationFailedEvent": PaymentConnectorResponseTransactionAuthorizationFailedEvent,
     "PaymentConnectorResponseTransactionAuthorizationFailedEventContext": PaymentConnectorResponseTransactionAuthorizationFailedEventContext,
     "PaymentConnectorResponseTransactionAuthorizationSucceededEvent": PaymentConnectorResponseTransactionAuthorizationSucceededEvent,
@@ -725,10 +834,8 @@ let typeMap: {[index: string]: any} = {
     "PaymentService": PaymentService,
     "PaymentServiceDefinition": PaymentServiceDefinition,
     "PaymentServiceDefinitionConfiguration": PaymentServiceDefinitionConfiguration,
-    "PaymentServiceDefinitionFields": PaymentServiceDefinitionFields,
     "PaymentServiceDefinitionSupportedFeatures": PaymentServiceDefinitionSupportedFeatures,
     "PaymentServiceDefinitions": PaymentServiceDefinitions,
-    "PaymentServiceFields": PaymentServiceFields,
     "PaymentServiceRequest": PaymentServiceRequest,
     "PaymentServiceRequestFields": PaymentServiceRequestFields,
     "PaymentServiceSnapshot": PaymentServiceSnapshot,
@@ -788,12 +895,14 @@ let typeMap: {[index: string]: any} = {
     "ThreeDSecureSuccessEvent": ThreeDSecureSuccessEvent,
     "ThreeDSecureSuccessEventContext": ThreeDSecureSuccessEventContext,
     "ThreeDSecureSummary": ThreeDSecureSummary,
+    "ThreeDSecureV2": ThreeDSecureV2,
     "TokenizedRequest": TokenizedRequest,
     "Transaction": Transaction,
     "TransactionCaptureRequest": TransactionCaptureRequest,
     "TransactionCardRequest": TransactionCardRequest,
     "TransactionCheckoutSessionRequest": TransactionCheckoutSessionRequest,
     "TransactionHistoryEvent": TransactionHistoryEvent,
+    "TransactionHistoryEvents": TransactionHistoryEvents,
     "TransactionPaymentMethodRequest": TransactionPaymentMethodRequest,
     "TransactionRedirectRequest": TransactionRedirectRequest,
     "TransactionRefundRequest": TransactionRefundRequest,

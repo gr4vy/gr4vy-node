@@ -1,5 +1,3 @@
-import { CardRequest } from '../model/cardRequest'
-import { CheckoutSessionSecureFieldsUpdate } from '../model/checkoutSessionSecureFieldsUpdate'
 import { getTestClient } from './helpers'
 
 const client = getTestClient()
@@ -31,24 +29,6 @@ describe('#getCheckoutSession', () => {
     expect(session).toBeDefined()
     expect(session.body).toBeDefined()
     expect(session.body.id).toBe(sessionId)
-  })
-})
-
-describe('#updateCheckoutSessionFields', () => {
-  test('it should update the secure fields of a specific checkout session', async () => {
-    const checkoutSessionSecureFieldsUpdate =
-      new CheckoutSessionSecureFieldsUpdate()
-    checkoutSessionSecureFieldsUpdate.paymentMethod = {
-      method: CardRequest.MethodEnum.Card,
-      number: '4111111111111111',
-      expirationDate: '12/23',
-      securityCode: '123',
-    }
-    const session = await client.updateCheckoutSessionFields(
-      sessionId,
-      checkoutSessionSecureFieldsUpdate
-    )
-    expect(session.response.statusCode).toEqual(204)
   })
 })
 

@@ -52,9 +52,6 @@ export class TransactionRequest {
     * Indicates whether the transaction was initiated by the merchant (true) or customer (false).
     */
     'merchantInitiated'?: boolean;
-    /**
-    * The source of the transaction. Defaults to `ecommerce`.
-    */
     'paymentSource'?: TransactionRequest.PaymentSourceEnum;
     /**
     * Indicates whether the transaction represents a subsequent payment coming from a setup recurring payment. Please note there are some restrictions on how this flag may be used.  The flag can only be `false` (or not set) when the transaction meets one of the following criteria:  * It is not `merchant_initiated`. * `payment_source` is set to `card_on_file`.  The flag can only be set to `true` when the transaction meets one of the following criteria:  * It is not `merchant_initiated`. * `payment_source` is set to `recurring` or `installment` and `merchant_initiated` is set to `true`. * `payment_source` is set to `card_on_file`.

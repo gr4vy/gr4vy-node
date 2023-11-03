@@ -24,6 +24,14 @@ export class ApplePayRequest {
     * The encrypted (opaque) token that was passed to the `onpaymentauthorized` callback by the Apple Pay integration.
     */
     'token': object;
+    /**
+    * The ID of the buyer to associate this payment method to. If this field is provided then the `buyer_external_identifier` field needs to be unset.
+    */
+    'buyerId'?: string | null;
+    /**
+    * The `external_identifier` of the buyer to associate this payment method to. If this field is provided then the `buyer_id` field needs to be unset.
+    */
+    'buyerExternalIdentifier'?: string | null;
 
     static discriminator: string | undefined = undefined;
 
@@ -37,6 +45,16 @@ export class ApplePayRequest {
             "name": "token",
             "baseName": "token",
             "type": "object"
+        },
+        {
+            "name": "buyerId",
+            "baseName": "buyer_id",
+            "type": "string"
+        },
+        {
+            "name": "buyerExternalIdentifier",
+            "baseName": "buyer_external_identifier",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {

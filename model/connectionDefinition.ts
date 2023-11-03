@@ -95,8 +95,9 @@ export class ConnectionDefinition {
 export namespace ConnectionDefinition {
     export enum GroupEnum {
         AntiFraudService = <any> 'anti-fraud-service',
-        PaymentService = <any> 'payment-service',
-        DigitalWallet = <any> 'digital-wallet'
+        DigitalWallet = <any> 'digital-wallet',
+        GiftCardService = <any> 'gift-card-service',
+        PaymentService = <any> 'payment-service'
     }
     export enum CategoryEnum {
         AntiFraud = <any> 'anti-fraud',
@@ -104,6 +105,7 @@ export namespace ConnectionDefinition {
         Bnpl = <any> 'bnpl',
         Card = <any> 'card',
         Cash = <any> 'cash',
+        StoredCredit = <any> 'stored-credit',
         Wallet = <any> 'wallet'
     }
 }

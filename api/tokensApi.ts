@@ -18,6 +18,7 @@ import http from 'http';
 import { Cryptogram } from '../model/cryptogram';
 import { Error400BadRequest } from '../model/error400BadRequest';
 import { Error401Unauthorized } from '../model/error401Unauthorized';
+import { Error403Forbidden } from '../model/error403Forbidden';
 import { Error404NotFound } from '../model/error404NotFound';
 import { ErrorGeneric } from '../model/errorGeneric';
 import { IssueCryptogramRequest } from '../model/issueCryptogramRequest';
@@ -414,7 +415,7 @@ export class TokensApi {
         });
     }
     /**
-     * Issue a cryptogram for a stored network token of a stored card. 
+     * Issue a cryptogram for a stored network token of a stored card. The endpoint is disabled by default, please contact our team for more information on enablement. 
      * @summary Issue cryptogram
      * @param paymentMethodId The ID of the payment method.
      * @param networkTokenId The ID of the network token.

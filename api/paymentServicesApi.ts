@@ -249,7 +249,7 @@ export class PaymentServicesApi {
      * @param method Filters the results to only the items for which the &#x60;method&#x60; has been set to this value. For example &#x60;card&#x60;.
      * @param deleted Filters the results to only show items which have been deleted. By default, deleted items will not be returned.
      */
-    public async listPaymentServices (limit?: number, cursor?: string, method?: 'afterpay' | 'applepay' | 'banked' | 'bitpay' | 'boleto' | 'card' | 'clearpay' | 'dana' | 'fortumo' | 'gcash' | 'gocardless' | 'googlepay' | 'grabpay' | 'klarna' | 'ovo' | 'paymaya' | 'paypal' | 'pix' | 'rabbitlinepay' | 'scalapay' | 'shopeepay' | 'stripedd' | 'truemoney' | 'trustly' | 'zippay', deleted?: boolean, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: PaymentServices;  }> {
+    public async listPaymentServices (limit?: number, cursor?: string, method?: 'afterpay' | 'alipay' | 'alipayhk' | 'applepay' | 'bacs' | 'bancontact' | 'banked' | 'becs' | 'bitpay' | 'boleto' | 'boost' | 'card' | 'checkout-session' | 'click-to-pay' | 'clearpay' | 'dana' | 'dcb' | 'eps' | 'fortumo' | 'gcash' | 'giropay' | 'gocardless' | 'googlepay' | 'gopay' | 'grabpay' | 'ideal' | 'id' | 'kakaopay' | 'klarna' | 'laybuy' | 'linepay' | 'linkaja' | 'maybankqrpay' | 'multibanco' | 'oney_3x' | 'oney_4x' | 'oney_6x' | 'oney_10x' | 'oney_12x' | 'ovo' | 'oxxo' | 'paymaya' | 'paypal' | 'paypalpaylater' | 'pix' | 'rabbitlinepay' | 'razorpay' | 'scalapay' | 'sepa' | 'shopeepay' | 'singteldash' | 'sofort' | 'stripedd' | 'thaiqr' | 'touchngo' | 'truemoney' | 'trustly' | 'venmo' | 'waave' | 'wechat' | 'zippay', deleted?: boolean, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: PaymentServices;  }> {
         const localVarPath = this.basePath + '/payment-services';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
@@ -271,7 +271,7 @@ export class PaymentServicesApi {
         }
 
         if (method !== undefined) {
-            localVarQueryParameters['method'] = ObjectSerializer.serialize(method, "'afterpay' | 'applepay' | 'banked' | 'bitpay' | 'boleto' | 'card' | 'clearpay' | 'dana' | 'fortumo' | 'gcash' | 'gocardless' | 'googlepay' | 'grabpay' | 'klarna' | 'ovo' | 'paymaya' | 'paypal' | 'pix' | 'rabbitlinepay' | 'scalapay' | 'shopeepay' | 'stripedd' | 'truemoney' | 'trustly' | 'zippay'");
+            localVarQueryParameters['method'] = ObjectSerializer.serialize(method, "'afterpay' | 'alipay' | 'alipayhk' | 'applepay' | 'bacs' | 'bancontact' | 'banked' | 'becs' | 'bitpay' | 'boleto' | 'boost' | 'card' | 'checkout-session' | 'click-to-pay' | 'clearpay' | 'dana' | 'dcb' | 'eps' | 'fortumo' | 'gcash' | 'giropay' | 'gocardless' | 'googlepay' | 'gopay' | 'grabpay' | 'ideal' | 'id' | 'kakaopay' | 'klarna' | 'laybuy' | 'linepay' | 'linkaja' | 'maybankqrpay' | 'multibanco' | 'oney_3x' | 'oney_4x' | 'oney_6x' | 'oney_10x' | 'oney_12x' | 'ovo' | 'oxxo' | 'paymaya' | 'paypal' | 'paypalpaylater' | 'pix' | 'rabbitlinepay' | 'razorpay' | 'scalapay' | 'sepa' | 'shopeepay' | 'singteldash' | 'sofort' | 'stripedd' | 'thaiqr' | 'touchngo' | 'truemoney' | 'trustly' | 'venmo' | 'waave' | 'wechat' | 'zippay'");
         }
 
         if (deleted !== undefined) {

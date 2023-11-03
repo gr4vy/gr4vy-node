@@ -32,6 +32,10 @@ export class Transaction {
     */
     'id'?: string;
     /**
+    * The base62 encoded transaction ID. This represents a shorter version of this transaction\'s `id` which is sent to payment services, anti-fraud services, and other connectors. You can use this ID to reconcile a payment service\'s transaction against our system.  This ID is sent instead of the transaction ID because not all services support 36 digit identifiers.
+    */
+    'reconciliationId'?: string;
+    /**
     * The ID of the merchant account to which this transaction belongs to.
     */
     'merchantAccountId'?: string;
@@ -95,9 +99,6 @@ export class Transaction {
     * Indicates whether the transaction was initiated by the merchant (true) or customer (false).
     */
     'merchantInitiated'?: boolean;
-    /**
-    * The source of the transaction. Defaults to `ecommerce`.
-    */
     'paymentSource'?: Transaction.PaymentSourceEnum;
     /**
     * Indicates whether the transaction represents a subsequent payment coming from a setup recurring payment. Please note there are some restrictions on how this flag may be used.  The flag can only be `false` (or not set) when the transaction meets one of the following criteria:  * It is not `merchant_initiated`. * `payment_source` is set to `card_on_file`.  The flag can only be set to `true` when the transaction meets one of the following criteria:  * It is not `merchant_initiated`. * `payment_source` is set to `recurring` or `installment` and `merchant_initiated` is set to `true`. * `payment_source` is set to `card_on_file`.
@@ -120,6 +121,10 @@ export class Transaction {
     * This is the response description received from the payment service. This can be set to any value and is not standardized across different payment services.
     */
     'rawResponseDescription'?: string | null;
+    /**
+    * This is an error code set by Gr4vy.
+    */
+    'errorCode'?: string | null;
     /**
     * This is the response description received from the processor.
     */
@@ -174,6 +179,11 @@ export class Transaction {
         {
             "name": "id",
             "baseName": "id",
+            "type": "string"
+        },
+        {
+            "name": "reconciliationId",
+            "baseName": "reconciliation_id",
             "type": "string"
         },
         {
@@ -292,6 +302,11 @@ export class Transaction {
             "type": "string"
         },
         {
+            "name": "errorCode",
+            "baseName": "error_code",
+            "type": "string"
+        },
+        {
             "name": "authResponseCode",
             "baseName": "auth_response_code",
             "type": "string"
@@ -398,29 +413,65 @@ export namespace Transaction {
     }
     export enum MethodEnum {
         Afterpay = <any> 'afterpay',
+        Alipay = <any> 'alipay',
+        Alipayhk = <any> 'alipayhk',
         Applepay = <any> 'applepay',
+        Bacs = <any> 'bacs',
+        Bancontact = <any> 'bancontact',
         Banked = <any> 'banked',
+        Becs = <any> 'becs',
         Bitpay = <any> 'bitpay',
         Boleto = <any> 'boleto',
+        Boost = <any> 'boost',
         Card = <any> 'card',
+        CheckoutSession = <any> 'checkout-session',
+        ClickToPay = <any> 'click-to-pay',
         Clearpay = <any> 'clearpay',
         Dana = <any> 'dana',
+        Dcb = <any> 'dcb',
+        Eps = <any> 'eps',
         Fortumo = <any> 'fortumo',
         Gcash = <any> 'gcash',
+        Giropay = <any> 'giropay',
         Gocardless = <any> 'gocardless',
         Googlepay = <any> 'googlepay',
+        Gopay = <any> 'gopay',
         Grabpay = <any> 'grabpay',
+        Ideal = <any> 'ideal',
+        Id = <any> 'id',
+        Kakaopay = <any> 'kakaopay',
         Klarna = <any> 'klarna',
+        Laybuy = <any> 'laybuy',
+        Linepay = <any> 'linepay',
+        Linkaja = <any> 'linkaja',
+        Maybankqrpay = <any> 'maybankqrpay',
+        Multibanco = <any> 'multibanco',
+        Oney3x = <any> 'oney_3x',
+        Oney4x = <any> 'oney_4x',
+        Oney6x = <any> 'oney_6x',
+        Oney10x = <any> 'oney_10x',
+        Oney12x = <any> 'oney_12x',
         Ovo = <any> 'ovo',
+        Oxxo = <any> 'oxxo',
         Paymaya = <any> 'paymaya',
         Paypal = <any> 'paypal',
+        Paypalpaylater = <any> 'paypalpaylater',
         Pix = <any> 'pix',
         Rabbitlinepay = <any> 'rabbitlinepay',
+        Razorpay = <any> 'razorpay',
         Scalapay = <any> 'scalapay',
+        Sepa = <any> 'sepa',
         Shopeepay = <any> 'shopeepay',
+        Singteldash = <any> 'singteldash',
+        Sofort = <any> 'sofort',
         Stripedd = <any> 'stripedd',
+        Thaiqr = <any> 'thaiqr',
+        Touchngo = <any> 'touchngo',
         Truemoney = <any> 'truemoney',
         Trustly = <any> 'trustly',
+        Venmo = <any> 'venmo',
+        Waave = <any> 'waave',
+        Wechat = <any> 'wechat',
         Zippay = <any> 'zippay'
     }
 }

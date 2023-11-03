@@ -17,6 +17,10 @@ import { RequestFile } from './models';
 */
 export class NetworkToken {
     /**
+    * The type of this resource.
+    */
+    'type'?: NetworkToken.TypeEnum;
+    /**
     * The unique ID of the token.
     */
     'id'?: string;
@@ -48,6 +52,11 @@ export class NetworkToken {
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "type",
+            "baseName": "type",
+            "type": "NetworkToken.TypeEnum"
+        },
         {
             "name": "id",
             "baseName": "id",
@@ -90,6 +99,9 @@ export class NetworkToken {
 }
 
 export namespace NetworkToken {
+    export enum TypeEnum {
+        NetworkToken = <any> 'network-token'
+    }
     export enum StatusEnum {
         Active = <any> 'active',
         Inactive = <any> 'inactive',

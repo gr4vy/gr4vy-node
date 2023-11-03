@@ -123,9 +123,6 @@ class Client {
     this.deleteCheckoutSession = this.wrap(csa.deleteCheckoutSession.bind(csa))
     this.getCheckoutSession = this.wrap(csa.getCheckoutSession.bind(csa))
     this.updateCheckoutSession = this.wrap(csa.updateCheckoutSession.bind(csa))
-    this.updateCheckoutSessionFields = this.wrap(
-      csa.updateCheckoutSessionFields.bind(csa)
-    )
     this.apis.push(csa)
 
     // Merchant Accounts
