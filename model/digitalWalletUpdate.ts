@@ -24,6 +24,18 @@ export class DigitalWalletUpdate {
     * The list of domain names that a digital wallet can be used on. To use a digital wallet on a website, the domain of the site is required to be in this list.
     */
     'domainNames'?: Array<string>;
+    /**
+    * The consumer facing name of the merchant.
+    */
+    'merchantDisplayName'?: string | null;
+    /**
+    * The country code where the merchant is registered.
+    */
+    'merchantCountryCode'?: string | null;
+    /**
+    * The main URL of the merchant.
+    */
+    'merchantUrl'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -37,6 +49,21 @@ export class DigitalWalletUpdate {
             "name": "domainNames",
             "baseName": "domain_names",
             "type": "Array<string>"
+        },
+        {
+            "name": "merchantDisplayName",
+            "baseName": "merchant_display_name",
+            "type": "string"
+        },
+        {
+            "name": "merchantCountryCode",
+            "baseName": "merchant_country_code",
+            "type": "string"
+        },
+        {
+            "name": "merchantUrl",
+            "baseName": "merchant_url",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {

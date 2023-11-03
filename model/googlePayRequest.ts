@@ -24,7 +24,7 @@ export class GooglePayRequest {
     /**
     * The encrypted (opaque) token returned by the Google Pay API that represents a payment method.
     */
-    'token': object;
+    'token': string;
     'assuranceDetails'?: GooglePayRequestAssuranceDetails | null;
     /**
     * Name of the card holder.
@@ -34,6 +34,14 @@ export class GooglePayRequest {
     * We strongly recommend providing a `redirect_url` either when 3-D Secure is enabled and `three_d_secure_data` is not provided, or when using connections where 3DS is enabled. This value will be appended with both a transaction ID and status (e.g. `https://example.com/callback?gr4vy_transaction_id=123 &gr4vy_transaction_status=capture_succeeded`) after 3-D Secure has completed. For those cases, if the value is not present, the transaction will be marked as failed.
     */
     'redirectUrl'?: string | null;
+    /**
+    * The ID of the buyer to associate this payment method to. If this field is provided then the `buyer_external_identifier` field needs to be unset.
+    */
+    'buyerId'?: string | null;
+    /**
+    * The `external_identifier` of the buyer to associate this payment method to. If this field is provided then the `buyer_id` field needs to be unset.
+    */
+    'buyerExternalIdentifier'?: string | null;
 
     static discriminator: string | undefined = undefined;
 
@@ -46,7 +54,7 @@ export class GooglePayRequest {
         {
             "name": "token",
             "baseName": "token",
-            "type": "object"
+            "type": "string"
         },
         {
             "name": "assuranceDetails",
@@ -61,6 +69,16 @@ export class GooglePayRequest {
         {
             "name": "redirectUrl",
             "baseName": "redirect_url",
+            "type": "string"
+        },
+        {
+            "name": "buyerId",
+            "baseName": "buyer_id",
+            "type": "string"
+        },
+        {
+            "name": "buyerExternalIdentifier",
+            "baseName": "buyer_external_identifier",
             "type": "string"
         }    ];
 

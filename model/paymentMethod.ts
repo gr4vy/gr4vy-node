@@ -31,7 +31,7 @@ export class PaymentMethod {
     */
     'merchantAccountId'?: string;
     /**
-    * The state of the payment method.  - `processing` - The payment method is still being stored. - `buyer_approval_required` - Storing the payment method requires   the buyer to provide approval. Follow the `approval_url` for next steps. - `succeeded` - The payment method is approved and stored with all   relevant payment services. - `failed` - Storing the payment method did not succeed.
+    * The state of the payment method.  - `processing` - The payment method is stored but has not been used yet. - `buyer_approval_required` - Storing the payment method requires   the buyer to provide approval. Follow the `approval_url` for next steps. - `succeeded` - The payment method is stored and has been used. - `failed` - The payment method could not be stored, or failed first use.
     */
     'status'?: PaymentMethod.StatusEnum;
     /**
@@ -217,29 +217,65 @@ export namespace PaymentMethod {
     }
     export enum MethodEnum {
         Afterpay = <any> 'afterpay',
+        Alipay = <any> 'alipay',
+        Alipayhk = <any> 'alipayhk',
         Applepay = <any> 'applepay',
+        Bacs = <any> 'bacs',
+        Bancontact = <any> 'bancontact',
         Banked = <any> 'banked',
+        Becs = <any> 'becs',
         Bitpay = <any> 'bitpay',
         Boleto = <any> 'boleto',
+        Boost = <any> 'boost',
         Card = <any> 'card',
+        CheckoutSession = <any> 'checkout-session',
+        ClickToPay = <any> 'click-to-pay',
         Clearpay = <any> 'clearpay',
         Dana = <any> 'dana',
+        Dcb = <any> 'dcb',
+        Eps = <any> 'eps',
         Fortumo = <any> 'fortumo',
         Gcash = <any> 'gcash',
+        Giropay = <any> 'giropay',
         Gocardless = <any> 'gocardless',
         Googlepay = <any> 'googlepay',
+        Gopay = <any> 'gopay',
         Grabpay = <any> 'grabpay',
+        Ideal = <any> 'ideal',
+        Id = <any> 'id',
+        Kakaopay = <any> 'kakaopay',
         Klarna = <any> 'klarna',
+        Laybuy = <any> 'laybuy',
+        Linepay = <any> 'linepay',
+        Linkaja = <any> 'linkaja',
+        Maybankqrpay = <any> 'maybankqrpay',
+        Multibanco = <any> 'multibanco',
+        Oney3x = <any> 'oney_3x',
+        Oney4x = <any> 'oney_4x',
+        Oney6x = <any> 'oney_6x',
+        Oney10x = <any> 'oney_10x',
+        Oney12x = <any> 'oney_12x',
         Ovo = <any> 'ovo',
+        Oxxo = <any> 'oxxo',
         Paymaya = <any> 'paymaya',
         Paypal = <any> 'paypal',
+        Paypalpaylater = <any> 'paypalpaylater',
         Pix = <any> 'pix',
         Rabbitlinepay = <any> 'rabbitlinepay',
+        Razorpay = <any> 'razorpay',
         Scalapay = <any> 'scalapay',
+        Sepa = <any> 'sepa',
         Shopeepay = <any> 'shopeepay',
+        Singteldash = <any> 'singteldash',
+        Sofort = <any> 'sofort',
         Stripedd = <any> 'stripedd',
+        Thaiqr = <any> 'thaiqr',
+        Touchngo = <any> 'touchngo',
         Truemoney = <any> 'truemoney',
         Trustly = <any> 'trustly',
+        Venmo = <any> 'venmo',
+        Waave = <any> 'waave',
+        Wechat = <any> 'wechat',
         Zippay = <any> 'zippay'
     }
     export enum ModeEnum {

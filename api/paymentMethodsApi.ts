@@ -332,11 +332,11 @@ export class PaymentMethodsApi {
      * @summary List payment methods
      * @param buyerId Filters the results to only the items for which the &#x60;buyer&#x60; has an &#x60;id&#x60; that matches this value.
      * @param buyerExternalIdentifier Filters the results to only the items for which the &#x60;buyer&#x60; has an &#x60;external_identifier&#x60; that matches this value.
-     * @param status Filters the results to only the payment methods for which the &#x60;status&#x60; matches this value.
+     * @param status Filters the results to only the payment methods for which the &#x60;status&#x60; matches with any of the provided status values.
      * @param limit Defines the maximum number of items to return for this request.
      * @param cursor A cursor that identifies the page of results to return. This is used to paginate the results of this API.  For the first page of results, this parameter can be left out. For additional pages, use the value returned by the API in the &#x60;next_cursor&#x60; field. Similarly the &#x60;previous_cursor&#x60; can be used to reverse backwards in the list.
      */
-    public async listPaymentMethods (buyerId?: string, buyerExternalIdentifier?: string, status?: 'processing' | 'buyer_approval_required' | 'succeeded' | 'failed', limit?: number, cursor?: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: PaymentMethods;  }> {
+    public async listPaymentMethods (buyerId?: string, buyerExternalIdentifier?: string, status?: Array<'processing' | 'buyer_approval_required' | 'succeeded' | 'failed'>, limit?: number, cursor?: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: PaymentMethods;  }> {
         const localVarPath = this.basePath + '/payment-methods';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
@@ -358,7 +358,7 @@ export class PaymentMethodsApi {
         }
 
         if (status !== undefined) {
-            localVarQueryParameters['status'] = ObjectSerializer.serialize(status, "'processing' | 'buyer_approval_required' | 'succeeded' | 'failed'");
+            localVarQueryParameters['status'] = ObjectSerializer.serialize(status, "Array<'processing' | 'buyer_approval_required' | 'succeeded' | 'failed'>");
         }
 
         if (limit !== undefined) {

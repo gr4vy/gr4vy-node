@@ -11,6 +11,7 @@
  */
 
 import { RequestFile } from './models';
+import { GooglePayRequestAssuranceDetails } from './googlePayRequestAssuranceDetails';
 
 /**
 * Payment method details to use in a transaction or to register a new payment method.
@@ -23,15 +24,15 @@ export class TransactionPaymentMethodRequest {
     /**
     * The 13-19 digit number for this credit card as it can be found on the front of the card.
     */
-    'number'?: string;
+    'number'?: string | null;
     /**
     * The expiration date of the card, formatted `MM/YY`. If a card has been previously stored with us this value is optional.
     */
-    'expirationDate'?: string;
+    'expirationDate'?: string | null;
     /**
     * The 3 or 4 digit security code often found on the card. This often referred to as the CVV or CVD.
     */
-    'securityCode'?: string;
+    'securityCode'?: string | null;
     /**
     * An external identifier that can be used to match the card against your own records.
     */
@@ -39,27 +40,36 @@ export class TransactionPaymentMethodRequest {
     /**
     * The ID of the buyer to associate this payment method to. If this field is provided then the `buyer_external_identifier` field needs to be unset.
     */
-    'buyerId'?: string;
+    'buyerId'?: string | null;
     /**
     * The `external_identifier` of the buyer to associate this payment method to. If this field is provided then the `buyer_id` field needs to be unset.
     */
-    'buyerExternalIdentifier'?: string;
+    'buyerExternalIdentifier'?: string | null;
     /**
     * The redirect URL to redirect a buyer to after they have authorized their transaction or payment method. This only applies to payment methods that require buyer approval.
     */
-    'redirectUrl'?: string;
+    'redirectUrl'?: string | null;
     /**
-    * An identifier for a previously vaulted payment method. This id can represent any type of payment method.
+    * An identifier for a previously tokenized payment method or checkout-session. This id can represent any type of payment method or checkout-session.
     */
-    'id'?: string;
+    'id'?: string | null;
     /**
-    * The ISO-4217 currency code to store this payment method for. This is used to select the payment service to use.  This only applies to `redirect` mode payment methods like `gocardless`.
+    * The ISO-4217 currency code to use this payment method for. This is used to select the payment service to use.
     */
-    'currency'?: string;
+    'currency'?: string | null;
     /**
-    * The 2-letter ISO code of the country to store this payment method for. This is used to select the payment service to use.  This only applies to `redirect` mode payment methods like `gocardless`.
+    * The 2-letter ISO code of the country to use this payment method for. This is used to select the payment service to use.
     */
-    'country'?: string;
+    'country'?: string | null;
+    /**
+    * The encrypted (opaque) token that was passed to the `onpaymentauthorized` callback by the Apple Pay integration.
+    */
+    'token'?: object | null;
+    'assuranceDetails'?: GooglePayRequestAssuranceDetails | null;
+    /**
+    * Name of the card holder.
+    */
+    'cardHolderName'?: string | null;
 
     static discriminator: string | undefined = undefined;
 
@@ -118,6 +128,21 @@ export class TransactionPaymentMethodRequest {
             "name": "country",
             "baseName": "country",
             "type": "string"
+        },
+        {
+            "name": "token",
+            "baseName": "token",
+            "type": "object"
+        },
+        {
+            "name": "assuranceDetails",
+            "baseName": "assurance_details",
+            "type": "GooglePayRequestAssuranceDetails"
+        },
+        {
+            "name": "cardHolderName",
+            "baseName": "card_holder_name",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
@@ -128,29 +153,65 @@ export class TransactionPaymentMethodRequest {
 export namespace TransactionPaymentMethodRequest {
     export enum MethodEnum {
         Afterpay = <any> 'afterpay',
+        Alipay = <any> 'alipay',
+        Alipayhk = <any> 'alipayhk',
         Applepay = <any> 'applepay',
+        Bacs = <any> 'bacs',
+        Bancontact = <any> 'bancontact',
         Banked = <any> 'banked',
+        Becs = <any> 'becs',
         Bitpay = <any> 'bitpay',
         Boleto = <any> 'boleto',
+        Boost = <any> 'boost',
         Card = <any> 'card',
+        CheckoutSession = <any> 'checkout-session',
+        ClickToPay = <any> 'click-to-pay',
         Clearpay = <any> 'clearpay',
         Dana = <any> 'dana',
+        Dcb = <any> 'dcb',
+        Eps = <any> 'eps',
         Fortumo = <any> 'fortumo',
         Gcash = <any> 'gcash',
+        Giropay = <any> 'giropay',
         Gocardless = <any> 'gocardless',
         Googlepay = <any> 'googlepay',
+        Gopay = <any> 'gopay',
         Grabpay = <any> 'grabpay',
+        Ideal = <any> 'ideal',
+        Id = <any> 'id',
+        Kakaopay = <any> 'kakaopay',
         Klarna = <any> 'klarna',
+        Laybuy = <any> 'laybuy',
+        Linepay = <any> 'linepay',
+        Linkaja = <any> 'linkaja',
+        Maybankqrpay = <any> 'maybankqrpay',
+        Multibanco = <any> 'multibanco',
+        Oney3x = <any> 'oney_3x',
+        Oney4x = <any> 'oney_4x',
+        Oney6x = <any> 'oney_6x',
+        Oney10x = <any> 'oney_10x',
+        Oney12x = <any> 'oney_12x',
         Ovo = <any> 'ovo',
+        Oxxo = <any> 'oxxo',
         Paymaya = <any> 'paymaya',
         Paypal = <any> 'paypal',
+        Paypalpaylater = <any> 'paypalpaylater',
         Pix = <any> 'pix',
         Rabbitlinepay = <any> 'rabbitlinepay',
+        Razorpay = <any> 'razorpay',
         Scalapay = <any> 'scalapay',
+        Sepa = <any> 'sepa',
         Shopeepay = <any> 'shopeepay',
+        Singteldash = <any> 'singteldash',
+        Sofort = <any> 'sofort',
         Stripedd = <any> 'stripedd',
+        Thaiqr = <any> 'thaiqr',
+        Touchngo = <any> 'touchngo',
         Truemoney = <any> 'truemoney',
         Trustly = <any> 'trustly',
+        Venmo = <any> 'venmo',
+        Waave = <any> 'waave',
+        Wechat = <any> 'wechat',
         Zippay = <any> 'zippay'
     }
 }

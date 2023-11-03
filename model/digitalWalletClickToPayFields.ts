@@ -11,25 +11,33 @@
  */
 
 import { RequestFile } from './models';
-import { CheckoutSessionFieldsPaymentMethod } from './checkoutSessionFieldsPaymentMethod';
 
-/**
-* A request to update the secure fields of a checkout session.
-*/
-export class CheckoutSessionSecureFieldsUpdate {
-    'paymentMethod'?: CheckoutSessionFieldsPaymentMethod;
+export class DigitalWalletClickToPayFields {
+    /**
+    * Unique ID assigned for digital payment application.
+    */
+    'digitalPaymentApplicationId'?: string;
+    /**
+    * Name assigned for digital payment application.
+    */
+    'digitalPaymentApplicationName'?: string;
 
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "paymentMethod",
-            "baseName": "payment_method",
-            "type": "CheckoutSessionFieldsPaymentMethod"
+            "name": "digitalPaymentApplicationId",
+            "baseName": "digital_payment_application_id",
+            "type": "string"
+        },
+        {
+            "name": "digitalPaymentApplicationName",
+            "baseName": "digital_payment_application_name",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
-        return CheckoutSessionSecureFieldsUpdate.attributeTypeMap;
+        return DigitalWalletClickToPayFields.attributeTypeMap;
     }
 }
 

@@ -12,15 +12,18 @@
 
 import { RequestFile } from './models';
 
-export class PaymentServiceFields {
+/**
+* A key-value pair that represents a field defined in the definition for this gift card service.
+*/
+export class GiftCardServiceCreateRequestFields {
     /**
-    * The key of the field.
+    * The key of the field to set a value for.
     */
-    'key'?: string;
+    'key': string;
     /**
-    * The value of the field.
+    * The value of a field to set.
     */
-    'value'?: string;
+    'value': string;
 
     static discriminator: string | undefined = undefined;
 
@@ -37,7 +40,7 @@ export class PaymentServiceFields {
         }    ];
 
     static getAttributeTypeMap() {
-        return PaymentServiceFields.attributeTypeMap;
+        return GiftCardServiceCreateRequestFields.attributeTypeMap;
     }
 }
 

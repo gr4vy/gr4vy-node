@@ -29,6 +29,10 @@ export class Refund {
     */
     'transactionId'?: string;
     /**
+    * The payment service\'s unique ID for the refund.
+    */
+    'paymentServiceRefundId'?: string;
+    /**
     * The status of the refund. It may change over time as asynchronous processing events occur.  - `processing` - The refund is being processed. - `succeeded` - The refund was successful. - `declined` - The refund was declined by the underlying PSP. - `failed` - The refund could not proceed due to a technical issue. - `voided` - The refund was voided and will not proceed.
     */
     'status'?: Refund.StatusEnum;
@@ -65,6 +69,11 @@ export class Refund {
         {
             "name": "transactionId",
             "baseName": "transaction_id",
+            "type": "string"
+        },
+        {
+            "name": "paymentServiceRefundId",
+            "baseName": "payment_service_refund_id",
             "type": "string"
         },
         {

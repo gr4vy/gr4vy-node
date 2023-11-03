@@ -76,9 +76,30 @@ export namespace TransactionHistoryEvent {
         TransactionEvent = <any> 'transaction-event'
     }
     export enum NameEnum {
-        DecisionError = <any> 'anti-fraud-decision-error',
-        DecisionSkipped = <any> 'anti-fraud-decision-skipped',
-        Decision = <any> 'anti-fraud-decision',
-        Webhook = <any> 'anti-fraud-webhook'
+        AntiFraudDecisionError = <any> 'anti-fraud-decision-error',
+        AntiFraudDecisionSkipped = <any> 'anti-fraud-decision-skipped',
+        AntiFraudDecision = <any> 'anti-fraud-decision',
+        AntiFraudTransactionStatusUpdate = <any> 'anti-fraud-transaction-status-update',
+        AntiFraudTransactionStatusUpdateError = <any> 'anti-fraud-transaction-status-update-error',
+        AntiFraudWebhook = <any> 'anti-fraud-webhook',
+        BinLookupRequest = <any> 'bin-lookup-request',
+        DigitalWalletApplePayTokenDecrypted = <any> 'digital-wallet-apple-pay-token-decrypted',
+        DigitalWalletGooglePayTokenDecrypted = <any> 'digital-wallet-google-pay-token-decrypted',
+        DigitalWalletClickToPayTokenDecrypted = <any> 'digital-wallet-click-to-pay-token-decrypted',
+        PaymentConnectorResponseTransactionAuthorizationFailed = <any> 'payment-connector-response-transaction-authorization-failed',
+        PaymentConnectorResponseTransactionAuthorizationSucceeded = <any> 'payment-connector-response-transaction-authorization-succeeded',
+        PaymentConnectorResponseTransactionCaptureDeclined = <any> 'payment-connector-response-transaction-capture-declined',
+        PaymentConnectorResponseTransactionCaptureFailed = <any> 'payment-connector-response-transaction-capture-failed',
+        PaymentConnectorResponseTransactionCaptureSucceeded = <any> 'payment-connector-response-transaction-capture-succeeded',
+        PaymentConnectorResponseTransactionDeclined = <any> 'payment-connector-response-transaction-declined',
+        PaymentConnectorResponseTransactionVoidDeclined = <any> 'payment-connector-response-transaction-void-declined',
+        PaymentConnectorResponseTransactionVoidFailed = <any> 'payment-connector-response-transaction-void-failed',
+        PaymentConnectorResponseTransactionVoidSucceeded = <any> 'payment-connector-response-transaction-void-succeeded',
+        PaymentConnectorExternalTransactionRequest = <any> 'payment-connector-external-transaction-request',
+        ThreeDSecureAuthenticationRequest = <any> 'three-d-secure-authentication-request',
+        ThreeDSecurePreparationRequest = <any> 'three-d-secure-preparation-request',
+        ThreeDSecureRequestError = <any> 'three-d-secure-request-error',
+        ThreeDSecureResultRequest = <any> 'three-d-secure-result-request',
+        ThreeDSecureSuccess = <any> 'three-d-secure-success'
     }
 }
