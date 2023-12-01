@@ -2,6 +2,9 @@ import localVarRequest from 'request';
 
 export * from './aPIKeyPairCreate';
 export * from './aPIKeyPairUpdate';
+export * from './accountUpdaterInquirySummary';
+export * from './accountUpdaterJob';
+export * from './accountUpdaterJobCreate';
 export * from './address';
 export * from './antiFraudDecisionErrorEvent';
 export * from './antiFraudDecisionErrorEventContext';
@@ -41,7 +44,6 @@ export * from './buyerUpdate';
 export * from './buyers';
 export * from './cardDetails';
 export * from './cardRequest';
-export * from './cardScheme';
 export * from './cardSchemeDefinition';
 export * from './cardSchemeDefinitions';
 export * from './cartItem';
@@ -51,6 +53,7 @@ export * from './checkoutSessionPaymentMethod';
 export * from './checkoutSessionPaymentMethodDetails';
 export * from './checkoutSessionRequest';
 export * from './checkoutSessionUpdateRequest';
+export * from './clickToPaySessionRequest';
 export * from './connection';
 export * from './connectionDefinition';
 export * from './connectionDefinitions';
@@ -93,16 +96,28 @@ export * from './error404PendingCreation';
 export * from './error409DuplicateRecord';
 export * from './errorDetail';
 export * from './errorGeneric';
+export * from './giftCard';
+export * from './giftCardBalanceNewRequest';
+export * from './giftCardBalanceRequest';
+export * from './giftCardBalanceStoredRequest';
+export * from './giftCardBalancesRequest';
+export * from './giftCardRedemption';
 export * from './giftCardService';
 export * from './giftCardServiceCreateRequest';
 export * from './giftCardServiceCreateRequestFields';
 export * from './giftCardServiceDefinition';
 export * from './giftCardServiceDefinitionFields';
 export * from './giftCardServiceFields';
+export * from './giftCardServiceSnapshot';
 export * from './giftCardServiceUpdateRequest';
 export * from './giftCardServiceUpdateRequestFields';
 export * from './giftCardServiceVerifyRequest';
 export * from './giftCardServiceVerifyRequestFields';
+export * from './giftCardSnapshot';
+export * from './giftCardStoreRequest';
+export * from './giftCardSummary';
+export * from './giftCards';
+export * from './giftCardsSummary';
 export * from './googlePayRequest';
 export * from './googlePayRequestAssuranceDetails';
 export * from './googlePaySessionRequest';
@@ -219,6 +234,9 @@ export * from './transaction';
 export * from './transactionCaptureRequest';
 export * from './transactionCardRequest';
 export * from './transactionCheckoutSessionRequest';
+export * from './transactionGiftCardNewRequest';
+export * from './transactionGiftCardRequest';
+export * from './transactionGiftCardStoredRequest';
 export * from './transactionHistoryEvent';
 export * from './transactionHistoryEvents';
 export * from './transactionPaymentMethodRequest';
@@ -249,6 +267,9 @@ export type RequestFile = string | Buffer | fs.ReadStream | RequestDetailedFile;
 
 import { APIKeyPairCreate } from './aPIKeyPairCreate';
 import { APIKeyPairUpdate } from './aPIKeyPairUpdate';
+import { AccountUpdaterInquirySummary } from './accountUpdaterInquirySummary';
+import { AccountUpdaterJob } from './accountUpdaterJob';
+import { AccountUpdaterJobCreate } from './accountUpdaterJobCreate';
 import { Address } from './address';
 import { AntiFraudDecisionErrorEvent } from './antiFraudDecisionErrorEvent';
 import { AntiFraudDecisionErrorEventContext } from './antiFraudDecisionErrorEventContext';
@@ -288,7 +309,6 @@ import { BuyerUpdate } from './buyerUpdate';
 import { Buyers } from './buyers';
 import { CardDetails } from './cardDetails';
 import { CardRequest } from './cardRequest';
-import { CardScheme } from './cardScheme';
 import { CardSchemeDefinition } from './cardSchemeDefinition';
 import { CardSchemeDefinitions } from './cardSchemeDefinitions';
 import { CartItem } from './cartItem';
@@ -298,6 +318,7 @@ import { CheckoutSessionPaymentMethod } from './checkoutSessionPaymentMethod';
 import { CheckoutSessionPaymentMethodDetails } from './checkoutSessionPaymentMethodDetails';
 import { CheckoutSessionRequest } from './checkoutSessionRequest';
 import { CheckoutSessionUpdateRequest } from './checkoutSessionUpdateRequest';
+import { ClickToPaySessionRequest } from './clickToPaySessionRequest';
 import { Connection } from './connection';
 import { ConnectionDefinition } from './connectionDefinition';
 import { ConnectionDefinitions } from './connectionDefinitions';
@@ -340,16 +361,28 @@ import { Error404PendingCreation } from './error404PendingCreation';
 import { Error409DuplicateRecord } from './error409DuplicateRecord';
 import { ErrorDetail } from './errorDetail';
 import { ErrorGeneric } from './errorGeneric';
+import { GiftCard } from './giftCard';
+import { GiftCardBalanceNewRequest } from './giftCardBalanceNewRequest';
+import { GiftCardBalanceRequest } from './giftCardBalanceRequest';
+import { GiftCardBalanceStoredRequest } from './giftCardBalanceStoredRequest';
+import { GiftCardBalancesRequest } from './giftCardBalancesRequest';
+import { GiftCardRedemption } from './giftCardRedemption';
 import { GiftCardService } from './giftCardService';
 import { GiftCardServiceCreateRequest } from './giftCardServiceCreateRequest';
 import { GiftCardServiceCreateRequestFields } from './giftCardServiceCreateRequestFields';
 import { GiftCardServiceDefinition } from './giftCardServiceDefinition';
 import { GiftCardServiceDefinitionFields } from './giftCardServiceDefinitionFields';
 import { GiftCardServiceFields } from './giftCardServiceFields';
+import { GiftCardServiceSnapshot } from './giftCardServiceSnapshot';
 import { GiftCardServiceUpdateRequest } from './giftCardServiceUpdateRequest';
 import { GiftCardServiceUpdateRequestFields } from './giftCardServiceUpdateRequestFields';
 import { GiftCardServiceVerifyRequest } from './giftCardServiceVerifyRequest';
 import { GiftCardServiceVerifyRequestFields } from './giftCardServiceVerifyRequestFields';
+import { GiftCardSnapshot } from './giftCardSnapshot';
+import { GiftCardStoreRequest } from './giftCardStoreRequest';
+import { GiftCardSummary } from './giftCardSummary';
+import { GiftCards } from './giftCards';
+import { GiftCardsSummary } from './giftCardsSummary';
 import { GooglePayRequest } from './googlePayRequest';
 import { GooglePayRequestAssuranceDetails } from './googlePayRequestAssuranceDetails';
 import { GooglePaySessionRequest } from './googlePaySessionRequest';
@@ -466,6 +499,9 @@ import { Transaction } from './transaction';
 import { TransactionCaptureRequest } from './transactionCaptureRequest';
 import { TransactionCardRequest } from './transactionCardRequest';
 import { TransactionCheckoutSessionRequest } from './transactionCheckoutSessionRequest';
+import { TransactionGiftCardNewRequest } from './transactionGiftCardNewRequest';
+import { TransactionGiftCardRequest } from './transactionGiftCardRequest';
+import { TransactionGiftCardStoredRequest } from './transactionGiftCardStoredRequest';
 import { TransactionHistoryEvent } from './transactionHistoryEvent';
 import { TransactionHistoryEvents } from './transactionHistoryEvents';
 import { TransactionPaymentMethodRequest } from './transactionPaymentMethodRequest';
@@ -495,6 +531,8 @@ let primitives = [
 
 let enumsMap: {[index: string]: any} = {
         "APIKeyPairCreate.AlgorithmEnum": APIKeyPairCreate.AlgorithmEnum,
+        "AccountUpdaterInquirySummary.TypeEnum": AccountUpdaterInquirySummary.TypeEnum,
+        "AccountUpdaterJob.TypeEnum": AccountUpdaterJob.TypeEnum,
         "AntiFraudDecisionErrorEvent.TypeEnum": AntiFraudDecisionErrorEvent.TypeEnum,
         "AntiFraudDecisionErrorEvent.NameEnum": AntiFraudDecisionErrorEvent.NameEnum,
         "AntiFraudDecisionEvent.TypeEnum": AntiFraudDecisionEvent.TypeEnum,
@@ -516,18 +554,21 @@ let enumsMap: {[index: string]: any} = {
         "AuditLogUser.StatusEnum": AuditLogUser.StatusEnum,
         "BINLookupRequest.TypeEnum": BINLookupRequest.TypeEnum,
         "BINLookupRequest.NameEnum": BINLookupRequest.NameEnum,
+        "BINLookupRequestContext.SchemeEnum": BINLookupRequestContext.SchemeEnum,
+        "BINLookupRequestContext.AdditionalSchemesEnum": BINLookupRequestContext.AdditionalSchemesEnum,
         "BillingDetails.TypeEnum": BillingDetails.TypeEnum,
         "BrowserInfo.UserDeviceEnum": BrowserInfo.UserDeviceEnum,
         "Buyer.TypeEnum": Buyer.TypeEnum,
         "BuyerSnapshot.TypeEnum": BuyerSnapshot.TypeEnum,
         "CardDetails.TypeEnum": CardDetails.TypeEnum,
         "CardDetails.CardTypeEnum": CardDetails.CardTypeEnum,
+        "CardDetails.SchemeEnum": CardDetails.SchemeEnum,
         "CardRequest.MethodEnum": CardRequest.MethodEnum,
-        "CardScheme": CardScheme,
         "CardSchemeDefinition.TypeEnum": CardSchemeDefinition.TypeEnum,
         "CartItem.ProductTypeEnum": CartItem.ProductTypeEnum,
         "CheckoutSession.TypeEnum": CheckoutSession.TypeEnum,
         "CheckoutSessionPaymentMethod.MethodEnum": CheckoutSessionPaymentMethod.MethodEnum,
+        "CheckoutSessionPaymentMethod.SchemeEnum": CheckoutSessionPaymentMethod.SchemeEnum,
         "CheckoutSessionPaymentMethodDetails.CardTypeEnum": CheckoutSessionPaymentMethodDetails.CardTypeEnum,
         "CheckoutSessionRequest.MethodEnum": CheckoutSessionRequest.MethodEnum,
         "ConnectionDefinition.GroupEnum": ConnectionDefinition.GroupEnum,
@@ -577,9 +618,15 @@ let enumsMap: {[index: string]: any} = {
         "Error409DuplicateRecord.StatusEnum": Error409DuplicateRecord.StatusEnum,
         "ErrorDetail.LocationEnum": ErrorDetail.LocationEnum,
         "ErrorGeneric.TypeEnum": ErrorGeneric.TypeEnum,
+        "GiftCard.TypeEnum": GiftCard.TypeEnum,
+        "GiftCardRedemption.TypeEnum": GiftCardRedemption.TypeEnum,
+        "GiftCardRedemption.StatusEnum": GiftCardRedemption.StatusEnum,
         "GiftCardService.TypeEnum": GiftCardService.TypeEnum,
         "GiftCardServiceDefinition.TypeEnum": GiftCardServiceDefinition.TypeEnum,
         "GiftCardServiceDefinitionFields.FormatEnum": GiftCardServiceDefinitionFields.FormatEnum,
+        "GiftCardServiceSnapshot.TypeEnum": GiftCardServiceSnapshot.TypeEnum,
+        "GiftCardSnapshot.TypeEnum": GiftCardSnapshot.TypeEnum,
+        "GiftCardSummary.TypeEnum": GiftCardSummary.TypeEnum,
         "GooglePayRequest.MethodEnum": GooglePayRequest.MethodEnum,
         "MerchantAccount.TypeEnum": MerchantAccount.TypeEnum,
         "NetworkToken.TypeEnum": NetworkToken.TypeEnum,
@@ -614,6 +661,8 @@ let enumsMap: {[index: string]: any} = {
         "PaymentConnectorResponseTransactionDeclinedEvent.TypeEnum": PaymentConnectorResponseTransactionDeclinedEvent.TypeEnum,
         "PaymentConnectorResponseTransactionDeclinedEvent.NameEnum": PaymentConnectorResponseTransactionDeclinedEvent.NameEnum,
         "PaymentConnectorResponseTransactionDeclinedEventContext.StatusEnum": PaymentConnectorResponseTransactionDeclinedEventContext.StatusEnum,
+        "PaymentConnectorResponseTransactionDeclinedEventContext.InstrumentTypeEnum": PaymentConnectorResponseTransactionDeclinedEventContext.InstrumentTypeEnum,
+        "PaymentConnectorResponseTransactionDeclinedEventContext.RetryRuleEnum": PaymentConnectorResponseTransactionDeclinedEventContext.RetryRuleEnum,
         "PaymentConnectorResponseTransactionDeclinedEventContext.AvsResponseCodeEnum": PaymentConnectorResponseTransactionDeclinedEventContext.AvsResponseCodeEnum,
         "PaymentConnectorResponseTransactionDeclinedEventContext.CvvResponseCodeEnum": PaymentConnectorResponseTransactionDeclinedEventContext.CvvResponseCodeEnum,
         "PaymentConnectorResponseTransactionVoidDeclinedEvent.TypeEnum": PaymentConnectorResponseTransactionVoidDeclinedEvent.TypeEnum,
@@ -626,10 +675,12 @@ let enumsMap: {[index: string]: any} = {
         "PaymentMethod.StatusEnum": PaymentMethod.StatusEnum,
         "PaymentMethod.MethodEnum": PaymentMethod.MethodEnum,
         "PaymentMethod.ModeEnum": PaymentMethod.ModeEnum,
+        "PaymentMethod.SchemeEnum": PaymentMethod.SchemeEnum,
         "PaymentMethod.ApprovalTargetEnum": PaymentMethod.ApprovalTargetEnum,
         "PaymentMethodDetailsCard.CardTypeEnum": PaymentMethodDetailsCard.CardTypeEnum,
         "PaymentMethodSnapshot.TypeEnum": PaymentMethodSnapshot.TypeEnum,
         "PaymentMethodSnapshot.MethodEnum": PaymentMethodSnapshot.MethodEnum,
+        "PaymentMethodSnapshot.SchemeEnum": PaymentMethodSnapshot.SchemeEnum,
         "PaymentMethodSnapshot.ApprovalTargetEnum": PaymentMethodSnapshot.ApprovalTargetEnum,
         "PaymentMethodTokenized.TypeEnum": PaymentMethodTokenized.TypeEnum,
         "PaymentMethodTokenized.MethodEnum": PaymentMethodTokenized.MethodEnum,
@@ -652,6 +703,7 @@ let enumsMap: {[index: string]: any} = {
         "RedirectRequest.MethodEnum": RedirectRequest.MethodEnum,
         "Refund.TypeEnum": Refund.TypeEnum,
         "Refund.StatusEnum": Refund.StatusEnum,
+        "Refund.TargetTypeEnum": Refund.TargetTypeEnum,
         "Report.ScheduleEnum": Report.ScheduleEnum,
         "Report.TypeEnum": Report.TypeEnum,
         "Report.CreatorTypeEnum": Report.CreatorTypeEnum,
@@ -693,6 +745,7 @@ let enumsMap: {[index: string]: any} = {
         "TokenizedRequest.MethodEnum": TokenizedRequest.MethodEnum,
         "Transaction.TypeEnum": Transaction.TypeEnum,
         "Transaction.StatusEnum": Transaction.StatusEnum,
+        "Transaction.IntentOutcomeEnum": Transaction.IntentOutcomeEnum,
         "Transaction.IntentEnum": Transaction.IntentEnum,
         "Transaction.PaymentSourceEnum": Transaction.PaymentSourceEnum,
         "Transaction.AvsResponseCodeEnum": Transaction.AvsResponseCodeEnum,
@@ -704,6 +757,7 @@ let enumsMap: {[index: string]: any} = {
         "TransactionHistoryEvent.NameEnum": TransactionHistoryEvent.NameEnum,
         "TransactionPaymentMethodRequest.MethodEnum": TransactionPaymentMethodRequest.MethodEnum,
         "TransactionRedirectRequest.MethodEnum": TransactionRedirectRequest.MethodEnum,
+        "TransactionRefundRequest.TargetTypeEnum": TransactionRefundRequest.TargetTypeEnum,
         "TransactionRequest.IntentEnum": TransactionRequest.IntentEnum,
         "TransactionRequest.PaymentSourceEnum": TransactionRequest.PaymentSourceEnum,
         "TransactionStatusSummary.TypeEnum": TransactionStatusSummary.TypeEnum,
@@ -718,6 +772,9 @@ let enumsMap: {[index: string]: any} = {
 let typeMap: {[index: string]: any} = {
     "APIKeyPairCreate": APIKeyPairCreate,
     "APIKeyPairUpdate": APIKeyPairUpdate,
+    "AccountUpdaterInquirySummary": AccountUpdaterInquirySummary,
+    "AccountUpdaterJob": AccountUpdaterJob,
+    "AccountUpdaterJobCreate": AccountUpdaterJobCreate,
     "Address": Address,
     "AntiFraudDecisionErrorEvent": AntiFraudDecisionErrorEvent,
     "AntiFraudDecisionErrorEventContext": AntiFraudDecisionErrorEventContext,
@@ -766,6 +823,7 @@ let typeMap: {[index: string]: any} = {
     "CheckoutSessionPaymentMethodDetails": CheckoutSessionPaymentMethodDetails,
     "CheckoutSessionRequest": CheckoutSessionRequest,
     "CheckoutSessionUpdateRequest": CheckoutSessionUpdateRequest,
+    "ClickToPaySessionRequest": ClickToPaySessionRequest,
     "Connection": Connection,
     "ConnectionDefinition": ConnectionDefinition,
     "ConnectionDefinitions": ConnectionDefinitions,
@@ -808,16 +866,28 @@ let typeMap: {[index: string]: any} = {
     "Error409DuplicateRecord": Error409DuplicateRecord,
     "ErrorDetail": ErrorDetail,
     "ErrorGeneric": ErrorGeneric,
+    "GiftCard": GiftCard,
+    "GiftCardBalanceNewRequest": GiftCardBalanceNewRequest,
+    "GiftCardBalanceRequest": GiftCardBalanceRequest,
+    "GiftCardBalanceStoredRequest": GiftCardBalanceStoredRequest,
+    "GiftCardBalancesRequest": GiftCardBalancesRequest,
+    "GiftCardRedemption": GiftCardRedemption,
     "GiftCardService": GiftCardService,
     "GiftCardServiceCreateRequest": GiftCardServiceCreateRequest,
     "GiftCardServiceCreateRequestFields": GiftCardServiceCreateRequestFields,
     "GiftCardServiceDefinition": GiftCardServiceDefinition,
     "GiftCardServiceDefinitionFields": GiftCardServiceDefinitionFields,
     "GiftCardServiceFields": GiftCardServiceFields,
+    "GiftCardServiceSnapshot": GiftCardServiceSnapshot,
     "GiftCardServiceUpdateRequest": GiftCardServiceUpdateRequest,
     "GiftCardServiceUpdateRequestFields": GiftCardServiceUpdateRequestFields,
     "GiftCardServiceVerifyRequest": GiftCardServiceVerifyRequest,
     "GiftCardServiceVerifyRequestFields": GiftCardServiceVerifyRequestFields,
+    "GiftCardSnapshot": GiftCardSnapshot,
+    "GiftCardStoreRequest": GiftCardStoreRequest,
+    "GiftCardSummary": GiftCardSummary,
+    "GiftCards": GiftCards,
+    "GiftCardsSummary": GiftCardsSummary,
     "GooglePayRequest": GooglePayRequest,
     "GooglePayRequestAssuranceDetails": GooglePayRequestAssuranceDetails,
     "GooglePaySessionRequest": GooglePaySessionRequest,
@@ -934,6 +1004,9 @@ let typeMap: {[index: string]: any} = {
     "TransactionCaptureRequest": TransactionCaptureRequest,
     "TransactionCardRequest": TransactionCardRequest,
     "TransactionCheckoutSessionRequest": TransactionCheckoutSessionRequest,
+    "TransactionGiftCardNewRequest": TransactionGiftCardNewRequest,
+    "TransactionGiftCardRequest": TransactionGiftCardRequest,
+    "TransactionGiftCardStoredRequest": TransactionGiftCardStoredRequest,
     "TransactionHistoryEvent": TransactionHistoryEvent,
     "TransactionHistoryEvents": TransactionHistoryEvents,
     "TransactionPaymentMethodRequest": TransactionPaymentMethodRequest,

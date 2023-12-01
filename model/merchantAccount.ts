@@ -62,6 +62,14 @@ export class MerchantAccount {
     */
     'mastercardNetworkTokensAppId'?: string | null;
     /**
+    * Client key provided by Pagos to authenticate to the Loon API. Loon is the Account Updater service used by Gr4vy.
+    */
+    'loonClientKey'?: string | null;
+    /**
+    * Secret key provided by Pagos to authenticate to the Loon API. Loon is the Account Updater service used by Gr4vy.  If the field is not `null`, the value is masked to avoid exposing sensitive information.
+    */
+    'loonSecretKey'?: string | null;
+    /**
     * The date and time when this merchant account was created.
     */
     'createdAt'?: Date;
@@ -131,6 +139,16 @@ export class MerchantAccount {
         {
             "name": "mastercardNetworkTokensAppId",
             "baseName": "mastercard_network_tokens_app_id",
+            "type": "string"
+        },
+        {
+            "name": "loonClientKey",
+            "baseName": "loon_client_key",
+            "type": "string"
+        },
+        {
+            "name": "loonSecretKey",
+            "baseName": "loon_secret_key",
             "type": "string"
         },
         {

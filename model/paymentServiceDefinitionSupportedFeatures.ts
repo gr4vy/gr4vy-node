@@ -23,7 +23,7 @@ export class PaymentServiceDefinitionSupportedFeatures {
     /**
     * Supports passing decrypted digital wallet (e.g. Apple Pay) tokens to the underlying processor.
     */
-    'networkTokens'?: boolean;
+    'digitalWallets'?: boolean;
     /**
     * Supports processing network tokens by default.
     */
@@ -86,8 +86,8 @@ export class PaymentServiceDefinitionSupportedFeatures {
             "type": "boolean"
         },
         {
-            "name": "networkTokens",
-            "baseName": "network_tokens",
+            "name": "digitalWallets",
+            "baseName": "digital_wallets",
             "type": "boolean"
         },
         {

@@ -11,7 +11,6 @@
  */
 
 import { RequestFile } from './models';
-import { CardScheme } from './cardScheme';
 import { CheckoutSessionPaymentMethodDetails } from './checkoutSessionPaymentMethodDetails';
 
 /**
@@ -27,7 +26,10 @@ export class CheckoutSessionPaymentMethod {
     * Payment method type.
     */
     'method'?: CheckoutSessionPaymentMethod.MethodEnum;
-    'scheme'?: CardScheme | string;
+    /**
+    * The scheme/brand of the card.
+    */
+    'scheme'?: CheckoutSessionPaymentMethod.SchemeEnum;
     /**
     * Last four digits of PAN.
     */
@@ -55,7 +57,7 @@ export class CheckoutSessionPaymentMethod {
         {
             "name": "scheme",
             "baseName": "scheme",
-            "type": "CardScheme | string"
+            "type": "CheckoutSessionPaymentMethod.SchemeEnum"
         },
         {
             "name": "label",
@@ -76,5 +78,29 @@ export class CheckoutSessionPaymentMethod {
 export namespace CheckoutSessionPaymentMethod {
     export enum MethodEnum {
         Card = <any> 'card'
+    }
+    export enum SchemeEnum {
+        Accel = <any> 'accel',
+        Amex = <any> 'amex',
+        Bancontact = <any> 'bancontact',
+        CarteBancaire = <any> 'carte-bancaire',
+        Cirrus = <any> 'cirrus',
+        Culiance = <any> 'culiance',
+        Dankort = <any> 'dankort',
+        DinersClub = <any> 'diners-club',
+        Discover = <any> 'discover',
+        EftposAustralia = <any> 'eftpos-australia',
+        Elo = <any> 'elo',
+        Hipercard = <any> 'hipercard',
+        Jcb = <any> 'jcb',
+        Maestro = <any> 'maestro',
+        Mastercard = <any> 'mastercard',
+        Nyce = <any> 'nyce',
+        Other = <any> 'other',
+        Pulse = <any> 'pulse',
+        Rupay = <any> 'rupay',
+        Star = <any> 'star',
+        Unionpay = <any> 'unionpay',
+        Visa = <any> 'visa'
     }
 }

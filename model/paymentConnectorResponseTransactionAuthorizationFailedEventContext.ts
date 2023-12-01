@@ -45,7 +45,7 @@ export class PaymentConnectorResponseTransactionAuthorizationFailedEventContext 
     */
     'instrumentType'?: PaymentConnectorResponseTransactionAuthorizationFailedEventContext.InstrumentTypeEnum;
     /**
-    * Defines why the transaction might be retried. A retry is not guaranteed because the maximum number of retries might already have been attempted.  * `failure` - the transaction will be retried because of a failure calling   the payment service. * `retriable_decline` - the transaction will be retried because a decline code   was received that can be retried.
+    * Defines why the transaction might be retried. A retry is not guaranteed because the maximum number of retries might already have been attempted.  * `failure` - the transaction will be retried because of a failure calling   the payment service. * `retriable_decline` - the transaction will be retried because a decline code   was received that can be retried. * `payment_method_replacement` - the transaction will be retried because a   decline code was received that triggered a payment method replacement.
     */
     'retryRule'?: PaymentConnectorResponseTransactionAuthorizationFailedEventContext.RetryRuleEnum;
     /**
@@ -149,7 +149,8 @@ export namespace PaymentConnectorResponseTransactionAuthorizationFailedEventCont
     }
     export enum RetryRuleEnum {
         Failure = <any> 'failure',
-        RetriableDecline = <any> 'retriable_decline'
+        RetriableDecline = <any> 'retriable_decline',
+        PaymentMethodReplacement = <any> 'payment_method_replacement'
     }
     export enum AvsResponseCodeEnum {
         NoMatch = <any> 'no_match',

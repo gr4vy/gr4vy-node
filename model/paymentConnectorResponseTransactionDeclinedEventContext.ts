@@ -41,6 +41,14 @@ export class PaymentConnectorResponseTransactionDeclinedEventContext {
     */
     'code'?: string | null;
     /**
+    * The type of instrument used for this transaction.
+    */
+    'instrumentType'?: PaymentConnectorResponseTransactionDeclinedEventContext.InstrumentTypeEnum;
+    /**
+    * Defines why the transaction might be retried. A retry is not guaranteed because the maximum number of retries might already have been attempted.  * `failure` - the transaction will be retried because of a failure calling   the payment service. * `retriable_decline` - the transaction will be retried because a decline code   was received that can be retried. * `payment_method_replacement` - the transaction will be retried because a   decline code was received that triggered a payment method replacement.
+    */
+    'retryRule'?: PaymentConnectorResponseTransactionDeclinedEventContext.RetryRuleEnum;
+    /**
     * This is the response code received from the payment service. This can be set to any value and is not standardized across different payment services.
     */
     'rawResponseCode'?: string | null;
@@ -91,6 +99,16 @@ export class PaymentConnectorResponseTransactionDeclinedEventContext {
             "type": "string"
         },
         {
+            "name": "instrumentType",
+            "baseName": "instrument_type",
+            "type": "PaymentConnectorResponseTransactionDeclinedEventContext.InstrumentTypeEnum"
+        },
+        {
+            "name": "retryRule",
+            "baseName": "retry_rule",
+            "type": "PaymentConnectorResponseTransactionDeclinedEventContext.RetryRuleEnum"
+        },
+        {
             "name": "rawResponseCode",
             "baseName": "raw_response_code",
             "type": "string"
@@ -119,6 +137,20 @@ export class PaymentConnectorResponseTransactionDeclinedEventContext {
 export namespace PaymentConnectorResponseTransactionDeclinedEventContext {
     export enum StatusEnum {
         AuthorizationDeclined = <any> 'authorization_declined'
+    }
+    export enum InstrumentTypeEnum {
+        Pan = <any> 'pan',
+        CardToken = <any> 'card_token',
+        Redirect = <any> 'redirect',
+        RedirectToken = <any> 'redirect_token',
+        Googlepay = <any> 'googlepay',
+        Applepay = <any> 'applepay',
+        NetworkToken = <any> 'network_token'
+    }
+    export enum RetryRuleEnum {
+        Failure = <any> 'failure',
+        RetriableDecline = <any> 'retriable_decline',
+        PaymentMethodReplacement = <any> 'payment_method_replacement'
     }
     export enum AvsResponseCodeEnum {
         NoMatch = <any> 'no_match',

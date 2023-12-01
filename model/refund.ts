@@ -52,6 +52,14 @@ export class Refund {
     * The date and time when this refund was last updated.
     */
     'updatedAt'?: Date;
+    /**
+    * The type of the instrument that was refunded.
+    */
+    'targetType'?: Refund.TargetTypeEnum;
+    /**
+    * The optional ID of the instrument that was refunded. This may be `null` if the instrument was not stored.
+    */
+    'targetId'?: string | null;
 
     static discriminator: string | undefined = undefined;
 
@@ -100,6 +108,16 @@ export class Refund {
             "name": "updatedAt",
             "baseName": "updated_at",
             "type": "Date"
+        },
+        {
+            "name": "targetType",
+            "baseName": "target_type",
+            "type": "Refund.TargetTypeEnum"
+        },
+        {
+            "name": "targetId",
+            "baseName": "target_id",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
@@ -117,5 +135,9 @@ export namespace Refund {
         Declined = <any> 'declined',
         Failed = <any> 'failed',
         Voided = <any> 'voided'
+    }
+    export enum TargetTypeEnum {
+        PaymentMethod = <any> 'payment-method',
+        GiftCardRedemption = <any> 'gift-card-redemption'
     }
 }

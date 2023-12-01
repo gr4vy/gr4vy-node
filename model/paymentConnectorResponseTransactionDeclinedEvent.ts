@@ -14,7 +14,7 @@ import { RequestFile } from './models';
 import { PaymentConnectorResponseTransactionDeclinedEventContext } from './paymentConnectorResponseTransactionDeclinedEventContext';
 
 /**
-* This event logs the exact details parsed details for a transaction as reported by our connector when the capture is declined.
+* This event logs the exact details parsed details for a declined transaction as reported by our connector.
 */
 export class PaymentConnectorResponseTransactionDeclinedEvent {
     /**

@@ -13,6 +13,8 @@
 import { RequestFile } from './models';
 import { BuyerSnapshot } from './buyerSnapshot';
 import { CartItem } from './cartItem';
+import { GiftCardRedemption } from './giftCardRedemption';
+import { GiftCardServiceSnapshot } from './giftCardServiceSnapshot';
 import { PaymentMethodSnapshot } from './paymentMethodSnapshot';
 import { PaymentServiceSnapshot } from './paymentServiceSnapshot';
 import { ShippingDetail } from './shippingDetail';
@@ -40,23 +42,35 @@ export class Transaction {
     */
     'merchantAccountId'?: string;
     /**
-    * The status of the transaction. The status may change over time as asynchronous processing events occur.  Please note that the possible statuses returned will depend on the operation performed. For example, a captured transaction will never move to a `authorization_voided` status.
+    * The status of the transaction for the `payment_method`. The status may change over time as asynchronous processing events occur.  Please note that the possible statuses returned will depend on the operation performed. For example, a captured transaction will never move to a `authorization_voided` status.
     */
     'status'?: Transaction.StatusEnum;
+    /**
+    * The outcome of the original intent of a transaction.  This allows you to understand if the intent of the transaction (e.g. `capture` or `authorize`) has been achieved when dealing with multiple payment instruments.  If all payment instruments (`payment_method` and/or `gift_cards`) have succeeded to get an authorization or direct sale **at any point in time** then this will return a `succeeded` value.  If any of the payment instruments fails or declines then this will return a `failed` value.  If any payment instruments is still in a `pending` or `processing` state then the result will be `pending`.  Please note that if any of the payment instruments are voided or refunded after the result reaches a `succeeded` state  then the result will remain unchanged.
+    */
+    'intentOutcome'?: Transaction.IntentOutcomeEnum;
+    /**
+    * Defines if this transaction has been split across multiple payment instruments such as a `payment_method` and one or more `gift_cards`, or multiple `gift_cards` without a `payment_method`.
+    */
+    'multiTender'?: boolean;
     /**
     * The original `intent` used when the transaction was [created](#operation/authorize-new-transaction).
     */
     'intent'?: Transaction.IntentEnum;
     /**
-    * The authorized amount for this transaction. This can be more than the actual captured amount and part of this amount may be refunded.
+    * The total amount for this transaction across all funding sources including gift cards.
     */
     'amount'?: number;
     /**
-    * The captured amount for this transaction. This can be the total or a portion of the authorized amount.
+    * The amount for this transaction that has been authorized for the `payment_method`. This can be less than the `amount` if gift cards were used.
+    */
+    'authorizedAmount'?: number;
+    /**
+    * The captured amount for this transaction. This can be the full value of the `authorized_amount` or less.
     */
     'capturedAmount'?: number;
     /**
-    * The refunded amount for this transaction. This can be the total or a portion of the captured amount.
+    * The refunded amount for this transaction. This can be the full value of the `captured_amount` or less.
     */
     'refundedAmount'?: number;
     /**
@@ -71,6 +85,10 @@ export class Transaction {
     * The payment method used for this transaction.
     */
     'paymentMethod'?: PaymentMethodSnapshot;
+    /**
+    * The gift cards redeemed for this transaction.
+    */
+    'giftCardsRedemptions'?: Array<GiftCardRedemption>;
     /**
     * The buyer used for this transaction.
     */
@@ -92,6 +110,10 @@ export class Transaction {
     */
     'paymentService'?: PaymentServiceSnapshot;
     /**
+    * The gift card service used for this transaction.
+    */
+    'giftCardService'?: GiftCardServiceSnapshot;
+    /**
     * Whether a manual review is pending.
     */
     'pendingReview'?: boolean;
@@ -99,6 +121,9 @@ export class Transaction {
     * Indicates whether the transaction was initiated by the merchant (true) or customer (false).
     */
     'merchantInitiated'?: boolean;
+    /**
+    * The source of the transaction. Defaults to `ecommerce`.
+    */
     'paymentSource'?: Transaction.PaymentSourceEnum;
     /**
     * Indicates whether the transaction represents a subsequent payment coming from a setup recurring payment. Please note there are some restrictions on how this flag may be used.  The flag can only be `false` (or not set) when the transaction meets one of the following criteria:  * It is not `merchant_initiated`. * `payment_source` is set to `card_on_file`.  The flag can only be set to `true` when the transaction meets one of the following criteria:  * It is not `merchant_initiated`. * `payment_source` is set to `recurring` or `installment` and `merchant_initiated` is set to `true`. * `payment_source` is set to `card_on_file`.
@@ -197,6 +222,16 @@ export class Transaction {
             "type": "Transaction.StatusEnum"
         },
         {
+            "name": "intentOutcome",
+            "baseName": "intent_outcome",
+            "type": "Transaction.IntentOutcomeEnum"
+        },
+        {
+            "name": "multiTender",
+            "baseName": "multi_tender",
+            "type": "boolean"
+        },
+        {
             "name": "intent",
             "baseName": "intent",
             "type": "Transaction.IntentEnum"
@@ -204,6 +239,11 @@ export class Transaction {
         {
             "name": "amount",
             "baseName": "amount",
+            "type": "number"
+        },
+        {
+            "name": "authorizedAmount",
+            "baseName": "authorized_amount",
             "type": "number"
         },
         {
@@ -232,6 +272,11 @@ export class Transaction {
             "type": "PaymentMethodSnapshot"
         },
         {
+            "name": "giftCardsRedemptions",
+            "baseName": "gift_cards_redemptions",
+            "type": "Array<GiftCardRedemption>"
+        },
+        {
             "name": "buyer",
             "baseName": "buyer",
             "type": "BuyerSnapshot"
@@ -255,6 +300,11 @@ export class Transaction {
             "name": "paymentService",
             "baseName": "payment_service",
             "type": "PaymentServiceSnapshot"
+        },
+        {
+            "name": "giftCardService",
+            "baseName": "gift_card_service",
+            "type": "GiftCardServiceSnapshot"
         },
         {
             "name": "pendingReview",
@@ -386,6 +436,11 @@ export namespace Transaction {
         CaptureSucceeded = <any> 'capture_succeeded',
         AuthorizationVoidPending = <any> 'authorization_void_pending',
         AuthorizationVoided = <any> 'authorization_voided'
+    }
+    export enum IntentOutcomeEnum {
+        Pending = <any> 'pending',
+        Succeeded = <any> 'succeeded',
+        Failed = <any> 'failed'
     }
     export enum IntentEnum {
         Authorize = <any> 'authorize',

@@ -19,7 +19,7 @@ export class BINLookupRequestContext {
     /**
     * The response body received from the `url`.
     */
-    'response'?: string;
+    'response'?: string | null;
     /**
     * The response status code received from the `url`.
     */
@@ -39,11 +39,23 @@ export class BINLookupRequestContext {
     /**
     * The card scheme result from the lookup response.
     */
-    'scheme'?: string | null;
+    'scheme'?: BINLookupRequestContext.SchemeEnum;
+    /**
+    * The card additional schemes from the lookup response.
+    */
+    'additionalSchemes'?: Array<BINLookupRequestContext.AdditionalSchemesEnum>;
     /**
     * The card country code result from the lookup response.
     */
     'countryCode'?: string | null;
+    /**
+    * Whether Account Updater is enabled for this card.
+    */
+    'accountUpdater'?: boolean | null;
+    /**
+    * Whether the issuing bank supports network tokenization for this card.
+    */
+    'issuerTokenization'?: boolean | null;
 
     static discriminator: string | undefined = undefined;
 
@@ -76,12 +88,27 @@ export class BINLookupRequestContext {
         {
             "name": "scheme",
             "baseName": "scheme",
-            "type": "string"
+            "type": "BINLookupRequestContext.SchemeEnum"
+        },
+        {
+            "name": "additionalSchemes",
+            "baseName": "additional_schemes",
+            "type": "Array<BINLookupRequestContext.AdditionalSchemesEnum>"
         },
         {
             "name": "countryCode",
             "baseName": "country_code",
             "type": "string"
+        },
+        {
+            "name": "accountUpdater",
+            "baseName": "account_updater",
+            "type": "boolean"
+        },
+        {
+            "name": "issuerTokenization",
+            "baseName": "issuer_tokenization",
+            "type": "boolean"
         }    ];
 
     static getAttributeTypeMap() {
@@ -89,3 +116,53 @@ export class BINLookupRequestContext {
     }
 }
 
+export namespace BINLookupRequestContext {
+    export enum SchemeEnum {
+        Accel = <any> 'accel',
+        Amex = <any> 'amex',
+        Bancontact = <any> 'bancontact',
+        CarteBancaire = <any> 'carte-bancaire',
+        Cirrus = <any> 'cirrus',
+        Culiance = <any> 'culiance',
+        Dankort = <any> 'dankort',
+        DinersClub = <any> 'diners-club',
+        Discover = <any> 'discover',
+        EftposAustralia = <any> 'eftpos-australia',
+        Elo = <any> 'elo',
+        Hipercard = <any> 'hipercard',
+        Jcb = <any> 'jcb',
+        Maestro = <any> 'maestro',
+        Mastercard = <any> 'mastercard',
+        Nyce = <any> 'nyce',
+        Other = <any> 'other',
+        Pulse = <any> 'pulse',
+        Rupay = <any> 'rupay',
+        Star = <any> 'star',
+        Unionpay = <any> 'unionpay',
+        Visa = <any> 'visa'
+    }
+    export enum AdditionalSchemesEnum {
+        Accel = <any> 'accel',
+        Amex = <any> 'amex',
+        Bancontact = <any> 'bancontact',
+        CarteBancaire = <any> 'carte-bancaire',
+        Cirrus = <any> 'cirrus',
+        Culiance = <any> 'culiance',
+        Dankort = <any> 'dankort',
+        DinersClub = <any> 'diners-club',
+        Discover = <any> 'discover',
+        EftposAustralia = <any> 'eftpos-australia',
+        Elo = <any> 'elo',
+        Hipercard = <any> 'hipercard',
+        Jcb = <any> 'jcb',
+        Maestro = <any> 'maestro',
+        Mastercard = <any> 'mastercard',
+        Nyce = <any> 'nyce',
+        Other = <any> 'other',
+        Pulse = <any> 'pulse',
+        Rupay = <any> 'rupay',
+        Star = <any> 'star',
+        Unionpay = <any> 'unionpay',
+        Visa = <any> 'visa'
+    }
+}

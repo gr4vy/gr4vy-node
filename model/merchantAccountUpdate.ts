@@ -56,6 +56,14 @@ export class MerchantAccountUpdate {
     * Application ID provided for Mastercard after onboarding to use Network Tokens. The application ID must be unique across all schemes and merchant accounts.
     */
     'mastercardNetworkTokensAppId'?: string | null;
+    /**
+    * Client key provided by Pagos to authenticate to the Loon API. Loon is the Account Updater service used by Gr4vy.  * If the field is not set, the key is not updated. * If the field is set to `null`, the key is removed. * If the field is set to `null`, the value for `loon_secret_key` must be `null` as well. * If the field is set to a non-empty string, the value for `loon_secret_key` must be a non-empty string as well.
+    */
+    'loonClientKey'?: string | null;
+    /**
+    * Secret key provided by Pagos to authenticate to the Loon API. Loon is the Account Updater service used by Gr4vy.  * If the field is not set, the key is not updated. * If the field is set to `null`, the key is removed. * If the field is set to `null`, the value for `loon_client_key` must be `null` as well. * If the field is set to a non-empty string, the value for `loon_client_key` must be a non-empty string as well.
+    */
+    'loonSecretKey'?: string | null;
 
     static discriminator: string | undefined = undefined;
 
@@ -108,6 +116,16 @@ export class MerchantAccountUpdate {
         {
             "name": "mastercardNetworkTokensAppId",
             "baseName": "mastercard_network_tokens_app_id",
+            "type": "string"
+        },
+        {
+            "name": "loonClientKey",
+            "baseName": "loon_client_key",
+            "type": "string"
+        },
+        {
+            "name": "loonSecretKey",
+            "baseName": "loon_secret_key",
             "type": "string"
         }    ];
 
