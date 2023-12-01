@@ -17,9 +17,17 @@ import { RequestFile } from './models';
 */
 export class TransactionRefundRequest {
     /**
-    * The amount requested to refund.  If omitted, a full refund will be requested.  Otherwise, the amount must be lower than or equal to the remaining balance in the associated transaction.  Negative and zero-amount refunds are not supported.
+    * The amount requested to refund.  If omitted, a full refund will be requested for the main payment method.  When set, the amount must be lower than or equal to the remaining balance in the associated transaction. Negative and zero-amount refunds are not supported.
     */
     'amount'?: number;
+    /**
+    * The target type to refund for. This can be used to target a gift card to refund to instead of the main payment method.
+    */
+    'targetType'?: TransactionRefundRequest.TargetTypeEnum;
+    /**
+    * The optional ID of the instrument to refund for. This is only required when the `target_type` is set to `gift-card-redemption`.
+    */
+    'targetId'?: string | null;
 
     static discriminator: string | undefined = undefined;
 
@@ -28,6 +36,16 @@ export class TransactionRefundRequest {
             "name": "amount",
             "baseName": "amount",
             "type": "number"
+        },
+        {
+            "name": "targetType",
+            "baseName": "target_type",
+            "type": "TransactionRefundRequest.TargetTypeEnum"
+        },
+        {
+            "name": "targetId",
+            "baseName": "target_id",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
@@ -35,3 +53,9 @@ export class TransactionRefundRequest {
     }
 }
 
+export namespace TransactionRefundRequest {
+    export enum TargetTypeEnum {
+        PaymentMethod = <any> 'payment-method',
+        GiftCardRedemption = <any> 'gift-card-redemption'
+    }
+}

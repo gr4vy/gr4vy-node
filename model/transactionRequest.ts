@@ -16,6 +16,7 @@ import { CartItem } from './cartItem';
 import { ConnectionOptions } from './connectionOptions';
 import { StatementDescriptor } from './statementDescriptor';
 import { ThreeDSecureDataV1V2 } from './threeDSecureDataV1V2';
+import { TransactionGiftCardRequest } from './transactionGiftCardRequest';
 import { TransactionPaymentMethodRequest } from './transactionPaymentMethodRequest';
 
 /**
@@ -23,7 +24,7 @@ import { TransactionPaymentMethodRequest } from './transactionPaymentMethodReque
 */
 export class TransactionRequest {
     /**
-    * The monetary amount to create an authorization for, in the smallest currency unit for the given currency, for example `1299` cents to create an authorization for `$12.99`.  If the `intent` is set to `capture`, an amount greater than zero must be supplied.
+    * The monetary amount for this transaction, in the smallest currency unit for the given currency, for example `1299` cents to create an authorization for `$12.99`.  If the `intent` is set to `capture`, an amount greater than zero must be supplied.  All gift card amounts are subtracted from this amount before the remainder is charged to the provided `payment_method`.
     */
     'amount': number;
     /**
@@ -34,7 +35,11 @@ export class TransactionRequest {
     * The 2-letter ISO code of the country of the transaction. This is used to filter the payment services that is used to process the transaction.  If this value is provided for redirect requests and it\'s not `null`, it must match the one specified for `country` in `payment_method`. Otherwise, the value specified for `country` in `payment_method` will be assumed implicitly. 
     */
     'country'?: string | null;
-    'paymentMethod': TransactionPaymentMethodRequest;
+    'paymentMethod'?: TransactionPaymentMethodRequest;
+    /**
+    * The optional gift-card to use for this transaction. At least one gift card is required if no other `payment_method` has been added.
+    */
+    'giftCards'?: Array<TransactionGiftCardRequest> | null;
     /**
     * Whether or not to also try and store the payment method with us so that it can be used again for future use. This is only supported for payment methods that support this feature. There are also a few restrictions on how the flag may be set:  * The flag has to be set to `true` when the `payment_source` is set to `recurring` or `installment`, and `merchant_initiated` is set to `false`.  * The flag has to be set to `false` (or not set) when using a previously vaulted payment method.
     */
@@ -52,6 +57,9 @@ export class TransactionRequest {
     * Indicates whether the transaction was initiated by the merchant (true) or customer (false).
     */
     'merchantInitiated'?: boolean;
+    /**
+    * The source of the transaction. Defaults to `ecommerce`.
+    */
     'paymentSource'?: TransactionRequest.PaymentSourceEnum;
     /**
     * Indicates whether the transaction represents a subsequent payment coming from a setup recurring payment. Please note there are some restrictions on how this flag may be used.  The flag can only be `false` (or not set) when the transaction meets one of the following criteria:  * It is not `merchant_initiated`. * `payment_source` is set to `card_on_file`.  The flag can only be set to `true` when the transaction meets one of the following criteria:  * It is not `merchant_initiated`. * `payment_source` is set to `recurring` or `installment` and `merchant_initiated` is set to `true`. * `payment_source` is set to `card_on_file`.
@@ -113,6 +121,11 @@ export class TransactionRequest {
             "name": "paymentMethod",
             "baseName": "payment_method",
             "type": "TransactionPaymentMethodRequest"
+        },
+        {
+            "name": "giftCards",
+            "baseName": "gift_cards",
+            "type": "Array<TransactionGiftCardRequest>"
         },
         {
             "name": "store",

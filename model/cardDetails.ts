@@ -32,7 +32,7 @@ export class CardDetails {
     /**
     * The scheme/brand of the card.
     */
-    'scheme'?: string;
+    'scheme'?: CardDetails.SchemeEnum;
     /**
     * An icon to display for the card scheme.
     */
@@ -64,7 +64,7 @@ export class CardDetails {
         {
             "name": "scheme",
             "baseName": "scheme",
-            "type": "string"
+            "type": "CardDetails.SchemeEnum"
         },
         {
             "name": "schemeIconUrl",
@@ -94,5 +94,29 @@ export namespace CardDetails {
     export enum CardTypeEnum {
         Credit = <any> 'credit',
         Debit = <any> 'debit'
+    }
+    export enum SchemeEnum {
+        Accel = <any> 'accel',
+        Amex = <any> 'amex',
+        Bancontact = <any> 'bancontact',
+        CarteBancaire = <any> 'carte-bancaire',
+        Cirrus = <any> 'cirrus',
+        Culiance = <any> 'culiance',
+        Dankort = <any> 'dankort',
+        DinersClub = <any> 'diners-club',
+        Discover = <any> 'discover',
+        EftposAustralia = <any> 'eftpos-australia',
+        Elo = <any> 'elo',
+        Hipercard = <any> 'hipercard',
+        Jcb = <any> 'jcb',
+        Maestro = <any> 'maestro',
+        Mastercard = <any> 'mastercard',
+        Nyce = <any> 'nyce',
+        Other = <any> 'other',
+        Pulse = <any> 'pulse',
+        Rupay = <any> 'rupay',
+        Star = <any> 'star',
+        Unionpay = <any> 'unionpay',
+        Visa = <any> 'visa'
     }
 }

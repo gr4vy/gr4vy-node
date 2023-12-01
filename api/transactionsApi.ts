@@ -433,12 +433,13 @@ export class TransactionsApi {
      * @param paymentMethodLabel Filters for transactions that have a payment method with a label that matches exactly with the provided value.
      * @param paymentServiceId Filters for transactions that were processed by the provided &#x60;payment_service_id&#x60; values.
      * @param paymentServiceTransactionId Filters for transactions that have a matching &#x60;payment_service_transaction_id&#x60; value. The &#x60;payment_service_transaction_id&#x60; is the identifier of the transaction given by the payment service.
-     * @param search Filters for transactions that have one of the following fields match exactly with the provided &#x60;search&#x60; value: * &#x60;buyer_external_identifier&#x60; * &#x60;buyer_id&#x60; * &#x60;external_identifier&#x60; * &#x60;id&#x60; * &#x60;payment_service_transaction_id&#x60;
+     * @param reconciliationId Filters for transactions based on their transaction reconciliation identifier.
+     * @param search Filters for transactions that have one of the following fields match exactly with the provided &#x60;search&#x60; value.  * &#x60;buyer_external_identifier&#x60; * &#x60;buyer_id&#x60; * &#x60;external_identifier&#x60; * &#x60;id&#x60; * &#x60;payment_service_transaction_id&#x60;  The search will apply against all fields at the same time.
      * @param status Filters the results to only the transactions that have a &#x60;status&#x60; that matches with any of the provided status values.
      * @param updatedAtGte Filters the results to only transactions last updated after this ISO date-time string. The time zone must be included.  Ensure that the date-time string is URL encoded, e.g. &#x60;2022-01-01T12:00:00+08:00&#x60; must be encoded as &#x60;2022-01-01T12%3A00%3A00%2B08%3A00&#x60;.
      * @param updatedAtLte Filters the results to only transactions last updated before this ISO date-time string. The time zone must be included.  Ensure that the date-time string is URL encoded, e.g. &#x60;2022-01-01T12:00:00+08:00&#x60; must be encoded as &#x60;2022-01-01T12%3A00%3A00%2B08%3A00&#x60;.
      */
-    public async listTransactions (buyerExternalIdentifier?: string, buyerId?: string, cursor?: string, limit?: number, amountEq?: number, amountGte?: number, amountLte?: number, checkoutSessionId?: string, createdAtGte?: Date, createdAtLte?: Date, currency?: Array<string>, externalIdentifier?: string, hasRefunds?: boolean, pendingReview?: boolean, id?: string, metadata?: Array<string>, method?: Array<'afterpay' | 'alipay' | 'alipayhk' | 'applepay' | 'bacs' | 'bancontact' | 'banked' | 'becs' | 'bitpay' | 'boleto' | 'boost' | 'card' | 'checkout-session' | 'click-to-pay' | 'clearpay' | 'dana' | 'dcb' | 'eps' | 'fortumo' | 'gcash' | 'giropay' | 'gocardless' | 'googlepay' | 'gopay' | 'grabpay' | 'ideal' | 'id' | 'kakaopay' | 'klarna' | 'laybuy' | 'linepay' | 'linkaja' | 'maybankqrpay' | 'multibanco' | 'oney_3x' | 'oney_4x' | 'oney_6x' | 'oney_10x' | 'oney_12x' | 'ovo' | 'oxxo' | 'paymaya' | 'paypal' | 'paypalpaylater' | 'pix' | 'rabbitlinepay' | 'razorpay' | 'scalapay' | 'sepa' | 'shopeepay' | 'singteldash' | 'sofort' | 'stripedd' | 'thaiqr' | 'touchngo' | 'truemoney' | 'trustly' | 'venmo' | 'waave' | 'wechat' | 'zippay'>, paymentMethodId?: string, paymentMethodLabel?: string, paymentServiceId?: Array<string>, paymentServiceTransactionId?: string, search?: string, status?: Array<'processing' | 'buyer_approval_pending' | 'authorization_succeeded' | 'authorization_failed' | 'authorization_declined' | 'capture_pending' | 'capture_succeeded' | 'authorization_void_pending' | 'authorization_voided'>, updatedAtGte?: Date, updatedAtLte?: Date, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Transactions;  }> {
+    public async listTransactions (buyerExternalIdentifier?: string, buyerId?: string, cursor?: string, limit?: number, amountEq?: number, amountGte?: number, amountLte?: number, checkoutSessionId?: string, createdAtGte?: Date, createdAtLte?: Date, currency?: Array<string>, externalIdentifier?: string, hasRefunds?: boolean, pendingReview?: boolean, id?: string, metadata?: Array<string>, method?: Array<'afterpay' | 'alipay' | 'alipayhk' | 'applepay' | 'bacs' | 'bancontact' | 'banked' | 'becs' | 'bitpay' | 'boleto' | 'boost' | 'card' | 'checkout-session' | 'click-to-pay' | 'clearpay' | 'dana' | 'dcb' | 'eps' | 'fortumo' | 'gcash' | 'giropay' | 'gocardless' | 'googlepay' | 'gopay' | 'grabpay' | 'ideal' | 'id' | 'kakaopay' | 'klarna' | 'laybuy' | 'linepay' | 'linkaja' | 'maybankqrpay' | 'multibanco' | 'oney_3x' | 'oney_4x' | 'oney_6x' | 'oney_10x' | 'oney_12x' | 'ovo' | 'oxxo' | 'paymaya' | 'paypal' | 'paypalpaylater' | 'pix' | 'rabbitlinepay' | 'razorpay' | 'scalapay' | 'sepa' | 'shopeepay' | 'singteldash' | 'sofort' | 'stripedd' | 'thaiqr' | 'touchngo' | 'truemoney' | 'trustly' | 'venmo' | 'waave' | 'wechat' | 'zippay'>, paymentMethodId?: string, paymentMethodLabel?: string, paymentServiceId?: Array<string>, paymentServiceTransactionId?: string, reconciliationId?: string, search?: string, status?: Array<'processing' | 'buyer_approval_pending' | 'authorization_succeeded' | 'authorization_failed' | 'authorization_declined' | 'capture_pending' | 'capture_succeeded' | 'authorization_void_pending' | 'authorization_voided'>, updatedAtGte?: Date, updatedAtLte?: Date, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Transactions;  }> {
         const localVarPath = this.basePath + '/transactions';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
@@ -533,6 +534,10 @@ export class TransactionsApi {
 
         if (paymentServiceTransactionId !== undefined) {
             localVarQueryParameters['payment_service_transaction_id'] = ObjectSerializer.serialize(paymentServiceTransactionId, "string");
+        }
+
+        if (reconciliationId !== undefined) {
+            localVarQueryParameters['reconciliation_id'] = ObjectSerializer.serialize(reconciliationId, "string");
         }
 
         if (search !== undefined) {
@@ -674,7 +679,7 @@ export class TransactionsApi {
         });
     }
     /**
-     * Attempts to create an authorization for a payment method. In some cases it is not possible to create the authorization without redirecting the user for their authorization. In these cases the status is set to indicate buyer approval is pending and an approval URL is returned. 
+     * Attempts to create an authorization for a payment method. In some cases it is not possible to create the authorization without redirecting the user for their authorization. In these cases the status is set to indicate buyer approval is pending and an approval URL is returned.  Duplicated gift card numbers are not supported. This includes both stored gift cards, as well as those directly provided via the request. 
      * @summary New transaction
      * @param idempotencyKey A unique key that identifies this request. Providing this header will make this an idempotent request. We recommend using V4 UUIDs, or another random string with enough entropy to avoid collisions.
      * @param transactionRequest 
@@ -732,6 +737,78 @@ export class TransactionsApi {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "Transaction");
+                        if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                            resolve({ response: response, body: body });
+                        } else {
+                            reject(new HttpError(response, body, response.statusCode));
+                        }
+                    }
+                });
+            });
+        });
+    }
+    /**
+     * Refunds a transaction fully across all instruments.
+     * @summary Refund all instruments in a transaction
+     * @param transactionId The ID for the transaction to get the information for.
+     */
+    public async refundAll (transactionId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Refunds;  }> {
+        const localVarPath = this.basePath + '/transactions/{transaction_id}/refunds/all'
+            .replace('{' + 'transaction_id' + '}', encodeURIComponent(String(transactionId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'transactionId' is not null or undefined
+        if (transactionId === null || transactionId === undefined) {
+            throw new Error('Required parameter transactionId was null or undefined when calling refundAll.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        let authenticationPromise = Promise.resolve();
+        if (this.authentications.BearerAuth.accessToken) {
+            authenticationPromise = authenticationPromise.then(() => this.authentications.BearerAuth.applyToRequest(localVarRequestOptions));
+        }
+        authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
+
+        let interceptorPromise = authenticationPromise;
+        for (const interceptor of this.interceptors) {
+            interceptorPromise = interceptorPromise.then(() => interceptor(localVarRequestOptions));
+        }
+
+        return interceptorPromise.then(() => {
+            if (Object.keys(localVarFormParams).length) {
+                if (localVarUseFormData) {
+                    (<any>localVarRequestOptions).formData = localVarFormParams;
+                } else {
+                    localVarRequestOptions.form = localVarFormParams;
+                }
+            }
+            return new Promise<{ response: http.IncomingMessage; body: Refunds;  }>((resolve, reject) => {
+                localVarRequest(localVarRequestOptions, (error, response, body) => {
+                    if (error) {
+                        reject(error);
+                    } else {
+                        body = ObjectSerializer.deserialize(body, "Refunds");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                             resolve({ response: response, body: body });
                         } else {

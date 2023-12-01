@@ -61,11 +61,11 @@ export class PaymentMethodTokenized {
     */
     'country'?: string | null;
     /**
-    * The date and time when this card was last replaced.  When the Account Updater determines that new card details are available (e.g. when it\'s about to expire), existing details are not changed immediately. The actual replacement occurs when a transaction using this payment method is declined with any of the following codes:  * `canceled_payment_method` * `expired_payment_method` * `unavailable_payment_method` * `unknown_payment_method`  When the replacement is applied, this field is updated. For non-card payment methods, the value of this field is always set to `null`.
+    * The date and time when this card was last replaced.  When the Account Updater determines that new card details are available, existing details are not changed immediately. There are three scenarios in which the actual replacement occurs:  1. When this card has expired. 2. When only the expiration date changed. 3. When a transaction using this card is declined with any of the following codes:     * `canceled_payment_method`     * `expired_payment_method`     * `unavailable_payment_method`     * `unknown_payment_method`  When the replacement is applied, this field is updated. For non-card payment methods, the value of this field is always set to `null`.
     */
     'lastReplacedAt'?: Date | null;
     /**
-    * Whether this card has a pending replacement that hasn\'t been applied yet.  When the Account Updater determines that new card details are available (e.g. when it\'s about to expire), existing details are not changed immediately, but this field is set to `true`. The actual replacement occurs when a transaction using this payment method is declined with any of the following codes:  * `canceled_payment_method` * `expired_payment_method` * `unavailable_payment_method` * `unknown_payment_method`  When the replacement is applied, this field is set to `false`. For non-card payment methods, the value of this field is always set to `false`.
+    * Whether this card has a pending replacement that hasn\'t been applied yet.  When the Account Updater determines that new card details are available, existing details are not changed immediately, but this field is set to `true`. There are three scenarios in which the actual replacement occurs:  1. When this card has expired. 2. When only the expiration date changed. 3. When a transaction using this card is declined with any of the following codes:     * `canceled_payment_method`     * `expired_payment_method`     * `unavailable_payment_method`     * `unknown_payment_method`  When the replacement is applied, this field is set to `false`. For non-card payment methods, the value of this field is always set to `false`.
     */
     'hasReplacement'?: boolean;
 
@@ -211,17 +211,26 @@ export namespace PaymentMethodTokenized {
         Zippay = <any> 'zippay'
     }
     export enum SchemeEnum {
+        Accel = <any> 'accel',
         Amex = <any> 'amex',
+        Bancontact = <any> 'bancontact',
+        CarteBancaire = <any> 'carte-bancaire',
+        Cirrus = <any> 'cirrus',
+        Culiance = <any> 'culiance',
         Dankort = <any> 'dankort',
         DinersClub = <any> 'diners-club',
         Discover = <any> 'discover',
         EftposAustralia = <any> 'eftpos-australia',
         Elo = <any> 'elo',
+        Hipercard = <any> 'hipercard',
         Jcb = <any> 'jcb',
         Maestro = <any> 'maestro',
         Mastercard = <any> 'mastercard',
+        Nyce = <any> 'nyce',
         Other = <any> 'other',
+        Pulse = <any> 'pulse',
         Rupay = <any> 'rupay',
+        Star = <any> 'star',
         Unionpay = <any> 'unionpay',
         Visa = <any> 'visa'
     }

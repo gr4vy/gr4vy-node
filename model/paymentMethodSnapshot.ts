@@ -40,7 +40,7 @@ export class PaymentMethodSnapshot {
     /**
     * An additional label used to differentiate different sub-types of a payment method. Most notably this can include the type of card used in a transaction.
     */
-    'scheme'?: string | null;
+    'scheme'?: PaymentMethodSnapshot.SchemeEnum;
     /**
     * The expiration date for this payment method. This is mostly used by cards where the card might have an expiration date.
     */
@@ -62,6 +62,10 @@ export class PaymentMethodSnapshot {
     */
     'country'?: string | null;
     'details'?: PaymentMethodDetailsCard;
+    /**
+    * The date and time when this card was last replaced.  When the Account Updater determines that new card details are available, existing details are not changed immediately. There are three scenarios in which the actual replacement occurs:  1. When this card has expired. 2. When only the expiration date changed. 3. When a transaction using this card is declined with any of the following codes:     * `canceled_payment_method`     * `expired_payment_method`     * `unavailable_payment_method`     * `unknown_payment_method`  When the replacement is applied, this field is updated. For non-card payment methods, the value of this field is always set to `null`.
+    */
+    'lastReplacedAt'?: Date | null;
 
     static discriminator: string | undefined = undefined;
 
@@ -94,7 +98,7 @@ export class PaymentMethodSnapshot {
         {
             "name": "scheme",
             "baseName": "scheme",
-            "type": "string"
+            "type": "PaymentMethodSnapshot.SchemeEnum"
         },
         {
             "name": "expirationDate",
@@ -125,6 +129,11 @@ export class PaymentMethodSnapshot {
             "name": "details",
             "baseName": "details",
             "type": "PaymentMethodDetailsCard"
+        },
+        {
+            "name": "lastReplacedAt",
+            "baseName": "last_replaced_at",
+            "type": "Date"
         }    ];
 
     static getAttributeTypeMap() {
@@ -198,6 +207,30 @@ export namespace PaymentMethodSnapshot {
         Waave = <any> 'waave',
         Wechat = <any> 'wechat',
         Zippay = <any> 'zippay'
+    }
+    export enum SchemeEnum {
+        Accel = <any> 'accel',
+        Amex = <any> 'amex',
+        Bancontact = <any> 'bancontact',
+        CarteBancaire = <any> 'carte-bancaire',
+        Cirrus = <any> 'cirrus',
+        Culiance = <any> 'culiance',
+        Dankort = <any> 'dankort',
+        DinersClub = <any> 'diners-club',
+        Discover = <any> 'discover',
+        EftposAustralia = <any> 'eftpos-australia',
+        Elo = <any> 'elo',
+        Hipercard = <any> 'hipercard',
+        Jcb = <any> 'jcb',
+        Maestro = <any> 'maestro',
+        Mastercard = <any> 'mastercard',
+        Nyce = <any> 'nyce',
+        Other = <any> 'other',
+        Pulse = <any> 'pulse',
+        Rupay = <any> 'rupay',
+        Star = <any> 'star',
+        Unionpay = <any> 'unionpay',
+        Visa = <any> 'visa'
     }
     export enum ApprovalTargetEnum {
         Any = <any> 'any',

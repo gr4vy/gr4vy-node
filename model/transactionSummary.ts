@@ -48,11 +48,15 @@ export class TransactionSummary {
     */
     'amount'?: number;
     /**
-    * The captured amount for this transaction. This can be the total or a portion of the authorized amount.
+    * The amount for this transaction that has been authorized for the `payment_method`. This can be less than the `amount` if gift cards were used.
+    */
+    'authorizedAmount'?: number;
+    /**
+    * The captured amount for this transaction. This can be the full value of the `authorized_amount` or less.
     */
     'capturedAmount'?: number;
     /**
-    * The refunded amount for this transaction. This can be the total or a portion of the captured amount.
+    * The refunded amount for this transaction. This can be the full value of the `captured_amount` or less.
     */
     'refundedAmount'?: number;
     /**
@@ -141,6 +145,11 @@ export class TransactionSummary {
         {
             "name": "amount",
             "baseName": "amount",
+            "type": "number"
+        },
+        {
+            "name": "authorizedAmount",
+            "baseName": "authorized_amount",
             "type": "number"
         },
         {
