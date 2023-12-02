@@ -5,6 +5,7 @@ import {
   PaymentOptionsApi,
   PaymentServicesApi,
   TransactionsApi,
+  TokensApi,
 } from '../api/apis'
 import { CheckoutSessionsApi } from '../api/checkoutSessionsApi'
 import { PaymentServiceDefinitionsApi } from '../api/paymentServiceDefinitionsApi'
@@ -28,6 +29,7 @@ class Client {
     | PaymentServiceDefinitionsApi
     | PaymentServicesApi
     | TransactionsApi
+    | TokensApi
   )[]
 
   // Buyers
@@ -84,6 +86,18 @@ class Client {
   newRefund: typeof TransactionsApi.prototype.newRefund
   listTransactionRefunds: typeof TransactionsApi.prototype.listTransactionRefunds
   getRefund: typeof TransactionsApi.prototype.getRefund
+  
+  // Tokens
+  deleteNetworkToken: typeof TokensApi.prototype.deleteNetworkToken
+  deletePaymentServiceToken: typeof TokensApi.prototype.deletePaymentServiceToken
+  getNetworkTokens: typeof TokensApi.prototype.getNetworkTokens
+  getPaymentServiceTokens: typeof TokensApi.prototype.getPaymentServiceTokens
+  issueCryptogram: typeof TokensApi.prototype.issueCryptogram
+  provisionNetworkToken: typeof TokensApi.prototype.provisionNetworkToken
+  provisionPaymentServiceToken: typeof TokensApi.prototype.provisionPaymentServiceToken
+  resumeNetworkToken: typeof TokensApi.prototype.resumeNetworkToken
+  suspendNetworkToken: typeof TokensApi.prototype.suspendNetworkToken
+  
 
   constructor(options: Options) {
     this.validate(options)
@@ -181,6 +195,19 @@ class Client {
     this.listTransactionRefunds = this.wrap(ta.listTransactionRefunds.bind(ta))
     this.getRefund = this.wrap(ta.getRefund.bind(ta))
     this.apis.push(ta)
+    
+    // Tokens
+    const toa = new TokensApi(this.baseUrl)
+    this.deleteNetworkToken = this.wrap(toa.deleteNetworkToken.bind(toa))
+    this.deletePaymentServiceToken = this.wrap(toa.deletePaymentServiceToken.bind(toa))
+    this.getNetworkTokens = this.wrap(toa.getNetworkTokens.bind(toa))
+    this.getPaymentServiceTokens = this.wrap(toa.getPaymentServiceTokens.bind(toa))
+    this.issueCryptogram = this.wrap(toa.issueCryptogram.bind(toa))
+    this.provisionNetworkToken = this.wrap(toa.provisionNetworkToken.bind(toa))
+    this.provisionPaymentServiceToken = this.wrap(toa.provisionPaymentServiceToken.bind(toa))
+    this.resumeNetworkToken = this.wrap(toa.resumeNetworkToken.bind(toa))
+    this.suspendNetworkToken = this.wrap(toa.suspendNetworkToken.bind(toa))
+    this.apis.push(toa)
 
     this.setMerchantAccountId(options.merchantAccountId ?? 'default')
   }
