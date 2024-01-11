@@ -36,14 +36,6 @@ export class TransactionRedirectRequest {
     * An external identifier that can be used to match the account against your own records. This can only be set if the `store` flag is set to `true`.
     */
     'externalIdentifier'?: string | null;
-    /**
-    * The ID of the buyer to associate this payment method to. If this field is provided then the `buyer_external_identifier` field needs to be unset.
-    */
-    'buyerId'?: string;
-    /**
-    * The `external_identifier` of the buyer to associate this payment method to. If this field is provided then the `buyer_id` field needs to be unset.
-    */
-    'buyerExternalIdentifier'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -71,16 +63,6 @@ export class TransactionRedirectRequest {
         {
             "name": "externalIdentifier",
             "baseName": "external_identifier",
-            "type": "string"
-        },
-        {
-            "name": "buyerId",
-            "baseName": "buyer_id",
-            "type": "string"
-        },
-        {
-            "name": "buyerExternalIdentifier",
-            "baseName": "buyer_external_identifier",
             "type": "string"
         }    ];
 

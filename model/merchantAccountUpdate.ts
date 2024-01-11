@@ -57,13 +57,17 @@ export class MerchantAccountUpdate {
     */
     'mastercardNetworkTokensAppId'?: string | null;
     /**
-    * Client key provided by Pagos to authenticate to the Loon API. Loon is the Account Updater service used by Gr4vy.  * If the field is not set, the key is not updated. * If the field is set to `null`, the key is removed. * If the field is set to `null`, the value for `loon_secret_key` must be `null` as well. * If the field is set to a non-empty string, the value for `loon_secret_key` must be a non-empty string as well.
+    * Client key provided by Pagos to authenticate to the Loon API. Loon is the Account Updater service used by Gr4vy.  * If the field is not set, the Account Updater service configuration is not updated. * If the field is set to `null`, the Account Updater service is disabled. * If the field is set to `null`, the other `loon_*` fields must be set to `null` as well.
     */
     'loonClientKey'?: string | null;
     /**
-    * Secret key provided by Pagos to authenticate to the Loon API. Loon is the Account Updater service used by Gr4vy.  * If the field is not set, the key is not updated. * If the field is set to `null`, the key is removed. * If the field is set to `null`, the value for `loon_client_key` must be `null` as well. * If the field is set to a non-empty string, the value for `loon_client_key` must be a non-empty string as well.
+    * Secret key provided by Pagos to authenticate to the Loon API. Loon is the Account Updater service used by Gr4vy.  * If the field is not set, the Account Updater service configuration is not updated. * If the field is set to `null`, the Account Updater service is disabled. * If the field is set to `null`, the other `loon_*` fields must be set to `null` as well.
     */
     'loonSecretKey'?: string | null;
+    /**
+    * Card schemes accepted when creating jobs using this set of Loon API keys. Loon is the Account Updater service used by Gr4vy.  * If the field is not set, the Account Updater service configuration is not updated. * If the field is set to `null`, the Account Updater service is disabled. * If the field is set to `null`, the other `loon_*` fields must be set to `null` as well.
+    */
+    'loonAcceptedSchemes'?: Array<MerchantAccountUpdate.LoonAcceptedSchemesEnum>;
 
     static discriminator: string | undefined = undefined;
 
@@ -127,6 +131,11 @@ export class MerchantAccountUpdate {
             "name": "loonSecretKey",
             "baseName": "loon_secret_key",
             "type": "string"
+        },
+        {
+            "name": "loonAcceptedSchemes",
+            "baseName": "loon_accepted_schemes",
+            "type": "Array<MerchantAccountUpdate.LoonAcceptedSchemesEnum>"
         }    ];
 
     static getAttributeTypeMap() {
@@ -134,3 +143,29 @@ export class MerchantAccountUpdate {
     }
 }
 
+export namespace MerchantAccountUpdate {
+    export enum LoonAcceptedSchemesEnum {
+        Accel = <any> 'accel',
+        Amex = <any> 'amex',
+        Bancontact = <any> 'bancontact',
+        CarteBancaire = <any> 'carte-bancaire',
+        Cirrus = <any> 'cirrus',
+        Culiance = <any> 'culiance',
+        Dankort = <any> 'dankort',
+        DinersClub = <any> 'diners-club',
+        Discover = <any> 'discover',
+        EftposAustralia = <any> 'eftpos-australia',
+        Elo = <any> 'elo',
+        Hipercard = <any> 'hipercard',
+        Jcb = <any> 'jcb',
+        Maestro = <any> 'maestro',
+        Mastercard = <any> 'mastercard',
+        Nyce = <any> 'nyce',
+        Other = <any> 'other',
+        Pulse = <any> 'pulse',
+        Rupay = <any> 'rupay',
+        Star = <any> 'star',
+        Unionpay = <any> 'unionpay',
+        Visa = <any> 'visa'
+    }
+}

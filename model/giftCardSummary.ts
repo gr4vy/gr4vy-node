@@ -55,13 +55,13 @@ export class GiftCardSummary {
     /**
     * If the last balance update failed, this will contain the internal code for this error.
     */
-    'balanceErrorCode'?: string | null;
+    'balanceErrorCode'?: GiftCardSummary.BalanceErrorCodeEnum;
     /**
-    * If the last balance update failed, this will contain the the raw error code received by the payment service.
+    * If the last balance update failed, this will contain the the raw error code received from the gift card provider.
     */
     'balanceRawErrorCode'?: string | null;
     /**
-    * If the last balance update failed, this will contain the the raw error message received by the payment service.
+    * If the last balance update failed, this will contain the the raw error message received from the gift card provider.
     */
     'balanceRawErrorMessage'?: string | null;
 
@@ -116,7 +116,7 @@ export class GiftCardSummary {
         {
             "name": "balanceErrorCode",
             "baseName": "balance_error_code",
-            "type": "string"
+            "type": "GiftCardSummary.BalanceErrorCodeEnum"
         },
         {
             "name": "balanceRawErrorCode",
@@ -137,5 +137,19 @@ export class GiftCardSummary {
 export namespace GiftCardSummary {
     export enum TypeEnum {
         GiftCard = <any> 'gift-card'
+    }
+    export enum BalanceErrorCodeEnum {
+        DeactivatedCard = <any> 'deactivated_card',
+        ExpiredCard = <any> 'expired_card',
+        IncorrectCurrency = <any> 'incorrect_currency',
+        InsufficientFunds = <any> 'insufficient_funds',
+        InvalidAmount = <any> 'invalid_amount',
+        InvalidGiftCard = <any> 'invalid_gift_card',
+        InvalidServiceConfiguration = <any> 'invalid_service_configuration',
+        InvalidServiceCredentials = <any> 'invalid_service_credentials',
+        OperationCanceled = <any> 'operation_canceled',
+        ServiceError = <any> 'service_error',
+        ServiceNetworkError = <any> 'service_network_error',
+        UnknownError = <any> 'unknown_error'
     }
 }

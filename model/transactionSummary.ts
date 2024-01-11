@@ -28,22 +28,6 @@ export class TransactionSummary {
     */
     'id'?: string;
     /**
-    * The base62 encoded transaction ID. This represents a shorter version of this transaction\'s `id` which is sent to payment services, anti-fraud services, and other connectors. You can use this ID to reconcile a payment service\'s transaction against our system.  This ID is sent instead of the transaction ID because not all services support 36 digit identifiers.
-    */
-    'reconciliationId'?: string;
-    /**
-    * The ID of the merchant account to which this transaction belongs to.
-    */
-    'merchantAccountId'?: string;
-    /**
-    * The status of the transaction. The status may change over time as asynchronous processing events occur.
-    */
-    'status'?: TransactionSummary.StatusEnum;
-    /**
-    * The original `intent` used when the transaction was [created](#operation/authorize-new-transaction).
-    */
-    'intent'?: TransactionSummary.IntentEnum;
-    /**
     * The authorized amount for this transaction. This can be more than the actual captured amount and part of this amount may be refunded.
     */
     'amount'?: number;
@@ -52,41 +36,46 @@ export class TransactionSummary {
     */
     'authorizedAmount'?: number;
     /**
+    * The buyer used for this transaction.
+    */
+    'buyer'?: BuyerSnapshot | null;
+    /**
     * The captured amount for this transaction. This can be the full value of the `authorized_amount` or less.
     */
     'capturedAmount'?: number;
     /**
-    * The refunded amount for this transaction. This can be the full value of the `captured_amount` or less.
+    * The identifier for the checkout session this transaction is associated with.
     */
-    'refundedAmount'?: number;
-    /**
-    * The currency code for this transaction.
-    */
-    'currency'?: string;
+    'checkoutSessionId'?: string;
     /**
     * The 2-letter ISO code of the country of the transaction. This is used to filter the payment services that is used to process the transaction. 
     */
     'country'?: string | null;
     /**
-    * The payment method used for this transaction.
-    */
-    'paymentMethod'?: PaymentMethodSnapshot;
-    /**
-    * The buyer used for this transaction.
-    */
-    'buyer'?: BuyerSnapshot | null;
-    /**
     * The date and time when this transaction was created in our system.
     */
     'createdAt'?: Date;
+    /**
+    * The currency code for this transaction.
+    */
+    'currency'?: string;
     /**
     * An external identifier that can be used to match the transaction against your own records.
     */
     'externalIdentifier'?: string | null;
     /**
-    * Defines when the transaction was last updated.
+    * The original `intent` used when the transaction was [created](#operation/authorize-new-transaction).
     */
-    'updatedAt'?: Date;
+    'intent'?: TransactionSummary.IntentEnum;
+    /**
+    * The ID of the merchant account to which this transaction belongs to.
+    */
+    'merchantAccountId'?: string;
+    'method'?: TransactionSummary.MethodEnum;
+    /**
+    * The payment method used for this transaction.
+    */
+    'paymentMethod'?: PaymentMethodSnapshot;
     /**
     * The payment service used for this transaction.
     */
@@ -95,7 +84,6 @@ export class TransactionSummary {
     * Whether a manual review is pending.
     */
     'pendingReview'?: boolean;
-    'method'?: TransactionSummary.MethodEnum;
     /**
     * This is the response code received from the payment service. This can be set to any value and is not standardized across different payment services.
     */
@@ -105,9 +93,21 @@ export class TransactionSummary {
     */
     'rawResponseDescription'?: string | null;
     /**
-    * The identifier for the checkout session this transaction is associated with.
+    * The base62 encoded transaction ID. This represents a shorter version of this transaction\'s `id` which is sent to payment services, anti-fraud services, and other connectors. You can use this ID to reconcile a payment service\'s transaction against our system.  This ID is sent instead of the transaction ID because not all services support 36 digit identifiers.
     */
-    'checkoutSessionId'?: string;
+    'reconciliationId'?: string;
+    /**
+    * The refunded amount for this transaction. This can be the full value of the `captured_amount` or less.
+    */
+    'refundedAmount'?: number;
+    /**
+    * The status of the transaction. The status may change over time as asynchronous processing events occur.
+    */
+    'status'?: TransactionSummary.StatusEnum;
+    /**
+    * Defines when the transaction was last updated.
+    */
+    'updatedAt'?: Date;
 
     static discriminator: string | undefined = undefined;
 
@@ -123,26 +123,6 @@ export class TransactionSummary {
             "type": "string"
         },
         {
-            "name": "reconciliationId",
-            "baseName": "reconciliation_id",
-            "type": "string"
-        },
-        {
-            "name": "merchantAccountId",
-            "baseName": "merchant_account_id",
-            "type": "string"
-        },
-        {
-            "name": "status",
-            "baseName": "status",
-            "type": "TransactionSummary.StatusEnum"
-        },
-        {
-            "name": "intent",
-            "baseName": "intent",
-            "type": "TransactionSummary.IntentEnum"
-        },
-        {
             "name": "amount",
             "baseName": "amount",
             "type": "number"
@@ -153,18 +133,18 @@ export class TransactionSummary {
             "type": "number"
         },
         {
+            "name": "buyer",
+            "baseName": "buyer",
+            "type": "BuyerSnapshot"
+        },
+        {
             "name": "capturedAmount",
             "baseName": "captured_amount",
             "type": "number"
         },
         {
-            "name": "refundedAmount",
-            "baseName": "refunded_amount",
-            "type": "number"
-        },
-        {
-            "name": "currency",
-            "baseName": "currency",
+            "name": "checkoutSessionId",
+            "baseName": "checkout_session_id",
             "type": "string"
         },
         {
@@ -173,19 +153,14 @@ export class TransactionSummary {
             "type": "string"
         },
         {
-            "name": "paymentMethod",
-            "baseName": "payment_method",
-            "type": "PaymentMethodSnapshot"
-        },
-        {
-            "name": "buyer",
-            "baseName": "buyer",
-            "type": "BuyerSnapshot"
-        },
-        {
             "name": "createdAt",
             "baseName": "created_at",
             "type": "Date"
+        },
+        {
+            "name": "currency",
+            "baseName": "currency",
+            "type": "string"
         },
         {
             "name": "externalIdentifier",
@@ -193,9 +168,24 @@ export class TransactionSummary {
             "type": "string"
         },
         {
-            "name": "updatedAt",
-            "baseName": "updated_at",
-            "type": "Date"
+            "name": "intent",
+            "baseName": "intent",
+            "type": "TransactionSummary.IntentEnum"
+        },
+        {
+            "name": "merchantAccountId",
+            "baseName": "merchant_account_id",
+            "type": "string"
+        },
+        {
+            "name": "method",
+            "baseName": "method",
+            "type": "TransactionSummary.MethodEnum"
+        },
+        {
+            "name": "paymentMethod",
+            "baseName": "payment_method",
+            "type": "PaymentMethodSnapshot"
         },
         {
             "name": "paymentService",
@@ -208,11 +198,6 @@ export class TransactionSummary {
             "type": "boolean"
         },
         {
-            "name": "method",
-            "baseName": "method",
-            "type": "TransactionSummary.MethodEnum"
-        },
-        {
             "name": "rawResponseCode",
             "baseName": "raw_response_code",
             "type": "string"
@@ -223,9 +208,24 @@ export class TransactionSummary {
             "type": "string"
         },
         {
-            "name": "checkoutSessionId",
-            "baseName": "checkout_session_id",
+            "name": "reconciliationId",
+            "baseName": "reconciliation_id",
             "type": "string"
+        },
+        {
+            "name": "refundedAmount",
+            "baseName": "refunded_amount",
+            "type": "number"
+        },
+        {
+            "name": "status",
+            "baseName": "status",
+            "type": "TransactionSummary.StatusEnum"
+        },
+        {
+            "name": "updatedAt",
+            "baseName": "updated_at",
+            "type": "Date"
         }    ];
 
     static getAttributeTypeMap() {
@@ -236,17 +236,6 @@ export class TransactionSummary {
 export namespace TransactionSummary {
     export enum TypeEnum {
         Transaction = <any> 'transaction'
-    }
-    export enum StatusEnum {
-        Processing = <any> 'processing',
-        BuyerApprovalPending = <any> 'buyer_approval_pending',
-        AuthorizationSucceeded = <any> 'authorization_succeeded',
-        AuthorizationFailed = <any> 'authorization_failed',
-        AuthorizationDeclined = <any> 'authorization_declined',
-        CapturePending = <any> 'capture_pending',
-        CaptureSucceeded = <any> 'capture_succeeded',
-        AuthorizationVoidPending = <any> 'authorization_void_pending',
-        AuthorizationVoided = <any> 'authorization_voided'
     }
     export enum IntentEnum {
         Authorize = <any> 'authorize',
@@ -314,5 +303,16 @@ export namespace TransactionSummary {
         Waave = <any> 'waave',
         Wechat = <any> 'wechat',
         Zippay = <any> 'zippay'
+    }
+    export enum StatusEnum {
+        Processing = <any> 'processing',
+        BuyerApprovalPending = <any> 'buyer_approval_pending',
+        AuthorizationSucceeded = <any> 'authorization_succeeded',
+        AuthorizationFailed = <any> 'authorization_failed',
+        AuthorizationDeclined = <any> 'authorization_declined',
+        CapturePending = <any> 'capture_pending',
+        CaptureSucceeded = <any> 'capture_succeeded',
+        AuthorizationVoidPending = <any> 'authorization_void_pending',
+        AuthorizationVoided = <any> 'authorization_voided'
     }
 }

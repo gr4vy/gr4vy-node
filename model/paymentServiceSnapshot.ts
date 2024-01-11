@@ -25,17 +25,17 @@ export class PaymentServiceSnapshot {
     */
     'id'?: string;
     /**
-    * The ID of the payment service definition used to create this service. 
+    * The custom name set for this service.
     */
-    'paymentServiceDefinitionId'?: string;
+    'displayName'?: string;
     /**
     * The payment method that this services handles.
     */
     'method'?: PaymentServiceSnapshot.MethodEnum;
     /**
-    * The custom name set for this service.
+    * The ID of the payment service definition used to create this service. 
     */
-    'displayName'?: string;
+    'paymentServiceDefinitionId'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -51,8 +51,8 @@ export class PaymentServiceSnapshot {
             "type": "string"
         },
         {
-            "name": "paymentServiceDefinitionId",
-            "baseName": "payment_service_definition_id",
+            "name": "displayName",
+            "baseName": "display_name",
             "type": "string"
         },
         {
@@ -61,8 +61,8 @@ export class PaymentServiceSnapshot {
             "type": "PaymentServiceSnapshot.MethodEnum"
         },
         {
-            "name": "displayName",
-            "baseName": "display_name",
+            "name": "paymentServiceDefinitionId",
+            "baseName": "payment_service_definition_id",
             "type": "string"
         }    ];
 

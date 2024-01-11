@@ -27,49 +27,9 @@ export class PaymentMethod {
     */
     'id'?: string;
     /**
-    * The unique ID for a merchant account.
+    * Additional schemes of the card. Only applies to card payment methods.
     */
-    'merchantAccountId'?: string;
-    /**
-    * The state of the payment method.  - `processing` - The payment method is stored but has not been used yet. - `buyer_approval_required` - Storing the payment method requires   the buyer to provide approval. Follow the `approval_url` for next steps. - `succeeded` - The payment method is stored and has been used. - `failed` - The payment method could not be stored, or failed first use.
-    */
-    'status'?: PaymentMethod.StatusEnum;
-    /**
-    * The type of this payment method.
-    */
-    'method'?: PaymentMethod.MethodEnum;
-    /**
-    * The mode to use with this payment method.
-    */
-    'mode'?: PaymentMethod.ModeEnum;
-    /**
-    * The date and time when this payment method was first created in our system.
-    */
-    'createdAt'?: Date;
-    /**
-    * The date and time when this payment method was last updated in our system.
-    */
-    'updatedAt'?: Date;
-    /**
-    * An external identifier that can be used to match the payment method against your own records.
-    */
-    'externalIdentifier'?: string | null;
-    /**
-    * The optional buyer for which this payment method has been stored.
-    */
-    'buyer'?: Buyer | null;
-    /**
-    * A label for the card or the account. For a `paypal` payment method this is the user\'s email address. For a card it is the last 4 digits of the card.
-    */
-    'label'?: string | null;
-    /**
-    * The scheme of the card. Only applies to card payments.
-    */
-    'scheme'?: PaymentMethod.SchemeEnum;
-    /**
-    * The expiration date for the payment method.
-    */
-    'expirationDate'?: string | null;
+    'additionalSchemes'?: Array<PaymentMethod.AdditionalSchemesEnum>;
     /**
     * The browser target that an approval URL must be opened in. If `any` or `null`, then there is no specific requirement.
     */
@@ -79,22 +39,66 @@ export class PaymentMethod {
     */
     'approvalUrl'?: string | null;
     /**
-    * The ISO-4217 currency code that this payment method can be used for. If this value is `null` the payment method may be used for multiple currencies.
+    * The optional buyer for which this payment method has been stored.
     */
-    'currency'?: string | null;
+    'buyer'?: Buyer | null;
     /**
     * The 2-letter ISO code of the country this payment method can be used for. If this value is `null` the payment method may be used in multiple countries.
     */
     'country'?: string | null;
+    /**
+    * The date and time when this payment method was first created in our system.
+    */
+    'createdAt'?: Date;
+    /**
+    * The ISO-4217 currency code that this payment method can be used for. If this value is `null` the payment method may be used for multiple currencies.
+    */
+    'currency'?: string | null;
     'details'?: PaymentMethodDetailsCard;
+    /**
+    * The expiration date for the payment method.
+    */
+    'expirationDate'?: string | null;
+    /**
+    * An external identifier that can be used to match the payment method against your own records.
+    */
+    'externalIdentifier'?: string | null;
+    /**
+    * Whether this card has a pending replacement that hasn\'t been applied yet.  When the Account Updater determines that new card details are available, existing details are not changed immediately, but this field is set to `true`. There are three scenarios in which the actual replacement occurs:  1. When this card has expired. 2. When only the expiration date changed. 3. When a transaction using this card is declined with any of the following codes:     * `canceled_payment_method`     * `expired_payment_method`     * `unavailable_payment_method`     * `unknown_payment_method`  When the replacement is applied, this field is set to `false`. For non-card payment methods, the value of this field is always set to `false`.
+    */
+    'hasReplacement'?: boolean;
+    /**
+    * A label for the card or the account. For a `paypal` payment method this is the user\'s email address. For a card it is the last 4 digits of the card.
+    */
+    'label'?: string | null;
     /**
     * The date and time when this card was last replaced.  When the Account Updater determines that new card details are available, existing details are not changed immediately. There are three scenarios in which the actual replacement occurs:  1. When this card has expired. 2. When only the expiration date changed. 3. When a transaction using this card is declined with any of the following codes:     * `canceled_payment_method`     * `expired_payment_method`     * `unavailable_payment_method`     * `unknown_payment_method`  When the replacement is applied, this field is updated. For non-card payment methods, the value of this field is always set to `null`.
     */
     'lastReplacedAt'?: Date | null;
     /**
-    * Whether this card has a pending replacement that hasn\'t been applied yet.  When the Account Updater determines that new card details are available, existing details are not changed immediately, but this field is set to `true`. There are three scenarios in which the actual replacement occurs:  1. When this card has expired. 2. When only the expiration date changed. 3. When a transaction using this card is declined with any of the following codes:     * `canceled_payment_method`     * `expired_payment_method`     * `unavailable_payment_method`     * `unknown_payment_method`  When the replacement is applied, this field is set to `false`. For non-card payment methods, the value of this field is always set to `false`.
+    * The unique ID for a merchant account.
     */
-    'hasReplacement'?: boolean;
+    'merchantAccountId'?: string;
+    /**
+    * The type of this payment method.
+    */
+    'method'?: PaymentMethod.MethodEnum;
+    /**
+    * The mode to use with this payment method.
+    */
+    'mode'?: PaymentMethod.ModeEnum;
+    /**
+    * The scheme of the card. Only applies to card payments.
+    */
+    'scheme'?: PaymentMethod.SchemeEnum;
+    /**
+    * The state of the payment method.  - `processing` - The payment method is stored but has not been used yet. - `buyer_approval_required` - Storing the payment method requires   the buyer to provide approval. Follow the `approval_url` for next steps. - `succeeded` - The payment method is stored and has been used. - `failed` - The payment method could not be stored, or failed first use.
+    */
+    'status'?: PaymentMethod.StatusEnum;
+    /**
+    * The date and time when this payment method was last updated in our system.
+    */
+    'updatedAt'?: Date;
 
     static discriminator: string | undefined = undefined;
 
@@ -110,59 +114,9 @@ export class PaymentMethod {
             "type": "string"
         },
         {
-            "name": "merchantAccountId",
-            "baseName": "merchant_account_id",
-            "type": "string"
-        },
-        {
-            "name": "status",
-            "baseName": "status",
-            "type": "PaymentMethod.StatusEnum"
-        },
-        {
-            "name": "method",
-            "baseName": "method",
-            "type": "PaymentMethod.MethodEnum"
-        },
-        {
-            "name": "mode",
-            "baseName": "mode",
-            "type": "PaymentMethod.ModeEnum"
-        },
-        {
-            "name": "createdAt",
-            "baseName": "created_at",
-            "type": "Date"
-        },
-        {
-            "name": "updatedAt",
-            "baseName": "updated_at",
-            "type": "Date"
-        },
-        {
-            "name": "externalIdentifier",
-            "baseName": "external_identifier",
-            "type": "string"
-        },
-        {
-            "name": "buyer",
-            "baseName": "buyer",
-            "type": "Buyer"
-        },
-        {
-            "name": "label",
-            "baseName": "label",
-            "type": "string"
-        },
-        {
-            "name": "scheme",
-            "baseName": "scheme",
-            "type": "PaymentMethod.SchemeEnum"
-        },
-        {
-            "name": "expirationDate",
-            "baseName": "expiration_date",
-            "type": "string"
+            "name": "additionalSchemes",
+            "baseName": "additional_schemes",
+            "type": "Array<PaymentMethod.AdditionalSchemesEnum>"
         },
         {
             "name": "approvalTarget",
@@ -175,13 +129,23 @@ export class PaymentMethod {
             "type": "string"
         },
         {
-            "name": "currency",
-            "baseName": "currency",
-            "type": "string"
+            "name": "buyer",
+            "baseName": "buyer",
+            "type": "Buyer"
         },
         {
             "name": "country",
             "baseName": "country",
+            "type": "string"
+        },
+        {
+            "name": "createdAt",
+            "baseName": "created_at",
+            "type": "Date"
+        },
+        {
+            "name": "currency",
+            "baseName": "currency",
             "type": "string"
         },
         {
@@ -190,14 +154,59 @@ export class PaymentMethod {
             "type": "PaymentMethodDetailsCard"
         },
         {
-            "name": "lastReplacedAt",
-            "baseName": "last_replaced_at",
-            "type": "Date"
+            "name": "expirationDate",
+            "baseName": "expiration_date",
+            "type": "string"
+        },
+        {
+            "name": "externalIdentifier",
+            "baseName": "external_identifier",
+            "type": "string"
         },
         {
             "name": "hasReplacement",
             "baseName": "has_replacement",
             "type": "boolean"
+        },
+        {
+            "name": "label",
+            "baseName": "label",
+            "type": "string"
+        },
+        {
+            "name": "lastReplacedAt",
+            "baseName": "last_replaced_at",
+            "type": "Date"
+        },
+        {
+            "name": "merchantAccountId",
+            "baseName": "merchant_account_id",
+            "type": "string"
+        },
+        {
+            "name": "method",
+            "baseName": "method",
+            "type": "PaymentMethod.MethodEnum"
+        },
+        {
+            "name": "mode",
+            "baseName": "mode",
+            "type": "PaymentMethod.ModeEnum"
+        },
+        {
+            "name": "scheme",
+            "baseName": "scheme",
+            "type": "PaymentMethod.SchemeEnum"
+        },
+        {
+            "name": "status",
+            "baseName": "status",
+            "type": "PaymentMethod.StatusEnum"
+        },
+        {
+            "name": "updatedAt",
+            "baseName": "updated_at",
+            "type": "Date"
         }    ];
 
     static getAttributeTypeMap() {
@@ -209,11 +218,33 @@ export namespace PaymentMethod {
     export enum TypeEnum {
         PaymentMethod = <any> 'payment-method'
     }
-    export enum StatusEnum {
-        Processing = <any> 'processing',
-        BuyerApprovalRequired = <any> 'buyer_approval_required',
-        Succeeded = <any> 'succeeded',
-        Failed = <any> 'failed'
+    export enum AdditionalSchemesEnum {
+        Accel = <any> 'accel',
+        Amex = <any> 'amex',
+        Bancontact = <any> 'bancontact',
+        CarteBancaire = <any> 'carte-bancaire',
+        Cirrus = <any> 'cirrus',
+        Culiance = <any> 'culiance',
+        Dankort = <any> 'dankort',
+        DinersClub = <any> 'diners-club',
+        Discover = <any> 'discover',
+        EftposAustralia = <any> 'eftpos-australia',
+        Elo = <any> 'elo',
+        Hipercard = <any> 'hipercard',
+        Jcb = <any> 'jcb',
+        Maestro = <any> 'maestro',
+        Mastercard = <any> 'mastercard',
+        Nyce = <any> 'nyce',
+        Other = <any> 'other',
+        Pulse = <any> 'pulse',
+        Rupay = <any> 'rupay',
+        Star = <any> 'star',
+        Unionpay = <any> 'unionpay',
+        Visa = <any> 'visa'
+    }
+    export enum ApprovalTargetEnum {
+        Any = <any> 'any',
+        NewWindow = <any> 'new_window'
     }
     export enum MethodEnum {
         Afterpay = <any> 'afterpay',
@@ -308,8 +339,10 @@ export namespace PaymentMethod {
         Unionpay = <any> 'unionpay',
         Visa = <any> 'visa'
     }
-    export enum ApprovalTargetEnum {
-        Any = <any> 'any',
-        NewWindow = <any> 'new_window'
+    export enum StatusEnum {
+        Processing = <any> 'processing',
+        BuyerApprovalRequired = <any> 'buyer_approval_required',
+        Succeeded = <any> 'succeeded',
+        Failed = <any> 'failed'
     }
 }

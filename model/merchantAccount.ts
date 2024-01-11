@@ -70,6 +70,10 @@ export class MerchantAccount {
     */
     'loonSecretKey'?: string | null;
     /**
+    * Card schemes accepted when creating jobs using this set of Loon API keys. Loon is the Account Updater service used by Gr4vy.
+    */
+    'loonAcceptedSchemes'?: Array<MerchantAccount.LoonAcceptedSchemesEnum>;
+    /**
     * The date and time when this merchant account was created.
     */
     'createdAt'?: Date;
@@ -152,6 +156,11 @@ export class MerchantAccount {
             "type": "string"
         },
         {
+            "name": "loonAcceptedSchemes",
+            "baseName": "loon_accepted_schemes",
+            "type": "Array<MerchantAccount.LoonAcceptedSchemesEnum>"
+        },
+        {
             "name": "createdAt",
             "baseName": "created_at",
             "type": "Date"
@@ -170,5 +179,29 @@ export class MerchantAccount {
 export namespace MerchantAccount {
     export enum TypeEnum {
         MerchantAccount = <any> 'merchant-account'
+    }
+    export enum LoonAcceptedSchemesEnum {
+        Accel = <any> 'accel',
+        Amex = <any> 'amex',
+        Bancontact = <any> 'bancontact',
+        CarteBancaire = <any> 'carte-bancaire',
+        Cirrus = <any> 'cirrus',
+        Culiance = <any> 'culiance',
+        Dankort = <any> 'dankort',
+        DinersClub = <any> 'diners-club',
+        Discover = <any> 'discover',
+        EftposAustralia = <any> 'eftpos-australia',
+        Elo = <any> 'elo',
+        Hipercard = <any> 'hipercard',
+        Jcb = <any> 'jcb',
+        Maestro = <any> 'maestro',
+        Mastercard = <any> 'mastercard',
+        Nyce = <any> 'nyce',
+        Other = <any> 'other',
+        Pulse = <any> 'pulse',
+        Rupay = <any> 'rupay',
+        Star = <any> 'star',
+        Unionpay = <any> 'unionpay',
+        Visa = <any> 'visa'
     }
 }

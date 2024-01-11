@@ -102,6 +102,13 @@ export * from './giftCardBalanceRequest';
 export * from './giftCardBalanceStoredRequest';
 export * from './giftCardBalancesRequest';
 export * from './giftCardRedemption';
+export * from './giftCardRedemptionFailed';
+export * from './giftCardRedemptionFailedContext';
+export * from './giftCardRedemptionSucceeded';
+export * from './giftCardRedemptionSucceededContext';
+export * from './giftCardRefundFailed';
+export * from './giftCardRefundFailedContext';
+export * from './giftCardRefundSucceeded';
 export * from './giftCardService';
 export * from './giftCardServiceCreateRequest';
 export * from './giftCardServiceCreateRequestFields';
@@ -367,6 +374,13 @@ import { GiftCardBalanceRequest } from './giftCardBalanceRequest';
 import { GiftCardBalanceStoredRequest } from './giftCardBalanceStoredRequest';
 import { GiftCardBalancesRequest } from './giftCardBalancesRequest';
 import { GiftCardRedemption } from './giftCardRedemption';
+import { GiftCardRedemptionFailed } from './giftCardRedemptionFailed';
+import { GiftCardRedemptionFailedContext } from './giftCardRedemptionFailedContext';
+import { GiftCardRedemptionSucceeded } from './giftCardRedemptionSucceeded';
+import { GiftCardRedemptionSucceededContext } from './giftCardRedemptionSucceededContext';
+import { GiftCardRefundFailed } from './giftCardRefundFailed';
+import { GiftCardRefundFailedContext } from './giftCardRefundFailedContext';
+import { GiftCardRefundSucceeded } from './giftCardRefundSucceeded';
 import { GiftCardService } from './giftCardService';
 import { GiftCardServiceCreateRequest } from './giftCardServiceCreateRequest';
 import { GiftCardServiceCreateRequestFields } from './giftCardServiceCreateRequestFields';
@@ -621,14 +635,27 @@ let enumsMap: {[index: string]: any} = {
         "GiftCard.TypeEnum": GiftCard.TypeEnum,
         "GiftCardRedemption.TypeEnum": GiftCardRedemption.TypeEnum,
         "GiftCardRedemption.StatusEnum": GiftCardRedemption.StatusEnum,
+        "GiftCardRedemption.ErrorCodeEnum": GiftCardRedemption.ErrorCodeEnum,
+        "GiftCardRedemptionFailed.TypeEnum": GiftCardRedemptionFailed.TypeEnum,
+        "GiftCardRedemptionFailed.NameEnum": GiftCardRedemptionFailed.NameEnum,
+        "GiftCardRedemptionSucceeded.TypeEnum": GiftCardRedemptionSucceeded.TypeEnum,
+        "GiftCardRedemptionSucceeded.NameEnum": GiftCardRedemptionSucceeded.NameEnum,
+        "GiftCardRefundFailed.TypeEnum": GiftCardRefundFailed.TypeEnum,
+        "GiftCardRefundFailed.NameEnum": GiftCardRefundFailed.NameEnum,
+        "GiftCardRefundSucceeded.TypeEnum": GiftCardRefundSucceeded.TypeEnum,
+        "GiftCardRefundSucceeded.NameEnum": GiftCardRefundSucceeded.NameEnum,
         "GiftCardService.TypeEnum": GiftCardService.TypeEnum,
         "GiftCardServiceDefinition.TypeEnum": GiftCardServiceDefinition.TypeEnum,
         "GiftCardServiceDefinitionFields.FormatEnum": GiftCardServiceDefinitionFields.FormatEnum,
         "GiftCardServiceSnapshot.TypeEnum": GiftCardServiceSnapshot.TypeEnum,
         "GiftCardSnapshot.TypeEnum": GiftCardSnapshot.TypeEnum,
         "GiftCardSummary.TypeEnum": GiftCardSummary.TypeEnum,
+        "GiftCardSummary.BalanceErrorCodeEnum": GiftCardSummary.BalanceErrorCodeEnum,
         "GooglePayRequest.MethodEnum": GooglePayRequest.MethodEnum,
         "MerchantAccount.TypeEnum": MerchantAccount.TypeEnum,
+        "MerchantAccount.LoonAcceptedSchemesEnum": MerchantAccount.LoonAcceptedSchemesEnum,
+        "MerchantAccountCreate.LoonAcceptedSchemesEnum": MerchantAccountCreate.LoonAcceptedSchemesEnum,
+        "MerchantAccountUpdate.LoonAcceptedSchemesEnum": MerchantAccountUpdate.LoonAcceptedSchemesEnum,
         "NetworkToken.TypeEnum": NetworkToken.TypeEnum,
         "NetworkToken.StatusEnum": NetworkToken.StatusEnum,
         "PaymentConnectorExternalTransactionRequest.TypeEnum": PaymentConnectorExternalTransactionRequest.TypeEnum,
@@ -640,16 +667,19 @@ let enumsMap: {[index: string]: any} = {
         "PaymentConnectorResponseTransactionAuthorizationFailedEventContext.RetryRuleEnum": PaymentConnectorResponseTransactionAuthorizationFailedEventContext.RetryRuleEnum,
         "PaymentConnectorResponseTransactionAuthorizationFailedEventContext.AvsResponseCodeEnum": PaymentConnectorResponseTransactionAuthorizationFailedEventContext.AvsResponseCodeEnum,
         "PaymentConnectorResponseTransactionAuthorizationFailedEventContext.CvvResponseCodeEnum": PaymentConnectorResponseTransactionAuthorizationFailedEventContext.CvvResponseCodeEnum,
+        "PaymentConnectorResponseTransactionAuthorizationFailedEventContext.PaymentMethodSchemeEnum": PaymentConnectorResponseTransactionAuthorizationFailedEventContext.PaymentMethodSchemeEnum,
         "PaymentConnectorResponseTransactionAuthorizationSucceededEvent.TypeEnum": PaymentConnectorResponseTransactionAuthorizationSucceededEvent.TypeEnum,
         "PaymentConnectorResponseTransactionAuthorizationSucceededEvent.NameEnum": PaymentConnectorResponseTransactionAuthorizationSucceededEvent.NameEnum,
         "PaymentConnectorResponseTransactionAuthorizationSucceededEventContext.StatusEnum": PaymentConnectorResponseTransactionAuthorizationSucceededEventContext.StatusEnum,
         "PaymentConnectorResponseTransactionAuthorizationSucceededEventContext.InstrumentTypeEnum": PaymentConnectorResponseTransactionAuthorizationSucceededEventContext.InstrumentTypeEnum,
         "PaymentConnectorResponseTransactionAuthorizationSucceededEventContext.AvsResponseCodeEnum": PaymentConnectorResponseTransactionAuthorizationSucceededEventContext.AvsResponseCodeEnum,
         "PaymentConnectorResponseTransactionAuthorizationSucceededEventContext.CvvResponseCodeEnum": PaymentConnectorResponseTransactionAuthorizationSucceededEventContext.CvvResponseCodeEnum,
+        "PaymentConnectorResponseTransactionAuthorizationSucceededEventContext.PaymentMethodSchemeEnum": PaymentConnectorResponseTransactionAuthorizationSucceededEventContext.PaymentMethodSchemeEnum,
         "PaymentConnectorResponseTransactionCaptureDeclinedEvent.TypeEnum": PaymentConnectorResponseTransactionCaptureDeclinedEvent.TypeEnum,
         "PaymentConnectorResponseTransactionCaptureDeclinedEvent.NameEnum": PaymentConnectorResponseTransactionCaptureDeclinedEvent.NameEnum,
         "PaymentConnectorResponseTransactionCaptureDeclinedEventContext.AvsResponseCodeEnum": PaymentConnectorResponseTransactionCaptureDeclinedEventContext.AvsResponseCodeEnum,
         "PaymentConnectorResponseTransactionCaptureDeclinedEventContext.CvvResponseCodeEnum": PaymentConnectorResponseTransactionCaptureDeclinedEventContext.CvvResponseCodeEnum,
+        "PaymentConnectorResponseTransactionCaptureDeclinedEventContext.PaymentMethodSchemeEnum": PaymentConnectorResponseTransactionCaptureDeclinedEventContext.PaymentMethodSchemeEnum,
         "PaymentConnectorResponseTransactionCaptureFailedEvent.TypeEnum": PaymentConnectorResponseTransactionCaptureFailedEvent.TypeEnum,
         "PaymentConnectorResponseTransactionCaptureFailedEvent.NameEnum": PaymentConnectorResponseTransactionCaptureFailedEvent.NameEnum,
         "PaymentConnectorResponseTransactionCaptureSucceededEvent.TypeEnum": PaymentConnectorResponseTransactionCaptureSucceededEvent.TypeEnum,
@@ -658,6 +688,7 @@ let enumsMap: {[index: string]: any} = {
         "PaymentConnectorResponseTransactionCaptureSucceededEventContext.InstrumentTypeEnum": PaymentConnectorResponseTransactionCaptureSucceededEventContext.InstrumentTypeEnum,
         "PaymentConnectorResponseTransactionCaptureSucceededEventContext.AvsResponseCodeEnum": PaymentConnectorResponseTransactionCaptureSucceededEventContext.AvsResponseCodeEnum,
         "PaymentConnectorResponseTransactionCaptureSucceededEventContext.CvvResponseCodeEnum": PaymentConnectorResponseTransactionCaptureSucceededEventContext.CvvResponseCodeEnum,
+        "PaymentConnectorResponseTransactionCaptureSucceededEventContext.PaymentMethodSchemeEnum": PaymentConnectorResponseTransactionCaptureSucceededEventContext.PaymentMethodSchemeEnum,
         "PaymentConnectorResponseTransactionDeclinedEvent.TypeEnum": PaymentConnectorResponseTransactionDeclinedEvent.TypeEnum,
         "PaymentConnectorResponseTransactionDeclinedEvent.NameEnum": PaymentConnectorResponseTransactionDeclinedEvent.NameEnum,
         "PaymentConnectorResponseTransactionDeclinedEventContext.StatusEnum": PaymentConnectorResponseTransactionDeclinedEventContext.StatusEnum,
@@ -665,6 +696,7 @@ let enumsMap: {[index: string]: any} = {
         "PaymentConnectorResponseTransactionDeclinedEventContext.RetryRuleEnum": PaymentConnectorResponseTransactionDeclinedEventContext.RetryRuleEnum,
         "PaymentConnectorResponseTransactionDeclinedEventContext.AvsResponseCodeEnum": PaymentConnectorResponseTransactionDeclinedEventContext.AvsResponseCodeEnum,
         "PaymentConnectorResponseTransactionDeclinedEventContext.CvvResponseCodeEnum": PaymentConnectorResponseTransactionDeclinedEventContext.CvvResponseCodeEnum,
+        "PaymentConnectorResponseTransactionDeclinedEventContext.PaymentMethodSchemeEnum": PaymentConnectorResponseTransactionDeclinedEventContext.PaymentMethodSchemeEnum,
         "PaymentConnectorResponseTransactionVoidDeclinedEvent.TypeEnum": PaymentConnectorResponseTransactionVoidDeclinedEvent.TypeEnum,
         "PaymentConnectorResponseTransactionVoidDeclinedEvent.NameEnum": PaymentConnectorResponseTransactionVoidDeclinedEvent.NameEnum,
         "PaymentConnectorResponseTransactionVoidFailedEvent.TypeEnum": PaymentConnectorResponseTransactionVoidFailedEvent.TypeEnum,
@@ -672,19 +704,21 @@ let enumsMap: {[index: string]: any} = {
         "PaymentConnectorResponseTransactionVoidSucceededEvent.TypeEnum": PaymentConnectorResponseTransactionVoidSucceededEvent.TypeEnum,
         "PaymentConnectorResponseTransactionVoidSucceededEvent.NameEnum": PaymentConnectorResponseTransactionVoidSucceededEvent.NameEnum,
         "PaymentMethod.TypeEnum": PaymentMethod.TypeEnum,
-        "PaymentMethod.StatusEnum": PaymentMethod.StatusEnum,
+        "PaymentMethod.AdditionalSchemesEnum": PaymentMethod.AdditionalSchemesEnum,
+        "PaymentMethod.ApprovalTargetEnum": PaymentMethod.ApprovalTargetEnum,
         "PaymentMethod.MethodEnum": PaymentMethod.MethodEnum,
         "PaymentMethod.ModeEnum": PaymentMethod.ModeEnum,
         "PaymentMethod.SchemeEnum": PaymentMethod.SchemeEnum,
-        "PaymentMethod.ApprovalTargetEnum": PaymentMethod.ApprovalTargetEnum,
+        "PaymentMethod.StatusEnum": PaymentMethod.StatusEnum,
         "PaymentMethodDetailsCard.CardTypeEnum": PaymentMethodDetailsCard.CardTypeEnum,
         "PaymentMethodSnapshot.TypeEnum": PaymentMethodSnapshot.TypeEnum,
+        "PaymentMethodSnapshot.ApprovalTargetEnum": PaymentMethodSnapshot.ApprovalTargetEnum,
         "PaymentMethodSnapshot.MethodEnum": PaymentMethodSnapshot.MethodEnum,
         "PaymentMethodSnapshot.SchemeEnum": PaymentMethodSnapshot.SchemeEnum,
-        "PaymentMethodSnapshot.ApprovalTargetEnum": PaymentMethodSnapshot.ApprovalTargetEnum,
         "PaymentMethodTokenized.TypeEnum": PaymentMethodTokenized.TypeEnum,
         "PaymentMethodTokenized.MethodEnum": PaymentMethodTokenized.MethodEnum,
         "PaymentMethodTokenized.SchemeEnum": PaymentMethodTokenized.SchemeEnum,
+        "PaymentMethodTokenized.AdditionalSchemesEnum": PaymentMethodTokenized.AdditionalSchemesEnum,
         "PaymentMethodTokenized.ApprovalTargetEnum": PaymentMethodTokenized.ApprovalTargetEnum,
         "PaymentOption.TypeEnum": PaymentOption.TypeEnum,
         "PaymentOption.MethodEnum": PaymentOption.MethodEnum,
@@ -744,13 +778,13 @@ let enumsMap: {[index: string]: any} = {
         "ThreeDSecureV2.DirectoryResponseEnum": ThreeDSecureV2.DirectoryResponseEnum,
         "TokenizedRequest.MethodEnum": TokenizedRequest.MethodEnum,
         "Transaction.TypeEnum": Transaction.TypeEnum,
-        "Transaction.StatusEnum": Transaction.StatusEnum,
-        "Transaction.IntentOutcomeEnum": Transaction.IntentOutcomeEnum,
-        "Transaction.IntentEnum": Transaction.IntentEnum,
-        "Transaction.PaymentSourceEnum": Transaction.PaymentSourceEnum,
         "Transaction.AvsResponseCodeEnum": Transaction.AvsResponseCodeEnum,
         "Transaction.CvvResponseCodeEnum": Transaction.CvvResponseCodeEnum,
+        "Transaction.IntentEnum": Transaction.IntentEnum,
+        "Transaction.IntentOutcomeEnum": Transaction.IntentOutcomeEnum,
         "Transaction.MethodEnum": Transaction.MethodEnum,
+        "Transaction.PaymentSourceEnum": Transaction.PaymentSourceEnum,
+        "Transaction.StatusEnum": Transaction.StatusEnum,
         "TransactionCardRequest.MethodEnum": TransactionCardRequest.MethodEnum,
         "TransactionCheckoutSessionRequest.MethodEnum": TransactionCheckoutSessionRequest.MethodEnum,
         "TransactionHistoryEvent.TypeEnum": TransactionHistoryEvent.TypeEnum,
@@ -763,9 +797,9 @@ let enumsMap: {[index: string]: any} = {
         "TransactionStatusSummary.TypeEnum": TransactionStatusSummary.TypeEnum,
         "TransactionStatusSummary.StatusEnum": TransactionStatusSummary.StatusEnum,
         "TransactionSummary.TypeEnum": TransactionSummary.TypeEnum,
-        "TransactionSummary.StatusEnum": TransactionSummary.StatusEnum,
         "TransactionSummary.IntentEnum": TransactionSummary.IntentEnum,
         "TransactionSummary.MethodEnum": TransactionSummary.MethodEnum,
+        "TransactionSummary.StatusEnum": TransactionSummary.StatusEnum,
         "UserRole.TypeEnum": UserRole.TypeEnum,
 }
 
@@ -872,6 +906,13 @@ let typeMap: {[index: string]: any} = {
     "GiftCardBalanceStoredRequest": GiftCardBalanceStoredRequest,
     "GiftCardBalancesRequest": GiftCardBalancesRequest,
     "GiftCardRedemption": GiftCardRedemption,
+    "GiftCardRedemptionFailed": GiftCardRedemptionFailed,
+    "GiftCardRedemptionFailedContext": GiftCardRedemptionFailedContext,
+    "GiftCardRedemptionSucceeded": GiftCardRedemptionSucceeded,
+    "GiftCardRedemptionSucceededContext": GiftCardRedemptionSucceededContext,
+    "GiftCardRefundFailed": GiftCardRefundFailed,
+    "GiftCardRefundFailedContext": GiftCardRefundFailedContext,
+    "GiftCardRefundSucceeded": GiftCardRefundSucceeded,
     "GiftCardService": GiftCardService,
     "GiftCardServiceCreateRequest": GiftCardServiceCreateRequest,
     "GiftCardServiceCreateRequestFields": GiftCardServiceCreateRequestFields,

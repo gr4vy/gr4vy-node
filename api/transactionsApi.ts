@@ -331,10 +331,8 @@ export class TransactionsApi {
      * Lists all refunds associated with a certain transaction.
      * @summary List refunds
      * @param transactionId The ID for the transaction to get the information for.
-     * @param limit Defines the maximum number of items to return for this request.
-     * @param cursor A cursor that identifies the page of results to return. This is used to paginate the results of this API.  For the first page of results, this parameter can be left out. For additional pages, use the value returned by the API in the &#x60;next_cursor&#x60; field. Similarly the &#x60;previous_cursor&#x60; can be used to reverse backwards in the list.
      */
-    public async listTransactionRefunds (transactionId: string, limit?: number, cursor?: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Refunds;  }> {
+    public async listTransactionRefunds (transactionId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Refunds;  }> {
         const localVarPath = this.basePath + '/transactions/{transaction_id}/refunds'
             .replace('{' + 'transaction_id' + '}', encodeURIComponent(String(transactionId)));
         let localVarQueryParameters: any = {};
@@ -351,14 +349,6 @@ export class TransactionsApi {
         // verify required parameter 'transactionId' is not null or undefined
         if (transactionId === null || transactionId === undefined) {
             throw new Error('Required parameter transactionId was null or undefined when calling listTransactionRefunds.');
-        }
-
-        if (limit !== undefined) {
-            localVarQueryParameters['limit'] = ObjectSerializer.serialize(limit, "number");
-        }
-
-        if (cursor !== undefined) {
-            localVarQueryParameters['cursor'] = ObjectSerializer.serialize(cursor, "string");
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -424,8 +414,9 @@ export class TransactionsApi {
      * @param createdAtLte Filters the results to only transactions created before this ISO date-time string. The time zone must be included.  Ensure that the date-time string is URL encoded, e.g. &#x60;2022-01-01T12:00:00+08:00&#x60; must be encoded as &#x60;2022-01-01T12%3A00%3A00%2B08%3A00&#x60;.
      * @param currency Filters for transactions that have matching &#x60;currency&#x60; values. The &#x60;currency&#x60; values provided must be formatted as 3-letter ISO currency code.
      * @param externalIdentifier Filters the results to only the items for which the &#x60;external_identifier&#x60; matches this value.
-     * @param hasRefunds When set to &#x60;true&#x60;, filter for transactions that have at least one completed refund associated with it. When set to &#x60;false&#x60;, filter for transactions that have no completed refunds.
-     * @param pendingReview When set to &#x60;true&#x60;, filter for transactions that have a manual review pending. When set to &#x60;false&#x60;, filter for transactions that don\&#39;t have a manual review pending.
+     * @param giftCardId Filters for transactions that have at least one gift card redemption with a matching &#x60;gift_card_id&#x60; value.
+     * @param hasGiftCardRedemptions When set to &#x60;true&#x60;, filters for transactions that have at least one gift card redemption associated with it. When set to &#x60;false&#x60;, filter for transactions that have no gift card redemptions.
+     * @param hasRefunds When set to &#x60;true&#x60;, filter for transactions that have at least one completed refund (including gift card refunds) associated with it. When set to &#x60;false&#x60;, filter for transactions that have no completed refunds.
      * @param id Filters for the transaction that has a matching &#x60;id&#x60; value.
      * @param metadata Filters for transactions where their &#x60;metadata&#x60; values contain all of the provided &#x60;metadata&#x60; keys. The value sent for &#x60;metadata&#x60; must be formatted as a JSON string, and all keys and values must be strings. This value should also be URL encoded.  Duplicate keys are not supported. If a key is duplicated, only the last appearing value will be used.
      * @param method Filters the results to only the items for which the &#x60;method&#x60; has been set to this value.
@@ -433,13 +424,14 @@ export class TransactionsApi {
      * @param paymentMethodLabel Filters for transactions that have a payment method with a label that matches exactly with the provided value.
      * @param paymentServiceId Filters for transactions that were processed by the provided &#x60;payment_service_id&#x60; values.
      * @param paymentServiceTransactionId Filters for transactions that have a matching &#x60;payment_service_transaction_id&#x60; value. The &#x60;payment_service_transaction_id&#x60; is the identifier of the transaction given by the payment service.
+     * @param pendingReview When set to &#x60;true&#x60;, filter for transactions that have a manual review pending. When set to &#x60;false&#x60;, filter for transactions that don\&#39;t have a manual review pending.
      * @param reconciliationId Filters for transactions based on their transaction reconciliation identifier.
      * @param search Filters for transactions that have one of the following fields match exactly with the provided &#x60;search&#x60; value.  * &#x60;buyer_external_identifier&#x60; * &#x60;buyer_id&#x60; * &#x60;external_identifier&#x60; * &#x60;id&#x60; * &#x60;payment_service_transaction_id&#x60;  The search will apply against all fields at the same time.
      * @param status Filters the results to only the transactions that have a &#x60;status&#x60; that matches with any of the provided status values.
      * @param updatedAtGte Filters the results to only transactions last updated after this ISO date-time string. The time zone must be included.  Ensure that the date-time string is URL encoded, e.g. &#x60;2022-01-01T12:00:00+08:00&#x60; must be encoded as &#x60;2022-01-01T12%3A00%3A00%2B08%3A00&#x60;.
      * @param updatedAtLte Filters the results to only transactions last updated before this ISO date-time string. The time zone must be included.  Ensure that the date-time string is URL encoded, e.g. &#x60;2022-01-01T12:00:00+08:00&#x60; must be encoded as &#x60;2022-01-01T12%3A00%3A00%2B08%3A00&#x60;.
      */
-    public async listTransactions (buyerExternalIdentifier?: string, buyerId?: string, cursor?: string, limit?: number, amountEq?: number, amountGte?: number, amountLte?: number, checkoutSessionId?: string, createdAtGte?: Date, createdAtLte?: Date, currency?: Array<string>, externalIdentifier?: string, hasRefunds?: boolean, pendingReview?: boolean, id?: string, metadata?: Array<string>, method?: Array<'afterpay' | 'alipay' | 'alipayhk' | 'applepay' | 'bacs' | 'bancontact' | 'banked' | 'becs' | 'bitpay' | 'boleto' | 'boost' | 'card' | 'checkout-session' | 'click-to-pay' | 'clearpay' | 'dana' | 'dcb' | 'eps' | 'fortumo' | 'gcash' | 'giropay' | 'gocardless' | 'googlepay' | 'gopay' | 'grabpay' | 'ideal' | 'id' | 'kakaopay' | 'klarna' | 'laybuy' | 'linepay' | 'linkaja' | 'maybankqrpay' | 'multibanco' | 'oney_3x' | 'oney_4x' | 'oney_6x' | 'oney_10x' | 'oney_12x' | 'ovo' | 'oxxo' | 'paymaya' | 'paypal' | 'paypalpaylater' | 'pix' | 'rabbitlinepay' | 'razorpay' | 'scalapay' | 'sepa' | 'shopeepay' | 'singteldash' | 'sofort' | 'stripedd' | 'thaiqr' | 'touchngo' | 'truemoney' | 'trustly' | 'venmo' | 'waave' | 'wechat' | 'zippay'>, paymentMethodId?: string, paymentMethodLabel?: string, paymentServiceId?: Array<string>, paymentServiceTransactionId?: string, reconciliationId?: string, search?: string, status?: Array<'processing' | 'buyer_approval_pending' | 'authorization_succeeded' | 'authorization_failed' | 'authorization_declined' | 'capture_pending' | 'capture_succeeded' | 'authorization_void_pending' | 'authorization_voided'>, updatedAtGte?: Date, updatedAtLte?: Date, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Transactions;  }> {
+    public async listTransactions (buyerExternalIdentifier?: string, buyerId?: string, cursor?: string, limit?: number, amountEq?: number, amountGte?: number, amountLte?: number, checkoutSessionId?: string, createdAtGte?: Date, createdAtLte?: Date, currency?: Array<string>, externalIdentifier?: string, giftCardId?: string, hasGiftCardRedemptions?: boolean, hasRefunds?: boolean, id?: string, metadata?: Array<string>, method?: Array<'afterpay' | 'alipay' | 'alipayhk' | 'applepay' | 'bacs' | 'bancontact' | 'banked' | 'becs' | 'bitpay' | 'boleto' | 'boost' | 'card' | 'checkout-session' | 'click-to-pay' | 'clearpay' | 'dana' | 'dcb' | 'eps' | 'fortumo' | 'gcash' | 'giropay' | 'gocardless' | 'googlepay' | 'gopay' | 'grabpay' | 'ideal' | 'id' | 'kakaopay' | 'klarna' | 'laybuy' | 'linepay' | 'linkaja' | 'maybankqrpay' | 'multibanco' | 'oney_3x' | 'oney_4x' | 'oney_6x' | 'oney_10x' | 'oney_12x' | 'ovo' | 'oxxo' | 'paymaya' | 'paypal' | 'paypalpaylater' | 'pix' | 'rabbitlinepay' | 'razorpay' | 'scalapay' | 'sepa' | 'shopeepay' | 'singteldash' | 'sofort' | 'stripedd' | 'thaiqr' | 'touchngo' | 'truemoney' | 'trustly' | 'venmo' | 'waave' | 'wechat' | 'zippay'>, paymentMethodId?: string, paymentMethodLabel?: string, paymentServiceId?: Array<string>, paymentServiceTransactionId?: string, pendingReview?: boolean, reconciliationId?: string, search?: string, status?: Array<'processing' | 'buyer_approval_pending' | 'authorization_succeeded' | 'authorization_failed' | 'authorization_declined' | 'capture_pending' | 'capture_succeeded' | 'authorization_void_pending' | 'authorization_voided'>, updatedAtGte?: Date, updatedAtLte?: Date, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Transactions;  }> {
         const localVarPath = this.basePath + '/transactions';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
@@ -500,12 +492,16 @@ export class TransactionsApi {
             localVarQueryParameters['external_identifier'] = ObjectSerializer.serialize(externalIdentifier, "string");
         }
 
-        if (hasRefunds !== undefined) {
-            localVarQueryParameters['has_refunds'] = ObjectSerializer.serialize(hasRefunds, "boolean");
+        if (giftCardId !== undefined) {
+            localVarQueryParameters['gift_card_id'] = ObjectSerializer.serialize(giftCardId, "string");
         }
 
-        if (pendingReview !== undefined) {
-            localVarQueryParameters['pending_review'] = ObjectSerializer.serialize(pendingReview, "boolean");
+        if (hasGiftCardRedemptions !== undefined) {
+            localVarQueryParameters['has_gift_card_redemptions'] = ObjectSerializer.serialize(hasGiftCardRedemptions, "boolean");
+        }
+
+        if (hasRefunds !== undefined) {
+            localVarQueryParameters['has_refunds'] = ObjectSerializer.serialize(hasRefunds, "boolean");
         }
 
         if (id !== undefined) {
@@ -534,6 +530,10 @@ export class TransactionsApi {
 
         if (paymentServiceTransactionId !== undefined) {
             localVarQueryParameters['payment_service_transaction_id'] = ObjectSerializer.serialize(paymentServiceTransactionId, "string");
+        }
+
+        if (pendingReview !== undefined) {
+            localVarQueryParameters['pending_review'] = ObjectSerializer.serialize(pendingReview, "boolean");
         }
 
         if (reconciliationId !== undefined) {

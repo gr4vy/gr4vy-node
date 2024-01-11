@@ -25,7 +25,7 @@ export class CartItem {
     */
     'quantity': number;
     /**
-    * The amount for an individual item represented as a monetary amount in the smallest currency unit for the given currency, for example `1299` USD cents represents `$12.99`.
+    * The amount for an individual item represented as a monetary amount in the smallest currency unit for the given currency, for example `1299` USD cents represents `$12.99`. The amount sent through to the payment processor as unitary amount will be calculated to include the discount and tax values sent as part of this cart item.
     */
     'unitAmount': number;
     /**

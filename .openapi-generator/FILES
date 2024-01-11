@@ -122,6 +122,13 @@ model/giftCardBalanceRequest.ts
 model/giftCardBalanceStoredRequest.ts
 model/giftCardBalancesRequest.ts
 model/giftCardRedemption.ts
+model/giftCardRedemptionFailed.ts
+model/giftCardRedemptionFailedContext.ts
+model/giftCardRedemptionSucceeded.ts
+model/giftCardRedemptionSucceededContext.ts
+model/giftCardRefundFailed.ts
+model/giftCardRefundFailedContext.ts
+model/giftCardRefundSucceeded.ts
 model/giftCardService.ts
 model/giftCardServiceCreateRequest.ts
 model/giftCardServiceCreateRequestFields.ts

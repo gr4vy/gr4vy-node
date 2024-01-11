@@ -37,6 +37,22 @@ export class GiftCardRedemption {
     * The amount refunded for this gift card. This can not be larger than `amount`.
     */
     'refundedAmount'?: number;
+    /**
+    * The gift card service\'s unique ID for the redemption.
+    */
+    'giftCardServiceRedemptionId'?: string;
+    /**
+    * If this gift card redemption resulted in an error, this will contain the internal code for the error.
+    */
+    'errorCode'?: GiftCardRedemption.ErrorCodeEnum;
+    /**
+    * If this gift card redemption resulted in an error, this will contain the raw error code received from the gift card provider.
+    */
+    'rawErrorCode'?: string | null;
+    /**
+    * If this gift card redemption resulted in an error, this will contain the raw error message received from the gift card provider.
+    */
+    'rawErrorMessage'?: string | null;
     'giftCard'?: GiftCardSnapshot;
 
     static discriminator: string | undefined = undefined;
@@ -68,6 +84,26 @@ export class GiftCardRedemption {
             "type": "number"
         },
         {
+            "name": "giftCardServiceRedemptionId",
+            "baseName": "gift_card_service_redemption_id",
+            "type": "string"
+        },
+        {
+            "name": "errorCode",
+            "baseName": "error_code",
+            "type": "GiftCardRedemption.ErrorCodeEnum"
+        },
+        {
+            "name": "rawErrorCode",
+            "baseName": "raw_error_code",
+            "type": "string"
+        },
+        {
+            "name": "rawErrorMessage",
+            "baseName": "raw_error_message",
+            "type": "string"
+        },
+        {
             "name": "giftCard",
             "baseName": "gift_card",
             "type": "GiftCardSnapshot"
@@ -86,5 +122,19 @@ export namespace GiftCardRedemption {
         Succeeded = <any> 'succeeded',
         Failed = <any> 'failed',
         Skipped = <any> 'skipped'
+    }
+    export enum ErrorCodeEnum {
+        DeactivatedCard = <any> 'deactivated_card',
+        ExpiredCard = <any> 'expired_card',
+        IncorrectCurrency = <any> 'incorrect_currency',
+        InsufficientFunds = <any> 'insufficient_funds',
+        InvalidAmount = <any> 'invalid_amount',
+        InvalidGiftCard = <any> 'invalid_gift_card',
+        InvalidServiceConfiguration = <any> 'invalid_service_configuration',
+        InvalidServiceCredentials = <any> 'invalid_service_credentials',
+        OperationCanceled = <any> 'operation_canceled',
+        ServiceError = <any> 'service_error',
+        ServiceNetworkError = <any> 'service_network_error',
+        UnknownError = <any> 'unknown_error'
     }
 }
