@@ -38,14 +38,6 @@ export class TransactionPaymentMethodRequest {
     */
     'externalIdentifier'?: string | null;
     /**
-    * The ID of the buyer to associate this payment method to. If this field is provided then the `buyer_external_identifier` field needs to be unset.
-    */
-    'buyerId'?: string | null;
-    /**
-    * The `external_identifier` of the buyer to associate this payment method to. If this field is provided then the `buyer_id` field needs to be unset.
-    */
-    'buyerExternalIdentifier'?: string | null;
-    /**
     * The redirect URL to redirect a buyer to after they have authorized their transaction or payment method. This only applies to payment methods that require buyer approval.
     */
     'redirectUrl'?: string | null;
@@ -97,16 +89,6 @@ export class TransactionPaymentMethodRequest {
         {
             "name": "externalIdentifier",
             "baseName": "external_identifier",
-            "type": "string"
-        },
-        {
-            "name": "buyerId",
-            "baseName": "buyer_id",
-            "type": "string"
-        },
-        {
-            "name": "buyerExternalIdentifier",
-            "baseName": "buyer_external_identifier",
             "type": "string"
         },
         {

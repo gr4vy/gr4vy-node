@@ -26,17 +26,17 @@ export class BuyerSnapshot {
     */
     'id'?: string;
     /**
-    * An external identifier that can be used to match the buyer against your own records.
+    * The billing details associated with the buyer, which include the address and tax ID.
     */
-    'externalIdentifier'?: string | null;
+    'billingDetails'?: BillingDetails | null;
     /**
     * A unique name for this buyer which is used in the Gr4vy admin panel to give a buyer a human readable name.
     */
     'displayName'?: string | null;
     /**
-    * The billing details associated with the buyer, which include the address and tax ID.
+    * An external identifier that can be used to match the buyer against your own records.
     */
-    'billingDetails'?: BillingDetails | null;
+    'externalIdentifier'?: string | null;
 
     static discriminator: string | undefined = undefined;
 
@@ -52,9 +52,9 @@ export class BuyerSnapshot {
             "type": "string"
         },
         {
-            "name": "externalIdentifier",
-            "baseName": "external_identifier",
-            "type": "string"
+            "name": "billingDetails",
+            "baseName": "billing_details",
+            "type": "BillingDetails"
         },
         {
             "name": "displayName",
@@ -62,9 +62,9 @@ export class BuyerSnapshot {
             "type": "string"
         },
         {
-            "name": "billingDetails",
-            "baseName": "billing_details",
-            "type": "BillingDetails"
+            "name": "externalIdentifier",
+            "baseName": "external_identifier",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {

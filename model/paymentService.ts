@@ -27,53 +27,13 @@ export class PaymentService {
     */
     'id'?: string;
     /**
-    * The unique ID for a merchant account.
-    */
-    'merchantAccountId'?: string;
-    /**
-    * The ID of the payment service definition used to create this service. 
-    */
-    'paymentServiceDefinitionId'?: string;
-    /**
-    * The payment method that this service handles.
-    */
-    'method'?: PaymentService.MethodEnum;
-    /**
-    * The custom name set for this service.
-    */
-    'displayName'?: string;
-    /**
-    * The current status of this service. This will start off as pending, move to created, and might eventually move to an error status if and when the credentials are no longer valid. 
-    */
-    'status'?: PaymentService.StatusEnum;
-    /**
-    * A list of currencies for which this service is enabled, in ISO 4217 three-letter code format.
-    */
-    'acceptedCurrencies'?: Array<string>;
-    /**
     * A list of countries for which this service is enabled, in ISO two-letter code format.
     */
     'acceptedCountries'?: Array<string>;
     /**
-    * Defines if the service works as an open-loop service. This feature can only be enabled if the PSP is set up to accept previous scheme transaction IDs.
+    * A list of currencies for which this service is enabled, in ISO 4217 three-letter code format.
     */
-    'openLoop'?: boolean;
-    /**
-    * Defines if tokenization is enabled for the service. This feature can only be enabled if the payment service is NOT set as `open_loop` and the PSP is set up to tokenize.
-    */
-    'paymentMethodTokenizationEnabled'?: boolean;
-    /**
-    * Defines if network tokens are enabled for the service. This feature can only be enabled if the payment service is set as `open_loop` and the PSP is set up to accept network tokens.
-    */
-    'networkTokensEnabled'?: boolean;
-    /**
-    * Defines if 3-D Secure is enabled for the service (can only be enabled if the payment service definition supports the `three_d_secure_hosted` feature). This does not affect pass through 3-D Secure data.
-    */
-    'threeDSecureEnabled'?: boolean;
-    /**
-    * An object containing a key for each supported card scheme (Amex, Discover, Mastercard and Visa), and for each key an object with the merchant profile for this service and the corresponding scheme.
-    */
-    'merchantProfile'?: MerchantProfile | null;
+    'acceptedCurrencies'?: Array<string>;
     /**
     * Defines if this service is currently active or not.
     */
@@ -83,6 +43,50 @@ export class PaymentService {
     */
     'createdAt'?: Date;
     /**
+    * The custom name set for this service.
+    */
+    'displayName'?: string;
+    /**
+    * A list of fields, each containing a key-value pair for each field configured for this payment service. Fields marked as `secret` (see Payment Service Definition) are not returned.
+    */
+    'fields'?: Array<GiftCardServiceFields>;
+    /**
+    * The unique ID for a merchant account.
+    */
+    'merchantAccountId'?: string;
+    /**
+    * An object containing a key for each supported card scheme (Amex, Discover, Mastercard and Visa), and for each key an object with the merchant profile for this service and the corresponding scheme.
+    */
+    'merchantProfile'?: MerchantProfile | null;
+    /**
+    * The payment method that this service handles.
+    */
+    'method'?: PaymentService.MethodEnum;
+    /**
+    * Defines if network tokens are enabled for the service. This feature can only be enabled if the payment service is set as `open_loop` and the PSP is set up to accept network tokens.
+    */
+    'networkTokensEnabled'?: boolean;
+    /**
+    * Defines if the service works as an open-loop service. This feature can only be enabled if the PSP is set up to accept previous scheme transaction IDs.
+    */
+    'openLoop'?: boolean;
+    /**
+    * Defines if tokenization is enabled for the service. This feature can only be enabled if the payment service is NOT set as `open_loop` and the PSP is set up to tokenize.
+    */
+    'paymentMethodTokenizationEnabled'?: boolean;
+    /**
+    * The ID of the payment service definition used to create this service. 
+    */
+    'paymentServiceDefinitionId'?: string;
+    /**
+    * The current status of this service. This will start off as pending, move to created, and might eventually move to an error status if and when the credentials are no longer valid. 
+    */
+    'status'?: PaymentService.StatusEnum;
+    /**
+    * Defines if 3-D Secure is enabled for the service (can only be enabled if the payment service definition supports the `three_d_secure_hosted` feature). This does not affect pass through 3-D Secure data.
+    */
+    'threeDSecureEnabled'?: boolean;
+    /**
     * The date and time when this service was last updated.
     */
     'updatedAt'?: Date;
@@ -90,10 +94,6 @@ export class PaymentService {
     * The URL that needs to be configured with this payment service as the receiving endpoint for webhooks from the service to Gr4vy. Currently, Gr4vy does not yet automatically register webhooks on setup, and therefore webhooks need to be registered manually by the merchant.
     */
     'webhookUrl'?: string | null;
-    /**
-    * A list of fields, each containing a key-value pair for each field configured for this payment service. Fields marked as `secret` (see Payment Service Definition) are not returned.
-    */
-    'fields'?: Array<GiftCardServiceFields>;
 
     static discriminator: string | undefined = undefined;
 
@@ -109,64 +109,14 @@ export class PaymentService {
             "type": "string"
         },
         {
-            "name": "merchantAccountId",
-            "baseName": "merchant_account_id",
-            "type": "string"
-        },
-        {
-            "name": "paymentServiceDefinitionId",
-            "baseName": "payment_service_definition_id",
-            "type": "string"
-        },
-        {
-            "name": "method",
-            "baseName": "method",
-            "type": "PaymentService.MethodEnum"
-        },
-        {
-            "name": "displayName",
-            "baseName": "display_name",
-            "type": "string"
-        },
-        {
-            "name": "status",
-            "baseName": "status",
-            "type": "PaymentService.StatusEnum"
-        },
-        {
-            "name": "acceptedCurrencies",
-            "baseName": "accepted_currencies",
-            "type": "Array<string>"
-        },
-        {
             "name": "acceptedCountries",
             "baseName": "accepted_countries",
             "type": "Array<string>"
         },
         {
-            "name": "openLoop",
-            "baseName": "open_loop",
-            "type": "boolean"
-        },
-        {
-            "name": "paymentMethodTokenizationEnabled",
-            "baseName": "payment_method_tokenization_enabled",
-            "type": "boolean"
-        },
-        {
-            "name": "networkTokensEnabled",
-            "baseName": "network_tokens_enabled",
-            "type": "boolean"
-        },
-        {
-            "name": "threeDSecureEnabled",
-            "baseName": "three_d_secure_enabled",
-            "type": "boolean"
-        },
-        {
-            "name": "merchantProfile",
-            "baseName": "merchant_profile",
-            "type": "MerchantProfile"
+            "name": "acceptedCurrencies",
+            "baseName": "accepted_currencies",
+            "type": "Array<string>"
         },
         {
             "name": "active",
@@ -179,6 +129,61 @@ export class PaymentService {
             "type": "Date"
         },
         {
+            "name": "displayName",
+            "baseName": "display_name",
+            "type": "string"
+        },
+        {
+            "name": "fields",
+            "baseName": "fields",
+            "type": "Array<GiftCardServiceFields>"
+        },
+        {
+            "name": "merchantAccountId",
+            "baseName": "merchant_account_id",
+            "type": "string"
+        },
+        {
+            "name": "merchantProfile",
+            "baseName": "merchant_profile",
+            "type": "MerchantProfile"
+        },
+        {
+            "name": "method",
+            "baseName": "method",
+            "type": "PaymentService.MethodEnum"
+        },
+        {
+            "name": "networkTokensEnabled",
+            "baseName": "network_tokens_enabled",
+            "type": "boolean"
+        },
+        {
+            "name": "openLoop",
+            "baseName": "open_loop",
+            "type": "boolean"
+        },
+        {
+            "name": "paymentMethodTokenizationEnabled",
+            "baseName": "payment_method_tokenization_enabled",
+            "type": "boolean"
+        },
+        {
+            "name": "paymentServiceDefinitionId",
+            "baseName": "payment_service_definition_id",
+            "type": "string"
+        },
+        {
+            "name": "status",
+            "baseName": "status",
+            "type": "PaymentService.StatusEnum"
+        },
+        {
+            "name": "threeDSecureEnabled",
+            "baseName": "three_d_secure_enabled",
+            "type": "boolean"
+        },
+        {
             "name": "updatedAt",
             "baseName": "updated_at",
             "type": "Date"
@@ -187,11 +192,6 @@ export class PaymentService {
             "name": "webhookUrl",
             "baseName": "webhook_url",
             "type": "string"
-        },
-        {
-            "name": "fields",
-            "baseName": "fields",
-            "type": "Array<GiftCardServiceFields>"
         }    ];
 
     static getAttributeTypeMap() {

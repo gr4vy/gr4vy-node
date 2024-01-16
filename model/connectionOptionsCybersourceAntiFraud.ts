@@ -17,6 +17,10 @@ import { RequestFile } from './models';
 */
 export class ConnectionOptionsCybersourceAntiFraud {
     /**
+    * An override for the merchant ID configured for the connector, used in combination with meta keys.
+    */
+    'metaKeyMerchantId'?: string | null;
+    /**
     * This is a key-value object for merchant defined data. Each key needs to be a numeric string identifying the MDD field to set. For example, for field 1 set the key to \"1\".
     */
     'merchantDefinedData'?: { [key: string]: string; };
@@ -24,6 +28,11 @@ export class ConnectionOptionsCybersourceAntiFraud {
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "metaKeyMerchantId",
+            "baseName": "meta_key_merchant_id",
+            "type": "string"
+        },
         {
             "name": "merchantDefinedData",
             "baseName": "merchant_defined_data",

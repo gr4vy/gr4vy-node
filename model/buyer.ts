@@ -23,18 +23,6 @@ export class Buyer {
     */
     'id'?: string;
     /**
-    * The unique ID for a merchant account.
-    */
-    'merchantAccountId'?: string;
-    /**
-    * An external identifier that can be used to match the buyer against your own records.
-    */
-    'externalIdentifier'?: string | null;
-    /**
-    * A unique name for this buyer which is used in the Gr4vy admin panel to give a buyer a human readable name.
-    */
-    'displayName'?: string | null;
-    /**
     * The billing details associated with a buyer.
     */
     'billingDetails'?: BillingDetails | null;
@@ -42,6 +30,18 @@ export class Buyer {
     * The date and time when this buyer was created in our system.
     */
     'createdAt'?: Date;
+    /**
+    * A unique name for this buyer which is used in the Gr4vy admin panel to give a buyer a human readable name.
+    */
+    'displayName'?: string | null;
+    /**
+    * An external identifier that can be used to match the buyer against your own records.
+    */
+    'externalIdentifier'?: string | null;
+    /**
+    * The unique ID for a merchant account.
+    */
+    'merchantAccountId'?: string;
     /**
     * The date and time when this buyer was last updated in our system.
     */
@@ -61,21 +61,6 @@ export class Buyer {
             "type": "string"
         },
         {
-            "name": "merchantAccountId",
-            "baseName": "merchant_account_id",
-            "type": "string"
-        },
-        {
-            "name": "externalIdentifier",
-            "baseName": "external_identifier",
-            "type": "string"
-        },
-        {
-            "name": "displayName",
-            "baseName": "display_name",
-            "type": "string"
-        },
-        {
             "name": "billingDetails",
             "baseName": "billing_details",
             "type": "BillingDetails"
@@ -84,6 +69,21 @@ export class Buyer {
             "name": "createdAt",
             "baseName": "created_at",
             "type": "Date"
+        },
+        {
+            "name": "displayName",
+            "baseName": "display_name",
+            "type": "string"
+        },
+        {
+            "name": "externalIdentifier",
+            "baseName": "external_identifier",
+            "type": "string"
+        },
+        {
+            "name": "merchantAccountId",
+            "baseName": "merchant_account_id",
+            "type": "string"
         },
         {
             "name": "updatedAt",

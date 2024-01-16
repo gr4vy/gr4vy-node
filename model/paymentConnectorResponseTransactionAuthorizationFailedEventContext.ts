@@ -64,6 +64,10 @@ export class PaymentConnectorResponseTransactionAuthorizationFailedEventContext 
     * The response code received from the payment service for the Card Verification Value (CVV). This code is mapped to a standardized Gr4vy CVV response code.  - `no_match` - the CVV does not match the expected value - `match` - the CVV matches the expected value - `unavailable ` - CVV check unavailable for card our country - `not_provided ` - CVV not provided  The value of this field can be `null` if the payment service did not provide a response.
     */
     'cvvResponseCode'?: PaymentConnectorResponseTransactionAuthorizationFailedEventContext.CvvResponseCodeEnum;
+    /**
+    * The card scheme sent to the connector.
+    */
+    'paymentMethodScheme'?: PaymentConnectorResponseTransactionAuthorizationFailedEventContext.PaymentMethodSchemeEnum;
 
     static discriminator: string | undefined = undefined;
 
@@ -127,6 +131,11 @@ export class PaymentConnectorResponseTransactionAuthorizationFailedEventContext 
             "name": "cvvResponseCode",
             "baseName": "cvv_response_code",
             "type": "PaymentConnectorResponseTransactionAuthorizationFailedEventContext.CvvResponseCodeEnum"
+        },
+        {
+            "name": "paymentMethodScheme",
+            "baseName": "payment_method_scheme",
+            "type": "PaymentConnectorResponseTransactionAuthorizationFailedEventContext.PaymentMethodSchemeEnum"
         }    ];
 
     static getAttributeTypeMap() {
@@ -163,5 +172,29 @@ export namespace PaymentConnectorResponseTransactionAuthorizationFailedEventCont
         NoMatch = <any> 'no_match',
         Match = <any> 'match',
         Unavailable = <any> 'unavailable'
+    }
+    export enum PaymentMethodSchemeEnum {
+        Accel = <any> 'accel',
+        Amex = <any> 'amex',
+        Bancontact = <any> 'bancontact',
+        CarteBancaire = <any> 'carte-bancaire',
+        Cirrus = <any> 'cirrus',
+        Culiance = <any> 'culiance',
+        Dankort = <any> 'dankort',
+        DinersClub = <any> 'diners-club',
+        Discover = <any> 'discover',
+        EftposAustralia = <any> 'eftpos-australia',
+        Elo = <any> 'elo',
+        Hipercard = <any> 'hipercard',
+        Jcb = <any> 'jcb',
+        Maestro = <any> 'maestro',
+        Mastercard = <any> 'mastercard',
+        Nyce = <any> 'nyce',
+        Other = <any> 'other',
+        Pulse = <any> 'pulse',
+        Rupay = <any> 'rupay',
+        Star = <any> 'star',
+        Unionpay = <any> 'unionpay',
+        Visa = <any> 'visa'
     }
 }

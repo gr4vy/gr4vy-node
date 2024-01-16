@@ -41,6 +41,10 @@ export class PaymentMethodTokenized {
     */
     'scheme'?: PaymentMethodTokenized.SchemeEnum;
     /**
+    * Additional schemes of the card. Only applies to card payment methods.
+    */
+    'additionalSchemes'?: Array<PaymentMethodTokenized.AdditionalSchemesEnum>;
+    /**
     * The expiration date for the payment method.
     */
     'expirationDate'?: string | null;
@@ -101,6 +105,11 @@ export class PaymentMethodTokenized {
             "name": "scheme",
             "baseName": "scheme",
             "type": "PaymentMethodTokenized.SchemeEnum"
+        },
+        {
+            "name": "additionalSchemes",
+            "baseName": "additional_schemes",
+            "type": "Array<PaymentMethodTokenized.AdditionalSchemesEnum>"
         },
         {
             "name": "expirationDate",
@@ -211,6 +220,30 @@ export namespace PaymentMethodTokenized {
         Zippay = <any> 'zippay'
     }
     export enum SchemeEnum {
+        Accel = <any> 'accel',
+        Amex = <any> 'amex',
+        Bancontact = <any> 'bancontact',
+        CarteBancaire = <any> 'carte-bancaire',
+        Cirrus = <any> 'cirrus',
+        Culiance = <any> 'culiance',
+        Dankort = <any> 'dankort',
+        DinersClub = <any> 'diners-club',
+        Discover = <any> 'discover',
+        EftposAustralia = <any> 'eftpos-australia',
+        Elo = <any> 'elo',
+        Hipercard = <any> 'hipercard',
+        Jcb = <any> 'jcb',
+        Maestro = <any> 'maestro',
+        Mastercard = <any> 'mastercard',
+        Nyce = <any> 'nyce',
+        Other = <any> 'other',
+        Pulse = <any> 'pulse',
+        Rupay = <any> 'rupay',
+        Star = <any> 'star',
+        Unionpay = <any> 'unionpay',
+        Visa = <any> 'visa'
+    }
+    export enum AdditionalSchemesEnum {
         Accel = <any> 'accel',
         Amex = <any> 'amex',
         Bancontact = <any> 'bancontact',
