@@ -104,7 +104,7 @@ export class Transaction {
     /**
     * The gift cards redeemed for this transaction.
     */
-    'giftCardsRedemptions'?: Array<GiftCardRedemption>;
+    'giftCardRedemptions'?: Array<GiftCardRedemption>;
     /**
     * The original `intent` used when the transaction was [created](#operation/authorize-new-transaction).
     */
@@ -292,8 +292,8 @@ export class Transaction {
             "type": "GiftCardServiceSnapshot"
         },
         {
-            "name": "giftCardsRedemptions",
-            "baseName": "gift_cards_redemptions",
+            "name": "giftCardRedemptions",
+            "baseName": "gift_card_redemptions",
             "type": "Array<GiftCardRedemption>"
         },
         {

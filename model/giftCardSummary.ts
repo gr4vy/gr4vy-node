@@ -139,8 +139,8 @@ export namespace GiftCardSummary {
         GiftCard = <any> 'gift-card'
     }
     export enum BalanceErrorCodeEnum {
-        DeactivatedCard = <any> 'deactivated_card',
         ExpiredCard = <any> 'expired_card',
+        InactiveCard = <any> 'inactive_card',
         IncorrectCurrency = <any> 'incorrect_currency',
         InsufficientFunds = <any> 'insufficient_funds',
         InvalidAmount = <any> 'invalid_amount',

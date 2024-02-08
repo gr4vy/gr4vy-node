@@ -13,19 +13,28 @@
 import { RequestFile } from './models';
 import { ConnectionOptionsAdyenCard } from './connectionOptionsAdyenCard';
 import { ConnectionOptionsCybersourceAntiFraud } from './connectionOptionsCybersourceAntiFraud';
+import { ConnectionOptionsCybersourceCard } from './connectionOptionsCybersourceCard';
 import { ConnectionOptionsForterAntiFraud } from './connectionOptionsForterAntiFraud';
 import { ConnectionOptionsPaypalPaypal } from './connectionOptionsPaypalPaypal';
+import { ConnectionOptionsStripeCard } from './connectionOptionsStripeCard';
 
 export class ConnectionOptions {
+    'cybersourceCard'?: ConnectionOptionsCybersourceCard | null;
     'cybersourceAntiFraud'?: ConnectionOptionsCybersourceAntiFraud | null;
     'forterAntiFraud'?: ConnectionOptionsForterAntiFraud | null;
     'adyenCard'?: ConnectionOptionsAdyenCard | null;
     'paypalPaypal'?: ConnectionOptionsPaypalPaypal | null;
     'paypalPaypalpaylater'?: ConnectionOptionsPaypalPaypal | null;
+    'stripeCard'?: ConnectionOptionsStripeCard | null;
 
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "cybersourceCard",
+            "baseName": "cybersource-card",
+            "type": "ConnectionOptionsCybersourceCard"
+        },
         {
             "name": "cybersourceAntiFraud",
             "baseName": "cybersource-anti-fraud",
@@ -50,6 +59,11 @@ export class ConnectionOptions {
             "name": "paypalPaypalpaylater",
             "baseName": "paypal-paypalpaylater",
             "type": "ConnectionOptionsPaypalPaypal"
+        },
+        {
+            "name": "stripeCard",
+            "baseName": "stripe-card",
+            "type": "ConnectionOptionsStripeCard"
         }    ];
 
     static getAttributeTypeMap() {

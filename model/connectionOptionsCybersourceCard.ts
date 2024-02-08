@@ -11,28 +11,27 @@
  */
 
 import { RequestFile } from './models';
-import { GiftCardBalanceRequest } from './giftCardBalanceRequest';
 
 /**
-* A request to check the balance for a set of stored and non-stored gift cards.
+* Additional options for Cybersource payment gateway.
 */
-export class GiftCardBalancesRequest {
+export class ConnectionOptionsCybersourceCard {
     /**
-    * One or more gift cards to check balances for, up to a default limit of 10 gift cards. Please contact our team to change this limit.
+    * An override for the merchant ID configured for the connector, used in combination with meta keys.
     */
-    'items'?: Array<GiftCardBalanceRequest>;
+    'metaKeyMerchantId'?: string | null;
 
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "items",
-            "baseName": "items",
-            "type": "Array<GiftCardBalanceRequest>"
+            "name": "metaKeyMerchantId",
+            "baseName": "meta_key_merchant_id",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
-        return GiftCardBalancesRequest.attributeTypeMap;
+        return ConnectionOptionsCybersourceCard.attributeTypeMap;
     }
 }
 

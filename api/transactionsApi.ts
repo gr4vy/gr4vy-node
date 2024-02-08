@@ -18,6 +18,7 @@ import http from 'http';
 import { Error401Unauthorized } from '../model/error401Unauthorized';
 import { Error404NotFound } from '../model/error404NotFound';
 import { Error409DuplicateRecord } from '../model/error409DuplicateRecord';
+import { Error429TooManyRequests } from '../model/error429TooManyRequests';
 import { ErrorGeneric } from '../model/errorGeneric';
 import { Refund } from '../model/refund';
 import { Refunds } from '../model/refunds';
@@ -415,6 +416,7 @@ export class TransactionsApi {
      * @param currency Filters for transactions that have matching &#x60;currency&#x60; values. The &#x60;currency&#x60; values provided must be formatted as 3-letter ISO currency code.
      * @param externalIdentifier Filters the results to only the items for which the &#x60;external_identifier&#x60; matches this value.
      * @param giftCardId Filters for transactions that have at least one gift card redemption with a matching &#x60;gift_card_id&#x60; value.
+     * @param giftCardLast4 Filters for transactions that have at least one gift card redemption where the last 4 digits of its gift card number matches exactly with the provided value.
      * @param hasGiftCardRedemptions When set to &#x60;true&#x60;, filters for transactions that have at least one gift card redemption associated with it. When set to &#x60;false&#x60;, filter for transactions that have no gift card redemptions.
      * @param hasRefunds When set to &#x60;true&#x60;, filter for transactions that have at least one completed refund (including gift card refunds) associated with it. When set to &#x60;false&#x60;, filter for transactions that have no completed refunds.
      * @param id Filters for the transaction that has a matching &#x60;id&#x60; value.
@@ -431,7 +433,7 @@ export class TransactionsApi {
      * @param updatedAtGte Filters the results to only transactions last updated after this ISO date-time string. The time zone must be included.  Ensure that the date-time string is URL encoded, e.g. &#x60;2022-01-01T12:00:00+08:00&#x60; must be encoded as &#x60;2022-01-01T12%3A00%3A00%2B08%3A00&#x60;.
      * @param updatedAtLte Filters the results to only transactions last updated before this ISO date-time string. The time zone must be included.  Ensure that the date-time string is URL encoded, e.g. &#x60;2022-01-01T12:00:00+08:00&#x60; must be encoded as &#x60;2022-01-01T12%3A00%3A00%2B08%3A00&#x60;.
      */
-    public async listTransactions (buyerExternalIdentifier?: string, buyerId?: string, cursor?: string, limit?: number, amountEq?: number, amountGte?: number, amountLte?: number, checkoutSessionId?: string, createdAtGte?: Date, createdAtLte?: Date, currency?: Array<string>, externalIdentifier?: string, giftCardId?: string, hasGiftCardRedemptions?: boolean, hasRefunds?: boolean, id?: string, metadata?: Array<string>, method?: Array<'afterpay' | 'alipay' | 'alipayhk' | 'applepay' | 'bacs' | 'bancontact' | 'banked' | 'becs' | 'bitpay' | 'boleto' | 'boost' | 'card' | 'checkout-session' | 'click-to-pay' | 'clearpay' | 'dana' | 'dcb' | 'eps' | 'fortumo' | 'gcash' | 'giropay' | 'gocardless' | 'googlepay' | 'gopay' | 'grabpay' | 'ideal' | 'id' | 'kakaopay' | 'klarna' | 'laybuy' | 'linepay' | 'linkaja' | 'maybankqrpay' | 'multibanco' | 'oney_3x' | 'oney_4x' | 'oney_6x' | 'oney_10x' | 'oney_12x' | 'ovo' | 'oxxo' | 'paymaya' | 'paypal' | 'paypalpaylater' | 'pix' | 'rabbitlinepay' | 'razorpay' | 'scalapay' | 'sepa' | 'shopeepay' | 'singteldash' | 'sofort' | 'stripedd' | 'thaiqr' | 'touchngo' | 'truemoney' | 'trustly' | 'venmo' | 'waave' | 'wechat' | 'zippay'>, paymentMethodId?: string, paymentMethodLabel?: string, paymentServiceId?: Array<string>, paymentServiceTransactionId?: string, pendingReview?: boolean, reconciliationId?: string, search?: string, status?: Array<'processing' | 'buyer_approval_pending' | 'authorization_succeeded' | 'authorization_failed' | 'authorization_declined' | 'capture_pending' | 'capture_succeeded' | 'authorization_void_pending' | 'authorization_voided'>, updatedAtGte?: Date, updatedAtLte?: Date, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Transactions;  }> {
+    public async listTransactions (buyerExternalIdentifier?: string, buyerId?: string, cursor?: string, limit?: number, amountEq?: number, amountGte?: number, amountLte?: number, checkoutSessionId?: string, createdAtGte?: Date, createdAtLte?: Date, currency?: Array<string>, externalIdentifier?: string, giftCardId?: string, giftCardLast4?: string, hasGiftCardRedemptions?: boolean, hasRefunds?: boolean, id?: string, metadata?: Array<string>, method?: Array<'afterpay' | 'alipay' | 'alipayhk' | 'applepay' | 'bacs' | 'bancontact' | 'banked' | 'becs' | 'bitpay' | 'boleto' | 'boost' | 'card' | 'checkout-session' | 'click-to-pay' | 'clearpay' | 'dana' | 'dcb' | 'eps' | 'fortumo' | 'gcash' | 'giropay' | 'gocardless' | 'googlepay' | 'gopay' | 'grabpay' | 'ideal' | 'id' | 'kakaopay' | 'klarna' | 'laybuy' | 'linepay' | 'linkaja' | 'maybankqrpay' | 'multibanco' | 'oney_3x' | 'oney_4x' | 'oney_6x' | 'oney_10x' | 'oney_12x' | 'ovo' | 'oxxo' | 'paymaya' | 'paypal' | 'paypalpaylater' | 'pix' | 'rabbitlinepay' | 'razorpay' | 'scalapay' | 'sepa' | 'shopeepay' | 'singteldash' | 'sofort' | 'stripedd' | 'thaiqr' | 'touchngo' | 'truemoney' | 'trustly' | 'venmo' | 'waave' | 'wechat' | 'zippay'>, paymentMethodId?: string, paymentMethodLabel?: string, paymentServiceId?: Array<string>, paymentServiceTransactionId?: string, pendingReview?: boolean, reconciliationId?: string, search?: string, status?: Array<'processing' | 'buyer_approval_pending' | 'authorization_succeeded' | 'authorization_failed' | 'authorization_declined' | 'capture_pending' | 'capture_succeeded' | 'authorization_void_pending' | 'authorization_voided'>, updatedAtGte?: Date, updatedAtLte?: Date, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Transactions;  }> {
         const localVarPath = this.basePath + '/transactions';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
@@ -494,6 +496,10 @@ export class TransactionsApi {
 
         if (giftCardId !== undefined) {
             localVarQueryParameters['gift_card_id'] = ObjectSerializer.serialize(giftCardId, "string");
+        }
+
+        if (giftCardLast4 !== undefined) {
+            localVarQueryParameters['gift_card_last4'] = ObjectSerializer.serialize(giftCardLast4, "string");
         }
 
         if (hasGiftCardRedemptions !== undefined) {

@@ -400,10 +400,11 @@ export class BuyersApi {
      * Returns a list of buyers.
      * @summary List buyers
      * @param search Filters the results to only the buyers for which the &#x60;display_name&#x60; or &#x60;external_identifier&#x60; matches this value. This field allows for a partial match, matching any buyer for which either of the fields partially or completely matches.
+     * @param externalIdentifier Filters the results to only the items for which the &#x60;buyer&#x60; has an &#x60;external_identifier&#x60; that exactly matches this value.
      * @param limit Defines the maximum number of items to return for this request.
      * @param cursor A cursor that identifies the page of results to return. This is used to paginate the results of this API.  For the first page of results, this parameter can be left out. For additional pages, use the value returned by the API in the &#x60;next_cursor&#x60; field. Similarly the &#x60;previous_cursor&#x60; can be used to reverse backwards in the list.
      */
-    public async listBuyers (search?: string, limit?: number, cursor?: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Buyers;  }> {
+    public async listBuyers (search?: string, externalIdentifier?: string, limit?: number, cursor?: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Buyers;  }> {
         const localVarPath = this.basePath + '/buyers';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
@@ -418,6 +419,10 @@ export class BuyersApi {
 
         if (search !== undefined) {
             localVarQueryParameters['search'] = ObjectSerializer.serialize(search, "string");
+        }
+
+        if (externalIdentifier !== undefined) {
+            localVarQueryParameters['external_identifier'] = ObjectSerializer.serialize(externalIdentifier, "string");
         }
 
         if (limit !== undefined) {

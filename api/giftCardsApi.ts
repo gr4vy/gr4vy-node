@@ -18,6 +18,7 @@ import http from 'http';
 import { Error401Unauthorized } from '../model/error401Unauthorized';
 import { Error404NotFound } from '../model/error404NotFound';
 import { Error409DuplicateRecord } from '../model/error409DuplicateRecord';
+import { Error429TooManyRequests } from '../model/error429TooManyRequests';
 import { ErrorGeneric } from '../model/errorGeneric';
 import { GiftCard } from '../model/giftCard';
 import { GiftCardBalancesRequest } from '../model/giftCardBalancesRequest';
@@ -471,7 +472,7 @@ export class GiftCardsApi {
         });
     }
     /**
-     * Stores a gift card.  Vaulting a gift card stores and validate it against the active gift card service.  It is only possible to store a gift card against a buyer if the same card is not already stored on the buyer and the gift card has not expired yet. 
+     * Stores a gift card.  Vaulting a gift card stores and validate it against the active gift card service.  It is only possible to store a gift card against a buyer if the same card is not already stored on the buyer and the gift card has not expired yet.  Buyers by default can only have a maximum limit of 10 gift cards stored against them. Please contact our team to change this limit. 
      * @summary Store gift card
      * @param giftCardStoreRequest 
      */

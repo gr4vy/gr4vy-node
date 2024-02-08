@@ -69,7 +69,7 @@ export class TransactionRequest {
     */
     'externalIdentifier'?: string | null;
     /**
-    * The optional gift-card to use for this transaction. At least one gift card is required if no other `payment_method` has been added.
+    * The optional gift card(s) to use for this transaction. At least one gift card is required if no other `payment_method` has been added. By default, only a maximum limit of 10 gift cards may be used in a single transaction. Please contact our team to change this limit.
     */
     'giftCards'?: Array<TransactionGiftCardRequest> | null;
     /**
