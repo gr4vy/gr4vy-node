@@ -12,6 +12,7 @@
 
 import { RequestFile } from './models';
 import { BuyerSnapshot } from './buyerSnapshot';
+import { GiftCardRedemption } from './giftCardRedemption';
 import { PaymentMethodSnapshot } from './paymentMethodSnapshot';
 import { PaymentServiceSnapshot } from './paymentServiceSnapshot';
 
@@ -63,6 +64,10 @@ export class TransactionSummary {
     * An external identifier that can be used to match the transaction against your own records.
     */
     'externalIdentifier'?: string | null;
+    /**
+    * The gift cards redeemed for this transaction.
+    */
+    'giftCardRedemptions'?: Array<GiftCardRedemption>;
     /**
     * The original `intent` used when the transaction was [created](#operation/authorize-new-transaction).
     */
@@ -166,6 +171,11 @@ export class TransactionSummary {
             "name": "externalIdentifier",
             "baseName": "external_identifier",
             "type": "string"
+        },
+        {
+            "name": "giftCardRedemptions",
+            "baseName": "gift_card_redemptions",
+            "type": "Array<GiftCardRedemption>"
         },
         {
             "name": "intent",

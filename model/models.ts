@@ -60,6 +60,7 @@ export * from './connectionDefinitions';
 export * from './connectionOptions';
 export * from './connectionOptionsAdyenCard';
 export * from './connectionOptionsCybersourceAntiFraud';
+export * from './connectionOptionsCybersourceCard';
 export * from './connectionOptionsForterAntiFraud';
 export * from './connectionOptionsForterAntiFraudAddress';
 export * from './connectionOptionsForterAntiFraudBasicItemData';
@@ -73,6 +74,8 @@ export * from './connectionOptionsForterAntiFraudTotalDiscount';
 export * from './connectionOptionsForterAntiFraudTotalDiscountCouponDiscountAmount';
 export * from './connectionOptionsPaypalPaypal';
 export * from './connectionOptionsPaypalPaypalAdditionalData';
+export * from './connectionOptionsStripeCard';
+export * from './connectionOptionsStripeCardStripeConnect';
 export * from './connections';
 export * from './cryptogram';
 export * from './digitalWallet';
@@ -94,6 +97,7 @@ export * from './error403Forbidden';
 export * from './error404NotFound';
 export * from './error404PendingCreation';
 export * from './error409DuplicateRecord';
+export * from './error429TooManyRequests';
 export * from './errorDetail';
 export * from './errorGeneric';
 export * from './giftCard';
@@ -136,6 +140,13 @@ export * from './merchantAccounts';
 export * from './merchantProfile';
 export * from './merchantProfileScheme';
 export * from './networkToken';
+export * from './networkTokenCryptogramProvisionFailed';
+export * from './networkTokenCryptogramProvisionFailedContext';
+export * from './networkTokenCryptogramProvisionSucceeded';
+export * from './networkTokenCryptogramProvisionSucceededContext';
+export * from './networkTokenProvisionFailed';
+export * from './networkTokenProvisionFailedContext';
+export * from './networkTokenProvisionSucceeded';
 export * from './networkTokenRequest';
 export * from './networkTokens';
 export * from './paymentConnectorExternalTransactionRequest';
@@ -332,6 +343,7 @@ import { ConnectionDefinitions } from './connectionDefinitions';
 import { ConnectionOptions } from './connectionOptions';
 import { ConnectionOptionsAdyenCard } from './connectionOptionsAdyenCard';
 import { ConnectionOptionsCybersourceAntiFraud } from './connectionOptionsCybersourceAntiFraud';
+import { ConnectionOptionsCybersourceCard } from './connectionOptionsCybersourceCard';
 import { ConnectionOptionsForterAntiFraud } from './connectionOptionsForterAntiFraud';
 import { ConnectionOptionsForterAntiFraudAddress } from './connectionOptionsForterAntiFraudAddress';
 import { ConnectionOptionsForterAntiFraudBasicItemData } from './connectionOptionsForterAntiFraudBasicItemData';
@@ -345,6 +357,8 @@ import { ConnectionOptionsForterAntiFraudTotalDiscount } from './connectionOptio
 import { ConnectionOptionsForterAntiFraudTotalDiscountCouponDiscountAmount } from './connectionOptionsForterAntiFraudTotalDiscountCouponDiscountAmount';
 import { ConnectionOptionsPaypalPaypal } from './connectionOptionsPaypalPaypal';
 import { ConnectionOptionsPaypalPaypalAdditionalData } from './connectionOptionsPaypalPaypalAdditionalData';
+import { ConnectionOptionsStripeCard } from './connectionOptionsStripeCard';
+import { ConnectionOptionsStripeCardStripeConnect } from './connectionOptionsStripeCardStripeConnect';
 import { Connections } from './connections';
 import { Cryptogram } from './cryptogram';
 import { DigitalWallet } from './digitalWallet';
@@ -366,6 +380,7 @@ import { Error403Forbidden } from './error403Forbidden';
 import { Error404NotFound } from './error404NotFound';
 import { Error404PendingCreation } from './error404PendingCreation';
 import { Error409DuplicateRecord } from './error409DuplicateRecord';
+import { Error429TooManyRequests } from './error429TooManyRequests';
 import { ErrorDetail } from './errorDetail';
 import { ErrorGeneric } from './errorGeneric';
 import { GiftCard } from './giftCard';
@@ -408,6 +423,13 @@ import { MerchantAccounts } from './merchantAccounts';
 import { MerchantProfile } from './merchantProfile';
 import { MerchantProfileScheme } from './merchantProfileScheme';
 import { NetworkToken } from './networkToken';
+import { NetworkTokenCryptogramProvisionFailed } from './networkTokenCryptogramProvisionFailed';
+import { NetworkTokenCryptogramProvisionFailedContext } from './networkTokenCryptogramProvisionFailedContext';
+import { NetworkTokenCryptogramProvisionSucceeded } from './networkTokenCryptogramProvisionSucceeded';
+import { NetworkTokenCryptogramProvisionSucceededContext } from './networkTokenCryptogramProvisionSucceededContext';
+import { NetworkTokenProvisionFailed } from './networkTokenProvisionFailed';
+import { NetworkTokenProvisionFailedContext } from './networkTokenProvisionFailedContext';
+import { NetworkTokenProvisionSucceeded } from './networkTokenProvisionSucceeded';
 import { NetworkTokenRequest } from './networkTokenRequest';
 import { NetworkTokens } from './networkTokens';
 import { PaymentConnectorExternalTransactionRequest } from './paymentConnectorExternalTransactionRequest';
@@ -630,6 +652,9 @@ let enumsMap: {[index: string]: any} = {
         "Error409DuplicateRecord.TypeEnum": Error409DuplicateRecord.TypeEnum,
         "Error409DuplicateRecord.CodeEnum": Error409DuplicateRecord.CodeEnum,
         "Error409DuplicateRecord.StatusEnum": Error409DuplicateRecord.StatusEnum,
+        "Error429TooManyRequests.TypeEnum": Error429TooManyRequests.TypeEnum,
+        "Error429TooManyRequests.CodeEnum": Error429TooManyRequests.CodeEnum,
+        "Error429TooManyRequests.StatusEnum": Error429TooManyRequests.StatusEnum,
         "ErrorDetail.LocationEnum": ErrorDetail.LocationEnum,
         "ErrorGeneric.TypeEnum": ErrorGeneric.TypeEnum,
         "GiftCard.TypeEnum": GiftCard.TypeEnum,
@@ -658,6 +683,14 @@ let enumsMap: {[index: string]: any} = {
         "MerchantAccountUpdate.LoonAcceptedSchemesEnum": MerchantAccountUpdate.LoonAcceptedSchemesEnum,
         "NetworkToken.TypeEnum": NetworkToken.TypeEnum,
         "NetworkToken.StatusEnum": NetworkToken.StatusEnum,
+        "NetworkTokenCryptogramProvisionFailed.TypeEnum": NetworkTokenCryptogramProvisionFailed.TypeEnum,
+        "NetworkTokenCryptogramProvisionFailed.NameEnum": NetworkTokenCryptogramProvisionFailed.NameEnum,
+        "NetworkTokenCryptogramProvisionSucceeded.TypeEnum": NetworkTokenCryptogramProvisionSucceeded.TypeEnum,
+        "NetworkTokenCryptogramProvisionSucceeded.NameEnum": NetworkTokenCryptogramProvisionSucceeded.NameEnum,
+        "NetworkTokenProvisionFailed.TypeEnum": NetworkTokenProvisionFailed.TypeEnum,
+        "NetworkTokenProvisionFailed.NameEnum": NetworkTokenProvisionFailed.NameEnum,
+        "NetworkTokenProvisionSucceeded.TypeEnum": NetworkTokenProvisionSucceeded.TypeEnum,
+        "NetworkTokenProvisionSucceeded.NameEnum": NetworkTokenProvisionSucceeded.NameEnum,
         "PaymentConnectorExternalTransactionRequest.TypeEnum": PaymentConnectorExternalTransactionRequest.TypeEnum,
         "PaymentConnectorExternalTransactionRequest.NameEnum": PaymentConnectorExternalTransactionRequest.NameEnum,
         "PaymentConnectorResponseTransactionAuthorizationFailedEvent.TypeEnum": PaymentConnectorResponseTransactionAuthorizationFailedEvent.TypeEnum,
@@ -864,6 +897,7 @@ let typeMap: {[index: string]: any} = {
     "ConnectionOptions": ConnectionOptions,
     "ConnectionOptionsAdyenCard": ConnectionOptionsAdyenCard,
     "ConnectionOptionsCybersourceAntiFraud": ConnectionOptionsCybersourceAntiFraud,
+    "ConnectionOptionsCybersourceCard": ConnectionOptionsCybersourceCard,
     "ConnectionOptionsForterAntiFraud": ConnectionOptionsForterAntiFraud,
     "ConnectionOptionsForterAntiFraudAddress": ConnectionOptionsForterAntiFraudAddress,
     "ConnectionOptionsForterAntiFraudBasicItemData": ConnectionOptionsForterAntiFraudBasicItemData,
@@ -877,6 +911,8 @@ let typeMap: {[index: string]: any} = {
     "ConnectionOptionsForterAntiFraudTotalDiscountCouponDiscountAmount": ConnectionOptionsForterAntiFraudTotalDiscountCouponDiscountAmount,
     "ConnectionOptionsPaypalPaypal": ConnectionOptionsPaypalPaypal,
     "ConnectionOptionsPaypalPaypalAdditionalData": ConnectionOptionsPaypalPaypalAdditionalData,
+    "ConnectionOptionsStripeCard": ConnectionOptionsStripeCard,
+    "ConnectionOptionsStripeCardStripeConnect": ConnectionOptionsStripeCardStripeConnect,
     "Connections": Connections,
     "Cryptogram": Cryptogram,
     "DigitalWallet": DigitalWallet,
@@ -898,6 +934,7 @@ let typeMap: {[index: string]: any} = {
     "Error404NotFound": Error404NotFound,
     "Error404PendingCreation": Error404PendingCreation,
     "Error409DuplicateRecord": Error409DuplicateRecord,
+    "Error429TooManyRequests": Error429TooManyRequests,
     "ErrorDetail": ErrorDetail,
     "ErrorGeneric": ErrorGeneric,
     "GiftCard": GiftCard,
@@ -940,6 +977,13 @@ let typeMap: {[index: string]: any} = {
     "MerchantProfile": MerchantProfile,
     "MerchantProfileScheme": MerchantProfileScheme,
     "NetworkToken": NetworkToken,
+    "NetworkTokenCryptogramProvisionFailed": NetworkTokenCryptogramProvisionFailed,
+    "NetworkTokenCryptogramProvisionFailedContext": NetworkTokenCryptogramProvisionFailedContext,
+    "NetworkTokenCryptogramProvisionSucceeded": NetworkTokenCryptogramProvisionSucceeded,
+    "NetworkTokenCryptogramProvisionSucceededContext": NetworkTokenCryptogramProvisionSucceededContext,
+    "NetworkTokenProvisionFailed": NetworkTokenProvisionFailed,
+    "NetworkTokenProvisionFailedContext": NetworkTokenProvisionFailedContext,
+    "NetworkTokenProvisionSucceeded": NetworkTokenProvisionSucceeded,
     "NetworkTokenRequest": NetworkTokenRequest,
     "NetworkTokens": NetworkTokens,
     "PaymentConnectorExternalTransactionRequest": PaymentConnectorExternalTransactionRequest,

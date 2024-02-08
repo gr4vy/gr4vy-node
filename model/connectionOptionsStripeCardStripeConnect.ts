@@ -11,28 +11,36 @@
  */
 
 import { RequestFile } from './models';
-import { GiftCardBalanceRequest } from './giftCardBalanceRequest';
 
 /**
-* A request to check the balance for a set of stored and non-stored gift cards.
+* Stripe Connect configuration options.
 */
-export class GiftCardBalancesRequest {
+export class ConnectionOptionsStripeCardStripeConnect {
     /**
-    * One or more gift cards to check balances for, up to a default limit of 10 gift cards. Please contact our team to change this limit.
+    * The ID of the connected Stripe account to process for.
     */
-    'items'?: Array<GiftCardBalanceRequest>;
+    'stripeAccount'?: string | null;
+    /**
+    * The application fee to charge when processing for a connected account.
+    */
+    'applicationFeeAmount'?: number | null;
 
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "items",
-            "baseName": "items",
-            "type": "Array<GiftCardBalanceRequest>"
+            "name": "stripeAccount",
+            "baseName": "stripe_account",
+            "type": "string"
+        },
+        {
+            "name": "applicationFeeAmount",
+            "baseName": "application_fee_amount",
+            "type": "number"
         }    ];
 
     static getAttributeTypeMap() {
-        return GiftCardBalancesRequest.attributeTypeMap;
+        return ConnectionOptionsStripeCardStripeConnect.attributeTypeMap;
     }
 }
 
