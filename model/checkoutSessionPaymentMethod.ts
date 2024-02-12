@@ -35,6 +35,10 @@ export class CheckoutSessionPaymentMethod {
     */
     'label'?: string | null;
     'details'?: CheckoutSessionPaymentMethodDetails | null;
+    /**
+    * The unique hash derived from the payment method identifier (e.g. card number).
+    */
+    'fingerprint'?: string | null;
 
     static discriminator: string | undefined = undefined;
 
@@ -68,6 +72,11 @@ export class CheckoutSessionPaymentMethod {
             "name": "details",
             "baseName": "details",
             "type": "CheckoutSessionPaymentMethodDetails"
+        },
+        {
+            "name": "fingerprint",
+            "baseName": "fingerprint",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {

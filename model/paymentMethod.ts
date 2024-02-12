@@ -99,6 +99,10 @@ export class PaymentMethod {
     * The date and time when this payment method was last updated in our system.
     */
     'updatedAt'?: Date;
+    /**
+    * The unique hash derived from the payment method identifier (e.g. card number).
+    */
+    'fingerprint'?: string | null;
 
     static discriminator: string | undefined = undefined;
 
@@ -207,6 +211,11 @@ export class PaymentMethod {
             "name": "updatedAt",
             "baseName": "updated_at",
             "type": "Date"
+        },
+        {
+            "name": "fingerprint",
+            "baseName": "fingerprint",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
