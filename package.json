@@ -1,6 +1,6 @@
 {
   "name": "@gr4vy/node",
-  "version": "0.61.9",
+  "version": "0.61.0",
   "description": "NodeJS client for @gr4vy/node",
   "repository": {
     "type": "git",
