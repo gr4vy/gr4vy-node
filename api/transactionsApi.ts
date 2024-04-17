@@ -15,15 +15,16 @@ import localVarRequest from 'request';
 import http from 'http';
 
 /* tslint:disable:no-unused-locals */
+import { Error400BadRequest } from '../model/error400BadRequest';
 import { Error401Unauthorized } from '../model/error401Unauthorized';
 import { Error404NotFound } from '../model/error404NotFound';
 import { Error409DuplicateRecord } from '../model/error409DuplicateRecord';
 import { Error429TooManyRequests } from '../model/error429TooManyRequests';
-import { ErrorGeneric } from '../model/errorGeneric';
 import { Refund } from '../model/refund';
 import { Refunds } from '../model/refunds';
 import { Transaction } from '../model/transaction';
 import { TransactionCaptureRequest } from '../model/transactionCaptureRequest';
+import { TransactionRefundAllRequest } from '../model/transactionRefundAllRequest';
 import { TransactionRefundRequest } from '../model/transactionRefundRequest';
 import { TransactionRequest } from '../model/transactionRequest';
 import { Transactions } from '../model/transactions';
@@ -49,7 +50,7 @@ export class TransactionsApi {
 
     protected authentications = {
         'default': <Authentication>new VoidAuth(),
-        'BearerAuth': new HttpBearerAuth(),
+        'bearerAuth': new HttpBearerAuth(),
     }
 
     protected interceptors: Interceptor[] = [];
@@ -96,7 +97,7 @@ export class TransactionsApi {
     }
 
     set accessToken(accessToken: string | (() => string)) {
-        this.authentications.BearerAuth.accessToken = accessToken;
+        this.authentications.bearerAuth.accessToken = accessToken;
     }
 
     public addInterceptor(interceptor: Interceptor) {
@@ -143,8 +144,8 @@ export class TransactionsApi {
         };
 
         let authenticationPromise = Promise.resolve();
-        if (this.authentications.BearerAuth.accessToken) {
-            authenticationPromise = authenticationPromise.then(() => this.authentications.BearerAuth.applyToRequest(localVarRequestOptions));
+        if (this.authentications.bearerAuth.accessToken) {
+            authenticationPromise = authenticationPromise.then(() => this.authentications.bearerAuth.applyToRequest(localVarRequestOptions));
         }
         authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
 
@@ -222,8 +223,80 @@ export class TransactionsApi {
         };
 
         let authenticationPromise = Promise.resolve();
-        if (this.authentications.BearerAuth.accessToken) {
-            authenticationPromise = authenticationPromise.then(() => this.authentications.BearerAuth.applyToRequest(localVarRequestOptions));
+        if (this.authentications.bearerAuth.accessToken) {
+            authenticationPromise = authenticationPromise.then(() => this.authentications.bearerAuth.applyToRequest(localVarRequestOptions));
+        }
+        authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
+
+        let interceptorPromise = authenticationPromise;
+        for (const interceptor of this.interceptors) {
+            interceptorPromise = interceptorPromise.then(() => interceptor(localVarRequestOptions));
+        }
+
+        return interceptorPromise.then(() => {
+            if (Object.keys(localVarFormParams).length) {
+                if (localVarUseFormData) {
+                    (<any>localVarRequestOptions).formData = localVarFormParams;
+                } else {
+                    localVarRequestOptions.form = localVarFormParams;
+                }
+            }
+            return new Promise<{ response: http.IncomingMessage; body: Refund;  }>((resolve, reject) => {
+                localVarRequest(localVarRequestOptions, (error, response, body) => {
+                    if (error) {
+                        reject(error);
+                    } else {
+                        body = ObjectSerializer.deserialize(body, "Refund");
+                        if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                            resolve({ response: response, body: body });
+                        } else {
+                            reject(new HttpError(response, body, response.statusCode));
+                        }
+                    }
+                });
+            });
+        });
+    }
+    /**
+     * Gets information about a refund.
+     * @summary Get refund
+     * @param refundId The unique ID of the refund.
+     */
+    public async getSingleRefund (refundId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Refund;  }> {
+        const localVarPath = this.basePath + '/refunds/{refund_id}'
+            .replace('{' + 'refund_id' + '}', encodeURIComponent(String(refundId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'refundId' is not null or undefined
+        if (refundId === null || refundId === undefined) {
+            throw new Error('Required parameter refundId was null or undefined when calling getSingleRefund.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        let authenticationPromise = Promise.resolve();
+        if (this.authentications.bearerAuth.accessToken) {
+            authenticationPromise = authenticationPromise.then(() => this.authentications.bearerAuth.applyToRequest(localVarRequestOptions));
         }
         authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
 
@@ -294,8 +367,8 @@ export class TransactionsApi {
         };
 
         let authenticationPromise = Promise.resolve();
-        if (this.authentications.BearerAuth.accessToken) {
-            authenticationPromise = authenticationPromise.then(() => this.authentications.BearerAuth.applyToRequest(localVarRequestOptions));
+        if (this.authentications.bearerAuth.accessToken) {
+            authenticationPromise = authenticationPromise.then(() => this.authentications.bearerAuth.applyToRequest(localVarRequestOptions));
         }
         authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
 
@@ -366,8 +439,8 @@ export class TransactionsApi {
         };
 
         let authenticationPromise = Promise.resolve();
-        if (this.authentications.BearerAuth.accessToken) {
-            authenticationPromise = authenticationPromise.then(() => this.authentications.BearerAuth.applyToRequest(localVarRequestOptions));
+        if (this.authentications.bearerAuth.accessToken) {
+            authenticationPromise = authenticationPromise.then(() => this.authentications.bearerAuth.applyToRequest(localVarRequestOptions));
         }
         authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
 
@@ -428,12 +501,12 @@ export class TransactionsApi {
      * @param paymentServiceTransactionId Filters for transactions that have a matching &#x60;payment_service_transaction_id&#x60; value. The &#x60;payment_service_transaction_id&#x60; is the identifier of the transaction given by the payment service.
      * @param pendingReview When set to &#x60;true&#x60;, filter for transactions that have a manual review pending. When set to &#x60;false&#x60;, filter for transactions that don\&#39;t have a manual review pending.
      * @param reconciliationId Filters for transactions based on their transaction reconciliation identifier.
-     * @param search Filters for transactions that have one of the following fields match exactly with the provided &#x60;search&#x60; value.  * &#x60;buyer_external_identifier&#x60; * &#x60;buyer_id&#x60; * &#x60;external_identifier&#x60; * &#x60;id&#x60; * &#x60;payment_service_transaction_id&#x60;  The search will apply against all fields at the same time.
+     * @param search Filters for transactions that have one of the following fields match exactly with the provided &#x60;search&#x60; value.  * &#x60;buyer_external_identifier&#x60; * &#x60;buyer_id&#x60; * &#x60;external_identifier&#x60; * &#x60;id&#x60; * &#x60;payment_service_transaction_id&#x60;  The search will apply against all fields at the same time. Please do not use this query parameter in a production application, as this API call is very inefficient and may negatively impact transaction performance.
      * @param status Filters the results to only the transactions that have a &#x60;status&#x60; that matches with any of the provided status values.
      * @param updatedAtGte Filters the results to only transactions last updated after this ISO date-time string. The time zone must be included.  Ensure that the date-time string is URL encoded, e.g. &#x60;2022-01-01T12:00:00+08:00&#x60; must be encoded as &#x60;2022-01-01T12%3A00%3A00%2B08%3A00&#x60;.
      * @param updatedAtLte Filters the results to only transactions last updated before this ISO date-time string. The time zone must be included.  Ensure that the date-time string is URL encoded, e.g. &#x60;2022-01-01T12:00:00+08:00&#x60; must be encoded as &#x60;2022-01-01T12%3A00%3A00%2B08%3A00&#x60;.
      */
-    public async listTransactions (buyerExternalIdentifier?: string, buyerId?: string, cursor?: string, limit?: number, amountEq?: number, amountGte?: number, amountLte?: number, checkoutSessionId?: string, createdAtGte?: Date, createdAtLte?: Date, currency?: Array<string>, externalIdentifier?: string, giftCardId?: string, giftCardLast4?: string, hasGiftCardRedemptions?: boolean, hasRefunds?: boolean, id?: string, metadata?: Array<string>, method?: Array<'afterpay' | 'alipay' | 'alipayhk' | 'applepay' | 'bacs' | 'bancontact' | 'banked' | 'becs' | 'bitpay' | 'boleto' | 'boost' | 'card' | 'checkout-session' | 'click-to-pay' | 'clearpay' | 'dana' | 'dcb' | 'eps' | 'fortumo' | 'gcash' | 'giropay' | 'gocardless' | 'googlepay' | 'gopay' | 'grabpay' | 'ideal' | 'id' | 'kakaopay' | 'klarna' | 'laybuy' | 'linepay' | 'linkaja' | 'maybankqrpay' | 'multibanco' | 'oney_3x' | 'oney_4x' | 'oney_6x' | 'oney_10x' | 'oney_12x' | 'ovo' | 'oxxo' | 'paymaya' | 'paypal' | 'paypalpaylater' | 'pix' | 'rabbitlinepay' | 'razorpay' | 'scalapay' | 'sepa' | 'shopeepay' | 'singteldash' | 'sofort' | 'stripedd' | 'thaiqr' | 'touchngo' | 'truemoney' | 'trustly' | 'venmo' | 'waave' | 'wechat' | 'zippay'>, paymentMethodId?: string, paymentMethodLabel?: string, paymentServiceId?: Array<string>, paymentServiceTransactionId?: string, pendingReview?: boolean, reconciliationId?: string, search?: string, status?: Array<'processing' | 'buyer_approval_pending' | 'authorization_succeeded' | 'authorization_failed' | 'authorization_declined' | 'capture_pending' | 'capture_succeeded' | 'authorization_void_pending' | 'authorization_voided'>, updatedAtGte?: Date, updatedAtLte?: Date, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Transactions;  }> {
+    public async listTransactions (buyerExternalIdentifier?: string, buyerId?: string, cursor?: string, limit?: number, amountEq?: number, amountGte?: number, amountLte?: number, checkoutSessionId?: string, createdAtGte?: Date, createdAtLte?: Date, currency?: Array<string>, externalIdentifier?: string, giftCardId?: string, giftCardLast4?: string, hasGiftCardRedemptions?: boolean, hasRefunds?: boolean, id?: string, metadata?: Array<string>, method?: Array<'afterpay' | 'alipay' | 'alipayhk' | 'applepay' | 'bacs' | 'banked' | 'becs' | 'bitpay' | 'boleto' | 'boost' | 'card' | 'cashapp' | 'chaseorbital' | 'clearpay' | 'click-to-pay' | 'dana' | 'dcb' | 'dlocal' | 'ebanx' | 'gcash' | 'giropay' | 'gocardless' | 'googlepay' | 'gopay' | 'grabpay' | 'ideal' | 'kakaopay' | 'klarna' | 'laybuy' | 'linkaja' | 'maybankqrpay' | 'multibanco' | 'oney_3x' | 'oney_4x' | 'oney_6x' | 'oney_10x' | 'oney_12x' | 'ovo' | 'oxxo' | 'payid' | 'paymaya' | 'paypal' | 'paypalpaylater' | 'payto' | 'venmo' | 'pix' | 'rabbitlinepay' | 'scalapay' | 'sepa' | 'shopeepay' | 'singteldash' | 'sofort' | 'stripedd' | 'thaiqr' | 'touchngo' | 'truemoney' | 'trustly' | 'trustlyeurope' | 'givingblock' | 'wechat' | 'zippay' | 'bancontact' | 'eps' | 'linepay' | 'razorpay' | 'multipago' | 'waave' | 'smartpay' | 'vipps'>, paymentMethodId?: string, paymentMethodLabel?: string, paymentServiceId?: Array<string>, paymentServiceTransactionId?: string, pendingReview?: boolean, reconciliationId?: string, search?: string, status?: Array<'processing' | 'buyer_approval_pending' | 'authorization_succeeded' | 'authorization_failed' | 'authorization_declined' | 'capture_pending' | 'capture_succeeded' | 'authorization_void_pending' | 'authorization_voided'>, updatedAtGte?: Date, updatedAtLte?: Date, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Transactions;  }> {
         const localVarPath = this.basePath + '/transactions';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
@@ -519,7 +592,7 @@ export class TransactionsApi {
         }
 
         if (method !== undefined) {
-            localVarQueryParameters['method'] = ObjectSerializer.serialize(method, "Array<'afterpay' | 'alipay' | 'alipayhk' | 'applepay' | 'bacs' | 'bancontact' | 'banked' | 'becs' | 'bitpay' | 'boleto' | 'boost' | 'card' | 'checkout-session' | 'click-to-pay' | 'clearpay' | 'dana' | 'dcb' | 'eps' | 'fortumo' | 'gcash' | 'giropay' | 'gocardless' | 'googlepay' | 'gopay' | 'grabpay' | 'ideal' | 'id' | 'kakaopay' | 'klarna' | 'laybuy' | 'linepay' | 'linkaja' | 'maybankqrpay' | 'multibanco' | 'oney_3x' | 'oney_4x' | 'oney_6x' | 'oney_10x' | 'oney_12x' | 'ovo' | 'oxxo' | 'paymaya' | 'paypal' | 'paypalpaylater' | 'pix' | 'rabbitlinepay' | 'razorpay' | 'scalapay' | 'sepa' | 'shopeepay' | 'singteldash' | 'sofort' | 'stripedd' | 'thaiqr' | 'touchngo' | 'truemoney' | 'trustly' | 'venmo' | 'waave' | 'wechat' | 'zippay'>");
+            localVarQueryParameters['method'] = ObjectSerializer.serialize(method, "Array<'afterpay' | 'alipay' | 'alipayhk' | 'applepay' | 'bacs' | 'banked' | 'becs' | 'bitpay' | 'boleto' | 'boost' | 'card' | 'cashapp' | 'chaseorbital' | 'clearpay' | 'click-to-pay' | 'dana' | 'dcb' | 'dlocal' | 'ebanx' | 'gcash' | 'giropay' | 'gocardless' | 'googlepay' | 'gopay' | 'grabpay' | 'ideal' | 'kakaopay' | 'klarna' | 'laybuy' | 'linkaja' | 'maybankqrpay' | 'multibanco' | 'oney_3x' | 'oney_4x' | 'oney_6x' | 'oney_10x' | 'oney_12x' | 'ovo' | 'oxxo' | 'payid' | 'paymaya' | 'paypal' | 'paypalpaylater' | 'payto' | 'venmo' | 'pix' | 'rabbitlinepay' | 'scalapay' | 'sepa' | 'shopeepay' | 'singteldash' | 'sofort' | 'stripedd' | 'thaiqr' | 'touchngo' | 'truemoney' | 'trustly' | 'trustlyeurope' | 'givingblock' | 'wechat' | 'zippay' | 'bancontact' | 'eps' | 'linepay' | 'razorpay' | 'multipago' | 'waave' | 'smartpay' | 'vipps'>");
         }
 
         if (paymentMethodId !== undefined) {
@@ -576,8 +649,8 @@ export class TransactionsApi {
         };
 
         let authenticationPromise = Promise.resolve();
-        if (this.authentications.BearerAuth.accessToken) {
-            authenticationPromise = authenticationPromise.then(() => this.authentications.BearerAuth.applyToRequest(localVarRequestOptions));
+        if (this.authentications.bearerAuth.accessToken) {
+            authenticationPromise = authenticationPromise.then(() => this.authentications.bearerAuth.applyToRequest(localVarRequestOptions));
         }
         authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
 
@@ -650,8 +723,8 @@ export class TransactionsApi {
         };
 
         let authenticationPromise = Promise.resolve();
-        if (this.authentications.BearerAuth.accessToken) {
-            authenticationPromise = authenticationPromise.then(() => this.authentications.BearerAuth.applyToRequest(localVarRequestOptions));
+        if (this.authentications.bearerAuth.accessToken) {
+            authenticationPromise = authenticationPromise.then(() => this.authentications.bearerAuth.applyToRequest(localVarRequestOptions));
         }
         authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
 
@@ -719,8 +792,8 @@ export class TransactionsApi {
         };
 
         let authenticationPromise = Promise.resolve();
-        if (this.authentications.BearerAuth.accessToken) {
-            authenticationPromise = authenticationPromise.then(() => this.authentications.BearerAuth.applyToRequest(localVarRequestOptions));
+        if (this.authentications.bearerAuth.accessToken) {
+            authenticationPromise = authenticationPromise.then(() => this.authentications.bearerAuth.applyToRequest(localVarRequestOptions));
         }
         authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
 
@@ -757,8 +830,9 @@ export class TransactionsApi {
      * Refunds a transaction fully across all instruments.
      * @summary Refund all instruments in a transaction
      * @param transactionId The ID for the transaction to get the information for.
+     * @param transactionRefundAllRequest 
      */
-    public async refundAll (transactionId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Refunds;  }> {
+    public async refundAll (transactionId: string, transactionRefundAllRequest?: TransactionRefundAllRequest, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Refunds;  }> {
         const localVarPath = this.basePath + '/transactions/{transaction_id}/refunds/all'
             .replace('{' + 'transaction_id' + '}', encodeURIComponent(String(transactionId)));
         let localVarQueryParameters: any = {};
@@ -788,11 +862,12 @@ export class TransactionsApi {
             uri: localVarPath,
             useQuerystring: this._useQuerystring,
             json: true,
+            body: ObjectSerializer.serialize(transactionRefundAllRequest, "TransactionRefundAllRequest")
         };
 
         let authenticationPromise = Promise.resolve();
-        if (this.authentications.BearerAuth.accessToken) {
-            authenticationPromise = authenticationPromise.then(() => this.authentications.BearerAuth.applyToRequest(localVarRequestOptions));
+        if (this.authentications.bearerAuth.accessToken) {
+            authenticationPromise = authenticationPromise.then(() => this.authentications.bearerAuth.applyToRequest(localVarRequestOptions));
         }
         authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
 
@@ -863,8 +938,8 @@ export class TransactionsApi {
         };
 
         let authenticationPromise = Promise.resolve();
-        if (this.authentications.BearerAuth.accessToken) {
-            authenticationPromise = authenticationPromise.then(() => this.authentications.BearerAuth.applyToRequest(localVarRequestOptions));
+        if (this.authentications.bearerAuth.accessToken) {
+            authenticationPromise = authenticationPromise.then(() => this.authentications.bearerAuth.applyToRequest(localVarRequestOptions));
         }
         authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
 

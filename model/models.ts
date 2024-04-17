@@ -84,22 +84,19 @@ export * from './digitalWalletApplePayTokenDecryptedContext';
 export * from './digitalWalletClickToPayFields';
 export * from './digitalWalletClickToPayTokenDecrypted';
 export * from './digitalWalletClickToPayTokenDecryptedContext';
+export * from './digitalWalletDomain';
 export * from './digitalWalletGooglePayTokenDecrypted';
 export * from './digitalWalletGooglePayTokenDecryptedContext';
 export * from './digitalWalletRequest';
 export * from './digitalWalletUpdate';
 export * from './digitalWallets';
 export * from './error400BadRequest';
-export * from './error400IncorrectJson';
-export * from './error400InvalidCredentials';
 export * from './error401Unauthorized';
 export * from './error403Forbidden';
 export * from './error404NotFound';
-export * from './error404PendingCreation';
 export * from './error409DuplicateRecord';
 export * from './error429TooManyRequests';
 export * from './errorDetail';
-export * from './errorGeneric';
 export * from './giftCard';
 export * from './giftCardBalanceNewRequest';
 export * from './giftCardBalanceRequest';
@@ -139,6 +136,8 @@ export * from './merchantAccountUpdate';
 export * from './merchantAccounts';
 export * from './merchantProfile';
 export * from './merchantProfileScheme';
+export * from './merchantProfileSchemeSummary';
+export * from './merchantProfileSummary';
 export * from './networkToken';
 export * from './networkTokenCryptogramProvisionFailed';
 export * from './networkTokenCryptogramProvisionFailedContext';
@@ -259,6 +258,7 @@ export * from './transactionHistoryEvent';
 export * from './transactionHistoryEvents';
 export * from './transactionPaymentMethodRequest';
 export * from './transactionRedirectRequest';
+export * from './transactionRefundAllRequest';
 export * from './transactionRefundRequest';
 export * from './transactionRequest';
 export * from './transactionStatusSummary';
@@ -367,22 +367,19 @@ import { DigitalWalletApplePayTokenDecryptedContext } from './digitalWalletApple
 import { DigitalWalletClickToPayFields } from './digitalWalletClickToPayFields';
 import { DigitalWalletClickToPayTokenDecrypted } from './digitalWalletClickToPayTokenDecrypted';
 import { DigitalWalletClickToPayTokenDecryptedContext } from './digitalWalletClickToPayTokenDecryptedContext';
+import { DigitalWalletDomain } from './digitalWalletDomain';
 import { DigitalWalletGooglePayTokenDecrypted } from './digitalWalletGooglePayTokenDecrypted';
 import { DigitalWalletGooglePayTokenDecryptedContext } from './digitalWalletGooglePayTokenDecryptedContext';
 import { DigitalWalletRequest } from './digitalWalletRequest';
 import { DigitalWalletUpdate } from './digitalWalletUpdate';
 import { DigitalWallets } from './digitalWallets';
 import { Error400BadRequest } from './error400BadRequest';
-import { Error400IncorrectJson } from './error400IncorrectJson';
-import { Error400InvalidCredentials } from './error400InvalidCredentials';
 import { Error401Unauthorized } from './error401Unauthorized';
 import { Error403Forbidden } from './error403Forbidden';
 import { Error404NotFound } from './error404NotFound';
-import { Error404PendingCreation } from './error404PendingCreation';
 import { Error409DuplicateRecord } from './error409DuplicateRecord';
 import { Error429TooManyRequests } from './error429TooManyRequests';
 import { ErrorDetail } from './errorDetail';
-import { ErrorGeneric } from './errorGeneric';
 import { GiftCard } from './giftCard';
 import { GiftCardBalanceNewRequest } from './giftCardBalanceNewRequest';
 import { GiftCardBalanceRequest } from './giftCardBalanceRequest';
@@ -422,6 +419,8 @@ import { MerchantAccountUpdate } from './merchantAccountUpdate';
 import { MerchantAccounts } from './merchantAccounts';
 import { MerchantProfile } from './merchantProfile';
 import { MerchantProfileScheme } from './merchantProfileScheme';
+import { MerchantProfileSchemeSummary } from './merchantProfileSchemeSummary';
+import { MerchantProfileSummary } from './merchantProfileSummary';
 import { NetworkToken } from './networkToken';
 import { NetworkTokenCryptogramProvisionFailed } from './networkTokenCryptogramProvisionFailed';
 import { NetworkTokenCryptogramProvisionFailedContext } from './networkTokenCryptogramProvisionFailedContext';
@@ -542,6 +541,7 @@ import { TransactionHistoryEvent } from './transactionHistoryEvent';
 import { TransactionHistoryEvents } from './transactionHistoryEvents';
 import { TransactionPaymentMethodRequest } from './transactionPaymentMethodRequest';
 import { TransactionRedirectRequest } from './transactionRedirectRequest';
+import { TransactionRefundAllRequest } from './transactionRefundAllRequest';
 import { TransactionRefundRequest } from './transactionRefundRequest';
 import { TransactionRequest } from './transactionRequest';
 import { TransactionStatusSummary } from './transactionStatusSummary';
@@ -627,12 +627,6 @@ let enumsMap: {[index: string]: any} = {
         "Error400BadRequest.TypeEnum": Error400BadRequest.TypeEnum,
         "Error400BadRequest.CodeEnum": Error400BadRequest.CodeEnum,
         "Error400BadRequest.StatusEnum": Error400BadRequest.StatusEnum,
-        "Error400IncorrectJson.TypeEnum": Error400IncorrectJson.TypeEnum,
-        "Error400IncorrectJson.CodeEnum": Error400IncorrectJson.CodeEnum,
-        "Error400IncorrectJson.StatusEnum": Error400IncorrectJson.StatusEnum,
-        "Error400InvalidCredentials.TypeEnum": Error400InvalidCredentials.TypeEnum,
-        "Error400InvalidCredentials.CodeEnum": Error400InvalidCredentials.CodeEnum,
-        "Error400InvalidCredentials.StatusEnum": Error400InvalidCredentials.StatusEnum,
         "Error401Unauthorized.TypeEnum": Error401Unauthorized.TypeEnum,
         "Error401Unauthorized.CodeEnum": Error401Unauthorized.CodeEnum,
         "Error401Unauthorized.StatusEnum": Error401Unauthorized.StatusEnum,
@@ -644,11 +638,6 @@ let enumsMap: {[index: string]: any} = {
         "Error404NotFound.TypeEnum": Error404NotFound.TypeEnum,
         "Error404NotFound.CodeEnum": Error404NotFound.CodeEnum,
         "Error404NotFound.StatusEnum": Error404NotFound.StatusEnum,
-        "Error404NotFound.MessageEnum": Error404NotFound.MessageEnum,
-        "Error404PendingCreation.TypeEnum": Error404PendingCreation.TypeEnum,
-        "Error404PendingCreation.CodeEnum": Error404PendingCreation.CodeEnum,
-        "Error404PendingCreation.StatusEnum": Error404PendingCreation.StatusEnum,
-        "Error404PendingCreation.MessageEnum": Error404PendingCreation.MessageEnum,
         "Error409DuplicateRecord.TypeEnum": Error409DuplicateRecord.TypeEnum,
         "Error409DuplicateRecord.CodeEnum": Error409DuplicateRecord.CodeEnum,
         "Error409DuplicateRecord.StatusEnum": Error409DuplicateRecord.StatusEnum,
@@ -656,7 +645,6 @@ let enumsMap: {[index: string]: any} = {
         "Error429TooManyRequests.CodeEnum": Error429TooManyRequests.CodeEnum,
         "Error429TooManyRequests.StatusEnum": Error429TooManyRequests.StatusEnum,
         "ErrorDetail.LocationEnum": ErrorDetail.LocationEnum,
-        "ErrorGeneric.TypeEnum": ErrorGeneric.TypeEnum,
         "GiftCard.TypeEnum": GiftCard.TypeEnum,
         "GiftCardRedemption.TypeEnum": GiftCardRedemption.TypeEnum,
         "GiftCardRedemption.StatusEnum": GiftCardRedemption.StatusEnum,
@@ -790,9 +778,13 @@ let enumsMap: {[index: string]: any} = {
         "TaxId.KindEnum": TaxId.KindEnum,
         "ThreeDSecureAuthenticationRequestEvent.TypeEnum": ThreeDSecureAuthenticationRequestEvent.TypeEnum,
         "ThreeDSecureAuthenticationRequestEvent.NameEnum": ThreeDSecureAuthenticationRequestEvent.NameEnum,
+        "ThreeDSecureData.SchemeEnum": ThreeDSecureData.SchemeEnum,
+        "ThreeDSecureDataV1.SchemeEnum": ThreeDSecureDataV1.SchemeEnum,
         "ThreeDSecureDataV1V2.DirectoryResponseEnum": ThreeDSecureDataV1V2.DirectoryResponseEnum,
+        "ThreeDSecureDataV1V2.SchemeEnum": ThreeDSecureDataV1V2.SchemeEnum,
         "ThreeDSecureDataV1V2.AuthenticationResponseEnum": ThreeDSecureDataV1V2.AuthenticationResponseEnum,
         "ThreeDSecureDataV2.DirectoryResponseEnum": ThreeDSecureDataV2.DirectoryResponseEnum,
+        "ThreeDSecureDataV2.SchemeEnum": ThreeDSecureDataV2.SchemeEnum,
         "ThreeDSecureDataV2.AuthenticationResponseEnum": ThreeDSecureDataV2.AuthenticationResponseEnum,
         "ThreeDSecureDataV2AllOf.AuthenticationResponseEnum": ThreeDSecureDataV2AllOf.AuthenticationResponseEnum,
         "ThreeDSecureDataV2AllOf.DirectoryResponseEnum": ThreeDSecureDataV2AllOf.DirectoryResponseEnum,
@@ -813,6 +805,7 @@ let enumsMap: {[index: string]: any} = {
         "Transaction.TypeEnum": Transaction.TypeEnum,
         "Transaction.AvsResponseCodeEnum": Transaction.AvsResponseCodeEnum,
         "Transaction.CvvResponseCodeEnum": Transaction.CvvResponseCodeEnum,
+        "Transaction.InstrumentTypeEnum": Transaction.InstrumentTypeEnum,
         "Transaction.IntentEnum": Transaction.IntentEnum,
         "Transaction.IntentOutcomeEnum": Transaction.IntentOutcomeEnum,
         "Transaction.MethodEnum": Transaction.MethodEnum,
@@ -830,6 +823,7 @@ let enumsMap: {[index: string]: any} = {
         "TransactionStatusSummary.TypeEnum": TransactionStatusSummary.TypeEnum,
         "TransactionStatusSummary.StatusEnum": TransactionStatusSummary.StatusEnum,
         "TransactionSummary.TypeEnum": TransactionSummary.TypeEnum,
+        "TransactionSummary.InstrumentTypeEnum": TransactionSummary.InstrumentTypeEnum,
         "TransactionSummary.IntentEnum": TransactionSummary.IntentEnum,
         "TransactionSummary.MethodEnum": TransactionSummary.MethodEnum,
         "TransactionSummary.StatusEnum": TransactionSummary.StatusEnum,
@@ -921,22 +915,19 @@ let typeMap: {[index: string]: any} = {
     "DigitalWalletClickToPayFields": DigitalWalletClickToPayFields,
     "DigitalWalletClickToPayTokenDecrypted": DigitalWalletClickToPayTokenDecrypted,
     "DigitalWalletClickToPayTokenDecryptedContext": DigitalWalletClickToPayTokenDecryptedContext,
+    "DigitalWalletDomain": DigitalWalletDomain,
     "DigitalWalletGooglePayTokenDecrypted": DigitalWalletGooglePayTokenDecrypted,
     "DigitalWalletGooglePayTokenDecryptedContext": DigitalWalletGooglePayTokenDecryptedContext,
     "DigitalWalletRequest": DigitalWalletRequest,
     "DigitalWalletUpdate": DigitalWalletUpdate,
     "DigitalWallets": DigitalWallets,
     "Error400BadRequest": Error400BadRequest,
-    "Error400IncorrectJson": Error400IncorrectJson,
-    "Error400InvalidCredentials": Error400InvalidCredentials,
     "Error401Unauthorized": Error401Unauthorized,
     "Error403Forbidden": Error403Forbidden,
     "Error404NotFound": Error404NotFound,
-    "Error404PendingCreation": Error404PendingCreation,
     "Error409DuplicateRecord": Error409DuplicateRecord,
     "Error429TooManyRequests": Error429TooManyRequests,
     "ErrorDetail": ErrorDetail,
-    "ErrorGeneric": ErrorGeneric,
     "GiftCard": GiftCard,
     "GiftCardBalanceNewRequest": GiftCardBalanceNewRequest,
     "GiftCardBalanceRequest": GiftCardBalanceRequest,
@@ -976,6 +967,8 @@ let typeMap: {[index: string]: any} = {
     "MerchantAccounts": MerchantAccounts,
     "MerchantProfile": MerchantProfile,
     "MerchantProfileScheme": MerchantProfileScheme,
+    "MerchantProfileSchemeSummary": MerchantProfileSchemeSummary,
+    "MerchantProfileSummary": MerchantProfileSummary,
     "NetworkToken": NetworkToken,
     "NetworkTokenCryptogramProvisionFailed": NetworkTokenCryptogramProvisionFailed,
     "NetworkTokenCryptogramProvisionFailedContext": NetworkTokenCryptogramProvisionFailedContext,
@@ -1096,6 +1089,7 @@ let typeMap: {[index: string]: any} = {
     "TransactionHistoryEvents": TransactionHistoryEvents,
     "TransactionPaymentMethodRequest": TransactionPaymentMethodRequest,
     "TransactionRedirectRequest": TransactionRedirectRequest,
+    "TransactionRefundAllRequest": TransactionRefundAllRequest,
     "TransactionRefundRequest": TransactionRefundRequest,
     "TransactionRequest": TransactionRequest,
     "TransactionStatusSummary": TransactionStatusSummary,

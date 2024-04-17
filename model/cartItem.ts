@@ -134,6 +134,7 @@ export namespace CartItem {
         Digital = <any> 'digital',
         GiftCard = <any> 'gift_card',
         StoreCredit = <any> 'store_credit',
-        Surcharge = <any> 'surcharge'
+        Surcharge = <any> 'surcharge',
+        Null = <any> 'null'
     }
 }

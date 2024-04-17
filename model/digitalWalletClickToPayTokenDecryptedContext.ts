@@ -43,19 +43,19 @@ export class DigitalWalletClickToPayTokenDecryptedContext {
     /**
     * First six digits of underlying card.
     */
-    'cardBin'?: string;
+    'cardBin'?: string | null;
     /**
     * Last four digits of underlying card.
     */
-    'cardLastFour'?: string;
+    'cardLastFour'?: string | null;
     /**
     * Expiration date of underlying card.
     */
-    'cardExpirationDate'?: string;
+    'cardExpirationDate'?: string | null;
     /**
     * Card type.
     */
-    'cardType'?: string;
+    'cardType'?: string | null;
     /**
     * Address line 1.
     */

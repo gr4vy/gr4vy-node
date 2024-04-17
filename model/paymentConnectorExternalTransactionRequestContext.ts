@@ -56,6 +56,14 @@ export class PaymentConnectorExternalTransactionRequestContext {
     * The endpoint for the request.
     */
     'url'?: string | null;
+    /**
+    * The ID of the refund, in case this links to a refund.
+    */
+    'refundId'?: string | null;
+    /**
+    * The external ID of the refund.
+    */
+    'refundXid'?: string | null;
 
     static discriminator: string | undefined = undefined;
 
@@ -108,6 +116,16 @@ export class PaymentConnectorExternalTransactionRequestContext {
         {
             "name": "url",
             "baseName": "url",
+            "type": "string"
+        },
+        {
+            "name": "refundId",
+            "baseName": "refund_id",
+            "type": "string"
+        },
+        {
+            "name": "refundXid",
+            "baseName": "refund_xid",
             "type": "string"
         }    ];
 

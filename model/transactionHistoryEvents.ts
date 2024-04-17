@@ -11,39 +11,7 @@
  */
 
 import { RequestFile } from './models';
-import { AntiFraudDecisionErrorEvent } from './antiFraudDecisionErrorEvent';
-import { AntiFraudDecisionEvent } from './antiFraudDecisionEvent';
-import { AntiFraudDecisionSkippedEvent } from './antiFraudDecisionSkippedEvent';
-import { AntiFraudTransactionStatusUpdateErrorEvent } from './antiFraudTransactionStatusUpdateErrorEvent';
-import { AntiFraudTransactionStatusUpdateEvent } from './antiFraudTransactionStatusUpdateEvent';
-import { AntiFraudWebhookEvent } from './antiFraudWebhookEvent';
-import { BINLookupRequest } from './bINLookupRequest';
-import { DigitalWalletApplePayTokenDecrypted } from './digitalWalletApplePayTokenDecrypted';
-import { DigitalWalletClickToPayTokenDecrypted } from './digitalWalletClickToPayTokenDecrypted';
-import { DigitalWalletGooglePayTokenDecrypted } from './digitalWalletGooglePayTokenDecrypted';
-import { GiftCardRedemptionFailed } from './giftCardRedemptionFailed';
-import { GiftCardRedemptionSucceeded } from './giftCardRedemptionSucceeded';
-import { GiftCardRefundFailed } from './giftCardRefundFailed';
-import { GiftCardRefundSucceeded } from './giftCardRefundSucceeded';
-import { NetworkTokenCryptogramProvisionFailed } from './networkTokenCryptogramProvisionFailed';
-import { NetworkTokenCryptogramProvisionSucceeded } from './networkTokenCryptogramProvisionSucceeded';
-import { NetworkTokenProvisionFailed } from './networkTokenProvisionFailed';
-import { NetworkTokenProvisionSucceeded } from './networkTokenProvisionSucceeded';
-import { PaymentConnectorExternalTransactionRequest } from './paymentConnectorExternalTransactionRequest';
-import { PaymentConnectorResponseTransactionAuthorizationFailedEvent } from './paymentConnectorResponseTransactionAuthorizationFailedEvent';
-import { PaymentConnectorResponseTransactionAuthorizationSucceededEvent } from './paymentConnectorResponseTransactionAuthorizationSucceededEvent';
-import { PaymentConnectorResponseTransactionCaptureDeclinedEvent } from './paymentConnectorResponseTransactionCaptureDeclinedEvent';
-import { PaymentConnectorResponseTransactionCaptureFailedEvent } from './paymentConnectorResponseTransactionCaptureFailedEvent';
-import { PaymentConnectorResponseTransactionCaptureSucceededEvent } from './paymentConnectorResponseTransactionCaptureSucceededEvent';
-import { PaymentConnectorResponseTransactionDeclinedEvent } from './paymentConnectorResponseTransactionDeclinedEvent';
-import { PaymentConnectorResponseTransactionVoidDeclinedEvent } from './paymentConnectorResponseTransactionVoidDeclinedEvent';
-import { PaymentConnectorResponseTransactionVoidFailedEvent } from './paymentConnectorResponseTransactionVoidFailedEvent';
-import { PaymentConnectorResponseTransactionVoidSucceededEvent } from './paymentConnectorResponseTransactionVoidSucceededEvent';
-import { ThreeDSecureAuthenticationRequestEvent } from './threeDSecureAuthenticationRequestEvent';
-import { ThreeDSecurePreparationRequestEvent } from './threeDSecurePreparationRequestEvent';
-import { ThreeDSecureRequestErrorEvent } from './threeDSecureRequestErrorEvent';
-import { ThreeDSecureResultRequestEvent } from './threeDSecureResultRequestEvent';
-import { ThreeDSecureSuccessEvent } from './threeDSecureSuccessEvent';
+import { TransactionHistoryEvent } from './transactionHistoryEvent';
 
 /**
 * A list of transaction history events.
@@ -52,7 +20,7 @@ export class TransactionHistoryEvents {
     /**
     * A list of events related to processing a transaction.
     */
-    'items'?: Array<BINLookupRequest | ThreeDSecureAuthenticationRequestEvent | ThreeDSecureSuccessEvent | ThreeDSecureRequestErrorEvent | ThreeDSecurePreparationRequestEvent | ThreeDSecureResultRequestEvent | AntiFraudDecisionEvent | AntiFraudDecisionErrorEvent | AntiFraudDecisionSkippedEvent | AntiFraudTransactionStatusUpdateEvent | AntiFraudTransactionStatusUpdateErrorEvent | AntiFraudWebhookEvent | DigitalWalletApplePayTokenDecrypted | DigitalWalletClickToPayTokenDecrypted | DigitalWalletGooglePayTokenDecrypted | GiftCardRedemptionFailed | GiftCardRedemptionSucceeded | GiftCardRefundFailed | GiftCardRefundSucceeded | NetworkTokenCryptogramProvisionFailed | NetworkTokenCryptogramProvisionSucceeded | NetworkTokenProvisionFailed | NetworkTokenProvisionSucceeded | PaymentConnectorResponseTransactionAuthorizationSucceededEvent | PaymentConnectorResponseTransactionDeclinedEvent | PaymentConnectorResponseTransactionAuthorizationFailedEvent | PaymentConnectorResponseTransactionCaptureDeclinedEvent | PaymentConnectorResponseTransactionCaptureFailedEvent | PaymentConnectorResponseTransactionCaptureSucceededEvent | PaymentConnectorResponseTransactionVoidDeclinedEvent | PaymentConnectorResponseTransactionVoidFailedEvent | PaymentConnectorResponseTransactionVoidSucceededEvent | PaymentConnectorExternalTransactionRequest>;
+    'items'?: Array<TransactionHistoryEvent>;
     /**
     * The limit applied to request. This represents the number of items that are at maximum returned by this request.
     */
@@ -72,7 +40,7 @@ export class TransactionHistoryEvents {
         {
             "name": "items",
             "baseName": "items",
-            "type": "Array<BINLookupRequest | ThreeDSecureAuthenticationRequestEvent | ThreeDSecureSuccessEvent | ThreeDSecureRequestErrorEvent | ThreeDSecurePreparationRequestEvent | ThreeDSecureResultRequestEvent | AntiFraudDecisionEvent | AntiFraudDecisionErrorEvent | AntiFraudDecisionSkippedEvent | AntiFraudTransactionStatusUpdateEvent | AntiFraudTransactionStatusUpdateErrorEvent | AntiFraudWebhookEvent | DigitalWalletApplePayTokenDecrypted | DigitalWalletClickToPayTokenDecrypted | DigitalWalletGooglePayTokenDecrypted | GiftCardRedemptionFailed | GiftCardRedemptionSucceeded | GiftCardRefundFailed | GiftCardRefundSucceeded | NetworkTokenCryptogramProvisionFailed | NetworkTokenCryptogramProvisionSucceeded | NetworkTokenProvisionFailed | NetworkTokenProvisionSucceeded | PaymentConnectorResponseTransactionAuthorizationSucceededEvent | PaymentConnectorResponseTransactionDeclinedEvent | PaymentConnectorResponseTransactionAuthorizationFailedEvent | PaymentConnectorResponseTransactionCaptureDeclinedEvent | PaymentConnectorResponseTransactionCaptureFailedEvent | PaymentConnectorResponseTransactionCaptureSucceededEvent | PaymentConnectorResponseTransactionVoidDeclinedEvent | PaymentConnectorResponseTransactionVoidFailedEvent | PaymentConnectorResponseTransactionVoidSucceededEvent | PaymentConnectorExternalTransactionRequest>"
+            "type": "Array<TransactionHistoryEvent>"
         },
         {
             "name": "limit",

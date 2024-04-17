@@ -12,7 +12,7 @@
 
 import { RequestFile } from './models';
 import { GiftCardServiceFields } from './giftCardServiceFields';
-import { MerchantProfile } from './merchantProfile';
+import { MerchantProfileSummary } from './merchantProfileSummary';
 
 /**
 * An active, configured payment service.
@@ -57,7 +57,7 @@ export class PaymentService {
     /**
     * An object containing a key for each supported card scheme (Amex, Discover, Mastercard and Visa), and for each key an object with the merchant profile for this service and the corresponding scheme.
     */
-    'merchantProfile'?: MerchantProfile | null;
+    'merchantProfile'?: MerchantProfileSummary | null;
     /**
     * The payment method that this service handles.
     */
@@ -146,7 +146,7 @@ export class PaymentService {
         {
             "name": "merchantProfile",
             "baseName": "merchant_profile",
-            "type": "MerchantProfile"
+            "type": "MerchantProfileSummary"
         },
         {
             "name": "method",
@@ -209,20 +209,20 @@ export namespace PaymentService {
         Alipayhk = <any> 'alipayhk',
         Applepay = <any> 'applepay',
         Bacs = <any> 'bacs',
-        Bancontact = <any> 'bancontact',
         Banked = <any> 'banked',
         Becs = <any> 'becs',
         Bitpay = <any> 'bitpay',
         Boleto = <any> 'boleto',
         Boost = <any> 'boost',
         Card = <any> 'card',
-        CheckoutSession = <any> 'checkout-session',
-        ClickToPay = <any> 'click-to-pay',
+        Cashapp = <any> 'cashapp',
+        Chaseorbital = <any> 'chaseorbital',
         Clearpay = <any> 'clearpay',
+        ClickToPay = <any> 'click-to-pay',
         Dana = <any> 'dana',
         Dcb = <any> 'dcb',
-        Eps = <any> 'eps',
-        Fortumo = <any> 'fortumo',
+        Dlocal = <any> 'dlocal',
+        Ebanx = <any> 'ebanx',
         Gcash = <any> 'gcash',
         Giropay = <any> 'giropay',
         Gocardless = <any> 'gocardless',
@@ -230,11 +230,9 @@ export namespace PaymentService {
         Gopay = <any> 'gopay',
         Grabpay = <any> 'grabpay',
         Ideal = <any> 'ideal',
-        Id = <any> 'id',
         Kakaopay = <any> 'kakaopay',
         Klarna = <any> 'klarna',
         Laybuy = <any> 'laybuy',
-        Linepay = <any> 'linepay',
         Linkaja = <any> 'linkaja',
         Maybankqrpay = <any> 'maybankqrpay',
         Multibanco = <any> 'multibanco',
@@ -245,12 +243,14 @@ export namespace PaymentService {
         Oney12x = <any> 'oney_12x',
         Ovo = <any> 'ovo',
         Oxxo = <any> 'oxxo',
+        Payid = <any> 'payid',
         Paymaya = <any> 'paymaya',
         Paypal = <any> 'paypal',
         Paypalpaylater = <any> 'paypalpaylater',
+        Payto = <any> 'payto',
+        Venmo = <any> 'venmo',
         Pix = <any> 'pix',
         Rabbitlinepay = <any> 'rabbitlinepay',
-        Razorpay = <any> 'razorpay',
         Scalapay = <any> 'scalapay',
         Sepa = <any> 'sepa',
         Shopeepay = <any> 'shopeepay',
@@ -261,10 +261,18 @@ export namespace PaymentService {
         Touchngo = <any> 'touchngo',
         Truemoney = <any> 'truemoney',
         Trustly = <any> 'trustly',
-        Venmo = <any> 'venmo',
-        Waave = <any> 'waave',
+        Trustlyeurope = <any> 'trustlyeurope',
+        Givingblock = <any> 'givingblock',
         Wechat = <any> 'wechat',
-        Zippay = <any> 'zippay'
+        Zippay = <any> 'zippay',
+        Bancontact = <any> 'bancontact',
+        Eps = <any> 'eps',
+        Linepay = <any> 'linepay',
+        Razorpay = <any> 'razorpay',
+        Multipago = <any> 'multipago',
+        Waave = <any> 'waave',
+        Smartpay = <any> 'smartpay',
+        Vipps = <any> 'vipps'
     }
     export enum StatusEnum {
         Pending = <any> 'pending',

@@ -169,12 +169,15 @@ export namespace MerchantAccountCreate {
         Jcb = <any> 'jcb',
         Maestro = <any> 'maestro',
         Mastercard = <any> 'mastercard',
+        Mir = <any> 'mir',
         Nyce = <any> 'nyce',
         Other = <any> 'other',
         Pulse = <any> 'pulse',
         Rupay = <any> 'rupay',
         Star = <any> 'star',
+        Uatp = <any> 'uatp',
         Unionpay = <any> 'unionpay',
-        Visa = <any> 'visa'
+        Visa = <any> 'visa',
+        Null = <any> 'null'
     }
 }

@@ -15,7 +15,7 @@ import { RequestFile } from './models';
 /**
 * Merchant profile for a specific scheme.
 */
-export class MerchantProfileScheme {
+export class MerchantProfileSchemeSummary {
     /**
     * Acquirer bin to use when calling 3DS through this scheme.
     */
@@ -40,6 +40,10 @@ export class MerchantProfileScheme {
     * Merchant category code to use when calling 3DS through this scheme.
     */
     'merchantCategoryCode'?: string;
+    /**
+    * The date and time when this profile was created.
+    */
+    'createdAt'?: Date;
 
     static discriminator: string | undefined = undefined;
 
@@ -73,10 +77,15 @@ export class MerchantProfileScheme {
             "name": "merchantCategoryCode",
             "baseName": "merchant_category_code",
             "type": "string"
+        },
+        {
+            "name": "createdAt",
+            "baseName": "created_at",
+            "type": "Date"
         }    ];
 
     static getAttributeTypeMap() {
-        return MerchantProfileScheme.attributeTypeMap;
+        return MerchantProfileSchemeSummary.attributeTypeMap;
     }
 }
 

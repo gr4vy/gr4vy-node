@@ -33,6 +33,10 @@ export class BINLookupRequestContext {
     */
     'bin'?: string | null;
     /**
+    * The instrument type used to lookup BIN details.
+    */
+    'instrument'?: string | null;
+    /**
     * The type of card, i.e. credit or debit, from the lookup response.
     */
     'type'?: string | null;
@@ -49,13 +53,9 @@ export class BINLookupRequestContext {
     */
     'countryCode'?: string | null;
     /**
-    * Whether Account Updater is enabled for this card.
-    */
-    'accountUpdater'?: boolean | null;
-    /**
     * Whether the issuing bank supports network tokenization for this card.
     */
-    'issuerTokenization'?: boolean | null;
+    'supportsNetworkTokens'?: boolean | null;
 
     static discriminator: string | undefined = undefined;
 
@@ -81,6 +81,11 @@ export class BINLookupRequestContext {
             "type": "string"
         },
         {
+            "name": "instrument",
+            "baseName": "instrument",
+            "type": "string"
+        },
+        {
             "name": "type",
             "baseName": "type",
             "type": "string"
@@ -101,13 +106,8 @@ export class BINLookupRequestContext {
             "type": "string"
         },
         {
-            "name": "accountUpdater",
-            "baseName": "account_updater",
-            "type": "boolean"
-        },
-        {
-            "name": "issuerTokenization",
-            "baseName": "issuer_tokenization",
+            "name": "supportsNetworkTokens",
+            "baseName": "supports_network_tokens",
             "type": "boolean"
         }    ];
 
@@ -133,13 +133,16 @@ export namespace BINLookupRequestContext {
         Jcb = <any> 'jcb',
         Maestro = <any> 'maestro',
         Mastercard = <any> 'mastercard',
+        Mir = <any> 'mir',
         Nyce = <any> 'nyce',
         Other = <any> 'other',
         Pulse = <any> 'pulse',
         Rupay = <any> 'rupay',
         Star = <any> 'star',
+        Uatp = <any> 'uatp',
         Unionpay = <any> 'unionpay',
-        Visa = <any> 'visa'
+        Visa = <any> 'visa',
+        Null = <any> 'null'
     }
     export enum AdditionalSchemesEnum {
         Accel = <any> 'accel',
@@ -157,12 +160,15 @@ export namespace BINLookupRequestContext {
         Jcb = <any> 'jcb',
         Maestro = <any> 'maestro',
         Mastercard = <any> 'mastercard',
+        Mir = <any> 'mir',
         Nyce = <any> 'nyce',
         Other = <any> 'other',
         Pulse = <any> 'pulse',
         Rupay = <any> 'rupay',
         Star = <any> 'star',
+        Uatp = <any> 'uatp',
         Unionpay = <any> 'unionpay',
-        Visa = <any> 'visa'
+        Visa = <any> 'visa',
+        Null = <any> 'null'
     }
 }

@@ -20,7 +20,6 @@ import { Error400BadRequest } from '../model/error400BadRequest';
 import { Error401Unauthorized } from '../model/error401Unauthorized';
 import { Error403Forbidden } from '../model/error403Forbidden';
 import { Error404NotFound } from '../model/error404NotFound';
-import { ErrorGeneric } from '../model/errorGeneric';
 import { IssueCryptogramRequest } from '../model/issueCryptogramRequest';
 import { NetworkToken } from '../model/networkToken';
 import { NetworkTokenRequest } from '../model/networkTokenRequest';
@@ -50,7 +49,7 @@ export class TokensApi {
 
     protected authentications = {
         'default': <Authentication>new VoidAuth(),
-        'BearerAuth': new HttpBearerAuth(),
+        'bearerAuth': new HttpBearerAuth(),
     }
 
     protected interceptors: Interceptor[] = [];
@@ -97,7 +96,7 @@ export class TokensApi {
     }
 
     set accessToken(accessToken: string | (() => string)) {
-        this.authentications.BearerAuth.accessToken = accessToken;
+        this.authentications.bearerAuth.accessToken = accessToken;
     }
 
     public addInterceptor(interceptor: Interceptor) {
@@ -149,8 +148,8 @@ export class TokensApi {
         };
 
         let authenticationPromise = Promise.resolve();
-        if (this.authentications.BearerAuth.accessToken) {
-            authenticationPromise = authenticationPromise.then(() => this.authentications.BearerAuth.applyToRequest(localVarRequestOptions));
+        if (this.authentications.bearerAuth.accessToken) {
+            authenticationPromise = authenticationPromise.then(() => this.authentications.bearerAuth.applyToRequest(localVarRequestOptions));
         }
         authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
 
@@ -227,8 +226,8 @@ export class TokensApi {
         };
 
         let authenticationPromise = Promise.resolve();
-        if (this.authentications.BearerAuth.accessToken) {
-            authenticationPromise = authenticationPromise.then(() => this.authentications.BearerAuth.applyToRequest(localVarRequestOptions));
+        if (this.authentications.bearerAuth.accessToken) {
+            authenticationPromise = authenticationPromise.then(() => this.authentications.bearerAuth.applyToRequest(localVarRequestOptions));
         }
         authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
 
@@ -303,8 +302,8 @@ export class TokensApi {
         };
 
         let authenticationPromise = Promise.resolve();
-        if (this.authentications.BearerAuth.accessToken) {
-            authenticationPromise = authenticationPromise.then(() => this.authentications.BearerAuth.applyToRequest(localVarRequestOptions));
+        if (this.authentications.bearerAuth.accessToken) {
+            authenticationPromise = authenticationPromise.then(() => this.authentications.bearerAuth.applyToRequest(localVarRequestOptions));
         }
         authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
 
@@ -380,8 +379,8 @@ export class TokensApi {
         };
 
         let authenticationPromise = Promise.resolve();
-        if (this.authentications.BearerAuth.accessToken) {
-            authenticationPromise = authenticationPromise.then(() => this.authentications.BearerAuth.applyToRequest(localVarRequestOptions));
+        if (this.authentications.bearerAuth.accessToken) {
+            authenticationPromise = authenticationPromise.then(() => this.authentications.bearerAuth.applyToRequest(localVarRequestOptions));
         }
         authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
 
@@ -461,8 +460,8 @@ export class TokensApi {
         };
 
         let authenticationPromise = Promise.resolve();
-        if (this.authentications.BearerAuth.accessToken) {
-            authenticationPromise = authenticationPromise.then(() => this.authentications.BearerAuth.applyToRequest(localVarRequestOptions));
+        if (this.authentications.bearerAuth.accessToken) {
+            authenticationPromise = authenticationPromise.then(() => this.authentications.bearerAuth.applyToRequest(localVarRequestOptions));
         }
         authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
 
@@ -535,8 +534,8 @@ export class TokensApi {
         };
 
         let authenticationPromise = Promise.resolve();
-        if (this.authentications.BearerAuth.accessToken) {
-            authenticationPromise = authenticationPromise.then(() => this.authentications.BearerAuth.applyToRequest(localVarRequestOptions));
+        if (this.authentications.bearerAuth.accessToken) {
+            authenticationPromise = authenticationPromise.then(() => this.authentications.bearerAuth.applyToRequest(localVarRequestOptions));
         }
         authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
 
@@ -609,8 +608,8 @@ export class TokensApi {
         };
 
         let authenticationPromise = Promise.resolve();
-        if (this.authentications.BearerAuth.accessToken) {
-            authenticationPromise = authenticationPromise.then(() => this.authentications.BearerAuth.applyToRequest(localVarRequestOptions));
+        if (this.authentications.bearerAuth.accessToken) {
+            authenticationPromise = authenticationPromise.then(() => this.authentications.bearerAuth.applyToRequest(localVarRequestOptions));
         }
         authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
 
@@ -688,8 +687,8 @@ export class TokensApi {
         };
 
         let authenticationPromise = Promise.resolve();
-        if (this.authentications.BearerAuth.accessToken) {
-            authenticationPromise = authenticationPromise.then(() => this.authentications.BearerAuth.applyToRequest(localVarRequestOptions));
+        if (this.authentications.bearerAuth.accessToken) {
+            authenticationPromise = authenticationPromise.then(() => this.authentications.bearerAuth.applyToRequest(localVarRequestOptions));
         }
         authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
 
@@ -767,8 +766,8 @@ export class TokensApi {
         };
 
         let authenticationPromise = Promise.resolve();
-        if (this.authentications.BearerAuth.accessToken) {
-            authenticationPromise = authenticationPromise.then(() => this.authentications.BearerAuth.applyToRequest(localVarRequestOptions));
+        if (this.authentications.bearerAuth.accessToken) {
+            authenticationPromise = authenticationPromise.then(() => this.authentications.bearerAuth.applyToRequest(localVarRequestOptions));
         }
         authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
 

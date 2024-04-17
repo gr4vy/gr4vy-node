@@ -15,10 +15,10 @@ import localVarRequest from 'request';
 import http from 'http';
 
 /* tslint:disable:no-unused-locals */
+import { Error400BadRequest } from '../model/error400BadRequest';
 import { Error401Unauthorized } from '../model/error401Unauthorized';
 import { Error404NotFound } from '../model/error404NotFound';
 import { Error409DuplicateRecord } from '../model/error409DuplicateRecord';
-import { ErrorGeneric } from '../model/errorGeneric';
 import { PaymentMethod } from '../model/paymentMethod';
 import { PaymentMethodRequest } from '../model/paymentMethodRequest';
 import { PaymentMethods } from '../model/paymentMethods';
@@ -45,7 +45,7 @@ export class PaymentMethodsApi {
 
     protected authentications = {
         'default': <Authentication>new VoidAuth(),
-        'BearerAuth': new HttpBearerAuth(),
+        'bearerAuth': new HttpBearerAuth(),
     }
 
     protected interceptors: Interceptor[] = [];
@@ -92,7 +92,7 @@ export class PaymentMethodsApi {
     }
 
     set accessToken(accessToken: string | (() => string)) {
-        this.authentications.BearerAuth.accessToken = accessToken;
+        this.authentications.bearerAuth.accessToken = accessToken;
     }
 
     public addInterceptor(interceptor: Interceptor) {
@@ -137,8 +137,8 @@ export class PaymentMethodsApi {
         };
 
         let authenticationPromise = Promise.resolve();
-        if (this.authentications.BearerAuth.accessToken) {
-            authenticationPromise = authenticationPromise.then(() => this.authentications.BearerAuth.applyToRequest(localVarRequestOptions));
+        if (this.authentications.bearerAuth.accessToken) {
+            authenticationPromise = authenticationPromise.then(() => this.authentications.bearerAuth.applyToRequest(localVarRequestOptions));
         }
         authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
 
@@ -208,8 +208,8 @@ export class PaymentMethodsApi {
         };
 
         let authenticationPromise = Promise.resolve();
-        if (this.authentications.BearerAuth.accessToken) {
-            authenticationPromise = authenticationPromise.then(() => this.authentications.BearerAuth.applyToRequest(localVarRequestOptions));
+        if (this.authentications.bearerAuth.accessToken) {
+            authenticationPromise = authenticationPromise.then(() => this.authentications.bearerAuth.applyToRequest(localVarRequestOptions));
         }
         authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
 
@@ -293,8 +293,8 @@ export class PaymentMethodsApi {
         };
 
         let authenticationPromise = Promise.resolve();
-        if (this.authentications.BearerAuth.accessToken) {
-            authenticationPromise = authenticationPromise.then(() => this.authentications.BearerAuth.applyToRequest(localVarRequestOptions));
+        if (this.authentications.bearerAuth.accessToken) {
+            authenticationPromise = authenticationPromise.then(() => this.authentications.bearerAuth.applyToRequest(localVarRequestOptions));
         }
         authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
 
@@ -333,10 +333,11 @@ export class PaymentMethodsApi {
      * @param buyerId Filters the results to only the items for which the &#x60;buyer&#x60; has an &#x60;id&#x60; that matches this value.
      * @param buyerExternalIdentifier Filters the results to only the items for which the &#x60;buyer&#x60; has an &#x60;external_identifier&#x60; that matches this value.
      * @param status Filters the results to only the payment methods for which the &#x60;status&#x60; matches with any of the provided status values.
+     * @param externalIdentifier Filters the results to only the items for which the resource has an &#x60;external_identifier&#x60; that matches this value.
      * @param limit Defines the maximum number of items to return for this request.
      * @param cursor A cursor that identifies the page of results to return. This is used to paginate the results of this API.  For the first page of results, this parameter can be left out. For additional pages, use the value returned by the API in the &#x60;next_cursor&#x60; field. Similarly the &#x60;previous_cursor&#x60; can be used to reverse backwards in the list.
      */
-    public async listPaymentMethods (buyerId?: string, buyerExternalIdentifier?: string, status?: Array<'processing' | 'buyer_approval_required' | 'succeeded' | 'failed'>, limit?: number, cursor?: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: PaymentMethods;  }> {
+    public async listPaymentMethods (buyerId?: string, buyerExternalIdentifier?: string, status?: Array<'processing' | 'buyer_approval_required' | 'succeeded' | 'failed'>, externalIdentifier?: string, limit?: number, cursor?: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: PaymentMethods;  }> {
         const localVarPath = this.basePath + '/payment-methods';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
@@ -361,6 +362,10 @@ export class PaymentMethodsApi {
             localVarQueryParameters['status'] = ObjectSerializer.serialize(status, "Array<'processing' | 'buyer_approval_required' | 'succeeded' | 'failed'>");
         }
 
+        if (externalIdentifier !== undefined) {
+            localVarQueryParameters['external_identifier'] = ObjectSerializer.serialize(externalIdentifier, "string");
+        }
+
         if (limit !== undefined) {
             localVarQueryParameters['limit'] = ObjectSerializer.serialize(limit, "number");
         }
@@ -383,8 +388,8 @@ export class PaymentMethodsApi {
         };
 
         let authenticationPromise = Promise.resolve();
-        if (this.authentications.BearerAuth.accessToken) {
-            authenticationPromise = authenticationPromise.then(() => this.authentications.BearerAuth.applyToRequest(localVarRequestOptions));
+        if (this.authentications.bearerAuth.accessToken) {
+            authenticationPromise = authenticationPromise.then(() => this.authentications.bearerAuth.applyToRequest(localVarRequestOptions));
         }
         authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
 
@@ -450,8 +455,8 @@ export class PaymentMethodsApi {
         };
 
         let authenticationPromise = Promise.resolve();
-        if (this.authentications.BearerAuth.accessToken) {
-            authenticationPromise = authenticationPromise.then(() => this.authentications.BearerAuth.applyToRequest(localVarRequestOptions));
+        if (this.authentications.bearerAuth.accessToken) {
+            authenticationPromise = authenticationPromise.then(() => this.authentications.bearerAuth.applyToRequest(localVarRequestOptions));
         }
         authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
 
