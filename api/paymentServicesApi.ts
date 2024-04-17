@@ -15,9 +15,9 @@ import localVarRequest from 'request';
 import http from 'http';
 
 /* tslint:disable:no-unused-locals */
+import { Error400BadRequest } from '../model/error400BadRequest';
 import { Error401Unauthorized } from '../model/error401Unauthorized';
 import { Error404NotFound } from '../model/error404NotFound';
-import { ErrorGeneric } from '../model/errorGeneric';
 import { PaymentService } from '../model/paymentService';
 import { PaymentServiceRequest } from '../model/paymentServiceRequest';
 import { PaymentServiceUpdate } from '../model/paymentServiceUpdate';
@@ -44,7 +44,7 @@ export class PaymentServicesApi {
 
     protected authentications = {
         'default': <Authentication>new VoidAuth(),
-        'BearerAuth': new HttpBearerAuth(),
+        'bearerAuth': new HttpBearerAuth(),
     }
 
     protected interceptors: Interceptor[] = [];
@@ -91,7 +91,7 @@ export class PaymentServicesApi {
     }
 
     set accessToken(accessToken: string | (() => string)) {
-        this.authentications.BearerAuth.accessToken = accessToken;
+        this.authentications.bearerAuth.accessToken = accessToken;
     }
 
     public addInterceptor(interceptor: Interceptor) {
@@ -136,8 +136,8 @@ export class PaymentServicesApi {
         };
 
         let authenticationPromise = Promise.resolve();
-        if (this.authentications.BearerAuth.accessToken) {
-            authenticationPromise = authenticationPromise.then(() => this.authentications.BearerAuth.applyToRequest(localVarRequestOptions));
+        if (this.authentications.bearerAuth.accessToken) {
+            authenticationPromise = authenticationPromise.then(() => this.authentications.bearerAuth.applyToRequest(localVarRequestOptions));
         }
         authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
 
@@ -207,8 +207,8 @@ export class PaymentServicesApi {
         };
 
         let authenticationPromise = Promise.resolve();
-        if (this.authentications.BearerAuth.accessToken) {
-            authenticationPromise = authenticationPromise.then(() => this.authentications.BearerAuth.applyToRequest(localVarRequestOptions));
+        if (this.authentications.bearerAuth.accessToken) {
+            authenticationPromise = authenticationPromise.then(() => this.authentications.bearerAuth.applyToRequest(localVarRequestOptions));
         }
         authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
 
@@ -249,7 +249,7 @@ export class PaymentServicesApi {
      * @param method Filters the results to only the items for which the &#x60;method&#x60; has been set to this value. For example &#x60;card&#x60;.
      * @param deleted Filters the results to only show items which have been deleted. By default, deleted items will not be returned.
      */
-    public async listPaymentServices (limit?: number, cursor?: string, method?: 'afterpay' | 'alipay' | 'alipayhk' | 'applepay' | 'bacs' | 'bancontact' | 'banked' | 'becs' | 'bitpay' | 'boleto' | 'boost' | 'card' | 'checkout-session' | 'click-to-pay' | 'clearpay' | 'dana' | 'dcb' | 'eps' | 'fortumo' | 'gcash' | 'giropay' | 'gocardless' | 'googlepay' | 'gopay' | 'grabpay' | 'ideal' | 'id' | 'kakaopay' | 'klarna' | 'laybuy' | 'linepay' | 'linkaja' | 'maybankqrpay' | 'multibanco' | 'oney_3x' | 'oney_4x' | 'oney_6x' | 'oney_10x' | 'oney_12x' | 'ovo' | 'oxxo' | 'paymaya' | 'paypal' | 'paypalpaylater' | 'pix' | 'rabbitlinepay' | 'razorpay' | 'scalapay' | 'sepa' | 'shopeepay' | 'singteldash' | 'sofort' | 'stripedd' | 'thaiqr' | 'touchngo' | 'truemoney' | 'trustly' | 'venmo' | 'waave' | 'wechat' | 'zippay', deleted?: boolean, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: PaymentServices;  }> {
+    public async listPaymentServices (limit?: number, cursor?: string, method?: 'afterpay' | 'alipay' | 'alipayhk' | 'applepay' | 'bacs' | 'banked' | 'becs' | 'bitpay' | 'boleto' | 'boost' | 'card' | 'cashapp' | 'chaseorbital' | 'clearpay' | 'click-to-pay' | 'dana' | 'dcb' | 'dlocal' | 'ebanx' | 'gcash' | 'giropay' | 'gocardless' | 'googlepay' | 'gopay' | 'grabpay' | 'ideal' | 'kakaopay' | 'klarna' | 'laybuy' | 'linkaja' | 'maybankqrpay' | 'multibanco' | 'oney_3x' | 'oney_4x' | 'oney_6x' | 'oney_10x' | 'oney_12x' | 'ovo' | 'oxxo' | 'payid' | 'paymaya' | 'paypal' | 'paypalpaylater' | 'payto' | 'venmo' | 'pix' | 'rabbitlinepay' | 'scalapay' | 'sepa' | 'shopeepay' | 'singteldash' | 'sofort' | 'stripedd' | 'thaiqr' | 'touchngo' | 'truemoney' | 'trustly' | 'trustlyeurope' | 'givingblock' | 'wechat' | 'zippay' | 'bancontact' | 'eps' | 'linepay' | 'razorpay' | 'multipago' | 'waave' | 'smartpay' | 'vipps', deleted?: boolean, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: PaymentServices;  }> {
         const localVarPath = this.basePath + '/payment-services';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
@@ -271,7 +271,7 @@ export class PaymentServicesApi {
         }
 
         if (method !== undefined) {
-            localVarQueryParameters['method'] = ObjectSerializer.serialize(method, "'afterpay' | 'alipay' | 'alipayhk' | 'applepay' | 'bacs' | 'bancontact' | 'banked' | 'becs' | 'bitpay' | 'boleto' | 'boost' | 'card' | 'checkout-session' | 'click-to-pay' | 'clearpay' | 'dana' | 'dcb' | 'eps' | 'fortumo' | 'gcash' | 'giropay' | 'gocardless' | 'googlepay' | 'gopay' | 'grabpay' | 'ideal' | 'id' | 'kakaopay' | 'klarna' | 'laybuy' | 'linepay' | 'linkaja' | 'maybankqrpay' | 'multibanco' | 'oney_3x' | 'oney_4x' | 'oney_6x' | 'oney_10x' | 'oney_12x' | 'ovo' | 'oxxo' | 'paymaya' | 'paypal' | 'paypalpaylater' | 'pix' | 'rabbitlinepay' | 'razorpay' | 'scalapay' | 'sepa' | 'shopeepay' | 'singteldash' | 'sofort' | 'stripedd' | 'thaiqr' | 'touchngo' | 'truemoney' | 'trustly' | 'venmo' | 'waave' | 'wechat' | 'zippay'");
+            localVarQueryParameters['method'] = ObjectSerializer.serialize(method, "'afterpay' | 'alipay' | 'alipayhk' | 'applepay' | 'bacs' | 'banked' | 'becs' | 'bitpay' | 'boleto' | 'boost' | 'card' | 'cashapp' | 'chaseorbital' | 'clearpay' | 'click-to-pay' | 'dana' | 'dcb' | 'dlocal' | 'ebanx' | 'gcash' | 'giropay' | 'gocardless' | 'googlepay' | 'gopay' | 'grabpay' | 'ideal' | 'kakaopay' | 'klarna' | 'laybuy' | 'linkaja' | 'maybankqrpay' | 'multibanco' | 'oney_3x' | 'oney_4x' | 'oney_6x' | 'oney_10x' | 'oney_12x' | 'ovo' | 'oxxo' | 'payid' | 'paymaya' | 'paypal' | 'paypalpaylater' | 'payto' | 'venmo' | 'pix' | 'rabbitlinepay' | 'scalapay' | 'sepa' | 'shopeepay' | 'singteldash' | 'sofort' | 'stripedd' | 'thaiqr' | 'touchngo' | 'truemoney' | 'trustly' | 'trustlyeurope' | 'givingblock' | 'wechat' | 'zippay' | 'bancontact' | 'eps' | 'linepay' | 'razorpay' | 'multipago' | 'waave' | 'smartpay' | 'vipps'");
         }
 
         if (deleted !== undefined) {
@@ -292,8 +292,8 @@ export class PaymentServicesApi {
         };
 
         let authenticationPromise = Promise.resolve();
-        if (this.authentications.BearerAuth.accessToken) {
-            authenticationPromise = authenticationPromise.then(() => this.authentications.BearerAuth.applyToRequest(localVarRequestOptions));
+        if (this.authentications.bearerAuth.accessToken) {
+            authenticationPromise = authenticationPromise.then(() => this.authentications.bearerAuth.applyToRequest(localVarRequestOptions));
         }
         authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
 
@@ -359,8 +359,8 @@ export class PaymentServicesApi {
         };
 
         let authenticationPromise = Promise.resolve();
-        if (this.authentications.BearerAuth.accessToken) {
-            authenticationPromise = authenticationPromise.then(() => this.authentications.BearerAuth.applyToRequest(localVarRequestOptions));
+        if (this.authentications.bearerAuth.accessToken) {
+            authenticationPromise = authenticationPromise.then(() => this.authentications.bearerAuth.applyToRequest(localVarRequestOptions));
         }
         authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
 
@@ -433,8 +433,8 @@ export class PaymentServicesApi {
         };
 
         let authenticationPromise = Promise.resolve();
-        if (this.authentications.BearerAuth.accessToken) {
-            authenticationPromise = authenticationPromise.then(() => this.authentications.BearerAuth.applyToRequest(localVarRequestOptions));
+        if (this.authentications.bearerAuth.accessToken) {
+            authenticationPromise = authenticationPromise.then(() => this.authentications.bearerAuth.applyToRequest(localVarRequestOptions));
         }
         authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
 

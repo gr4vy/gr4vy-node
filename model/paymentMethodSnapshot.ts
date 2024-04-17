@@ -41,7 +41,7 @@ export class PaymentMethodSnapshot {
     * The ISO-4217 currency code that this payment method can be used for. If this value is `null` the payment method may be used for multiple currencies.
     */
     'currency'?: string | null;
-    'details'?: PaymentMethodDetailsCard;
+    'details'?: PaymentMethodDetailsCard | null;
     /**
     * The expiration date for this payment method. This is mostly used by cards where the card might have an expiration date.
     */
@@ -53,7 +53,7 @@ export class PaymentMethodSnapshot {
     /**
     * A label for the payment method. This can be the last 4 digits for a card, or the email address for an alternative payment method.
     */
-    'label'?: string;
+    'label'?: string | null;
     /**
     * The date and time when this card was last replaced.  When the Account Updater determines that new card details are available, existing details are not changed immediately. There are three scenarios in which the actual replacement occurs:  1. When this card has expired. 2. When only the expiration date changed. 3. When a transaction using this card is declined with any of the following codes:     * `canceled_payment_method`     * `expired_payment_method`     * `unavailable_payment_method`     * `unknown_payment_method`  When the replacement is applied, this field is updated. For non-card payment methods, the value of this field is always set to `null`.
     */
@@ -173,20 +173,20 @@ export namespace PaymentMethodSnapshot {
         Alipayhk = <any> 'alipayhk',
         Applepay = <any> 'applepay',
         Bacs = <any> 'bacs',
-        Bancontact = <any> 'bancontact',
         Banked = <any> 'banked',
         Becs = <any> 'becs',
         Bitpay = <any> 'bitpay',
         Boleto = <any> 'boleto',
         Boost = <any> 'boost',
         Card = <any> 'card',
-        CheckoutSession = <any> 'checkout-session',
-        ClickToPay = <any> 'click-to-pay',
+        Cashapp = <any> 'cashapp',
+        Chaseorbital = <any> 'chaseorbital',
         Clearpay = <any> 'clearpay',
+        ClickToPay = <any> 'click-to-pay',
         Dana = <any> 'dana',
         Dcb = <any> 'dcb',
-        Eps = <any> 'eps',
-        Fortumo = <any> 'fortumo',
+        Dlocal = <any> 'dlocal',
+        Ebanx = <any> 'ebanx',
         Gcash = <any> 'gcash',
         Giropay = <any> 'giropay',
         Gocardless = <any> 'gocardless',
@@ -194,11 +194,9 @@ export namespace PaymentMethodSnapshot {
         Gopay = <any> 'gopay',
         Grabpay = <any> 'grabpay',
         Ideal = <any> 'ideal',
-        Id = <any> 'id',
         Kakaopay = <any> 'kakaopay',
         Klarna = <any> 'klarna',
         Laybuy = <any> 'laybuy',
-        Linepay = <any> 'linepay',
         Linkaja = <any> 'linkaja',
         Maybankqrpay = <any> 'maybankqrpay',
         Multibanco = <any> 'multibanco',
@@ -209,12 +207,14 @@ export namespace PaymentMethodSnapshot {
         Oney12x = <any> 'oney_12x',
         Ovo = <any> 'ovo',
         Oxxo = <any> 'oxxo',
+        Payid = <any> 'payid',
         Paymaya = <any> 'paymaya',
         Paypal = <any> 'paypal',
         Paypalpaylater = <any> 'paypalpaylater',
+        Payto = <any> 'payto',
+        Venmo = <any> 'venmo',
         Pix = <any> 'pix',
         Rabbitlinepay = <any> 'rabbitlinepay',
-        Razorpay = <any> 'razorpay',
         Scalapay = <any> 'scalapay',
         Sepa = <any> 'sepa',
         Shopeepay = <any> 'shopeepay',
@@ -225,10 +225,18 @@ export namespace PaymentMethodSnapshot {
         Touchngo = <any> 'touchngo',
         Truemoney = <any> 'truemoney',
         Trustly = <any> 'trustly',
-        Venmo = <any> 'venmo',
-        Waave = <any> 'waave',
+        Trustlyeurope = <any> 'trustlyeurope',
+        Givingblock = <any> 'givingblock',
         Wechat = <any> 'wechat',
-        Zippay = <any> 'zippay'
+        Zippay = <any> 'zippay',
+        Bancontact = <any> 'bancontact',
+        Eps = <any> 'eps',
+        Linepay = <any> 'linepay',
+        Razorpay = <any> 'razorpay',
+        Multipago = <any> 'multipago',
+        Waave = <any> 'waave',
+        Smartpay = <any> 'smartpay',
+        Vipps = <any> 'vipps'
     }
     export enum SchemeEnum {
         Accel = <any> 'accel',
@@ -246,12 +254,15 @@ export namespace PaymentMethodSnapshot {
         Jcb = <any> 'jcb',
         Maestro = <any> 'maestro',
         Mastercard = <any> 'mastercard',
+        Mir = <any> 'mir',
         Nyce = <any> 'nyce',
         Other = <any> 'other',
         Pulse = <any> 'pulse',
         Rupay = <any> 'rupay',
         Star = <any> 'star',
+        Uatp = <any> 'uatp',
         Unionpay = <any> 'unionpay',
-        Visa = <any> 'visa'
+        Visa = <any> 'visa',
+        Null = <any> 'null'
     }
 }

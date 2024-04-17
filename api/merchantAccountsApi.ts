@@ -15,10 +15,10 @@ import localVarRequest from 'request';
 import http from 'http';
 
 /* tslint:disable:no-unused-locals */
+import { Error400BadRequest } from '../model/error400BadRequest';
 import { Error401Unauthorized } from '../model/error401Unauthorized';
 import { Error404NotFound } from '../model/error404NotFound';
 import { Error409DuplicateRecord } from '../model/error409DuplicateRecord';
-import { ErrorGeneric } from '../model/errorGeneric';
 import { MerchantAccount } from '../model/merchantAccount';
 import { MerchantAccountCreate } from '../model/merchantAccountCreate';
 import { MerchantAccountUpdate } from '../model/merchantAccountUpdate';
@@ -45,7 +45,7 @@ export class MerchantAccountsApi {
 
     protected authentications = {
         'default': <Authentication>new VoidAuth(),
-        'BearerAuth': new HttpBearerAuth(),
+        'bearerAuth': new HttpBearerAuth(),
     }
 
     protected interceptors: Interceptor[] = [];
@@ -92,7 +92,7 @@ export class MerchantAccountsApi {
     }
 
     set accessToken(accessToken: string | (() => string)) {
-        this.authentications.BearerAuth.accessToken = accessToken;
+        this.authentications.bearerAuth.accessToken = accessToken;
     }
 
     public addInterceptor(interceptor: Interceptor) {
@@ -137,8 +137,8 @@ export class MerchantAccountsApi {
         };
 
         let authenticationPromise = Promise.resolve();
-        if (this.authentications.BearerAuth.accessToken) {
-            authenticationPromise = authenticationPromise.then(() => this.authentications.BearerAuth.applyToRequest(localVarRequestOptions));
+        if (this.authentications.bearerAuth.accessToken) {
+            authenticationPromise = authenticationPromise.then(() => this.authentications.bearerAuth.applyToRequest(localVarRequestOptions));
         }
         authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
 
@@ -208,8 +208,8 @@ export class MerchantAccountsApi {
         };
 
         let authenticationPromise = Promise.resolve();
-        if (this.authentications.BearerAuth.accessToken) {
-            authenticationPromise = authenticationPromise.then(() => this.authentications.BearerAuth.applyToRequest(localVarRequestOptions));
+        if (this.authentications.bearerAuth.accessToken) {
+            authenticationPromise = authenticationPromise.then(() => this.authentications.bearerAuth.applyToRequest(localVarRequestOptions));
         }
         authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
 
@@ -273,8 +273,8 @@ export class MerchantAccountsApi {
         };
 
         let authenticationPromise = Promise.resolve();
-        if (this.authentications.BearerAuth.accessToken) {
-            authenticationPromise = authenticationPromise.then(() => this.authentications.BearerAuth.applyToRequest(localVarRequestOptions));
+        if (this.authentications.bearerAuth.accessToken) {
+            authenticationPromise = authenticationPromise.then(() => this.authentications.bearerAuth.applyToRequest(localVarRequestOptions));
         }
         authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
 
@@ -340,8 +340,8 @@ export class MerchantAccountsApi {
         };
 
         let authenticationPromise = Promise.resolve();
-        if (this.authentications.BearerAuth.accessToken) {
-            authenticationPromise = authenticationPromise.then(() => this.authentications.BearerAuth.applyToRequest(localVarRequestOptions));
+        if (this.authentications.bearerAuth.accessToken) {
+            authenticationPromise = authenticationPromise.then(() => this.authentications.bearerAuth.applyToRequest(localVarRequestOptions));
         }
         authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
 
@@ -414,8 +414,8 @@ export class MerchantAccountsApi {
         };
 
         let authenticationPromise = Promise.resolve();
-        if (this.authentications.BearerAuth.accessToken) {
-            authenticationPromise = authenticationPromise.then(() => this.authentications.BearerAuth.applyToRequest(localVarRequestOptions));
+        if (this.authentications.bearerAuth.accessToken) {
+            authenticationPromise = authenticationPromise.then(() => this.authentications.bearerAuth.applyToRequest(localVarRequestOptions));
         }
         authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
 

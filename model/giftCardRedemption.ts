@@ -40,7 +40,7 @@ export class GiftCardRedemption {
     /**
     * The gift card service\'s unique ID for the redemption.
     */
-    'giftCardServiceRedemptionId'?: string;
+    'giftCardServiceRedemptionId'?: string | null;
     /**
     * If this gift card redemption resulted in an error, this will contain the internal code for the error.
     */
@@ -119,6 +119,7 @@ export namespace GiftCardRedemption {
         GiftCardRedemption = <any> 'gift-card-redemption'
     }
     export enum StatusEnum {
+        Created = <any> 'created',
         Succeeded = <any> 'succeeded',
         Failed = <any> 'failed',
         Skipped = <any> 'skipped'

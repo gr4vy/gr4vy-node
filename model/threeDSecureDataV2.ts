@@ -32,6 +32,10 @@ export class ThreeDSecureDataV2 {
     */
     'directoryResponse': ThreeDSecureDataV2.DirectoryResponseEnum;
     /**
+    * The scheme/brand of the card that is used for 3-D Secure.
+    */
+    'scheme'?: ThreeDSecureDataV2.SchemeEnum;
+    /**
     * The transaction status after a the 3DS challenge. This will be null in case of a frictionless 3DS flow.
     */
     'authenticationResponse'?: ThreeDSecureDataV2.AuthenticationResponseEnum;
@@ -64,6 +68,11 @@ export class ThreeDSecureDataV2 {
             "type": "ThreeDSecureDataV2.DirectoryResponseEnum"
         },
         {
+            "name": "scheme",
+            "baseName": "scheme",
+            "type": "ThreeDSecureDataV2.SchemeEnum"
+        },
+        {
             "name": "authenticationResponse",
             "baseName": "authentication_response",
             "type": "ThreeDSecureDataV2.AuthenticationResponseEnum"
@@ -87,6 +96,33 @@ export namespace ThreeDSecureDataV2 {
         N = <any> 'N',
         R = <any> 'R',
         U = <any> 'U'
+    }
+    export enum SchemeEnum {
+        Accel = <any> 'accel',
+        Amex = <any> 'amex',
+        Bancontact = <any> 'bancontact',
+        CarteBancaire = <any> 'carte-bancaire',
+        Cirrus = <any> 'cirrus',
+        Culiance = <any> 'culiance',
+        Dankort = <any> 'dankort',
+        DinersClub = <any> 'diners-club',
+        Discover = <any> 'discover',
+        EftposAustralia = <any> 'eftpos-australia',
+        Elo = <any> 'elo',
+        Hipercard = <any> 'hipercard',
+        Jcb = <any> 'jcb',
+        Maestro = <any> 'maestro',
+        Mastercard = <any> 'mastercard',
+        Mir = <any> 'mir',
+        Nyce = <any> 'nyce',
+        Other = <any> 'other',
+        Pulse = <any> 'pulse',
+        Rupay = <any> 'rupay',
+        Star = <any> 'star',
+        Uatp = <any> 'uatp',
+        Unionpay = <any> 'unionpay',
+        Visa = <any> 'visa',
+        Null = <any> 'null'
     }
     export enum AuthenticationResponseEnum {
         Y = <any> 'Y',

@@ -22,7 +22,7 @@ export class Error400BadRequest {
     */
     'type'?: Error400BadRequest.TypeEnum;
     /**
-    * `bad_request`.
+    * A short code that describes the reason for the error.
     */
     'code'?: Error400BadRequest.CodeEnum;
     /**
@@ -30,7 +30,7 @@ export class Error400BadRequest {
     */
     'status'?: Error400BadRequest.StatusEnum;
     /**
-    * Describes the fields that are missing or incorrectly formatted in the API request.
+    * A human-readable reason for the error.
     */
     'message'?: string;
     /**
@@ -77,7 +77,9 @@ export namespace Error400BadRequest {
         Error = <any> 'error'
     }
     export enum CodeEnum {
-        BadRequest = <any> 'bad_request'
+        BadRequest = <any> 'bad_request',
+        IncorrectJson = <any> 'incorrect_json',
+        InvalidCredentials = <any> 'invalid_credentials'
     }
     export enum StatusEnum {
         NUMBER_400 = <any> 400

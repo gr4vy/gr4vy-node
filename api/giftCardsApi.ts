@@ -15,11 +15,11 @@ import localVarRequest from 'request';
 import http from 'http';
 
 /* tslint:disable:no-unused-locals */
+import { Error400BadRequest } from '../model/error400BadRequest';
 import { Error401Unauthorized } from '../model/error401Unauthorized';
 import { Error404NotFound } from '../model/error404NotFound';
 import { Error409DuplicateRecord } from '../model/error409DuplicateRecord';
 import { Error429TooManyRequests } from '../model/error429TooManyRequests';
-import { ErrorGeneric } from '../model/errorGeneric';
 import { GiftCard } from '../model/giftCard';
 import { GiftCardBalancesRequest } from '../model/giftCardBalancesRequest';
 import { GiftCardStoreRequest } from '../model/giftCardStoreRequest';
@@ -47,7 +47,7 @@ export class GiftCardsApi {
 
     protected authentications = {
         'default': <Authentication>new VoidAuth(),
-        'BearerAuth': new HttpBearerAuth(),
+        'bearerAuth': new HttpBearerAuth(),
     }
 
     protected interceptors: Interceptor[] = [];
@@ -94,7 +94,7 @@ export class GiftCardsApi {
     }
 
     set accessToken(accessToken: string | (() => string)) {
-        this.authentications.BearerAuth.accessToken = accessToken;
+        this.authentications.bearerAuth.accessToken = accessToken;
     }
 
     public addInterceptor(interceptor: Interceptor) {
@@ -102,8 +102,8 @@ export class GiftCardsApi {
     }
 
     /**
-     * Returns details for a list of gift cards with updated balances.  Duplicated gift card numbers are not supported. This includes both stored gift cards, as well as those directly provided via the request.
-     * @summary Check gift card balances
+     * Verify gift cards are enrolled and fetch their balances.  This verifies a list of gift cards are enrolled for your gift card programme, if this feature is available via your gift card service. It then also fetches each card\'s current balance.  Duplicated gift card numbers are not supported. This includes both stored gift cards, as well as those directly provided via the request.
+     * @summary Verify and check gift card balances
      * @param giftCardBalancesRequest 
      */
     public async checkGiftCardBalances (giftCardBalancesRequest?: GiftCardBalancesRequest, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: GiftCardsSummary;  }> {
@@ -134,8 +134,8 @@ export class GiftCardsApi {
         };
 
         let authenticationPromise = Promise.resolve();
-        if (this.authentications.BearerAuth.accessToken) {
-            authenticationPromise = authenticationPromise.then(() => this.authentications.BearerAuth.applyToRequest(localVarRequestOptions));
+        if (this.authentications.bearerAuth.accessToken) {
+            authenticationPromise = authenticationPromise.then(() => this.authentications.bearerAuth.applyToRequest(localVarRequestOptions));
         }
         authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
 
@@ -206,8 +206,8 @@ export class GiftCardsApi {
         };
 
         let authenticationPromise = Promise.resolve();
-        if (this.authentications.BearerAuth.accessToken) {
-            authenticationPromise = authenticationPromise.then(() => this.authentications.BearerAuth.applyToRequest(localVarRequestOptions));
+        if (this.authentications.bearerAuth.accessToken) {
+            authenticationPromise = authenticationPromise.then(() => this.authentications.bearerAuth.applyToRequest(localVarRequestOptions));
         }
         authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
 
@@ -277,8 +277,8 @@ export class GiftCardsApi {
         };
 
         let authenticationPromise = Promise.resolve();
-        if (this.authentications.BearerAuth.accessToken) {
-            authenticationPromise = authenticationPromise.then(() => this.authentications.BearerAuth.applyToRequest(localVarRequestOptions));
+        if (this.authentications.bearerAuth.accessToken) {
+            authenticationPromise = authenticationPromise.then(() => this.authentications.bearerAuth.applyToRequest(localVarRequestOptions));
         }
         authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
 
@@ -312,7 +312,7 @@ export class GiftCardsApi {
         });
     }
     /**
-     * Returns a list of all stored, not-expired gift cards and their balances for a buyer in a summarized format.  All stored gift cards are returned, even if we were not able to fetch the latest balance.
+     * Returns a list of all stored, not-expired gift cards and their balances for a buyer in a summarized format. Any expired or empty gift cards will be automatically filtered out and removed from the list of returned cards.  If we were not able to fetch the latest balance then all stored gift cards are returned.
      * @summary List gift cards buyer
      * @param buyerId Filters the results to only the items for which the &#x60;buyer&#x60; has an &#x60;id&#x60; that matches this value.
      * @param buyerExternalIdentifier Filters the results to only the items for which the &#x60;buyer&#x60; has an &#x60;external_identifier&#x60; that matches this value.
@@ -352,8 +352,8 @@ export class GiftCardsApi {
         };
 
         let authenticationPromise = Promise.resolve();
-        if (this.authentications.BearerAuth.accessToken) {
-            authenticationPromise = authenticationPromise.then(() => this.authentications.BearerAuth.applyToRequest(localVarRequestOptions));
+        if (this.authentications.bearerAuth.accessToken) {
+            authenticationPromise = authenticationPromise.then(() => this.authentications.bearerAuth.applyToRequest(localVarRequestOptions));
         }
         authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
 
@@ -437,8 +437,8 @@ export class GiftCardsApi {
         };
 
         let authenticationPromise = Promise.resolve();
-        if (this.authentications.BearerAuth.accessToken) {
-            authenticationPromise = authenticationPromise.then(() => this.authentications.BearerAuth.applyToRequest(localVarRequestOptions));
+        if (this.authentications.bearerAuth.accessToken) {
+            authenticationPromise = authenticationPromise.then(() => this.authentications.bearerAuth.applyToRequest(localVarRequestOptions));
         }
         authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
 
@@ -472,7 +472,7 @@ export class GiftCardsApi {
         });
     }
     /**
-     * Stores a gift card.  Vaulting a gift card stores and validate it against the active gift card service.  It is only possible to store a gift card against a buyer if the same card is not already stored on the buyer and the gift card has not expired yet.  Buyers by default can only have a maximum limit of 10 gift cards stored against them. Please contact our team to change this limit. 
+     * Stores a gift card.  Vaulting a gift card stores and validate it against the active gift card service.  It is only possible to store a gift card against a buyer if the same card is not already stored on the buyer and the gift card has not expired yet.  Buyers by default can only have a maximum limit of 10 gift cards stored against them. Please contact our team to change this limit. To clear out any expired or empty gift cards, you can call the `GET /buyers/gift-cards` endpoint which will automatically archive any of those cards and allow new cards to be stored. 
      * @summary Store gift card
      * @param giftCardStoreRequest 
      */
@@ -504,8 +504,8 @@ export class GiftCardsApi {
         };
 
         let authenticationPromise = Promise.resolve();
-        if (this.authentications.BearerAuth.accessToken) {
-            authenticationPromise = authenticationPromise.then(() => this.authentications.BearerAuth.applyToRequest(localVarRequestOptions));
+        if (this.authentications.bearerAuth.accessToken) {
+            authenticationPromise = authenticationPromise.then(() => this.authentications.bearerAuth.applyToRequest(localVarRequestOptions));
         }
         authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
 

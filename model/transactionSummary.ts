@@ -47,7 +47,7 @@ export class TransactionSummary {
     /**
     * The identifier for the checkout session this transaction is associated with.
     */
-    'checkoutSessionId'?: string;
+    'checkoutSessionId'?: string | null;
     /**
     * The 2-letter ISO code of the country of the transaction. This is used to filter the payment services that is used to process the transaction. 
     */
@@ -69,6 +69,10 @@ export class TransactionSummary {
     */
     'giftCardRedemptions'?: Array<GiftCardRedemption>;
     /**
+    * The name of the instrument used to process the transaction. 
+    */
+    'instrumentType'?: TransactionSummary.InstrumentTypeEnum;
+    /**
     * The original `intent` used when the transaction was [created](#operation/authorize-new-transaction).
     */
     'intent'?: TransactionSummary.IntentEnum;
@@ -80,11 +84,11 @@ export class TransactionSummary {
     /**
     * The payment method used for this transaction.
     */
-    'paymentMethod'?: PaymentMethodSnapshot;
+    'paymentMethod'?: PaymentMethodSnapshot | null;
     /**
     * The payment service used for this transaction.
     */
-    'paymentService'?: PaymentServiceSnapshot;
+    'paymentService'?: PaymentServiceSnapshot | null;
     /**
     * Whether a manual review is pending.
     */
@@ -178,6 +182,11 @@ export class TransactionSummary {
             "type": "Array<GiftCardRedemption>"
         },
         {
+            "name": "instrumentType",
+            "baseName": "instrument_type",
+            "type": "TransactionSummary.InstrumentTypeEnum"
+        },
+        {
             "name": "intent",
             "baseName": "intent",
             "type": "TransactionSummary.IntentEnum"
@@ -247,6 +256,15 @@ export namespace TransactionSummary {
     export enum TypeEnum {
         Transaction = <any> 'transaction'
     }
+    export enum InstrumentTypeEnum {
+        Applepay = <any> 'applepay',
+        CardToken = <any> 'card_token',
+        Googlepay = <any> 'googlepay',
+        NetworkToken = <any> 'network_token',
+        Pan = <any> 'pan',
+        Redirect = <any> 'redirect',
+        RedirectToken = <any> 'redirect_token'
+    }
     export enum IntentEnum {
         Authorize = <any> 'authorize',
         Capture = <any> 'capture'
@@ -257,20 +275,20 @@ export namespace TransactionSummary {
         Alipayhk = <any> 'alipayhk',
         Applepay = <any> 'applepay',
         Bacs = <any> 'bacs',
-        Bancontact = <any> 'bancontact',
         Banked = <any> 'banked',
         Becs = <any> 'becs',
         Bitpay = <any> 'bitpay',
         Boleto = <any> 'boleto',
         Boost = <any> 'boost',
         Card = <any> 'card',
-        CheckoutSession = <any> 'checkout-session',
-        ClickToPay = <any> 'click-to-pay',
+        Cashapp = <any> 'cashapp',
+        Chaseorbital = <any> 'chaseorbital',
         Clearpay = <any> 'clearpay',
+        ClickToPay = <any> 'click-to-pay',
         Dana = <any> 'dana',
         Dcb = <any> 'dcb',
-        Eps = <any> 'eps',
-        Fortumo = <any> 'fortumo',
+        Dlocal = <any> 'dlocal',
+        Ebanx = <any> 'ebanx',
         Gcash = <any> 'gcash',
         Giropay = <any> 'giropay',
         Gocardless = <any> 'gocardless',
@@ -278,11 +296,9 @@ export namespace TransactionSummary {
         Gopay = <any> 'gopay',
         Grabpay = <any> 'grabpay',
         Ideal = <any> 'ideal',
-        Id = <any> 'id',
         Kakaopay = <any> 'kakaopay',
         Klarna = <any> 'klarna',
         Laybuy = <any> 'laybuy',
-        Linepay = <any> 'linepay',
         Linkaja = <any> 'linkaja',
         Maybankqrpay = <any> 'maybankqrpay',
         Multibanco = <any> 'multibanco',
@@ -293,12 +309,14 @@ export namespace TransactionSummary {
         Oney12x = <any> 'oney_12x',
         Ovo = <any> 'ovo',
         Oxxo = <any> 'oxxo',
+        Payid = <any> 'payid',
         Paymaya = <any> 'paymaya',
         Paypal = <any> 'paypal',
         Paypalpaylater = <any> 'paypalpaylater',
+        Payto = <any> 'payto',
+        Venmo = <any> 'venmo',
         Pix = <any> 'pix',
         Rabbitlinepay = <any> 'rabbitlinepay',
-        Razorpay = <any> 'razorpay',
         Scalapay = <any> 'scalapay',
         Sepa = <any> 'sepa',
         Shopeepay = <any> 'shopeepay',
@@ -309,10 +327,18 @@ export namespace TransactionSummary {
         Touchngo = <any> 'touchngo',
         Truemoney = <any> 'truemoney',
         Trustly = <any> 'trustly',
-        Venmo = <any> 'venmo',
-        Waave = <any> 'waave',
+        Trustlyeurope = <any> 'trustlyeurope',
+        Givingblock = <any> 'givingblock',
         Wechat = <any> 'wechat',
-        Zippay = <any> 'zippay'
+        Zippay = <any> 'zippay',
+        Bancontact = <any> 'bancontact',
+        Eps = <any> 'eps',
+        Linepay = <any> 'linepay',
+        Razorpay = <any> 'razorpay',
+        Multipago = <any> 'multipago',
+        Waave = <any> 'waave',
+        Smartpay = <any> 'smartpay',
+        Vipps = <any> 'vipps'
     }
     export enum StatusEnum {
         Processing = <any> 'processing',

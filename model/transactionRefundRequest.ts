@@ -28,6 +28,10 @@ export class TransactionRefundRequest {
     * The optional ID of the instrument to refund for. This is only required when the `target_type` is set to `gift-card-redemption`.
     */
     'targetId'?: string | null;
+    /**
+    * An optional reason to attach extra context to the refund request.
+    */
+    'reason'?: string | null;
 
     static discriminator: string | undefined = undefined;
 
@@ -45,6 +49,11 @@ export class TransactionRefundRequest {
         {
             "name": "targetId",
             "baseName": "target_id",
+            "type": "string"
+        },
+        {
+            "name": "reason",
+            "baseName": "reason",
             "type": "string"
         }    ];
 

@@ -32,6 +32,10 @@ export class ThreeDSecureDataV1 {
     */
     'directoryResponse': string;
     /**
+    * The scheme/brand of the card that is used for 3-D Secure.
+    */
+    'scheme'?: ThreeDSecureDataV1.SchemeEnum;
+    /**
     * The response for the 3DS authentication call.
     */
     'authenticationResponse': string;
@@ -68,6 +72,11 @@ export class ThreeDSecureDataV1 {
             "type": "string"
         },
         {
+            "name": "scheme",
+            "baseName": "scheme",
+            "type": "ThreeDSecureDataV1.SchemeEnum"
+        },
+        {
             "name": "authenticationResponse",
             "baseName": "authentication_response",
             "type": "string"
@@ -88,3 +97,32 @@ export class ThreeDSecureDataV1 {
     }
 }
 
+export namespace ThreeDSecureDataV1 {
+    export enum SchemeEnum {
+        Accel = <any> 'accel',
+        Amex = <any> 'amex',
+        Bancontact = <any> 'bancontact',
+        CarteBancaire = <any> 'carte-bancaire',
+        Cirrus = <any> 'cirrus',
+        Culiance = <any> 'culiance',
+        Dankort = <any> 'dankort',
+        DinersClub = <any> 'diners-club',
+        Discover = <any> 'discover',
+        EftposAustralia = <any> 'eftpos-australia',
+        Elo = <any> 'elo',
+        Hipercard = <any> 'hipercard',
+        Jcb = <any> 'jcb',
+        Maestro = <any> 'maestro',
+        Mastercard = <any> 'mastercard',
+        Mir = <any> 'mir',
+        Nyce = <any> 'nyce',
+        Other = <any> 'other',
+        Pulse = <any> 'pulse',
+        Rupay = <any> 'rupay',
+        Star = <any> 'star',
+        Uatp = <any> 'uatp',
+        Unionpay = <any> 'unionpay',
+        Visa = <any> 'visa',
+        Null = <any> 'null'
+    }
+}

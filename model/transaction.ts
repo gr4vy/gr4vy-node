@@ -50,6 +50,10 @@ export class Transaction {
     */
     'authorizedAt'?: Date | null;
     /**
+    * The date and time when this transaction will be marked as failed if it does not successfully gets captured, authorized or otherwise approved before.
+    */
+    'approvalExpiresAt'?: Date | null;
+    /**
     * The response code received from the payment service for the Address Verification Check (AVS). This code is mapped to a standardized Gr4vy AVS response code.  - `no_match` - neither address or postal code match - `match` - both address and postal code match - `partial_match_address` - address matches but postal code does not - `partial_match_postcode` - postal code matches but address does not - `unavailable ` - AVS is unavailable for card/country  The value of this field can be `null` if the payment service did not provide a response.
     */
     'avsResponseCode'?: Transaction.AvsResponseCodeEnum;
@@ -72,7 +76,7 @@ export class Transaction {
     /**
     * The identifier for the checkout session this transaction is associated with.
     */
-    'checkoutSessionId'?: string;
+    'checkoutSessionId'?: string | null;
     /**
     * The 2-letter ISO code of the country of the transaction. This is used to filter the payment services that is used to process the transaction. 
     */
@@ -106,6 +110,10 @@ export class Transaction {
     */
     'giftCardRedemptions'?: Array<GiftCardRedemption>;
     /**
+    * The name of the instrument used to process the transaction. 
+    */
+    'instrumentType'?: Transaction.InstrumentTypeEnum;
+    /**
     * The original `intent` used when the transaction was [created](#operation/authorize-new-transaction).
     */
     'intent'?: Transaction.IntentEnum;
@@ -137,11 +145,11 @@ export class Transaction {
     /**
     * The payment method used for this transaction.
     */
-    'paymentMethod'?: PaymentMethodSnapshot;
+    'paymentMethod'?: PaymentMethodSnapshot | null;
     /**
     * The payment service used for this transaction.
     */
-    'paymentService'?: PaymentServiceSnapshot;
+    'paymentService'?: PaymentServiceSnapshot | null;
     /**
     * The payment service\'s unique ID for the transaction.
     */
@@ -227,6 +235,11 @@ export class Transaction {
             "type": "Date"
         },
         {
+            "name": "approvalExpiresAt",
+            "baseName": "approval_expires_at",
+            "type": "Date"
+        },
+        {
             "name": "avsResponseCode",
             "baseName": "avs_response_code",
             "type": "Transaction.AvsResponseCodeEnum"
@@ -295,6 +308,11 @@ export class Transaction {
             "name": "giftCardRedemptions",
             "baseName": "gift_card_redemptions",
             "type": "Array<GiftCardRedemption>"
+        },
+        {
+            "name": "instrumentType",
+            "baseName": "instrument_type",
+            "type": "Transaction.InstrumentTypeEnum"
         },
         {
             "name": "intent",
@@ -439,6 +457,15 @@ export namespace Transaction {
         Unavailable = <any> 'unavailable',
         NotProvided = <any> 'not_provided'
     }
+    export enum InstrumentTypeEnum {
+        Applepay = <any> 'applepay',
+        CardToken = <any> 'card_token',
+        Googlepay = <any> 'googlepay',
+        NetworkToken = <any> 'network_token',
+        Pan = <any> 'pan',
+        Redirect = <any> 'redirect',
+        RedirectToken = <any> 'redirect_token'
+    }
     export enum IntentEnum {
         Authorize = <any> 'authorize',
         Capture = <any> 'capture'
@@ -454,20 +481,20 @@ export namespace Transaction {
         Alipayhk = <any> 'alipayhk',
         Applepay = <any> 'applepay',
         Bacs = <any> 'bacs',
-        Bancontact = <any> 'bancontact',
         Banked = <any> 'banked',
         Becs = <any> 'becs',
         Bitpay = <any> 'bitpay',
         Boleto = <any> 'boleto',
         Boost = <any> 'boost',
         Card = <any> 'card',
-        CheckoutSession = <any> 'checkout-session',
-        ClickToPay = <any> 'click-to-pay',
+        Cashapp = <any> 'cashapp',
+        Chaseorbital = <any> 'chaseorbital',
         Clearpay = <any> 'clearpay',
+        ClickToPay = <any> 'click-to-pay',
         Dana = <any> 'dana',
         Dcb = <any> 'dcb',
-        Eps = <any> 'eps',
-        Fortumo = <any> 'fortumo',
+        Dlocal = <any> 'dlocal',
+        Ebanx = <any> 'ebanx',
         Gcash = <any> 'gcash',
         Giropay = <any> 'giropay',
         Gocardless = <any> 'gocardless',
@@ -475,11 +502,9 @@ export namespace Transaction {
         Gopay = <any> 'gopay',
         Grabpay = <any> 'grabpay',
         Ideal = <any> 'ideal',
-        Id = <any> 'id',
         Kakaopay = <any> 'kakaopay',
         Klarna = <any> 'klarna',
         Laybuy = <any> 'laybuy',
-        Linepay = <any> 'linepay',
         Linkaja = <any> 'linkaja',
         Maybankqrpay = <any> 'maybankqrpay',
         Multibanco = <any> 'multibanco',
@@ -490,12 +515,14 @@ export namespace Transaction {
         Oney12x = <any> 'oney_12x',
         Ovo = <any> 'ovo',
         Oxxo = <any> 'oxxo',
+        Payid = <any> 'payid',
         Paymaya = <any> 'paymaya',
         Paypal = <any> 'paypal',
         Paypalpaylater = <any> 'paypalpaylater',
+        Payto = <any> 'payto',
+        Venmo = <any> 'venmo',
         Pix = <any> 'pix',
         Rabbitlinepay = <any> 'rabbitlinepay',
-        Razorpay = <any> 'razorpay',
         Scalapay = <any> 'scalapay',
         Sepa = <any> 'sepa',
         Shopeepay = <any> 'shopeepay',
@@ -506,10 +533,18 @@ export namespace Transaction {
         Touchngo = <any> 'touchngo',
         Truemoney = <any> 'truemoney',
         Trustly = <any> 'trustly',
-        Venmo = <any> 'venmo',
-        Waave = <any> 'waave',
+        Trustlyeurope = <any> 'trustlyeurope',
+        Givingblock = <any> 'givingblock',
         Wechat = <any> 'wechat',
-        Zippay = <any> 'zippay'
+        Zippay = <any> 'zippay',
+        Bancontact = <any> 'bancontact',
+        Eps = <any> 'eps',
+        Linepay = <any> 'linepay',
+        Razorpay = <any> 'razorpay',
+        Multipago = <any> 'multipago',
+        Waave = <any> 'waave',
+        Smartpay = <any> 'smartpay',
+        Vipps = <any> 'vipps'
     }
     export enum PaymentSourceEnum {
         Ecommerce = <any> 'ecommerce',

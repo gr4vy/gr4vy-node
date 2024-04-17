@@ -101,6 +101,7 @@ export class DigitalWalletGooglePayTokenDecryptedContext {
 export namespace DigitalWalletGooglePayTokenDecryptedContext {
     export enum TypeEnum {
         Dpan = <any> 'dpan',
-        Fpan = <any> 'fpan'
+        Fpan = <any> 'fpan',
+        Null = <any> 'null'
     }
 }
