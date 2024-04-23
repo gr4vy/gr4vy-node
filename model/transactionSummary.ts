@@ -283,6 +283,7 @@ export namespace TransactionSummary {
         Card = <any> 'card',
         Cashapp = <any> 'cashapp',
         Chaseorbital = <any> 'chaseorbital',
+        CheckoutSession = <any> 'checkout-session',
         Clearpay = <any> 'clearpay',
         ClickToPay = <any> 'click-to-pay',
         Dana = <any> 'dana',
