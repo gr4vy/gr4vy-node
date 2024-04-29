@@ -6,6 +6,7 @@ import {
   PaymentServicesApi,
   TransactionsApi,
   TokensApi,
+  ReportsApi,
 } from '../api/apis'
 import { CheckoutSessionsApi } from '../api/checkoutSessionsApi'
 import { PaymentServiceDefinitionsApi } from '../api/paymentServiceDefinitionsApi'
@@ -28,6 +29,7 @@ class Client {
     | PaymentOptionsApi
     | PaymentServiceDefinitionsApi
     | PaymentServicesApi
+    | ReportsApi
     | TransactionsApi
     | TokensApi
   )[]
@@ -76,6 +78,16 @@ class Client {
   newPaymentService: typeof PaymentServicesApi.prototype.newPaymentService
   updatePaymentService: typeof PaymentServicesApi.prototype.updatePaymentService
   deletePaymentService: typeof PaymentServicesApi.prototype.deletePaymentService
+
+  // Reports
+  generateDownloadUrl: typeof ReportsApi.prototype.generateDownloadUrl
+  getReport: typeof ReportsApi.prototype.getReport
+  getReportExecution: typeof ReportsApi.prototype.getReportExecution
+  listAllReportExecutions: typeof ReportsApi.prototype.listAllReportExecutions
+  listReportExecutions: typeof ReportsApi.prototype.listReportExecutions
+  listReports: typeof ReportsApi.prototype.listReports
+  newReport: typeof ReportsApi.prototype.newReport
+  updateReport: typeof ReportsApi.prototype.updateReport
 
   // Transactions
   newTransaction: typeof TransactionsApi.prototype.newTransaction
@@ -182,6 +194,18 @@ class Client {
     this.updatePaymentService = this.wrap(psa.updatePaymentService.bind(psa))
     this.deletePaymentService = this.wrap(psa.deletePaymentService.bind(psa))
     this.apis.push(psa)
+
+    // Reports
+    const r = new ReportsApi(this.baseUrl)
+    this.generateDownloadUrl = this.wrap(r.generateDownloadUrl.bind(r))
+    this.getReport = this.wrap(r.getReport.bind(r))
+    this.getReportExecution = this.wrap(r.getReportExecution.bind(r))
+    this.listAllReportExecutions = this.wrap(r.listAllReportExecutions.bind(r))
+    this.listReportExecutions = this.wrap(r.listReportExecutions.bind(r))
+    this.listReports = this.wrap(r.listReports.bind(r))
+    this.newReport = this.wrap(r.newReport.bind(r))
+    this.updateReport = this.wrap(r.updateReport.bind(r))
+    this.apis.push(r)
 
     // Transactions
     const ta = new TransactionsApi(this.baseUrl)
