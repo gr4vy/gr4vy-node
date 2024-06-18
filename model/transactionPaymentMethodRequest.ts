@@ -61,7 +61,11 @@ export class TransactionPaymentMethodRequest {
     /**
     * Name of the card holder.
     */
-    'cardHolderName'?: string | null;
+    'cardholderName'?: string | null;
+    /**
+    * The cryptogram of the network token.
+    */
+    'cryptogram'?: string | null;
 
     static discriminator: string | undefined = undefined;
 
@@ -122,8 +126,13 @@ export class TransactionPaymentMethodRequest {
             "type": "GooglePayRequestAssuranceDetails"
         },
         {
-            "name": "cardHolderName",
-            "baseName": "card_holder_name",
+            "name": "cardholderName",
+            "baseName": "cardholder_name",
+            "type": "string"
+        },
+        {
+            "name": "cryptogram",
+            "baseName": "cryptogram",
             "type": "string"
         }    ];
 
@@ -139,6 +148,7 @@ export namespace TransactionPaymentMethodRequest {
         Alipayhk = <any> 'alipayhk',
         Applepay = <any> 'applepay',
         Bacs = <any> 'bacs',
+        Bancontact = <any> 'bancontact',
         Banked = <any> 'banked',
         Becs = <any> 'becs',
         Bitpay = <any> 'bitpay',
@@ -154,8 +164,11 @@ export namespace TransactionPaymentMethodRequest {
         Dcb = <any> 'dcb',
         Dlocal = <any> 'dlocal',
         Ebanx = <any> 'ebanx',
+        Eps = <any> 'eps',
+        Everydaypay = <any> 'everydaypay',
         Gcash = <any> 'gcash',
         Giropay = <any> 'giropay',
+        Givingblock = <any> 'givingblock',
         Gocardless = <any> 'gocardless',
         Googlepay = <any> 'googlepay',
         Gopay = <any> 'gopay',
@@ -164,9 +177,12 @@ export namespace TransactionPaymentMethodRequest {
         Kakaopay = <any> 'kakaopay',
         Klarna = <any> 'klarna',
         Laybuy = <any> 'laybuy',
+        Linepay = <any> 'linepay',
         Linkaja = <any> 'linkaja',
         Maybankqrpay = <any> 'maybankqrpay',
         Multibanco = <any> 'multibanco',
+        Multipago = <any> 'multipago',
+        NetworkToken = <any> 'network-token',
         Oney3x = <any> 'oney_3x',
         Oney4x = <any> 'oney_4x',
         Oney6x = <any> 'oney_6x',
@@ -182,10 +198,12 @@ export namespace TransactionPaymentMethodRequest {
         Venmo = <any> 'venmo',
         Pix = <any> 'pix',
         Rabbitlinepay = <any> 'rabbitlinepay',
+        Razorpay = <any> 'razorpay',
         Scalapay = <any> 'scalapay',
         Sepa = <any> 'sepa',
         Shopeepay = <any> 'shopeepay',
         Singteldash = <any> 'singteldash',
+        Smartpay = <any> 'smartpay',
         Sofort = <any> 'sofort',
         Stripedd = <any> 'stripedd',
         Thaiqr = <any> 'thaiqr',
@@ -193,16 +211,9 @@ export namespace TransactionPaymentMethodRequest {
         Truemoney = <any> 'truemoney',
         Trustly = <any> 'trustly',
         Trustlyeurope = <any> 'trustlyeurope',
-        Givingblock = <any> 'givingblock',
-        Wechat = <any> 'wechat',
-        Zippay = <any> 'zippay',
-        Bancontact = <any> 'bancontact',
-        Eps = <any> 'eps',
-        Linepay = <any> 'linepay',
-        Razorpay = <any> 'razorpay',
-        Multipago = <any> 'multipago',
+        Vipps = <any> 'vipps',
         Waave = <any> 'waave',
-        Smartpay = <any> 'smartpay',
-        Vipps = <any> 'vipps'
+        Wechat = <any> 'wechat',
+        Zippay = <any> 'zippay'
     }
 }

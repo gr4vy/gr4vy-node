@@ -24,6 +24,18 @@ export class ApplePayRequest {
     * The encrypted (opaque) token that was passed to the `onpaymentauthorized` callback by the Apple Pay integration.
     */
     'token': object;
+    /**
+    * Last 4 digits of the PAN for identification purposes.
+    */
+    'cardSuffix'?: string | null;
+    /**
+    * The scheme/brand of the card.
+    */
+    'cardScheme'?: string | null;
+    /**
+    * The type of card.
+    */
+    'cardType'?: string | null;
 
     static discriminator: string | undefined = undefined;
 
@@ -37,6 +49,21 @@ export class ApplePayRequest {
             "name": "token",
             "baseName": "token",
             "type": "object"
+        },
+        {
+            "name": "cardSuffix",
+            "baseName": "card_suffix",
+            "type": "string"
+        },
+        {
+            "name": "cardScheme",
+            "baseName": "card_scheme",
+            "type": "string"
+        },
+        {
+            "name": "cardType",
+            "baseName": "card_type",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {

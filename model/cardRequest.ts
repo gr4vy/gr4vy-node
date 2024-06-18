@@ -29,6 +29,10 @@ export class CardRequest {
     */
     'expirationDate': string;
     /**
+    * The 3 or 4 digit security code often found on the card. This often referred to as the CVV or CVD.  The security code can only be set if the stored payment method represents a card.
+    */
+    'securityCode'?: string | null;
+    /**
     * An external identifier that can be used to match the card against your own records.
     */
     'externalIdentifier'?: string | null;
@@ -61,6 +65,11 @@ export class CardRequest {
         {
             "name": "expirationDate",
             "baseName": "expiration_date",
+            "type": "string"
+        },
+        {
+            "name": "securityCode",
+            "baseName": "security_code",
             "type": "string"
         },
         {

@@ -1,5 +1,6 @@
 api/aPILogsApi.ts
 api/accountUpdaterApi.ts
+api/antiFraudServiceDefinitionsApi.ts
 api/apis.ts
 api/auditLogsApi.ts
 api/buyersApi.ts
@@ -33,6 +34,8 @@ model/antiFraudDecisionEventContext.ts
 model/antiFraudDecisionSkippedEvent.ts
 model/antiFraudDecisionSkippedEventContext.ts
 model/antiFraudServiceCreate.ts
+model/antiFraudServiceDefinition.ts
+model/antiFraudServiceDefinitionFields.ts
 model/antiFraudServiceUpdate.ts
 model/antiFraudServiceUpdateFields.ts
 model/antiFraudTransactionStatusUpdateErrorEvent.ts
@@ -92,6 +95,7 @@ model/connectionOptionsForterAntiFraudPersonalDetails.ts
 model/connectionOptionsForterAntiFraudPhone.ts
 model/connectionOptionsForterAntiFraudTotalDiscount.ts
 model/connectionOptionsForterAntiFraudTotalDiscountCouponDiscountAmount.ts
+model/connectionOptionsGivingblockGivingblock.ts
 model/connectionOptionsPaypalPaypal.ts
 model/connectionOptionsPaypalPaypalAdditionalData.ts
 model/connectionOptionsStripeCard.ts
@@ -134,7 +138,6 @@ model/giftCardService.ts
 model/giftCardServiceCreateRequest.ts
 model/giftCardServiceCreateRequestFields.ts
 model/giftCardServiceDefinition.ts
-model/giftCardServiceDefinitionFields.ts
 model/giftCardServiceFields.ts
 model/giftCardServiceSnapshot.ts
 model/giftCardServiceUpdateRequest.ts
@@ -209,6 +212,7 @@ model/paymentServiceDefinitionSupportedFeatures.ts
 model/paymentServiceDefinitions.ts
 model/paymentServiceRequest.ts
 model/paymentServiceRequestFields.ts
+model/paymentServiceSession.ts
 model/paymentServiceSnapshot.ts
 model/paymentServiceToken.ts
 model/paymentServiceTokenRequest.ts
@@ -277,6 +281,7 @@ model/transactionGiftCardRequest.ts
 model/transactionGiftCardStoredRequest.ts
 model/transactionHistoryEvent.ts
 model/transactionHistoryEvents.ts
+model/transactionNetworkTokenRequest.ts
 model/transactionPaymentMethodRequest.ts
 model/transactionRedirectRequest.ts
 model/transactionRefundAllRequest.ts

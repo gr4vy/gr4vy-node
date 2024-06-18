@@ -106,6 +106,10 @@ export class TransactionRequest {
     */
     'store'?: boolean;
     'threeDSecureData'?: ThreeDSecureDataV1V2;
+    /**
+    * The unique identifier of an existing payment service. When provided, the created transaction will be processed by the given payment service and any routing rules will be skipped.
+    */
+    'paymentServiceId'?: string | null;
 
     static discriminator: string | undefined = undefined;
 
@@ -224,6 +228,11 @@ export class TransactionRequest {
             "name": "threeDSecureData",
             "baseName": "three_d_secure_data",
             "type": "ThreeDSecureDataV1V2"
+        },
+        {
+            "name": "paymentServiceId",
+            "baseName": "payment_service_id",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {

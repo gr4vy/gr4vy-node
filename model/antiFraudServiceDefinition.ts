@@ -14,17 +14,17 @@ import { RequestFile } from './models';
 import { AntiFraudServiceDefinitionFields } from './antiFraudServiceDefinitionFields';
 
 /**
-* An available gift card service that can be configured.
+* An available anti fraud service that can be configured.
 */
-export class GiftCardServiceDefinition {
+export class AntiFraudServiceDefinition {
     /**
-    * The ID of the gift card service definition.
+    * The ID of the anti fraud service definition.
     */
     'id'?: string;
     /**
-    * `gift-card-service-definition`.
+    * `anti-fraud-service-definition`.
     */
-    'type'?: GiftCardServiceDefinition.TypeEnum;
+    'type'?: AntiFraudServiceDefinition.TypeEnum;
     /**
     * The display name of this service.
     */
@@ -49,7 +49,7 @@ export class GiftCardServiceDefinition {
         {
             "name": "type",
             "baseName": "type",
-            "type": "GiftCardServiceDefinition.TypeEnum"
+            "type": "AntiFraudServiceDefinition.TypeEnum"
         },
         {
             "name": "displayName",
@@ -68,12 +68,12 @@ export class GiftCardServiceDefinition {
         }    ];
 
     static getAttributeTypeMap() {
-        return GiftCardServiceDefinition.attributeTypeMap;
+        return AntiFraudServiceDefinition.attributeTypeMap;
     }
 }
 
-export namespace GiftCardServiceDefinition {
+export namespace AntiFraudServiceDefinition {
     export enum TypeEnum {
-        GiftCardServiceDefinition = <any> 'gift-card-service-definition'
+        AntiFraudServiceDefinition = <any> 'anti-fraud-service-definition'
     }
 }
