@@ -13,29 +13,25 @@
 import { RequestFile } from './models';
 
 /**
-* Card payment method details to use in a transaction.
+* Details for a Network Token payment method.
 */
-export class TransactionCardRequest {
+export class TransactionNetworkTokenRequest {
     /**
-    * `card`.
+    * `network-token`.
     */
-    'method': TransactionCardRequest.MethodEnum;
+    'method': TransactionNetworkTokenRequest.MethodEnum;
     /**
-    * The 13-19 digit number for this card as it can be found on the front of the card.
+    * The value of the network token.
     */
-    'number': string;
+    'token': string;
     /**
-    * The expiration date of the card, formatted `MM/YY`.
+    * The expiration date of the network token, formatted `MM/YY`.
     */
     'expirationDate': string;
     /**
-    * The 3 or 4 digit security code often found on the card. This often referred to as the CVV or CVD.
+    * The cryptogram of the network token.
     */
-    'securityCode'?: string | null;
-    /**
-    * An external identifier that can be used to match the card against your own records. This can only be set if the `store` flag is set to `true`.
-    */
-    'externalIdentifier'?: string | null;
+    'cryptogram'?: string | null;
     /**
     * We strongly recommend providing a `redirect_url` either when 3-D Secure is enabled and `three_d_secure_data` is not provided, or when using connections where 3DS is enabled. This value will be appended with both a transaction ID and status (e.g. `https://example.com/callback?gr4vy_transaction_id=123 &gr4vy_transaction_status=capture_succeeded`) after 3-D Secure has completed. For those cases, if the value is not present, the transaction will be marked as failed.
     */
@@ -47,11 +43,11 @@ export class TransactionCardRequest {
         {
             "name": "method",
             "baseName": "method",
-            "type": "TransactionCardRequest.MethodEnum"
+            "type": "TransactionNetworkTokenRequest.MethodEnum"
         },
         {
-            "name": "number",
-            "baseName": "number",
+            "name": "token",
+            "baseName": "token",
             "type": "string"
         },
         {
@@ -60,13 +56,8 @@ export class TransactionCardRequest {
             "type": "string"
         },
         {
-            "name": "securityCode",
-            "baseName": "security_code",
-            "type": "string"
-        },
-        {
-            "name": "externalIdentifier",
-            "baseName": "external_identifier",
+            "name": "cryptogram",
+            "baseName": "cryptogram",
             "type": "string"
         },
         {
@@ -76,12 +67,12 @@ export class TransactionCardRequest {
         }    ];
 
     static getAttributeTypeMap() {
-        return TransactionCardRequest.attributeTypeMap;
+        return TransactionNetworkTokenRequest.attributeTypeMap;
     }
 }
 
-export namespace TransactionCardRequest {
+export namespace TransactionNetworkTokenRequest {
     export enum MethodEnum {
-        Card = <any> 'card'
+        NetworkToken = <any> 'network-token'
     }
 }

@@ -313,7 +313,7 @@ export class GiftCardsApi {
     }
     /**
      * Returns a list of all stored, not-expired gift cards and their balances for a buyer in a summarized format. Any expired or empty gift cards will be automatically filtered out and removed from the list of returned cards.  If we were not able to fetch the latest balance then all stored gift cards are returned.
-     * @summary List gift cards buyer
+     * @summary List gift cards for buyer
      * @param buyerId Filters the results to only the items for which the &#x60;buyer&#x60; has an &#x60;id&#x60; that matches this value.
      * @param buyerExternalIdentifier Filters the results to only the items for which the &#x60;buyer&#x60; has an &#x60;external_identifier&#x60; that matches this value.
      */

@@ -15,7 +15,7 @@ import { RequestFile } from './models';
 /**
 * A single field that needs to be submitted for a payment service when it is created.
 */
-export class GiftCardServiceDefinitionFields {
+export class AntiFraudServiceDefinitionFields {
     /**
     * The key of a field that needs to be submitted.
     */
@@ -31,7 +31,7 @@ export class GiftCardServiceDefinitionFields {
     /**
     * Defines the type of input that needs to be rendered for this field.
     */
-    'format'?: GiftCardServiceDefinitionFields.FormatEnum;
+    'format'?: AntiFraudServiceDefinitionFields.FormatEnum;
     /**
     * Defines if this field is secret. When `true` the field is not returned when querying the payment service.
     */
@@ -58,7 +58,7 @@ export class GiftCardServiceDefinitionFields {
         {
             "name": "format",
             "baseName": "format",
-            "type": "GiftCardServiceDefinitionFields.FormatEnum"
+            "type": "AntiFraudServiceDefinitionFields.FormatEnum"
         },
         {
             "name": "secret",
@@ -67,11 +67,11 @@ export class GiftCardServiceDefinitionFields {
         }    ];
 
     static getAttributeTypeMap() {
-        return GiftCardServiceDefinitionFields.attributeTypeMap;
+        return AntiFraudServiceDefinitionFields.attributeTypeMap;
     }
 }
 
-export namespace GiftCardServiceDefinitionFields {
+export namespace AntiFraudServiceDefinitionFields {
     export enum FormatEnum {
         Text = <any> 'text',
         Multiline = <any> 'multiline',

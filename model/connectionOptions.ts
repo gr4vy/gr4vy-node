@@ -15,12 +15,14 @@ import { ConnectionOptionsAdyenCard } from './connectionOptionsAdyenCard';
 import { ConnectionOptionsCybersourceAntiFraud } from './connectionOptionsCybersourceAntiFraud';
 import { ConnectionOptionsCybersourceCard } from './connectionOptionsCybersourceCard';
 import { ConnectionOptionsForterAntiFraud } from './connectionOptionsForterAntiFraud';
+import { ConnectionOptionsGivingblockGivingblock } from './connectionOptionsGivingblockGivingblock';
 import { ConnectionOptionsPaypalPaypal } from './connectionOptionsPaypalPaypal';
 import { ConnectionOptionsStripeCard } from './connectionOptionsStripeCard';
 
 export class ConnectionOptions {
     'cybersourceCard'?: ConnectionOptionsCybersourceCard | null;
     'cybersourceAntiFraud'?: ConnectionOptionsCybersourceAntiFraud | null;
+    'givingblockGivingblock'?: ConnectionOptionsGivingblockGivingblock | null;
     'forterAntiFraud'?: ConnectionOptionsForterAntiFraud | null;
     'adyenCard'?: ConnectionOptionsAdyenCard | null;
     'paypalPaypal'?: ConnectionOptionsPaypalPaypal | null;
@@ -39,6 +41,11 @@ export class ConnectionOptions {
             "name": "cybersourceAntiFraud",
             "baseName": "cybersource-anti-fraud",
             "type": "ConnectionOptionsCybersourceAntiFraud"
+        },
+        {
+            "name": "givingblockGivingblock",
+            "baseName": "givingblock-givingblock",
+            "type": "ConnectionOptionsGivingblockGivingblock"
         },
         {
             "name": "forterAntiFraud",

@@ -13,6 +13,8 @@ export * from './antiFraudDecisionEventContext';
 export * from './antiFraudDecisionSkippedEvent';
 export * from './antiFraudDecisionSkippedEventContext';
 export * from './antiFraudServiceCreate';
+export * from './antiFraudServiceDefinition';
+export * from './antiFraudServiceDefinitionFields';
 export * from './antiFraudServiceUpdate';
 export * from './antiFraudServiceUpdateFields';
 export * from './antiFraudTransactionStatusUpdateErrorEvent';
@@ -72,6 +74,7 @@ export * from './connectionOptionsForterAntiFraudPersonalDetails';
 export * from './connectionOptionsForterAntiFraudPhone';
 export * from './connectionOptionsForterAntiFraudTotalDiscount';
 export * from './connectionOptionsForterAntiFraudTotalDiscountCouponDiscountAmount';
+export * from './connectionOptionsGivingblockGivingblock';
 export * from './connectionOptionsPaypalPaypal';
 export * from './connectionOptionsPaypalPaypalAdditionalData';
 export * from './connectionOptionsStripeCard';
@@ -114,7 +117,6 @@ export * from './giftCardService';
 export * from './giftCardServiceCreateRequest';
 export * from './giftCardServiceCreateRequestFields';
 export * from './giftCardServiceDefinition';
-export * from './giftCardServiceDefinitionFields';
 export * from './giftCardServiceFields';
 export * from './giftCardServiceSnapshot';
 export * from './giftCardServiceUpdateRequest';
@@ -188,6 +190,7 @@ export * from './paymentServiceDefinitionSupportedFeatures';
 export * from './paymentServiceDefinitions';
 export * from './paymentServiceRequest';
 export * from './paymentServiceRequestFields';
+export * from './paymentServiceSession';
 export * from './paymentServiceSnapshot';
 export * from './paymentServiceToken';
 export * from './paymentServiceTokenRequest';
@@ -256,6 +259,7 @@ export * from './transactionGiftCardRequest';
 export * from './transactionGiftCardStoredRequest';
 export * from './transactionHistoryEvent';
 export * from './transactionHistoryEvents';
+export * from './transactionNetworkTokenRequest';
 export * from './transactionPaymentMethodRequest';
 export * from './transactionRedirectRequest';
 export * from './transactionRefundAllRequest';
@@ -296,6 +300,8 @@ import { AntiFraudDecisionEventContext } from './antiFraudDecisionEventContext';
 import { AntiFraudDecisionSkippedEvent } from './antiFraudDecisionSkippedEvent';
 import { AntiFraudDecisionSkippedEventContext } from './antiFraudDecisionSkippedEventContext';
 import { AntiFraudServiceCreate } from './antiFraudServiceCreate';
+import { AntiFraudServiceDefinition } from './antiFraudServiceDefinition';
+import { AntiFraudServiceDefinitionFields } from './antiFraudServiceDefinitionFields';
 import { AntiFraudServiceUpdate } from './antiFraudServiceUpdate';
 import { AntiFraudServiceUpdateFields } from './antiFraudServiceUpdateFields';
 import { AntiFraudTransactionStatusUpdateErrorEvent } from './antiFraudTransactionStatusUpdateErrorEvent';
@@ -355,6 +361,7 @@ import { ConnectionOptionsForterAntiFraudPersonalDetails } from './connectionOpt
 import { ConnectionOptionsForterAntiFraudPhone } from './connectionOptionsForterAntiFraudPhone';
 import { ConnectionOptionsForterAntiFraudTotalDiscount } from './connectionOptionsForterAntiFraudTotalDiscount';
 import { ConnectionOptionsForterAntiFraudTotalDiscountCouponDiscountAmount } from './connectionOptionsForterAntiFraudTotalDiscountCouponDiscountAmount';
+import { ConnectionOptionsGivingblockGivingblock } from './connectionOptionsGivingblockGivingblock';
 import { ConnectionOptionsPaypalPaypal } from './connectionOptionsPaypalPaypal';
 import { ConnectionOptionsPaypalPaypalAdditionalData } from './connectionOptionsPaypalPaypalAdditionalData';
 import { ConnectionOptionsStripeCard } from './connectionOptionsStripeCard';
@@ -397,7 +404,6 @@ import { GiftCardService } from './giftCardService';
 import { GiftCardServiceCreateRequest } from './giftCardServiceCreateRequest';
 import { GiftCardServiceCreateRequestFields } from './giftCardServiceCreateRequestFields';
 import { GiftCardServiceDefinition } from './giftCardServiceDefinition';
-import { GiftCardServiceDefinitionFields } from './giftCardServiceDefinitionFields';
 import { GiftCardServiceFields } from './giftCardServiceFields';
 import { GiftCardServiceSnapshot } from './giftCardServiceSnapshot';
 import { GiftCardServiceUpdateRequest } from './giftCardServiceUpdateRequest';
@@ -471,6 +477,7 @@ import { PaymentServiceDefinitionSupportedFeatures } from './paymentServiceDefin
 import { PaymentServiceDefinitions } from './paymentServiceDefinitions';
 import { PaymentServiceRequest } from './paymentServiceRequest';
 import { PaymentServiceRequestFields } from './paymentServiceRequestFields';
+import { PaymentServiceSession } from './paymentServiceSession';
 import { PaymentServiceSnapshot } from './paymentServiceSnapshot';
 import { PaymentServiceToken } from './paymentServiceToken';
 import { PaymentServiceTokenRequest } from './paymentServiceTokenRequest';
@@ -539,6 +546,7 @@ import { TransactionGiftCardRequest } from './transactionGiftCardRequest';
 import { TransactionGiftCardStoredRequest } from './transactionGiftCardStoredRequest';
 import { TransactionHistoryEvent } from './transactionHistoryEvent';
 import { TransactionHistoryEvents } from './transactionHistoryEvents';
+import { TransactionNetworkTokenRequest } from './transactionNetworkTokenRequest';
 import { TransactionPaymentMethodRequest } from './transactionPaymentMethodRequest';
 import { TransactionRedirectRequest } from './transactionRedirectRequest';
 import { TransactionRefundAllRequest } from './transactionRefundAllRequest';
@@ -576,6 +584,8 @@ let enumsMap: {[index: string]: any} = {
         "AntiFraudDecisionSkippedEvent.TypeEnum": AntiFraudDecisionSkippedEvent.TypeEnum,
         "AntiFraudDecisionSkippedEvent.NameEnum": AntiFraudDecisionSkippedEvent.NameEnum,
         "AntiFraudServiceCreate.AntiFraudServiceDefinitionIdEnum": AntiFraudServiceCreate.AntiFraudServiceDefinitionIdEnum,
+        "AntiFraudServiceDefinition.TypeEnum": AntiFraudServiceDefinition.TypeEnum,
+        "AntiFraudServiceDefinitionFields.FormatEnum": AntiFraudServiceDefinitionFields.FormatEnum,
         "AntiFraudServiceUpdate.AntiFraudServiceDefinitionIdEnum": AntiFraudServiceUpdate.AntiFraudServiceDefinitionIdEnum,
         "AntiFraudTransactionStatusUpdateErrorEvent.TypeEnum": AntiFraudTransactionStatusUpdateErrorEvent.TypeEnum,
         "AntiFraudTransactionStatusUpdateErrorEvent.NameEnum": AntiFraudTransactionStatusUpdateErrorEvent.NameEnum,
@@ -659,7 +669,6 @@ let enumsMap: {[index: string]: any} = {
         "GiftCardRefundSucceeded.NameEnum": GiftCardRefundSucceeded.NameEnum,
         "GiftCardService.TypeEnum": GiftCardService.TypeEnum,
         "GiftCardServiceDefinition.TypeEnum": GiftCardServiceDefinition.TypeEnum,
-        "GiftCardServiceDefinitionFields.FormatEnum": GiftCardServiceDefinitionFields.FormatEnum,
         "GiftCardServiceSnapshot.TypeEnum": GiftCardServiceSnapshot.TypeEnum,
         "GiftCardSnapshot.TypeEnum": GiftCardSnapshot.TypeEnum,
         "GiftCardSummary.TypeEnum": GiftCardSummary.TypeEnum,
@@ -751,6 +760,8 @@ let enumsMap: {[index: string]: any} = {
         "PaymentServiceDefinition.MethodEnum": PaymentServiceDefinition.MethodEnum,
         "PaymentServiceDefinition.ModeEnum": PaymentServiceDefinition.ModeEnum,
         "PaymentServiceDefinitionConfiguration.ApprovalUiTargetEnum": PaymentServiceDefinitionConfiguration.ApprovalUiTargetEnum,
+        "PaymentServiceSession.TypeEnum": PaymentServiceSession.TypeEnum,
+        "PaymentServiceSession.StatusEnum": PaymentServiceSession.StatusEnum,
         "PaymentServiceSnapshot.TypeEnum": PaymentServiceSnapshot.TypeEnum,
         "PaymentServiceSnapshot.MethodEnum": PaymentServiceSnapshot.MethodEnum,
         "PaymentServiceToken.TypeEnum": PaymentServiceToken.TypeEnum,
@@ -815,6 +826,7 @@ let enumsMap: {[index: string]: any} = {
         "TransactionCheckoutSessionRequest.MethodEnum": TransactionCheckoutSessionRequest.MethodEnum,
         "TransactionHistoryEvent.TypeEnum": TransactionHistoryEvent.TypeEnum,
         "TransactionHistoryEvent.NameEnum": TransactionHistoryEvent.NameEnum,
+        "TransactionNetworkTokenRequest.MethodEnum": TransactionNetworkTokenRequest.MethodEnum,
         "TransactionPaymentMethodRequest.MethodEnum": TransactionPaymentMethodRequest.MethodEnum,
         "TransactionRedirectRequest.MethodEnum": TransactionRedirectRequest.MethodEnum,
         "TransactionRefundRequest.TargetTypeEnum": TransactionRefundRequest.TargetTypeEnum,
@@ -844,6 +856,8 @@ let typeMap: {[index: string]: any} = {
     "AntiFraudDecisionSkippedEvent": AntiFraudDecisionSkippedEvent,
     "AntiFraudDecisionSkippedEventContext": AntiFraudDecisionSkippedEventContext,
     "AntiFraudServiceCreate": AntiFraudServiceCreate,
+    "AntiFraudServiceDefinition": AntiFraudServiceDefinition,
+    "AntiFraudServiceDefinitionFields": AntiFraudServiceDefinitionFields,
     "AntiFraudServiceUpdate": AntiFraudServiceUpdate,
     "AntiFraudServiceUpdateFields": AntiFraudServiceUpdateFields,
     "AntiFraudTransactionStatusUpdateErrorEvent": AntiFraudTransactionStatusUpdateErrorEvent,
@@ -903,6 +917,7 @@ let typeMap: {[index: string]: any} = {
     "ConnectionOptionsForterAntiFraudPhone": ConnectionOptionsForterAntiFraudPhone,
     "ConnectionOptionsForterAntiFraudTotalDiscount": ConnectionOptionsForterAntiFraudTotalDiscount,
     "ConnectionOptionsForterAntiFraudTotalDiscountCouponDiscountAmount": ConnectionOptionsForterAntiFraudTotalDiscountCouponDiscountAmount,
+    "ConnectionOptionsGivingblockGivingblock": ConnectionOptionsGivingblockGivingblock,
     "ConnectionOptionsPaypalPaypal": ConnectionOptionsPaypalPaypal,
     "ConnectionOptionsPaypalPaypalAdditionalData": ConnectionOptionsPaypalPaypalAdditionalData,
     "ConnectionOptionsStripeCard": ConnectionOptionsStripeCard,
@@ -945,7 +960,6 @@ let typeMap: {[index: string]: any} = {
     "GiftCardServiceCreateRequest": GiftCardServiceCreateRequest,
     "GiftCardServiceCreateRequestFields": GiftCardServiceCreateRequestFields,
     "GiftCardServiceDefinition": GiftCardServiceDefinition,
-    "GiftCardServiceDefinitionFields": GiftCardServiceDefinitionFields,
     "GiftCardServiceFields": GiftCardServiceFields,
     "GiftCardServiceSnapshot": GiftCardServiceSnapshot,
     "GiftCardServiceUpdateRequest": GiftCardServiceUpdateRequest,
@@ -1019,6 +1033,7 @@ let typeMap: {[index: string]: any} = {
     "PaymentServiceDefinitions": PaymentServiceDefinitions,
     "PaymentServiceRequest": PaymentServiceRequest,
     "PaymentServiceRequestFields": PaymentServiceRequestFields,
+    "PaymentServiceSession": PaymentServiceSession,
     "PaymentServiceSnapshot": PaymentServiceSnapshot,
     "PaymentServiceToken": PaymentServiceToken,
     "PaymentServiceTokenRequest": PaymentServiceTokenRequest,
@@ -1087,6 +1102,7 @@ let typeMap: {[index: string]: any} = {
     "TransactionGiftCardStoredRequest": TransactionGiftCardStoredRequest,
     "TransactionHistoryEvent": TransactionHistoryEvent,
     "TransactionHistoryEvents": TransactionHistoryEvents,
+    "TransactionNetworkTokenRequest": TransactionNetworkTokenRequest,
     "TransactionPaymentMethodRequest": TransactionPaymentMethodRequest,
     "TransactionRedirectRequest": TransactionRedirectRequest,
     "TransactionRefundAllRequest": TransactionRefundAllRequest,
