@@ -35,7 +35,7 @@ export class TransactionHistoryEvent {
     /**
     * A list of key/values with additional data.
     */
-    'context'?: { [key: string]: object; };
+    'context'?: { [key: string]: any; };
 
     static discriminator: string | undefined = undefined;
 
@@ -63,7 +63,7 @@ export class TransactionHistoryEvent {
         {
             "name": "context",
             "baseName": "context",
-            "type": "{ [key: string]: object; }"
+            "type": "{ [key: string]: any; }"
         }    ];
 
     static getAttributeTypeMap() {
@@ -79,6 +79,8 @@ export namespace TransactionHistoryEvent {
         AntiFraudDecisionError = <any> 'anti-fraud-decision-error',
         AntiFraudDecisionSkipped = <any> 'anti-fraud-decision-skipped',
         AntiFraudDecision = <any> 'anti-fraud-decision',
+        AntiFraudDecisionUpdate = <any> 'anti-fraud-decision-update',
+        AntiFraudDecisionUpdateError = <any> 'anti-fraud-decision-update-error',
         AntiFraudTransactionStatusUpdate = <any> 'anti-fraud-transaction-status-update',
         AntiFraudTransactionStatusUpdateError = <any> 'anti-fraud-transaction-status-update-error',
         AntiFraudWebhook = <any> 'anti-fraud-webhook',

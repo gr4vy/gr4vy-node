@@ -11,7 +11,7 @@
  */
 
 import { RequestFile } from './models';
-import { Buyer } from './buyer';
+import { GiftCardBuyer } from './giftCardBuyer';
 import { GiftCardService } from './giftCardService';
 
 /**
@@ -47,10 +47,7 @@ export class GiftCard {
     * The date and time when this gift card expires. This is a full date/time and may be more accurate than the actual expiry date received by the gift card service.
     */
     'expirationDate'?: Date | null;
-    /**
-    * The optional buyer for which this payment method has been stored.
-    */
-    'buyer'?: Buyer | null;
+    'buyer'?: GiftCardBuyer | null;
     /**
     * The date and time when this gift card was created in our system.
     */
@@ -106,7 +103,7 @@ export class GiftCard {
         {
             "name": "buyer",
             "baseName": "buyer",
-            "type": "Buyer"
+            "type": "GiftCardBuyer"
         },
         {
             "name": "createdAt",

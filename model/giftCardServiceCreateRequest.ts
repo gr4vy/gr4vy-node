@@ -11,7 +11,7 @@
  */
 
 import { RequestFile } from './models';
-import { GiftCardServiceCreateRequestFields } from './giftCardServiceCreateRequestFields';
+import { GiftCardServiceCreateRequestFieldsInner } from './giftCardServiceCreateRequestFieldsInner';
 
 /**
 * Request body for activating a gift card service.
@@ -28,11 +28,11 @@ export class GiftCardServiceCreateRequest {
     /**
     * A list of fields, each containing a key-value pair for each field defined by the definition for this gift card service.
     */
-    'fields': Array<GiftCardServiceCreateRequestFields>;
+    'fields': Array<GiftCardServiceCreateRequestFieldsInner>;
     /**
     * Defines if this service is currently active or not.
     */
-    'active'?: boolean;
+    'active'?: boolean = true;
 
     static discriminator: string | undefined = undefined;
 
@@ -50,7 +50,7 @@ export class GiftCardServiceCreateRequest {
         {
             "name": "fields",
             "baseName": "fields",
-            "type": "Array<GiftCardServiceCreateRequestFields>"
+            "type": "Array<GiftCardServiceCreateRequestFieldsInner>"
         },
         {
             "name": "active",

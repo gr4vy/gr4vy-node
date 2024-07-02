@@ -11,15 +11,15 @@
  */
 
 import { RequestFile } from './models';
-import { BuyerSnapshot } from './buyerSnapshot';
 import { CartItem } from './cartItem';
 import { GiftCardRedemption } from './giftCardRedemption';
 import { GiftCardServiceSnapshot } from './giftCardServiceSnapshot';
-import { PaymentMethodSnapshot } from './paymentMethodSnapshot';
-import { PaymentServiceSnapshot } from './paymentServiceSnapshot';
-import { ShippingDetail } from './shippingDetail';
 import { StatementDescriptor } from './statementDescriptor';
 import { ThreeDSecureSummary } from './threeDSecureSummary';
+import { TransactionBuyer } from './transactionBuyer';
+import { TransactionPaymentMethod } from './transactionPaymentMethod';
+import { TransactionPaymentService } from './transactionPaymentService';
+import { TransactionShippingDetails } from './transactionShippingDetails';
 
 /**
 * A transaction record.
@@ -57,10 +57,7 @@ export class Transaction {
     * The response code received from the payment service for the Address Verification Check (AVS). This code is mapped to a standardized Gr4vy AVS response code.  - `no_match` - neither address or postal code match - `match` - both address and postal code match - `partial_match_address` - address matches but postal code does not - `partial_match_postcode` - postal code matches but address does not - `unavailable ` - AVS is unavailable for card/country  The value of this field can be `null` if the payment service did not provide a response.
     */
     'avsResponseCode'?: Transaction.AvsResponseCodeEnum;
-    /**
-    * The buyer used for this transaction.
-    */
-    'buyer'?: BuyerSnapshot | null;
+    'buyer'?: TransactionBuyer | null;
     /**
     * The captured amount for this transaction. This can be the full value of the `authorized_amount` or less.
     */
@@ -124,7 +121,7 @@ export class Transaction {
     /**
     * Indicates whether the transaction represents a subsequent payment coming from a setup recurring payment. Please note there are some restrictions on how this flag may be used.  The flag can only be `false` (or not set) when the transaction meets one of the following criteria:  * It is not `merchant_initiated`. * `payment_source` is set to `card_on_file`.  The flag can only be set to `true` when the transaction meets one of the following criteria:  * It is not `merchant_initiated`. * `payment_source` is set to `recurring` or `installment` and `merchant_initiated` is set to `true`. * `payment_source` is set to `card_on_file`.
     */
-    'isSubsequentPayment'?: boolean;
+    'isSubsequentPayment'?: boolean = false;
     /**
     * The ID of the merchant account to which this transaction belongs to.
     */
@@ -132,7 +129,7 @@ export class Transaction {
     /**
     * Indicates whether the transaction was initiated by the merchant (true) or customer (false).
     */
-    'merchantInitiated'?: boolean;
+    'merchantInitiated'?: boolean = false;
     /**
     * Additional information about the transaction stored as key-value pairs.
     */
@@ -142,14 +139,8 @@ export class Transaction {
     * Defines if this transaction has been split across multiple payment instruments such as a `payment_method` and one or more `gift_cards`, or multiple `gift_cards` without a `payment_method`.
     */
     'multiTender'?: boolean;
-    /**
-    * The payment method used for this transaction.
-    */
-    'paymentMethod'?: PaymentMethodSnapshot | null;
-    /**
-    * The payment service used for this transaction.
-    */
-    'paymentService'?: PaymentServiceSnapshot | null;
+    'paymentMethod'?: TransactionPaymentMethod | null;
+    'paymentService'?: TransactionPaymentService | null;
     /**
     * The payment service\'s unique ID for the transaction.
     */
@@ -182,10 +173,7 @@ export class Transaction {
     * An identifier for the transaction used by the scheme itself, when available.  e.g. the Visa Transaction Identifier, or Mastercard Trace ID.
     */
     'schemeTransactionId'?: string | null;
-    /**
-    * The shipping details associated with the transaction.
-    */
-    'shippingDetails'?: ShippingDetail | null;
+    'shippingDetails'?: TransactionShippingDetails | null;
     'statementDescriptor'?: StatementDescriptor | null;
     /**
     * The status of the transaction for the `payment_method`. The status may change over time as asynchronous processing events occur.  Please note that the possible statuses returned will depend on the operation performed. For example, a captured transaction will never move to a `authorization_voided` status.
@@ -247,7 +235,7 @@ export class Transaction {
         {
             "name": "buyer",
             "baseName": "buyer",
-            "type": "BuyerSnapshot"
+            "type": "TransactionBuyer"
         },
         {
             "name": "capturedAmount",
@@ -357,12 +345,12 @@ export class Transaction {
         {
             "name": "paymentMethod",
             "baseName": "payment_method",
-            "type": "PaymentMethodSnapshot"
+            "type": "TransactionPaymentMethod"
         },
         {
             "name": "paymentService",
             "baseName": "payment_service",
-            "type": "PaymentServiceSnapshot"
+            "type": "TransactionPaymentService"
         },
         {
             "name": "paymentServiceTransactionId",
@@ -407,7 +395,7 @@ export class Transaction {
         {
             "name": "shippingDetails",
             "baseName": "shipping_details",
-            "type": "ShippingDetail"
+            "type": "TransactionShippingDetails"
         },
         {
             "name": "statementDescriptor",

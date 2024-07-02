@@ -12,7 +12,7 @@
 
 import { RequestFile } from './models';
 import { ThreeDSecureDataV1V2 } from './threeDSecureDataV1V2';
-import { ThreeDSecureError } from './threeDSecureError';
+import { ThreeDSecureSummaryErrorData } from './threeDSecureSummaryErrorData';
 
 /**
 * The 3-D Secure data that was sent to the payment service for the transaction.
@@ -30,10 +30,7 @@ export class ThreeDSecureSummary {
     * The method used for 3DS authentication for this transaction.
     */
     'method'?: ThreeDSecureSummary.MethodEnum;
-    /**
-    * The error data received from our 3DS server. This will not be populated if the customer failed the authentication with a status code of `N`, `R`, or `U`.  To see full details about the 3DS calls in those situations please use our transaction events API.
-    */
-    'errorData'?: ThreeDSecureError | null;
+    'errorData'?: ThreeDSecureSummaryErrorData | null;
     'responseData'?: ThreeDSecureDataV1V2;
 
     static discriminator: string | undefined = undefined;
@@ -57,7 +54,7 @@ export class ThreeDSecureSummary {
         {
             "name": "errorData",
             "baseName": "error_data",
-            "type": "ThreeDSecureError"
+            "type": "ThreeDSecureSummaryErrorData"
         },
         {
             "name": "responseData",

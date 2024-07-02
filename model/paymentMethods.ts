@@ -24,7 +24,7 @@ export class PaymentMethods {
     /**
     * The limit applied to request. This represents the number of items that are at maximum returned by this request.
     */
-    'limit'?: number;
+    'limit'?: number = 20;
     /**
     * The cursor that represents the next page of results. Use the `cursor` query parameter to fetch this page of items.
     */

@@ -11,40 +11,25 @@
  */
 
 import { RequestFile } from './models';
-import { MerchantProfileSchemeSummary } from './merchantProfileSchemeSummary';
+import { MerchantProfileSummaryAmex } from './merchantProfileSummaryAmex';
+import { MerchantProfileSummaryDankort } from './merchantProfileSummaryDankort';
+import { MerchantProfileSummaryDiscover } from './merchantProfileSummaryDiscover';
+import { MerchantProfileSummaryJcb } from './merchantProfileSummaryJcb';
+import { MerchantProfileSummaryMastercard } from './merchantProfileSummaryMastercard';
+import { MerchantProfileSummaryUnionpay } from './merchantProfileSummaryUnionpay';
+import { MerchantProfileSummaryVisa } from './merchantProfileSummaryVisa';
 
 /**
 * Merchant profile for the different card schemes.
 */
 export class MerchantProfileSummary {
-    /**
-    * Merchant profile for Amex.
-    */
-    'amex'?: MerchantProfileSchemeSummary | null;
-    /**
-    * Merchant profile for Dankort.
-    */
-    'dankort'?: MerchantProfileSchemeSummary | null;
-    /**
-    * Merchant profile for Discover.
-    */
-    'discover'?: MerchantProfileSchemeSummary | null;
-    /**
-    * Merchant profile for JCB.
-    */
-    'jcb'?: MerchantProfileSchemeSummary | null;
-    /**
-    * Merchant profile for Mastercard.
-    */
-    'mastercard'?: MerchantProfileSchemeSummary | null;
-    /**
-    * Merchant profile for UnionPay.
-    */
-    'unionpay'?: MerchantProfileSchemeSummary | null;
-    /**
-    * Merchant profile for Visa.
-    */
-    'visa'?: MerchantProfileSchemeSummary | null;
+    'amex'?: MerchantProfileSummaryAmex | null;
+    'dankort'?: MerchantProfileSummaryDankort | null;
+    'discover'?: MerchantProfileSummaryDiscover | null;
+    'jcb'?: MerchantProfileSummaryJcb | null;
+    'mastercard'?: MerchantProfileSummaryMastercard | null;
+    'unionpay'?: MerchantProfileSummaryUnionpay | null;
+    'visa'?: MerchantProfileSummaryVisa | null;
 
     static discriminator: string | undefined = undefined;
 
@@ -52,37 +37,37 @@ export class MerchantProfileSummary {
         {
             "name": "amex",
             "baseName": "amex",
-            "type": "MerchantProfileSchemeSummary"
+            "type": "MerchantProfileSummaryAmex"
         },
         {
             "name": "dankort",
             "baseName": "dankort",
-            "type": "MerchantProfileSchemeSummary"
+            "type": "MerchantProfileSummaryDankort"
         },
         {
             "name": "discover",
             "baseName": "discover",
-            "type": "MerchantProfileSchemeSummary"
+            "type": "MerchantProfileSummaryDiscover"
         },
         {
             "name": "jcb",
             "baseName": "jcb",
-            "type": "MerchantProfileSchemeSummary"
+            "type": "MerchantProfileSummaryJcb"
         },
         {
             "name": "mastercard",
             "baseName": "mastercard",
-            "type": "MerchantProfileSchemeSummary"
+            "type": "MerchantProfileSummaryMastercard"
         },
         {
             "name": "unionpay",
             "baseName": "unionpay",
-            "type": "MerchantProfileSchemeSummary"
+            "type": "MerchantProfileSummaryUnionpay"
         },
         {
             "name": "visa",
             "baseName": "visa",
-            "type": "MerchantProfileSchemeSummary"
+            "type": "MerchantProfileSummaryVisa"
         }    ];
 
     static getAttributeTypeMap() {

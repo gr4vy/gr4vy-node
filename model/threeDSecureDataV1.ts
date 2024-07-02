@@ -11,8 +11,6 @@
  */
 
 import { RequestFile } from './models';
-import { ThreeDSecureData } from './threeDSecureData';
-import { ThreeDSecureDataV1AllOf } from './threeDSecureDataV1AllOf';
 
 export class ThreeDSecureDataV1 {
     /**

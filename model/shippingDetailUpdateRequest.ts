@@ -11,7 +11,7 @@
  */
 
 import { RequestFile } from './models';
-import { Address } from './address';
+import { ShippingDetailAddress } from './shippingDetailAddress';
 
 export class ShippingDetailUpdateRequest {
     /**
@@ -30,10 +30,7 @@ export class ShippingDetailUpdateRequest {
     * The phone number for the buyer which should be formatted according to the [E164 number standard](https://www.twilio.com/docs/glossary/what-e164).
     */
     'phoneNumber'?: string | null;
-    /**
-    * The physical shipping address associated to this buyer.
-    */
-    'address'?: Address | null;
+    'address'?: ShippingDetailAddress | null;
 
     static discriminator: string | undefined = undefined;
 
@@ -61,7 +58,7 @@ export class ShippingDetailUpdateRequest {
         {
             "name": "address",
             "baseName": "address",
-            "type": "Address"
+            "type": "ShippingDetailAddress"
         }    ];
 
     static getAttributeTypeMap() {

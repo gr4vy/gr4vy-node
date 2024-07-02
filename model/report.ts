@@ -13,7 +13,6 @@
 import { RequestFile } from './models';
 import { ReportExecutionSummary } from './reportExecutionSummary';
 import { ReportSpec } from './reportSpec';
-import { ReportSummary } from './reportSummary';
 
 /**
 * A report record.

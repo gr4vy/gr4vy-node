@@ -12,11 +12,15 @@ export * from './antiFraudDecisionEvent';
 export * from './antiFraudDecisionEventContext';
 export * from './antiFraudDecisionSkippedEvent';
 export * from './antiFraudDecisionSkippedEventContext';
+export * from './antiFraudDecisionUpdateErrorEvent';
+export * from './antiFraudDecisionUpdateErrorEventContext';
+export * from './antiFraudDecisionUpdateEvent';
+export * from './antiFraudDecisionUpdateEventContext';
 export * from './antiFraudServiceCreate';
 export * from './antiFraudServiceDefinition';
-export * from './antiFraudServiceDefinitionFields';
+export * from './antiFraudServiceDefinitionFieldsInner';
 export * from './antiFraudServiceUpdate';
-export * from './antiFraudServiceUpdateFields';
+export * from './antiFraudServiceUpdateFieldsInner';
 export * from './antiFraudTransactionStatusUpdateErrorEvent';
 export * from './antiFraudTransactionStatusUpdateErrorEventContext';
 export * from './antiFraudTransactionStatusUpdateEvent';
@@ -36,13 +40,22 @@ export * from './auditLogs';
 export * from './bINLookupRequest';
 export * from './bINLookupRequestContext';
 export * from './billingDetails';
+export * from './billingDetailsAddress';
 export * from './billingDetailsRequest';
+export * from './billingDetailsRequestAddress';
+export * from './billingDetailsRequestTaxId';
+export * from './billingDetailsTaxId';
 export * from './billingDetailsUpdateRequest';
+export * from './billingDetailsUpdateRequestAddress';
 export * from './browserInfo';
 export * from './buyer';
+export * from './buyerBillingDetails';
 export * from './buyerRequest';
+export * from './buyerRequestBillingDetails';
 export * from './buyerSnapshot';
+export * from './buyerSnapshotBillingDetails';
 export * from './buyerUpdate';
+export * from './buyerUpdateBillingDetails';
 export * from './buyers';
 export * from './cardDetails';
 export * from './cardRequest';
@@ -64,19 +77,19 @@ export * from './connectionOptionsAdyenCard';
 export * from './connectionOptionsCybersourceAntiFraud';
 export * from './connectionOptionsCybersourceCard';
 export * from './connectionOptionsForterAntiFraud';
-export * from './connectionOptionsForterAntiFraudAddress';
-export * from './connectionOptionsForterAntiFraudBasicItemData';
-export * from './connectionOptionsForterAntiFraudBeneficiaries';
-export * from './connectionOptionsForterAntiFraudCartItems';
-export * from './connectionOptionsForterAntiFraudComments';
-export * from './connectionOptionsForterAntiFraudDeliveryDetails';
-export * from './connectionOptionsForterAntiFraudPersonalDetails';
-export * from './connectionOptionsForterAntiFraudPhone';
+export * from './connectionOptionsForterAntiFraudCartItemsInner';
+export * from './connectionOptionsForterAntiFraudCartItemsInnerBasicItemData';
+export * from './connectionOptionsForterAntiFraudCartItemsInnerBeneficiariesInner';
+export * from './connectionOptionsForterAntiFraudCartItemsInnerBeneficiariesInnerAddress';
+export * from './connectionOptionsForterAntiFraudCartItemsInnerBeneficiariesInnerComments';
+export * from './connectionOptionsForterAntiFraudCartItemsInnerBeneficiariesInnerPersonalDetails';
+export * from './connectionOptionsForterAntiFraudCartItemsInnerBeneficiariesInnerPhoneInner';
+export * from './connectionOptionsForterAntiFraudCartItemsInnerDeliveryDetails';
 export * from './connectionOptionsForterAntiFraudTotalDiscount';
 export * from './connectionOptionsForterAntiFraudTotalDiscountCouponDiscountAmount';
 export * from './connectionOptionsGivingblockGivingblock';
 export * from './connectionOptionsPaypalPaypal';
-export * from './connectionOptionsPaypalPaypalAdditionalData';
+export * from './connectionOptionsPaypalPaypalAdditionalDataInner';
 export * from './connectionOptionsStripeCard';
 export * from './connectionOptionsStripeCardStripeConnect';
 export * from './connections';
@@ -105,6 +118,7 @@ export * from './giftCardBalanceNewRequest';
 export * from './giftCardBalanceRequest';
 export * from './giftCardBalanceStoredRequest';
 export * from './giftCardBalancesRequest';
+export * from './giftCardBuyer';
 export * from './giftCardRedemption';
 export * from './giftCardRedemptionFailed';
 export * from './giftCardRedemptionFailedContext';
@@ -115,14 +129,14 @@ export * from './giftCardRefundFailedContext';
 export * from './giftCardRefundSucceeded';
 export * from './giftCardService';
 export * from './giftCardServiceCreateRequest';
-export * from './giftCardServiceCreateRequestFields';
+export * from './giftCardServiceCreateRequestFieldsInner';
 export * from './giftCardServiceDefinition';
-export * from './giftCardServiceFields';
+export * from './giftCardServiceFieldsInner';
 export * from './giftCardServiceSnapshot';
 export * from './giftCardServiceUpdateRequest';
-export * from './giftCardServiceUpdateRequestFields';
+export * from './giftCardServiceUpdateRequestFieldsInner';
 export * from './giftCardServiceVerifyRequest';
-export * from './giftCardServiceVerifyRequestFields';
+export * from './giftCardServiceVerifyRequestFieldsInner';
 export * from './giftCardSnapshot';
 export * from './giftCardStoreRequest';
 export * from './giftCardSummary';
@@ -137,9 +151,23 @@ export * from './merchantAccountCreate';
 export * from './merchantAccountUpdate';
 export * from './merchantAccounts';
 export * from './merchantProfile';
+export * from './merchantProfileAmex';
+export * from './merchantProfileDankort';
+export * from './merchantProfileDiscover';
+export * from './merchantProfileJcb';
+export * from './merchantProfileMastercard';
 export * from './merchantProfileScheme';
 export * from './merchantProfileSchemeSummary';
 export * from './merchantProfileSummary';
+export * from './merchantProfileSummaryAmex';
+export * from './merchantProfileSummaryDankort';
+export * from './merchantProfileSummaryDiscover';
+export * from './merchantProfileSummaryJcb';
+export * from './merchantProfileSummaryMastercard';
+export * from './merchantProfileSummaryUnionpay';
+export * from './merchantProfileSummaryVisa';
+export * from './merchantProfileUnionpay';
+export * from './merchantProfileVisa';
 export * from './networkToken';
 export * from './networkTokenCryptogramProvisionFailed';
 export * from './networkTokenCryptogramProvisionFailedContext';
@@ -188,14 +216,17 @@ export * from './paymentServiceDefinition';
 export * from './paymentServiceDefinitionConfiguration';
 export * from './paymentServiceDefinitionSupportedFeatures';
 export * from './paymentServiceDefinitions';
+export * from './paymentServiceMerchantProfile';
 export * from './paymentServiceRequest';
-export * from './paymentServiceRequestFields';
+export * from './paymentServiceRequestFieldsInner';
+export * from './paymentServiceRequestMerchantProfile';
 export * from './paymentServiceSession';
 export * from './paymentServiceSnapshot';
 export * from './paymentServiceToken';
 export * from './paymentServiceTokenRequest';
 export * from './paymentServiceTokens';
 export * from './paymentServiceUpdate';
+export * from './paymentServiceUpdateMerchantProfile';
 export * from './paymentServices';
 export * from './redirectRequest';
 export * from './refund';
@@ -208,6 +239,8 @@ export * from './reportExecutionSummaryContext';
 export * from './reportExecutionUrl';
 export * from './reportExecutions';
 export * from './reportSpec';
+export * from './reportSpecParams';
+export * from './reportSpecParamsFilters';
 export * from './reportSummary';
 export * from './reportUpdate';
 export * from './reports';
@@ -225,6 +258,7 @@ export * from './rolePermissions';
 export * from './roles';
 export * from './setPasswordRequest';
 export * from './shippingDetail';
+export * from './shippingDetailAddress';
 export * from './shippingDetailRequest';
 export * from './shippingDetailUpdateRequest';
 export * from './shippingDetails';
@@ -234,10 +268,8 @@ export * from './threeDSecureAuthenticationRequestEvent';
 export * from './threeDSecureAuthenticationRequestEventContext';
 export * from './threeDSecureData';
 export * from './threeDSecureDataV1';
-export * from './threeDSecureDataV1AllOf';
 export * from './threeDSecureDataV1V2';
 export * from './threeDSecureDataV2';
-export * from './threeDSecureDataV2AllOf';
 export * from './threeDSecureError';
 export * from './threeDSecurePreparationRequestEvent';
 export * from './threeDSecurePreparationRequestEventContext';
@@ -248,9 +280,11 @@ export * from './threeDSecureResultRequestEventContext';
 export * from './threeDSecureSuccessEvent';
 export * from './threeDSecureSuccessEventContext';
 export * from './threeDSecureSummary';
+export * from './threeDSecureSummaryErrorData';
 export * from './threeDSecureV2';
 export * from './tokenizedRequest';
 export * from './transaction';
+export * from './transactionBuyer';
 export * from './transactionCaptureRequest';
 export * from './transactionCardRequest';
 export * from './transactionCheckoutSessionRequest';
@@ -260,11 +294,17 @@ export * from './transactionGiftCardStoredRequest';
 export * from './transactionHistoryEvent';
 export * from './transactionHistoryEvents';
 export * from './transactionNetworkTokenRequest';
+export * from './transactionPaymentMethod';
 export * from './transactionPaymentMethodRequest';
+export * from './transactionPaymentService';
 export * from './transactionRedirectRequest';
 export * from './transactionRefundAllRequest';
 export * from './transactionRefundRequest';
 export * from './transactionRequest';
+export * from './transactionRequestBrowserInfo';
+export * from './transactionRequestConnectionOptions';
+export * from './transactionRequestStatementDescriptor';
+export * from './transactionShippingDetails';
 export * from './transactionStatusSummary';
 export * from './transactionSummary';
 export * from './transactions';
@@ -299,11 +339,15 @@ import { AntiFraudDecisionEvent } from './antiFraudDecisionEvent';
 import { AntiFraudDecisionEventContext } from './antiFraudDecisionEventContext';
 import { AntiFraudDecisionSkippedEvent } from './antiFraudDecisionSkippedEvent';
 import { AntiFraudDecisionSkippedEventContext } from './antiFraudDecisionSkippedEventContext';
+import { AntiFraudDecisionUpdateErrorEvent } from './antiFraudDecisionUpdateErrorEvent';
+import { AntiFraudDecisionUpdateErrorEventContext } from './antiFraudDecisionUpdateErrorEventContext';
+import { AntiFraudDecisionUpdateEvent } from './antiFraudDecisionUpdateEvent';
+import { AntiFraudDecisionUpdateEventContext } from './antiFraudDecisionUpdateEventContext';
 import { AntiFraudServiceCreate } from './antiFraudServiceCreate';
 import { AntiFraudServiceDefinition } from './antiFraudServiceDefinition';
-import { AntiFraudServiceDefinitionFields } from './antiFraudServiceDefinitionFields';
+import { AntiFraudServiceDefinitionFieldsInner } from './antiFraudServiceDefinitionFieldsInner';
 import { AntiFraudServiceUpdate } from './antiFraudServiceUpdate';
-import { AntiFraudServiceUpdateFields } from './antiFraudServiceUpdateFields';
+import { AntiFraudServiceUpdateFieldsInner } from './antiFraudServiceUpdateFieldsInner';
 import { AntiFraudTransactionStatusUpdateErrorEvent } from './antiFraudTransactionStatusUpdateErrorEvent';
 import { AntiFraudTransactionStatusUpdateErrorEventContext } from './antiFraudTransactionStatusUpdateErrorEventContext';
 import { AntiFraudTransactionStatusUpdateEvent } from './antiFraudTransactionStatusUpdateEvent';
@@ -323,13 +367,22 @@ import { AuditLogs } from './auditLogs';
 import { BINLookupRequest } from './bINLookupRequest';
 import { BINLookupRequestContext } from './bINLookupRequestContext';
 import { BillingDetails } from './billingDetails';
+import { BillingDetailsAddress } from './billingDetailsAddress';
 import { BillingDetailsRequest } from './billingDetailsRequest';
+import { BillingDetailsRequestAddress } from './billingDetailsRequestAddress';
+import { BillingDetailsRequestTaxId } from './billingDetailsRequestTaxId';
+import { BillingDetailsTaxId } from './billingDetailsTaxId';
 import { BillingDetailsUpdateRequest } from './billingDetailsUpdateRequest';
+import { BillingDetailsUpdateRequestAddress } from './billingDetailsUpdateRequestAddress';
 import { BrowserInfo } from './browserInfo';
 import { Buyer } from './buyer';
+import { BuyerBillingDetails } from './buyerBillingDetails';
 import { BuyerRequest } from './buyerRequest';
+import { BuyerRequestBillingDetails } from './buyerRequestBillingDetails';
 import { BuyerSnapshot } from './buyerSnapshot';
+import { BuyerSnapshotBillingDetails } from './buyerSnapshotBillingDetails';
 import { BuyerUpdate } from './buyerUpdate';
+import { BuyerUpdateBillingDetails } from './buyerUpdateBillingDetails';
 import { Buyers } from './buyers';
 import { CardDetails } from './cardDetails';
 import { CardRequest } from './cardRequest';
@@ -351,19 +404,19 @@ import { ConnectionOptionsAdyenCard } from './connectionOptionsAdyenCard';
 import { ConnectionOptionsCybersourceAntiFraud } from './connectionOptionsCybersourceAntiFraud';
 import { ConnectionOptionsCybersourceCard } from './connectionOptionsCybersourceCard';
 import { ConnectionOptionsForterAntiFraud } from './connectionOptionsForterAntiFraud';
-import { ConnectionOptionsForterAntiFraudAddress } from './connectionOptionsForterAntiFraudAddress';
-import { ConnectionOptionsForterAntiFraudBasicItemData } from './connectionOptionsForterAntiFraudBasicItemData';
-import { ConnectionOptionsForterAntiFraudBeneficiaries } from './connectionOptionsForterAntiFraudBeneficiaries';
-import { ConnectionOptionsForterAntiFraudCartItems } from './connectionOptionsForterAntiFraudCartItems';
-import { ConnectionOptionsForterAntiFraudComments } from './connectionOptionsForterAntiFraudComments';
-import { ConnectionOptionsForterAntiFraudDeliveryDetails } from './connectionOptionsForterAntiFraudDeliveryDetails';
-import { ConnectionOptionsForterAntiFraudPersonalDetails } from './connectionOptionsForterAntiFraudPersonalDetails';
-import { ConnectionOptionsForterAntiFraudPhone } from './connectionOptionsForterAntiFraudPhone';
+import { ConnectionOptionsForterAntiFraudCartItemsInner } from './connectionOptionsForterAntiFraudCartItemsInner';
+import { ConnectionOptionsForterAntiFraudCartItemsInnerBasicItemData } from './connectionOptionsForterAntiFraudCartItemsInnerBasicItemData';
+import { ConnectionOptionsForterAntiFraudCartItemsInnerBeneficiariesInner } from './connectionOptionsForterAntiFraudCartItemsInnerBeneficiariesInner';
+import { ConnectionOptionsForterAntiFraudCartItemsInnerBeneficiariesInnerAddress } from './connectionOptionsForterAntiFraudCartItemsInnerBeneficiariesInnerAddress';
+import { ConnectionOptionsForterAntiFraudCartItemsInnerBeneficiariesInnerComments } from './connectionOptionsForterAntiFraudCartItemsInnerBeneficiariesInnerComments';
+import { ConnectionOptionsForterAntiFraudCartItemsInnerBeneficiariesInnerPersonalDetails } from './connectionOptionsForterAntiFraudCartItemsInnerBeneficiariesInnerPersonalDetails';
+import { ConnectionOptionsForterAntiFraudCartItemsInnerBeneficiariesInnerPhoneInner } from './connectionOptionsForterAntiFraudCartItemsInnerBeneficiariesInnerPhoneInner';
+import { ConnectionOptionsForterAntiFraudCartItemsInnerDeliveryDetails } from './connectionOptionsForterAntiFraudCartItemsInnerDeliveryDetails';
 import { ConnectionOptionsForterAntiFraudTotalDiscount } from './connectionOptionsForterAntiFraudTotalDiscount';
 import { ConnectionOptionsForterAntiFraudTotalDiscountCouponDiscountAmount } from './connectionOptionsForterAntiFraudTotalDiscountCouponDiscountAmount';
 import { ConnectionOptionsGivingblockGivingblock } from './connectionOptionsGivingblockGivingblock';
 import { ConnectionOptionsPaypalPaypal } from './connectionOptionsPaypalPaypal';
-import { ConnectionOptionsPaypalPaypalAdditionalData } from './connectionOptionsPaypalPaypalAdditionalData';
+import { ConnectionOptionsPaypalPaypalAdditionalDataInner } from './connectionOptionsPaypalPaypalAdditionalDataInner';
 import { ConnectionOptionsStripeCard } from './connectionOptionsStripeCard';
 import { ConnectionOptionsStripeCardStripeConnect } from './connectionOptionsStripeCardStripeConnect';
 import { Connections } from './connections';
@@ -392,6 +445,7 @@ import { GiftCardBalanceNewRequest } from './giftCardBalanceNewRequest';
 import { GiftCardBalanceRequest } from './giftCardBalanceRequest';
 import { GiftCardBalanceStoredRequest } from './giftCardBalanceStoredRequest';
 import { GiftCardBalancesRequest } from './giftCardBalancesRequest';
+import { GiftCardBuyer } from './giftCardBuyer';
 import { GiftCardRedemption } from './giftCardRedemption';
 import { GiftCardRedemptionFailed } from './giftCardRedemptionFailed';
 import { GiftCardRedemptionFailedContext } from './giftCardRedemptionFailedContext';
@@ -402,14 +456,14 @@ import { GiftCardRefundFailedContext } from './giftCardRefundFailedContext';
 import { GiftCardRefundSucceeded } from './giftCardRefundSucceeded';
 import { GiftCardService } from './giftCardService';
 import { GiftCardServiceCreateRequest } from './giftCardServiceCreateRequest';
-import { GiftCardServiceCreateRequestFields } from './giftCardServiceCreateRequestFields';
+import { GiftCardServiceCreateRequestFieldsInner } from './giftCardServiceCreateRequestFieldsInner';
 import { GiftCardServiceDefinition } from './giftCardServiceDefinition';
-import { GiftCardServiceFields } from './giftCardServiceFields';
+import { GiftCardServiceFieldsInner } from './giftCardServiceFieldsInner';
 import { GiftCardServiceSnapshot } from './giftCardServiceSnapshot';
 import { GiftCardServiceUpdateRequest } from './giftCardServiceUpdateRequest';
-import { GiftCardServiceUpdateRequestFields } from './giftCardServiceUpdateRequestFields';
+import { GiftCardServiceUpdateRequestFieldsInner } from './giftCardServiceUpdateRequestFieldsInner';
 import { GiftCardServiceVerifyRequest } from './giftCardServiceVerifyRequest';
-import { GiftCardServiceVerifyRequestFields } from './giftCardServiceVerifyRequestFields';
+import { GiftCardServiceVerifyRequestFieldsInner } from './giftCardServiceVerifyRequestFieldsInner';
 import { GiftCardSnapshot } from './giftCardSnapshot';
 import { GiftCardStoreRequest } from './giftCardStoreRequest';
 import { GiftCardSummary } from './giftCardSummary';
@@ -424,9 +478,23 @@ import { MerchantAccountCreate } from './merchantAccountCreate';
 import { MerchantAccountUpdate } from './merchantAccountUpdate';
 import { MerchantAccounts } from './merchantAccounts';
 import { MerchantProfile } from './merchantProfile';
+import { MerchantProfileAmex } from './merchantProfileAmex';
+import { MerchantProfileDankort } from './merchantProfileDankort';
+import { MerchantProfileDiscover } from './merchantProfileDiscover';
+import { MerchantProfileJcb } from './merchantProfileJcb';
+import { MerchantProfileMastercard } from './merchantProfileMastercard';
 import { MerchantProfileScheme } from './merchantProfileScheme';
 import { MerchantProfileSchemeSummary } from './merchantProfileSchemeSummary';
 import { MerchantProfileSummary } from './merchantProfileSummary';
+import { MerchantProfileSummaryAmex } from './merchantProfileSummaryAmex';
+import { MerchantProfileSummaryDankort } from './merchantProfileSummaryDankort';
+import { MerchantProfileSummaryDiscover } from './merchantProfileSummaryDiscover';
+import { MerchantProfileSummaryJcb } from './merchantProfileSummaryJcb';
+import { MerchantProfileSummaryMastercard } from './merchantProfileSummaryMastercard';
+import { MerchantProfileSummaryUnionpay } from './merchantProfileSummaryUnionpay';
+import { MerchantProfileSummaryVisa } from './merchantProfileSummaryVisa';
+import { MerchantProfileUnionpay } from './merchantProfileUnionpay';
+import { MerchantProfileVisa } from './merchantProfileVisa';
 import { NetworkToken } from './networkToken';
 import { NetworkTokenCryptogramProvisionFailed } from './networkTokenCryptogramProvisionFailed';
 import { NetworkTokenCryptogramProvisionFailedContext } from './networkTokenCryptogramProvisionFailedContext';
@@ -475,14 +543,17 @@ import { PaymentServiceDefinition } from './paymentServiceDefinition';
 import { PaymentServiceDefinitionConfiguration } from './paymentServiceDefinitionConfiguration';
 import { PaymentServiceDefinitionSupportedFeatures } from './paymentServiceDefinitionSupportedFeatures';
 import { PaymentServiceDefinitions } from './paymentServiceDefinitions';
+import { PaymentServiceMerchantProfile } from './paymentServiceMerchantProfile';
 import { PaymentServiceRequest } from './paymentServiceRequest';
-import { PaymentServiceRequestFields } from './paymentServiceRequestFields';
+import { PaymentServiceRequestFieldsInner } from './paymentServiceRequestFieldsInner';
+import { PaymentServiceRequestMerchantProfile } from './paymentServiceRequestMerchantProfile';
 import { PaymentServiceSession } from './paymentServiceSession';
 import { PaymentServiceSnapshot } from './paymentServiceSnapshot';
 import { PaymentServiceToken } from './paymentServiceToken';
 import { PaymentServiceTokenRequest } from './paymentServiceTokenRequest';
 import { PaymentServiceTokens } from './paymentServiceTokens';
 import { PaymentServiceUpdate } from './paymentServiceUpdate';
+import { PaymentServiceUpdateMerchantProfile } from './paymentServiceUpdateMerchantProfile';
 import { PaymentServices } from './paymentServices';
 import { RedirectRequest } from './redirectRequest';
 import { Refund } from './refund';
@@ -495,6 +566,8 @@ import { ReportExecutionSummaryContext } from './reportExecutionSummaryContext';
 import { ReportExecutionUrl } from './reportExecutionUrl';
 import { ReportExecutions } from './reportExecutions';
 import { ReportSpec } from './reportSpec';
+import { ReportSpecParams } from './reportSpecParams';
+import { ReportSpecParamsFilters } from './reportSpecParamsFilters';
 import { ReportSummary } from './reportSummary';
 import { ReportUpdate } from './reportUpdate';
 import { Reports } from './reports';
@@ -512,6 +585,7 @@ import { RolePermissions } from './rolePermissions';
 import { Roles } from './roles';
 import { SetPasswordRequest } from './setPasswordRequest';
 import { ShippingDetail } from './shippingDetail';
+import { ShippingDetailAddress } from './shippingDetailAddress';
 import { ShippingDetailRequest } from './shippingDetailRequest';
 import { ShippingDetailUpdateRequest } from './shippingDetailUpdateRequest';
 import { ShippingDetails } from './shippingDetails';
@@ -521,10 +595,8 @@ import { ThreeDSecureAuthenticationRequestEvent } from './threeDSecureAuthentica
 import { ThreeDSecureAuthenticationRequestEventContext } from './threeDSecureAuthenticationRequestEventContext';
 import { ThreeDSecureData } from './threeDSecureData';
 import { ThreeDSecureDataV1 } from './threeDSecureDataV1';
-import { ThreeDSecureDataV1AllOf } from './threeDSecureDataV1AllOf';
 import { ThreeDSecureDataV1V2 } from './threeDSecureDataV1V2';
 import { ThreeDSecureDataV2 } from './threeDSecureDataV2';
-import { ThreeDSecureDataV2AllOf } from './threeDSecureDataV2AllOf';
 import { ThreeDSecureError } from './threeDSecureError';
 import { ThreeDSecurePreparationRequestEvent } from './threeDSecurePreparationRequestEvent';
 import { ThreeDSecurePreparationRequestEventContext } from './threeDSecurePreparationRequestEventContext';
@@ -535,9 +607,11 @@ import { ThreeDSecureResultRequestEventContext } from './threeDSecureResultReque
 import { ThreeDSecureSuccessEvent } from './threeDSecureSuccessEvent';
 import { ThreeDSecureSuccessEventContext } from './threeDSecureSuccessEventContext';
 import { ThreeDSecureSummary } from './threeDSecureSummary';
+import { ThreeDSecureSummaryErrorData } from './threeDSecureSummaryErrorData';
 import { ThreeDSecureV2 } from './threeDSecureV2';
 import { TokenizedRequest } from './tokenizedRequest';
 import { Transaction } from './transaction';
+import { TransactionBuyer } from './transactionBuyer';
 import { TransactionCaptureRequest } from './transactionCaptureRequest';
 import { TransactionCardRequest } from './transactionCardRequest';
 import { TransactionCheckoutSessionRequest } from './transactionCheckoutSessionRequest';
@@ -547,11 +621,17 @@ import { TransactionGiftCardStoredRequest } from './transactionGiftCardStoredReq
 import { TransactionHistoryEvent } from './transactionHistoryEvent';
 import { TransactionHistoryEvents } from './transactionHistoryEvents';
 import { TransactionNetworkTokenRequest } from './transactionNetworkTokenRequest';
+import { TransactionPaymentMethod } from './transactionPaymentMethod';
 import { TransactionPaymentMethodRequest } from './transactionPaymentMethodRequest';
+import { TransactionPaymentService } from './transactionPaymentService';
 import { TransactionRedirectRequest } from './transactionRedirectRequest';
 import { TransactionRefundAllRequest } from './transactionRefundAllRequest';
 import { TransactionRefundRequest } from './transactionRefundRequest';
 import { TransactionRequest } from './transactionRequest';
+import { TransactionRequestBrowserInfo } from './transactionRequestBrowserInfo';
+import { TransactionRequestConnectionOptions } from './transactionRequestConnectionOptions';
+import { TransactionRequestStatementDescriptor } from './transactionRequestStatementDescriptor';
+import { TransactionShippingDetails } from './transactionShippingDetails';
 import { TransactionStatusSummary } from './transactionStatusSummary';
 import { TransactionSummary } from './transactionSummary';
 import { Transactions } from './transactions';
@@ -583,9 +663,13 @@ let enumsMap: {[index: string]: any} = {
         "AntiFraudDecisionEvent.NameEnum": AntiFraudDecisionEvent.NameEnum,
         "AntiFraudDecisionSkippedEvent.TypeEnum": AntiFraudDecisionSkippedEvent.TypeEnum,
         "AntiFraudDecisionSkippedEvent.NameEnum": AntiFraudDecisionSkippedEvent.NameEnum,
+        "AntiFraudDecisionUpdateErrorEvent.TypeEnum": AntiFraudDecisionUpdateErrorEvent.TypeEnum,
+        "AntiFraudDecisionUpdateErrorEvent.NameEnum": AntiFraudDecisionUpdateErrorEvent.NameEnum,
+        "AntiFraudDecisionUpdateEvent.TypeEnum": AntiFraudDecisionUpdateEvent.TypeEnum,
+        "AntiFraudDecisionUpdateEvent.NameEnum": AntiFraudDecisionUpdateEvent.NameEnum,
         "AntiFraudServiceCreate.AntiFraudServiceDefinitionIdEnum": AntiFraudServiceCreate.AntiFraudServiceDefinitionIdEnum,
         "AntiFraudServiceDefinition.TypeEnum": AntiFraudServiceDefinition.TypeEnum,
-        "AntiFraudServiceDefinitionFields.FormatEnum": AntiFraudServiceDefinitionFields.FormatEnum,
+        "AntiFraudServiceDefinitionFieldsInner.FormatEnum": AntiFraudServiceDefinitionFieldsInner.FormatEnum,
         "AntiFraudServiceUpdate.AntiFraudServiceDefinitionIdEnum": AntiFraudServiceUpdate.AntiFraudServiceDefinitionIdEnum,
         "AntiFraudTransactionStatusUpdateErrorEvent.TypeEnum": AntiFraudTransactionStatusUpdateErrorEvent.TypeEnum,
         "AntiFraudTransactionStatusUpdateErrorEvent.NameEnum": AntiFraudTransactionStatusUpdateErrorEvent.NameEnum,
@@ -603,9 +687,13 @@ let enumsMap: {[index: string]: any} = {
         "BINLookupRequestContext.SchemeEnum": BINLookupRequestContext.SchemeEnum,
         "BINLookupRequestContext.AdditionalSchemesEnum": BINLookupRequestContext.AdditionalSchemesEnum,
         "BillingDetails.TypeEnum": BillingDetails.TypeEnum,
+        "BillingDetailsRequestTaxId.KindEnum": BillingDetailsRequestTaxId.KindEnum,
+        "BillingDetailsTaxId.KindEnum": BillingDetailsTaxId.KindEnum,
         "BrowserInfo.UserDeviceEnum": BrowserInfo.UserDeviceEnum,
         "Buyer.TypeEnum": Buyer.TypeEnum,
+        "BuyerBillingDetails.TypeEnum": BuyerBillingDetails.TypeEnum,
         "BuyerSnapshot.TypeEnum": BuyerSnapshot.TypeEnum,
+        "BuyerSnapshotBillingDetails.TypeEnum": BuyerSnapshotBillingDetails.TypeEnum,
         "CardDetails.TypeEnum": CardDetails.TypeEnum,
         "CardDetails.CardTypeEnum": CardDetails.CardTypeEnum,
         "CardDetails.SchemeEnum": CardDetails.SchemeEnum,
@@ -620,8 +708,8 @@ let enumsMap: {[index: string]: any} = {
         "ConnectionDefinition.GroupEnum": ConnectionDefinition.GroupEnum,
         "ConnectionDefinition.CategoryEnum": ConnectionDefinition.CategoryEnum,
         "ConnectionOptionsForterAntiFraud.DeliveryTypeEnum": ConnectionOptionsForterAntiFraud.DeliveryTypeEnum,
-        "ConnectionOptionsForterAntiFraudBasicItemData.TypeEnum": ConnectionOptionsForterAntiFraudBasicItemData.TypeEnum,
-        "ConnectionOptionsForterAntiFraudDeliveryDetails.DeliveryTypeEnum": ConnectionOptionsForterAntiFraudDeliveryDetails.DeliveryTypeEnum,
+        "ConnectionOptionsForterAntiFraudCartItemsInnerBasicItemData.TypeEnum": ConnectionOptionsForterAntiFraudCartItemsInnerBasicItemData.TypeEnum,
+        "ConnectionOptionsForterAntiFraudCartItemsInnerDeliveryDetails.DeliveryTypeEnum": ConnectionOptionsForterAntiFraudCartItemsInnerDeliveryDetails.DeliveryTypeEnum,
         "DigitalWallet.TypeEnum": DigitalWallet.TypeEnum,
         "DigitalWallet.ProviderEnum": DigitalWallet.ProviderEnum,
         "DigitalWalletApplePayTokenDecrypted.TypeEnum": DigitalWalletApplePayTokenDecrypted.TypeEnum,
@@ -656,6 +744,7 @@ let enumsMap: {[index: string]: any} = {
         "Error429TooManyRequests.StatusEnum": Error429TooManyRequests.StatusEnum,
         "ErrorDetail.LocationEnum": ErrorDetail.LocationEnum,
         "GiftCard.TypeEnum": GiftCard.TypeEnum,
+        "GiftCardBuyer.TypeEnum": GiftCardBuyer.TypeEnum,
         "GiftCardRedemption.TypeEnum": GiftCardRedemption.TypeEnum,
         "GiftCardRedemption.StatusEnum": GiftCardRedemption.StatusEnum,
         "GiftCardRedemption.ErrorCodeEnum": GiftCardRedemption.ErrorCodeEnum,
@@ -779,6 +868,7 @@ let enumsMap: {[index: string]: any} = {
         "ReportExecutionSummary.TypeEnum": ReportExecutionSummary.TypeEnum,
         "ReportExecutionSummary.StatusEnum": ReportExecutionSummary.StatusEnum,
         "ReportSpec.ModelEnum": ReportSpec.ModelEnum,
+        "ReportSpecParams.FieldsEnum": ReportSpecParams.FieldsEnum,
         "ReportSummary.TypeEnum": ReportSummary.TypeEnum,
         "ReportSummary.CreatorTypeEnum": ReportSummary.CreatorTypeEnum,
         "Role.TypeEnum": Role.TypeEnum,
@@ -797,8 +887,6 @@ let enumsMap: {[index: string]: any} = {
         "ThreeDSecureDataV2.DirectoryResponseEnum": ThreeDSecureDataV2.DirectoryResponseEnum,
         "ThreeDSecureDataV2.SchemeEnum": ThreeDSecureDataV2.SchemeEnum,
         "ThreeDSecureDataV2.AuthenticationResponseEnum": ThreeDSecureDataV2.AuthenticationResponseEnum,
-        "ThreeDSecureDataV2AllOf.AuthenticationResponseEnum": ThreeDSecureDataV2AllOf.AuthenticationResponseEnum,
-        "ThreeDSecureDataV2AllOf.DirectoryResponseEnum": ThreeDSecureDataV2AllOf.DirectoryResponseEnum,
         "ThreeDSecurePreparationRequestEvent.TypeEnum": ThreeDSecurePreparationRequestEvent.TypeEnum,
         "ThreeDSecurePreparationRequestEvent.NameEnum": ThreeDSecurePreparationRequestEvent.NameEnum,
         "ThreeDSecureRequestErrorEvent.TypeEnum": ThreeDSecureRequestErrorEvent.TypeEnum,
@@ -822,16 +910,25 @@ let enumsMap: {[index: string]: any} = {
         "Transaction.MethodEnum": Transaction.MethodEnum,
         "Transaction.PaymentSourceEnum": Transaction.PaymentSourceEnum,
         "Transaction.StatusEnum": Transaction.StatusEnum,
+        "TransactionBuyer.TypeEnum": TransactionBuyer.TypeEnum,
         "TransactionCardRequest.MethodEnum": TransactionCardRequest.MethodEnum,
         "TransactionCheckoutSessionRequest.MethodEnum": TransactionCheckoutSessionRequest.MethodEnum,
         "TransactionHistoryEvent.TypeEnum": TransactionHistoryEvent.TypeEnum,
         "TransactionHistoryEvent.NameEnum": TransactionHistoryEvent.NameEnum,
         "TransactionNetworkTokenRequest.MethodEnum": TransactionNetworkTokenRequest.MethodEnum,
+        "TransactionPaymentMethod.TypeEnum": TransactionPaymentMethod.TypeEnum,
+        "TransactionPaymentMethod.ApprovalTargetEnum": TransactionPaymentMethod.ApprovalTargetEnum,
+        "TransactionPaymentMethod.MethodEnum": TransactionPaymentMethod.MethodEnum,
+        "TransactionPaymentMethod.SchemeEnum": TransactionPaymentMethod.SchemeEnum,
         "TransactionPaymentMethodRequest.MethodEnum": TransactionPaymentMethodRequest.MethodEnum,
+        "TransactionPaymentService.TypeEnum": TransactionPaymentService.TypeEnum,
+        "TransactionPaymentService.MethodEnum": TransactionPaymentService.MethodEnum,
         "TransactionRedirectRequest.MethodEnum": TransactionRedirectRequest.MethodEnum,
         "TransactionRefundRequest.TargetTypeEnum": TransactionRefundRequest.TargetTypeEnum,
         "TransactionRequest.IntentEnum": TransactionRequest.IntentEnum,
         "TransactionRequest.PaymentSourceEnum": TransactionRequest.PaymentSourceEnum,
+        "TransactionRequestBrowserInfo.UserDeviceEnum": TransactionRequestBrowserInfo.UserDeviceEnum,
+        "TransactionShippingDetails.TypeEnum": TransactionShippingDetails.TypeEnum,
         "TransactionStatusSummary.TypeEnum": TransactionStatusSummary.TypeEnum,
         "TransactionStatusSummary.StatusEnum": TransactionStatusSummary.StatusEnum,
         "TransactionSummary.TypeEnum": TransactionSummary.TypeEnum,
@@ -855,11 +952,15 @@ let typeMap: {[index: string]: any} = {
     "AntiFraudDecisionEventContext": AntiFraudDecisionEventContext,
     "AntiFraudDecisionSkippedEvent": AntiFraudDecisionSkippedEvent,
     "AntiFraudDecisionSkippedEventContext": AntiFraudDecisionSkippedEventContext,
+    "AntiFraudDecisionUpdateErrorEvent": AntiFraudDecisionUpdateErrorEvent,
+    "AntiFraudDecisionUpdateErrorEventContext": AntiFraudDecisionUpdateErrorEventContext,
+    "AntiFraudDecisionUpdateEvent": AntiFraudDecisionUpdateEvent,
+    "AntiFraudDecisionUpdateEventContext": AntiFraudDecisionUpdateEventContext,
     "AntiFraudServiceCreate": AntiFraudServiceCreate,
     "AntiFraudServiceDefinition": AntiFraudServiceDefinition,
-    "AntiFraudServiceDefinitionFields": AntiFraudServiceDefinitionFields,
+    "AntiFraudServiceDefinitionFieldsInner": AntiFraudServiceDefinitionFieldsInner,
     "AntiFraudServiceUpdate": AntiFraudServiceUpdate,
-    "AntiFraudServiceUpdateFields": AntiFraudServiceUpdateFields,
+    "AntiFraudServiceUpdateFieldsInner": AntiFraudServiceUpdateFieldsInner,
     "AntiFraudTransactionStatusUpdateErrorEvent": AntiFraudTransactionStatusUpdateErrorEvent,
     "AntiFraudTransactionStatusUpdateErrorEventContext": AntiFraudTransactionStatusUpdateErrorEventContext,
     "AntiFraudTransactionStatusUpdateEvent": AntiFraudTransactionStatusUpdateEvent,
@@ -879,13 +980,22 @@ let typeMap: {[index: string]: any} = {
     "BINLookupRequest": BINLookupRequest,
     "BINLookupRequestContext": BINLookupRequestContext,
     "BillingDetails": BillingDetails,
+    "BillingDetailsAddress": BillingDetailsAddress,
     "BillingDetailsRequest": BillingDetailsRequest,
+    "BillingDetailsRequestAddress": BillingDetailsRequestAddress,
+    "BillingDetailsRequestTaxId": BillingDetailsRequestTaxId,
+    "BillingDetailsTaxId": BillingDetailsTaxId,
     "BillingDetailsUpdateRequest": BillingDetailsUpdateRequest,
+    "BillingDetailsUpdateRequestAddress": BillingDetailsUpdateRequestAddress,
     "BrowserInfo": BrowserInfo,
     "Buyer": Buyer,
+    "BuyerBillingDetails": BuyerBillingDetails,
     "BuyerRequest": BuyerRequest,
+    "BuyerRequestBillingDetails": BuyerRequestBillingDetails,
     "BuyerSnapshot": BuyerSnapshot,
+    "BuyerSnapshotBillingDetails": BuyerSnapshotBillingDetails,
     "BuyerUpdate": BuyerUpdate,
+    "BuyerUpdateBillingDetails": BuyerUpdateBillingDetails,
     "Buyers": Buyers,
     "CardDetails": CardDetails,
     "CardRequest": CardRequest,
@@ -907,19 +1017,19 @@ let typeMap: {[index: string]: any} = {
     "ConnectionOptionsCybersourceAntiFraud": ConnectionOptionsCybersourceAntiFraud,
     "ConnectionOptionsCybersourceCard": ConnectionOptionsCybersourceCard,
     "ConnectionOptionsForterAntiFraud": ConnectionOptionsForterAntiFraud,
-    "ConnectionOptionsForterAntiFraudAddress": ConnectionOptionsForterAntiFraudAddress,
-    "ConnectionOptionsForterAntiFraudBasicItemData": ConnectionOptionsForterAntiFraudBasicItemData,
-    "ConnectionOptionsForterAntiFraudBeneficiaries": ConnectionOptionsForterAntiFraudBeneficiaries,
-    "ConnectionOptionsForterAntiFraudCartItems": ConnectionOptionsForterAntiFraudCartItems,
-    "ConnectionOptionsForterAntiFraudComments": ConnectionOptionsForterAntiFraudComments,
-    "ConnectionOptionsForterAntiFraudDeliveryDetails": ConnectionOptionsForterAntiFraudDeliveryDetails,
-    "ConnectionOptionsForterAntiFraudPersonalDetails": ConnectionOptionsForterAntiFraudPersonalDetails,
-    "ConnectionOptionsForterAntiFraudPhone": ConnectionOptionsForterAntiFraudPhone,
+    "ConnectionOptionsForterAntiFraudCartItemsInner": ConnectionOptionsForterAntiFraudCartItemsInner,
+    "ConnectionOptionsForterAntiFraudCartItemsInnerBasicItemData": ConnectionOptionsForterAntiFraudCartItemsInnerBasicItemData,
+    "ConnectionOptionsForterAntiFraudCartItemsInnerBeneficiariesInner": ConnectionOptionsForterAntiFraudCartItemsInnerBeneficiariesInner,
+    "ConnectionOptionsForterAntiFraudCartItemsInnerBeneficiariesInnerAddress": ConnectionOptionsForterAntiFraudCartItemsInnerBeneficiariesInnerAddress,
+    "ConnectionOptionsForterAntiFraudCartItemsInnerBeneficiariesInnerComments": ConnectionOptionsForterAntiFraudCartItemsInnerBeneficiariesInnerComments,
+    "ConnectionOptionsForterAntiFraudCartItemsInnerBeneficiariesInnerPersonalDetails": ConnectionOptionsForterAntiFraudCartItemsInnerBeneficiariesInnerPersonalDetails,
+    "ConnectionOptionsForterAntiFraudCartItemsInnerBeneficiariesInnerPhoneInner": ConnectionOptionsForterAntiFraudCartItemsInnerBeneficiariesInnerPhoneInner,
+    "ConnectionOptionsForterAntiFraudCartItemsInnerDeliveryDetails": ConnectionOptionsForterAntiFraudCartItemsInnerDeliveryDetails,
     "ConnectionOptionsForterAntiFraudTotalDiscount": ConnectionOptionsForterAntiFraudTotalDiscount,
     "ConnectionOptionsForterAntiFraudTotalDiscountCouponDiscountAmount": ConnectionOptionsForterAntiFraudTotalDiscountCouponDiscountAmount,
     "ConnectionOptionsGivingblockGivingblock": ConnectionOptionsGivingblockGivingblock,
     "ConnectionOptionsPaypalPaypal": ConnectionOptionsPaypalPaypal,
-    "ConnectionOptionsPaypalPaypalAdditionalData": ConnectionOptionsPaypalPaypalAdditionalData,
+    "ConnectionOptionsPaypalPaypalAdditionalDataInner": ConnectionOptionsPaypalPaypalAdditionalDataInner,
     "ConnectionOptionsStripeCard": ConnectionOptionsStripeCard,
     "ConnectionOptionsStripeCardStripeConnect": ConnectionOptionsStripeCardStripeConnect,
     "Connections": Connections,
@@ -948,6 +1058,7 @@ let typeMap: {[index: string]: any} = {
     "GiftCardBalanceRequest": GiftCardBalanceRequest,
     "GiftCardBalanceStoredRequest": GiftCardBalanceStoredRequest,
     "GiftCardBalancesRequest": GiftCardBalancesRequest,
+    "GiftCardBuyer": GiftCardBuyer,
     "GiftCardRedemption": GiftCardRedemption,
     "GiftCardRedemptionFailed": GiftCardRedemptionFailed,
     "GiftCardRedemptionFailedContext": GiftCardRedemptionFailedContext,
@@ -958,14 +1069,14 @@ let typeMap: {[index: string]: any} = {
     "GiftCardRefundSucceeded": GiftCardRefundSucceeded,
     "GiftCardService": GiftCardService,
     "GiftCardServiceCreateRequest": GiftCardServiceCreateRequest,
-    "GiftCardServiceCreateRequestFields": GiftCardServiceCreateRequestFields,
+    "GiftCardServiceCreateRequestFieldsInner": GiftCardServiceCreateRequestFieldsInner,
     "GiftCardServiceDefinition": GiftCardServiceDefinition,
-    "GiftCardServiceFields": GiftCardServiceFields,
+    "GiftCardServiceFieldsInner": GiftCardServiceFieldsInner,
     "GiftCardServiceSnapshot": GiftCardServiceSnapshot,
     "GiftCardServiceUpdateRequest": GiftCardServiceUpdateRequest,
-    "GiftCardServiceUpdateRequestFields": GiftCardServiceUpdateRequestFields,
+    "GiftCardServiceUpdateRequestFieldsInner": GiftCardServiceUpdateRequestFieldsInner,
     "GiftCardServiceVerifyRequest": GiftCardServiceVerifyRequest,
-    "GiftCardServiceVerifyRequestFields": GiftCardServiceVerifyRequestFields,
+    "GiftCardServiceVerifyRequestFieldsInner": GiftCardServiceVerifyRequestFieldsInner,
     "GiftCardSnapshot": GiftCardSnapshot,
     "GiftCardStoreRequest": GiftCardStoreRequest,
     "GiftCardSummary": GiftCardSummary,
@@ -980,9 +1091,23 @@ let typeMap: {[index: string]: any} = {
     "MerchantAccountUpdate": MerchantAccountUpdate,
     "MerchantAccounts": MerchantAccounts,
     "MerchantProfile": MerchantProfile,
+    "MerchantProfileAmex": MerchantProfileAmex,
+    "MerchantProfileDankort": MerchantProfileDankort,
+    "MerchantProfileDiscover": MerchantProfileDiscover,
+    "MerchantProfileJcb": MerchantProfileJcb,
+    "MerchantProfileMastercard": MerchantProfileMastercard,
     "MerchantProfileScheme": MerchantProfileScheme,
     "MerchantProfileSchemeSummary": MerchantProfileSchemeSummary,
     "MerchantProfileSummary": MerchantProfileSummary,
+    "MerchantProfileSummaryAmex": MerchantProfileSummaryAmex,
+    "MerchantProfileSummaryDankort": MerchantProfileSummaryDankort,
+    "MerchantProfileSummaryDiscover": MerchantProfileSummaryDiscover,
+    "MerchantProfileSummaryJcb": MerchantProfileSummaryJcb,
+    "MerchantProfileSummaryMastercard": MerchantProfileSummaryMastercard,
+    "MerchantProfileSummaryUnionpay": MerchantProfileSummaryUnionpay,
+    "MerchantProfileSummaryVisa": MerchantProfileSummaryVisa,
+    "MerchantProfileUnionpay": MerchantProfileUnionpay,
+    "MerchantProfileVisa": MerchantProfileVisa,
     "NetworkToken": NetworkToken,
     "NetworkTokenCryptogramProvisionFailed": NetworkTokenCryptogramProvisionFailed,
     "NetworkTokenCryptogramProvisionFailedContext": NetworkTokenCryptogramProvisionFailedContext,
@@ -1031,14 +1156,17 @@ let typeMap: {[index: string]: any} = {
     "PaymentServiceDefinitionConfiguration": PaymentServiceDefinitionConfiguration,
     "PaymentServiceDefinitionSupportedFeatures": PaymentServiceDefinitionSupportedFeatures,
     "PaymentServiceDefinitions": PaymentServiceDefinitions,
+    "PaymentServiceMerchantProfile": PaymentServiceMerchantProfile,
     "PaymentServiceRequest": PaymentServiceRequest,
-    "PaymentServiceRequestFields": PaymentServiceRequestFields,
+    "PaymentServiceRequestFieldsInner": PaymentServiceRequestFieldsInner,
+    "PaymentServiceRequestMerchantProfile": PaymentServiceRequestMerchantProfile,
     "PaymentServiceSession": PaymentServiceSession,
     "PaymentServiceSnapshot": PaymentServiceSnapshot,
     "PaymentServiceToken": PaymentServiceToken,
     "PaymentServiceTokenRequest": PaymentServiceTokenRequest,
     "PaymentServiceTokens": PaymentServiceTokens,
     "PaymentServiceUpdate": PaymentServiceUpdate,
+    "PaymentServiceUpdateMerchantProfile": PaymentServiceUpdateMerchantProfile,
     "PaymentServices": PaymentServices,
     "RedirectRequest": RedirectRequest,
     "Refund": Refund,
@@ -1051,6 +1179,8 @@ let typeMap: {[index: string]: any} = {
     "ReportExecutionUrl": ReportExecutionUrl,
     "ReportExecutions": ReportExecutions,
     "ReportSpec": ReportSpec,
+    "ReportSpecParams": ReportSpecParams,
+    "ReportSpecParamsFilters": ReportSpecParamsFilters,
     "ReportSummary": ReportSummary,
     "ReportUpdate": ReportUpdate,
     "Reports": Reports,
@@ -1068,6 +1198,7 @@ let typeMap: {[index: string]: any} = {
     "Roles": Roles,
     "SetPasswordRequest": SetPasswordRequest,
     "ShippingDetail": ShippingDetail,
+    "ShippingDetailAddress": ShippingDetailAddress,
     "ShippingDetailRequest": ShippingDetailRequest,
     "ShippingDetailUpdateRequest": ShippingDetailUpdateRequest,
     "ShippingDetails": ShippingDetails,
@@ -1077,10 +1208,8 @@ let typeMap: {[index: string]: any} = {
     "ThreeDSecureAuthenticationRequestEventContext": ThreeDSecureAuthenticationRequestEventContext,
     "ThreeDSecureData": ThreeDSecureData,
     "ThreeDSecureDataV1": ThreeDSecureDataV1,
-    "ThreeDSecureDataV1AllOf": ThreeDSecureDataV1AllOf,
     "ThreeDSecureDataV1V2": ThreeDSecureDataV1V2,
     "ThreeDSecureDataV2": ThreeDSecureDataV2,
-    "ThreeDSecureDataV2AllOf": ThreeDSecureDataV2AllOf,
     "ThreeDSecureError": ThreeDSecureError,
     "ThreeDSecurePreparationRequestEvent": ThreeDSecurePreparationRequestEvent,
     "ThreeDSecurePreparationRequestEventContext": ThreeDSecurePreparationRequestEventContext,
@@ -1091,9 +1220,11 @@ let typeMap: {[index: string]: any} = {
     "ThreeDSecureSuccessEvent": ThreeDSecureSuccessEvent,
     "ThreeDSecureSuccessEventContext": ThreeDSecureSuccessEventContext,
     "ThreeDSecureSummary": ThreeDSecureSummary,
+    "ThreeDSecureSummaryErrorData": ThreeDSecureSummaryErrorData,
     "ThreeDSecureV2": ThreeDSecureV2,
     "TokenizedRequest": TokenizedRequest,
     "Transaction": Transaction,
+    "TransactionBuyer": TransactionBuyer,
     "TransactionCaptureRequest": TransactionCaptureRequest,
     "TransactionCardRequest": TransactionCardRequest,
     "TransactionCheckoutSessionRequest": TransactionCheckoutSessionRequest,
@@ -1103,11 +1234,17 @@ let typeMap: {[index: string]: any} = {
     "TransactionHistoryEvent": TransactionHistoryEvent,
     "TransactionHistoryEvents": TransactionHistoryEvents,
     "TransactionNetworkTokenRequest": TransactionNetworkTokenRequest,
+    "TransactionPaymentMethod": TransactionPaymentMethod,
     "TransactionPaymentMethodRequest": TransactionPaymentMethodRequest,
+    "TransactionPaymentService": TransactionPaymentService,
     "TransactionRedirectRequest": TransactionRedirectRequest,
     "TransactionRefundAllRequest": TransactionRefundAllRequest,
     "TransactionRefundRequest": TransactionRefundRequest,
     "TransactionRequest": TransactionRequest,
+    "TransactionRequestBrowserInfo": TransactionRequestBrowserInfo,
+    "TransactionRequestConnectionOptions": TransactionRequestConnectionOptions,
+    "TransactionRequestStatementDescriptor": TransactionRequestStatementDescriptor,
+    "TransactionShippingDetails": TransactionShippingDetails,
     "TransactionStatusSummary": TransactionStatusSummary,
     "TransactionSummary": TransactionSummary,
     "Transactions": Transactions,

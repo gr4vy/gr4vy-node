@@ -23,7 +23,7 @@ export class ConnectionDefinition {
     /**
     * `connection-definition`.
     */
-    'type'?: string;
+    'type'?: string = 'connection-definition';
     /**
     * The name of this connection.
     */

@@ -11,7 +11,7 @@
  */
 
 import { RequestFile } from './models';
-import { AntiFraudServiceDefinitionFields } from './antiFraudServiceDefinitionFields';
+import { AntiFraudServiceDefinitionFieldsInner } from './antiFraudServiceDefinitionFieldsInner';
 
 /**
 * An available anti fraud service that can be configured.
@@ -24,7 +24,7 @@ export class AntiFraudServiceDefinition {
     /**
     * `anti-fraud-service-definition`.
     */
-    'type'?: AntiFraudServiceDefinition.TypeEnum;
+    'type'?: AntiFraudServiceDefinition.TypeEnum = AntiFraudServiceDefinition.TypeEnum.AntiFraudServiceDefinition;
     /**
     * The display name of this service.
     */
@@ -32,7 +32,7 @@ export class AntiFraudServiceDefinition {
     /**
     * A list of fields that need to be submitted when activating the payment. service.
     */
-    'fields'?: Array<AntiFraudServiceDefinitionFields>;
+    'fields'?: Array<AntiFraudServiceDefinitionFieldsInner>;
     /**
     * An icon to display for the payment service.
     */
@@ -59,7 +59,7 @@ export class AntiFraudServiceDefinition {
         {
             "name": "fields",
             "baseName": "fields",
-            "type": "Array<AntiFraudServiceDefinitionFields>"
+            "type": "Array<AntiFraudServiceDefinitionFieldsInner>"
         },
         {
             "name": "iconUrl",

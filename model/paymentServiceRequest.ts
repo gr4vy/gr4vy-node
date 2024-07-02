@@ -11,8 +11,8 @@
  */
 
 import { RequestFile } from './models';
-import { MerchantProfile } from './merchantProfile';
-import { PaymentServiceRequestFields } from './paymentServiceRequestFields';
+import { PaymentServiceRequestFieldsInner } from './paymentServiceRequestFieldsInner';
+import { PaymentServiceRequestMerchantProfile } from './paymentServiceRequestMerchantProfile';
 
 /**
 * Request body for activating a payment service.
@@ -29,7 +29,7 @@ export class PaymentServiceRequest {
     /**
     * A list of fields, each containing a key-value pair for each field defined by the definition for this payment service e.g. for stripe-card `secret_key` is required and so must be sent within this field.
     */
-    'fields': Array<PaymentServiceRequestFields>;
+    'fields': Array<PaymentServiceRequestFieldsInner>;
     /**
     * A list of countries that this payment service needs to support in ISO two-letter code format.
     */
@@ -41,15 +41,12 @@ export class PaymentServiceRequest {
     /**
     * Defines if 3-D Secure is enabled for the service (can only be enabled if the payment service definition supports the `three_d_secure_hosted` feature). This does not affect pass through 3-D Secure data.
     */
-    'threeDSecureEnabled'?: boolean;
-    /**
-    * Configuration for each supported card scheme.
-    */
-    'merchantProfile'?: MerchantProfile | null;
+    'threeDSecureEnabled'?: boolean = false;
+    'merchantProfile'?: PaymentServiceRequestMerchantProfile | null;
     /**
     * Defines if this service is currently active or not.
     */
-    'active'?: boolean;
+    'active'?: boolean = true;
     /**
     * Defines if the service works as an open-loop service. This feature can only be enabled if the PSP is set up to accept previous scheme transaction IDs.  If this value is not provided or is set to `null`, it will be set to the value of `open_loop` in the payment service definition.  If `open_loop_toggle` is `false` in the payment service definition, `open_loop` should either not be provided or set to `null`, or it will fail with a validation error.
     */
@@ -57,7 +54,7 @@ export class PaymentServiceRequest {
     /**
     * Defines if tokenization is enabled for the service. This feature can only be enabled if the payment service is NOT set as `open_loop` and the PSP is set up to tokenize.
     */
-    'paymentMethodTokenizationEnabled'?: boolean;
+    'paymentMethodTokenizationEnabled'?: boolean | null;
     /**
     * Defines if network tokens are enabled for the service. This feature can only be enabled if the payment service is set as `open_loop` and the PSP is set up to accept network tokens.  If this value is not provided or is set to `null`, it will be set to the value of `network_tokens_default` in the payment service definition.  If `network_tokens_toggle` is `false` in the payment service definition, `network_tokens_enabled` should either not be provided or set to `null`, or it will fail with a validation error.
     */
@@ -79,7 +76,7 @@ export class PaymentServiceRequest {
         {
             "name": "fields",
             "baseName": "fields",
-            "type": "Array<PaymentServiceRequestFields>"
+            "type": "Array<PaymentServiceRequestFieldsInner>"
         },
         {
             "name": "acceptedCountries",
@@ -99,7 +96,7 @@ export class PaymentServiceRequest {
         {
             "name": "merchantProfile",
             "baseName": "merchant_profile",
-            "type": "MerchantProfile"
+            "type": "PaymentServiceRequestMerchantProfile"
         },
         {
             "name": "active",

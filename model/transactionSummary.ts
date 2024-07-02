@@ -11,10 +11,10 @@
  */
 
 import { RequestFile } from './models';
-import { BuyerSnapshot } from './buyerSnapshot';
 import { GiftCardRedemption } from './giftCardRedemption';
-import { PaymentMethodSnapshot } from './paymentMethodSnapshot';
-import { PaymentServiceSnapshot } from './paymentServiceSnapshot';
+import { TransactionBuyer } from './transactionBuyer';
+import { TransactionPaymentMethod } from './transactionPaymentMethod';
+import { TransactionPaymentService } from './transactionPaymentService';
 
 /**
 * A transaction record.
@@ -36,10 +36,7 @@ export class TransactionSummary {
     * The amount for this transaction that has been authorized for the `payment_method`. This can be less than the `amount` if gift cards were used.
     */
     'authorizedAmount'?: number;
-    /**
-    * The buyer used for this transaction.
-    */
-    'buyer'?: BuyerSnapshot | null;
+    'buyer'?: TransactionBuyer | null;
     /**
     * The captured amount for this transaction. This can be the full value of the `authorized_amount` or less.
     */
@@ -81,14 +78,8 @@ export class TransactionSummary {
     */
     'merchantAccountId'?: string;
     'method'?: TransactionSummary.MethodEnum;
-    /**
-    * The payment method used for this transaction.
-    */
-    'paymentMethod'?: PaymentMethodSnapshot | null;
-    /**
-    * The payment service used for this transaction.
-    */
-    'paymentService'?: PaymentServiceSnapshot | null;
+    'paymentMethod'?: TransactionPaymentMethod | null;
+    'paymentService'?: TransactionPaymentService | null;
     /**
     * Whether a manual review is pending.
     */
@@ -144,7 +135,7 @@ export class TransactionSummary {
         {
             "name": "buyer",
             "baseName": "buyer",
-            "type": "BuyerSnapshot"
+            "type": "TransactionBuyer"
         },
         {
             "name": "capturedAmount",
@@ -204,12 +195,12 @@ export class TransactionSummary {
         {
             "name": "paymentMethod",
             "baseName": "payment_method",
-            "type": "PaymentMethodSnapshot"
+            "type": "TransactionPaymentMethod"
         },
         {
             "name": "paymentService",
             "baseName": "payment_service",
-            "type": "PaymentServiceSnapshot"
+            "type": "TransactionPaymentService"
         },
         {
             "name": "pendingReview",

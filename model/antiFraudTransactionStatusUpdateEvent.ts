@@ -14,7 +14,7 @@ import { RequestFile } from './models';
 import { AntiFraudTransactionStatusUpdateEventContext } from './antiFraudTransactionStatusUpdateEventContext';
 
 /**
-* This event logs the request and response details of HTTP calls made to an anti-fraud provider to update a decision.
+* This event logs the request and response details of HTTP calls made to an anti-fraud provider to update a transaction.
 */
 export class AntiFraudTransactionStatusUpdateEvent {
     /**

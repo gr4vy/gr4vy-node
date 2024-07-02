@@ -11,7 +11,7 @@
  */
 
 import { RequestFile } from './models';
-import { AntiFraudServiceUpdateFields } from './antiFraudServiceUpdateFields';
+import { AntiFraudServiceUpdateFieldsInner } from './antiFraudServiceUpdateFieldsInner';
 
 /**
 * A request to update an anti-fraud service.
@@ -28,15 +28,15 @@ export class AntiFraudServiceUpdate {
     /**
     * Defines if this service is currently active or not. There can only be one active service at any time. When updating a service to active, the current active service will be deactivated.
     */
-    'active'?: boolean;
+    'active'?: boolean = true;
     /**
     * Defines if this service needs to handle the review status from anti-fraud responses with a proper review workflow. If not, the review status will be treated as any other one.
     */
-    'reviewsEnabled'?: boolean;
+    'reviewsEnabled'?: boolean = false;
     /**
     * A list of fields, each containing a key-value pair for each field defined by the definition for this anti-fraud service e.g. for Sift `api_key` must be sent within this field when creating the service.  For updates, only the fields sent here will be updated, existing ones will not be affected if not present.
     */
-    'fields'?: Array<AntiFraudServiceUpdateFields>;
+    'fields'?: Array<AntiFraudServiceUpdateFieldsInner>;
 
     static discriminator: string | undefined = undefined;
 
@@ -64,7 +64,7 @@ export class AntiFraudServiceUpdate {
         {
             "name": "fields",
             "baseName": "fields",
-            "type": "Array<AntiFraudServiceUpdateFields>"
+            "type": "Array<AntiFraudServiceUpdateFieldsInner>"
         }    ];
 
     static getAttributeTypeMap() {

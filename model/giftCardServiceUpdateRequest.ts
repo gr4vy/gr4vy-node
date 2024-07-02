@@ -11,7 +11,7 @@
  */
 
 import { RequestFile } from './models';
-import { GiftCardServiceUpdateRequestFields } from './giftCardServiceUpdateRequestFields';
+import { GiftCardServiceUpdateRequestFieldsInner } from './giftCardServiceUpdateRequestFieldsInner';
 
 /**
 * Request body for updating a gift card service.
@@ -24,7 +24,7 @@ export class GiftCardServiceUpdateRequest {
     /**
     * A list of fields, each containing a key-value pair for each field defined by the definition for this gift card service.
     */
-    'fields'?: Array<GiftCardServiceUpdateRequestFields>;
+    'fields'?: Array<GiftCardServiceUpdateRequestFieldsInner>;
     /**
     * Defines if this service is currently active or not.
     */
@@ -41,7 +41,7 @@ export class GiftCardServiceUpdateRequest {
         {
             "name": "fields",
             "baseName": "fields",
-            "type": "Array<GiftCardServiceUpdateRequestFields>"
+            "type": "Array<GiftCardServiceUpdateRequestFieldsInner>"
         },
         {
             "name": "active",

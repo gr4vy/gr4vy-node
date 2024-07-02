@@ -11,7 +11,7 @@
  */
 
 import { RequestFile } from './models';
-import { AntiFraudServiceDefinitionFields } from './antiFraudServiceDefinitionFields';
+import { AntiFraudServiceDefinitionFieldsInner } from './antiFraudServiceDefinitionFieldsInner';
 import { PaymentServiceDefinitionConfiguration } from './paymentServiceDefinitionConfiguration';
 import { PaymentServiceDefinitionSupportedFeatures } from './paymentServiceDefinitionSupportedFeatures';
 
@@ -26,7 +26,7 @@ export class PaymentServiceDefinition {
     /**
     * `payment-service-definition`.
     */
-    'type'?: PaymentServiceDefinition.TypeEnum;
+    'type'?: PaymentServiceDefinition.TypeEnum = PaymentServiceDefinition.TypeEnum.PaymentServiceDefinition;
     /**
     * The display name of this service.
     */
@@ -38,7 +38,7 @@ export class PaymentServiceDefinition {
     /**
     * A list of fields that need to be submitted when activating the payment. service.
     */
-    'fields'?: Array<AntiFraudServiceDefinitionFields>;
+    'fields'?: Array<AntiFraudServiceDefinitionFieldsInner>;
     /**
     * A list of three-letter ISO currency codes that this service supports.
     */
@@ -84,7 +84,7 @@ export class PaymentServiceDefinition {
         {
             "name": "fields",
             "baseName": "fields",
-            "type": "Array<AntiFraudServiceDefinitionFields>"
+            "type": "Array<AntiFraudServiceDefinitionFieldsInner>"
         },
         {
             "name": "supportedCurrencies",
