@@ -276,3 +276,8 @@ GitHub Action to release the new package to NPM.
 This library is released under the [MIT License](LICENSE).
 
 [npm]: https://www.npmjs.com/package/@gr4vy/node
+
+## Release notes
+
+- 1.0.0 - Update to OpenAPI SDK generator v7.6.0
+- 0.65.0 - Update dependencies
