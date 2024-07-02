@@ -35,7 +35,7 @@ export class PaymentServiceSession {
     /**
     * The parsed JSON received from the payment service.
     */
-    'responseBody'?: { [key: string]: object; } | null;
+    'responseBody'?: { [key: string]: any; } | null;
 
     static discriminator: string | undefined = undefined;
 
@@ -63,7 +63,7 @@ export class PaymentServiceSession {
         {
             "name": "responseBody",
             "baseName": "response_body",
-            "type": "{ [key: string]: object; }"
+            "type": "{ [key: string]: any; }"
         }    ];
 
     static getAttributeTypeMap() {

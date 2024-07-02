@@ -23,7 +23,7 @@ export class TransactionRefundRequest {
     /**
     * The target type to refund for. This can be used to target a gift card to refund to instead of the main payment method.
     */
-    'targetType'?: TransactionRefundRequest.TargetTypeEnum;
+    'targetType'?: TransactionRefundRequest.TargetTypeEnum = TransactionRefundRequest.TargetTypeEnum.PaymentMethod;
     /**
     * The optional ID of the instrument to refund for. This is only required when the `target_type` is set to `gift-card-redemption`.
     */

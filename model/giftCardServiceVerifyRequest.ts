@@ -11,7 +11,7 @@
  */
 
 import { RequestFile } from './models';
-import { GiftCardServiceVerifyRequestFields } from './giftCardServiceVerifyRequestFields';
+import { GiftCardServiceVerifyRequestFieldsInner } from './giftCardServiceVerifyRequestFieldsInner';
 
 /**
 * Request body for verifying credentials against a gift card service.
@@ -28,7 +28,7 @@ export class GiftCardServiceVerifyRequest {
     /**
     * A list of fields where each field is a key-value pair that represents a defined field in the definition of the service. You are not required to send the full list of fields if the credentials for the service are already stored. For example, if your credentials for `qwikcilver-gift-card` are stored and you only provide a `secret_key` in the request, it will override the stored `secret_key` and verify the resulting set of credentials against the service.
     */
-    'fields': Array<GiftCardServiceVerifyRequestFields>;
+    'fields': Array<GiftCardServiceVerifyRequestFieldsInner>;
 
     static discriminator: string | undefined = undefined;
 
@@ -46,7 +46,7 @@ export class GiftCardServiceVerifyRequest {
         {
             "name": "fields",
             "baseName": "fields",
-            "type": "Array<GiftCardServiceVerifyRequestFields>"
+            "type": "Array<GiftCardServiceVerifyRequestFieldsInner>"
         }    ];
 
     static getAttributeTypeMap() {

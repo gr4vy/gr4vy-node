@@ -2,7 +2,7 @@ import keyto from '@trust/keyto'
 import jwt from 'jsonwebtoken'
 import { jwkThumbprintByEncoding } from 'jwk-thumbprint'
 import snakeCaseKeys from 'snakecase-keys'
-import { v4 as uuid } from 'uuid'
+import { v4 as uuid } from 'uuid' // eslint-disable-line import/namespace
 import { CartItem } from '../model/cartItem'
 import { version } from '../package.json'
 

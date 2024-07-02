@@ -11,7 +11,7 @@
  */
 
 import { RequestFile } from './models';
-import { ConnectionOptionsPaypalPaypalAdditionalData } from './connectionOptionsPaypalPaypalAdditionalData';
+import { ConnectionOptionsPaypalPaypalAdditionalDataInner } from './connectionOptionsPaypalPaypalAdditionalDataInner';
 
 /**
 * Additional options to be passed through to PayPal when processing transactions.
@@ -20,7 +20,7 @@ export class ConnectionOptionsPaypalPaypal {
     /**
     * An array with key-value objects representing additional data to be passed to PayPal.
     */
-    'additionalData'?: Array<ConnectionOptionsPaypalPaypalAdditionalData>;
+    'additionalData'?: Array<ConnectionOptionsPaypalPaypalAdditionalDataInner>;
 
     static discriminator: string | undefined = undefined;
 
@@ -28,7 +28,7 @@ export class ConnectionOptionsPaypalPaypal {
         {
             "name": "additionalData",
             "baseName": "additional_data",
-            "type": "Array<ConnectionOptionsPaypalPaypalAdditionalData>"
+            "type": "Array<ConnectionOptionsPaypalPaypalAdditionalDataInner>"
         }    ];
 
     static getAttributeTypeMap() {

@@ -11,7 +11,7 @@
  */
 
 import { RequestFile } from './models';
-import { BillingDetails } from './billingDetails';
+import { BuyerBillingDetails } from './buyerBillingDetails';
 
 export class Buyer {
     /**
@@ -22,10 +22,7 @@ export class Buyer {
     * The unique Gr4vy ID for this buyer.
     */
     'id'?: string;
-    /**
-    * The billing details associated with a buyer.
-    */
-    'billingDetails'?: BillingDetails | null;
+    'billingDetails'?: BuyerBillingDetails | null;
     /**
     * The date and time when this buyer was created in our system.
     */
@@ -63,7 +60,7 @@ export class Buyer {
         {
             "name": "billingDetails",
             "baseName": "billing_details",
-            "type": "BillingDetails"
+            "type": "BuyerBillingDetails"
         },
         {
             "name": "createdAt",

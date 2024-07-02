@@ -11,7 +11,7 @@
  */
 
 import { RequestFile } from './models';
-import { GiftCardServiceFields } from './giftCardServiceFields';
+import { GiftCardServiceFieldsInner } from './giftCardServiceFieldsInner';
 
 /**
 * An configured gift card service.
@@ -44,7 +44,7 @@ export class GiftCardService {
     /**
     * A list of fields, each containing a key-value pair for each field configured for this gift card service. Fields marked as `secret` are not returned.
     */
-    'fields'?: Array<GiftCardServiceFields>;
+    'fields'?: Array<GiftCardServiceFieldsInner>;
     /**
     * The date and time when this service was created.
     */
@@ -90,7 +90,7 @@ export class GiftCardService {
         {
             "name": "fields",
             "baseName": "fields",
-            "type": "Array<GiftCardServiceFields>"
+            "type": "Array<GiftCardServiceFieldsInner>"
         },
         {
             "name": "createdAt",

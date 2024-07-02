@@ -20,7 +20,7 @@ export class ConnectionOptionsStripeCard {
     /**
     * Defines if Stripe should automatically fail the payment if it requires two-factor authentication from the user.
     */
-    'errorOnRequiresAction'?: boolean;
+    'errorOnRequiresAction'?: boolean = false;
     'stripeConnect'?: ConnectionOptionsStripeCardStripeConnect | null;
 
     static discriminator: string | undefined = undefined;

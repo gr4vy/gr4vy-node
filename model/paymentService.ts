@@ -11,8 +11,8 @@
  */
 
 import { RequestFile } from './models';
-import { GiftCardServiceFields } from './giftCardServiceFields';
-import { MerchantProfileSummary } from './merchantProfileSummary';
+import { GiftCardServiceFieldsInner } from './giftCardServiceFieldsInner';
+import { PaymentServiceMerchantProfile } from './paymentServiceMerchantProfile';
 
 /**
 * An active, configured payment service.
@@ -37,7 +37,7 @@ export class PaymentService {
     /**
     * Defines if this service is currently active or not.
     */
-    'active'?: boolean;
+    'active'?: boolean = true;
     /**
     * The date and time when this service was created.
     */
@@ -49,15 +49,12 @@ export class PaymentService {
     /**
     * A list of fields, each containing a key-value pair for each field configured for this payment service. Fields marked as `secret` (see Payment Service Definition) are not returned.
     */
-    'fields'?: Array<GiftCardServiceFields>;
+    'fields'?: Array<GiftCardServiceFieldsInner>;
     /**
     * The unique ID for a merchant account.
     */
     'merchantAccountId'?: string;
-    /**
-    * An object containing a key for each supported card scheme (Amex, Discover, Mastercard and Visa), and for each key an object with the merchant profile for this service and the corresponding scheme.
-    */
-    'merchantProfile'?: MerchantProfileSummary | null;
+    'merchantProfile'?: PaymentServiceMerchantProfile | null;
     /**
     * The payment method that this service handles.
     */
@@ -73,7 +70,7 @@ export class PaymentService {
     /**
     * Defines if tokenization is enabled for the service. This feature can only be enabled if the payment service is NOT set as `open_loop` and the PSP is set up to tokenize.
     */
-    'paymentMethodTokenizationEnabled'?: boolean;
+    'paymentMethodTokenizationEnabled'?: boolean = false;
     /**
     * The ID of the payment service definition used to create this service. 
     */
@@ -85,7 +82,7 @@ export class PaymentService {
     /**
     * Defines if 3-D Secure is enabled for the service (can only be enabled if the payment service definition supports the `three_d_secure_hosted` feature). This does not affect pass through 3-D Secure data.
     */
-    'threeDSecureEnabled'?: boolean;
+    'threeDSecureEnabled'?: boolean = false;
     /**
     * The date and time when this service was last updated.
     */
@@ -136,7 +133,7 @@ export class PaymentService {
         {
             "name": "fields",
             "baseName": "fields",
-            "type": "Array<GiftCardServiceFields>"
+            "type": "Array<GiftCardServiceFieldsInner>"
         },
         {
             "name": "merchantAccountId",
@@ -146,7 +143,7 @@ export class PaymentService {
         {
             "name": "merchantProfile",
             "baseName": "merchant_profile",
-            "type": "MerchantProfileSummary"
+            "type": "PaymentServiceMerchantProfile"
         },
         {
             "name": "method",

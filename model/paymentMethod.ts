@@ -11,7 +11,7 @@
  */
 
 import { RequestFile } from './models';
-import { Buyer } from './buyer';
+import { GiftCardBuyer } from './giftCardBuyer';
 import { PaymentMethodDetailsCard } from './paymentMethodDetailsCard';
 
 /**
@@ -38,10 +38,7 @@ export class PaymentMethod {
     * The optional URL that the buyer needs to be redirected to to further authorize their payment.
     */
     'approvalUrl'?: string | null;
-    /**
-    * The optional buyer for which this payment method has been stored.
-    */
-    'buyer'?: Buyer | null;
+    'buyer'?: GiftCardBuyer | null;
     /**
     * The 2-letter ISO code of the country this payment method can be used for. If this value is `null` the payment method may be used in multiple countries.
     */
@@ -135,7 +132,7 @@ export class PaymentMethod {
         {
             "name": "buyer",
             "baseName": "buyer",
-            "type": "Buyer"
+            "type": "GiftCardBuyer"
         },
         {
             "name": "country",

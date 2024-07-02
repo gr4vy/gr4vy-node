@@ -105,7 +105,7 @@ export class PaymentServicesApi {
      * @param paymentServiceId The ID of the payment service.
      * @param requestBody 
      */
-    public async createPaymentServiceSession (paymentServiceId: string, requestBody?: { [key: string]: object; }, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: PaymentServiceSession;  }> {
+    public async createPaymentServiceSession (paymentServiceId: string, requestBody?: { [key: string]: any; }, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: PaymentServiceSession;  }> {
         const localVarPath = this.basePath + '/payment-services/{payment_service_id}/sessions'
             .replace('{' + 'payment_service_id' + '}', encodeURIComponent(String(paymentServiceId)));
         let localVarQueryParameters: any = {};
@@ -135,7 +135,7 @@ export class PaymentServicesApi {
             uri: localVarPath,
             useQuerystring: this._useQuerystring,
             json: true,
-            body: ObjectSerializer.serialize(requestBody, "{ [key: string]: object; }")
+            body: ObjectSerializer.serialize(requestBody, "{ [key: string]: any; }")
         };
 
         let authenticationPromise = Promise.resolve();
@@ -162,8 +162,8 @@ export class PaymentServicesApi {
                     if (error) {
                         reject(error);
                     } else {
-                        body = ObjectSerializer.deserialize(body, "PaymentServiceSession");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                            body = ObjectSerializer.deserialize(body, "PaymentServiceSession");
                             resolve({ response: response, body: body });
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
@@ -305,8 +305,8 @@ export class PaymentServicesApi {
                     if (error) {
                         reject(error);
                     } else {
-                        body = ObjectSerializer.deserialize(body, "PaymentService");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                            body = ObjectSerializer.deserialize(body, "PaymentService");
                             resolve({ response: response, body: body });
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
@@ -390,8 +390,8 @@ export class PaymentServicesApi {
                     if (error) {
                         reject(error);
                     } else {
-                        body = ObjectSerializer.deserialize(body, "PaymentServices");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                            body = ObjectSerializer.deserialize(body, "PaymentServices");
                             resolve({ response: response, body: body });
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
@@ -457,8 +457,8 @@ export class PaymentServicesApi {
                     if (error) {
                         reject(error);
                     } else {
-                        body = ObjectSerializer.deserialize(body, "PaymentService");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                            body = ObjectSerializer.deserialize(body, "PaymentService");
                             resolve({ response: response, body: body });
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
@@ -531,8 +531,8 @@ export class PaymentServicesApi {
                     if (error) {
                         reject(error);
                     } else {
-                        body = ObjectSerializer.deserialize(body, "PaymentService");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                            body = ObjectSerializer.deserialize(body, "PaymentService");
                             resolve({ response: response, body: body });
                         } else {
                             reject(new HttpError(response, body, response.statusCode));

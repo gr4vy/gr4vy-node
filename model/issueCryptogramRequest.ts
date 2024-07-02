@@ -19,7 +19,7 @@ export class IssueCryptogramRequest {
     /**
     * Defines if the request is merchant initiated or not.
     */
-    'merchantInitiated': boolean;
+    'merchantInitiated': boolean = false;
 
     static discriminator: string | undefined = undefined;
 
