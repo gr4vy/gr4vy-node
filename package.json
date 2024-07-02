@@ -1,6 +1,6 @@
 {
   "name": "@gr4vy/node",
-  "version": "0.64.1",
+  "version": "0.66.0",
   "description": "NodeJS client for @gr4vy/node",
   "repository": {
     "type": "git",
@@ -24,22 +24,21 @@
   "license": "MIT",
   "dependencies": {
     "@trust/keyto": "^1.0.1",
-    "@types/bluebird": "^3.5.35",
+    "@types/bluebird": "^3.5.42",
     "bluebird": "^3.5.0",
-    "jsonwebtoken": "^9.0.0",
+    "jsonwebtoken": "^9.0.2",
     "jwk-thumbprint": "^0.1.4",
     "request": "^2.81.0",
-    "rewire": "^6.0.0",
-    "snakecase-keys": "^5.4.5",
-    "uuid": "^9.0.0"
+    "snakecase-keys": "^8.0.1",
+    "uuid": "^10.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.14.6",
     "@babel/preset-env": "^7.14.5",
     "@babel/preset-typescript": "^7.14.5",
-    "@types/jest": "^29.5.0",
+    "@types/jest": "^29.5.12",
     "@types/node": "^18.15.10",
-    "@types/request": "^2.48.5",
+    "@types/request": "^2.48.12",
     "@typescript-eslint/eslint-plugin": "^5.56.0",
     "@typescript-eslint/parser": "^5.56.0",
     "babel-jest": "^29.5.0",
@@ -58,6 +57,7 @@
   },
   "homepage": "https://github.com/gr4vy/gr4vy-node#readme",
   "resolutions": {
-    "json-schema": "^0.4.0"
+    "json-schema": "^0.4.0",
+    "tough-cookie": "^4.1.3"
   }
 }
