@@ -129,10 +129,13 @@ export namespace PaymentOption {
         Givingblock = <any> 'givingblock',
         Gocardless = <any> 'gocardless',
         Googlepay = <any> 'googlepay',
+        GooglepayPanOnly = <any> 'googlepay_pan_only',
         Gopay = <any> 'gopay',
         Grabpay = <any> 'grabpay',
+        Id = <any> 'id',
         Ideal = <any> 'ideal',
         Kakaopay = <any> 'kakaopay',
+        Kcp = <any> 'kcp',
         Klarna = <any> 'klarna',
         Laybuy = <any> 'laybuy',
         Linepay = <any> 'linepay',
@@ -163,6 +166,7 @@ export namespace PaymentOption {
         Singteldash = <any> 'singteldash',
         Smartpay = <any> 'smartpay',
         Sofort = <any> 'sofort',
+        Spei = <any> 'spei',
         Stripedd = <any> 'stripedd',
         Thaiqr = <any> 'thaiqr',
         Touchngo = <any> 'touchngo',
@@ -178,6 +182,8 @@ export namespace PaymentOption {
         Card = <any> 'card',
         Redirect = <any> 'redirect',
         Applepay = <any> 'applepay',
-        Googlepay = <any> 'googlepay'
+        Googlepay = <any> 'googlepay',
+        ClickToPay = <any> 'click-to-pay',
+        CheckoutSession = <any> 'checkout-session'
     }
 }

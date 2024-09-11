@@ -414,7 +414,7 @@ export class TokensApi {
         });
     }
     /**
-     * Issue a cryptogram for a stored network token of a stored card. The endpoint is disabled by default, please contact our team for more information on enablement. 
+     * Issue a cryptogram for a stored network token of a stored card.
      * @summary Issue cryptogram
      * @param paymentMethodId The ID of the payment method.
      * @param networkTokenId The ID of the network token.

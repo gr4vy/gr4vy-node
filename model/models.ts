@@ -76,6 +76,8 @@ export * from './connectionOptions';
 export * from './connectionOptionsAdyenCard';
 export * from './connectionOptionsCybersourceAntiFraud';
 export * from './connectionOptionsCybersourceCard';
+export * from './connectionOptionsCybersourceIdeal';
+export * from './connectionOptionsCybersourceKcp';
 export * from './connectionOptionsForterAntiFraud';
 export * from './connectionOptionsForterAntiFraudCartItemsInner';
 export * from './connectionOptionsForterAntiFraudCartItemsInnerBasicItemData';
@@ -285,6 +287,9 @@ export * from './threeDSecureV2';
 export * from './tokenizedRequest';
 export * from './transaction';
 export * from './transactionBuyer';
+export * from './transactionBuyerRequest';
+export * from './transactionBuyerRequestBillingDetails';
+export * from './transactionBuyerRequestShippingDetails';
 export * from './transactionCaptureRequest';
 export * from './transactionCardRequest';
 export * from './transactionCheckoutSessionRequest';
@@ -293,6 +298,8 @@ export * from './transactionGiftCardRequest';
 export * from './transactionGiftCardStoredRequest';
 export * from './transactionHistoryEvent';
 export * from './transactionHistoryEvents';
+export * from './transactionNetworkTokenApplePayRequest';
+export * from './transactionNetworkTokenGooglePayRequest';
 export * from './transactionNetworkTokenRequest';
 export * from './transactionPaymentMethod';
 export * from './transactionPaymentMethodRequest';
@@ -403,6 +410,8 @@ import { ConnectionOptions } from './connectionOptions';
 import { ConnectionOptionsAdyenCard } from './connectionOptionsAdyenCard';
 import { ConnectionOptionsCybersourceAntiFraud } from './connectionOptionsCybersourceAntiFraud';
 import { ConnectionOptionsCybersourceCard } from './connectionOptionsCybersourceCard';
+import { ConnectionOptionsCybersourceIdeal } from './connectionOptionsCybersourceIdeal';
+import { ConnectionOptionsCybersourceKcp } from './connectionOptionsCybersourceKcp';
 import { ConnectionOptionsForterAntiFraud } from './connectionOptionsForterAntiFraud';
 import { ConnectionOptionsForterAntiFraudCartItemsInner } from './connectionOptionsForterAntiFraudCartItemsInner';
 import { ConnectionOptionsForterAntiFraudCartItemsInnerBasicItemData } from './connectionOptionsForterAntiFraudCartItemsInnerBasicItemData';
@@ -612,6 +621,9 @@ import { ThreeDSecureV2 } from './threeDSecureV2';
 import { TokenizedRequest } from './tokenizedRequest';
 import { Transaction } from './transaction';
 import { TransactionBuyer } from './transactionBuyer';
+import { TransactionBuyerRequest } from './transactionBuyerRequest';
+import { TransactionBuyerRequestBillingDetails } from './transactionBuyerRequestBillingDetails';
+import { TransactionBuyerRequestShippingDetails } from './transactionBuyerRequestShippingDetails';
 import { TransactionCaptureRequest } from './transactionCaptureRequest';
 import { TransactionCardRequest } from './transactionCardRequest';
 import { TransactionCheckoutSessionRequest } from './transactionCheckoutSessionRequest';
@@ -620,6 +632,8 @@ import { TransactionGiftCardRequest } from './transactionGiftCardRequest';
 import { TransactionGiftCardStoredRequest } from './transactionGiftCardStoredRequest';
 import { TransactionHistoryEvent } from './transactionHistoryEvent';
 import { TransactionHistoryEvents } from './transactionHistoryEvents';
+import { TransactionNetworkTokenApplePayRequest } from './transactionNetworkTokenApplePayRequest';
+import { TransactionNetworkTokenGooglePayRequest } from './transactionNetworkTokenGooglePayRequest';
 import { TransactionNetworkTokenRequest } from './transactionNetworkTokenRequest';
 import { TransactionPaymentMethod } from './transactionPaymentMethod';
 import { TransactionPaymentMethodRequest } from './transactionPaymentMethodRequest';
@@ -915,6 +929,10 @@ let enumsMap: {[index: string]: any} = {
         "TransactionCheckoutSessionRequest.MethodEnum": TransactionCheckoutSessionRequest.MethodEnum,
         "TransactionHistoryEvent.TypeEnum": TransactionHistoryEvent.TypeEnum,
         "TransactionHistoryEvent.NameEnum": TransactionHistoryEvent.NameEnum,
+        "TransactionNetworkTokenApplePayRequest.MethodEnum": TransactionNetworkTokenApplePayRequest.MethodEnum,
+        "TransactionNetworkTokenApplePayRequest.CardSourceEnum": TransactionNetworkTokenApplePayRequest.CardSourceEnum,
+        "TransactionNetworkTokenGooglePayRequest.MethodEnum": TransactionNetworkTokenGooglePayRequest.MethodEnum,
+        "TransactionNetworkTokenGooglePayRequest.CardSourceEnum": TransactionNetworkTokenGooglePayRequest.CardSourceEnum,
         "TransactionNetworkTokenRequest.MethodEnum": TransactionNetworkTokenRequest.MethodEnum,
         "TransactionPaymentMethod.TypeEnum": TransactionPaymentMethod.TypeEnum,
         "TransactionPaymentMethod.ApprovalTargetEnum": TransactionPaymentMethod.ApprovalTargetEnum,
@@ -1016,6 +1034,8 @@ let typeMap: {[index: string]: any} = {
     "ConnectionOptionsAdyenCard": ConnectionOptionsAdyenCard,
     "ConnectionOptionsCybersourceAntiFraud": ConnectionOptionsCybersourceAntiFraud,
     "ConnectionOptionsCybersourceCard": ConnectionOptionsCybersourceCard,
+    "ConnectionOptionsCybersourceIdeal": ConnectionOptionsCybersourceIdeal,
+    "ConnectionOptionsCybersourceKcp": ConnectionOptionsCybersourceKcp,
     "ConnectionOptionsForterAntiFraud": ConnectionOptionsForterAntiFraud,
     "ConnectionOptionsForterAntiFraudCartItemsInner": ConnectionOptionsForterAntiFraudCartItemsInner,
     "ConnectionOptionsForterAntiFraudCartItemsInnerBasicItemData": ConnectionOptionsForterAntiFraudCartItemsInnerBasicItemData,
@@ -1225,6 +1245,9 @@ let typeMap: {[index: string]: any} = {
     "TokenizedRequest": TokenizedRequest,
     "Transaction": Transaction,
     "TransactionBuyer": TransactionBuyer,
+    "TransactionBuyerRequest": TransactionBuyerRequest,
+    "TransactionBuyerRequestBillingDetails": TransactionBuyerRequestBillingDetails,
+    "TransactionBuyerRequestShippingDetails": TransactionBuyerRequestShippingDetails,
     "TransactionCaptureRequest": TransactionCaptureRequest,
     "TransactionCardRequest": TransactionCardRequest,
     "TransactionCheckoutSessionRequest": TransactionCheckoutSessionRequest,
@@ -1233,6 +1256,8 @@ let typeMap: {[index: string]: any} = {
     "TransactionGiftCardStoredRequest": TransactionGiftCardStoredRequest,
     "TransactionHistoryEvent": TransactionHistoryEvent,
     "TransactionHistoryEvents": TransactionHistoryEvents,
+    "TransactionNetworkTokenApplePayRequest": TransactionNetworkTokenApplePayRequest,
+    "TransactionNetworkTokenGooglePayRequest": TransactionNetworkTokenGooglePayRequest,
     "TransactionNetworkTokenRequest": TransactionNetworkTokenRequest,
     "TransactionPaymentMethod": TransactionPaymentMethod,
     "TransactionPaymentMethodRequest": TransactionPaymentMethodRequest,

@@ -24,7 +24,7 @@ export class TransactionBuyer {
     /**
     * The unique Gr4vy ID for this buyer.
     */
-    'id'?: string;
+    'id'?: string | null;
     'billingDetails'?: BuyerSnapshotBillingDetails | null;
     /**
     * A unique name for this buyer which is used in the Gr4vy admin panel to give a buyer a human readable name.

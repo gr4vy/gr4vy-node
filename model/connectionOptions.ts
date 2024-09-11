@@ -14,6 +14,8 @@ import { RequestFile } from './models';
 import { ConnectionOptionsAdyenCard } from './connectionOptionsAdyenCard';
 import { ConnectionOptionsCybersourceAntiFraud } from './connectionOptionsCybersourceAntiFraud';
 import { ConnectionOptionsCybersourceCard } from './connectionOptionsCybersourceCard';
+import { ConnectionOptionsCybersourceIdeal } from './connectionOptionsCybersourceIdeal';
+import { ConnectionOptionsCybersourceKcp } from './connectionOptionsCybersourceKcp';
 import { ConnectionOptionsForterAntiFraud } from './connectionOptionsForterAntiFraud';
 import { ConnectionOptionsGivingblockGivingblock } from './connectionOptionsGivingblockGivingblock';
 import { ConnectionOptionsPaypalPaypal } from './connectionOptionsPaypalPaypal';
@@ -21,6 +23,8 @@ import { ConnectionOptionsStripeCard } from './connectionOptionsStripeCard';
 
 export class ConnectionOptions {
     'cybersourceCard'?: ConnectionOptionsCybersourceCard | null;
+    'cybersourceKcp'?: ConnectionOptionsCybersourceKcp | null;
+    'cybersourceIdeal'?: ConnectionOptionsCybersourceIdeal | null;
     'cybersourceAntiFraud'?: ConnectionOptionsCybersourceAntiFraud | null;
     'givingblockGivingblock'?: ConnectionOptionsGivingblockGivingblock | null;
     'forterAntiFraud'?: ConnectionOptionsForterAntiFraud | null;
@@ -36,6 +40,16 @@ export class ConnectionOptions {
             "name": "cybersourceCard",
             "baseName": "cybersource-card",
             "type": "ConnectionOptionsCybersourceCard"
+        },
+        {
+            "name": "cybersourceKcp",
+            "baseName": "cybersource-kcp",
+            "type": "ConnectionOptionsCybersourceKcp"
+        },
+        {
+            "name": "cybersourceIdeal",
+            "baseName": "cybersource-ideal",
+            "type": "ConnectionOptionsCybersourceIdeal"
         },
         {
             "name": "cybersourceAntiFraud",

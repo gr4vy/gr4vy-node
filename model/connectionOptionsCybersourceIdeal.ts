@@ -13,9 +13,9 @@
 import { RequestFile } from './models';
 
 /**
-* Additional options for Cybersource payment gateway.
+* Additional options for Cybersource iDeal APM.
 */
-export class ConnectionOptionsCybersourceCard {
+export class ConnectionOptionsCybersourceIdeal {
     /**
     * An override for the merchant ID configured for the connector, used in combination with meta keys.
     */
@@ -49,7 +49,7 @@ export class ConnectionOptionsCybersourceCard {
         }    ];
 
     static getAttributeTypeMap() {
-        return ConnectionOptionsCybersourceCard.attributeTypeMap;
+        return ConnectionOptionsCybersourceIdeal.attributeTypeMap;
     }
 }
 

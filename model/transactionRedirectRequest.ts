@@ -17,7 +17,7 @@ import { RequestFile } from './models';
 */
 export class TransactionRedirectRequest {
     /**
-    * The method to use, this can be any of the methods that support redirect requests.  When storing a new payment method, only `gocardless` and `stripedd` are currently supported.
+    * The method to use, this can be any of the methods that support redirect requests.
     */
     'method': TransactionRedirectRequest.MethodEnum;
     /**
