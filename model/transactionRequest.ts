@@ -13,6 +13,7 @@
 import { RequestFile } from './models';
 import { CartItem } from './cartItem';
 import { ThreeDSecureDataV1V2 } from './threeDSecureDataV1V2';
+import { TransactionBuyerRequest } from './transactionBuyerRequest';
 import { TransactionGiftCardRequest } from './transactionGiftCardRequest';
 import { TransactionPaymentMethodRequest } from './transactionPaymentMethodRequest';
 import { TransactionRequestBrowserInfo } from './transactionRequestBrowserInfo';
@@ -49,6 +50,7 @@ export class TransactionRequest {
     * The ID of the buyer to associate this payment method to. If this field is provided then the `buyer_external_identifier` field needs to be unset.  If a stored payment method or gift card is provided, then the buyer for that payment method needs to match the buyer for this field.
     */
     'buyerId'?: string;
+    'buyer'?: TransactionBuyerRequest;
     /**
     * An array of cart items that represents the line items of a transaction.
     */
@@ -147,6 +149,11 @@ export class TransactionRequest {
             "name": "buyerId",
             "baseName": "buyer_id",
             "type": "string"
+        },
+        {
+            "name": "buyer",
+            "baseName": "buyer",
+            "type": "TransactionBuyerRequest"
         },
         {
             "name": "cartItems",

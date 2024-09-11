@@ -97,6 +97,8 @@ model/connectionOptions.ts
 model/connectionOptionsAdyenCard.ts
 model/connectionOptionsCybersourceAntiFraud.ts
 model/connectionOptionsCybersourceCard.ts
+model/connectionOptionsCybersourceIdeal.ts
+model/connectionOptionsCybersourceKcp.ts
 model/connectionOptionsForterAntiFraud.ts
 model/connectionOptionsForterAntiFraudCartItemsInner.ts
 model/connectionOptionsForterAntiFraudCartItemsInnerBasicItemData.ts
@@ -307,6 +309,9 @@ model/threeDSecureV2.ts
 model/tokenizedRequest.ts
 model/transaction.ts
 model/transactionBuyer.ts
+model/transactionBuyerRequest.ts
+model/transactionBuyerRequestBillingDetails.ts
+model/transactionBuyerRequestShippingDetails.ts
 model/transactionCaptureRequest.ts
 model/transactionCardRequest.ts
 model/transactionCheckoutSessionRequest.ts
@@ -315,6 +320,8 @@ model/transactionGiftCardRequest.ts
 model/transactionGiftCardStoredRequest.ts
 model/transactionHistoryEvent.ts
 model/transactionHistoryEvents.ts
+model/transactionNetworkTokenApplePayRequest.ts
+model/transactionNetworkTokenGooglePayRequest.ts
 model/transactionNetworkTokenRequest.ts
 model/transactionPaymentMethod.ts
 model/transactionPaymentMethodRequest.ts

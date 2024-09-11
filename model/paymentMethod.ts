@@ -89,7 +89,7 @@ export class PaymentMethod {
     */
     'scheme'?: PaymentMethod.SchemeEnum;
     /**
-    * The state of the payment method.  - `processing` - The payment method is stored but has not been used yet. - `buyer_approval_required` - Storing the payment method requires   the buyer to provide approval. Follow the `approval_url` for next steps. - `succeeded` - The payment method is stored and has been used. - `failed` - The payment method could not be stored, or failed first use.
+    * The state of the payment method.  - `processing` - The payment method is stored but is not ready to be    used yet, as we may be waiting for a notification from a connector    to complete the setup. - `buyer_approval_required` - Storing the payment method requires   the buyer to provide approval. Follow the `approval_url` for next steps. - `succeeded` - The payment method is stored and can be used. - `failed` - The payment method could not be stored, or failed verification.
     */
     'status'?: PaymentMethod.StatusEnum;
     /**
@@ -284,10 +284,13 @@ export namespace PaymentMethod {
         Givingblock = <any> 'givingblock',
         Gocardless = <any> 'gocardless',
         Googlepay = <any> 'googlepay',
+        GooglepayPanOnly = <any> 'googlepay_pan_only',
         Gopay = <any> 'gopay',
         Grabpay = <any> 'grabpay',
+        Id = <any> 'id',
         Ideal = <any> 'ideal',
         Kakaopay = <any> 'kakaopay',
+        Kcp = <any> 'kcp',
         Klarna = <any> 'klarna',
         Laybuy = <any> 'laybuy',
         Linepay = <any> 'linepay',
@@ -318,6 +321,7 @@ export namespace PaymentMethod {
         Singteldash = <any> 'singteldash',
         Smartpay = <any> 'smartpay',
         Sofort = <any> 'sofort',
+        Spei = <any> 'spei',
         Stripedd = <any> 'stripedd',
         Thaiqr = <any> 'thaiqr',
         Touchngo = <any> 'touchngo',
@@ -333,7 +337,9 @@ export namespace PaymentMethod {
         Card = <any> 'card',
         Redirect = <any> 'redirect',
         Applepay = <any> 'applepay',
-        Googlepay = <any> 'googlepay'
+        Googlepay = <any> 'googlepay',
+        ClickToPay = <any> 'click-to-pay',
+        CheckoutSession = <any> 'checkout-session'
     }
     export enum SchemeEnum {
         Accel = <any> 'accel',

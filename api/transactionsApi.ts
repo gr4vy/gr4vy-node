@@ -506,7 +506,7 @@ export class TransactionsApi {
      * @param updatedAtGte Filters the results to only transactions last updated after this ISO date-time string. The time zone must be included.  Ensure that the date-time string is URL encoded, e.g. &#x60;2022-01-01T12:00:00+08:00&#x60; must be encoded as &#x60;2022-01-01T12%3A00%3A00%2B08%3A00&#x60;.
      * @param updatedAtLte Filters the results to only transactions last updated before this ISO date-time string. The time zone must be included.  Ensure that the date-time string is URL encoded, e.g. &#x60;2022-01-01T12:00:00+08:00&#x60; must be encoded as &#x60;2022-01-01T12%3A00%3A00%2B08%3A00&#x60;.
      */
-    public async listTransactions (buyerExternalIdentifier?: string, buyerId?: string, cursor?: string, limit?: number, amountEq?: number, amountGte?: number, amountLte?: number, checkoutSessionId?: string, createdAtGte?: Date, createdAtLte?: Date, currency?: Array<string>, externalIdentifier?: string, giftCardId?: string, giftCardLast4?: string, hasGiftCardRedemptions?: boolean, hasRefunds?: boolean, id?: string, metadata?: Array<string>, method?: Array<'afterpay' | 'alipay' | 'alipayhk' | 'applepay' | 'bacs' | 'bancontact' | 'banked' | 'becs' | 'bitpay' | 'boleto' | 'boost' | 'card' | 'cashapp' | 'chaseorbital' | 'checkout-session' | 'clearpay' | 'click-to-pay' | 'dana' | 'dcb' | 'dlocal' | 'ebanx' | 'eps' | 'everydaypay' | 'gcash' | 'giropay' | 'givingblock' | 'gocardless' | 'googlepay' | 'gopay' | 'grabpay' | 'ideal' | 'kakaopay' | 'klarna' | 'laybuy' | 'linepay' | 'linkaja' | 'maybankqrpay' | 'multibanco' | 'multipago' | 'network-token' | 'oney_3x' | 'oney_4x' | 'oney_6x' | 'oney_10x' | 'oney_12x' | 'ovo' | 'oxxo' | 'payid' | 'paymaya' | 'paypal' | 'paypalpaylater' | 'payto' | 'venmo' | 'pix' | 'rabbitlinepay' | 'razorpay' | 'scalapay' | 'sepa' | 'shopeepay' | 'singteldash' | 'smartpay' | 'sofort' | 'stripedd' | 'thaiqr' | 'touchngo' | 'truemoney' | 'trustly' | 'trustlyeurope' | 'vipps' | 'waave' | 'wechat' | 'zippay'>, paymentMethodId?: string, paymentMethodLabel?: string, paymentServiceId?: Array<string>, paymentServiceTransactionId?: string, pendingReview?: boolean, reconciliationId?: string, search?: string, status?: Array<'processing' | 'buyer_approval_pending' | 'authorization_succeeded' | 'authorization_failed' | 'authorization_declined' | 'capture_pending' | 'capture_succeeded' | 'authorization_void_pending' | 'authorization_voided'>, updatedAtGte?: Date, updatedAtLte?: Date, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Transactions;  }> {
+    public async listTransactions (buyerExternalIdentifier?: string, buyerId?: string, cursor?: string, limit?: number, amountEq?: number, amountGte?: number, amountLte?: number, checkoutSessionId?: string, createdAtGte?: Date, createdAtLte?: Date, currency?: Array<string>, externalIdentifier?: string, giftCardId?: string, giftCardLast4?: string, hasGiftCardRedemptions?: boolean, hasRefunds?: boolean, id?: string, metadata?: Array<string>, method?: Array<'afterpay' | 'alipay' | 'alipayhk' | 'applepay' | 'bacs' | 'bancontact' | 'banked' | 'becs' | 'bitpay' | 'boleto' | 'boost' | 'card' | 'cashapp' | 'chaseorbital' | 'checkout-session' | 'clearpay' | 'click-to-pay' | 'dana' | 'dcb' | 'dlocal' | 'ebanx' | 'eps' | 'everydaypay' | 'gcash' | 'giropay' | 'givingblock' | 'gocardless' | 'googlepay' | 'googlepay_pan_only' | 'gopay' | 'grabpay' | 'id' | 'ideal' | 'kakaopay' | 'kcp' | 'klarna' | 'laybuy' | 'linepay' | 'linkaja' | 'maybankqrpay' | 'multibanco' | 'multipago' | 'network-token' | 'oney_3x' | 'oney_4x' | 'oney_6x' | 'oney_10x' | 'oney_12x' | 'ovo' | 'oxxo' | 'payid' | 'paymaya' | 'paypal' | 'paypalpaylater' | 'payto' | 'venmo' | 'pix' | 'rabbitlinepay' | 'razorpay' | 'scalapay' | 'sepa' | 'shopeepay' | 'singteldash' | 'smartpay' | 'sofort' | 'spei' | 'stripedd' | 'thaiqr' | 'touchngo' | 'truemoney' | 'trustly' | 'trustlyeurope' | 'vipps' | 'waave' | 'wechat' | 'zippay'>, paymentMethodId?: string, paymentMethodLabel?: string, paymentServiceId?: Array<string>, paymentServiceTransactionId?: string, pendingReview?: boolean, reconciliationId?: string, search?: string, status?: Array<'processing' | 'buyer_approval_pending' | 'authorization_succeeded' | 'authorization_failed' | 'authorization_declined' | 'capture_pending' | 'capture_succeeded' | 'authorization_void_pending' | 'authorization_voided'>, updatedAtGte?: Date, updatedAtLte?: Date, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Transactions;  }> {
         const localVarPath = this.basePath + '/transactions';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
@@ -592,7 +592,7 @@ export class TransactionsApi {
         }
 
         if (method !== undefined) {
-            localVarQueryParameters['method'] = ObjectSerializer.serialize(method, "Array<'afterpay' | 'alipay' | 'alipayhk' | 'applepay' | 'bacs' | 'bancontact' | 'banked' | 'becs' | 'bitpay' | 'boleto' | 'boost' | 'card' | 'cashapp' | 'chaseorbital' | 'checkout-session' | 'clearpay' | 'click-to-pay' | 'dana' | 'dcb' | 'dlocal' | 'ebanx' | 'eps' | 'everydaypay' | 'gcash' | 'giropay' | 'givingblock' | 'gocardless' | 'googlepay' | 'gopay' | 'grabpay' | 'ideal' | 'kakaopay' | 'klarna' | 'laybuy' | 'linepay' | 'linkaja' | 'maybankqrpay' | 'multibanco' | 'multipago' | 'network-token' | 'oney_3x' | 'oney_4x' | 'oney_6x' | 'oney_10x' | 'oney_12x' | 'ovo' | 'oxxo' | 'payid' | 'paymaya' | 'paypal' | 'paypalpaylater' | 'payto' | 'venmo' | 'pix' | 'rabbitlinepay' | 'razorpay' | 'scalapay' | 'sepa' | 'shopeepay' | 'singteldash' | 'smartpay' | 'sofort' | 'stripedd' | 'thaiqr' | 'touchngo' | 'truemoney' | 'trustly' | 'trustlyeurope' | 'vipps' | 'waave' | 'wechat' | 'zippay'>");
+            localVarQueryParameters['method'] = ObjectSerializer.serialize(method, "Array<'afterpay' | 'alipay' | 'alipayhk' | 'applepay' | 'bacs' | 'bancontact' | 'banked' | 'becs' | 'bitpay' | 'boleto' | 'boost' | 'card' | 'cashapp' | 'chaseorbital' | 'checkout-session' | 'clearpay' | 'click-to-pay' | 'dana' | 'dcb' | 'dlocal' | 'ebanx' | 'eps' | 'everydaypay' | 'gcash' | 'giropay' | 'givingblock' | 'gocardless' | 'googlepay' | 'googlepay_pan_only' | 'gopay' | 'grabpay' | 'id' | 'ideal' | 'kakaopay' | 'kcp' | 'klarna' | 'laybuy' | 'linepay' | 'linkaja' | 'maybankqrpay' | 'multibanco' | 'multipago' | 'network-token' | 'oney_3x' | 'oney_4x' | 'oney_6x' | 'oney_10x' | 'oney_12x' | 'ovo' | 'oxxo' | 'payid' | 'paymaya' | 'paypal' | 'paypalpaylater' | 'payto' | 'venmo' | 'pix' | 'rabbitlinepay' | 'razorpay' | 'scalapay' | 'sepa' | 'shopeepay' | 'singteldash' | 'smartpay' | 'sofort' | 'spei' | 'stripedd' | 'thaiqr' | 'touchngo' | 'truemoney' | 'trustly' | 'trustlyeurope' | 'vipps' | 'waave' | 'wechat' | 'zippay'>");
         }
 
         if (paymentMethodId !== undefined) {
@@ -891,6 +891,78 @@ export class TransactionsApi {
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                             body = ObjectSerializer.deserialize(body, "Refunds");
+                            resolve({ response: response, body: body });
+                        } else {
+                            reject(new HttpError(response, body, response.statusCode));
+                        }
+                    }
+                });
+            });
+        });
+    }
+    /**
+     * Sync the transaction with the payment service to get the latest status, amounts, and some of the identifiers. This is only available for some payment service providers.
+     * @summary Sync transaction
+     * @param transactionId The ID for the transaction to get the information for.
+     */
+    public async syncTransaction (transactionId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Transaction;  }> {
+        const localVarPath = this.basePath + '/transactions/{transaction_id}/sync'
+            .replace('{' + 'transaction_id' + '}', encodeURIComponent(String(transactionId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'transactionId' is not null or undefined
+        if (transactionId === null || transactionId === undefined) {
+            throw new Error('Required parameter transactionId was null or undefined when calling syncTransaction.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        let authenticationPromise = Promise.resolve();
+        if (this.authentications.bearerAuth.accessToken) {
+            authenticationPromise = authenticationPromise.then(() => this.authentications.bearerAuth.applyToRequest(localVarRequestOptions));
+        }
+        authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
+
+        let interceptorPromise = authenticationPromise;
+        for (const interceptor of this.interceptors) {
+            interceptorPromise = interceptorPromise.then(() => interceptor(localVarRequestOptions));
+        }
+
+        return interceptorPromise.then(() => {
+            if (Object.keys(localVarFormParams).length) {
+                if (localVarUseFormData) {
+                    (<any>localVarRequestOptions).formData = localVarFormParams;
+                } else {
+                    localVarRequestOptions.form = localVarFormParams;
+                }
+            }
+            return new Promise<{ response: http.IncomingMessage; body: Transaction;  }>((resolve, reject) => {
+                localVarRequest(localVarRequestOptions, (error, response, body) => {
+                    if (error) {
+                        reject(error);
+                    } else {
+                        if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                            body = ObjectSerializer.deserialize(body, "Transaction");
                             resolve({ response: response, body: body });
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
