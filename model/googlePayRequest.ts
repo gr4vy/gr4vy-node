@@ -25,11 +25,23 @@ export class GooglePayRequest {
     * The encrypted (opaque) token returned by the Google Pay API that represents a payment method.
     */
     'token': string;
+    /**
+    * Last 4 digits of the PAN for identification purposes.
+    */
+    'cardSuffix'?: string | null;
+    /**
+    * The scheme/brand of the card.
+    */
+    'cardScheme'?: string | null;
+    /**
+    * The type of card.
+    */
+    'cardType'?: string | null;
     'assuranceDetails'?: GooglePayRequestAssuranceDetails | null;
     /**
     * Name of the card holder.
     */
-    'cardHolderName'?: string | null;
+    'cardholderName'?: string | null;
     /**
     * We strongly recommend providing a `redirect_url` either when 3-D Secure is enabled and `three_d_secure_data` is not provided, or when using connections where 3DS is enabled. This value will be appended with both a transaction ID and status (e.g. `https://example.com/callback?gr4vy_transaction_id=123 &gr4vy_transaction_status=capture_succeeded`) after 3-D Secure has completed. For those cases, if the value is not present, the transaction will be marked as failed.
     */
@@ -49,13 +61,28 @@ export class GooglePayRequest {
             "type": "string"
         },
         {
+            "name": "cardSuffix",
+            "baseName": "card_suffix",
+            "type": "string"
+        },
+        {
+            "name": "cardScheme",
+            "baseName": "card_scheme",
+            "type": "string"
+        },
+        {
+            "name": "cardType",
+            "baseName": "card_type",
+            "type": "string"
+        },
+        {
             "name": "assuranceDetails",
             "baseName": "assurance_details",
             "type": "GooglePayRequestAssuranceDetails"
         },
         {
-            "name": "cardHolderName",
-            "baseName": "card_holder_name",
+            "name": "cardholderName",
+            "baseName": "cardholder_name",
             "type": "string"
         },
         {

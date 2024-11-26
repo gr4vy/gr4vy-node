@@ -2,6 +2,8 @@ export * from './aPILogsApi';
 import { APILogsApi } from './aPILogsApi';
 export * from './accountUpdaterApi';
 import { AccountUpdaterApi } from './accountUpdaterApi';
+export * from './antiFraudServiceDefinitionsApi';
+import { AntiFraudServiceDefinitionsApi } from './antiFraudServiceDefinitionsApi';
 export * from './auditLogsApi';
 import { AuditLogsApi } from './auditLogsApi';
 export * from './buyersApi';
@@ -51,4 +53,4 @@ export class HttpError extends Error {
 
 export { RequestFile } from '../model/models';
 
-export const APIS = [APILogsApi, AccountUpdaterApi, AuditLogsApi, BuyersApi, CardSchemeDefinitionsApi, CheckoutSessionsApi, DigitalWalletsApi, GiftCardServiceDefinitionsApi, GiftCardServicesApi, GiftCardsApi, MerchantAccountsApi, PaymentMethodDefinitionsApi, PaymentMethodsApi, PaymentOptionsApi, PaymentServiceDefinitionsApi, PaymentServicesApi, ReportsApi, RolesApi, TokensApi, TransactionsApi, VaultForwardApi];
+export const APIS = [APILogsApi, AccountUpdaterApi, AntiFraudServiceDefinitionsApi, AuditLogsApi, BuyersApi, CardSchemeDefinitionsApi, CheckoutSessionsApi, DigitalWalletsApi, GiftCardServiceDefinitionsApi, GiftCardServicesApi, GiftCardsApi, MerchantAccountsApi, PaymentMethodDefinitionsApi, PaymentMethodsApi, PaymentOptionsApi, PaymentServiceDefinitionsApi, PaymentServicesApi, ReportsApi, RolesApi, TokensApi, TransactionsApi, VaultForwardApi];

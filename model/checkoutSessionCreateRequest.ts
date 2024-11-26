@@ -12,6 +12,7 @@
 
 import { RequestFile } from './models';
 import { CartItem } from './cartItem';
+import { TransactionBuyerRequest } from './transactionBuyerRequest';
 
 /**
 * A request to create a checkout session.
@@ -25,6 +26,7 @@ export class CheckoutSessionCreateRequest {
     * Any additional information about the transaction that you would like to store as key-value pairs. This data is passed to payment service providers that support it.
     */
     'metadata'?: { [key: string]: string; } | null;
+    'buyer'?: TransactionBuyerRequest;
 
     static discriminator: string | undefined = undefined;
 
@@ -38,6 +40,11 @@ export class CheckoutSessionCreateRequest {
             "name": "metadata",
             "baseName": "metadata",
             "type": "{ [key: string]: string; }"
+        },
+        {
+            "name": "buyer",
+            "baseName": "buyer",
+            "type": "TransactionBuyerRequest"
         }    ];
 
     static getAttributeTypeMap() {

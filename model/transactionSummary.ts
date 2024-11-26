@@ -11,10 +11,10 @@
  */
 
 import { RequestFile } from './models';
-import { BuyerSnapshot } from './buyerSnapshot';
 import { GiftCardRedemption } from './giftCardRedemption';
-import { PaymentMethodSnapshot } from './paymentMethodSnapshot';
-import { PaymentServiceSnapshot } from './paymentServiceSnapshot';
+import { TransactionBuyer } from './transactionBuyer';
+import { TransactionPaymentMethod } from './transactionPaymentMethod';
+import { TransactionPaymentService } from './transactionPaymentService';
 
 /**
 * A transaction record.
@@ -36,10 +36,7 @@ export class TransactionSummary {
     * The amount for this transaction that has been authorized for the `payment_method`. This can be less than the `amount` if gift cards were used.
     */
     'authorizedAmount'?: number;
-    /**
-    * The buyer used for this transaction.
-    */
-    'buyer'?: BuyerSnapshot | null;
+    'buyer'?: TransactionBuyer | null;
     /**
     * The captured amount for this transaction. This can be the full value of the `authorized_amount` or less.
     */
@@ -47,7 +44,7 @@ export class TransactionSummary {
     /**
     * The identifier for the checkout session this transaction is associated with.
     */
-    'checkoutSessionId'?: string;
+    'checkoutSessionId'?: string | null;
     /**
     * The 2-letter ISO code of the country of the transaction. This is used to filter the payment services that is used to process the transaction. 
     */
@@ -69,6 +66,10 @@ export class TransactionSummary {
     */
     'giftCardRedemptions'?: Array<GiftCardRedemption>;
     /**
+    * The name of the instrument used to process the transaction. 
+    */
+    'instrumentType'?: TransactionSummary.InstrumentTypeEnum;
+    /**
     * The original `intent` used when the transaction was [created](#operation/authorize-new-transaction).
     */
     'intent'?: TransactionSummary.IntentEnum;
@@ -77,14 +78,8 @@ export class TransactionSummary {
     */
     'merchantAccountId'?: string;
     'method'?: TransactionSummary.MethodEnum;
-    /**
-    * The payment method used for this transaction.
-    */
-    'paymentMethod'?: PaymentMethodSnapshot;
-    /**
-    * The payment service used for this transaction.
-    */
-    'paymentService'?: PaymentServiceSnapshot;
+    'paymentMethod'?: TransactionPaymentMethod | null;
+    'paymentService'?: TransactionPaymentService | null;
     /**
     * Whether a manual review is pending.
     */
@@ -140,7 +135,7 @@ export class TransactionSummary {
         {
             "name": "buyer",
             "baseName": "buyer",
-            "type": "BuyerSnapshot"
+            "type": "TransactionBuyer"
         },
         {
             "name": "capturedAmount",
@@ -178,6 +173,11 @@ export class TransactionSummary {
             "type": "Array<GiftCardRedemption>"
         },
         {
+            "name": "instrumentType",
+            "baseName": "instrument_type",
+            "type": "TransactionSummary.InstrumentTypeEnum"
+        },
+        {
             "name": "intent",
             "baseName": "intent",
             "type": "TransactionSummary.IntentEnum"
@@ -195,12 +195,12 @@ export class TransactionSummary {
         {
             "name": "paymentMethod",
             "baseName": "payment_method",
-            "type": "PaymentMethodSnapshot"
+            "type": "TransactionPaymentMethod"
         },
         {
             "name": "paymentService",
             "baseName": "payment_service",
-            "type": "PaymentServiceSnapshot"
+            "type": "TransactionPaymentService"
         },
         {
             "name": "pendingReview",
@@ -247,6 +247,15 @@ export namespace TransactionSummary {
     export enum TypeEnum {
         Transaction = <any> 'transaction'
     }
+    export enum InstrumentTypeEnum {
+        Applepay = <any> 'applepay',
+        CardToken = <any> 'card_token',
+        Googlepay = <any> 'googlepay',
+        NetworkToken = <any> 'network_token',
+        Pan = <any> 'pan',
+        Redirect = <any> 'redirect',
+        RedirectToken = <any> 'redirect_token'
+    }
     export enum IntentEnum {
         Authorize = <any> 'authorize',
         Capture = <any> 'capture'
@@ -264,28 +273,37 @@ export namespace TransactionSummary {
         Boleto = <any> 'boleto',
         Boost = <any> 'boost',
         Card = <any> 'card',
+        Cashapp = <any> 'cashapp',
+        Chaseorbital = <any> 'chaseorbital',
         CheckoutSession = <any> 'checkout-session',
-        ClickToPay = <any> 'click-to-pay',
         Clearpay = <any> 'clearpay',
+        ClickToPay = <any> 'click-to-pay',
         Dana = <any> 'dana',
         Dcb = <any> 'dcb',
+        Dlocal = <any> 'dlocal',
+        Ebanx = <any> 'ebanx',
         Eps = <any> 'eps',
-        Fortumo = <any> 'fortumo',
+        Everydaypay = <any> 'everydaypay',
         Gcash = <any> 'gcash',
         Giropay = <any> 'giropay',
+        Givingblock = <any> 'givingblock',
         Gocardless = <any> 'gocardless',
         Googlepay = <any> 'googlepay',
+        GooglepayPanOnly = <any> 'googlepay_pan_only',
         Gopay = <any> 'gopay',
         Grabpay = <any> 'grabpay',
-        Ideal = <any> 'ideal',
         Id = <any> 'id',
+        Ideal = <any> 'ideal',
         Kakaopay = <any> 'kakaopay',
+        Kcp = <any> 'kcp',
         Klarna = <any> 'klarna',
         Laybuy = <any> 'laybuy',
         Linepay = <any> 'linepay',
         Linkaja = <any> 'linkaja',
         Maybankqrpay = <any> 'maybankqrpay',
         Multibanco = <any> 'multibanco',
+        Multipago = <any> 'multipago',
+        NetworkToken = <any> 'network-token',
         Oney3x = <any> 'oney_3x',
         Oney4x = <any> 'oney_4x',
         Oney6x = <any> 'oney_6x',
@@ -293,9 +311,12 @@ export namespace TransactionSummary {
         Oney12x = <any> 'oney_12x',
         Ovo = <any> 'ovo',
         Oxxo = <any> 'oxxo',
+        Payid = <any> 'payid',
         Paymaya = <any> 'paymaya',
         Paypal = <any> 'paypal',
         Paypalpaylater = <any> 'paypalpaylater',
+        Payto = <any> 'payto',
+        Venmo = <any> 'venmo',
         Pix = <any> 'pix',
         Rabbitlinepay = <any> 'rabbitlinepay',
         Razorpay = <any> 'razorpay',
@@ -303,13 +324,16 @@ export namespace TransactionSummary {
         Sepa = <any> 'sepa',
         Shopeepay = <any> 'shopeepay',
         Singteldash = <any> 'singteldash',
+        Smartpay = <any> 'smartpay',
         Sofort = <any> 'sofort',
+        Spei = <any> 'spei',
         Stripedd = <any> 'stripedd',
         Thaiqr = <any> 'thaiqr',
         Touchngo = <any> 'touchngo',
         Truemoney = <any> 'truemoney',
         Trustly = <any> 'trustly',
-        Venmo = <any> 'venmo',
+        Trustlyeurope = <any> 'trustlyeurope',
+        Vipps = <any> 'vipps',
         Waave = <any> 'waave',
         Wechat = <any> 'wechat',
         Zippay = <any> 'zippay'

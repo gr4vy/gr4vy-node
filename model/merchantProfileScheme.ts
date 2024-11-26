@@ -33,11 +33,11 @@ export class MerchantProfileScheme {
     */
     'merchantName'?: string;
     /**
-    * Acquirer bin to use when calling 3DS through this scheme.
+    * Merchant country code to use when calling 3DS through this scheme.
     */
     'merchantCountryCode'?: string;
     /**
-    * Acquirer bin to use when calling 3DS through this scheme.
+    * Merchant category code to use when calling 3DS through this scheme.
     */
     'merchantCategoryCode'?: string;
 

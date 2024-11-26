@@ -31,11 +31,11 @@ export class CartItem {
     /**
     * The amount discounted for this item represented as a monetary amount in the smallest currency unit for the given currency, for example `1299` USD cents represents `$12.99`.  Please note that this amount is for the total of the cart item and not for an individual item. For example, if the quantity is 5, this value should be the total discount amount for 5 of the cart item.  You might see unexpected failed transactions if the `discount_amount` can not be equally divided by the `quantity` value. This is due to the fact that some payment services require this amount to be specified per unit.  In this situation we recommend splitting this item into separate items, each with their own specific discount.
     */
-    'discountAmount'?: number | null;
+    'discountAmount'?: number | null = 0;
     /**
     * The tax amount for this item represented as a monetary amount in the smallest currency unit for the given currency, for example `1299` USD cents represents `$12.99`.  Please not that this amount is for the total of the cart item and not for an individual item. For example, if the quantity is 5, this value should be the total tax amount for 5 of the cart item.  You might see unexpected failed transactions if the `tax_amount` can not be equally divided by the `quantity` value. This is due to the fact that some payment services require this amount to be specified per unit.  In this situation we recommend splitting this item into separate items, each with their own specific tax amount.
     */
-    'taxAmount'?: number | null;
+    'taxAmount'?: number | null = 0;
     /**
     * An external identifier for the cart item. This can be set to any value and is not sent to the payment service.
     */
@@ -134,6 +134,7 @@ export namespace CartItem {
         Digital = <any> 'digital',
         GiftCard = <any> 'gift_card',
         StoreCredit = <any> 'store_credit',
-        Surcharge = <any> 'surcharge'
+        Surcharge = <any> 'surcharge',
+        Null = <any> 'null'
     }
 }

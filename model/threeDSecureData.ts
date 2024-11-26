@@ -29,6 +29,10 @@ export class ThreeDSecureData {
     * For 3-D Secure version 1, the enrolment response. For 3-D Secure version , the transaction status from the `ARes`.
     */
     'directoryResponse': string;
+    /**
+    * The scheme/brand of the card that is used for 3-D Secure.
+    */
+    'scheme'?: ThreeDSecureData.SchemeEnum;
 
     static discriminator: string | undefined = undefined;
 
@@ -52,6 +56,11 @@ export class ThreeDSecureData {
             "name": "directoryResponse",
             "baseName": "directory_response",
             "type": "string"
+        },
+        {
+            "name": "scheme",
+            "baseName": "scheme",
+            "type": "ThreeDSecureData.SchemeEnum"
         }    ];
 
     static getAttributeTypeMap() {
@@ -59,3 +68,32 @@ export class ThreeDSecureData {
     }
 }
 
+export namespace ThreeDSecureData {
+    export enum SchemeEnum {
+        Accel = <any> 'accel',
+        Amex = <any> 'amex',
+        Bancontact = <any> 'bancontact',
+        CarteBancaire = <any> 'carte-bancaire',
+        Cirrus = <any> 'cirrus',
+        Culiance = <any> 'culiance',
+        Dankort = <any> 'dankort',
+        DinersClub = <any> 'diners-club',
+        Discover = <any> 'discover',
+        EftposAustralia = <any> 'eftpos-australia',
+        Elo = <any> 'elo',
+        Hipercard = <any> 'hipercard',
+        Jcb = <any> 'jcb',
+        Maestro = <any> 'maestro',
+        Mastercard = <any> 'mastercard',
+        Mir = <any> 'mir',
+        Nyce = <any> 'nyce',
+        Other = <any> 'other',
+        Pulse = <any> 'pulse',
+        Rupay = <any> 'rupay',
+        Star = <any> 'star',
+        Uatp = <any> 'uatp',
+        Unionpay = <any> 'unionpay',
+        Visa = <any> 'visa',
+        Null = <any> 'null'
+    }
+}

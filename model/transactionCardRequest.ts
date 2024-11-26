@@ -31,7 +31,7 @@ export class TransactionCardRequest {
     /**
     * The 3 or 4 digit security code often found on the card. This often referred to as the CVV or CVD.
     */
-    'securityCode': string;
+    'securityCode'?: string | null;
     /**
     * An external identifier that can be used to match the card against your own records. This can only be set if the `store` flag is set to `true`.
     */

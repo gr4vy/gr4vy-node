@@ -11,8 +11,8 @@
  */
 
 import { RequestFile } from './models';
-import { GiftCardServiceFields } from './giftCardServiceFields';
-import { MerchantProfile } from './merchantProfile';
+import { GiftCardServiceFieldsInner } from './giftCardServiceFieldsInner';
+import { PaymentServiceMerchantProfile } from './paymentServiceMerchantProfile';
 
 /**
 * An active, configured payment service.
@@ -37,7 +37,7 @@ export class PaymentService {
     /**
     * Defines if this service is currently active or not.
     */
-    'active'?: boolean;
+    'active'?: boolean = true;
     /**
     * The date and time when this service was created.
     */
@@ -49,15 +49,12 @@ export class PaymentService {
     /**
     * A list of fields, each containing a key-value pair for each field configured for this payment service. Fields marked as `secret` (see Payment Service Definition) are not returned.
     */
-    'fields'?: Array<GiftCardServiceFields>;
+    'fields'?: Array<GiftCardServiceFieldsInner>;
     /**
     * The unique ID for a merchant account.
     */
     'merchantAccountId'?: string;
-    /**
-    * An object containing a key for each supported card scheme (Amex, Discover, Mastercard and Visa), and for each key an object with the merchant profile for this service and the corresponding scheme.
-    */
-    'merchantProfile'?: MerchantProfile | null;
+    'merchantProfile'?: PaymentServiceMerchantProfile | null;
     /**
     * The payment method that this service handles.
     */
@@ -73,7 +70,7 @@ export class PaymentService {
     /**
     * Defines if tokenization is enabled for the service. This feature can only be enabled if the payment service is NOT set as `open_loop` and the PSP is set up to tokenize.
     */
-    'paymentMethodTokenizationEnabled'?: boolean;
+    'paymentMethodTokenizationEnabled'?: boolean = false;
     /**
     * The ID of the payment service definition used to create this service. 
     */
@@ -85,7 +82,7 @@ export class PaymentService {
     /**
     * Defines if 3-D Secure is enabled for the service (can only be enabled if the payment service definition supports the `three_d_secure_hosted` feature). This does not affect pass through 3-D Secure data.
     */
-    'threeDSecureEnabled'?: boolean;
+    'threeDSecureEnabled'?: boolean = false;
     /**
     * The date and time when this service was last updated.
     */
@@ -136,7 +133,7 @@ export class PaymentService {
         {
             "name": "fields",
             "baseName": "fields",
-            "type": "Array<GiftCardServiceFields>"
+            "type": "Array<GiftCardServiceFieldsInner>"
         },
         {
             "name": "merchantAccountId",
@@ -146,7 +143,7 @@ export class PaymentService {
         {
             "name": "merchantProfile",
             "baseName": "merchant_profile",
-            "type": "MerchantProfile"
+            "type": "PaymentServiceMerchantProfile"
         },
         {
             "name": "method",
@@ -216,28 +213,37 @@ export namespace PaymentService {
         Boleto = <any> 'boleto',
         Boost = <any> 'boost',
         Card = <any> 'card',
+        Cashapp = <any> 'cashapp',
+        Chaseorbital = <any> 'chaseorbital',
         CheckoutSession = <any> 'checkout-session',
-        ClickToPay = <any> 'click-to-pay',
         Clearpay = <any> 'clearpay',
+        ClickToPay = <any> 'click-to-pay',
         Dana = <any> 'dana',
         Dcb = <any> 'dcb',
+        Dlocal = <any> 'dlocal',
+        Ebanx = <any> 'ebanx',
         Eps = <any> 'eps',
-        Fortumo = <any> 'fortumo',
+        Everydaypay = <any> 'everydaypay',
         Gcash = <any> 'gcash',
         Giropay = <any> 'giropay',
+        Givingblock = <any> 'givingblock',
         Gocardless = <any> 'gocardless',
         Googlepay = <any> 'googlepay',
+        GooglepayPanOnly = <any> 'googlepay_pan_only',
         Gopay = <any> 'gopay',
         Grabpay = <any> 'grabpay',
-        Ideal = <any> 'ideal',
         Id = <any> 'id',
+        Ideal = <any> 'ideal',
         Kakaopay = <any> 'kakaopay',
+        Kcp = <any> 'kcp',
         Klarna = <any> 'klarna',
         Laybuy = <any> 'laybuy',
         Linepay = <any> 'linepay',
         Linkaja = <any> 'linkaja',
         Maybankqrpay = <any> 'maybankqrpay',
         Multibanco = <any> 'multibanco',
+        Multipago = <any> 'multipago',
+        NetworkToken = <any> 'network-token',
         Oney3x = <any> 'oney_3x',
         Oney4x = <any> 'oney_4x',
         Oney6x = <any> 'oney_6x',
@@ -245,9 +251,12 @@ export namespace PaymentService {
         Oney12x = <any> 'oney_12x',
         Ovo = <any> 'ovo',
         Oxxo = <any> 'oxxo',
+        Payid = <any> 'payid',
         Paymaya = <any> 'paymaya',
         Paypal = <any> 'paypal',
         Paypalpaylater = <any> 'paypalpaylater',
+        Payto = <any> 'payto',
+        Venmo = <any> 'venmo',
         Pix = <any> 'pix',
         Rabbitlinepay = <any> 'rabbitlinepay',
         Razorpay = <any> 'razorpay',
@@ -255,13 +264,16 @@ export namespace PaymentService {
         Sepa = <any> 'sepa',
         Shopeepay = <any> 'shopeepay',
         Singteldash = <any> 'singteldash',
+        Smartpay = <any> 'smartpay',
         Sofort = <any> 'sofort',
+        Spei = <any> 'spei',
         Stripedd = <any> 'stripedd',
         Thaiqr = <any> 'thaiqr',
         Touchngo = <any> 'touchngo',
         Truemoney = <any> 'truemoney',
         Trustly = <any> 'trustly',
-        Venmo = <any> 'venmo',
+        Trustlyeurope = <any> 'trustlyeurope',
+        Vipps = <any> 'vipps',
         Waave = <any> 'waave',
         Wechat = <any> 'wechat',
         Zippay = <any> 'zippay'

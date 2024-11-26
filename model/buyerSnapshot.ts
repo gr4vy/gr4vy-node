@@ -11,7 +11,7 @@
  */
 
 import { RequestFile } from './models';
-import { BillingDetails } from './billingDetails';
+import { BuyerSnapshotBillingDetails } from './buyerSnapshotBillingDetails';
 
 /**
 * Snapshot of a buyer, as used when embedded inside other resources.
@@ -24,11 +24,8 @@ export class BuyerSnapshot {
     /**
     * The unique Gr4vy ID for this buyer.
     */
-    'id'?: string;
-    /**
-    * The billing details associated with the buyer, which include the address and tax ID.
-    */
-    'billingDetails'?: BillingDetails | null;
+    'id'?: string | null;
+    'billingDetails'?: BuyerSnapshotBillingDetails | null;
     /**
     * A unique name for this buyer which is used in the Gr4vy admin panel to give a buyer a human readable name.
     */
@@ -54,7 +51,7 @@ export class BuyerSnapshot {
         {
             "name": "billingDetails",
             "baseName": "billing_details",
-            "type": "BillingDetails"
+            "type": "BuyerSnapshotBillingDetails"
         },
         {
             "name": "displayName",

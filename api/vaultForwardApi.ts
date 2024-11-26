@@ -15,8 +15,8 @@ import localVarRequest from 'request';
 import http from 'http';
 
 /* tslint:disable:no-unused-locals */
+import { Error400BadRequest } from '../model/error400BadRequest';
 import { Error401Unauthorized } from '../model/error401Unauthorized';
-import { ErrorGeneric } from '../model/errorGeneric';
 
 import { ObjectSerializer, Authentication, VoidAuth, Interceptor } from '../model/models';
 import { HttpBasicAuth, HttpBearerAuth, ApiKeyAuth, OAuth } from '../model/models';
@@ -39,7 +39,7 @@ export class VaultForwardApi {
 
     protected authentications = {
         'default': <Authentication>new VoidAuth(),
-        'BearerAuth': new HttpBearerAuth(),
+        'bearerAuth': new HttpBearerAuth(),
     }
 
     protected interceptors: Interceptor[] = [];
@@ -86,7 +86,7 @@ export class VaultForwardApi {
     }
 
     set accessToken(accessToken: string | (() => string)) {
-        this.authentications.BearerAuth.accessToken = accessToken;
+        this.authentications.bearerAuth.accessToken = accessToken;
     }
 
     public addInterceptor(interceptor: Interceptor) {
@@ -99,11 +99,12 @@ export class VaultForwardApi {
      * @param xVaultForwardPaymentMethods A comma-separated list of Payment Method IDs that can be used to fill in the request template. At least 1 must be given, and a maximum of 100 are accepted.
      * @param xVaultForwardUrl The URL to forward card data to.
      * @param xVaultForwardHttpMethod The HTTP method that is used when forwarding the request to the &#x60;x-vault-forward-url&#x60;.
+     * @param xVaultForwardAuthentications A comma-separated list of IDs for the authentication methods that will be applied to a Vault Forward request.
      * @param xVaultForwardHeaderHEADERNAME A header that is forwarded to the &#x60;x-vault-forward-url&#x60;. The header will be forwarded without the &#x60;x-vault-forward-header&#x60; part. For example, &#x60;x-vault-forward-header-x-frame-options: SAMEORIGIN&#x60; is forwarded as &#x60;x-frame-options: SAMEORIGIN&#x60;.
      * @param xVaultForwardTimeout The number of seconds to wait before timing out when forwarding the request.
      * @param body Payload to forward in the request.
      */
-    public async makeVaultForward (xVaultForwardPaymentMethods: string, xVaultForwardUrl: string, xVaultForwardHttpMethod: 'POST' | 'PUT' | 'PATCH', xVaultForwardHeaderHEADERNAME?: string, xVaultForwardTimeout?: number, body?: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: string;  }> {
+    public async makeVaultForward (xVaultForwardPaymentMethods: string, xVaultForwardUrl: string, xVaultForwardHttpMethod: 'POST' | 'PUT' | 'PATCH', xVaultForwardAuthentications?: string, xVaultForwardHeaderHEADERNAME?: string, xVaultForwardTimeout?: number, body?: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: string;  }> {
         const localVarPath = this.basePath + '/vault-forward';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
@@ -132,6 +133,7 @@ export class VaultForwardApi {
         }
 
         localVarHeaderParams['x-vault-forward-payment-methods'] = ObjectSerializer.serialize(xVaultForwardPaymentMethods, "string");
+        localVarHeaderParams['x-vault-forward-authentications'] = ObjectSerializer.serialize(xVaultForwardAuthentications, "string");
         localVarHeaderParams['x-vault-forward-url'] = ObjectSerializer.serialize(xVaultForwardUrl, "string");
         localVarHeaderParams['x-vault-forward-http-method'] = ObjectSerializer.serialize(xVaultForwardHttpMethod, "'POST' | 'PUT' | 'PATCH'");
         localVarHeaderParams['x-vault-forward-header-{HEADER_NAME}'] = ObjectSerializer.serialize(xVaultForwardHeaderHEADERNAME, "string");
@@ -151,8 +153,8 @@ export class VaultForwardApi {
         };
 
         let authenticationPromise = Promise.resolve();
-        if (this.authentications.BearerAuth.accessToken) {
-            authenticationPromise = authenticationPromise.then(() => this.authentications.BearerAuth.applyToRequest(localVarRequestOptions));
+        if (this.authentications.bearerAuth.accessToken) {
+            authenticationPromise = authenticationPromise.then(() => this.authentications.bearerAuth.applyToRequest(localVarRequestOptions));
         }
         authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
 
@@ -174,8 +176,8 @@ export class VaultForwardApi {
                     if (error) {
                         reject(error);
                     } else {
-                        body = ObjectSerializer.deserialize(body, "string");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                            body = ObjectSerializer.deserialize(body, "string");
                             resolve({ response: response, body: body });
                         } else {
                             reject(new HttpError(response, body, response.statusCode));

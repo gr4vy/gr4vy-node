@@ -45,6 +45,10 @@ export class Refund {
     */
     'amount'?: number;
     /**
+    * The reason for this refund. Could be a multiline string.
+    */
+    'reason'?: string | null;
+    /**
     * The date and time when this refund was created.
     */
     'createdAt'?: Date;
@@ -98,6 +102,11 @@ export class Refund {
             "name": "amount",
             "baseName": "amount",
             "type": "number"
+        },
+        {
+            "name": "reason",
+            "baseName": "reason",
+            "type": "string"
         },
         {
             "name": "createdAt",

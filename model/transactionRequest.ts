@@ -11,13 +11,14 @@
  */
 
 import { RequestFile } from './models';
-import { BrowserInfo } from './browserInfo';
 import { CartItem } from './cartItem';
-import { ConnectionOptions } from './connectionOptions';
-import { StatementDescriptor } from './statementDescriptor';
 import { ThreeDSecureDataV1V2 } from './threeDSecureDataV1V2';
+import { TransactionBuyerRequest } from './transactionBuyerRequest';
 import { TransactionGiftCardRequest } from './transactionGiftCardRequest';
 import { TransactionPaymentMethodRequest } from './transactionPaymentMethodRequest';
+import { TransactionRequestBrowserInfo } from './transactionRequestBrowserInfo';
+import { TransactionRequestConnectionOptions } from './transactionRequestConnectionOptions';
+import { TransactionRequestStatementDescriptor } from './transactionRequestStatementDescriptor';
 
 /**
 * A request to create a transaction.
@@ -39,11 +40,8 @@ export class TransactionRequest {
     /**
     * Whether to capture the transaction asynchronously.  - When `async_capture` is `false` (default), the transaction is captured   in the same request. - When `async_capture` is `true`, the transaction is automatically   captured at a later time.  Redirect transactions are not affected by this flag.  This flag can only be set to `true` when `intent` is set to `capture`.
     */
-    'asyncCapture'?: boolean;
-    /**
-    * Information about the browser used by the buyer.
-    */
-    'browserInfo'?: BrowserInfo | null;
+    'asyncCapture'?: boolean = false;
+    'browserInfo'?: TransactionRequestBrowserInfo | null;
     /**
     * The `external_identifier` of the buyer to associate this payment method to. If this field is provided then the `buyer_id` field needs to be unset.  If a stored payment method or gift card is provided, then the buyer for that payment method needs to match the buyer for this field.
     */
@@ -52,14 +50,12 @@ export class TransactionRequest {
     * The ID of the buyer to associate this payment method to. If this field is provided then the `buyer_external_identifier` field needs to be unset.  If a stored payment method or gift card is provided, then the buyer for that payment method needs to match the buyer for this field.
     */
     'buyerId'?: string;
+    'buyer'?: TransactionBuyerRequest;
     /**
     * An array of cart items that represents the line items of a transaction.
     */
     'cartItems'?: Array<CartItem>;
-    /**
-    * Allows for passing optional configuration per connection to take advantage of connection specific features. When provided, the data is only passed to the target connection type to prevent sharing configuration across connections.  Please note that each of the keys this object are in kebab-case, for example `cybersource-anti-fraud` as they represent the ID of the connector. All the other keys will be snake-case, for example `merchant_defined_data`.
-    */
-    'connectionOptions'?: ConnectionOptions | null;
+    'connectionOptions'?: TransactionRequestConnectionOptions | null;
     /**
     * The 2-letter ISO code of the country of the transaction. This is used to filter the payment services that is used to process the transaction.  If this value is provided for redirect requests and it\'s not `null`, it must match the one specified for `country` in `payment_method`. Otherwise, the value specified for `country` in `payment_method` will be assumed implicitly. 
     */
@@ -75,15 +71,15 @@ export class TransactionRequest {
     /**
     * Defines the intent of this API call. This determines the desired initial state of the transaction.  * `authorize` - (Default) Optionally approves and then authorizes a transaction but does not capture the funds. * `capture` - Optionally approves and then authorizes and captures the funds of the transaction.
     */
-    'intent'?: TransactionRequest.IntentEnum;
+    'intent'?: TransactionRequest.IntentEnum = TransactionRequest.IntentEnum.Authorize;
     /**
     * Indicates whether the transaction represents a subsequent payment coming from a setup recurring payment. Please note there are some restrictions on how this flag may be used.  The flag can only be `false` (or not set) when the transaction meets one of the following criteria:  * It is not `merchant_initiated`. * `payment_source` is set to `card_on_file`.  The flag can only be set to `true` when the transaction meets one of the following criteria:  * It is not `merchant_initiated`. * `payment_source` is set to `recurring` or `installment` and `merchant_initiated` is set to `true`. * `payment_source` is set to `card_on_file`.
     */
-    'isSubsequentPayment'?: boolean;
+    'isSubsequentPayment'?: boolean = false;
     /**
     * Indicates whether the transaction was initiated by the merchant (true) or customer (false).
     */
-    'merchantInitiated'?: boolean;
+    'merchantInitiated'?: boolean = false;
     /**
     * Any additional information about the transaction that you would like to store as key-value pairs. This data is passed to payment service providers that support it.
     */
@@ -100,12 +96,16 @@ export class TransactionRequest {
     * The unique identifier of a set of shipping details stored for the buyer.  If provided, the created transaction will include a copy of the details at the point of transaction creation; i.e. it will not be affected by later changes to the detail in the database.
     */
     'shippingDetailsId'?: string | null;
-    'statementDescriptor'?: StatementDescriptor | null;
+    'statementDescriptor'?: TransactionRequestStatementDescriptor | null;
     /**
     * Whether or not to also try and store the payment method with us so that it can be used again for future use. This is only supported for payment methods that support this feature. There are also a few restrictions on how the flag may be set:  * The flag has to be set to `true` when the `payment_source` is set to `recurring` or `installment`, and `merchant_initiated` is set to `false`.  * The flag has to be set to `false` (or not set) when using a previously vaulted payment method.
     */
-    'store'?: boolean;
+    'store'?: boolean = false;
     'threeDSecureData'?: ThreeDSecureDataV1V2;
+    /**
+    * The unique identifier of an existing payment service. When provided, the created transaction will be processed by the given payment service and any routing rules will be skipped.
+    */
+    'paymentServiceId'?: string | null;
 
     static discriminator: string | undefined = undefined;
 
@@ -138,7 +138,7 @@ export class TransactionRequest {
         {
             "name": "browserInfo",
             "baseName": "browser_info",
-            "type": "BrowserInfo"
+            "type": "TransactionRequestBrowserInfo"
         },
         {
             "name": "buyerExternalIdentifier",
@@ -151,6 +151,11 @@ export class TransactionRequest {
             "type": "string"
         },
         {
+            "name": "buyer",
+            "baseName": "buyer",
+            "type": "TransactionBuyerRequest"
+        },
+        {
             "name": "cartItems",
             "baseName": "cart_items",
             "type": "Array<CartItem>"
@@ -158,7 +163,7 @@ export class TransactionRequest {
         {
             "name": "connectionOptions",
             "baseName": "connection_options",
-            "type": "ConnectionOptions"
+            "type": "TransactionRequestConnectionOptions"
         },
         {
             "name": "country",
@@ -213,7 +218,7 @@ export class TransactionRequest {
         {
             "name": "statementDescriptor",
             "baseName": "statement_descriptor",
-            "type": "StatementDescriptor"
+            "type": "TransactionRequestStatementDescriptor"
         },
         {
             "name": "store",
@@ -224,6 +229,11 @@ export class TransactionRequest {
             "name": "threeDSecureData",
             "baseName": "three_d_secure_data",
             "type": "ThreeDSecureDataV1V2"
+        },
+        {
+            "name": "paymentServiceId",
+            "baseName": "payment_service_id",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {

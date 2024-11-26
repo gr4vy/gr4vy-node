@@ -11,7 +11,7 @@
  */
 
 import { RequestFile } from './models';
-import { GiftCardServiceDefinitionFields } from './giftCardServiceDefinitionFields';
+import { AntiFraudServiceDefinitionFieldsInner } from './antiFraudServiceDefinitionFieldsInner';
 
 /**
 * An available gift card service that can be configured.
@@ -24,7 +24,7 @@ export class GiftCardServiceDefinition {
     /**
     * `gift-card-service-definition`.
     */
-    'type'?: GiftCardServiceDefinition.TypeEnum;
+    'type'?: GiftCardServiceDefinition.TypeEnum = GiftCardServiceDefinition.TypeEnum.GiftCardServiceDefinition;
     /**
     * The display name of this service.
     */
@@ -32,7 +32,7 @@ export class GiftCardServiceDefinition {
     /**
     * A list of fields that need to be submitted when activating the payment. service.
     */
-    'fields'?: Array<GiftCardServiceDefinitionFields>;
+    'fields'?: Array<AntiFraudServiceDefinitionFieldsInner>;
     /**
     * An icon to display for the payment service.
     */
@@ -59,7 +59,7 @@ export class GiftCardServiceDefinition {
         {
             "name": "fields",
             "baseName": "fields",
-            "type": "Array<GiftCardServiceDefinitionFields>"
+            "type": "Array<AntiFraudServiceDefinitionFieldsInner>"
         },
         {
             "name": "iconUrl",

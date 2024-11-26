@@ -24,7 +24,7 @@ export class PaymentOptionsRequest {
     /**
     * An ISO 639-1 Language Code and optional ISO 3166 Country Code. This locale determines the language for the labels returned for every payment option.
     */
-    'locale'?: string | null;
+    'locale'?: string | null = 'en';
     /**
     * A supported ISO-4217 currency code.  For redirect requests, this value must match the one specified for `currency` in `payment_method`. 
     */

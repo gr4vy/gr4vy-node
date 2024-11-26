@@ -11,7 +11,6 @@
  */
 
 import { RequestFile } from './models';
-import { Role } from './role';
 import { RolePermissions } from './rolePermissions';
 
 export class UserRole {

@@ -23,7 +23,7 @@ export class APIKeyPairCreate {
     /**
     * The algorithm to use for the API Key Pair. The recommended value is `ECDSA`. You should only use the `RSA` algorithm in environments that do not support `ECDSA`.
     */
-    'algorithm'?: APIKeyPairCreate.AlgorithmEnum;
+    'algorithm'?: APIKeyPairCreate.AlgorithmEnum = APIKeyPairCreate.AlgorithmEnum.Ecdsa;
     /**
     * A list of role IDs that will be assigned to the API Key Pair being created. Only the \"Administrator\" and \"Integration\" roles are supported.
     */

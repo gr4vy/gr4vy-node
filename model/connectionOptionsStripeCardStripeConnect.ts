@@ -24,6 +24,10 @@ export class ConnectionOptionsStripeCardStripeConnect {
     * The application fee to charge when processing for a connected account.
     */
     'applicationFeeAmount'?: number | null;
+    /**
+    * The Stripe account ID that these funds are intended for.
+    */
+    'onBehalfOf'?: string | null;
 
     static discriminator: string | undefined = undefined;
 
@@ -37,6 +41,11 @@ export class ConnectionOptionsStripeCardStripeConnect {
             "name": "applicationFeeAmount",
             "baseName": "application_fee_amount",
             "type": "number"
+        },
+        {
+            "name": "onBehalfOf",
+            "baseName": "on_behalf_of",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {

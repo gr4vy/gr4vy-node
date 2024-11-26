@@ -11,28 +11,25 @@
  */
 
 import { RequestFile } from './models';
-import { MerchantProfileScheme } from './merchantProfileScheme';
+import { MerchantProfileAmex } from './merchantProfileAmex';
+import { MerchantProfileDankort } from './merchantProfileDankort';
+import { MerchantProfileDiscover } from './merchantProfileDiscover';
+import { MerchantProfileJcb } from './merchantProfileJcb';
+import { MerchantProfileMastercard } from './merchantProfileMastercard';
+import { MerchantProfileUnionpay } from './merchantProfileUnionpay';
+import { MerchantProfileVisa } from './merchantProfileVisa';
 
 /**
 * Merchant profile for the different card schemes.
 */
 export class MerchantProfile {
-    /**
-    * Merchant profile for Amex.
-    */
-    'amex'?: MerchantProfileScheme | null;
-    /**
-    * Merchant profile for Discover.
-    */
-    'discover'?: MerchantProfileScheme | null;
-    /**
-    * Merchant profile for Mastercard.
-    */
-    'mastercard'?: MerchantProfileScheme | null;
-    /**
-    * Merchant profile for Visa.
-    */
-    'visa'?: MerchantProfileScheme | null;
+    'amex'?: MerchantProfileAmex | null;
+    'dankort'?: MerchantProfileDankort | null;
+    'discover'?: MerchantProfileDiscover | null;
+    'jcb'?: MerchantProfileJcb | null;
+    'mastercard'?: MerchantProfileMastercard | null;
+    'unionpay'?: MerchantProfileUnionpay | null;
+    'visa'?: MerchantProfileVisa | null;
 
     static discriminator: string | undefined = undefined;
 
@@ -40,22 +37,37 @@ export class MerchantProfile {
         {
             "name": "amex",
             "baseName": "amex",
-            "type": "MerchantProfileScheme"
+            "type": "MerchantProfileAmex"
+        },
+        {
+            "name": "dankort",
+            "baseName": "dankort",
+            "type": "MerchantProfileDankort"
         },
         {
             "name": "discover",
             "baseName": "discover",
-            "type": "MerchantProfileScheme"
+            "type": "MerchantProfileDiscover"
+        },
+        {
+            "name": "jcb",
+            "baseName": "jcb",
+            "type": "MerchantProfileJcb"
         },
         {
             "name": "mastercard",
             "baseName": "mastercard",
-            "type": "MerchantProfileScheme"
+            "type": "MerchantProfileMastercard"
+        },
+        {
+            "name": "unionpay",
+            "baseName": "unionpay",
+            "type": "MerchantProfileUnionpay"
         },
         {
             "name": "visa",
             "baseName": "visa",
-            "type": "MerchantProfileScheme"
+            "type": "MerchantProfileVisa"
         }    ];
 
     static getAttributeTypeMap() {

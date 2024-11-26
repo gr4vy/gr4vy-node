@@ -24,7 +24,7 @@ export class Connection {
     /**
     * `connection`.
     */
-    'type'?: string;
+    'type'?: string = 'connection';
     /**
     * The name of this connection.
     */

@@ -20,6 +20,14 @@ export class ConnectionOptionsCybersourceCard {
     * An override for the merchant ID configured for the connector, used in combination with meta keys.
     */
     'metaKeyMerchantId'?: string | null;
+    /**
+    * This is a key-value object for merchant defined information. Each key needs to be a numeric string identifying the MDI field to set. For example, for field 1 set the key to \"1\".
+    */
+    'merchantDefinedInformation'?: { [key: string]: string; };
+    /**
+    * Shipping method for the order.
+    */
+    'shipToMethod'?: string | null;
 
     static discriminator: string | undefined = undefined;
 
@@ -27,6 +35,16 @@ export class ConnectionOptionsCybersourceCard {
         {
             "name": "metaKeyMerchantId",
             "baseName": "meta_key_merchant_id",
+            "type": "string"
+        },
+        {
+            "name": "merchantDefinedInformation",
+            "baseName": "merchant_defined_information",
+            "type": "{ [key: string]: string; }"
+        },
+        {
+            "name": "shipToMethod",
+            "baseName": "ship_to_method",
             "type": "string"
         }    ];
 

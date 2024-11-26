@@ -22,7 +22,7 @@ export class Error404NotFound {
     */
     'type'?: Error404NotFound.TypeEnum;
     /**
-    * `not_found`.
+    * The reason code for the error.
     */
     'code'?: Error404NotFound.CodeEnum;
     /**
@@ -30,9 +30,9 @@ export class Error404NotFound {
     */
     'status'?: Error404NotFound.StatusEnum;
     /**
-    * The resource could not be found.
+    * The human readable reason for the error.
     */
-    'message'?: Error404NotFound.MessageEnum;
+    'message'?: string;
     /**
     * A list of detail objects that further clarify the reason for the error. Not every error supports more detail.
     */
@@ -59,7 +59,7 @@ export class Error404NotFound {
         {
             "name": "message",
             "baseName": "message",
-            "type": "Error404NotFound.MessageEnum"
+            "type": "string"
         },
         {
             "name": "details",
@@ -77,12 +77,10 @@ export namespace Error404NotFound {
         Error = <any> 'error'
     }
     export enum CodeEnum {
-        NotFound = <any> 'not_found'
+        NotFound = <any> 'not_found',
+        PendingCreation = <any> 'pending_creation'
     }
     export enum StatusEnum {
         NUMBER_404 = <any> 404
-    }
-    export enum MessageEnum {
-        TheResourceCouldNotBeFound = <any> 'The resource could not be found'
     }
 }

@@ -11,7 +11,6 @@
  */
 
 import { RequestFile } from './models';
-import { ReportExecutionSummary } from './reportExecutionSummary';
 import { ReportExecutionSummaryContext } from './reportExecutionSummaryContext';
 import { ReportSummary } from './reportSummary';
 

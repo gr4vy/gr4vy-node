@@ -164,6 +164,7 @@ export class DigitalWalletApplePayTokenDecryptedContext {
 export namespace DigitalWalletApplePayTokenDecryptedContext {
     export enum TypeEnum {
         Dpan = <any> 'dpan',
-        Fpan = <any> 'fpan'
+        Fpan = <any> 'fpan',
+        Null = <any> 'null'
     }
 }

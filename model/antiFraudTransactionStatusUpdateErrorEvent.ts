@@ -14,7 +14,7 @@ import { RequestFile } from './models';
 import { AntiFraudTransactionStatusUpdateErrorEventContext } from './antiFraudTransactionStatusUpdateErrorEventContext';
 
 /**
-* This event logs the reason why we were unable to update an anti-fraud decision.
+* This event logs the reason why we were unable to update an anti-fraud transaction.
 */
 export class AntiFraudTransactionStatusUpdateErrorEvent {
     /**

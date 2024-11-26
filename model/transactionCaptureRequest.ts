@@ -17,7 +17,7 @@ import { RequestFile } from './models';
 */
 export class TransactionCaptureRequest {
     /**
-    * The monetary amount to capture an authorization for, in the smallest currency unit for the given currency, for example `1299` cents to create an authorization for `$12.99`.  When omitted blank, this will capture the entire amount.  Capturing an amount that is greater than the authorized amount is not supported.
+    * The monetary amount to capture an authorization for, in the smallest currency unit for the given currency, for example `1299` cents to create an authorization for `$12.99`.  When omitted blank, this will capture the entire amount.
     */
     'amount'?: number;
 

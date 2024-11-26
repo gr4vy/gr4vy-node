@@ -11,7 +11,7 @@
  */
 
 import { RequestFile } from './models';
-import { ConnectionOptionsForterAntiFraudCartItems } from './connectionOptionsForterAntiFraudCartItems';
+import { ConnectionOptionsForterAntiFraudCartItemsInner } from './connectionOptionsForterAntiFraudCartItemsInner';
 import { ConnectionOptionsForterAntiFraudTotalDiscount } from './connectionOptionsForterAntiFraudTotalDiscount';
 
 /**
@@ -29,11 +29,11 @@ export class ConnectionOptionsForterAntiFraud {
     /**
     * Defines if this is a guest check-out. This will redact the `accountId` and `created` fields from the `accountOwner` details sent to Forter.
     */
-    'isGuestBuyer'?: boolean;
+    'isGuestBuyer'?: boolean = false;
     /**
     * A list of Forter cart item objects. These will be merged into the `cart_items` passed to the transaction. Every cart item here will be merged with a cart item on the transaction with the same index.  Together, these will augment the `cartItems` values sent to the Forter validation API.
     */
-    'cartItems'?: Array<ConnectionOptionsForterAntiFraudCartItems>;
+    'cartItems'?: Array<ConnectionOptionsForterAntiFraudCartItemsInner>;
     'totalDiscount'?: ConnectionOptionsForterAntiFraudTotalDiscount | null;
 
     static discriminator: string | undefined = undefined;
@@ -57,7 +57,7 @@ export class ConnectionOptionsForterAntiFraud {
         {
             "name": "cartItems",
             "baseName": "cart_items",
-            "type": "Array<ConnectionOptionsForterAntiFraudCartItems>"
+            "type": "Array<ConnectionOptionsForterAntiFraudCartItemsInner>"
         },
         {
             "name": "totalDiscount",

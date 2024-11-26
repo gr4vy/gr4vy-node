@@ -19,7 +19,7 @@ export class PaymentServiceTokenRequest {
     /**
     * The 3 or 4 digit security code often found on the card. This often referred to as the CVV or CVD.  The security code can only be set if the stored payment method represents a card.
     */
-    'securityCode': string;
+    'securityCode'?: string | null;
     /**
     * The ID of the payment service.
     */

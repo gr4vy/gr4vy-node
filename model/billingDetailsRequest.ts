@@ -11,8 +11,8 @@
  */
 
 import { RequestFile } from './models';
-import { Address } from './address';
-import { TaxId } from './taxId';
+import { BillingDetailsRequestAddress } from './billingDetailsRequestAddress';
+import { BillingDetailsRequestTaxId } from './billingDetailsRequestTaxId';
 
 /**
 * Billing details to use associated to a buyer.
@@ -34,14 +34,8 @@ export class BillingDetailsRequest {
     * The phone number for the buyer which should be formatted according to the [E164 number standard](https://www.twilio.com/docs/glossary/what-e164).
     */
     'phoneNumber'?: string | null;
-    /**
-    * The billing address for the buyer.
-    */
-    'address'?: Address | null;
-    /**
-    * The tax ID information associated with the billing details.
-    */
-    'taxId'?: TaxId | null;
+    'address'?: BillingDetailsRequestAddress | null;
+    'taxId'?: BillingDetailsRequestTaxId | null;
 
     static discriminator: string | undefined = undefined;
 
@@ -69,12 +63,12 @@ export class BillingDetailsRequest {
         {
             "name": "address",
             "baseName": "address",
-            "type": "Address"
+            "type": "BillingDetailsRequestAddress"
         },
         {
             "name": "taxId",
             "baseName": "tax_id",
-            "type": "TaxId"
+            "type": "BillingDetailsRequestTaxId"
         }    ];
 
     static getAttributeTypeMap() {
