@@ -10,46 +10,52 @@
  * Do not edit the class manually.
  */
 
-import { RequestFile } from './models';
+import { RequestFile } from './models'
 
 /**
-* A list of additional identifiers that we may keep track of to manage this transaction. This may include the authorization ID, capture ID, and processor ID, as well as an undefined list of additional identifiers.
-*/
-export class AdditionalIdentifiers extends string {
-    /**
-    * The optional ID for the authorization of this transaction. Availability of this ID will vary per connector used.
-    */
-    'paymentServiceAuthorizationId'?: string | null;
-    /**
-    * The optional ID for the capture of this transaction. Availability of this ID will vary per connector used.
-    */
-    'paymentServiceCaptureId'?: string | null;
-    /**
-    * The optional ID provided by the processor for this transaction. Availability of this ID will vary per connector used.
-    */
-    'paymentServiceProcessorId'?: string | null;
+ * A list of additional identifiers that we may keep track of to manage this transaction. This may include the authorization ID, capture ID, and processor ID, as well as an undefined list of additional identifiers.
+ */
+export class AdditionalIdentifiers extends String {
+  /**
+   * The optional ID for the authorization of this transaction. Availability of this ID will vary per connector used.
+   */
+  'paymentServiceAuthorizationId'?: string | null
+  /**
+   * The optional ID for the capture of this transaction. Availability of this ID will vary per connector used.
+   */
+  'paymentServiceCaptureId'?: string | null
+  /**
+   * The optional ID provided by the processor for this transaction. Availability of this ID will vary per connector used.
+   */
+  'paymentServiceProcessorId'?: string | null
 
-    static discriminator: string | undefined = undefined;
+  static discriminator: string | undefined = undefined
 
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "paymentServiceAuthorizationId",
-            "baseName": "payment_service_authorization_id",
-            "type": "string"
-        },
-        {
-            "name": "paymentServiceCaptureId",
-            "baseName": "payment_service_capture_id",
-            "type": "string"
-        },
-        {
-            "name": "paymentServiceProcessorId",
-            "baseName": "payment_service_processor_id",
-            "type": "string"
-        }    ];
+  static attributeTypeMap: Array<{
+    name: string
+    baseName: string
+    type: string
+  }> = [
+    {
+      name: 'paymentServiceAuthorizationId',
+      baseName: 'payment_service_authorization_id',
+      type: 'string',
+    },
+    {
+      name: 'paymentServiceCaptureId',
+      baseName: 'payment_service_capture_id',
+      type: 'string',
+    },
+    {
+      name: 'paymentServiceProcessorId',
+      baseName: 'payment_service_processor_id',
+      type: 'string',
+    },
+  ]
 
-    static getAttributeTypeMap() {
-        return super.getAttributeTypeMap().concat(AdditionalIdentifiers.attributeTypeMap);
-    }
+  static getAttributeTypeMap() {
+    return super
+      .getAttributeTypeMap()
+      .concat(AdditionalIdentifiers.attributeTypeMap)
+  }
 }
-
