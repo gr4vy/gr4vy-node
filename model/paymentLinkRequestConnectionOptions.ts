@@ -12,19 +12,23 @@
 
 import { RequestFile } from './models';
 import { ConnectionOptionsAdyenCard } from './connectionOptionsAdyenCard';
+import { ConnectionOptionsAdyenSepa } from './connectionOptionsAdyenSepa';
 import { ConnectionOptionsCybersourceAntiFraud } from './connectionOptionsCybersourceAntiFraud';
 import { ConnectionOptionsCybersourceCard } from './connectionOptionsCybersourceCard';
 import { ConnectionOptionsCybersourceIdeal } from './connectionOptionsCybersourceIdeal';
 import { ConnectionOptionsCybersourceKcp } from './connectionOptionsCybersourceKcp';
+import { ConnectionOptionsFiservCard } from './connectionOptionsFiservCard';
 import { ConnectionOptionsForterAntiFraud } from './connectionOptionsForterAntiFraud';
 import { ConnectionOptionsGivingblockGivingblock } from './connectionOptionsGivingblockGivingblock';
+import { ConnectionOptionsLatitudeLatitude } from './connectionOptionsLatitudeLatitude';
 import { ConnectionOptionsPaypalPaypal } from './connectionOptionsPaypalPaypal';
+import { ConnectionOptionsPowertranzCard } from './connectionOptionsPowertranzCard';
 import { ConnectionOptionsStripeCard } from './connectionOptionsStripeCard';
 
 /**
 * Allows for passing optional configuration per connection to take advantage of connection specific features. When provided, the data is only passed to the target connection type to prevent sharing configuration across connections.  Please note that each of the keys this object are in kebab-case, for example `cybersource-anti-fraud` as they represent the ID of the connector. All the other keys will be snake case, for example `merchant_defined_data` or camel case to match an external API that the connector uses.
 */
-export class TransactionRequestConnectionOptions {
+export class PaymentLinkRequestConnectionOptions {
     'cybersourceCard'?: ConnectionOptionsCybersourceCard | null;
     'cybersourceKcp'?: ConnectionOptionsCybersourceKcp | null;
     'cybersourceIdeal'?: ConnectionOptionsCybersourceIdeal | null;
@@ -32,9 +36,16 @@ export class TransactionRequestConnectionOptions {
     'givingblockGivingblock'?: ConnectionOptionsGivingblockGivingblock | null;
     'forterAntiFraud'?: ConnectionOptionsForterAntiFraud | null;
     'adyenCard'?: ConnectionOptionsAdyenCard | null;
+    'adyenSepa'?: ConnectionOptionsAdyenSepa | null;
     'paypalPaypal'?: ConnectionOptionsPaypalPaypal | null;
     'paypalPaypalpaylater'?: ConnectionOptionsPaypalPaypal | null;
+    'powertranzCard'?: ConnectionOptionsPowertranzCard | null;
     'stripeCard'?: ConnectionOptionsStripeCard | null;
+    'fiservCard'?: ConnectionOptionsFiservCard | null;
+    'latitudeLatitude'?: ConnectionOptionsLatitudeLatitude | null;
+    'latitudeLatitudeds'?: ConnectionOptionsLatitudeLatitude | null;
+    'gemGem'?: ConnectionOptionsLatitudeLatitude | null;
+    'gemGemds'?: ConnectionOptionsLatitudeLatitude | null;
 
     static discriminator: string | undefined = undefined;
 
@@ -75,6 +86,11 @@ export class TransactionRequestConnectionOptions {
             "type": "ConnectionOptionsAdyenCard"
         },
         {
+            "name": "adyenSepa",
+            "baseName": "adyen-sepa",
+            "type": "ConnectionOptionsAdyenSepa"
+        },
+        {
             "name": "paypalPaypal",
             "baseName": "paypal-paypal",
             "type": "ConnectionOptionsPaypalPaypal"
@@ -85,13 +101,43 @@ export class TransactionRequestConnectionOptions {
             "type": "ConnectionOptionsPaypalPaypal"
         },
         {
+            "name": "powertranzCard",
+            "baseName": "powertranz-card",
+            "type": "ConnectionOptionsPowertranzCard"
+        },
+        {
             "name": "stripeCard",
             "baseName": "stripe-card",
             "type": "ConnectionOptionsStripeCard"
+        },
+        {
+            "name": "fiservCard",
+            "baseName": "fiserv-card",
+            "type": "ConnectionOptionsFiservCard"
+        },
+        {
+            "name": "latitudeLatitude",
+            "baseName": "latitude-latitude",
+            "type": "ConnectionOptionsLatitudeLatitude"
+        },
+        {
+            "name": "latitudeLatitudeds",
+            "baseName": "latitude-latitudeds",
+            "type": "ConnectionOptionsLatitudeLatitude"
+        },
+        {
+            "name": "gemGem",
+            "baseName": "gem-gem",
+            "type": "ConnectionOptionsLatitudeLatitude"
+        },
+        {
+            "name": "gemGemds",
+            "baseName": "gem-gemds",
+            "type": "ConnectionOptionsLatitudeLatitude"
         }    ];
 
     static getAttributeTypeMap() {
-        return TransactionRequestConnectionOptions.attributeTypeMap;
+        return PaymentLinkRequestConnectionOptions.attributeTypeMap;
     }
 }
 

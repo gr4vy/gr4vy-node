@@ -46,9 +46,6 @@ export class Report {
     * The time zone in which the next execution will be scheduled. This value is used to calculate this report\'s `next_execution_at` value and is only relevant if this is a recurring report. This time zone is also used to calculate the timestamp range for reports that use date-time placeholders. Date-time placeholders are dynamic timestamps that change with every report execution.
     */
     'scheduleTimezone'?: string;
-    /**
-    * The specifications of this report.
-    */
     'spec'?: ReportSpec;
     /**
     * Details of the latest execution of this report.

@@ -5,7 +5,11 @@ export * from './aPIKeyPairUpdate';
 export * from './accountUpdaterInquirySummary';
 export * from './accountUpdaterJob';
 export * from './accountUpdaterJobCreate';
+export * from './additionalIdentifiers';
 export * from './address';
+export * from './airline';
+export * from './airlineLeg';
+export * from './airlinePassenger';
 export * from './antiFraudDecisionErrorEvent';
 export * from './antiFraudDecisionErrorEventContext';
 export * from './antiFraudDecisionEvent';
@@ -63,7 +67,9 @@ export * from './cardSchemeDefinition';
 export * from './cardSchemeDefinitions';
 export * from './cartItem';
 export * from './checkoutSession';
+export * from './checkoutSessionAirline';
 export * from './checkoutSessionCreateRequest';
+export * from './checkoutSessionCreateRequestAirline';
 export * from './checkoutSessionPaymentMethod';
 export * from './checkoutSessionPaymentMethodDetails';
 export * from './checkoutSessionRequest';
@@ -74,10 +80,13 @@ export * from './connectionDefinition';
 export * from './connectionDefinitions';
 export * from './connectionOptions';
 export * from './connectionOptionsAdyenCard';
+export * from './connectionOptionsAdyenSepa';
 export * from './connectionOptionsCybersourceAntiFraud';
 export * from './connectionOptionsCybersourceCard';
 export * from './connectionOptionsCybersourceIdeal';
 export * from './connectionOptionsCybersourceKcp';
+export * from './connectionOptionsFiservCard';
+export * from './connectionOptionsFiservCardInstallmentOptions';
 export * from './connectionOptionsForterAntiFraud';
 export * from './connectionOptionsForterAntiFraudCartItemsInner';
 export * from './connectionOptionsForterAntiFraudCartItemsInnerBasicItemData';
@@ -90,12 +99,18 @@ export * from './connectionOptionsForterAntiFraudCartItemsInnerDeliveryDetails';
 export * from './connectionOptionsForterAntiFraudTotalDiscount';
 export * from './connectionOptionsForterAntiFraudTotalDiscountCouponDiscountAmount';
 export * from './connectionOptionsGivingblockGivingblock';
+export * from './connectionOptionsLatitudeLatitude';
 export * from './connectionOptionsPaypalPaypal';
 export * from './connectionOptionsPaypalPaypalAdditionalDataInner';
+export * from './connectionOptionsPowertranzCard';
 export * from './connectionOptionsStripeCard';
 export * from './connectionOptionsStripeCardStripeConnect';
 export * from './connections';
 export * from './cryptogram';
+export * from './detailedSettlementReportSpec';
+export * from './detailedSettlementReportSpecParams';
+export * from './detailedSettlementReportSpecParamsFilters';
+export * from './detailedSettlementReportSpecParamsFiltersIngestedAt';
 export * from './digitalWallet';
 export * from './digitalWalletApplePayTokenDecrypted';
 export * from './digitalWalletApplePayTokenDecryptedContext';
@@ -148,10 +163,12 @@ export * from './googlePayRequest';
 export * from './googlePayRequestAssuranceDetails';
 export * from './googlePaySessionRequest';
 export * from './issueCryptogramRequest';
+export * from './merchant';
 export * from './merchantAccount';
 export * from './merchantAccountCreate';
 export * from './merchantAccountUpdate';
 export * from './merchantAccounts';
+export * from './merchantAddress';
 export * from './merchantProfile';
 export * from './merchantProfileAmex';
 export * from './merchantProfileDankort';
@@ -170,6 +187,7 @@ export * from './merchantProfileSummaryUnionpay';
 export * from './merchantProfileSummaryVisa';
 export * from './merchantProfileUnionpay';
 export * from './merchantProfileVisa';
+export * from './merchantRequest';
 export * from './networkToken';
 export * from './networkTokenCryptogramProvisionFailed';
 export * from './networkTokenCryptogramProvisionFailedContext';
@@ -182,6 +200,8 @@ export * from './networkTokenRequest';
 export * from './networkTokens';
 export * from './paymentConnectorExternalTransactionRequest';
 export * from './paymentConnectorExternalTransactionRequestContext';
+export * from './paymentConnectorReportTransactionSettled';
+export * from './paymentConnectorReportTransactionSettledContext';
 export * from './paymentConnectorResponseTransactionAuthorizationFailedEvent';
 export * from './paymentConnectorResponseTransactionAuthorizationFailedEventContext';
 export * from './paymentConnectorResponseTransactionAuthorizationSucceededEvent';
@@ -199,6 +219,13 @@ export * from './paymentConnectorResponseTransactionVoidFailedEvent';
 export * from './paymentConnectorResponseTransactionVoidFailedEventContext';
 export * from './paymentConnectorResponseTransactionVoidSucceededEvent';
 export * from './paymentConnectorResponseTransactionVoidSucceededEventContext';
+export * from './paymentLink';
+export * from './paymentLinkBuyer';
+export * from './paymentLinkRequest';
+export * from './paymentLinkRequestConnectionOptions';
+export * from './paymentLinkShippingDetails';
+export * from './paymentLinkStatementDescriptor';
+export * from './paymentLinks';
 export * from './paymentMethod';
 export * from './paymentMethodDefinition';
 export * from './paymentMethodDefinitions';
@@ -216,20 +243,40 @@ export * from './paymentOptionsRequest';
 export * from './paymentService';
 export * from './paymentServiceDefinition';
 export * from './paymentServiceDefinitionConfiguration';
+export * from './paymentServiceDefinitionReportingFieldsInner';
 export * from './paymentServiceDefinitionSupportedFeatures';
 export * from './paymentServiceDefinitions';
 export * from './paymentServiceMerchantProfile';
+export * from './paymentServiceReportingFieldsInner';
 export * from './paymentServiceRequest';
 export * from './paymentServiceRequestFieldsInner';
 export * from './paymentServiceRequestMerchantProfile';
+export * from './paymentServiceRequestReportingFieldsInner';
 export * from './paymentServiceSession';
 export * from './paymentServiceSnapshot';
 export * from './paymentServiceToken';
 export * from './paymentServiceTokenRequest';
 export * from './paymentServiceTokens';
 export * from './paymentServiceUpdate';
+export * from './paymentServiceUpdateFieldsInner';
 export * from './paymentServiceUpdateMerchantProfile';
+export * from './paymentServiceUpdateReportingFieldsInner';
 export * from './paymentServices';
+export * from './payout';
+export * from './payoutConnectionOptionsRequest';
+export * from './payoutConnectionOptionsRequestCheckoutCard';
+export * from './payoutInlineCardRequest';
+export * from './payoutMerchant';
+export * from './payoutPaymentMethodRequest';
+export * from './payoutRequest';
+export * from './payoutRequestBuyer';
+export * from './payoutRequestConnectionOptions';
+export * from './payoutRequestMerchant';
+export * from './payoutStoredCardRequest';
+export * from './payouts';
+export * from './recipient';
+export * from './recipientAddress';
+export * from './recipientSnapshot';
 export * from './redirectRequest';
 export * from './refund';
 export * from './refunds';
@@ -241,8 +288,6 @@ export * from './reportExecutionSummaryContext';
 export * from './reportExecutionUrl';
 export * from './reportExecutions';
 export * from './reportSpec';
-export * from './reportSpecParams';
-export * from './reportSpecParamsFilters';
 export * from './reportSummary';
 export * from './reportUpdate';
 export * from './reports';
@@ -259,9 +304,12 @@ export * from './roleAssignments';
 export * from './rolePermissions';
 export * from './roles';
 export * from './setPasswordRequest';
+export * from './settlement';
+export * from './settlements';
 export * from './shippingDetail';
 export * from './shippingDetailAddress';
 export * from './shippingDetailRequest';
+export * from './shippingDetailRequestAddress';
 export * from './shippingDetailUpdateRequest';
 export * from './shippingDetails';
 export * from './statementDescriptor';
@@ -291,6 +339,7 @@ export * from './transactionBuyerRequest';
 export * from './transactionBuyerRequestBillingDetails';
 export * from './transactionBuyerRequestShippingDetails';
 export * from './transactionCaptureRequest';
+export * from './transactionCaptureRequestAirline';
 export * from './transactionCardRequest';
 export * from './transactionCheckoutSessionRequest';
 export * from './transactionGiftCardNewRequest';
@@ -304,22 +353,38 @@ export * from './transactionNetworkTokenRequest';
 export * from './transactionPaymentMethod';
 export * from './transactionPaymentMethodRequest';
 export * from './transactionPaymentService';
+export * from './transactionRecipient';
 export * from './transactionRedirectRequest';
 export * from './transactionRefundAllRequest';
 export * from './transactionRefundRequest';
 export * from './transactionRequest';
 export * from './transactionRequestBrowserInfo';
-export * from './transactionRequestConnectionOptions';
-export * from './transactionRequestStatementDescriptor';
+export * from './transactionRequestRecipient';
+export * from './transactionRetriesReportSpec';
+export * from './transactionRetriesReportSpecParams';
+export * from './transactionRetriesReportSpecParamsFilters';
+export * from './transactionRetriesReportSpecParamsFiltersCreatedAt';
 export * from './transactionShippingDetails';
 export * from './transactionStatusSummary';
 export * from './transactionSummary';
 export * from './transactions';
 export * from './transactionsBatchCaptureRequest';
+export * from './transactionsReportSpec';
+export * from './transactionsReportSpecParams';
+export * from './transactionsReportSpecParamsFilters';
+export * from './transactionsReportSpecParamsFiltersAuthorizedAt';
+export * from './transactionsReportSpecParamsFiltersCapturedAt';
+export * from './transactionsReportSpecParamsFiltersUpdatedAt';
+export * from './transactionsReportSpecParamsFiltersVoidedAt';
 export * from './userCurrentUpdate';
 export * from './userRequest';
 export * from './userRole';
 export * from './userUpdate';
+export * from './webhookSubscription';
+export * from './webhookSubscriptionAuthentication';
+export * from './webhookSubscriptionRequest';
+export * from './webhookSubscriptionUpdateRequest';
+export * from './webhookSubscriptions';
 
 import * as fs from 'fs';
 
@@ -339,7 +404,11 @@ import { APIKeyPairUpdate } from './aPIKeyPairUpdate';
 import { AccountUpdaterInquirySummary } from './accountUpdaterInquirySummary';
 import { AccountUpdaterJob } from './accountUpdaterJob';
 import { AccountUpdaterJobCreate } from './accountUpdaterJobCreate';
+import { AdditionalIdentifiers } from './additionalIdentifiers';
 import { Address } from './address';
+import { Airline } from './airline';
+import { AirlineLeg } from './airlineLeg';
+import { AirlinePassenger } from './airlinePassenger';
 import { AntiFraudDecisionErrorEvent } from './antiFraudDecisionErrorEvent';
 import { AntiFraudDecisionErrorEventContext } from './antiFraudDecisionErrorEventContext';
 import { AntiFraudDecisionEvent } from './antiFraudDecisionEvent';
@@ -397,7 +466,9 @@ import { CardSchemeDefinition } from './cardSchemeDefinition';
 import { CardSchemeDefinitions } from './cardSchemeDefinitions';
 import { CartItem } from './cartItem';
 import { CheckoutSession } from './checkoutSession';
+import { CheckoutSessionAirline } from './checkoutSessionAirline';
 import { CheckoutSessionCreateRequest } from './checkoutSessionCreateRequest';
+import { CheckoutSessionCreateRequestAirline } from './checkoutSessionCreateRequestAirline';
 import { CheckoutSessionPaymentMethod } from './checkoutSessionPaymentMethod';
 import { CheckoutSessionPaymentMethodDetails } from './checkoutSessionPaymentMethodDetails';
 import { CheckoutSessionRequest } from './checkoutSessionRequest';
@@ -408,10 +479,13 @@ import { ConnectionDefinition } from './connectionDefinition';
 import { ConnectionDefinitions } from './connectionDefinitions';
 import { ConnectionOptions } from './connectionOptions';
 import { ConnectionOptionsAdyenCard } from './connectionOptionsAdyenCard';
+import { ConnectionOptionsAdyenSepa } from './connectionOptionsAdyenSepa';
 import { ConnectionOptionsCybersourceAntiFraud } from './connectionOptionsCybersourceAntiFraud';
 import { ConnectionOptionsCybersourceCard } from './connectionOptionsCybersourceCard';
 import { ConnectionOptionsCybersourceIdeal } from './connectionOptionsCybersourceIdeal';
 import { ConnectionOptionsCybersourceKcp } from './connectionOptionsCybersourceKcp';
+import { ConnectionOptionsFiservCard } from './connectionOptionsFiservCard';
+import { ConnectionOptionsFiservCardInstallmentOptions } from './connectionOptionsFiservCardInstallmentOptions';
 import { ConnectionOptionsForterAntiFraud } from './connectionOptionsForterAntiFraud';
 import { ConnectionOptionsForterAntiFraudCartItemsInner } from './connectionOptionsForterAntiFraudCartItemsInner';
 import { ConnectionOptionsForterAntiFraudCartItemsInnerBasicItemData } from './connectionOptionsForterAntiFraudCartItemsInnerBasicItemData';
@@ -424,12 +498,18 @@ import { ConnectionOptionsForterAntiFraudCartItemsInnerDeliveryDetails } from '.
 import { ConnectionOptionsForterAntiFraudTotalDiscount } from './connectionOptionsForterAntiFraudTotalDiscount';
 import { ConnectionOptionsForterAntiFraudTotalDiscountCouponDiscountAmount } from './connectionOptionsForterAntiFraudTotalDiscountCouponDiscountAmount';
 import { ConnectionOptionsGivingblockGivingblock } from './connectionOptionsGivingblockGivingblock';
+import { ConnectionOptionsLatitudeLatitude } from './connectionOptionsLatitudeLatitude';
 import { ConnectionOptionsPaypalPaypal } from './connectionOptionsPaypalPaypal';
 import { ConnectionOptionsPaypalPaypalAdditionalDataInner } from './connectionOptionsPaypalPaypalAdditionalDataInner';
+import { ConnectionOptionsPowertranzCard } from './connectionOptionsPowertranzCard';
 import { ConnectionOptionsStripeCard } from './connectionOptionsStripeCard';
 import { ConnectionOptionsStripeCardStripeConnect } from './connectionOptionsStripeCardStripeConnect';
 import { Connections } from './connections';
 import { Cryptogram } from './cryptogram';
+import { DetailedSettlementReportSpec } from './detailedSettlementReportSpec';
+import { DetailedSettlementReportSpecParams } from './detailedSettlementReportSpecParams';
+import { DetailedSettlementReportSpecParamsFilters } from './detailedSettlementReportSpecParamsFilters';
+import { DetailedSettlementReportSpecParamsFiltersIngestedAt } from './detailedSettlementReportSpecParamsFiltersIngestedAt';
 import { DigitalWallet } from './digitalWallet';
 import { DigitalWalletApplePayTokenDecrypted } from './digitalWalletApplePayTokenDecrypted';
 import { DigitalWalletApplePayTokenDecryptedContext } from './digitalWalletApplePayTokenDecryptedContext';
@@ -482,10 +562,12 @@ import { GooglePayRequest } from './googlePayRequest';
 import { GooglePayRequestAssuranceDetails } from './googlePayRequestAssuranceDetails';
 import { GooglePaySessionRequest } from './googlePaySessionRequest';
 import { IssueCryptogramRequest } from './issueCryptogramRequest';
+import { Merchant } from './merchant';
 import { MerchantAccount } from './merchantAccount';
 import { MerchantAccountCreate } from './merchantAccountCreate';
 import { MerchantAccountUpdate } from './merchantAccountUpdate';
 import { MerchantAccounts } from './merchantAccounts';
+import { MerchantAddress } from './merchantAddress';
 import { MerchantProfile } from './merchantProfile';
 import { MerchantProfileAmex } from './merchantProfileAmex';
 import { MerchantProfileDankort } from './merchantProfileDankort';
@@ -504,6 +586,7 @@ import { MerchantProfileSummaryUnionpay } from './merchantProfileSummaryUnionpay
 import { MerchantProfileSummaryVisa } from './merchantProfileSummaryVisa';
 import { MerchantProfileUnionpay } from './merchantProfileUnionpay';
 import { MerchantProfileVisa } from './merchantProfileVisa';
+import { MerchantRequest } from './merchantRequest';
 import { NetworkToken } from './networkToken';
 import { NetworkTokenCryptogramProvisionFailed } from './networkTokenCryptogramProvisionFailed';
 import { NetworkTokenCryptogramProvisionFailedContext } from './networkTokenCryptogramProvisionFailedContext';
@@ -516,6 +599,8 @@ import { NetworkTokenRequest } from './networkTokenRequest';
 import { NetworkTokens } from './networkTokens';
 import { PaymentConnectorExternalTransactionRequest } from './paymentConnectorExternalTransactionRequest';
 import { PaymentConnectorExternalTransactionRequestContext } from './paymentConnectorExternalTransactionRequestContext';
+import { PaymentConnectorReportTransactionSettled } from './paymentConnectorReportTransactionSettled';
+import { PaymentConnectorReportTransactionSettledContext } from './paymentConnectorReportTransactionSettledContext';
 import { PaymentConnectorResponseTransactionAuthorizationFailedEvent } from './paymentConnectorResponseTransactionAuthorizationFailedEvent';
 import { PaymentConnectorResponseTransactionAuthorizationFailedEventContext } from './paymentConnectorResponseTransactionAuthorizationFailedEventContext';
 import { PaymentConnectorResponseTransactionAuthorizationSucceededEvent } from './paymentConnectorResponseTransactionAuthorizationSucceededEvent';
@@ -533,6 +618,13 @@ import { PaymentConnectorResponseTransactionVoidFailedEvent } from './paymentCon
 import { PaymentConnectorResponseTransactionVoidFailedEventContext } from './paymentConnectorResponseTransactionVoidFailedEventContext';
 import { PaymentConnectorResponseTransactionVoidSucceededEvent } from './paymentConnectorResponseTransactionVoidSucceededEvent';
 import { PaymentConnectorResponseTransactionVoidSucceededEventContext } from './paymentConnectorResponseTransactionVoidSucceededEventContext';
+import { PaymentLink } from './paymentLink';
+import { PaymentLinkBuyer } from './paymentLinkBuyer';
+import { PaymentLinkRequest } from './paymentLinkRequest';
+import { PaymentLinkRequestConnectionOptions } from './paymentLinkRequestConnectionOptions';
+import { PaymentLinkShippingDetails } from './paymentLinkShippingDetails';
+import { PaymentLinkStatementDescriptor } from './paymentLinkStatementDescriptor';
+import { PaymentLinks } from './paymentLinks';
 import { PaymentMethod } from './paymentMethod';
 import { PaymentMethodDefinition } from './paymentMethodDefinition';
 import { PaymentMethodDefinitions } from './paymentMethodDefinitions';
@@ -550,20 +642,40 @@ import { PaymentOptionsRequest } from './paymentOptionsRequest';
 import { PaymentService } from './paymentService';
 import { PaymentServiceDefinition } from './paymentServiceDefinition';
 import { PaymentServiceDefinitionConfiguration } from './paymentServiceDefinitionConfiguration';
+import { PaymentServiceDefinitionReportingFieldsInner } from './paymentServiceDefinitionReportingFieldsInner';
 import { PaymentServiceDefinitionSupportedFeatures } from './paymentServiceDefinitionSupportedFeatures';
 import { PaymentServiceDefinitions } from './paymentServiceDefinitions';
 import { PaymentServiceMerchantProfile } from './paymentServiceMerchantProfile';
+import { PaymentServiceReportingFieldsInner } from './paymentServiceReportingFieldsInner';
 import { PaymentServiceRequest } from './paymentServiceRequest';
 import { PaymentServiceRequestFieldsInner } from './paymentServiceRequestFieldsInner';
 import { PaymentServiceRequestMerchantProfile } from './paymentServiceRequestMerchantProfile';
+import { PaymentServiceRequestReportingFieldsInner } from './paymentServiceRequestReportingFieldsInner';
 import { PaymentServiceSession } from './paymentServiceSession';
 import { PaymentServiceSnapshot } from './paymentServiceSnapshot';
 import { PaymentServiceToken } from './paymentServiceToken';
 import { PaymentServiceTokenRequest } from './paymentServiceTokenRequest';
 import { PaymentServiceTokens } from './paymentServiceTokens';
 import { PaymentServiceUpdate } from './paymentServiceUpdate';
+import { PaymentServiceUpdateFieldsInner } from './paymentServiceUpdateFieldsInner';
 import { PaymentServiceUpdateMerchantProfile } from './paymentServiceUpdateMerchantProfile';
+import { PaymentServiceUpdateReportingFieldsInner } from './paymentServiceUpdateReportingFieldsInner';
 import { PaymentServices } from './paymentServices';
+import { Payout } from './payout';
+import { PayoutConnectionOptionsRequest } from './payoutConnectionOptionsRequest';
+import { PayoutConnectionOptionsRequestCheckoutCard } from './payoutConnectionOptionsRequestCheckoutCard';
+import { PayoutInlineCardRequest } from './payoutInlineCardRequest';
+import { PayoutMerchant } from './payoutMerchant';
+import { PayoutPaymentMethodRequest } from './payoutPaymentMethodRequest';
+import { PayoutRequest } from './payoutRequest';
+import { PayoutRequestBuyer } from './payoutRequestBuyer';
+import { PayoutRequestConnectionOptions } from './payoutRequestConnectionOptions';
+import { PayoutRequestMerchant } from './payoutRequestMerchant';
+import { PayoutStoredCardRequest } from './payoutStoredCardRequest';
+import { Payouts } from './payouts';
+import { Recipient } from './recipient';
+import { RecipientAddress } from './recipientAddress';
+import { RecipientSnapshot } from './recipientSnapshot';
 import { RedirectRequest } from './redirectRequest';
 import { Refund } from './refund';
 import { Refunds } from './refunds';
@@ -575,8 +687,6 @@ import { ReportExecutionSummaryContext } from './reportExecutionSummaryContext';
 import { ReportExecutionUrl } from './reportExecutionUrl';
 import { ReportExecutions } from './reportExecutions';
 import { ReportSpec } from './reportSpec';
-import { ReportSpecParams } from './reportSpecParams';
-import { ReportSpecParamsFilters } from './reportSpecParamsFilters';
 import { ReportSummary } from './reportSummary';
 import { ReportUpdate } from './reportUpdate';
 import { Reports } from './reports';
@@ -593,9 +703,12 @@ import { RoleAssignments } from './roleAssignments';
 import { RolePermissions } from './rolePermissions';
 import { Roles } from './roles';
 import { SetPasswordRequest } from './setPasswordRequest';
+import { Settlement } from './settlement';
+import { Settlements } from './settlements';
 import { ShippingDetail } from './shippingDetail';
 import { ShippingDetailAddress } from './shippingDetailAddress';
 import { ShippingDetailRequest } from './shippingDetailRequest';
+import { ShippingDetailRequestAddress } from './shippingDetailRequestAddress';
 import { ShippingDetailUpdateRequest } from './shippingDetailUpdateRequest';
 import { ShippingDetails } from './shippingDetails';
 import { StatementDescriptor } from './statementDescriptor';
@@ -625,6 +738,7 @@ import { TransactionBuyerRequest } from './transactionBuyerRequest';
 import { TransactionBuyerRequestBillingDetails } from './transactionBuyerRequestBillingDetails';
 import { TransactionBuyerRequestShippingDetails } from './transactionBuyerRequestShippingDetails';
 import { TransactionCaptureRequest } from './transactionCaptureRequest';
+import { TransactionCaptureRequestAirline } from './transactionCaptureRequestAirline';
 import { TransactionCardRequest } from './transactionCardRequest';
 import { TransactionCheckoutSessionRequest } from './transactionCheckoutSessionRequest';
 import { TransactionGiftCardNewRequest } from './transactionGiftCardNewRequest';
@@ -638,22 +752,38 @@ import { TransactionNetworkTokenRequest } from './transactionNetworkTokenRequest
 import { TransactionPaymentMethod } from './transactionPaymentMethod';
 import { TransactionPaymentMethodRequest } from './transactionPaymentMethodRequest';
 import { TransactionPaymentService } from './transactionPaymentService';
+import { TransactionRecipient } from './transactionRecipient';
 import { TransactionRedirectRequest } from './transactionRedirectRequest';
 import { TransactionRefundAllRequest } from './transactionRefundAllRequest';
 import { TransactionRefundRequest } from './transactionRefundRequest';
 import { TransactionRequest } from './transactionRequest';
 import { TransactionRequestBrowserInfo } from './transactionRequestBrowserInfo';
-import { TransactionRequestConnectionOptions } from './transactionRequestConnectionOptions';
-import { TransactionRequestStatementDescriptor } from './transactionRequestStatementDescriptor';
+import { TransactionRequestRecipient } from './transactionRequestRecipient';
+import { TransactionRetriesReportSpec } from './transactionRetriesReportSpec';
+import { TransactionRetriesReportSpecParams } from './transactionRetriesReportSpecParams';
+import { TransactionRetriesReportSpecParamsFilters } from './transactionRetriesReportSpecParamsFilters';
+import { TransactionRetriesReportSpecParamsFiltersCreatedAt } from './transactionRetriesReportSpecParamsFiltersCreatedAt';
 import { TransactionShippingDetails } from './transactionShippingDetails';
 import { TransactionStatusSummary } from './transactionStatusSummary';
 import { TransactionSummary } from './transactionSummary';
 import { Transactions } from './transactions';
 import { TransactionsBatchCaptureRequest } from './transactionsBatchCaptureRequest';
+import { TransactionsReportSpec } from './transactionsReportSpec';
+import { TransactionsReportSpecParams } from './transactionsReportSpecParams';
+import { TransactionsReportSpecParamsFilters } from './transactionsReportSpecParamsFilters';
+import { TransactionsReportSpecParamsFiltersAuthorizedAt } from './transactionsReportSpecParamsFiltersAuthorizedAt';
+import { TransactionsReportSpecParamsFiltersCapturedAt } from './transactionsReportSpecParamsFiltersCapturedAt';
+import { TransactionsReportSpecParamsFiltersUpdatedAt } from './transactionsReportSpecParamsFiltersUpdatedAt';
+import { TransactionsReportSpecParamsFiltersVoidedAt } from './transactionsReportSpecParamsFiltersVoidedAt';
 import { UserCurrentUpdate } from './userCurrentUpdate';
 import { UserRequest } from './userRequest';
 import { UserRole } from './userRole';
 import { UserUpdate } from './userUpdate';
+import { WebhookSubscription } from './webhookSubscription';
+import { WebhookSubscriptionAuthentication } from './webhookSubscriptionAuthentication';
+import { WebhookSubscriptionRequest } from './webhookSubscriptionRequest';
+import { WebhookSubscriptionUpdateRequest } from './webhookSubscriptionUpdateRequest';
+import { WebhookSubscriptions } from './webhookSubscriptions';
 
 /* tslint:disable:no-unused-variable */
 let primitives = [
@@ -671,6 +801,9 @@ let enumsMap: {[index: string]: any} = {
         "APIKeyPairCreate.AlgorithmEnum": APIKeyPairCreate.AlgorithmEnum,
         "AccountUpdaterInquirySummary.TypeEnum": AccountUpdaterInquirySummary.TypeEnum,
         "AccountUpdaterJob.TypeEnum": AccountUpdaterJob.TypeEnum,
+        "Airline.TicketDeliveryMethodEnum": Airline.TicketDeliveryMethodEnum,
+        "AirlineLeg.RouteTypeEnum": AirlineLeg.RouteTypeEnum,
+        "AirlinePassenger.AgeGroupEnum": AirlinePassenger.AgeGroupEnum,
         "AntiFraudDecisionErrorEvent.TypeEnum": AntiFraudDecisionErrorEvent.TypeEnum,
         "AntiFraudDecisionErrorEvent.NameEnum": AntiFraudDecisionErrorEvent.NameEnum,
         "AntiFraudDecisionEvent.TypeEnum": AntiFraudDecisionEvent.TypeEnum,
@@ -715,6 +848,8 @@ let enumsMap: {[index: string]: any} = {
         "CardSchemeDefinition.TypeEnum": CardSchemeDefinition.TypeEnum,
         "CartItem.ProductTypeEnum": CartItem.ProductTypeEnum,
         "CheckoutSession.TypeEnum": CheckoutSession.TypeEnum,
+        "CheckoutSessionAirline.TicketDeliveryMethodEnum": CheckoutSessionAirline.TicketDeliveryMethodEnum,
+        "CheckoutSessionCreateRequestAirline.TicketDeliveryMethodEnum": CheckoutSessionCreateRequestAirline.TicketDeliveryMethodEnum,
         "CheckoutSessionPaymentMethod.MethodEnum": CheckoutSessionPaymentMethod.MethodEnum,
         "CheckoutSessionPaymentMethod.SchemeEnum": CheckoutSessionPaymentMethod.SchemeEnum,
         "CheckoutSessionPaymentMethodDetails.CardTypeEnum": CheckoutSessionPaymentMethodDetails.CardTypeEnum,
@@ -724,6 +859,9 @@ let enumsMap: {[index: string]: any} = {
         "ConnectionOptionsForterAntiFraud.DeliveryTypeEnum": ConnectionOptionsForterAntiFraud.DeliveryTypeEnum,
         "ConnectionOptionsForterAntiFraudCartItemsInnerBasicItemData.TypeEnum": ConnectionOptionsForterAntiFraudCartItemsInnerBasicItemData.TypeEnum,
         "ConnectionOptionsForterAntiFraudCartItemsInnerDeliveryDetails.DeliveryTypeEnum": ConnectionOptionsForterAntiFraudCartItemsInnerDeliveryDetails.DeliveryTypeEnum,
+        "DetailedSettlementReportSpec.ModelEnum": DetailedSettlementReportSpec.ModelEnum,
+        "DetailedSettlementReportSpecParamsFiltersIngestedAt.StartEnum": DetailedSettlementReportSpecParamsFiltersIngestedAt.StartEnum,
+        "DetailedSettlementReportSpecParamsFiltersIngestedAt.EndEnum": DetailedSettlementReportSpecParamsFiltersIngestedAt.EndEnum,
         "DigitalWallet.TypeEnum": DigitalWallet.TypeEnum,
         "DigitalWallet.ProviderEnum": DigitalWallet.ProviderEnum,
         "DigitalWalletApplePayTokenDecrypted.TypeEnum": DigitalWalletApplePayTokenDecrypted.TypeEnum,
@@ -777,6 +915,7 @@ let enumsMap: {[index: string]: any} = {
         "GiftCardSummary.TypeEnum": GiftCardSummary.TypeEnum,
         "GiftCardSummary.BalanceErrorCodeEnum": GiftCardSummary.BalanceErrorCodeEnum,
         "GooglePayRequest.MethodEnum": GooglePayRequest.MethodEnum,
+        "Merchant.TypeEnum": Merchant.TypeEnum,
         "MerchantAccount.TypeEnum": MerchantAccount.TypeEnum,
         "MerchantAccount.LoonAcceptedSchemesEnum": MerchantAccount.LoonAcceptedSchemesEnum,
         "MerchantAccountCreate.LoonAcceptedSchemesEnum": MerchantAccountCreate.LoonAcceptedSchemesEnum,
@@ -793,6 +932,8 @@ let enumsMap: {[index: string]: any} = {
         "NetworkTokenProvisionSucceeded.NameEnum": NetworkTokenProvisionSucceeded.NameEnum,
         "PaymentConnectorExternalTransactionRequest.TypeEnum": PaymentConnectorExternalTransactionRequest.TypeEnum,
         "PaymentConnectorExternalTransactionRequest.NameEnum": PaymentConnectorExternalTransactionRequest.NameEnum,
+        "PaymentConnectorReportTransactionSettled.TypeEnum": PaymentConnectorReportTransactionSettled.TypeEnum,
+        "PaymentConnectorReportTransactionSettled.NameEnum": PaymentConnectorReportTransactionSettled.NameEnum,
         "PaymentConnectorResponseTransactionAuthorizationFailedEvent.TypeEnum": PaymentConnectorResponseTransactionAuthorizationFailedEvent.TypeEnum,
         "PaymentConnectorResponseTransactionAuthorizationFailedEvent.NameEnum": PaymentConnectorResponseTransactionAuthorizationFailedEvent.NameEnum,
         "PaymentConnectorResponseTransactionAuthorizationFailedEventContext.StatusEnum": PaymentConnectorResponseTransactionAuthorizationFailedEventContext.StatusEnum,
@@ -836,6 +977,16 @@ let enumsMap: {[index: string]: any} = {
         "PaymentConnectorResponseTransactionVoidFailedEvent.NameEnum": PaymentConnectorResponseTransactionVoidFailedEvent.NameEnum,
         "PaymentConnectorResponseTransactionVoidSucceededEvent.TypeEnum": PaymentConnectorResponseTransactionVoidSucceededEvent.TypeEnum,
         "PaymentConnectorResponseTransactionVoidSucceededEvent.NameEnum": PaymentConnectorResponseTransactionVoidSucceededEvent.NameEnum,
+        "PaymentLink.TypeEnum": PaymentLink.TypeEnum,
+        "PaymentLink.StatusEnum": PaymentLink.StatusEnum,
+        "PaymentLink.LocaleEnum": PaymentLink.LocaleEnum,
+        "PaymentLink.IntentEnum": PaymentLink.IntentEnum,
+        "PaymentLink.PaymentSourceEnum": PaymentLink.PaymentSourceEnum,
+        "PaymentLinkBuyer.TypeEnum": PaymentLinkBuyer.TypeEnum,
+        "PaymentLinkRequest.LocaleEnum": PaymentLinkRequest.LocaleEnum,
+        "PaymentLinkRequest.IntentEnum": PaymentLinkRequest.IntentEnum,
+        "PaymentLinkRequest.PaymentSourceEnum": PaymentLinkRequest.PaymentSourceEnum,
+        "PaymentLinkShippingDetails.TypeEnum": PaymentLinkShippingDetails.TypeEnum,
         "PaymentMethod.TypeEnum": PaymentMethod.TypeEnum,
         "PaymentMethod.AdditionalSchemesEnum": PaymentMethod.AdditionalSchemesEnum,
         "PaymentMethod.ApprovalTargetEnum": PaymentMethod.ApprovalTargetEnum,
@@ -863,12 +1014,23 @@ let enumsMap: {[index: string]: any} = {
         "PaymentServiceDefinition.MethodEnum": PaymentServiceDefinition.MethodEnum,
         "PaymentServiceDefinition.ModeEnum": PaymentServiceDefinition.ModeEnum,
         "PaymentServiceDefinitionConfiguration.ApprovalUiTargetEnum": PaymentServiceDefinitionConfiguration.ApprovalUiTargetEnum,
+        "PaymentServiceDefinitionReportingFieldsInner.FormatEnum": PaymentServiceDefinitionReportingFieldsInner.FormatEnum,
         "PaymentServiceSession.TypeEnum": PaymentServiceSession.TypeEnum,
         "PaymentServiceSession.StatusEnum": PaymentServiceSession.StatusEnum,
         "PaymentServiceSnapshot.TypeEnum": PaymentServiceSnapshot.TypeEnum,
         "PaymentServiceSnapshot.MethodEnum": PaymentServiceSnapshot.MethodEnum,
         "PaymentServiceToken.TypeEnum": PaymentServiceToken.TypeEnum,
         "PaymentServiceToken.StatusEnum": PaymentServiceToken.StatusEnum,
+        "Payout.TypeEnum": Payout.TypeEnum,
+        "Payout.CategoryEnum": Payout.CategoryEnum,
+        "Payout.StatusEnum": Payout.StatusEnum,
+        "PayoutInlineCardRequest.MethodEnum": PayoutInlineCardRequest.MethodEnum,
+        "PayoutInlineCardRequest.SchemeEnum": PayoutInlineCardRequest.SchemeEnum,
+        "PayoutMerchant.TypeEnum": PayoutMerchant.TypeEnum,
+        "PayoutPaymentMethodRequest.MethodEnum": PayoutPaymentMethodRequest.MethodEnum,
+        "PayoutPaymentMethodRequest.SchemeEnum": PayoutPaymentMethodRequest.SchemeEnum,
+        "PayoutRequest.CategoryEnum": PayoutRequest.CategoryEnum,
+        "PayoutStoredCardRequest.MethodEnum": PayoutStoredCardRequest.MethodEnum,
         "RedirectRequest.MethodEnum": RedirectRequest.MethodEnum,
         "Refund.TypeEnum": Refund.TypeEnum,
         "Refund.StatusEnum": Refund.StatusEnum,
@@ -882,13 +1044,13 @@ let enumsMap: {[index: string]: any} = {
         "ReportExecutionSummary.TypeEnum": ReportExecutionSummary.TypeEnum,
         "ReportExecutionSummary.StatusEnum": ReportExecutionSummary.StatusEnum,
         "ReportSpec.ModelEnum": ReportSpec.ModelEnum,
-        "ReportSpecParams.FieldsEnum": ReportSpecParams.FieldsEnum,
         "ReportSummary.TypeEnum": ReportSummary.TypeEnum,
         "ReportSummary.CreatorTypeEnum": ReportSummary.CreatorTypeEnum,
         "Role.TypeEnum": Role.TypeEnum,
         "RoleAssignment.TypeEnum": RoleAssignment.TypeEnum,
         "RoleAssignmentAssignee.TypeEnum": RoleAssignmentAssignee.TypeEnum,
         "RoleAssignmentRequestAssignee.TypeEnum": RoleAssignmentRequestAssignee.TypeEnum,
+        "Settlement.TypeEnum": Settlement.TypeEnum,
         "ShippingDetail.TypeEnum": ShippingDetail.TypeEnum,
         "TaxId.KindEnum": TaxId.KindEnum,
         "ThreeDSecureAuthenticationRequestEvent.TypeEnum": ThreeDSecureAuthenticationRequestEvent.TypeEnum,
@@ -925,6 +1087,8 @@ let enumsMap: {[index: string]: any} = {
         "Transaction.PaymentSourceEnum": Transaction.PaymentSourceEnum,
         "Transaction.StatusEnum": Transaction.StatusEnum,
         "TransactionBuyer.TypeEnum": TransactionBuyer.TypeEnum,
+        "TransactionBuyerRequestShippingDetails.TypeEnum": TransactionBuyerRequestShippingDetails.TypeEnum,
+        "TransactionCaptureRequestAirline.TicketDeliveryMethodEnum": TransactionCaptureRequestAirline.TicketDeliveryMethodEnum,
         "TransactionCardRequest.MethodEnum": TransactionCardRequest.MethodEnum,
         "TransactionCheckoutSessionRequest.MethodEnum": TransactionCheckoutSessionRequest.MethodEnum,
         "TransactionHistoryEvent.TypeEnum": TransactionHistoryEvent.TypeEnum,
@@ -946,6 +1110,7 @@ let enumsMap: {[index: string]: any} = {
         "TransactionRequest.IntentEnum": TransactionRequest.IntentEnum,
         "TransactionRequest.PaymentSourceEnum": TransactionRequest.PaymentSourceEnum,
         "TransactionRequestBrowserInfo.UserDeviceEnum": TransactionRequestBrowserInfo.UserDeviceEnum,
+        "TransactionRetriesReportSpec.ModelEnum": TransactionRetriesReportSpec.ModelEnum,
         "TransactionShippingDetails.TypeEnum": TransactionShippingDetails.TypeEnum,
         "TransactionStatusSummary.TypeEnum": TransactionStatusSummary.TypeEnum,
         "TransactionStatusSummary.StatusEnum": TransactionStatusSummary.StatusEnum,
@@ -954,7 +1119,16 @@ let enumsMap: {[index: string]: any} = {
         "TransactionSummary.IntentEnum": TransactionSummary.IntentEnum,
         "TransactionSummary.MethodEnum": TransactionSummary.MethodEnum,
         "TransactionSummary.StatusEnum": TransactionSummary.StatusEnum,
+        "TransactionsReportSpec.ModelEnum": TransactionsReportSpec.ModelEnum,
+        "TransactionsReportSpecParams.FieldsEnum": TransactionsReportSpecParams.FieldsEnum,
+        "TransactionsReportSpecParamsFilters.StatusEnum": TransactionsReportSpecParamsFilters.StatusEnum,
+        "TransactionsReportSpecParamsFilters.MethodEnum": TransactionsReportSpecParamsFilters.MethodEnum,
+        "TransactionsReportSpecParamsFilters.SchemeEnum": TransactionsReportSpecParamsFilters.SchemeEnum,
+        "TransactionsReportSpecParamsFilters.ThreeDSecureStatusEnum": TransactionsReportSpecParamsFilters.ThreeDSecureStatusEnum,
+        "TransactionsReportSpecParamsFilters.PaymentSourceEnum": TransactionsReportSpecParamsFilters.PaymentSourceEnum,
         "UserRole.TypeEnum": UserRole.TypeEnum,
+        "WebhookSubscription.TypeEnum": WebhookSubscription.TypeEnum,
+        "WebhookSubscriptionAuthentication.KindEnum": WebhookSubscriptionAuthentication.KindEnum,
 }
 
 let typeMap: {[index: string]: any} = {
@@ -963,7 +1137,11 @@ let typeMap: {[index: string]: any} = {
     "AccountUpdaterInquirySummary": AccountUpdaterInquirySummary,
     "AccountUpdaterJob": AccountUpdaterJob,
     "AccountUpdaterJobCreate": AccountUpdaterJobCreate,
+    "AdditionalIdentifiers": AdditionalIdentifiers,
     "Address": Address,
+    "Airline": Airline,
+    "AirlineLeg": AirlineLeg,
+    "AirlinePassenger": AirlinePassenger,
     "AntiFraudDecisionErrorEvent": AntiFraudDecisionErrorEvent,
     "AntiFraudDecisionErrorEventContext": AntiFraudDecisionErrorEventContext,
     "AntiFraudDecisionEvent": AntiFraudDecisionEvent,
@@ -1021,7 +1199,9 @@ let typeMap: {[index: string]: any} = {
     "CardSchemeDefinitions": CardSchemeDefinitions,
     "CartItem": CartItem,
     "CheckoutSession": CheckoutSession,
+    "CheckoutSessionAirline": CheckoutSessionAirline,
     "CheckoutSessionCreateRequest": CheckoutSessionCreateRequest,
+    "CheckoutSessionCreateRequestAirline": CheckoutSessionCreateRequestAirline,
     "CheckoutSessionPaymentMethod": CheckoutSessionPaymentMethod,
     "CheckoutSessionPaymentMethodDetails": CheckoutSessionPaymentMethodDetails,
     "CheckoutSessionRequest": CheckoutSessionRequest,
@@ -1032,10 +1212,13 @@ let typeMap: {[index: string]: any} = {
     "ConnectionDefinitions": ConnectionDefinitions,
     "ConnectionOptions": ConnectionOptions,
     "ConnectionOptionsAdyenCard": ConnectionOptionsAdyenCard,
+    "ConnectionOptionsAdyenSepa": ConnectionOptionsAdyenSepa,
     "ConnectionOptionsCybersourceAntiFraud": ConnectionOptionsCybersourceAntiFraud,
     "ConnectionOptionsCybersourceCard": ConnectionOptionsCybersourceCard,
     "ConnectionOptionsCybersourceIdeal": ConnectionOptionsCybersourceIdeal,
     "ConnectionOptionsCybersourceKcp": ConnectionOptionsCybersourceKcp,
+    "ConnectionOptionsFiservCard": ConnectionOptionsFiservCard,
+    "ConnectionOptionsFiservCardInstallmentOptions": ConnectionOptionsFiservCardInstallmentOptions,
     "ConnectionOptionsForterAntiFraud": ConnectionOptionsForterAntiFraud,
     "ConnectionOptionsForterAntiFraudCartItemsInner": ConnectionOptionsForterAntiFraudCartItemsInner,
     "ConnectionOptionsForterAntiFraudCartItemsInnerBasicItemData": ConnectionOptionsForterAntiFraudCartItemsInnerBasicItemData,
@@ -1048,12 +1231,18 @@ let typeMap: {[index: string]: any} = {
     "ConnectionOptionsForterAntiFraudTotalDiscount": ConnectionOptionsForterAntiFraudTotalDiscount,
     "ConnectionOptionsForterAntiFraudTotalDiscountCouponDiscountAmount": ConnectionOptionsForterAntiFraudTotalDiscountCouponDiscountAmount,
     "ConnectionOptionsGivingblockGivingblock": ConnectionOptionsGivingblockGivingblock,
+    "ConnectionOptionsLatitudeLatitude": ConnectionOptionsLatitudeLatitude,
     "ConnectionOptionsPaypalPaypal": ConnectionOptionsPaypalPaypal,
     "ConnectionOptionsPaypalPaypalAdditionalDataInner": ConnectionOptionsPaypalPaypalAdditionalDataInner,
+    "ConnectionOptionsPowertranzCard": ConnectionOptionsPowertranzCard,
     "ConnectionOptionsStripeCard": ConnectionOptionsStripeCard,
     "ConnectionOptionsStripeCardStripeConnect": ConnectionOptionsStripeCardStripeConnect,
     "Connections": Connections,
     "Cryptogram": Cryptogram,
+    "DetailedSettlementReportSpec": DetailedSettlementReportSpec,
+    "DetailedSettlementReportSpecParams": DetailedSettlementReportSpecParams,
+    "DetailedSettlementReportSpecParamsFilters": DetailedSettlementReportSpecParamsFilters,
+    "DetailedSettlementReportSpecParamsFiltersIngestedAt": DetailedSettlementReportSpecParamsFiltersIngestedAt,
     "DigitalWallet": DigitalWallet,
     "DigitalWalletApplePayTokenDecrypted": DigitalWalletApplePayTokenDecrypted,
     "DigitalWalletApplePayTokenDecryptedContext": DigitalWalletApplePayTokenDecryptedContext,
@@ -1106,10 +1295,12 @@ let typeMap: {[index: string]: any} = {
     "GooglePayRequestAssuranceDetails": GooglePayRequestAssuranceDetails,
     "GooglePaySessionRequest": GooglePaySessionRequest,
     "IssueCryptogramRequest": IssueCryptogramRequest,
+    "Merchant": Merchant,
     "MerchantAccount": MerchantAccount,
     "MerchantAccountCreate": MerchantAccountCreate,
     "MerchantAccountUpdate": MerchantAccountUpdate,
     "MerchantAccounts": MerchantAccounts,
+    "MerchantAddress": MerchantAddress,
     "MerchantProfile": MerchantProfile,
     "MerchantProfileAmex": MerchantProfileAmex,
     "MerchantProfileDankort": MerchantProfileDankort,
@@ -1128,6 +1319,7 @@ let typeMap: {[index: string]: any} = {
     "MerchantProfileSummaryVisa": MerchantProfileSummaryVisa,
     "MerchantProfileUnionpay": MerchantProfileUnionpay,
     "MerchantProfileVisa": MerchantProfileVisa,
+    "MerchantRequest": MerchantRequest,
     "NetworkToken": NetworkToken,
     "NetworkTokenCryptogramProvisionFailed": NetworkTokenCryptogramProvisionFailed,
     "NetworkTokenCryptogramProvisionFailedContext": NetworkTokenCryptogramProvisionFailedContext,
@@ -1140,6 +1332,8 @@ let typeMap: {[index: string]: any} = {
     "NetworkTokens": NetworkTokens,
     "PaymentConnectorExternalTransactionRequest": PaymentConnectorExternalTransactionRequest,
     "PaymentConnectorExternalTransactionRequestContext": PaymentConnectorExternalTransactionRequestContext,
+    "PaymentConnectorReportTransactionSettled": PaymentConnectorReportTransactionSettled,
+    "PaymentConnectorReportTransactionSettledContext": PaymentConnectorReportTransactionSettledContext,
     "PaymentConnectorResponseTransactionAuthorizationFailedEvent": PaymentConnectorResponseTransactionAuthorizationFailedEvent,
     "PaymentConnectorResponseTransactionAuthorizationFailedEventContext": PaymentConnectorResponseTransactionAuthorizationFailedEventContext,
     "PaymentConnectorResponseTransactionAuthorizationSucceededEvent": PaymentConnectorResponseTransactionAuthorizationSucceededEvent,
@@ -1157,6 +1351,13 @@ let typeMap: {[index: string]: any} = {
     "PaymentConnectorResponseTransactionVoidFailedEventContext": PaymentConnectorResponseTransactionVoidFailedEventContext,
     "PaymentConnectorResponseTransactionVoidSucceededEvent": PaymentConnectorResponseTransactionVoidSucceededEvent,
     "PaymentConnectorResponseTransactionVoidSucceededEventContext": PaymentConnectorResponseTransactionVoidSucceededEventContext,
+    "PaymentLink": PaymentLink,
+    "PaymentLinkBuyer": PaymentLinkBuyer,
+    "PaymentLinkRequest": PaymentLinkRequest,
+    "PaymentLinkRequestConnectionOptions": PaymentLinkRequestConnectionOptions,
+    "PaymentLinkShippingDetails": PaymentLinkShippingDetails,
+    "PaymentLinkStatementDescriptor": PaymentLinkStatementDescriptor,
+    "PaymentLinks": PaymentLinks,
     "PaymentMethod": PaymentMethod,
     "PaymentMethodDefinition": PaymentMethodDefinition,
     "PaymentMethodDefinitions": PaymentMethodDefinitions,
@@ -1174,20 +1375,40 @@ let typeMap: {[index: string]: any} = {
     "PaymentService": PaymentService,
     "PaymentServiceDefinition": PaymentServiceDefinition,
     "PaymentServiceDefinitionConfiguration": PaymentServiceDefinitionConfiguration,
+    "PaymentServiceDefinitionReportingFieldsInner": PaymentServiceDefinitionReportingFieldsInner,
     "PaymentServiceDefinitionSupportedFeatures": PaymentServiceDefinitionSupportedFeatures,
     "PaymentServiceDefinitions": PaymentServiceDefinitions,
     "PaymentServiceMerchantProfile": PaymentServiceMerchantProfile,
+    "PaymentServiceReportingFieldsInner": PaymentServiceReportingFieldsInner,
     "PaymentServiceRequest": PaymentServiceRequest,
     "PaymentServiceRequestFieldsInner": PaymentServiceRequestFieldsInner,
     "PaymentServiceRequestMerchantProfile": PaymentServiceRequestMerchantProfile,
+    "PaymentServiceRequestReportingFieldsInner": PaymentServiceRequestReportingFieldsInner,
     "PaymentServiceSession": PaymentServiceSession,
     "PaymentServiceSnapshot": PaymentServiceSnapshot,
     "PaymentServiceToken": PaymentServiceToken,
     "PaymentServiceTokenRequest": PaymentServiceTokenRequest,
     "PaymentServiceTokens": PaymentServiceTokens,
     "PaymentServiceUpdate": PaymentServiceUpdate,
+    "PaymentServiceUpdateFieldsInner": PaymentServiceUpdateFieldsInner,
     "PaymentServiceUpdateMerchantProfile": PaymentServiceUpdateMerchantProfile,
+    "PaymentServiceUpdateReportingFieldsInner": PaymentServiceUpdateReportingFieldsInner,
     "PaymentServices": PaymentServices,
+    "Payout": Payout,
+    "PayoutConnectionOptionsRequest": PayoutConnectionOptionsRequest,
+    "PayoutConnectionOptionsRequestCheckoutCard": PayoutConnectionOptionsRequestCheckoutCard,
+    "PayoutInlineCardRequest": PayoutInlineCardRequest,
+    "PayoutMerchant": PayoutMerchant,
+    "PayoutPaymentMethodRequest": PayoutPaymentMethodRequest,
+    "PayoutRequest": PayoutRequest,
+    "PayoutRequestBuyer": PayoutRequestBuyer,
+    "PayoutRequestConnectionOptions": PayoutRequestConnectionOptions,
+    "PayoutRequestMerchant": PayoutRequestMerchant,
+    "PayoutStoredCardRequest": PayoutStoredCardRequest,
+    "Payouts": Payouts,
+    "Recipient": Recipient,
+    "RecipientAddress": RecipientAddress,
+    "RecipientSnapshot": RecipientSnapshot,
     "RedirectRequest": RedirectRequest,
     "Refund": Refund,
     "Refunds": Refunds,
@@ -1199,8 +1420,6 @@ let typeMap: {[index: string]: any} = {
     "ReportExecutionUrl": ReportExecutionUrl,
     "ReportExecutions": ReportExecutions,
     "ReportSpec": ReportSpec,
-    "ReportSpecParams": ReportSpecParams,
-    "ReportSpecParamsFilters": ReportSpecParamsFilters,
     "ReportSummary": ReportSummary,
     "ReportUpdate": ReportUpdate,
     "Reports": Reports,
@@ -1217,9 +1436,12 @@ let typeMap: {[index: string]: any} = {
     "RolePermissions": RolePermissions,
     "Roles": Roles,
     "SetPasswordRequest": SetPasswordRequest,
+    "Settlement": Settlement,
+    "Settlements": Settlements,
     "ShippingDetail": ShippingDetail,
     "ShippingDetailAddress": ShippingDetailAddress,
     "ShippingDetailRequest": ShippingDetailRequest,
+    "ShippingDetailRequestAddress": ShippingDetailRequestAddress,
     "ShippingDetailUpdateRequest": ShippingDetailUpdateRequest,
     "ShippingDetails": ShippingDetails,
     "StatementDescriptor": StatementDescriptor,
@@ -1249,6 +1471,7 @@ let typeMap: {[index: string]: any} = {
     "TransactionBuyerRequestBillingDetails": TransactionBuyerRequestBillingDetails,
     "TransactionBuyerRequestShippingDetails": TransactionBuyerRequestShippingDetails,
     "TransactionCaptureRequest": TransactionCaptureRequest,
+    "TransactionCaptureRequestAirline": TransactionCaptureRequestAirline,
     "TransactionCardRequest": TransactionCardRequest,
     "TransactionCheckoutSessionRequest": TransactionCheckoutSessionRequest,
     "TransactionGiftCardNewRequest": TransactionGiftCardNewRequest,
@@ -1262,22 +1485,38 @@ let typeMap: {[index: string]: any} = {
     "TransactionPaymentMethod": TransactionPaymentMethod,
     "TransactionPaymentMethodRequest": TransactionPaymentMethodRequest,
     "TransactionPaymentService": TransactionPaymentService,
+    "TransactionRecipient": TransactionRecipient,
     "TransactionRedirectRequest": TransactionRedirectRequest,
     "TransactionRefundAllRequest": TransactionRefundAllRequest,
     "TransactionRefundRequest": TransactionRefundRequest,
     "TransactionRequest": TransactionRequest,
     "TransactionRequestBrowserInfo": TransactionRequestBrowserInfo,
-    "TransactionRequestConnectionOptions": TransactionRequestConnectionOptions,
-    "TransactionRequestStatementDescriptor": TransactionRequestStatementDescriptor,
+    "TransactionRequestRecipient": TransactionRequestRecipient,
+    "TransactionRetriesReportSpec": TransactionRetriesReportSpec,
+    "TransactionRetriesReportSpecParams": TransactionRetriesReportSpecParams,
+    "TransactionRetriesReportSpecParamsFilters": TransactionRetriesReportSpecParamsFilters,
+    "TransactionRetriesReportSpecParamsFiltersCreatedAt": TransactionRetriesReportSpecParamsFiltersCreatedAt,
     "TransactionShippingDetails": TransactionShippingDetails,
     "TransactionStatusSummary": TransactionStatusSummary,
     "TransactionSummary": TransactionSummary,
     "Transactions": Transactions,
     "TransactionsBatchCaptureRequest": TransactionsBatchCaptureRequest,
+    "TransactionsReportSpec": TransactionsReportSpec,
+    "TransactionsReportSpecParams": TransactionsReportSpecParams,
+    "TransactionsReportSpecParamsFilters": TransactionsReportSpecParamsFilters,
+    "TransactionsReportSpecParamsFiltersAuthorizedAt": TransactionsReportSpecParamsFiltersAuthorizedAt,
+    "TransactionsReportSpecParamsFiltersCapturedAt": TransactionsReportSpecParamsFiltersCapturedAt,
+    "TransactionsReportSpecParamsFiltersUpdatedAt": TransactionsReportSpecParamsFiltersUpdatedAt,
+    "TransactionsReportSpecParamsFiltersVoidedAt": TransactionsReportSpecParamsFiltersVoidedAt,
     "UserCurrentUpdate": UserCurrentUpdate,
     "UserRequest": UserRequest,
     "UserRole": UserRole,
     "UserUpdate": UserUpdate,
+    "WebhookSubscription": WebhookSubscription,
+    "WebhookSubscriptionAuthentication": WebhookSubscriptionAuthentication,
+    "WebhookSubscriptionRequest": WebhookSubscriptionRequest,
+    "WebhookSubscriptionUpdateRequest": WebhookSubscriptionUpdateRequest,
+    "WebhookSubscriptions": WebhookSubscriptions,
 }
 
 export class ObjectSerializer {

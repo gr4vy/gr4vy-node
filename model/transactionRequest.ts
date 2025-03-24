@@ -12,13 +12,15 @@
 
 import { RequestFile } from './models';
 import { CartItem } from './cartItem';
+import { CheckoutSessionCreateRequestAirline } from './checkoutSessionCreateRequestAirline';
+import { PaymentLinkRequestConnectionOptions } from './paymentLinkRequestConnectionOptions';
+import { PaymentLinkStatementDescriptor } from './paymentLinkStatementDescriptor';
 import { ThreeDSecureDataV1V2 } from './threeDSecureDataV1V2';
 import { TransactionBuyerRequest } from './transactionBuyerRequest';
 import { TransactionGiftCardRequest } from './transactionGiftCardRequest';
 import { TransactionPaymentMethodRequest } from './transactionPaymentMethodRequest';
 import { TransactionRequestBrowserInfo } from './transactionRequestBrowserInfo';
-import { TransactionRequestConnectionOptions } from './transactionRequestConnectionOptions';
-import { TransactionRequestStatementDescriptor } from './transactionRequestStatementDescriptor';
+import { TransactionRequestRecipient } from './transactionRequestRecipient';
 
 /**
 * A request to create a transaction.
@@ -55,9 +57,9 @@ export class TransactionRequest {
     * An array of cart items that represents the line items of a transaction.
     */
     'cartItems'?: Array<CartItem>;
-    'connectionOptions'?: TransactionRequestConnectionOptions | null;
+    'connectionOptions'?: PaymentLinkRequestConnectionOptions | null;
     /**
-    * The 2-letter ISO code of the country of the transaction. This is used to filter the payment services that is used to process the transaction.  If this value is provided for redirect requests and it\'s not `null`, it must match the one specified for `country` in `payment_method`. Otherwise, the value specified for `country` in `payment_method` will be assumed implicitly. 
+    * The 2-letter ISO code of the country where the transaction is processed. This is also used to filter the payment services that can process the transaction.  If this value is provided for redirect requests and it\'s not `null`, it must match the one specified for `country` in `payment_method`. Otherwise, the value specified for `country` in `payment_method` will be assumed implicitly. 
     */
     'country'?: string | null;
     /**
@@ -96,7 +98,7 @@ export class TransactionRequest {
     * The unique identifier of a set of shipping details stored for the buyer.  If provided, the created transaction will include a copy of the details at the point of transaction creation; i.e. it will not be affected by later changes to the detail in the database.
     */
     'shippingDetailsId'?: string | null;
-    'statementDescriptor'?: TransactionRequestStatementDescriptor | null;
+    'statementDescriptor'?: PaymentLinkStatementDescriptor | null;
     /**
     * Whether or not to also try and store the payment method with us so that it can be used again for future use. This is only supported for payment methods that support this feature. There are also a few restrictions on how the flag may be set:  * The flag has to be set to `true` when the `payment_source` is set to `recurring` or `installment`, and `merchant_initiated` is set to `false`.  * The flag has to be set to `false` (or not set) when using a previously vaulted payment method.
     */
@@ -106,6 +108,16 @@ export class TransactionRequest {
     * The unique identifier of an existing payment service. When provided, the created transaction will be processed by the given payment service and any routing rules will be skipped.
     */
     'paymentServiceId'?: string | null;
+    'airline'?: CheckoutSessionCreateRequestAirline | null;
+    /**
+    * Whether or not the transaction is an account funding transaction.
+    */
+    'accountFundingTransaction'?: boolean | null = false;
+    'recipient'?: TransactionRequestRecipient | null;
+    /**
+    * Whether or not to allow partial authorization of the transaction. Support for this will depend on the connector used. When a connector does not support partial authorization, and the user does not have sufficient funds, the transaction will be declined.
+    */
+    'allowPartialAuthorization'?: boolean | null = false;
 
     static discriminator: string | undefined = undefined;
 
@@ -163,7 +175,7 @@ export class TransactionRequest {
         {
             "name": "connectionOptions",
             "baseName": "connection_options",
-            "type": "TransactionRequestConnectionOptions"
+            "type": "PaymentLinkRequestConnectionOptions"
         },
         {
             "name": "country",
@@ -218,7 +230,7 @@ export class TransactionRequest {
         {
             "name": "statementDescriptor",
             "baseName": "statement_descriptor",
-            "type": "TransactionRequestStatementDescriptor"
+            "type": "PaymentLinkStatementDescriptor"
         },
         {
             "name": "store",
@@ -234,6 +246,26 @@ export class TransactionRequest {
             "name": "paymentServiceId",
             "baseName": "payment_service_id",
             "type": "string"
+        },
+        {
+            "name": "airline",
+            "baseName": "airline",
+            "type": "CheckoutSessionCreateRequestAirline"
+        },
+        {
+            "name": "accountFundingTransaction",
+            "baseName": "account_funding_transaction",
+            "type": "boolean"
+        },
+        {
+            "name": "recipient",
+            "baseName": "recipient",
+            "type": "TransactionRequestRecipient"
+        },
+        {
+            "name": "allowPartialAuthorization",
+            "baseName": "allow_partial_authorization",
+            "type": "boolean"
         }    ];
 
     static getAttributeTypeMap() {

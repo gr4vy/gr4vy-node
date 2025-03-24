@@ -11,7 +11,9 @@
  */
 
 import { RequestFile } from './models';
+import { AdditionalIdentifiers } from './additionalIdentifiers';
 import { CartItem } from './cartItem';
+import { CheckoutSessionAirline } from './checkoutSessionAirline';
 import { GiftCardRedemption } from './giftCardRedemption';
 import { GiftCardServiceSnapshot } from './giftCardServiceSnapshot';
 import { StatementDescriptor } from './statementDescriptor';
@@ -19,6 +21,7 @@ import { ThreeDSecureSummary } from './threeDSecureSummary';
 import { TransactionBuyer } from './transactionBuyer';
 import { TransactionPaymentMethod } from './transactionPaymentMethod';
 import { TransactionPaymentService } from './transactionPaymentService';
+import { TransactionRecipient } from './transactionRecipient';
 import { TransactionShippingDetails } from './transactionShippingDetails';
 
 /**
@@ -37,6 +40,10 @@ export class Transaction {
     * The total amount for this transaction across all funding sources including gift cards.
     */
     'amount'?: number;
+    /**
+    * A list of additional identifiers that we may keep track of to manage this transaction. This may include the authorization ID, capture ID, and processor ID, as well as an undefined list of additional identifiers.
+    */
+    'additionalIdentifiers'?: AdditionalIdentifiers;
     /**
     * This is the response description received from the processor.
     */
@@ -180,6 +187,7 @@ export class Transaction {
     */
     'status'?: Transaction.StatusEnum;
     'threeDSecure'?: ThreeDSecureSummary;
+    'airline'?: CheckoutSessionAirline | null;
     /**
     * Defines when the transaction was last updated.
     */
@@ -188,6 +196,23 @@ export class Transaction {
     * The date and time when this transaction was voided in the payment service.  Don\'t use this field to determine whether the transaction was voided. A `null` value doesn\'t necessarily imply that the transaction wasn\'t voided, it can mean that the payment service doesn\'t provide this value, that it didn\'t provide it at the time the transaction was voided or that the transaction was voided before the introduction of this field.
     */
     'voidedAt'?: Date | null;
+    /**
+    * The currency of this transaction\'s settlement in ISO 4217 three-letter code format.
+    */
+    'settledCurrency'?: string | null;
+    /**
+    * The net amount settled for this transaction.
+    */
+    'settledAmount'?: number;
+    /**
+    * Indicates whether this transaction has been settled.
+    */
+    'settled'?: boolean;
+    /**
+    * Whether or not the transaction is an account funding transaction.
+    */
+    'accountFundingTransaction'?: boolean | null = false;
+    'recipient'?: TransactionRecipient | null;
 
     static discriminator: string | undefined = undefined;
 
@@ -206,6 +231,11 @@ export class Transaction {
             "name": "amount",
             "baseName": "amount",
             "type": "number"
+        },
+        {
+            "name": "additionalIdentifiers",
+            "baseName": "additional_identifiers",
+            "type": "AdditionalIdentifiers"
         },
         {
             "name": "authResponseCode",
@@ -413,6 +443,11 @@ export class Transaction {
             "type": "ThreeDSecureSummary"
         },
         {
+            "name": "airline",
+            "baseName": "airline",
+            "type": "CheckoutSessionAirline"
+        },
+        {
             "name": "updatedAt",
             "baseName": "updated_at",
             "type": "Date"
@@ -421,6 +456,31 @@ export class Transaction {
             "name": "voidedAt",
             "baseName": "voided_at",
             "type": "Date"
+        },
+        {
+            "name": "settledCurrency",
+            "baseName": "settled_currency",
+            "type": "string"
+        },
+        {
+            "name": "settledAmount",
+            "baseName": "settled_amount",
+            "type": "number"
+        },
+        {
+            "name": "settled",
+            "baseName": "settled",
+            "type": "boolean"
+        },
+        {
+            "name": "accountFundingTransaction",
+            "baseName": "account_funding_transaction",
+            "type": "boolean"
+        },
+        {
+            "name": "recipient",
+            "baseName": "recipient",
+            "type": "TransactionRecipient"
         }    ];
 
     static getAttributeTypeMap() {
@@ -485,9 +545,13 @@ export namespace Transaction {
         Dcb = <any> 'dcb',
         Dlocal = <any> 'dlocal',
         Ebanx = <any> 'ebanx',
+        Efecty = <any> 'efecty',
         Eps = <any> 'eps',
         Everydaypay = <any> 'everydaypay',
         Gcash = <any> 'gcash',
+        Gem = <any> 'gem',
+        Gemds = <any> 'gemds',
+        GiftCard = <any> 'gift-card',
         Giropay = <any> 'giropay',
         Givingblock = <any> 'givingblock',
         Gocardless = <any> 'gocardless',
@@ -500,12 +564,16 @@ export namespace Transaction {
         Kakaopay = <any> 'kakaopay',
         Kcp = <any> 'kcp',
         Klarna = <any> 'klarna',
+        Latitude = <any> 'latitude',
+        Latitudeds = <any> 'latitudeds',
         Laybuy = <any> 'laybuy',
         Linepay = <any> 'linepay',
         Linkaja = <any> 'linkaja',
         Maybankqrpay = <any> 'maybankqrpay',
+        Mercadopago = <any> 'mercadopago',
         Multibanco = <any> 'multibanco',
         Multipago = <any> 'multipago',
+        Netbanking = <any> 'netbanking',
         NetworkToken = <any> 'network-token',
         Oney3x = <any> 'oney_3x',
         Oney4x = <any> 'oney_4x',
@@ -521,6 +589,7 @@ export namespace Transaction {
         Payto = <any> 'payto',
         Venmo = <any> 'venmo',
         Pix = <any> 'pix',
+        Pse = <any> 'pse',
         Rabbitlinepay = <any> 'rabbitlinepay',
         Razorpay = <any> 'razorpay',
         Scalapay = <any> 'scalapay',
@@ -536,8 +605,10 @@ export namespace Transaction {
         Truemoney = <any> 'truemoney',
         Trustly = <any> 'trustly',
         Trustlyeurope = <any> 'trustlyeurope',
+        Upi = <any> 'upi',
         Vipps = <any> 'vipps',
         Waave = <any> 'waave',
+        Webpay = <any> 'webpay',
         Wechat = <any> 'wechat',
         Zippay = <any> 'zippay'
     }

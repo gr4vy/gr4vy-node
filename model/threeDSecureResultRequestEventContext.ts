@@ -53,6 +53,10 @@ export class ThreeDSecureResultRequestEventContext {
     */
     'directoryTransactionId'?: string;
     /**
+    * Flag to indicate whether the buyer cancelled 3DS authentication.
+    */
+    'isChallengeCancelled'?: boolean;
+    /**
     * The version of 3DS used.
     */
     'version'?: string;
@@ -104,6 +108,11 @@ export class ThreeDSecureResultRequestEventContext {
             "name": "directoryTransactionId",
             "baseName": "directory_transaction_id",
             "type": "string"
+        },
+        {
+            "name": "isChallengeCancelled",
+            "baseName": "is_challenge_cancelled",
+            "type": "boolean"
         },
         {
             "name": "version",

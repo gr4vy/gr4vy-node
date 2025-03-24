@@ -22,6 +22,10 @@ export class CheckoutSessionPaymentMethodDetails {
     * ISO 3166 two letter country code.
     */
     'cardCountry'?: string | null;
+    /**
+    * The name of the card issuer.
+    */
+    'cardIssuerName'?: string | null;
 
     static discriminator: string | undefined = undefined;
 
@@ -39,6 +43,11 @@ export class CheckoutSessionPaymentMethodDetails {
         {
             "name": "cardCountry",
             "baseName": "card_country",
+            "type": "string"
+        },
+        {
+            "name": "cardIssuerName",
+            "baseName": "card_issuer_name",
             "type": "string"
         }    ];
 

@@ -68,6 +68,14 @@ export class MerchantAccountUpdate {
     * Card schemes accepted when creating jobs using this set of Loon API keys. Loon is the Account Updater service used by Gr4vy.  * If the field is not set, the Account Updater service configuration is not updated. * If the field is set to `null`, the Account Updater service is disabled. * If the field is set to `null`, the other `loon_*` fields must be set to `null` as well.
     */
     'loonAcceptedSchemes'?: Array<MerchantAccountUpdate.LoonAcceptedSchemesEnum>;
+    /**
+    * The maximum monetary amount allowed for over-capture, in the smallest currency unit, for example `1299` cents to allow for an over-capture of `$12.99`.
+    */
+    'overCaptureAmount'?: number | null;
+    /**
+    * The maximum percentage allowed for over-capture, for example `25` to allow for an over-capture of 25% of the original transaction amount.
+    */
+    'overCapturePercentage'?: number | null;
 
     static discriminator: string | undefined = undefined;
 
@@ -136,6 +144,16 @@ export class MerchantAccountUpdate {
             "name": "loonAcceptedSchemes",
             "baseName": "loon_accepted_schemes",
             "type": "Array<MerchantAccountUpdate.LoonAcceptedSchemesEnum>"
+        },
+        {
+            "name": "overCaptureAmount",
+            "baseName": "over_capture_amount",
+            "type": "number"
+        },
+        {
+            "name": "overCapturePercentage",
+            "baseName": "over_capture_percentage",
+            "type": "number"
         }    ];
 
     static getAttributeTypeMap() {

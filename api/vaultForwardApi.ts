@@ -97,6 +97,7 @@ export class VaultForwardApi {
      * Forward an API call to a PCI endpoint. The request body is evaluated and any template fields are replaced by the card data before the request is sent to the given destination.
      * @summary Forward PCI data
      * @param xVaultForwardPaymentMethods A comma-separated list of Payment Method IDs that can be used to fill in the request template. At least 1 must be given, and a maximum of 100 are accepted.
+     * @param xVaultForwardCheckoutSession A Checkout Session IDs that can be used to fill in the request template. At most 1 can be provided.
      * @param xVaultForwardUrl The URL to forward card data to.
      * @param xVaultForwardHttpMethod The HTTP method that is used when forwarding the request to the &#x60;x-vault-forward-url&#x60;.
      * @param xVaultForwardAuthentications A comma-separated list of IDs for the authentication methods that will be applied to a Vault Forward request.
@@ -104,7 +105,7 @@ export class VaultForwardApi {
      * @param xVaultForwardTimeout The number of seconds to wait before timing out when forwarding the request.
      * @param body Payload to forward in the request.
      */
-    public async makeVaultForward (xVaultForwardPaymentMethods: string, xVaultForwardUrl: string, xVaultForwardHttpMethod: 'POST' | 'PUT' | 'PATCH', xVaultForwardAuthentications?: string, xVaultForwardHeaderHEADERNAME?: string, xVaultForwardTimeout?: number, body?: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: string;  }> {
+    public async makeVaultForward (xVaultForwardPaymentMethods: string, xVaultForwardCheckoutSession: string, xVaultForwardUrl: string, xVaultForwardHttpMethod: 'POST' | 'PUT' | 'PATCH', xVaultForwardAuthentications?: string, xVaultForwardHeaderHEADERNAME?: string, xVaultForwardTimeout?: number, body?: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: string;  }> {
         const localVarPath = this.basePath + '/vault-forward';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
@@ -122,6 +123,11 @@ export class VaultForwardApi {
             throw new Error('Required parameter xVaultForwardPaymentMethods was null or undefined when calling makeVaultForward.');
         }
 
+        // verify required parameter 'xVaultForwardCheckoutSession' is not null or undefined
+        if (xVaultForwardCheckoutSession === null || xVaultForwardCheckoutSession === undefined) {
+            throw new Error('Required parameter xVaultForwardCheckoutSession was null or undefined when calling makeVaultForward.');
+        }
+
         // verify required parameter 'xVaultForwardUrl' is not null or undefined
         if (xVaultForwardUrl === null || xVaultForwardUrl === undefined) {
             throw new Error('Required parameter xVaultForwardUrl was null or undefined when calling makeVaultForward.');
@@ -133,6 +139,7 @@ export class VaultForwardApi {
         }
 
         localVarHeaderParams['x-vault-forward-payment-methods'] = ObjectSerializer.serialize(xVaultForwardPaymentMethods, "string");
+        localVarHeaderParams['x-vault-forward-checkout-session'] = ObjectSerializer.serialize(xVaultForwardCheckoutSession, "string");
         localVarHeaderParams['x-vault-forward-authentications'] = ObjectSerializer.serialize(xVaultForwardAuthentications, "string");
         localVarHeaderParams['x-vault-forward-url'] = ObjectSerializer.serialize(xVaultForwardUrl, "string");
         localVarHeaderParams['x-vault-forward-http-method'] = ObjectSerializer.serialize(xVaultForwardHttpMethod, "'POST' | 'PUT' | 'PATCH'");

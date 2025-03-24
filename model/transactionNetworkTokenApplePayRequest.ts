@@ -33,7 +33,7 @@ export class TransactionNetworkTokenApplePayRequest {
     */
     'cryptogram'?: string | null;
     /**
-    * The electronic commerce indicator for 3D-Secure.
+    * The ecommerce indicator for 3D-Secure.
     */
     'eci'?: string;
     'cardSource': TransactionNetworkTokenApplePayRequest.CardSourceEnum;

@@ -60,6 +60,10 @@ export class CartItem {
     * The product type of the cart item.
     */
     'productType'?: CartItem.ProductTypeEnum;
+    /**
+    * The country code of the seller of the item.
+    */
+    'sellerCountry'?: string | null;
 
     static discriminator: string | undefined = undefined;
 
@@ -118,6 +122,11 @@ export class CartItem {
             "name": "productType",
             "baseName": "product_type",
             "type": "CartItem.ProductTypeEnum"
+        },
+        {
+            "name": "sellerCountry",
+            "baseName": "seller_country",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {

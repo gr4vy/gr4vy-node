@@ -81,6 +81,14 @@ export class MerchantAccount {
     * The date and time when this merchant account was updated.
     */
     'updatedAt'?: Date;
+    /**
+    * The maximum monetary amount allowed for over-capture, in the smallest currency unit, for example `1299` cents to allow for an over-capture of `$12.99`.
+    */
+    'overCaptureAmount'?: number | null;
+    /**
+    * The maximum percentage allowed for over-capture, for example `25` to allow for an over-capture of 25% of the original transaction amount.
+    */
+    'overCapturePercentage'?: number | null;
 
     static discriminator: string | undefined = undefined;
 
@@ -169,6 +177,16 @@ export class MerchantAccount {
             "name": "updatedAt",
             "baseName": "updated_at",
             "type": "Date"
+        },
+        {
+            "name": "overCaptureAmount",
+            "baseName": "over_capture_amount",
+            "type": "number"
+        },
+        {
+            "name": "overCapturePercentage",
+            "baseName": "over_capture_percentage",
+            "type": "number"
         }    ];
 
     static getAttributeTypeMap() {

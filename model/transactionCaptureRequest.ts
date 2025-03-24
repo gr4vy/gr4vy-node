@@ -11,6 +11,7 @@
  */
 
 import { RequestFile } from './models';
+import { TransactionCaptureRequestAirline } from './transactionCaptureRequestAirline';
 
 /**
 * A request to capture a transaction.
@@ -20,6 +21,7 @@ export class TransactionCaptureRequest {
     * The monetary amount to capture an authorization for, in the smallest currency unit for the given currency, for example `1299` cents to create an authorization for `$12.99`.  When omitted blank, this will capture the entire amount.
     */
     'amount'?: number;
+    'airline'?: TransactionCaptureRequestAirline | null;
 
     static discriminator: string | undefined = undefined;
 
@@ -28,6 +30,11 @@ export class TransactionCaptureRequest {
             "name": "amount",
             "baseName": "amount",
             "type": "number"
+        },
+        {
+            "name": "airline",
+            "baseName": "airline",
+            "type": "TransactionCaptureRequestAirline"
         }    ];
 
     static getAttributeTypeMap() {

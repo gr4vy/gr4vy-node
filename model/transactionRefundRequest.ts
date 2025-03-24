@@ -32,6 +32,10 @@ export class TransactionRefundRequest {
     * An optional reason to attach extra context to the refund request.
     */
     'reason'?: string | null;
+    /**
+    * An external identifier that can be used to match the refund against your own records.
+    */
+    'externalIdentifier'?: string | null;
 
     static discriminator: string | undefined = undefined;
 
@@ -54,6 +58,11 @@ export class TransactionRefundRequest {
         {
             "name": "reason",
             "baseName": "reason",
+            "type": "string"
+        },
+        {
+            "name": "externalIdentifier",
+            "baseName": "external_identifier",
             "type": "string"
         }    ];
 

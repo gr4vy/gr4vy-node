@@ -11,8 +11,9 @@
  */
 
 import { RequestFile } from './models';
-import { PaymentServiceRequestFieldsInner } from './paymentServiceRequestFieldsInner';
+import { PaymentServiceUpdateFieldsInner } from './paymentServiceUpdateFieldsInner';
 import { PaymentServiceUpdateMerchantProfile } from './paymentServiceUpdateMerchantProfile';
+import { PaymentServiceUpdateReportingFieldsInner } from './paymentServiceUpdateReportingFieldsInner';
 
 /**
 * Request body for updating an active payment service.
@@ -25,7 +26,11 @@ export class PaymentServiceUpdate {
     /**
     * A list of fields, each containing a key-value pair for each field defined by the definition for this payment service e.g. for stripe-card `secret_key` is required and so must be sent within this field.
     */
-    'fields'?: Array<PaymentServiceRequestFieldsInner>;
+    'fields'?: Array<PaymentServiceUpdateFieldsInner>;
+    /**
+    * The `reporting_fields` field should contain a list of key-value pairs. Each key-value pair represents a reporting field defined by the payment service. For example, when enabling settlement reporting for `nuvei-card`, the `ssh_username` field is required and must be included in `reporting_fields`.
+    */
+    'reportingFields'?: Array<PaymentServiceUpdateReportingFieldsInner>;
     /**
     * A list of countries that this payment service needs to support in ISO two-letter code format.
     */
@@ -35,7 +40,7 @@ export class PaymentServiceUpdate {
     */
     'acceptedCurrencies'?: Array<string>;
     /**
-    * Defines if 3-D Secure is enabled for the service (can only be enabled if the payment service definition supports the `three_d_secure_hosted` feature). This does not affect pass through 3-D Secure data.
+    * Defines if 3-D Secure is enabled for the service. This feature can only be enabled if the payment service definition supports the `three_d_secure_hosted` feature. This does not affect pass through 3-D Secure data.
     */
     'threeDSecureEnabled'?: boolean = false;
     'merchantProfile'?: PaymentServiceUpdateMerchantProfile | null;
@@ -55,6 +60,10 @@ export class PaymentServiceUpdate {
     * Defines if network tokens are enabled for the service. This feature can only be enabled if the payment service is set as `open_loop` and the PSP is set up to accept network tokens.  If this value is set to `null`, it will be set to the value of `network_tokens_default` in the payment service definition.  If `network_tokens_toggle` is `false` in the payment service definition, `network_tokens_enabled` should either not be provided or set to `null`, or it will fail with a validation error.
     */
     'networkTokensEnabled'?: boolean | null;
+    /**
+    * Defines if settlement reporting is enabled for the service. This feature can only be enabled if the payment service definition supports the `settlement_reporting` feature.
+    */
+    'settlementReportingEnabled'?: boolean = false;
 
     static discriminator: string | undefined = undefined;
 
@@ -67,7 +76,12 @@ export class PaymentServiceUpdate {
         {
             "name": "fields",
             "baseName": "fields",
-            "type": "Array<PaymentServiceRequestFieldsInner>"
+            "type": "Array<PaymentServiceUpdateFieldsInner>"
+        },
+        {
+            "name": "reportingFields",
+            "baseName": "reporting_fields",
+            "type": "Array<PaymentServiceUpdateReportingFieldsInner>"
         },
         {
             "name": "acceptedCountries",
@@ -107,6 +121,11 @@ export class PaymentServiceUpdate {
         {
             "name": "networkTokensEnabled",
             "baseName": "network_tokens_enabled",
+            "type": "boolean"
+        },
+        {
+            "name": "settlementReportingEnabled",
+            "baseName": "settlement_reporting_enabled",
             "type": "boolean"
         }    ];
 

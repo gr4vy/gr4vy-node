@@ -12,6 +12,7 @@
 
 import { RequestFile } from './models';
 import { CartItem } from './cartItem';
+import { CheckoutSessionAirline } from './checkoutSessionAirline';
 import { CheckoutSessionPaymentMethod } from './checkoutSessionPaymentMethod';
 
 /**
@@ -38,6 +39,7 @@ export class CheckoutSession {
     * Any additional information about the transaction that you would like to store as key-value pairs. This data is passed to payment service providers that support it.
     */
     'metadata'?: { [key: string]: string; } | null;
+    'airline'?: CheckoutSessionAirline | null;
     'paymentMethod'?: CheckoutSessionPaymentMethod | null;
 
     static discriminator: string | undefined = undefined;
@@ -67,6 +69,11 @@ export class CheckoutSession {
             "name": "metadata",
             "baseName": "metadata",
             "type": "{ [key: string]: string; }"
+        },
+        {
+            "name": "airline",
+            "baseName": "airline",
+            "type": "CheckoutSessionAirline"
         },
         {
             "name": "paymentMethod",
