@@ -20,6 +20,7 @@ import { Error401Unauthorized } from '../model/error401Unauthorized';
 import { Error404NotFound } from '../model/error404NotFound';
 import { WebhookSubscription } from '../model/webhookSubscription';
 import { WebhookSubscriptionRequest } from '../model/webhookSubscriptionRequest';
+import { WebhookSubscriptionRotateSecretRequest } from '../model/webhookSubscriptionRotateSecretRequest';
 import { WebhookSubscriptionUpdateRequest } from '../model/webhookSubscriptionUpdateRequest';
 import { WebhookSubscriptions } from '../model/webhookSubscriptions';
 
@@ -344,6 +345,82 @@ export class WebhookSubscriptionsApi {
             useQuerystring: this._useQuerystring,
             json: true,
             body: ObjectSerializer.serialize(webhookSubscriptionRequest, "WebhookSubscriptionRequest")
+        };
+
+        let authenticationPromise = Promise.resolve();
+        if (this.authentications.bearerAuth.accessToken) {
+            authenticationPromise = authenticationPromise.then(() => this.authentications.bearerAuth.applyToRequest(localVarRequestOptions));
+        }
+        authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
+
+        let interceptorPromise = authenticationPromise;
+        for (const interceptor of this.interceptors) {
+            interceptorPromise = interceptorPromise.then(() => interceptor(localVarRequestOptions));
+        }
+
+        return interceptorPromise.then(() => {
+            if (Object.keys(localVarFormParams).length) {
+                if (localVarUseFormData) {
+                    (<any>localVarRequestOptions).formData = localVarFormParams;
+                } else {
+                    localVarRequestOptions.form = localVarFormParams;
+                }
+            }
+            return new Promise<{ response: http.IncomingMessage; body: WebhookSubscription;  }>((resolve, reject) => {
+                localVarRequest(localVarRequestOptions, (error, response, body) => {
+                    if (error) {
+                        reject(error);
+                    } else {
+                        if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                            body = ObjectSerializer.deserialize(body, "WebhookSubscription");
+                            resolve({ response: response, body: body });
+                        } else {
+                            reject(new HttpError(response, body, response.statusCode));
+                        }
+                    }
+                });
+            });
+        });
+    }
+    /**
+     * Rotate the webhook subscription secret.
+     * @summary Rotate the webhook subscription secret.
+     * @param webhookSubscriptionId The ID for the webhook subscription.
+     * @param xGr4vyMerchantAccountID The ID of the merchant account to act upon. When not  or provided, this value will default to the first merchant account a user has access to. This value can be set to &#x60;*&#x60; on some APIs to fetch resources from all merchant accounts.
+     * @param webhookSubscriptionRotateSecretRequest 
+     */
+    public async rotateWebhookSubscriptionSecret (webhookSubscriptionId: string, xGr4vyMerchantAccountID?: string, webhookSubscriptionRotateSecretRequest?: WebhookSubscriptionRotateSecretRequest, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: WebhookSubscription;  }> {
+        const localVarPath = this.basePath + '/webhook-subscriptions/{webhook_subscription_id}/rotate-secret'
+            .replace('{' + 'webhook_subscription_id' + '}', encodeURIComponent(String(webhookSubscriptionId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'webhookSubscriptionId' is not null or undefined
+        if (webhookSubscriptionId === null || webhookSubscriptionId === undefined) {
+            throw new Error('Required parameter webhookSubscriptionId was null or undefined when calling rotateWebhookSubscriptionSecret.');
+        }
+
+        localVarHeaderParams['X-Gr4vy-Merchant-Account-ID'] = ObjectSerializer.serialize(xGr4vyMerchantAccountID, "string");
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(webhookSubscriptionRotateSecretRequest, "WebhookSubscriptionRotateSecretRequest")
         };
 
         let authenticationPromise = Promise.resolve();

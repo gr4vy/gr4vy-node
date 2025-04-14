@@ -29,7 +29,6 @@ model/aPIKeyPairUpdate.ts
 model/accountUpdaterInquirySummary.ts
 model/accountUpdaterJob.ts
 model/accountUpdaterJobCreate.ts
-model/additionalIdentifiers.ts
 model/address.ts
 model/airline.ts
 model/airlineLeg.ts
@@ -408,5 +407,6 @@ model/userUpdate.ts
 model/webhookSubscription.ts
 model/webhookSubscriptionAuthentication.ts
 model/webhookSubscriptionRequest.ts
+model/webhookSubscriptionRotateSecretRequest.ts
 model/webhookSubscriptionUpdateRequest.ts
 model/webhookSubscriptions.ts

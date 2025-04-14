@@ -74,6 +74,26 @@ export class MerchantAccount {
     */
     'loonAcceptedSchemes'?: Array<MerchantAccount.LoonAcceptedSchemesEnum>;
     /**
+    * Whether the Realtime Account Updater service is enabled for this merchant account. The Account Updater service is used to update card details when cards are lost, stolen or expired.  * If the field is not set or if it\'s set to `false`, the Account Updater service doesn\'t get called if a payment fails with expired or invalid card details. * If the field is set to `true`, the service is called. Please note that for this to work the other `account_updater_*` fields must be set as well.
+    */
+    'accountUpdaterEnabled'?: boolean = false;
+    /**
+    * The public key used to encrypt the request to the Realtime Account Updater service. The Account Updater service is used to update card details when cards are lost, stolen or expired.  * If the field is not set or if it\'s set to `null`, the Account Updater service doesn\'t get called. * If the field is set, the other `account_updater_*` fields must be set as well.
+    */
+    'accountUpdaterRequestEncryptionKey'?: string | null;
+    /**
+    * The public key ID used to encrypt the request to the Realtime Account Updater service. The Account Updater service is used to update card details when cards are lost, stolen or expired.  * If the field is not set or if it\'s set to `null`, the Account Updater service doesn\'t get called. * If the field is set, the other `account_updater_*` fields must be set as well.
+    */
+    'accountUpdaterRequestEncryptionKeyId'?: string | null;
+    /**
+    * The private key used to decrypt the response from the Realtime Account Updater service. The Account Updater service is used to update card details when cards are lost, stolen or expired.  * If the field is not set or if it\'s set to `null`, the Account Updater service doesn\'t get called. * If the field is set, the other `account_updater_*` fields must be set as well.
+    */
+    'accountUpdaterResponseDecryptionKey'?: string | null;
+    /**
+    * The private key ID used to decrypt the response from the Realtime Account Updater service. The Account Updater service is used to update card details when cards are lost, stolen or expired.  * If the field is not set or if it\'s set to `null`, the Account Updater service doesn\'t get called. * If the field is set, the other `account_updater_*` fields must be set as well.
+    */
+    'accountUpdaterResponseDecryptionKeyId'?: string | null;
+    /**
     * The date and time when this merchant account was created.
     */
     'createdAt'?: Date;
@@ -167,6 +187,31 @@ export class MerchantAccount {
             "name": "loonAcceptedSchemes",
             "baseName": "loon_accepted_schemes",
             "type": "Array<MerchantAccount.LoonAcceptedSchemesEnum>"
+        },
+        {
+            "name": "accountUpdaterEnabled",
+            "baseName": "account_updater_enabled",
+            "type": "boolean"
+        },
+        {
+            "name": "accountUpdaterRequestEncryptionKey",
+            "baseName": "account_updater_request_encryption_key",
+            "type": "string"
+        },
+        {
+            "name": "accountUpdaterRequestEncryptionKeyId",
+            "baseName": "account_updater_request_encryption_key_id",
+            "type": "string"
+        },
+        {
+            "name": "accountUpdaterResponseDecryptionKey",
+            "baseName": "account_updater_response_decryption_key",
+            "type": "string"
+        },
+        {
+            "name": "accountUpdaterResponseDecryptionKeyId",
+            "baseName": "account_updater_response_decryption_key_id",
+            "type": "string"
         },
         {
             "name": "createdAt",

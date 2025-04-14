@@ -61,7 +61,7 @@ export class CartItem {
     */
     'productType'?: CartItem.ProductTypeEnum;
     /**
-    * The country code of the seller of the item.
+    * The country code of the seller of the item. For some connectors, if this country code does not match the `country` then the transaction will be marked to Visa as a foreign seller transaction to meet Marketplace reporting requirements.
     */
     'sellerCountry'?: string | null;
 

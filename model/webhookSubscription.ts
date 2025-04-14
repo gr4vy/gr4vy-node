@@ -35,6 +35,10 @@ export class WebhookSubscription {
     */
     'url'?: string;
     'authentication'?: WebhookSubscriptionAuthentication | null;
+    /**
+    * The active secret value.
+    */
+    'secret'?: string | null;
 
     static discriminator: string | undefined = undefined;
 
@@ -68,6 +72,11 @@ export class WebhookSubscription {
             "name": "authentication",
             "baseName": "authentication",
             "type": "WebhookSubscriptionAuthentication"
+        },
+        {
+            "name": "secret",
+            "baseName": "secret",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
