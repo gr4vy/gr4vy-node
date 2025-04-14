@@ -20,6 +20,10 @@ export class TransactionRefundAllRequest {
     * The reason to refund for. This can be used to attach a written reason to the refund request.
     */
     'reason'?: string | null;
+    /**
+    * An external identifier that can be used to match the refund against your own records.
+    */
+    'externalIdentifier'?: string | null;
 
     static discriminator: string | undefined = undefined;
 
@@ -27,6 +31,11 @@ export class TransactionRefundAllRequest {
         {
             "name": "reason",
             "baseName": "reason",
+            "type": "string"
+        },
+        {
+            "name": "externalIdentifier",
+            "baseName": "external_identifier",
             "type": "string"
         }    ];
 

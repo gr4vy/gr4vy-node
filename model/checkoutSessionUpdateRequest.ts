@@ -12,6 +12,7 @@
 
 import { RequestFile } from './models';
 import { CartItem } from './cartItem';
+import { CheckoutSessionCreateRequestAirline } from './checkoutSessionCreateRequestAirline';
 
 /**
 * A request to update a checkout session.
@@ -25,6 +26,7 @@ export class CheckoutSessionUpdateRequest {
     * Any additional information about the transaction that you would like to store as key-value pairs. This data is passed to payment service providers that support it.
     */
     'metadata'?: { [key: string]: string; } | null;
+    'airline'?: CheckoutSessionCreateRequestAirline | null;
 
     static discriminator: string | undefined = undefined;
 
@@ -38,6 +40,11 @@ export class CheckoutSessionUpdateRequest {
             "name": "metadata",
             "baseName": "metadata",
             "type": "{ [key: string]: string; }"
+        },
+        {
+            "name": "airline",
+            "baseName": "airline",
+            "type": "CheckoutSessionCreateRequestAirline"
         }    ];
 
     static getAttributeTypeMap() {

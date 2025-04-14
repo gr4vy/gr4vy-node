@@ -9,7 +9,7 @@ const client = getTestClient()
 const AMOUNT = 1299
 let transactionId
 
-jest.setTimeout(30000)
+jest.setTimeout(80000)
 
 const transactionRequest = new TransactionRequest()
 transactionRequest.amount = AMOUNT

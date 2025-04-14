@@ -12,12 +12,17 @@
 
 import { RequestFile } from './models';
 import { CartItem } from './cartItem';
+import { CheckoutSessionCreateRequestAirline } from './checkoutSessionCreateRequestAirline';
 import { TransactionBuyerRequest } from './transactionBuyerRequest';
 
 /**
 * A request to create a checkout session.
 */
 export class CheckoutSessionCreateRequest {
+    /**
+    * Defines when the checkout session will expire (in seconds). Defaults to an hour (3600 seconds).
+    */
+    'expiresIn'?: number = 3600;
     /**
     * An array of cart items that represents the line items of a transaction.
     */
@@ -26,11 +31,17 @@ export class CheckoutSessionCreateRequest {
     * Any additional information about the transaction that you would like to store as key-value pairs. This data is passed to payment service providers that support it.
     */
     'metadata'?: { [key: string]: string; } | null;
+    'airline'?: CheckoutSessionCreateRequestAirline | null;
     'buyer'?: TransactionBuyerRequest;
 
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "expiresIn",
+            "baseName": "expires_in",
+            "type": "number"
+        },
         {
             "name": "cartItems",
             "baseName": "cart_items",
@@ -40,6 +51,11 @@ export class CheckoutSessionCreateRequest {
             "name": "metadata",
             "baseName": "metadata",
             "type": "{ [key: string]: string; }"
+        },
+        {
+            "name": "airline",
+            "baseName": "airline",
+            "type": "CheckoutSessionCreateRequestAirline"
         },
         {
             "name": "buyer",

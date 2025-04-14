@@ -17,7 +17,7 @@ import { RequestFile } from './models';
 */
 export class ThreeDSecureSuccessEventContext {
     /**
-    * The electronic commerce indicator for the 3DS transaction.
+    * The ecommerce indicator for the 3DS transaction.
     */
     'eci'?: string;
     /**

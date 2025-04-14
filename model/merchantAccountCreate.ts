@@ -72,6 +72,34 @@ export class MerchantAccountCreate {
     * Card schemes accepted when creating jobs using this set of Loon API keys. Loon is the Account Updater service used by Gr4vy.  * If the field is not set or if it\'s set to `null`, the Account Updater service doesn\'t get configured. * If the field is set to `null`, the other `loon_*` fields must be set to `null` as well.
     */
     'loonAcceptedSchemes'?: Array<MerchantAccountCreate.LoonAcceptedSchemesEnum>;
+    /**
+    * The maximum monetary amount allowed for over-capture, in the smallest currency unit, for example `1299` cents to allow for an over-capture of `$12.99`.
+    */
+    'overCaptureAmount'?: number | null;
+    /**
+    * The maximum percentage allowed for over-capture, for example `25` to allow for an over-capture of 25% of the original transaction amount.
+    */
+    'overCapturePercentage'?: number | null;
+    /**
+    * Whether the Realtime Account Updater service is enabled for this merchant account. The Account Updater service is used to update card details when cards are lost, stolen or expired.  * If the field is not set or if it\'s set to `false`, the Account Updater service doesn\'t get called if a payment fails with expired or invalid card details. * If the field is set to `true`, the service is called. Please note that for this to work the other `account_updater_*` fields must be set as well.
+    */
+    'accountUpdaterEnabled'?: boolean = false;
+    /**
+    * The public key used to encrypt the request to the Realtime Account Updater service. The Account Updater service is used to update card details when cards are lost, stolen or expired.  * If the field is not set or if it\'s set to `null`, the Account Updater service doesn\'t get called. * If the field is set, the other `account_updater_*` fields must be set as well.
+    */
+    'accountUpdaterRequestEncryptionKey'?: string | null;
+    /**
+    * The public key ID used to encrypt the request to the Realtime Account Updater service. The Account Updater service is used to update card details when cards are lost, stolen or expired.  * If the field is not set or if it\'s set to `null`, the Account Updater service doesn\'t get called. * If the field is set, the other `account_updater_*` fields must be set as well.
+    */
+    'accountUpdaterRequestEncryptionKeyId'?: string | null;
+    /**
+    * The private key used to decrypt the response from the Realtime Account Updater service. The Account Updater service is used to update card details when cards are lost, stolen or expired.  * If the field is not set or if it\'s set to `null`, the Account Updater service doesn\'t get called. * If the field is set, the other `account_updater_*` fields must be set as well.
+    */
+    'accountUpdaterResponseDecryptionKey'?: string | null;
+    /**
+    * The private key ID used to decrypt the response from the Realtime Account Updater service. The Account Updater service is used to update card details when cards are lost, stolen or expired.  * If the field is not set or if it\'s set to `null`, the Account Updater service doesn\'t get called. * If the field is set, the other `account_updater_*` fields must be set as well.
+    */
+    'accountUpdaterResponseDecryptionKeyId'?: string | null;
 
     static discriminator: string | undefined = undefined;
 
@@ -145,6 +173,41 @@ export class MerchantAccountCreate {
             "name": "loonAcceptedSchemes",
             "baseName": "loon_accepted_schemes",
             "type": "Array<MerchantAccountCreate.LoonAcceptedSchemesEnum>"
+        },
+        {
+            "name": "overCaptureAmount",
+            "baseName": "over_capture_amount",
+            "type": "number"
+        },
+        {
+            "name": "overCapturePercentage",
+            "baseName": "over_capture_percentage",
+            "type": "number"
+        },
+        {
+            "name": "accountUpdaterEnabled",
+            "baseName": "account_updater_enabled",
+            "type": "boolean"
+        },
+        {
+            "name": "accountUpdaterRequestEncryptionKey",
+            "baseName": "account_updater_request_encryption_key",
+            "type": "string"
+        },
+        {
+            "name": "accountUpdaterRequestEncryptionKeyId",
+            "baseName": "account_updater_request_encryption_key_id",
+            "type": "string"
+        },
+        {
+            "name": "accountUpdaterResponseDecryptionKey",
+            "baseName": "account_updater_response_decryption_key",
+            "type": "string"
+        },
+        {
+            "name": "accountUpdaterResponseDecryptionKeyId",
+            "baseName": "account_updater_response_decryption_key_id",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {

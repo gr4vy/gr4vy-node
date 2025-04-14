@@ -21,7 +21,7 @@ export class PaymentServiceRequestFieldsInner {
     */
     'key': string;
     /**
-    * The value of a field to set; you can unset optional fields by setting this to an empty string `\"\"`.
+    * The value of a field to set.
     */
     'value': string;
 

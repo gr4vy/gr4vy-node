@@ -249,8 +249,10 @@ export class PaymentMethodsApi {
      * @param buyerExternalIdentifier Filters the results to only the items for which the &#x60;buyer&#x60; has an &#x60;external_identifier&#x60; that matches this value.
      * @param country Filters the results to only the items which support this country code. A country is formatted as 2-letter ISO country code.
      * @param currency Filters the results to only the items which support this currency code. A currency is formatted as 3-letter ISO currency code.
+     * @param sortBy Used by the payment method filter to sort the results by an specific usage field.
+     * @param orderBy Used to show the results ascending or descending order.
      */
-    public async listBuyerPaymentMethods (buyerId?: string, buyerExternalIdentifier?: string, country?: string, currency?: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: PaymentMethodsTokenized;  }> {
+    public async listBuyerPaymentMethods (buyerId?: string, buyerExternalIdentifier?: string, country?: string, currency?: string, sortBy?: 'last_used_at' | 'usage_count' | 'cit_last_used_at' | 'cit_usage_count', orderBy?: 'asc' | 'desc', options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: PaymentMethodsTokenized;  }> {
         const localVarPath = this.basePath + '/buyers/payment-methods';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
@@ -277,6 +279,14 @@ export class PaymentMethodsApi {
 
         if (currency !== undefined) {
             localVarQueryParameters['currency'] = ObjectSerializer.serialize(currency, "string");
+        }
+
+        if (sortBy !== undefined) {
+            localVarQueryParameters['sort_by'] = ObjectSerializer.serialize(sortBy, "'last_used_at' | 'usage_count' | 'cit_last_used_at' | 'cit_usage_count'");
+        }
+
+        if (orderBy !== undefined) {
+            localVarQueryParameters['order_by'] = ObjectSerializer.serialize(orderBy, "'asc' | 'desc'");
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);

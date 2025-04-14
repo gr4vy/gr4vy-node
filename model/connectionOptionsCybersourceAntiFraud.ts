@@ -21,7 +21,7 @@ export class ConnectionOptionsCybersourceAntiFraud {
     */
     'metaKeyMerchantId'?: string | null;
     /**
-    * This is a key-value object for merchant defined data. Each key needs to be a numeric string identifying the MDD field to set. For example, for field 1 set the key to \"1\".
+    * This is a key-value object for merchant defined data. Each key needs to be a numeric string identifying the MDD field to set. For example, for field 1 set the key to \"1\".  Please avoid fields \"31\", \"48\", \"50\"-\"56\" and \"63\"-\"76\" as these are auto-populated based on the transaction profile.
     */
     'merchantDefinedData'?: { [key: string]: string; };
     /**

@@ -72,6 +72,22 @@ export class PaymentMethodTokenized {
     * Whether this card has a pending replacement that hasn\'t been applied yet.  When the Account Updater determines that new card details are available, existing details are not changed immediately, but this field is set to `true`. There are three scenarios in which the actual replacement occurs:  1. When this card has expired. 2. When only the expiration date changed. 3. When a transaction using this card is declined with any of the following codes:     * `canceled_payment_method`     * `expired_payment_method`     * `unavailable_payment_method`     * `unknown_payment_method`  When the replacement is applied, this field is set to `false`. For non-card payment methods, the value of this field is always set to `false`.
     */
     'hasReplacement'?: boolean;
+    /**
+    * The timestamp when this payment method was last used in a transaction.
+    */
+    'lastUsedAt'?: Date | null;
+    /**
+    * The number of times this payment method has been used in transactions.
+    */
+    'usageCount'?: number;
+    /**
+    * The timestamp when this payment method was last used in a transaction for client initiated transactions.
+    */
+    'citLastUsedAt'?: Date | null;
+    /**
+    * The number of times this payment method has been used in transactions for client initiated transactions.
+    */
+    'citUsageCount'?: number;
 
     static discriminator: string | undefined = undefined;
 
@@ -145,6 +161,26 @@ export class PaymentMethodTokenized {
             "name": "hasReplacement",
             "baseName": "has_replacement",
             "type": "boolean"
+        },
+        {
+            "name": "lastUsedAt",
+            "baseName": "last_used_at",
+            "type": "Date"
+        },
+        {
+            "name": "usageCount",
+            "baseName": "usage_count",
+            "type": "number"
+        },
+        {
+            "name": "citLastUsedAt",
+            "baseName": "cit_last_used_at",
+            "type": "Date"
+        },
+        {
+            "name": "citUsageCount",
+            "baseName": "cit_usage_count",
+            "type": "number"
         }    ];
 
     static getAttributeTypeMap() {
@@ -178,9 +214,13 @@ export namespace PaymentMethodTokenized {
         Dcb = <any> 'dcb',
         Dlocal = <any> 'dlocal',
         Ebanx = <any> 'ebanx',
+        Efecty = <any> 'efecty',
         Eps = <any> 'eps',
         Everydaypay = <any> 'everydaypay',
         Gcash = <any> 'gcash',
+        Gem = <any> 'gem',
+        Gemds = <any> 'gemds',
+        GiftCard = <any> 'gift-card',
         Giropay = <any> 'giropay',
         Givingblock = <any> 'givingblock',
         Gocardless = <any> 'gocardless',
@@ -193,12 +233,16 @@ export namespace PaymentMethodTokenized {
         Kakaopay = <any> 'kakaopay',
         Kcp = <any> 'kcp',
         Klarna = <any> 'klarna',
+        Latitude = <any> 'latitude',
+        Latitudeds = <any> 'latitudeds',
         Laybuy = <any> 'laybuy',
         Linepay = <any> 'linepay',
         Linkaja = <any> 'linkaja',
         Maybankqrpay = <any> 'maybankqrpay',
+        Mercadopago = <any> 'mercadopago',
         Multibanco = <any> 'multibanco',
         Multipago = <any> 'multipago',
+        Netbanking = <any> 'netbanking',
         NetworkToken = <any> 'network-token',
         Oney3x = <any> 'oney_3x',
         Oney4x = <any> 'oney_4x',
@@ -214,6 +258,7 @@ export namespace PaymentMethodTokenized {
         Payto = <any> 'payto',
         Venmo = <any> 'venmo',
         Pix = <any> 'pix',
+        Pse = <any> 'pse',
         Rabbitlinepay = <any> 'rabbitlinepay',
         Razorpay = <any> 'razorpay',
         Scalapay = <any> 'scalapay',
@@ -229,8 +274,10 @@ export namespace PaymentMethodTokenized {
         Truemoney = <any> 'truemoney',
         Trustly = <any> 'trustly',
         Trustlyeurope = <any> 'trustlyeurope',
+        Upi = <any> 'upi',
         Vipps = <any> 'vipps',
         Waave = <any> 'waave',
+        Webpay = <any> 'webpay',
         Wechat = <any> 'wechat',
         Zippay = <any> 'zippay'
     }

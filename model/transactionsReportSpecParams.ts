@@ -11,17 +11,17 @@
  */
 
 import { RequestFile } from './models';
-import { ReportSpecParamsFilters } from './reportSpecParamsFilters';
+import { TransactionsReportSpecParamsFilters } from './transactionsReportSpecParamsFilters';
 
 /**
-* Parameters used to configure the report. Acceptable values for this property depend on the value specified for `model`.
+* Parameters used to configure the report.
 */
-export class ReportSpecParams {
+export class TransactionsReportSpecParams {
     /**
     * A list of fields for the report.
     */
-    'fields'?: Array<ReportSpecParams.FieldsEnum>;
-    'filters'?: ReportSpecParamsFilters;
+    'fields'?: Array<TransactionsReportSpecParams.FieldsEnum>;
+    'filters'?: TransactionsReportSpecParamsFilters;
     /**
     * A list of fields to sort the report.
     */
@@ -33,12 +33,12 @@ export class ReportSpecParams {
         {
             "name": "fields",
             "baseName": "fields",
-            "type": "Array<ReportSpecParams.FieldsEnum>"
+            "type": "Array<TransactionsReportSpecParams.FieldsEnum>"
         },
         {
             "name": "filters",
             "baseName": "filters",
-            "type": "ReportSpecParamsFilters"
+            "type": "TransactionsReportSpecParamsFilters"
         },
         {
             "name": "sort",
@@ -47,11 +47,11 @@ export class ReportSpecParams {
         }    ];
 
     static getAttributeTypeMap() {
-        return ReportSpecParams.attributeTypeMap;
+        return TransactionsReportSpecParams.attributeTypeMap;
     }
 }
 
-export namespace ReportSpecParams {
+export namespace TransactionsReportSpecParams {
     export enum FieldsEnum {
         Id = <any> 'id',
         ExternalIdentifier = <any> 'external_identifier',
@@ -74,10 +74,11 @@ export namespace ReportSpecParams {
         AuthResponseCode = <any> 'auth_response_code',
         RawResponseCode = <any> 'raw_response_code',
         RawResponseDescription = <any> 'raw_response_description',
+        ErrorCode = <any> 'error_code',
         Metadata = <any> 'metadata',
+        PaymentSource = <any> 'payment_source',
         IsSubsequentPayment = <any> 'is_subsequent_payment',
         MerchantInitiated = <any> 'merchant_initiated',
-        PaymentSource = <any> 'payment_source',
         ThreeDSecureStatus = <any> 'three_d_secure_status',
         ThreeDSecureEci = <any> 'three_d_secure_eci',
         ThreeDSecureAuthResp = <any> 'three_d_secure_auth_resp',
@@ -97,6 +98,13 @@ export namespace ReportSpecParams {
         BillingDetailsAddressLine2 = <any> 'billing_details_address_line2',
         BillingDetailsAddressOrganization = <any> 'billing_details_address_organization',
         BillingDetailsTaxId = <any> 'billing_details_tax_id',
-        BillingDetailsTaxIdKind = <any> 'billing_details_tax_id_kind'
+        BillingDetailsTaxIdKind = <any> 'billing_details_tax_id_kind',
+        AuthorizedAmount = <any> 'authorized_amount',
+        IntentOutcome = <any> 'intent_outcome',
+        GiftCardRedemptionsAmount = <any> 'gift_card_redemptions_amount',
+        GiftCardRedemptionRefundsAmount = <any> 'gift_card_redemption_refunds_amount',
+        Settled = <any> 'settled',
+        SettledCurrency = <any> 'settled_currency',
+        SettledAmount = <any> 'settled_amount'
     }
 }

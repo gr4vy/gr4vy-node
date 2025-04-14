@@ -399,7 +399,7 @@ export class BuyersApi {
     /**
      * Returns a list of buyers.
      * @summary List buyers
-     * @param search Filters the results to only the buyers for which the &#x60;display_name&#x60; or &#x60;external_identifier&#x60; matches this value. This field allows for a partial match, matching any buyer for which either of the fields partially or completely matches.  Please do not use this query parameter in a production application, as this API call is very inefficient and may negatively impact transaction performance.
+     * @param search ***Please do not use this query parameter in a production application, as this API call is very inefficient and may negatively impact transaction performance.***  Filters the results to only the buyers for which the &#x60;display_name&#x60;, &#x60;email_address&#x60; or &#x60;external_identifier&#x60; matches this value. This field allows for a case insensitive partial match, matching any buyer for which any of the fields partially or completely matches.
      * @param externalIdentifier Filters the results to only the items for which the &#x60;buyer&#x60; has an &#x60;external_identifier&#x60; that exactly matches this value.
      * @param limit Defines the maximum number of items to return for this request.
      * @param cursor A cursor that identifies the page of results to return. This is used to paginate the results of this API.  For the first page of results, this parameter can be left out. For additional pages, use the value returned by the API in the &#x60;next_cursor&#x60; field. Similarly the &#x60;previous_cursor&#x60; can be used to reverse backwards in the list.

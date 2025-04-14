@@ -20,6 +20,18 @@ export class ConnectionOptionsAdyenCard {
     * A key-value object representing additional data to be passed to Adyen.
     */
     'additionalData'?: { [key: string]: string; };
+    /**
+    * Enabled Adyen\'s auto-rescue feature.
+    */
+    'autoRescue'?: boolean = false;
+    /**
+    * Defines the number of days to auto-retry a payment for if `autoRescue` is enabled.
+    */
+    'maxDaysToRescue'?: number | null;
+    /**
+    * Defines the Adyen auto-rescue test scenario to invoke.
+    */
+    'autoRescueScenario'?: string | null;
 
     static discriminator: string | undefined = undefined;
 
@@ -28,6 +40,21 @@ export class ConnectionOptionsAdyenCard {
             "name": "additionalData",
             "baseName": "additionalData",
             "type": "{ [key: string]: string; }"
+        },
+        {
+            "name": "autoRescue",
+            "baseName": "autoRescue",
+            "type": "boolean"
+        },
+        {
+            "name": "maxDaysToRescue",
+            "baseName": "maxDaysToRescue",
+            "type": "number"
+        },
+        {
+            "name": "autoRescueScenario",
+            "baseName": "autoRescueScenario",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
