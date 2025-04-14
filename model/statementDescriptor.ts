@@ -25,15 +25,19 @@ export class StatementDescriptor {
     */
     'description'?: string | null;
     /**
-    * City from which the charge originated.
+    * The merchant\'s city to be displayed in a statement descriptor.
     */
     'city'?: string | null;
+    /**
+    * The 2-letter ISO country code of the merchant to be displayed in a statement descriptor. 
+    */
+    'country'?: string | null;
     /**
     * The value in the phone number field of a customer\'s statement which should be formatted according to the [E164 number standard](https://www.twilio.com/docs/glossary/what-e164).
     */
     'phoneNumber'?: string | null;
     /**
-    * The value in the URL/web address field of a customer\'s statement.
+    * The merchant\'s URL to be displayed in a statement descriptor.
     */
     'url'?: string | null;
 
@@ -53,6 +57,11 @@ export class StatementDescriptor {
         {
             "name": "city",
             "baseName": "city",
+            "type": "string"
+        },
+        {
+            "name": "country",
+            "baseName": "country",
             "type": "string"
         },
         {

@@ -33,7 +33,7 @@ export class Refund {
     */
     'paymentServiceRefundId'?: string;
     /**
-    * The status of the refund. It may change over time as asynchronous processing events occur.  - `processing` - The refund is being processed. - `succeeded` - The refund was successful. - `declined` - The refund was declined by the underlying PSP. - `failed` - The refund could not proceed due to a technical issue. - `voided` - The refund was voided and will not proceed.
+    * The status of the refund. It may change over time as asynchronous processing events occur.  - `processing` - The refund is being processed. - `succeeded` - The refund was successful. - `declined` - The refund was declined by the underlying PSP. - `failed` - The refund could not proceed due to a technical issue.
     */
     'status'?: Refund.StatusEnum;
     /**
@@ -64,6 +64,22 @@ export class Refund {
     * The optional ID of the instrument that was refunded. This may be `null` if the instrument was not stored.
     */
     'targetId'?: string | null;
+    /**
+    * An external identifier that can be used to match the refund against your own records.
+    */
+    'externalIdentifier'?: string | null;
+    /**
+    * The base62 encoded refund ID. This represents a shorter version of this refund\'s `id` which is sent to payment services, anti-fraud services, and other connectors. You can use this ID to reconcile a payment service\'s refund against our system.
+    */
+    'reconciliationId'?: string;
+    /**
+    * The external identifier of the related transaction.
+    */
+    'transactionExternalIdentifier'?: string | null;
+    /**
+    * The base62 encoded transaction ID. This represents a shorter version of the related transaction\'s `id` which is sent to payment services, anti-fraud services, and other connectors. You can use this ID to reconcile a payment service\'s transaction against our system.
+    */
+    'transactionReconciliationId'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -127,6 +143,26 @@ export class Refund {
             "name": "targetId",
             "baseName": "target_id",
             "type": "string"
+        },
+        {
+            "name": "externalIdentifier",
+            "baseName": "external_identifier",
+            "type": "string"
+        },
+        {
+            "name": "reconciliationId",
+            "baseName": "reconciliation_id",
+            "type": "string"
+        },
+        {
+            "name": "transactionExternalIdentifier",
+            "baseName": "transaction_external_identifier",
+            "type": "string"
+        },
+        {
+            "name": "transactionReconciliationId",
+            "baseName": "transaction_reconciliation_id",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
@@ -142,8 +178,7 @@ export namespace Refund {
         Processing = <any> 'processing',
         Succeeded = <any> 'succeeded',
         Declined = <any> 'declined',
-        Failed = <any> 'failed',
-        Voided = <any> 'voided'
+        Failed = <any> 'failed'
     }
     export enum TargetTypeEnum {
         PaymentMethod = <any> 'payment-method',

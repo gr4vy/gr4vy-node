@@ -13,6 +13,7 @@
 import { RequestFile } from './models';
 import { GiftCardServiceFieldsInner } from './giftCardServiceFieldsInner';
 import { PaymentServiceMerchantProfile } from './paymentServiceMerchantProfile';
+import { PaymentServiceReportingFieldsInner } from './paymentServiceReportingFieldsInner';
 
 /**
 * An active, configured payment service.
@@ -51,6 +52,10 @@ export class PaymentService {
     */
     'fields'?: Array<GiftCardServiceFieldsInner>;
     /**
+    * A list of fields, each containing a key-value pair for each field configured for reporting for this payment service. Fields marked as `secret` (see Payment Service Definition) are not returned.
+    */
+    'reportingFields'?: Array<PaymentServiceReportingFieldsInner>;
+    /**
     * The unique ID for a merchant account.
     */
     'merchantAccountId'?: string;
@@ -76,11 +81,15 @@ export class PaymentService {
     */
     'paymentServiceDefinitionId'?: string;
     /**
+    * Defines if settlement reporting is enabled for the service. This feature can only be enabled if the payment service definition supports the `settlement_reporting` feature.
+    */
+    'settlementReportingEnabled'?: boolean;
+    /**
     * The current status of this service. This will start off as pending, move to created, and might eventually move to an error status if and when the credentials are no longer valid. 
     */
     'status'?: PaymentService.StatusEnum;
     /**
-    * Defines if 3-D Secure is enabled for the service (can only be enabled if the payment service definition supports the `three_d_secure_hosted` feature). This does not affect pass through 3-D Secure data.
+    * Defines if 3-D Secure is enabled for the service. This feature can only be enabled if the payment service definition supports the `three_d_secure_hosted` feature. This does not affect pass through 3-D Secure data.
     */
     'threeDSecureEnabled'?: boolean = false;
     /**
@@ -136,6 +145,11 @@ export class PaymentService {
             "type": "Array<GiftCardServiceFieldsInner>"
         },
         {
+            "name": "reportingFields",
+            "baseName": "reporting_fields",
+            "type": "Array<PaymentServiceReportingFieldsInner>"
+        },
+        {
             "name": "merchantAccountId",
             "baseName": "merchant_account_id",
             "type": "string"
@@ -169,6 +183,11 @@ export class PaymentService {
             "name": "paymentServiceDefinitionId",
             "baseName": "payment_service_definition_id",
             "type": "string"
+        },
+        {
+            "name": "settlementReportingEnabled",
+            "baseName": "settlement_reporting_enabled",
+            "type": "boolean"
         },
         {
             "name": "status",
@@ -222,9 +241,13 @@ export namespace PaymentService {
         Dcb = <any> 'dcb',
         Dlocal = <any> 'dlocal',
         Ebanx = <any> 'ebanx',
+        Efecty = <any> 'efecty',
         Eps = <any> 'eps',
         Everydaypay = <any> 'everydaypay',
         Gcash = <any> 'gcash',
+        Gem = <any> 'gem',
+        Gemds = <any> 'gemds',
+        GiftCard = <any> 'gift-card',
         Giropay = <any> 'giropay',
         Givingblock = <any> 'givingblock',
         Gocardless = <any> 'gocardless',
@@ -237,12 +260,16 @@ export namespace PaymentService {
         Kakaopay = <any> 'kakaopay',
         Kcp = <any> 'kcp',
         Klarna = <any> 'klarna',
+        Latitude = <any> 'latitude',
+        Latitudeds = <any> 'latitudeds',
         Laybuy = <any> 'laybuy',
         Linepay = <any> 'linepay',
         Linkaja = <any> 'linkaja',
         Maybankqrpay = <any> 'maybankqrpay',
+        Mercadopago = <any> 'mercadopago',
         Multibanco = <any> 'multibanco',
         Multipago = <any> 'multipago',
+        Netbanking = <any> 'netbanking',
         NetworkToken = <any> 'network-token',
         Oney3x = <any> 'oney_3x',
         Oney4x = <any> 'oney_4x',
@@ -258,6 +285,7 @@ export namespace PaymentService {
         Payto = <any> 'payto',
         Venmo = <any> 'venmo',
         Pix = <any> 'pix',
+        Pse = <any> 'pse',
         Rabbitlinepay = <any> 'rabbitlinepay',
         Razorpay = <any> 'razorpay',
         Scalapay = <any> 'scalapay',
@@ -273,8 +301,10 @@ export namespace PaymentService {
         Truemoney = <any> 'truemoney',
         Trustly = <any> 'trustly',
         Trustlyeurope = <any> 'trustlyeurope',
+        Upi = <any> 'upi',
         Vipps = <any> 'vipps',
         Waave = <any> 'waave',
+        Webpay = <any> 'webpay',
         Wechat = <any> 'wechat',
         Zippay = <any> 'zippay'
     }

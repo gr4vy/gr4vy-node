@@ -34,6 +34,10 @@ export class TransactionBuyer {
     * An external identifier that can be used to match the buyer against your own records.
     */
     'externalIdentifier'?: string | null;
+    /**
+    * The source account number to perform an account funding transaction.
+    */
+    'accountNumber'?: string | null;
 
     static discriminator: string | undefined = undefined;
 
@@ -61,6 +65,11 @@ export class TransactionBuyer {
         {
             "name": "externalIdentifier",
             "baseName": "external_identifier",
+            "type": "string"
+        },
+        {
+            "name": "accountNumber",
+            "baseName": "account_number",
             "type": "string"
         }    ];
 

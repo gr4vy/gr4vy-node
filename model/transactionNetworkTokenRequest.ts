@@ -29,6 +29,10 @@ export class TransactionNetworkTokenRequest {
     */
     'expirationDate': string;
     /**
+    * The ecommerce indicator.
+    */
+    'eci'?: string;
+    /**
     * The cryptogram of the network token.
     */
     'cryptogram'?: string | null;
@@ -53,6 +57,11 @@ export class TransactionNetworkTokenRequest {
         {
             "name": "expirationDate",
             "baseName": "expiration_date",
+            "type": "string"
+        },
+        {
+            "name": "eci",
+            "baseName": "eci",
             "type": "string"
         },
         {

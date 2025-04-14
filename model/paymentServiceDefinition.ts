@@ -13,6 +13,7 @@
 import { RequestFile } from './models';
 import { AntiFraudServiceDefinitionFieldsInner } from './antiFraudServiceDefinitionFieldsInner';
 import { PaymentServiceDefinitionConfiguration } from './paymentServiceDefinitionConfiguration';
+import { PaymentServiceDefinitionReportingFieldsInner } from './paymentServiceDefinitionReportingFieldsInner';
 import { PaymentServiceDefinitionSupportedFeatures } from './paymentServiceDefinitionSupportedFeatures';
 
 /**
@@ -39,6 +40,10 @@ export class PaymentServiceDefinition {
     * A list of fields that need to be submitted when activating the payment. service.
     */
     'fields'?: Array<AntiFraudServiceDefinitionFieldsInner>;
+    /**
+    * A list of fields that need to be submitted when enabling the payment service settlement reporting.
+    */
+    'reportingFields'?: Array<PaymentServiceDefinitionReportingFieldsInner>;
     /**
     * A list of three-letter ISO currency codes that this service supports.
     */
@@ -85,6 +90,11 @@ export class PaymentServiceDefinition {
             "name": "fields",
             "baseName": "fields",
             "type": "Array<AntiFraudServiceDefinitionFieldsInner>"
+        },
+        {
+            "name": "reportingFields",
+            "baseName": "reporting_fields",
+            "type": "Array<PaymentServiceDefinitionReportingFieldsInner>"
         },
         {
             "name": "supportedCurrencies",
@@ -148,9 +158,13 @@ export namespace PaymentServiceDefinition {
         Dcb = <any> 'dcb',
         Dlocal = <any> 'dlocal',
         Ebanx = <any> 'ebanx',
+        Efecty = <any> 'efecty',
         Eps = <any> 'eps',
         Everydaypay = <any> 'everydaypay',
         Gcash = <any> 'gcash',
+        Gem = <any> 'gem',
+        Gemds = <any> 'gemds',
+        GiftCard = <any> 'gift-card',
         Giropay = <any> 'giropay',
         Givingblock = <any> 'givingblock',
         Gocardless = <any> 'gocardless',
@@ -163,12 +177,16 @@ export namespace PaymentServiceDefinition {
         Kakaopay = <any> 'kakaopay',
         Kcp = <any> 'kcp',
         Klarna = <any> 'klarna',
+        Latitude = <any> 'latitude',
+        Latitudeds = <any> 'latitudeds',
         Laybuy = <any> 'laybuy',
         Linepay = <any> 'linepay',
         Linkaja = <any> 'linkaja',
         Maybankqrpay = <any> 'maybankqrpay',
+        Mercadopago = <any> 'mercadopago',
         Multibanco = <any> 'multibanco',
         Multipago = <any> 'multipago',
+        Netbanking = <any> 'netbanking',
         NetworkToken = <any> 'network-token',
         Oney3x = <any> 'oney_3x',
         Oney4x = <any> 'oney_4x',
@@ -184,6 +202,7 @@ export namespace PaymentServiceDefinition {
         Payto = <any> 'payto',
         Venmo = <any> 'venmo',
         Pix = <any> 'pix',
+        Pse = <any> 'pse',
         Rabbitlinepay = <any> 'rabbitlinepay',
         Razorpay = <any> 'razorpay',
         Scalapay = <any> 'scalapay',
@@ -199,8 +218,10 @@ export namespace PaymentServiceDefinition {
         Truemoney = <any> 'truemoney',
         Trustly = <any> 'trustly',
         Trustlyeurope = <any> 'trustlyeurope',
+        Upi = <any> 'upi',
         Vipps = <any> 'vipps',
         Waave = <any> 'waave',
+        Webpay = <any> 'webpay',
         Wechat = <any> 'wechat',
         Zippay = <any> 'zippay'
     }

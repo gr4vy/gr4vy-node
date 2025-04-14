@@ -105,6 +105,7 @@ export namespace TransactionHistoryEvent {
         PaymentConnectorResponseTransactionVoidDeclined = <any> 'payment-connector-response-transaction-void-declined',
         PaymentConnectorResponseTransactionVoidFailed = <any> 'payment-connector-response-transaction-void-failed',
         PaymentConnectorResponseTransactionVoidSucceeded = <any> 'payment-connector-response-transaction-void-succeeded',
+        PaymentConnectorReportTransactionSettled = <any> 'payment-connector-report-transaction-settled',
         PaymentConnectorExternalTransactionRequest = <any> 'payment-connector-external-transaction-request',
         ThreeDSecureAuthenticationRequest = <any> 'three-d-secure-authentication-request',
         ThreeDSecurePreparationRequest = <any> 'three-d-secure-preparation-request',

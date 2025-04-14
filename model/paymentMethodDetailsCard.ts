@@ -17,25 +17,34 @@ import { RequestFile } from './models';
 */
 export class PaymentMethodDetailsCard {
     /**
+    * The first 6 digits of the full card number (the BIN).
+    */
+    'bin'?: string;
+    /**
     * The type of card, one of `credit`, `debit` or `prepaid`.
     */
     'cardType'?: PaymentMethodDetailsCard.CardTypeEnum;
     /**
-    * The first 6 digits of the full card number (the BIN).
+    * The name of the card issuer.
     */
-    'bin'?: string;
+    'cardIssuerName'?: string;
 
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "bin",
+            "baseName": "bin",
+            "type": "string"
+        },
         {
             "name": "cardType",
             "baseName": "card_type",
             "type": "PaymentMethodDetailsCard.CardTypeEnum"
         },
         {
-            "name": "bin",
-            "baseName": "bin",
+            "name": "cardIssuerName",
+            "baseName": "card_issuer_name",
             "type": "string"
         }    ];
 

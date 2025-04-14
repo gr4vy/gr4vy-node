@@ -18,7 +18,7 @@ export class ThreeDSecureData {
     */
     'cavv': string;
     /**
-    * The electronic commerce indicator for the 3DS transaction.
+    * The ecommerce indicator for the 3DS transaction.
     */
     'eci': string;
     /**

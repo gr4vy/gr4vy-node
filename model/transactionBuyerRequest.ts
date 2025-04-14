@@ -28,6 +28,10 @@ export class TransactionBuyerRequest {
     'displayName'?: string | null;
     'billingDetails'?: TransactionBuyerRequestBillingDetails | null;
     'shippingDetails'?: TransactionBuyerRequestShippingDetails | null;
+    /**
+    * The source account number to perform an account funding transaction.
+    */
+    'accountNumber'?: string | null;
 
     static discriminator: string | undefined = undefined;
 
@@ -51,6 +55,11 @@ export class TransactionBuyerRequest {
             "name": "shippingDetails",
             "baseName": "shipping_details",
             "type": "TransactionBuyerRequestShippingDetails"
+        },
+        {
+            "name": "accountNumber",
+            "baseName": "account_number",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {

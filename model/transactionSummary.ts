@@ -108,6 +108,18 @@ export class TransactionSummary {
     * Defines when the transaction was last updated.
     */
     'updatedAt'?: Date;
+    /**
+    * The currency of this transaction\'s settlement in ISO 4217 three-letter code format.
+    */
+    'settledCurrency'?: string | null;
+    /**
+    * The net amount settled for this transaction.
+    */
+    'settledAmount'?: number;
+    /**
+    * Indicates whether this transaction has been settled.
+    */
+    'settled'?: boolean;
 
     static discriminator: string | undefined = undefined;
 
@@ -236,6 +248,21 @@ export class TransactionSummary {
             "name": "updatedAt",
             "baseName": "updated_at",
             "type": "Date"
+        },
+        {
+            "name": "settledCurrency",
+            "baseName": "settled_currency",
+            "type": "string"
+        },
+        {
+            "name": "settledAmount",
+            "baseName": "settled_amount",
+            "type": "number"
+        },
+        {
+            "name": "settled",
+            "baseName": "settled",
+            "type": "boolean"
         }    ];
 
     static getAttributeTypeMap() {
@@ -282,9 +309,13 @@ export namespace TransactionSummary {
         Dcb = <any> 'dcb',
         Dlocal = <any> 'dlocal',
         Ebanx = <any> 'ebanx',
+        Efecty = <any> 'efecty',
         Eps = <any> 'eps',
         Everydaypay = <any> 'everydaypay',
         Gcash = <any> 'gcash',
+        Gem = <any> 'gem',
+        Gemds = <any> 'gemds',
+        GiftCard = <any> 'gift-card',
         Giropay = <any> 'giropay',
         Givingblock = <any> 'givingblock',
         Gocardless = <any> 'gocardless',
@@ -297,12 +328,16 @@ export namespace TransactionSummary {
         Kakaopay = <any> 'kakaopay',
         Kcp = <any> 'kcp',
         Klarna = <any> 'klarna',
+        Latitude = <any> 'latitude',
+        Latitudeds = <any> 'latitudeds',
         Laybuy = <any> 'laybuy',
         Linepay = <any> 'linepay',
         Linkaja = <any> 'linkaja',
         Maybankqrpay = <any> 'maybankqrpay',
+        Mercadopago = <any> 'mercadopago',
         Multibanco = <any> 'multibanco',
         Multipago = <any> 'multipago',
+        Netbanking = <any> 'netbanking',
         NetworkToken = <any> 'network-token',
         Oney3x = <any> 'oney_3x',
         Oney4x = <any> 'oney_4x',
@@ -318,6 +353,7 @@ export namespace TransactionSummary {
         Payto = <any> 'payto',
         Venmo = <any> 'venmo',
         Pix = <any> 'pix',
+        Pse = <any> 'pse',
         Rabbitlinepay = <any> 'rabbitlinepay',
         Razorpay = <any> 'razorpay',
         Scalapay = <any> 'scalapay',
@@ -333,8 +369,10 @@ export namespace TransactionSummary {
         Truemoney = <any> 'truemoney',
         Trustly = <any> 'trustly',
         Trustlyeurope = <any> 'trustlyeurope',
+        Upi = <any> 'upi',
         Vipps = <any> 'vipps',
         Waave = <any> 'waave',
+        Webpay = <any> 'webpay',
         Wechat = <any> 'wechat',
         Zippay = <any> 'zippay'
     }

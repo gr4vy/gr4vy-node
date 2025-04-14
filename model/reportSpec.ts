@@ -11,7 +11,6 @@
  */
 
 import { RequestFile } from './models';
-import { ReportSpecParams } from './reportSpecParams';
 
 /**
 * The specification of a report.
@@ -21,7 +20,10 @@ export class ReportSpec {
     * The model (dataset) that the data used for the report is retrieved from.
     */
     'model': ReportSpec.ModelEnum;
-    'params': ReportSpecParams;
+    /**
+    * Parameters used to configure the report. Acceptable values for this property depend on the value specified for `model`.
+    */
+    'params': object;
 
     static discriminator: string | undefined = undefined;
 
@@ -34,7 +36,7 @@ export class ReportSpec {
         {
             "name": "params",
             "baseName": "params",
-            "type": "ReportSpecParams"
+            "type": "object"
         }    ];
 
     static getAttributeTypeMap() {
@@ -44,6 +46,8 @@ export class ReportSpec {
 
 export namespace ReportSpec {
     export enum ModelEnum {
-        Transactions = <any> 'transactions'
+        Transactions = <any> 'transactions',
+        DetailedSettlement = <any> 'detailed_settlement',
+        TransactionRetries = <any> 'transaction_retries'
     }
 }

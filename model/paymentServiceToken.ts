@@ -41,9 +41,9 @@ export class PaymentServiceToken {
     */
     'approvalUrl'?: string | null;
     /**
-    * The token value.
+    * The token value. Will be present if succeeded.
     */
-    'token'?: string;
+    'token'?: string | null;
     /**
     * The date and time when this token was first created in our system.
     */

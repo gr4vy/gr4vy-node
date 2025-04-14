@@ -26,6 +26,10 @@ export class BuyerRequest {
     */
     'displayName'?: string | null;
     'billingDetails'?: BuyerRequestBillingDetails | null;
+    /**
+    * The source account number to perform an account funding transaction.
+    */
+    'accountNumber'?: string | null;
 
     static discriminator: string | undefined = undefined;
 
@@ -44,6 +48,11 @@ export class BuyerRequest {
             "name": "billingDetails",
             "baseName": "billing_details",
             "type": "BuyerRequestBillingDetails"
+        },
+        {
+            "name": "accountNumber",
+            "baseName": "account_number",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {

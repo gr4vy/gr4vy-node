@@ -100,6 +100,22 @@ export class PaymentMethod {
     * The unique hash derived from the payment method identifier (e.g. card number).
     */
     'fingerprint'?: string | null;
+    /**
+    * The timestamp when this payment method was last used in a transaction.
+    */
+    'lastUsedAt'?: Date | null;
+    /**
+    * The number of times this payment method has been used in transactions.
+    */
+    'usageCount'?: number;
+    /**
+    * The timestamp when this payment method was last used in a transaction for client initiated transactions.
+    */
+    'citLastUsedAt'?: Date | null;
+    /**
+    * The number of times this payment method has been used in transactions for client initiated transactions.
+    */
+    'citUsageCount'?: number;
 
     static discriminator: string | undefined = undefined;
 
@@ -213,6 +229,26 @@ export class PaymentMethod {
             "name": "fingerprint",
             "baseName": "fingerprint",
             "type": "string"
+        },
+        {
+            "name": "lastUsedAt",
+            "baseName": "last_used_at",
+            "type": "Date"
+        },
+        {
+            "name": "usageCount",
+            "baseName": "usage_count",
+            "type": "number"
+        },
+        {
+            "name": "citLastUsedAt",
+            "baseName": "cit_last_used_at",
+            "type": "Date"
+        },
+        {
+            "name": "citUsageCount",
+            "baseName": "cit_usage_count",
+            "type": "number"
         }    ];
 
     static getAttributeTypeMap() {
@@ -277,9 +313,13 @@ export namespace PaymentMethod {
         Dcb = <any> 'dcb',
         Dlocal = <any> 'dlocal',
         Ebanx = <any> 'ebanx',
+        Efecty = <any> 'efecty',
         Eps = <any> 'eps',
         Everydaypay = <any> 'everydaypay',
         Gcash = <any> 'gcash',
+        Gem = <any> 'gem',
+        Gemds = <any> 'gemds',
+        GiftCard = <any> 'gift-card',
         Giropay = <any> 'giropay',
         Givingblock = <any> 'givingblock',
         Gocardless = <any> 'gocardless',
@@ -292,12 +332,16 @@ export namespace PaymentMethod {
         Kakaopay = <any> 'kakaopay',
         Kcp = <any> 'kcp',
         Klarna = <any> 'klarna',
+        Latitude = <any> 'latitude',
+        Latitudeds = <any> 'latitudeds',
         Laybuy = <any> 'laybuy',
         Linepay = <any> 'linepay',
         Linkaja = <any> 'linkaja',
         Maybankqrpay = <any> 'maybankqrpay',
+        Mercadopago = <any> 'mercadopago',
         Multibanco = <any> 'multibanco',
         Multipago = <any> 'multipago',
+        Netbanking = <any> 'netbanking',
         NetworkToken = <any> 'network-token',
         Oney3x = <any> 'oney_3x',
         Oney4x = <any> 'oney_4x',
@@ -313,6 +357,7 @@ export namespace PaymentMethod {
         Payto = <any> 'payto',
         Venmo = <any> 'venmo',
         Pix = <any> 'pix',
+        Pse = <any> 'pse',
         Rabbitlinepay = <any> 'rabbitlinepay',
         Razorpay = <any> 'razorpay',
         Scalapay = <any> 'scalapay',
@@ -328,8 +373,10 @@ export namespace PaymentMethod {
         Truemoney = <any> 'truemoney',
         Trustly = <any> 'trustly',
         Trustlyeurope = <any> 'trustlyeurope',
+        Upi = <any> 'upi',
         Vipps = <any> 'vipps',
         Waave = <any> 'waave',
+        Webpay = <any> 'webpay',
         Wechat = <any> 'wechat',
         Zippay = <any> 'zippay'
     }

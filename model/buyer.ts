@@ -43,6 +43,10 @@ export class Buyer {
     * The date and time when this buyer was last updated in our system.
     */
     'updatedAt'?: Date;
+    /**
+    * The source account number to perform an account funding transaction.
+    */
+    'accountNumber'?: string | null;
 
     static discriminator: string | undefined = undefined;
 
@@ -86,6 +90,11 @@ export class Buyer {
             "name": "updatedAt",
             "baseName": "updated_at",
             "type": "Date"
+        },
+        {
+            "name": "accountNumber",
+            "baseName": "account_number",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {

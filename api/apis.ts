@@ -22,6 +22,8 @@ export * from './giftCardsApi';
 import { GiftCardsApi } from './giftCardsApi';
 export * from './merchantAccountsApi';
 import { MerchantAccountsApi } from './merchantAccountsApi';
+export * from './paymentLinksApi';
+import { PaymentLinksApi } from './paymentLinksApi';
 export * from './paymentMethodDefinitionsApi';
 import { PaymentMethodDefinitionsApi } from './paymentMethodDefinitionsApi';
 export * from './paymentMethodsApi';
@@ -32,6 +34,8 @@ export * from './paymentServiceDefinitionsApi';
 import { PaymentServiceDefinitionsApi } from './paymentServiceDefinitionsApi';
 export * from './paymentServicesApi';
 import { PaymentServicesApi } from './paymentServicesApi';
+export * from './payoutsApi';
+import { PayoutsApi } from './payoutsApi';
 export * from './reportsApi';
 import { ReportsApi } from './reportsApi';
 export * from './rolesApi';
@@ -42,6 +46,8 @@ export * from './transactionsApi';
 import { TransactionsApi } from './transactionsApi';
 export * from './vaultForwardApi';
 import { VaultForwardApi } from './vaultForwardApi';
+export * from './webhookSubscriptionsApi';
+import { WebhookSubscriptionsApi } from './webhookSubscriptionsApi';
 import * as http from 'http';
 
 export class HttpError extends Error {
@@ -53,4 +59,4 @@ export class HttpError extends Error {
 
 export { RequestFile } from '../model/models';
 
-export const APIS = [APILogsApi, AccountUpdaterApi, AntiFraudServiceDefinitionsApi, AuditLogsApi, BuyersApi, CardSchemeDefinitionsApi, CheckoutSessionsApi, DigitalWalletsApi, GiftCardServiceDefinitionsApi, GiftCardServicesApi, GiftCardsApi, MerchantAccountsApi, PaymentMethodDefinitionsApi, PaymentMethodsApi, PaymentOptionsApi, PaymentServiceDefinitionsApi, PaymentServicesApi, ReportsApi, RolesApi, TokensApi, TransactionsApi, VaultForwardApi];
+export const APIS = [APILogsApi, AccountUpdaterApi, AntiFraudServiceDefinitionsApi, AuditLogsApi, BuyersApi, CardSchemeDefinitionsApi, CheckoutSessionsApi, DigitalWalletsApi, GiftCardServiceDefinitionsApi, GiftCardServicesApi, GiftCardsApi, MerchantAccountsApi, PaymentLinksApi, PaymentMethodDefinitionsApi, PaymentMethodsApi, PaymentOptionsApi, PaymentServiceDefinitionsApi, PaymentServicesApi, PayoutsApi, ReportsApi, RolesApi, TokensApi, TransactionsApi, VaultForwardApi, WebhookSubscriptionsApi];

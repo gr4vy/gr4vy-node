@@ -11,15 +11,26 @@
  */
 
 import { RequestFile } from './models';
-import { BillingDetailsRequestAddress } from './billingDetailsRequestAddress';
-import { BillingDetailsRequestTaxId } from './billingDetailsRequestTaxId';
+import { ShippingDetailAddress } from './shippingDetailAddress';
 
 /**
 * The optional shipping details for the buyer.
 */
 export class TransactionBuyerRequestShippingDetails {
     /**
-    * The first name(s) or given name for the buyer.
+    * The type of this resource. Is always `shipping-details`.
+    */
+    'type'?: TransactionBuyerRequestShippingDetails.TypeEnum;
+    /**
+    * The unique ID for a buyer\'s shipping detail.
+    */
+    'id'?: string;
+    /**
+    * The unique ID for a buyer.
+    */
+    'buyerId'?: string;
+    /**
+    * The first name(s) or given name of the buyer.
     */
     'firstName'?: string | null;
     /**
@@ -27,19 +38,33 @@ export class TransactionBuyerRequestShippingDetails {
     */
     'lastName'?: string | null;
     /**
-    * The email address for the buyer.
+    * The email address of the buyer.
     */
     'emailAddress'?: string | null;
     /**
-    * The phone number for the buyer which should be formatted according to the [E164 number standard](https://www.twilio.com/docs/glossary/what-e164).
+    * The phone number of the buyer. This number is formatted according to the [E164 number standard](https://www.twilio.com/docs/glossary/what-e164).
     */
     'phoneNumber'?: string | null;
-    'address'?: BillingDetailsRequestAddress | null;
-    'taxId'?: BillingDetailsRequestTaxId | null;
+    'address'?: ShippingDetailAddress | null;
 
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "type",
+            "baseName": "type",
+            "type": "TransactionBuyerRequestShippingDetails.TypeEnum"
+        },
+        {
+            "name": "id",
+            "baseName": "id",
+            "type": "string"
+        },
+        {
+            "name": "buyerId",
+            "baseName": "buyer_id",
+            "type": "string"
+        },
         {
             "name": "firstName",
             "baseName": "first_name",
@@ -63,12 +88,7 @@ export class TransactionBuyerRequestShippingDetails {
         {
             "name": "address",
             "baseName": "address",
-            "type": "BillingDetailsRequestAddress"
-        },
-        {
-            "name": "taxId",
-            "baseName": "tax_id",
-            "type": "BillingDetailsRequestTaxId"
+            "type": "ShippingDetailAddress"
         }    ];
 
     static getAttributeTypeMap() {
@@ -76,3 +96,8 @@ export class TransactionBuyerRequestShippingDetails {
     }
 }
 
+export namespace TransactionBuyerRequestShippingDetails {
+    export enum TypeEnum {
+        ShippingDetails = <any> 'shipping-details'
+    }
+}
