@@ -218,6 +218,53 @@ client
   })
 ```
 
+## Verifying Webhooks
+
+The SDK provides a `verifyWebhook` method to validate incoming webhook requests from Gr4vy. This ensures that the webhook payload is authentic and has not been tampered with.
+
+### Usage
+
+```js
+const { Client } = require('@gr4vy/node')
+// or: import { Client } from '@gr4vy/node';
+
+const payload = 'your-webhook-payload'
+const secret = 'your-webhook-secret'
+const signatureHeader = 'signatures-from-header'
+const timestampHeader = 'timestamp-from-header'
+const timestampTolerance = 300 // optional, in seconds (default: 0)
+
+try {
+  Client.verifyWebhook(
+    payload,
+    secret,
+    signatureHeader,
+    timestampHeader,
+    timestampTolerance
+  )
+  console.log('Webhook verified successfully!')
+} catch (error) {
+  console.error('Webhook verification failed:', error.message)
+}
+```
+
+### Parameters
+
+- **`payload`**: The raw payload string received in the webhook request.
+- **`secret`**: The secret used to sign the webhook. This is provided in your Gr4vy dashboard.
+- **`signatureHeader`**: The `X-Gr4vy-Signature` header from the webhook request.
+- **`timestampHeader`**: The `X-Gr4vy-Timestamp` header from the webhook request.
+- **`timestampTolerance`**: _(Optional)_ The maximum allowed difference (in seconds) between the current time and the timestamp in the webhook. Defaults to `0` (no tolerance).
+
+### Errors
+
+The `verifyWebhook` method throws an error in the following cases:
+
+- **Missing header values**: If either the `signatureHeader` or `timestampHeader` is missing.
+- **Invalid header timestamp**: If the `timestampHeader` is not a valid number.
+- **No matching signature found**: If the signature does not match the expected value.
+- **Timestamp too old**: If the timestamp is outside the allowed tolerance.
+
 ## Logging & Debugging
 
 The SDK makes it easy possible to the requests and responses to the console.
