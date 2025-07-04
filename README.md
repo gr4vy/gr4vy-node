@@ -1,8 +1,9 @@
 # Gr4vy SDK for Node
 
 <br /><br />
+
 > [!IMPORTANT]
-> This SDK will be deprecated soon. Please refer to our new [Beta Typescript SDK](https://github.com/gr4vy/gr4vy-python/tree/legacy) for the new direction for this SDK.
+> This SDK is now deprecated. Please refer to our new [Beta Typescript SDK](https://github.com/gr4vy/gr4vy-python/tree/legacy) for the new direction for this SDK.
 
 [![Module Version](https://badge.fury.io/js/%40gr4vy%2Fnode.svg)][npm]
 
