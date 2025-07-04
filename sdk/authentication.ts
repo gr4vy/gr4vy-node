@@ -85,7 +85,7 @@ enum JWTScope {
   ApiLogsWrite = 'api-logs.write',
   ApplePayCertificatesRead = 'apple-pay-certificates.read',
   ApplePayCertificatesWrite = 'apple-pay-certificates.write',
-  AuditLogs = 'audit-logs.read',
+  AuditLogRead = 'audit-logs.read',
   AuditLogsWrite = 'audit-logs.write',
   BuyersRead = 'buyers.read',
   BuyersWrite = 'buyers.write',
